@@ -154,7 +154,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   `no_minCE_of_liftSDR` (any lifted test systems; contains front's GP and all pure kinds), GP validity + Theorem U in Lean.
   13:35: `no_minCE_of_MU` (+ mu_of_pureSDR), gate-form `restricted*_gate_deficient`, PureStar.lean: `no_minCE_of_starSep`
   (front A2's STAR-SEP as hypothesis; its induction checked). 13:45: `no_minCE_of_MUL` (MU over all lifted test systems,
-  weakest menu target); chain STAR-SEP ⇒ PureSDR ⇒ {LiftSDR, MU} ⇒ MUL ⇒ no_minCE, all in Lean.
+  weakest menu target); chain STAR-SEP ⇒ PureSDR ⇒ {LiftSDR, MU} ⇒ MUL ⇒ no_minCE, all in Lean. 13:55: STAR-SEP HEAVY CASE
+  in Lean (`starSep_heavy`, `starSep_of_hQ`); open = front's gap (light v; heavy v with non-heavy star points).
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.

@@ -213,3 +213,6 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   `menuSDR_of_starSep`, `pureSDR_of_starSep`, `no_minCE_of_starSep`. So 951 now reduces in Lean to STAR-SEP (∀ MinCE, ∀ Q).
 - (13:45 UTC) `no_minCE_of_MUL` (coord 12:01): MU over ALL valid lifted test systems (`liftMenu`), the weakest menu target;
   `mu_of_liftSDR`, `muL_of_mu`. Implication chain in Lean: STAR-SEP ⇒ PureSDR ⇒ {LiftSDR, MU} ⇒ MUL ⇒ no_minCE.
+- (13:55 UTC) STAR-SEP HEAVY CASE checked (front A2's paper proof): `starSep_heavy` (h(Q ∪ {v}) = 1, h(D ∪ {u}) = 1 for star points
+  u ≠ v ⇒ StarSep at Q with I0 star classes at top_w), `starSep_of_hQ` (h(Q) = 1 ⇒ StarSep). Open: light v, and heavy v with
+  non-heavy star points (front's GAP).

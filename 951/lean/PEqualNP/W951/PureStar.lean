@@ -20,6 +20,10 @@ gate at `p` and a set `Q` of points:
 Results: `menuSDR_of_starSep` (STAR-SEP for all `Q` ⇒ for all `Q` the alive sets have a
 `Menu1_Q`-SDR; induction on the number of alive sets, using `aliveSets (insert v Q) = aliveSets Q \ St`),
 `pureSDR_of_starSep` (`Q = ∅`), `no_minCE_of_starSep`. No minimality and no circuit rebuilding.
+
+Heavy case (front A2, 12:06): `deadPts` (`D`, the points in no alive set), `heavyM`,
+`starSep_heavy` (`h(Q ∪ {v}) = 1` and `h(D ∪ {u}) = 1` for the star points `u ≠ v` ⇒ STAR-SEP at `v`),
+`starSep_of_hQ` (`h(Q) = 1` ⇒ STAR-SEP at `Q`).
 -/
 
 namespace PEqualNP.Outside.L_meta_951_aux
@@ -136,6 +140,123 @@ theorem pureSDR_of_starSep (gates : List Gate) (p : ℕ) (S : Fin m → Finset (
   have hall : ∀ w, w ∈ aliveSets S ∅ := fun w => mem_aliveSets.mpr (Finset.disjoint_empty_right _)
   obtain ⟨c, hcm, hcd⟩ := menuSDR_of_starSep gates p S H _ ∅ le_rfl
   exact ⟨c, fun w => (hcm w (hall w)).valid, fun w w' hww => hcd w (hall w) w' (hall w') hww⟩
+
+/-! ## The heavy case of STAR-SEP (front A2, 12:06; PROVED-PAPER there, checked here) -/
+
+/-- `D`: the points in no alive set (it contains `Q`). -/
+def deadPts (S : Fin m → Finset (Fin n)) (Q : Finset (Fin n)) : Finset (Fin n) :=
+  Finset.univ.filter fun x => ∀ w ∈ aliveSets S Q, x ∉ S w
+
+theorem subset_deadPts (S : Fin m → Finset (Fin n)) (Q : Finset (Fin n)) : Q ⊆ deadPts S Q := by
+  intro x hx
+  refine Finset.mem_filter.mpr ⟨Finset.mem_univ _, fun w hw hxw => ?_⟩
+  exact Finset.disjoint_left.mp (mem_aliveSets.mp hw) hxw hx
+
+/-- The heavy-case atom points: `m_v = Q ∪ {v}`, `m_u = D ∪ {u}` for `u ≠ v`. -/
+def heavyM (S : Fin m → Finset (Fin n)) (Q : Finset (Fin n)) (v : Fin n) (u : Fin n) : Finset (Fin n) :=
+  if u = v then insert v Q else insert u (deadPts S Q)
+
+/-- A heavy-case atom `m_u ∪ {u}` avoids every alive set that does not contain `u`. -/
+theorem heavyM_disjoint (S : Fin m → Finset (Fin n)) (Q : Finset (Fin n)) (v u : Fin n) {w' : Fin m}
+    (hw' : w' ∈ aliveSets S Q) (hu : u ∉ S w') : Disjoint (insert u (heavyM S Q v u)) (S w') := by
+  rw [Finset.disjoint_left]
+  intro x hx hxw
+  have hQ := mem_aliveSets.mp hw'
+  rw [heavyM] at hx
+  split_ifs at hx with huv
+  · subst huv
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact hu hxw
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact hu hxw
+    · exact Finset.disjoint_left.mp hQ hxw hx
+  · rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact hu hxw
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact hu hxw
+    · exact (Finset.mem_filter.mp hx).2 w' hw' hxw
+
+variable (gates : List Gate) (p : ℕ) (hp : p < gates.length)
+  (hg : ∀ g ∈ gates, (g.op = GateOp.and ∨ g.op = GateOp.or ∨ g.op = GateOp.not) ∧
+    g.inputs.length ≤ 2)
+  (hU : AtMostOneNot gates) (hN : (gates[p]'hp).op = GateOp.not)
+
+include hg hU hN in
+/-- **STAR-SEP, heavy case** (front A2). If `h(Q ∪ {v}) = 1` and `h(D ∪ {u}) = 1` for every point
+`u ≠ v` of the star of `v` (the NOT gate is `0` there), STAR-SEP holds at `v`, with every star set
+taking the I0 class at `top_w` with atoms `Q ∪ {v}` and `D ∪ {u}`. No world-1 option lives in the cube
+`Q ∪ {v}` (`h = 1` there), and a star class meets any other alive set's world-0 class only if two
+of its atoms meet that set, which `|S_w ∩ S_w'| ≤ 1` excludes (W0, `disjoint_pureI0_pureI0`). -/
+theorem starSep_heavy (S : Fin m → Finset (Fin n))
+    (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) (Q : Finset (Fin n)) (v : Fin n)
+    (hv : (starSets S Q v).Nonempty)
+    (hQv : val gates (canonPt (insert v Q)) (n + p) = false)
+    (hD : ∀ w ∈ starSets S Q v, ∀ u ∈ S w, u ≠ v →
+      val gates (canonPt (insert u (deadPts S Q))) (n + p) = false) :
+    StarSep gates p S Q := by
+  classical
+  intro _
+  have hstar : ∀ w, w ∈ starSets S Q v ↔ w ∈ aliveSets S Q ∧ v ∈ S w := fun w => Finset.mem_filter
+  -- the star option is valid and in `Menu1_Q`
+  have hmenu : ∀ w ∈ starSets S Q v, InMenuQ gates p Q (S w) (.zero (heavyM S Q v)) := by
+    intro w hw
+    obtain ⟨hwa, -⟩ := (hstar w).mp hw
+    have hQw := mem_aliveSets.mp hwa
+    refine ⟨⟨fun u hu x hx hxw => ?_, fun u hu => ?_⟩, fun u hu => ?_⟩
+    · rw [heavyM] at hx
+      split_ifs at hx with huv
+      · subst huv
+        rcases Finset.mem_insert.mp hx with rfl | hx
+        · rfl
+        · exact absurd hx (Finset.disjoint_left.mp hQw hxw)
+      · rcases Finset.mem_insert.mp hx with rfl | hx
+        · rfl
+        · exact absurd hxw ((Finset.mem_filter.mp hx).2 w hwa)
+    · rw [heavyM]
+      split_ifs with huv
+      · subst huv; exact hQv
+      · exact hD w hw u hu huv
+    · rw [heavyM]
+      split_ifs
+      · exact Finset.subset_insert _ _
+      · exact (subset_deadPts S Q).trans (Finset.subset_insert _ _)
+  -- the W0 pair condition against any alive set
+  have hpair : ∀ w ∈ starSets S Q v, ∀ w' ∈ aliveSets S Q, w ≠ w' →
+      ∀ u ∈ S w, ∀ u' ∈ S w, u ≠ u' →
+        Disjoint (insert u (heavyM S Q v u)) (S w') ∨ Disjoint (insert u' (heavyM S Q v u')) (S w') :=
+    fun w _ w' hw' hww => pair_true_of_inter (S w) (S w') (hS w w' hww) _
+      fun u hu => heavyM_disjoint S Q v u hw' hu
+  refine ⟨v, hv, fun _ => .zero (heavyM S Q v), hmenu, fun w hw w' hw' hww => ?_, fun w hw w' hw' hvw' c' hc' => ?_⟩
+  · exact disjoint_pureI0_pureI0 gates p hp hg hU hN (S w) (S w') _ _
+      (hpair w hw w' ((hstar w').mp hw').1 hww)
+  · have hww : w ≠ w' := fun h => hvw' (h ▸ ((hstar w).mp hw).2)
+    cases c' with
+    | zero m' =>
+      exact disjoint_pureI0_pureI0 gates p hp hg hU hN (S w) (S w') _ _ (hpair w hw w' hw' hww)
+    | oneAt Z A =>
+      exfalso
+      obtain ⟨⟨-, hZ, -⟩, R', -, hQR, hRZ⟩ := hc'
+      have hle : canonPt (insert v Q) ≤ Z := canonPt_le fun x hx => hRZ x (hQR hx)
+      have := not_false_of_le gates p hp hg hU hN hle hQv
+      rw [hZ] at this
+      exact absurd this (by decide)
+    | one Z => exact hc'.elim
+    | zeroAt z m' => exact hc'.elim
+
+include hg hU hN in
+/-- **Corollary** (front A2): `h(Q) = 1` (the NOT gate is `0` at `Q`) ⇒ STAR-SEP at `Q` (every point
+`v` of an alive set works). -/
+theorem starSep_of_hQ (S : Fin m → Finset (Fin n))
+    (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) (hne : ∀ w, (S w).Nonempty)
+    (Q : Finset (Fin n)) (hQ : val gates (canonPt Q) (n + p) = false) : StarSep gates p S Q := by
+  intro halive
+  obtain ⟨w, hw⟩ := halive
+  obtain ⟨v, hv⟩ := hne w
+  have hmono : ∀ A : Finset (Fin n), Q ⊆ A → val gates (canonPt A) (n + p) = false := fun A hA =>
+    not_false_of_le gates p hp hg hU hN (canonPt_le fun x hx => canonPt_eq_true.mpr (hA hx)) hQ
+  exact starSep_heavy gates p hp hg hU hN S hS Q v ⟨w, Finset.mem_filter.mpr ⟨hw, hv⟩⟩
+    (hmono _ (Finset.subset_insert _ _))
+    (fun _ _ u _ _ => hmono _ ((subset_deadPts S Q).trans (Finset.subset_insert _ _))) ⟨w, hw⟩
 
 end PureStar
 
