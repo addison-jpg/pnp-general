@@ -186,13 +186,10 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 4. Duplicates and dead loops: two seats on one item; a lane on a statement the wall marks `[DEAD]`.
 5. Blockers that only the owner can clear (permissions, restarts) are collected in ONE line below, not sent as messages.
 
-**Snapshot 17:20 UTC** (from session status; nothing killed).
-- Working: integrator (QG coordinator, main), checker-CHECKER (observer, MST / prime directive). Everyone else idle after the final pass.
-- C1 and C2: PARKED by coord (boards/one-not.md, a37713f), each with a restart point. Coord is paused by the owner and staffs no
-  seats; a restart needs the owner. Ladder (L-gen-101..103, XOR open case, Kannan) and physics gaps
-  (L-qg-115/116/119/169): no running seat.
-- Idle seats that fit: coord (assign), research + research-desktop (literature for C1/C2), dwV8p / pnp-subproblem (referee),
-  cTAHG / dRKvz / tractability (Lean), scaffold + gAdyD (compute: witnesses for C1), Generalize / GeNeRALIZE (XOR, Kannan).
-- Owner-only blockers: restart of the 951 work (coord paused; C1/C2 parked); front restart (needs a seat that can push to pnp-general); GeNeRALIZE blocked by a GitHub ruleset
-  ("please be nice", target branches); front and scaffold still cannot attach pnp-general.
-- Fable budget: none observed running now.
+**Snapshot 17:50 UTC** (nothing killed).
+- Working: C4(2) seat (session_01GmnDhe3y5bZxiBqFwv37X4, started by coord 17:44: two NOT gates vs base, gate count C4g(2));
+  integrator (QG coordinator: outward search, C3_k refuted, C4w refuted t >= 4); front drafting front-page README (done, pushed 3840570).
+- C1, C2: PARKED (a37713f), restart needs the owner. Ladder L-gen-101..103, XOR case, Kannan: no running seat. Physics gaps: no seat.
+- Duplicates: none. Off-route compute: none seen. Fables: the C3_k commit is Fable-authored (integrator); within allocation.
+- Owner-only blockers: restart of C1/C2 (coord paused); checker-CHECKER asks whether to redo its README trim (mst-readme)
+  on top of the new front page or leave main's READMEs; front + scaffold cannot attach pnp-general; GeNeRALIZE ruleset.

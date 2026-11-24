@@ -50,6 +50,16 @@ def inrw(c, i, Q):
         Z |= Q
         if not any(m & Z == m for m in ms): return True
     return False
+def witness(c, i, Q):
+    # an explicit witness (set index, zero point Z, atoms u, u') for gate i at the cube Q, or None; checked by c3_cert.py
+    ms, cs = c['cands'][i]
+    for sm, Z0 in cs:
+        if sm & Q: continue
+        Z = Z0 | Q
+        if any(m & Z == m for m in ms): continue
+        at = sorted({(T & sm).bit_length() - 1 for T in ms if (T & sm) and (T & sm) & ((T & sm) - 1) == 0 and (T & ~sm) & ~Z == 0})
+        if len(at) >= 2: return c['smask'].index(sm), Z, at[0], at[1]
+    return None
 def base(c, Q): return sum(len(R) - 1 for R, sm in zip(c['S'], c['smask']) if not sm & Q)
 def rw(c, Q, among=None): return [i for i in (c['cands'] if among is None else among) if inrw(c, i, Q)]
 def sample_correct(d, trials=2000, seed=1):

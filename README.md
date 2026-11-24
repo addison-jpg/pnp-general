@@ -61,12 +61,13 @@ counting bound), L-qg-119 (two-qubit circuits are Haar-null when 9k + 3n + 1 < 4
 The step of the proof is a derivative and the count is its integral. Three sums, all over finite objects, carry the idea (details in §6):
 
 - **Chain sum (L5, checked).** Along every chain of cubes, slack(∅) = Σ_i (gain_i − cost_i). The Theorem needs only the sum to be ≥ 0
-  (integral form); Conjecture C2 asks every term to be ≥ 0 (pointwise form); C3 asks for paths of at most k points; **L7 (checked)** proves the
+  (integral form); Conjecture C2 asks every term to be ≥ 0 (pointwise form); C3 asks for paths of at most k points (refuted for every fixed k without `MinCE.no_rewire`, open with it); **L7 (checked)** proves the
   Theorem from a descent with any number of points. Every counterexample to the pointwise form has a positive sum (+6, +15).
 - **Average over zero points (the fractional form).** Each set w spreads a probability distribution μ_w over its zero points so that no gate
   carries more than one unit: Σ_w Pr_{z∼μ_w}[g ∈ M_z(w)] ≤ 1 for every gate g. Summed over gates this gives base ≤ #gates. Its LP dual is the
-  price inequality; the reduction of `no_minCE` to the price form is checked in the one-NOT development; real merge sets fail it
-  (`Cex.starOfFourPairsWithAThresholdNOTInput`), and its lifted two-gate case has a paper proof (an odd-triangle parity argument).
+  price inequality, and the reduction of `no_minCE` to the price form is **checked** (`no_minCE_of_purePrice`,
+  [`one-not/lean/PEqualNP/W951/PureFrac.lean`](one-not/lean/PEqualNP/W951/PureFrac.lean)). Real merge sets fail it
+  (`Cex.starOfFourPairsWithAThresholdNOTInput`); its lifted two-gate case has a paper proof (an odd-triangle parity argument).
 - **Time average (L6, checked).** A Deutsch-consistent state of a closed timelike curve is reached by Cesàro averages, and the displacement is
   (end − start)/(n+1). L5 and L6 are the same identity; this is the link the gist names (a premise: it selects statements, it proves none).
 - **The limit.** A Riemann sum over inputs at one length (2⁻ⁿ Σ_x f(x), the "hypercomplex polynomial" / Walsh expansion) is a property of
@@ -79,7 +80,7 @@ One NOT gate saves nothing on (1,1)-disjoint Boolean sums (statement below). Wit
 **Proved (checked):** every circuit whose lift wins the certificate game (T1, T2); the NOT gate reads an input (T3, no minimality); every cube
 that is local (T4); all |S_w| ≤ 3, and every circuit with no output in two-world normal form, for any number of NOT gates (T5).
 **Open:** exactly the minimal counterexamples whose lift loses the game: C1 (a disjoint system of lifted classes) or C2 (a positive point step
-under `MinCE.no_rewire`). If true for every number t of NOT gates (C4(t)), dense designs would give a superlinear lower bound for general
+under `MinCE.no_rewire`). If the gate count holds for every number t of NOT gates (C4g(t); its witness-count form C4w is refuted for t ≥ 4), dense designs would give a superlinear lower bound for general
 circuits, which is not known for any explicit function.
 
 ### The ladder and the general gaps
@@ -88,7 +89,7 @@ circuits, which is not known for any explicit function.
 |---|---|
 | 0 NOT gates (monotone) | exponential bounds (Razborov 1985); exact `base` for Boolean sums (Wegener, Mehlhorn) |
 | **1 NOT gate** | **the Theorem below: one `sorry`** |
-| t NOT gates | Conjecture C4(t); Amano–Maruoka 2005; a circuit with t NOT gates is a parity of O(2^t) monotone functions (Blais et al., arXiv 1410.8420), and t = 1 is the two-world split used here |
+| t NOT gates | Conjecture C4g(t) (gate count, open for t ≥ 2; witness count C4w refuted for t ≥ 4); Amano–Maruoka 2005; a circuit with t NOT gates is a parity of O(2^t) monotone functions (Blais et al., arXiv 1410.8420), and t = 1 is the two-world split used here |
 | ⌈log₂(n+1)⌉ NOT gates | **checked**: as strong as unrestricted circuits up to polynomial size (T6, L-gen-104) |
 | unrestricted | **checked:** L-gen-001–004 (the gaps imply each other; the ladder is monotone; its top is the general case), XOR: C(x ⊕ f) ≥ max(C f, C ¬f) + 3, = min + 4 when C(f) ≠ C(¬f) (L-gen-005, 006), C(f) + 1 ≤ C(¬x ∧ f) ≤ C(f) + 2 (L-gen-007). **Open:** L-gen-101 (NP ⊄ P/poly, = P ≠ NP in circuit form), 102 (NP ⊄ SIZE(n^k) for every k; Kannan proves it one level up), 103 (no linear-size circuits; best known ≈ 5n, 3.1n by Li–Yang 2022), the XOR case C(f) = C(¬f) |
 
@@ -146,9 +147,10 @@ Suppose the Theorem fails and take a minimal counterexample (D1). By L2 it is cl
 **Open (the one `sorry`, `no_minCE`).** A minimal counterexample whose lift loses the certificate game.
 
 - **Conjecture C1.** Every minimal counterexample has `LiftSDR`. Smallest lost game: S = {0,1,2}, {0,3,4}, h = x_1 ∨ x_3; a violation there is a configuration of three gates. Hard core: `Cex.threeFourSetsInATriangle` (old: cxT2), which satisfies L2 and loses the game.
-- **Conjecture C3** (§6): the k-point step, the integral form of C2.
-- **Conjecture C2.** Under `MinCE.no_rewire`, at every non-local cube some point has gain ≥ cost for `realWitness` (then T4 closes the proof).
+- **Conjecture C3** (§6): the k-point step, the integral form of C2. Refuted for every fixed k without `MinCE.no_rewire` (paper); open with it. Paper (front): for every correct circuit, base ≤ |`realWitness`(∅)| ⟺ F2-SDR (disjoint D_w ⊆ `realWitness`_w, |D_w| = d_w), by Hall with demands over output subfamilies; checked 11,408/11,408 (n ≤ 10). The ⇒ direction does not survive minimality.
+- **Conjecture C2.** Under `MinCE.no_rewire`, at every non-local cube some point has gain ≥ cost for `realWitness` (then T4 closes the proof). Tested (front): some 1-step pays at 1,327/1,327 non-local states (all 3^n mixed states of 11 barrier circuits) and 15,975/15,975 sampled non-local states (chk/c, w7/bad, barrier, pappus_junk_gain); correct circuits, not MinCEs.
 - **Tested, no failure.** |`realWitness`(Q)| ≥ `base`(Q) at every cube of every suite (19,534 suite instances; 80,198 Fano circuits × 128 cubes).
+- **Remaining gap, as one Lean lemma** (front, 2026-11-24): for MinCE M and Q with 0 < base(Q), ¬CubeLocal, ¬LW1, ∃ Q' ⊃ Q with |Q' \ Q| ≤ k and base(Q) + |`realWitness`(Q')| ≤ base(Q') + |`realWitness`(Q)|. With k = n this is the count itself, so it is only useful for bounded k: C3 with k = 2 or C2 with k = 1, both under `MinCE.no_rewire` (without it C3_k is refuted for every fixed k, 317e693).
 
 ## 5. Refuted, each with its counterexample
 
@@ -160,8 +162,11 @@ Seven families, 60+ rows: [`one-not/DEAD_ENDS.md`](one-not/DEAD_ENDS.md). The on
 | point step for one-face witness gates | `Cex.pappusConfigurationWithJunkGates` |
 | point step for `realWitness`, all correct circuits | `Cex.twinBalancedORTreesWithLeafJunk` |
 | the same under L2 without `no_rewire`, at a non-local cube | `Cex.matchedTwinTreesWithA14InputNOTInput` |
+| k-point step (C3_k) for any fixed k, all correct circuits and under L2 without `no_rewire` | matched twin trees: `Cex.matchedTwinTreesWithA22InputNOTInput` (k = 2), `Cex.matchedTwinTreesWithA32InputNOTInput` (k = 3), paper for every k |
 | disjoint representatives over pure classes, all correct circuits | `Cex.twoTwoWorldSetsSharingOneMergeGate` |
 | price inequality over real merge sets, without minimality | `Cex.starOfFourPairsWithAThresholdNOTInput` |
+| the witness count for any gate type with ≥ 4 NOT gates (C4w) | `Cex.generalWitnessCountBelowBase` |
+| pointwise 0-step at every non-local state | pappus_junk_gain at (∅,∅): every v has 0-step gain 2 < cost 3; 1-step gain 6 = cost 6 |
 | correctness on inputs of weight ≤ k only, any fixed k | Hiltgen and Paterson 1995; AG(2,25) construction |
 
 ## 6. The chain sum (Riemann sum) and the gravity/quantum link
@@ -171,12 +176,16 @@ How the proof extends itself: the step is a derivative, the count is its integra
 - **D8** `chain`, `gain`, `cost`, `slack`. A chain is an order v_1, …, v_n of the points, with cubes Q_i = {v_1, …, v_i}. gain_i = |`realWitness`(Q_{i−1}) \ `realWitness`(Q_i)|. cost_i = Σ (|S_w| − 1) over the sets that avoid Q_{i−1} and contain v_i. slack(Q) = |`realWitness`(Q)| − `base`(Q).
 - **L5** chain sum. For every chain: Σ_i gain_i = |`realWitness`(∅)| and Σ_i cost_i = `base`. Hence slack(∅) = Σ_i (gain_i − cost_i): the count is the sum of the steps along any chain. Checked for every decreasing chain of finite sets: `ChainSum.card_eq_card_add_sum_gain`, `base_le_card_iff_sum_cost_le_sum_gain`, `base_le_card_of_step` (`one-not/lean/PEqualNP/W951/ChainSum.lean`). The instance (`realWitness` decreases along a chain, each set is paid once) is tested on 420 of 420 chains.
 - **Reading.** Conjecture C2 asks every term gain_i − cost_i ≥ 0 for some chain: the pointwise form. The Theorem needs only the sum ≥ 0: the integral form. Every counterexample of §5 to the pointwise form has one term −1 and a positive sum (twin trees: +6; matched twin trees: +15).
-- **Conjecture C3** (k-point step, new). At every cube with positive `base` some path of at most k points has Σ (gain − cost) ≥ 0 at its end. k = 1 is C2; k = n is the count; C3 for any fixed k proves the Theorem by the same induction. Tested at the empty cube: k = 2 suffices on all 21 counterexample circuits, including every circuit that refutes k = 1.
-- **L7** descent for a variable number of points (checked, `ChainSum.slack_nonneg_of_descent`). If at every cube with positive `base` some strictly larger cube has slack no larger, then slack ≥ 0 at every cube. No bound on how many points one move adds: this is C3 for every k at once (C_n). So the Theorem follows from: *every cube with positive base has a larger cube whose slack is no larger*.
+- **Conjecture C3_k** (k-point step). At every cube Q with positive `base` some path of at most k points has Σ (gain − cost) ≥ 0 at its end; by L5 this says: some set D of at most k further points has `base`(Q ∪ D) < `base`(Q) and slack(Q ∪ D) ≤ slack(Q) (only the end cube matters). k = 1 is C2; with no bound on k it is the count (L7 and its converse `ChainTelescope.kstep_of_slack_nonneg`, checked). **Refuted for every fixed k** (paper) for all correct circuits, and with every fact of L2 except `MinCE.no_rewire` at a non-local cube (those facts are tested for k = 7, 8 only): in the matched twin trees with a 2k-input NOT input (n = 2k + 2) every set D of j ≤ k points has slack(D) − slack(∅) ≥ k − 5 − 2⌈log₂ k⌉ − j(5 + 2⌈log₂(k/j)⌉), so the needed number of points exceeds n/64 for n ≥ 130; it is ⌊n/8⌋ for 16 ≤ n ≤ 46 (tested). k = 2 fails on `Cex.matchedTwinTreesWithA22InputNOTInput` (n = 24) and `Cex.twinTreesWithFiveLeafPairs` (n = 22), each computed by two independent programs; k = 3 fails on `Cex.matchedTwinTreesWithA32InputNOTInput` (n = 34, one program and an independent witness certificate). Tested, no failure of k = 2: 176,962 of 176,962 cubes of the 21 older counterexample circuits (n ≤ 16), 74,318 of 74,318 corpus cubes. **Open** under `MinCE.no_rewire`, already for k = 1 (C2): on 2,155 circuits with no gate-saving rewiring (2,485,766 cubes) the one-point step holds at every cube (tested). The average over all chains does not help: the averaged prefix sums are negative on 8 of 21 circuits. Notes: [`one-not/board/agents/fable-chain-sum.md`](one-not/board/agents/fable-chain-sum.md).
+- **L7** descent for a variable number of points (checked, `ChainSum.slack_nonneg_of_descent`). If at every cube with positive `base` some strictly larger cube has slack no larger, then slack ≥ 0 at every cube. No bound on how many points one move adds: this is C3 for every k at once (C_n). So the Theorem follows from: *every cube with positive base has a larger cube whose slack is no larger*. Paper (front): the descent also holds over mixed states (Q,R) (x_Q = 1, x_R = 0; a 0-step puts v in R at cost #{alive w ∋ v}) with local states as base cases. A state (Q,R) is cube Q of the restriction C|x_R=0, which is correct, has one NOT and keeps (1,1)-disjointness, so T4 and LW1 apply there.
 - **D9** `witness` (general witness gates). The condition of D5 for a gate of ANY type in a circuit with ANY number of NOT gates: g(Z) = 0 and g(Z + e_u) = g(Z + e_u') = 1. L5 and L7 hold for it unchanged (they are about decreasing chains of finite sets). Tested: rewriting OR gates as NOT(AND(NOT, NOT)), up to 106 NOT gates, drives the OR-only family to 0 gates and leaves the general family ≥ `base` on 39 of 39 rewrites (`one-not/tools/kill_tests/witness_any_gate.py`). These are rewrites, not adversarial circuits.
-- **Conjecture C4(t)** (the count for a variable number t of NOT gates). In a correct circuit with t NOT gates, |`witness`(∅)| ≥ `base`, hence #gates ≥ `base`. C4(0) is the theorem of Wegener and Mehlhorn. C4(1) is the Theorem. C4(t) for all t says general circuits do not beat `base` on (1,1)-disjoint Boolean sums. In the literature this is an open question, not a named conjecture: Jukna and Sergeev 2013 §7 ask whether AND / OR / NOT circuits help for Boolean sums; Blum, ECCC TR24-179, proposes (1,1)-disjoint sums with negations as a target. A positive answer for dense designs (`base` ≈ n^{3/2}) would be a superlinear lower bound for general circuits, which is not known for any explicit function; so C4(t) for large t is at least that hard, and may be false.
+- **C4(t)** (a variable number t of NOT gates), in two forms.
+  - **C4w(t), the witness count: |`witness`(∅)| ≥ `base`. Refuted for t ≥ 4** by the search of 2026-11-24: `Cex.generalWitnessCountBelowBase` (`one-not/data/witnesses/nonlocal/general_count_below_base_t4.json`: sets {0,1,2,3}, {0,4,5,6}, base 6, 67 gates, 4 NOT gates, 5 witnesses; also t = 5 with 52 gates), found by `one-not/tools/search/hunt.py` and confirmed by separately written code. Not found for t = 2, 3 in the same search (about 100,000 accepted moves each): open there, and that is weak evidence.
+  - **C4g(t), the gate count: #gates ≥ `base`. Open for every t ≥ 2.** No counterexample in 1.4 million moves with t ≤ 3 (hill climbing: finding nothing proves nothing). C4g(0) is the theorem of Wegener and Mehlhorn; C4g(1) is the Theorem. C4g(t) for all t says general circuits do not beat `base` on (1,1)-disjoint Boolean sums: an open question in the literature (Jukna and Sergeev 2013 §7; Blum, ECCC TR24-179), not a named conjecture. For dense designs (`base` ≈ n^{3/2}) it would be a superlinear lower bound for general circuits, which is not known for any explicit function; it may be false.
+  - Consequence: with four or more NOT gates the count needs a different family than `witness`; the chain sum (L5) and the descent (L7) do not care which family is used.
 - **L6** time average (checked, `QuantumGravity/Helpers/FixedPoint.lean`: `cesaro_mem`, `cesaro_displacement`; rows L-qg-008, L-qg-102). A Deutsch-consistent state of a closed timelike curve is reached by Cesàro averages a_n = (n+1)⁻¹ Σ_{k ≤ n} f^k(x_0) of the orbit, and f(a_n) − a_n = (n+1)⁻¹ (f^{n+1}(x_0) − x_0): the sum of the steps is the difference of the end points.
 - **Map (premise, never a Lean statement).** L5 and L6 are the same identity: a sum of increments along a path equals the difference of its ends. Time ↔ chain of cubes; state ↔ `realWitness`(Q); consistency (the displacement vanishes) ↔ the count (the slack does not go negative). On the quantum side the acceptance amplitude is a sum over computation paths; on the gravity side the path is closed. This is the link the owner's gist names; it selects statements, it proves none.
+- **Common form (checked).** `ChainTelescope.sum_increments`: in an abelian group the increments of a path x_0, …, x_N sum to x_N − x_0. L5 is the instance x_i = −slack(Q_i) (`sum_gain_sub_cost`), L6 the instance x_k = f^k(x_0) for additive f (`orbit_sum_displacement`). The identity is all they share: L6 adds that the ends stay bounded, so the mean increment tends to 0; for a chain the mean of gain − cost is slack(∅)/n, which says nothing about its sign.
 - **Limit.** A Riemann sum over inputs at one length (the density 2⁻ⁿ Σ_x f(x)) is a property of the function, not of the circuit, and cannot see size. The sums that see size run over cubes and chains, as above. Across input lengths there is no coherence to take a limit of ([`one-not/DEAD_ENDS.md`](one-not/DEAD_ENDS.md), family G).
 
 ## 7. The ladder, the barriers, the physics
@@ -195,7 +204,7 @@ How the proof extends itself: the step is a derivative, the count is its integra
 | Path | What it is |
 |---|---|
 | `lean/` | the Lean project; `PEqualNP/General/` (L-gen), `PEqualNP/QuantumGravity/` (L-qg), barriers under `PEqualNP/Library/` |
-| `one-not/` | the Theorem above: `lean/PEqualNP/W951/`, counterexamples in `data/witnesses/`, tests in `tools/kill_tests/`, [`one-not/README.md`](one-not/README.md) |
+| `one-not/` | the Theorem above: `lean/PEqualNP/W951/`, counterexamples in `data/witnesses/`, tests in `tools/kill_tests/`, the outward search in `tools/search/` (conjectures as predicates, a mutation hunter), [`one-not/README.md`](one-not/README.md) |
 | `notes/`, `tools/`, `MST.json`, `names.py` | write-ups; build queue, checker; the file tree as data; the name tree (single source, generates `NAMES.md`) |
 
 The Lean project started from `brilliant-hq/pequalnp-proofs` (Apache License 2.0); see [License](#license).

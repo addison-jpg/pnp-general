@@ -93,6 +93,7 @@ for name, code, means in [
  ("point step for one-face witness gates", "GainOne, LIGHT-COUNT, HEAVY-COUNT", "the same for one-face witness gates; refuted"),
  ("point deletion", "x_v := 0", "induction that sets a point to 0; refuted"),
  ("mixed induction", "", "set a point to 0 at some cubes and to 1 at others; not refuted, two circuits tested"),
+ ("k-point step for real-witness gates", "C3_k", "at every cube with positive base some set D of at most k further points has smaller base and slack no larger (a path of at most k points with sum of gain - cost >= 0 at its end); k = 1 is the point step; false for every fixed k for all correct circuits and with every fact of a minimal counterexample except no gate-saving rewiring (matched twin trees); open with it; with no bound on k it is the count"),
  ("gate elimination step", "GE, ElimStep", "setting a point to 1 and simplifying removes at least cost-many gates; the inductive form of the statement"),
 ]: add(name, S, "target", code, means)
 
@@ -143,6 +144,9 @@ for name, code, parent, means in [
  ("twin balanced OR trees with leaf junk", "TWIN-TREE, twin_tree_f2step.json", fam[4][0], "n = 14, 28 gates; kills the point step for real-witness gates; every cube is local"),
  ("twin trees with the NOT gate read", "TWIN-TREE-N, twin_tree_N_f2step.json", fam[4][0], "30 gates; the NOT gate reads one input"),
  ("matched twin trees with a 14-input NOT input", "MATCH-C, nonlocal/match_c_k7.json", fam[4][0], "n = 16, 55 gates; kills the step at a non-local cube under R1 to R5' and R+; has a gate-saving rewiring; certificate game won"),
+ ("matched twin trees with a 22-input NOT input", "MATCH-C(11), nonlocal/match_c_k11.json", fam[4][0], "n = 24, 83 gates; kills the two-point step (C3_2) at the empty cube, a non-local cube: every set D of at most 2 points raises the slack; has a gate-saving rewiring (the NOT gate may read the output of P_0)"),
+ ("matched twin trees with a 32-input NOT input", "MATCH-C(16), nonlocal/match_c_k16.json", fam[4][0], "n = 34, 118 gates; kills the three-point step (C3_3) at the empty cube; the family MATCH-C(k) kills the k-point step for every fixed k (needed number of points > n/64, paper; floor(n/8), tested)"),
+ ("twin trees with five leaf pairs", "TWIN-TREE k = 5, nonlocal/twin_tree_k5_c3.json", fam[4][0], "n = 22, 46 gates, monotone with an unread NOT gate; smallest known circuit that kills the two-point step (C3_2); every cube is local"),
  ("two two-world sets sharing one merge gate", "cxMU_dd, cxMU_clean2, cxMU_clean2_DD", fam[2][0], "n = 7, 36 gates; pure classes cover 5 < 6; loses the certificate game"),
  ("Pasch configuration with a doubly served class", "tri_all_5593.json", fam[2][0], "kills the looseness lemma"),
  ("two 4-sets with junk", "cx44_1_junk.json", fam[2][0], "loses the certificate game"),
@@ -154,6 +158,7 @@ for name, code, parent, means in [
  ("inner-product junk design", "cxr", fam[3][0], "kills 'later merge gates of different sets are disjoint'"),
  ("adversary against the two-point menu", "ADV3", fam[0][0], "load 1.2"),
  ("adversary against the general world laws", "ADV4", fam[1][0], ""),
+ ("general witness count below base", "general_count_below_base_t4.json, t5, t6", fam[4][0], "sets {0,1,2,3}, {0,4,5,6}; 4 NOT gates, 67 gates, 5 witness gates < base 6; refutes C4w(t) for t >= 4; found by the search"),
  ("junk circuit where a light point fails", "JUNK, junk.json", fam[4][0], ""),
  ("five-input gap for seen gates", "see_gap_n5.json", fam[4][0], "n = 5, sets {0,1}, {1,2,3,4}, {0,2}, h = x1 or x4, cube Q = {0}: at v = 1 only 2 of the 3 gates of F2(Q) are 1 at Q + e_v (cost 3) while the step holds; the third gate x2 or x3 dies because all its witnesses come from the one set through v (K3). Why the count needs the K3 term (dwV8p)"),
 ]: add(name, parent, "witness", code, means)
@@ -230,7 +235,7 @@ FORMAL = {  # explicit where an identifier exists in Lean or the choice matters
  "disjoint representatives over real merge sets": "MergeSDR", "disjoint representatives over pure classes": "PureSDR",
  "disjoint representatives over lifted classes": "LiftSDR", "lifted count": "LiftCount", "fractional merge matching": "MergeFrac",
  "price inequality": "MergePrice", "point step for real-witness gates": "GainF2", "point step for one-face witness gates": "GainOne",
- "point deletion": "DeleteStep", "mixed induction": "MixedStep", "gate elimination step": "ElimStep",
+ "point deletion": "DeleteStep", "mixed induction": "MixedStep", "k-point step for real-witness gates": "KPointStep", "gate elimination step": "ElimStep",
  "lifted test system": "LTS", "pair certificate": "LTSCert", "certificate game won": "UGameWon",
  "certificate game theorem": "liftSDR_of_ugame", "exact reach of value arguments": "ugame_exact_for_values",
  "no mixing of worlds": "ugame_pure_of_normal", "one colouring per merge gate": "merge_gate_one_colouring", "lost game": "no_minCE_of_ugameLost",
@@ -243,6 +248,7 @@ ROLE_OVERRIDE = {"certificate game theorem": "Theorem", "exact reach of value ar
  "point step for one-face witness gates": "Refuted", "point deletion": "Refuted", "minimal counterexample": "Definition",
  "no gate-saving rewiring": "Lemma (paper)", "private NOT cone": "Lemma (reported)", "mixed induction": "Open",
  "point step for real-witness gates": "Refuted for all circuits; Open under MinCE.no_rewire",
+ "k-point step for real-witness gates": "Refuted for every fixed k for all circuits; Open under MinCE.no_rewire",
  "disjoint representatives over pure classes": "Refuted for all circuits", "disjoint representatives over real merge sets": "Refuted for all circuits; Open under MinCE",
  "price inequality": "Refuted for all circuits; Open under MinCE", "fractional merge matching": "Refuted for all circuits; Open under MinCE",
  "disjoint representatives over lifted classes": "Theorem when UGameWon; Open otherwise", "lifted count": "Theorem when UGameWon; Open otherwise",

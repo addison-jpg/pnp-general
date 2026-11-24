@@ -8,6 +8,7 @@ MAXK = int(sys.argv[1]) if len(sys.argv) > 1 else 3
 print("| circuit | n | least k | path | sum at the end |"); print("|---|---|---|---|---|")
 for f in sorted(glob.glob('one-not/data/witnesses/*.json') + glob.glob('one-not/data/witnesses/nonlocal/*.json')):
     d = json.load(open(f))
+    if d['n'] > 16: continue   # the larger witnesses (C3_2, C3_3) are checked by c3_tab.py, c3_dnf.py, c3_cert.py
     c = L.mk(d.get('name', f), d['n'], d['sets'], d['gates'], d['outs'], need_not=False)
     if c is None: continue
     memo = {}
