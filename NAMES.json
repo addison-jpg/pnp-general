@@ -634,5 +634,341 @@
   "kind": "witness",
   "code": "see_gap_n5.json",
   "means": "meaning not re-derived here"
+ },
+ "three circuits against canonical matching": {
+  "parent": "class chosen without looking at the other sets",
+  "kind": "route",
+  "code": "cx1, cx2, cx3",
+  "means": "cx2: sunflower {0,1,4},{0,2,5},{0,3,6}, 18 gates, counted union 5 < demand 6"
+ },
+ "circuit against the coin rule": {
+  "parent": "class chosen without looking at the other sets",
+  "kind": "route",
+  "code": "cxtw3, cxtw3c",
+  "means": "n = 9, 34 gates; outside the minimal-counterexample case"
+ },
+ "six circuits against the product rule": {
+  "parent": "class chosen without looking at the other sets",
+  "kind": "route",
+  "code": "cxP, cxP1, cxP3, cxP4, cxP6, Π*",
+  "means": ""
+ },
+ "circuit against the star rule": {
+  "parent": "class chosen without looking at the other sets",
+  "kind": "route",
+  "code": "cxstar5, ★",
+  "means": ""
+ },
+ "circuit against the restricted relative sandwich": {
+  "parent": "class chosen without looking at the other sets",
+  "kind": "route",
+  "code": "cxT4",
+  "means": "also kills whole-class charging"
+ },
+ "circuits against fixed zero-point distributions": {
+  "parent": "class chosen without looking at the other sets",
+  "kind": "route",
+  "code": "cxrb, cxU_8_4",
+  "means": "cxU_8_4: n = 20"
+ },
+ "circuit against world-pure plain zero points": {
+  "parent": "class chosen without looking at the other sets",
+  "kind": "route",
+  "code": "cxe3",
+  "means": "every plain choice uses mixed points for two of the three sets through the heavy point"
+ },
+ "circuit against the world-0 canonical start": {
+  "parent": "class chosen without looking at the other sets",
+  "kind": "route",
+  "code": "cx44_0",
+  "means": ""
+ },
+ "unconfirmed witness": {
+  "parent": "class chosen without looking at the other sets",
+  "kind": "route",
+  "code": "cxE",
+  "means": "named as a witness once; not confirmed"
+ },
+ "complete graph on four points as set system": {
+  "parent": "objects",
+  "kind": "named",
+  "code": "K4",
+  "means": "all six pairs of four points; the standard small test system"
+ },
+ "three counterexamples to gate dependence on the NOT gate": {
+  "parent": "rule fixing the world of a set",
+  "kind": "route",
+  "code": "cx3_counterexample, CrossWorld, CrossWorldCex",
+  "means": "Lean files CrossWorld.lean, CrossWorldCex.lean"
+ },
+ "variants of the twin trees with a two- or three-input NOT input": {
+  "parent": "induction one input at a time for all correct circuits",
+  "kind": "route",
+  "code": "OR2, AND2, MAJ3",
+  "means": "nonlocal/twin_tree_{or2,and2,maj3}.json; the step fails for one-face and real-witness gates only"
+ },
+ "junk circuit against the least-influence rule": {
+  "parent": "induction one input at a time for all correct circuits",
+  "kind": "route",
+  "code": "JUNK2",
+  "means": ""
+ },
+ "separation of the star of a point": {
+  "parent": "the count",
+  "kind": "named",
+  "code": "STAR-SEP, STAR-COUNT, StarCount2",
+  "means": "the sets through one point get pairwise disjoint classes (counting form: STAR-COUNT)"
+ },
+ "first and second class menus": {
+  "parent": "counting over pure classes for all correct circuits",
+  "kind": "route",
+  "code": "Menu1, Menu2",
+  "means": "two lists of allowed classes; star separation fails over both"
+ },
+ "peeling": {
+  "parent": "counting over pure classes for all correct circuits",
+  "kind": "route",
+  "code": "PEEL, E2",
+  "means": "remove one set at a time keeping a free class; refuted over every menu tried"
+ },
+ "increment avoiding all free points": {
+  "parent": "counting over pure classes for all correct circuits",
+  "kind": "route",
+  "code": "INC_N",
+  "means": "refuted, deficit 1"
+ },
+ "looseness lemma": {
+  "parent": "counting over pure classes for all correct circuits",
+  "kind": "route",
+  "code": "LOOSENESS, A4",
+  "means": "after fixing the free classes every arc-consistent class extends; refuted"
+ },
+ "cross-world disjointness at every world-1 point": {
+  "parent": "rule fixing the world of a set",
+  "kind": "route",
+  "code": "D1",
+  "means": "refuted, 4 collisions in 31,587 circuits"
+ },
+ "heavy-first step": {
+  "parent": "rule fixing the world of a set",
+  "kind": "route",
+  "code": "F6",
+  "means": "'a heavy point exists => some heavy point satisfies the step'; refuted"
+ },
+ "no mixed zero points": {
+  "parent": "rule fixing the world of a set",
+  "kind": "route",
+  "code": "NoMixedPrice",
+  "means": "refuted in the plain form"
+ },
+ "seen gates and the three-case rule": {
+  "parent": "the point step",
+  "kind": "named",
+  "code": "SEE+K3, SEE0, K0, K3, F2SeeK3",
+  "means": "a sufficient rule for the point step read from gates that see the point; false for all correct circuits"
+ },
+ "light-star rule": {
+  "parent": "the point step",
+  "kind": "named",
+  "code": "LIGHT-STAR, LightStar, F2Light",
+  "means": "the point step at a light point from the star of the point; false for all correct circuits"
+ },
+ "absorb and reroute": {
+  "parent": "the point step",
+  "kind": "named",
+  "code": "ABSORB, REROUTE, INTERNAL",
+  "means": "bookkeeping forms of the point step; false for all correct circuits"
+ },
+ "cone certificate": {
+  "parent": "the point step",
+  "kind": "named",
+  "code": "CERT-1c, CERT-3c, CertStair, (D)+(S)",
+  "means": "death (D) and disjointness (S) of cone merge sets"
+ },
+ "local closure by weight one": {
+  "parent": "local cube",
+  "kind": "named",
+  "code": "LW1",
+  "means": "a second closure of a cube used in CubeF2.lean; meaning not re-derived here"
+ },
+ "full charging without the cone": {
+  "parent": "counting over real merge sets without minimality",
+  "kind": "route",
+  "code": "ChargeOK",
+  "means": "refuted, 3 counterexamples"
+ },
+ "acyclic forcing in gate order": {
+  "parent": "counting over real merge sets without minimality",
+  "kind": "route",
+  "code": "P2",
+  "means": "refuted"
+ },
+ "merge-set law without its two conditions": {
+  "parent": "rule fixing the world of a set",
+  "kind": "route",
+  "code": "S1",
+  "means": "false"
+ },
+ "memoryless potential": {
+  "parent": "local or memoryless argument",
+  "kind": "route",
+  "code": "S4",
+  "means": "increments above 1"
+ },
+ "strong common-universal property and chain pick": {
+  "parent": "the count",
+  "kind": "named",
+  "code": "StrongCU, ChainPick, CU",
+  "means": "supported, not refuted; CU alone does not give the price inequality"
+ },
+ "pair hill-climb": {
+  "parent": "the count",
+  "kind": "named",
+  "code": "O2, O2-PAIR",
+  "means": "search for a counterexample to disjoint representatives; none found"
+ },
+ "price form over pure classes": {
+  "parent": "the count",
+  "kind": "named",
+  "code": "PureFrac, PurePrice",
+  "means": "pureFrac_iff_purePrice: LP duality, checked"
+ },
+ "dual and link of the fractional merge matching": {
+  "parent": "the count",
+  "kind": "named",
+  "code": "MergeDual, MergeLink",
+  "means": "Lean modules of the MergeFrac <=> MergePrice chain"
+ },
+ "world lemmas": {
+  "parent": "pure class in world 1",
+  "kind": "named",
+  "code": "W0, W1",
+  "means": "CanonClass lemmas: size and disjointness inside one world"
+ },
+ "staircase lemmas": {
+  "parent": "the certificate game",
+  "kind": "named",
+  "code": "L1, L3, L4, STAIRCASE",
+  "means": "Berge-acyclic families have a winning order"
+ },
+ "lift of two-gate configurations": {
+  "parent": "the certificate game",
+  "kind": "named",
+  "code": "2G-LIFT, 2G-b",
+  "means": "no two gates serve as all classes of two sets in the lifted form"
+ },
+ "front lanes": {
+  "parent": "dead ends",
+  "kind": "named",
+  "code": "A1, A2, B8, C3, N2",
+  "means": "labels of work lanes and of items inside other sessions' notes, not mathematical objects"
+ },
+ "CubeF2.lean": {
+  "parent": "local cube",
+  "kind": "lean module",
+  "code": "CubeF2",
+  "means": ""
+ },
+ "NotVarF2.lean": {
+  "parent": "local cube",
+  "kind": "lean module",
+  "code": "NotVarF2",
+  "means": ""
+ },
+ "W951CubeKeep.lean": {
+  "parent": "cube",
+  "kind": "lean module",
+  "code": "W951CubeKeep",
+  "means": ""
+ },
+ "F2Induct.lean": {
+  "parent": "point step for real-witness gates",
+  "kind": "lean module",
+  "code": "F2Induct",
+  "means": ""
+ },
+ "F2Desc.lean": {
+  "parent": "point step for real-witness gates",
+  "kind": "lean module",
+  "code": "F2Desc",
+  "means": ""
+ },
+ "F2FirstJoin.lean": {
+  "parent": "point step for real-witness gates",
+  "kind": "lean module",
+  "code": "F2FirstJoin",
+  "means": ""
+ },
+ "RunTransfer.lean": {
+  "parent": "real merge set",
+  "kind": "lean module",
+  "code": "RunTransfer",
+  "means": ""
+ },
+ "MergeRun.lean": {
+  "parent": "real merge set",
+  "kind": "lean module",
+  "code": "MergeRun",
+  "means": ""
+ },
+ "CanonClass.lean": {
+  "parent": "pure class in world 1",
+  "kind": "lean module",
+  "code": "CanonClass",
+  "means": ""
+ },
+ "CanonOneNot.lean": {
+  "parent": "pure class in world 1",
+  "kind": "lean module",
+  "code": "CanonOneNot",
+  "means": ""
+ },
+ "PureHeredity.lean": {
+  "parent": "disjoint representatives over pure classes",
+  "kind": "lean module",
+  "code": "PureHeredity",
+  "means": ""
+ },
+ "PureRestrict.lean": {
+  "parent": "disjoint representatives over pure classes",
+  "kind": "lean module",
+  "code": "PureRestrict",
+  "means": ""
+ },
+ "TypeA.lean": {
+  "parent": "set of type A",
+  "kind": "lean module",
+  "code": "TypeA",
+  "means": ""
+ },
+ "TwoWorld.lean": {
+  "parent": "output in two-world normal form",
+  "kind": "lean module",
+  "code": "TwoWorld",
+  "means": ""
+ },
+ "PartialBound.lean": {
+  "parent": "checked in Lean",
+  "kind": "lean module",
+  "code": "PartialBound",
+  "means": ""
+ },
+ "MinCERewire.lean": {
+  "parent": "no gate-saving rewiring",
+  "kind": "lean module",
+  "code": "MinCERewire",
+  "means": ""
+ },
+ "GraphHeavy.lean": {
+  "parent": "heavy point",
+  "kind": "lean module",
+  "code": "GraphHeavy",
+  "means": ""
+ },
+ "general circuits program": {
+  "parent": "one NOT gate saves nothing on Boolean sums",
+  "kind": "neighbour",
+  "code": "L-gen, GeNeRALIZE, BoolSumNot, C4, K13, K2",
+  "means": "the NOT gate ladder above rung 1; names live in lean/PEqualNP/General and notes/general"
  }
 }

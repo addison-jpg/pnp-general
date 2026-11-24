@@ -154,6 +154,59 @@ for name, code, parent, means in [
  ("five-input gap for seen gates", "see_gap_n5.json", fam[4][0], "meaning not re-derived here"),
 ]: add(name, parent, "witness", code, means)
 
+# ---- second pass (bottom up): every remaining code of the key documents
+A_,B_,C_,D_,E_,F_ = (f[0] for f in fam[:6])
+for name, code, parent, means in [
+ ("three circuits against canonical matching", "cx1, cx2, cx3", A_, "cx2: sunflower {0,1,4},{0,2,5},{0,3,6}, 18 gates, counted union 5 < demand 6"),
+ ("circuit against the coin rule", "cxtw3, cxtw3c", A_, "n = 9, 34 gates; outside the minimal-counterexample case"),
+ ("six circuits against the product rule", "cxP, cxP1, cxP3, cxP4, cxP6, Π*", A_, ""),
+ ("circuit against the star rule", "cxstar5, ★", A_, ""),
+ ("circuit against the restricted relative sandwich", "cxT4", A_, "also kills whole-class charging"),
+ ("circuits against fixed zero-point distributions", "cxrb, cxU_8_4", A_, "cxU_8_4: n = 20"),
+ ("circuit against world-pure plain zero points", "cxe3", A_, "every plain choice uses mixed points for two of the three sets through the heavy point"),
+ ("circuit against the world-0 canonical start", "cx44_0", A_, ""),
+ ("unconfirmed witness", "cxE", A_, "named as a witness once; not confirmed"),
+ ("complete graph on four points as set system", "K4", O, "all six pairs of four points; the standard small test system"),
+ ("three counterexamples to gate dependence on the NOT gate", "cx3_counterexample, CrossWorld, CrossWorldCex", B_, "Lean files CrossWorld.lean, CrossWorldCex.lean"),
+ ("variants of the twin trees with a two- or three-input NOT input", "OR2, AND2, MAJ3", E_, "nonlocal/twin_tree_{or2,and2,maj3}.json; the step fails for one-face and real-witness gates only"),
+ ("junk circuit against the least-influence rule", "JUNK2", E_, ""),
+ ("separation of the star of a point", "STAR-SEP, STAR-COUNT, StarCount2", C, "the sets through one point get pairwise disjoint classes (counting form: STAR-COUNT)"),
+ ("first and second class menus", "Menu1, Menu2", C_, "two lists of allowed classes; star separation fails over both"),
+ ("peeling", "PEEL, E2", C_, "remove one set at a time keeping a free class; refuted over every menu tried"),
+ ("increment avoiding all free points", "INC_N", C_, "refuted, deficit 1"),
+ ("looseness lemma", "LOOSENESS, A4", C_, "after fixing the free classes every arc-consistent class extends; refuted"),
+ ("cross-world disjointness at every world-1 point", "D1", B_, "refuted, 4 collisions in 31,587 circuits"),
+ ("heavy-first step", "F6", B_, "'a heavy point exists => some heavy point satisfies the step'; refuted"),
+ ("no mixed zero points", "NoMixedPrice", B_, "refuted in the plain form"),
+ ("seen gates and the three-case rule", "SEE+K3, SEE0, K0, K3, F2SeeK3", S, "a sufficient rule for the point step read from gates that see the point; false for all correct circuits"),
+ ("light-star rule", "LIGHT-STAR, LightStar, F2Light", S, "the point step at a light point from the star of the point; false for all correct circuits"),
+ ("absorb and reroute", "ABSORB, REROUTE, INTERNAL", S, "bookkeeping forms of the point step; false for all correct circuits"),
+ ("cone certificate", "CERT-1c, CERT-3c, CertStair, (D)+(S)", S, "death (D) and disjointness (S) of cone merge sets"),
+ ("local closure by weight one", "LW1", "local cube", "a second closure of a cube used in CubeF2.lean; meaning not re-derived here"),
+ ("full charging without the cone", "ChargeOK", D_, "refuted, 3 counterexamples"),
+ ("acyclic forcing in gate order", "P2", D_, "refuted"),
+ ("merge-set law without its two conditions", "S1", B_, "false"),
+ ("memoryless potential", "S4", F_, "increments above 1"),
+ ("strong common-universal property and chain pick", "StrongCU, ChainPick, CU", C, "supported, not refuted; CU alone does not give the price inequality"),
+ ("pair hill-climb", "O2, O2-PAIR", C, "search for a counterexample to disjoint representatives; none found"),
+ ("price form over pure classes", "PureFrac, PurePrice", C, "pureFrac_iff_purePrice: LP duality, checked"),
+ ("dual and link of the fractional merge matching", "MergeDual, MergeLink", C, "Lean modules of the MergeFrac <=> MergePrice chain"),
+ ("world lemmas", "W0, W1", "pure class in world 1", "CanonClass lemmas: size and disjointness inside one world"),
+ ("staircase lemmas", "L1, L3, L4, STAIRCASE", G, "Berge-acyclic families have a winning order"),
+ ("lift of two-gate configurations", "2G-LIFT, 2G-b", G, "no two gates serve as all classes of two sets in the lifted form"),
+ ("front lanes", "A1, A2, B8, C3, N2", "dead ends", "labels of work lanes and of items inside other sessions' notes, not mathematical objects"),
+]: add(name, parent, "route" if parent in (A_,B_,C_,D_,E_,F_) else "named", code, means)
+for name, parent in [
+ ("CubeF2", "local cube"), ("NotVarF2", "local cube"), ("W951CubeKeep", "cube"),
+ ("F2Induct", "point step for real-witness gates"), ("F2Desc", "point step for real-witness gates"),
+ ("F2FirstJoin", "point step for real-witness gates"), ("RunTransfer", "real merge set"),
+ ("MergeRun", "real merge set"), ("CanonClass", "pure class in world 1"), ("CanonOneNot", "pure class in world 1"),
+ ("PureHeredity", "disjoint representatives over pure classes"), ("PureRestrict", "disjoint representatives over pure classes"),
+ ("TypeA", "set of type A"), ("TwoWorld", "output in two-world normal form"), ("PartialBound", L),
+ ("MinCERewire", "no gate-saving rewiring"), ("GraphHeavy", "heavy point"),
+]: add(name+".lean", parent, "lean module", name, "")
+add("general circuits program", ROOT, "neighbour", "L-gen, GeNeRALIZE, BoolSumNot, C4, K13, K2", "the NOT gate ladder above rung 1; names live in lean/PEqualNP/General and notes/general")
+
 for k, v in N.items():
     assert v["parent"] is None or v["parent"] in N, (k, v["parent"])
 json.dump(N, open("NAMES.json", "w"), indent=1, ensure_ascii=False)

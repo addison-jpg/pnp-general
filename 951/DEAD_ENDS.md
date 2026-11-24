@@ -1,20 +1,20 @@
 # Dead ends for `no_minCE`: check here before starting a route
 
-Combined 2026-11-24 (owner: "dead ends can be combined"). Seven families; every original row is kept, word for word, under its family. The wording of a row is its source's, so read the source for the exact statement. Add a row to the family it belongs to whenever a kill test fails. coord and research own this file.
+Names of codes: `NAMES.json` / `NAMES.md` at the repo root. Combined 2026-11-24 (owner: "dead ends can be combined"). Seven families; every original row is kept, word for word, under its family. The wording of a row is its source's, so read the source for the exact statement. Add a row to the family it belongs to whenever a kill test fails. coord and research own this file.
 
 ## The seven dead ends in one table
 
 | Family | What is dead | Rows |
 |---|---|---|
-| A. Matchings with a fixed, canonical or choice-free selection of classes | Every rule that picks the class of a set without looking at the other sets fails. Killers: cx1 to cx3, cxr, cxT2, cxT4, cxe3, ADV3, the fixh16 family. | 19 |
-| B. World split, no-mixed and heavy-point rules | No rule about which world a set uses (mixed points, heavy points, cross-world disjointness) holds as a general law. Killers: ADV4, cxe3, Pasch s = 14, ess_rand_clean#744. | 8 |
-| C. Pure classes: PureSDR, MU, STAR-SEP, PEEL, heredity | Over pure classes every counting target is false for general correct circuits. Killers: cxMU_dd (and clean2, clean2_DD), tri_all#5593, cx44_1_junk. | 9 |
-| D. Real merge sets: general laws, prices, matroids, augmenting | For real merge sets M_z(w) the count, the price form and every structural shortcut are false without minimality. Killers: STAR4, STAR4b, cxr, the selector path. The lifted forms are not affected. | 15 |
-| E. Inductions on points and steps | No induction that sets one input at a time survives for all correct circuits. Killers: FANO-FORMULA (x_v := 0), PAPPUS-JUNK (UC), TWIN-TREE (F2), MATCH-C (F2, F4, F5 at a non-local cube; reducible by R6, see the open list). The count itself has no counterexample. | 6 |
-| F. Local rules, gate elimination, relaxations | Local or memoryless arguments stall at the 3rd and later merge gates of sets of size ≥ 4; weight ≤ k relaxations fail for every fixed k. | 4 |
-| G. Methods from outside | No gate count comes from Fourier or influence bounds, series, or physics maps. | 3 |
+| A. Class chosen without looking at the other sets | Every rule that picks the class of a set without looking at the other sets fails. Killers: cx1 to cx3, cxr, cxT2, cxT4, cxe3, ADV3, the fixh16 family. | 19 |
+| B. Rule fixing the world of a set | No rule about which world a set uses (mixed points, heavy points, cross-world disjointness) holds as a general law. Killers: ADV4, cxe3, Pasch s = 14, ess_rand_clean#744. | 8 |
+| C. Counting over pure classes for all correct circuits | Over pure classes every counting target is false for general correct circuits. Killers: cxMU_dd (and clean2, clean2_DD), tri_all#5593, cx44_1_junk. | 9 |
+| D. Counting over real merge sets without minimality | For real merge sets M_z(w) the count, the price form and every structural shortcut are false without minimality. Killers: STAR4, STAR4b, cxr, the selector path. The lifted forms are not affected. | 15 |
+| E. Induction one input at a time for all correct circuits | No induction that sets one input at a time survives for all correct circuits. Killers: FANO-FORMULA (x_v := 0), PAPPUS-JUNK (UC), TWIN-TREE (F2), MATCH-C (F2, F4, F5 at a non-local cube; reducible by R6, see the open list). The count itself has no counterexample. | 6 |
+| F. Local or memoryless argument | Local or memoryless arguments stall at the 3rd and later merge gates of sets of size ≥ 4; weight ≤ k relaxations fail for every fixed k. | 4 |
+| G. Method from outside circuits | No gate count comes from Fourier or influence bounds, series, or physics maps. | 3 |
 
-## A. Matchings with a fixed, canonical or choice-free selection of classes
+## A. Class chosen without looking at the other sets
 
 Every rule that picks the class of a set without looking at the other sets fails. Killers: cx1 to cx3, cxr, cxT2, cxT4, cxe3, ADV3, the fixh16 family.
 
@@ -40,7 +40,7 @@ Every rule that picks the class of a set without looking at the other sets fails
 | Type-B-only test systems; Rado instead of Hall | refuted / no gain | K4, h = Th_2, s = 41, excess 9; B8(1) | front |
 | Gap-G and Two-World at FUNCTION level (choice depending only on (sets, h)) | refuted | K4, h minterms {02,12,03,13,23}; 9/1162 (graph, h) at n = 4 | front |
 
-## B. World split, no-mixed and heavy-point rules
+## B. Rule fixing the world of a set
 
 No rule about which world a set uses (mixed points, heavy points, cross-world disjointness) holds as a general law. Killers: ADV4, cxe3, Pasch s = 14, ess_rand_clean#744.
 
@@ -55,7 +55,7 @@ No rule about which world a set uses (mixed points, heavy points, cross-world di
 | D1: cross-world disjointness at every I1 point (K_1(w; Z) ∩ K_0(v; m) = ∅ for all I1 points Z and m avoiding S_w) | refuted | 4 collisions in 31,587 circuits; hand-verified n = 4 witness (Z = {2} ≠ top_w, shared gate x0 ∨ w7). D at Z = top_w (CanonOneNot) unaffected; collision kind (iii) open | research-desktop 11:41, `951/board/agents/research-desktop-lemmaD1-killtest.md`, `kill_tests/d1_full/` |
 | F2 step split 'heavy alive point exists ⇒ some HEAVY v satisfies the F2 step' (F6) | refuted | 4 / 21,418 failures, all h = x_p with one heavy point (a light v works each time); smallest ess_rand_clean#744 (n = 5, s = 9, base 5, h = x_2; `951/data/witnesses/ess_rand_clean_744.json`). The light step must also cover light v when heavy points exist | front A2 12:50 |
 
-## C. Pure classes: PureSDR, MU, STAR-SEP, PEEL, heredity
+## C. Counting over pure classes for all correct circuits
 
 Over pure classes every counting target is false for general correct circuits. Killers: cxMU_dd (and clean2, clean2_DD), tri_all#5593, cx44_1_junk.
 
@@ -71,7 +71,7 @@ Over pure classes every counting target is false for general correct circuits. K
 | Heredity step (a3): a Hall-deficient F forces `s_res < base_F` by counting menu gates | not as stated | in 475 of 903 restricted families the restricted circuit keeps live gates outside every restricted pure menu (AND gates, gates before the NOT); in 135 of 903 the NOT gate becomes constant | `kill_tests/heredity.py` |
 | Research (b) read literally ("an atom choice for u avoiding S_v") for the common point `u ∈ S_w ∩ S_v` | wrong reading | the formula `h(¬((S_w ∪ S_v) \ {u}))` equals "some minterm meets `S_w` and `S_v` inside `{u}` only" on 2,619 of 2,619 triples; it equals the literal reading on 1,753 of 1,753 triples with `u ∉ S_v` but on only 322 of 866 with `u` common | `kill_tests/heredity.py` |
 
-## D. Real merge sets: general laws, prices, matroids, augmenting
+## D. Counting over real merge sets without minimality
 
 For real merge sets M_z(w) the count, the price form and every structural shortcut are false without minimality. Killers: STAR4, STAR4b, cxr, the selector path. The lifted forms are not affected.
 
@@ -93,7 +93,7 @@ For real merge sets M_z(w) the count, the price form and every structural shortc
 | Full (non-cone) D counting; full-D ChargeOK; clean-only ChargeOK | refuted | 3 counterexamples | front w7 |
 | P2 acyclic forcing with labels monotone in GATE INDEX order | refuted | fixh16_clean#20: forcing path {02}-{12}-{23}-{13} through gates 5, 13, 8 | referee (desktop Coord) 10:30, `951/board/agents/coord-desktop-referee-plan.md` |
 
-## E. Inductions on points and steps
+## E. Induction one input at a time for all correct circuits
 
 No induction that sets one input at a time survives for all correct circuits. Killers: FANO-FORMULA (x_v := 0), PAPPUS-JUNK (UC), TWIN-TREE (F2), MATCH-C (F2, F4, F5 at a non-local cube; reducible by R6, see the open list). The count itself has no counterexample.
 
@@ -106,7 +106,7 @@ No induction that sets one input at a time survives for all correct circuits. Ki
 | Plan 'one zero point per set through v, Lemma M runs pairwise disjoint and leaving' | refuted | no v on 3 of 23,406 instances, first cx44_1_junk at Q = ∅ | `kill_tests/f2x_single.py` |
 | GE as an easier local target (∃ v: x_v := 1 with full simplification eliminates ≥ cost(v) gates) | NOT refuted, NOT circular: the inductive (gate-elimination) form of 951; weaker than the F2 step on data (holds on MATCH-C where the F2 step fails) but its margin must count EXACTLY (qg-d2 withdrew 'circular', 14:00) | GE is the inductive gate-elimination form of 951: elim1(v) − cost(v) = slack(C) − slack(C_v), so on all 2,112 tight corpus circuits the best margin is exactly s − base, and at a MinCE MinCE.elim_lt gives every margin ≤ −δ < 0. Holds on all 46,097 corpus circuits. Only a size-free structural collapse argument would make it pay; keep ElimStep (no_minCE_of_elimStep) as the clean top-level reduction | cTAHG / qg-d2 / desktop Coord 14:00, `agents/cTAHG-slack.md`, `agents/qg-d2-elim.md` |
 
-## F. Local rules, gate elimination, relaxations
+## F. Local or memoryless argument
 
 Local or memoryless arguments stall at the 3rd and later merge gates of sets of size ≥ 4; weight ≤ k relaxations fail for every fixed k.
 
@@ -117,7 +117,7 @@ Local or memoryless arguments stall at the 3rd and later merge gates of sets of 
 | Local point rules (p, q, r, a, s, b and later rounds) as the whole proof | stall | regress at the 3rd and later merge gates of sets of size ≥ 4 | `paper951.md` §3 |
 | Per-read substitution of N; Wegener-style local top-down AND elimination with the NOT; first-kill-AND injection; variable-fixing induction | refuted / fails | per-read substitution false at base + 5; fan-out < degree | front |
 
-## G. Methods from outside
+## G. Method from outside circuits
 
 No gate count comes from Fourier or influence bounds, series, or physics maps.
 
