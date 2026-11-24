@@ -1,4 +1,5 @@
 # pnp-general (by addison mccarl)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
 disclaimer that a lot of the readmes are vibecoded. 
 the higher level gist is: quantum/gravity relativity maps onto the relativity barrier to P/NP, and can help bypass it. 
 
@@ -92,4 +93,7 @@ How the proof extends itself: the step is a derivative, the count is its integra
 | `one-not/` | the Theorem above: `lean/PEqualNP/W951/`, counterexamples in `data/witnesses/`, tests in `tools/kill_tests/`, [`one-not/README.md`](one-not/README.md) |
 | `notes/`, `tools/`, `MST.json`, `NAMES.json` | write-ups; build queue, checker, name generator; the file tree and the name tree as data |
 
-The Lean project started from `brilliant-hq/pequalnp-proofs` (Apache License 2.0, see [`LICENSE.md`](LICENSE.md)).
+The Lean project started from `brilliant-hq/pequalnp-proofs` (Apache License 2.0); see [License](#license).
+
+## License
+MIT License; see [`LICENSE.md`](LICENSE.md). The Lean project started from `brilliant-hq/pequalnp-proofs`, which is distributed under the Apache License 2.0; code taken from it remains under that license. New work in this repository is by addison-jpg and contributors.
