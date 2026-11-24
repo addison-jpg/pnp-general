@@ -32,7 +32,7 @@ work reaches the general problem.
 | Rung | NOT gates | State |
 |---|---|---|
 | 0 | 0 (monotone) | superpolynomial bounds known (Razborov 1985) |
-| 1 | 1 | L-meta-951: one NOT gate saves nothing on Boolean sums; one open statement, `no_minCE` |
+| 1 | 1 | L-meta-951: one NOT gate saves nothing on Boolean sums; one open statement, `no_minCE`. Lives in `951/` (separate Lake project `951/lean`, imported 1:1 from pequalnp-work coord-951 ee11077; board history `951/board/`). Sharpest open form: `MergePrice` for a minimal counterexample. Coord: session_01GmnDhdShHMzucEAq9ottn6 |
 | k | fixed `k`, then `k` growing | Amano, Maruoka 2005: clique with `(1/6) log log n` NOT gates |
 | top | `⌈log₂ (n + 1)⌉` | equal to unrestricted circuits up to a polynomial factor (gap L-gen-104) |
 
