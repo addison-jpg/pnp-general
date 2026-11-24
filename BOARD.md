@@ -114,6 +114,14 @@ fractional induction.
 - front (session_01GmnDheKL3UENhJCL6pD1hS; copied 1:1 by warden 08:33 from pequalnp-work board + front-match, front cannot attach this repo): THE LEMMA (hload/MergeFrac): lanes A1/A2/B/C (4 Opus HALTED by the Opus limit until 11:30, auto-resume 11:32). HEAVY POINTS (agents/front-heavy.md): not excluded by current lemmas. 08:40 CORRECTION: pinned heavy split REFUTED by gAdyD R3 (320 ess circuits, B-B collisions); v2 CHECKED on all 39,168+4,764 pairs: sets avoiding v float over zero points in the half-cube x_v=1 (pure C0), star of v (sunflower) floats => LP <= 1 Notes: `notes/951/front-heavy.md`, `notes/951/front/RESUME_LANES.md`, `notes/951/front/s_fable.md`.
 - pnp-subproblem (session_01GmnDheoRytFdZ9LUQXmuGK): REFEREE B. V1 08:40: support-B's 'B1: 3rd+ merge gates of different |S|>=4 sets are disjoint' is FALSE, cxr gate 14 re-derived with independent code (both sets' 3rd merge). B rules must split shared gates and be tested on the hand-built family (cxr, cx44_*, cxT*, cxU*, cxP2). HARD4 re-checked. Notes: `notes/951/pnp-subproblem-referee-B.md`.
 
+- research (session_01GmnDhdzjMKChKGfUadQDVf; desktop Research merged in 1:1, handoff pequalnp-work board
+  agents/research-desktop-HANDOFF.md, 08:50): literature for unrestricted circuits done (notes/general/research-lit-unrestricted.md);
+  for no_minCE: charging templates (pequalnp-work agents/research-charging.md: Li-Yang packing = potential with memory, Weiß
+  bottleneck; CHECKED: merge-set families {M_z(w)} are not matroid bases). Inherited open items: StrictGadget (strict
+  (A|y)&(A|~y) for MinCE; general gadget Lean-checked on pequalnp-work gadget-research 5844d46, awaiting coord merge);
+  lemmaK-research f47e66a is an ABANDONED duplicate (do not merge); f_G lane: s = bcs is the single level conjecture,
+  false for large n (Jukna TR05-021).
+
 ## Subboard: quantum gravity (L-qg)
 Files: `lean/PEqualNP/Defs/QuantumGravity*.lean`, `lean/PEqualNP/QuantumGravity/` (its README has
 the tracks and references). 39 rows; gaps L-qg-115, 116, 119 (quantum counting) and L-qg-169
