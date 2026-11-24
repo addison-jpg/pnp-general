@@ -166,8 +166,7 @@ if __name__ == '__main__':
         src = GROUPS[sys.argv[3]]
         path = os.path.join(ROOT, src)
         if os.path.isdir(path):
-            ds = [(json.load(open(os.path.join(path, f)))['name'], f) for f in sorted(os.listdir(path))
-                  if f.endswith('.json')]
+            ds = [(f[:-5], f) for f in sorted(os.listdir(path)) if f.endswith('.json')]  # file stem = name
             print('skipped (barrier suite, no pure SDR):', sorted(nm for nm, _ in ds if nm in BARRIER))
             INSTANCES[:] = [(camel(nm), os.path.join(src, f), 'json') for nm, f in ds if nm not in BARRIER]
         else:

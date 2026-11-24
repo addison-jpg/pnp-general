@@ -46,7 +46,8 @@ dict with name, n, sets, gates, outs) except the barrier suite (`BARRIER` in pur
 cxMU_clean2_DD, cx44_1_junk; coord 64776ce; no pure SDR on purpose). Output in `lean/PEqualNP/W951/PureSDRWitnessLadder.lean`,
 with a correctness bundle per circuit for small n. Current: pasch_s14_heavy_atmostone (n = 6, 14 gates, NOT gate 1, menus
 1/2/1/2; worlds I1, I0, I1, I0), tri_all_5593 (n = 6, 15 gates, NOT gate 2, menus 1/3/3/1; all world I1; the LOOSENESS
-counterexample).
+counterexample), fano_formula (n = 7, 17 gates), junk (n = 5, 9 gates), pappus_junk_gain (n = 9, 66 gates). Circuits are keyed by
+file stem (some files have no `name`).
 
 LiftSDR certificates (`python3 lift_export.py OUT [--kmax K] [files]`, default the barrier suite): GP test systems (world b,
 zero point z, atoms B | {u} | P_u, as referee_b/lifted_union.py in one world), a disjoint choice by backtracking, and a Lean

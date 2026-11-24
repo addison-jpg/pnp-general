@@ -24,6 +24,11 @@ PureSDR and the 951 set conditions are kernel-checked; correctness is checked in
   `{1,3,5}`). It still has a pure SDR (all four sets in world 1). Kernel-checked here: the PureSDR, the
   correctness (all `2^6` inputs), the 951 set conditions, the NOT gate and `h`.
 
+* fanoFormula, junk (the Fable's MU-by-points report: FANO-FORMULA, where no point has the `x_v := 0`
+  gain, and JUNK, where some light points are bad for `x_v := 1`) and pappusJunkGain (PAPPUS-JUNK,
+  opus-light-count; `n = 9`, 66 gates, tight for F2): PureSDR kernel-checked; correctness and set
+  conditions kernel-checked for FANO-FORMULA and JUNK (PAPPUS-JUNK's correctness: Python, `2^9` inputs).
+
 The barrier suite in `951/data/witnesses` (`cxMU_dd`, `cxMU_clean2`, `cxMU_clean2_DD`, `cx44_1_junk`,
 coord 64776ce) has NO pure SDR on purpose; `pure_export.py --group witness` skips it (`BARRIER`).
 -/
@@ -100,6 +105,80 @@ theorem pTriAll5593_correct :
     pTriAll5593Gates[2]? = some ⟨GateOp.not, [7]⟩ ∧
     pTriAll5593Gates[1]? = some ⟨GateOp.or, [4, 5]⟩ :=
   ⟨by decide, by decide, by decide, pTriAll5593, rfl, rfl⟩
+
+/-! ### fanoFormula: n = 7, 17 gates (NOT gate 2), 7 sets; worlds I1, I1, I1, I1, I1, I1, I1 -/
+
+def pFanoFormulaGates : List Gate := [⟨GateOp.and, [0, 1]⟩, ⟨GateOp.and, [7, 2]⟩, ⟨GateOp.not, [8]⟩, ⟨GateOp.or, [1, 2]⟩, ⟨GateOp.or, [10, 0]⟩, ⟨GateOp.or, [0, 4]⟩, ⟨GateOp.or, [12, 3]⟩, ⟨GateOp.or, [0, 6]⟩, ⟨GateOp.or, [14, 5]⟩, ⟨GateOp.or, [3, 5]⟩, ⟨GateOp.or, [16, 1]⟩, ⟨GateOp.or, [1, 6]⟩, ⟨GateOp.or, [18, 4]⟩, ⟨GateOp.or, [2, 3]⟩, ⟨GateOp.or, [20, 6]⟩, ⟨GateOp.or, [4, 5]⟩, ⟨GateOp.or, [22, 2]⟩]
+def pFanoFormulaS : Fin 7 → Finset (Fin 7) := ![{0, 1, 2}, {0, 3, 4}, {0, 5, 6}, {1, 3, 5}, {1, 4, 6}, {2, 3, 6}, {2, 4, 5}]
+def pFanoFormulaC : Fin 7 → PureOpt 7 := ![PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {})]
+def pFanoFormulaM : Fin 7 → Finset ℕ := ![{10, 11}, {12, 13}, {14, 15}, {16, 17}, {18, 19}, {20, 21}, {22, 23}]
+
+set_option maxRecDepth 100000 in
+theorem pFanoFormula_valid : ∀ w, PureValid pFanoFormulaGates 2 (pFanoFormulaS w) (pFanoFormulaC w) := by decide
+
+set_option maxRecDepth 100000 in
+theorem pFanoFormula_cls : ∀ w, pureCls pFanoFormulaGates 2 (pFanoFormulaS w) (pFanoFormulaC w) = pFanoFormulaM w := by decide
+
+theorem pFanoFormula : PureSDR pFanoFormulaS pFanoFormulaGates 2 :=
+  pureSDR_of_cert _ _ _ pFanoFormulaC pFanoFormulaM pFanoFormula_valid pFanoFormula_cls (by decide)
+
+def pFanoFormulaOut : Fin 7 → ℕ := ![11, 13, 15, 17, 19, 21, 23]
+
+set_option maxHeartbeats 4000000 in
+set_option maxRecDepth 100000 in
+/-- FANO-FORMULA (the Fable, N1): correct, (1,1)-disjoint sets of size 3, one NOT gate (unused), PureSDR. -/
+theorem pFanoFormula_correct :
+    (∀ (w : Fin 7) (x : Fin 7 → Bool),
+      val pFanoFormulaGates x (pFanoFormulaOut w) = decide (∃ v ∈ pFanoFormulaS w, x v = true)) ∧
+    (∀ w, 2 ≤ (pFanoFormulaS w).card) ∧
+    (∀ a b : Fin 7, a ≠ b → (pFanoFormulaS a ∩ pFanoFormulaS b).card ≤ 1) ∧
+    PureSDR pFanoFormulaS pFanoFormulaGates 2 ∧ pFanoFormulaGates[2]? = some ⟨GateOp.not, [8]⟩ :=
+  ⟨by decide, by decide, by decide, pFanoFormula, rfl⟩
+
+/-! ### junk: n = 5, 9 gates (NOT gate 2), 3 sets; worlds I1, I1, I0 -/
+
+def pJunkGates : List Gate := [⟨GateOp.and, [0, 3]⟩, ⟨GateOp.and, [0, 4]⟩, ⟨GateOp.not, [5]⟩, ⟨GateOp.or, [1, 5]⟩, ⟨GateOp.or, [2, 6]⟩, ⟨GateOp.or, [8, 9]⟩, ⟨GateOp.or, [10, 0]⟩, ⟨GateOp.or, [1, 3]⟩, ⟨GateOp.or, [2, 4]⟩]
+def pJunkS : Fin 3 → Finset (Fin 5) := ![{0, 1, 2}, {1, 3}, {2, 4}]
+def pJunkC : Fin 3 → PureOpt 5 := ![PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.zero ![{}, {}, {0, 3}, {}, {0, 3}]]
+def pJunkM : Fin 3 → Finset ℕ := ![{10, 11}, {12}, {9}]
+
+set_option maxRecDepth 100000 in
+theorem pJunk_valid : ∀ w, PureValid pJunkGates 2 (pJunkS w) (pJunkC w) := by decide
+
+set_option maxRecDepth 100000 in
+theorem pJunk_cls : ∀ w, pureCls pJunkGates 2 (pJunkS w) (pJunkC w) = pJunkM w := by decide
+
+theorem pJunk : PureSDR pJunkS pJunkGates 2 :=
+  pureSDR_of_cert _ _ _ pJunkC pJunkM pJunk_valid pJunk_cls (by decide)
+
+def pJunkOut : Fin 3 → ℕ := ![11, 12, 13]
+
+set_option maxHeartbeats 4000000 in
+set_option maxRecDepth 100000 in
+/-- JUNK (the Fable): correct, (1,1)-disjoint sets of size at least 2, one NOT gate, PureSDR. -/
+theorem pJunk_correct :
+    (∀ (w : Fin 3) (x : Fin 5 → Bool),
+      val pJunkGates x (pJunkOut w) = decide (∃ v ∈ pJunkS w, x v = true)) ∧
+    (∀ w, 2 ≤ (pJunkS w).card) ∧
+    (∀ a b : Fin 3, a ≠ b → (pJunkS a ∩ pJunkS b).card ≤ 1) ∧
+    PureSDR pJunkS pJunkGates 2 ∧ pJunkGates[2]? = some ⟨GateOp.not, [5]⟩ :=
+  ⟨by decide, by decide, by decide, pJunk, rfl⟩
+
+/-! ### pappusJunkGain: n = 9, 66 gates (NOT gate 20), 9 sets; worlds I1, I1, I1, I1, I1, I1, I1, I1, I1 -/
+
+def pPappusJunkGainGates : List Gate := [⟨GateOp.and, [0, 1]⟩, ⟨GateOp.and, [0, 2]⟩, ⟨GateOp.and, [1, 2]⟩, ⟨GateOp.and, [3, 4]⟩, ⟨GateOp.and, [3, 5]⟩, ⟨GateOp.and, [4, 5]⟩, ⟨GateOp.and, [6, 7]⟩, ⟨GateOp.and, [6, 8]⟩, ⟨GateOp.and, [7, 8]⟩, ⟨GateOp.or, [0, 1]⟩, ⟨GateOp.and, [18, 2]⟩, ⟨GateOp.or, [9, 19]⟩, ⟨GateOp.or, [3, 4]⟩, ⟨GateOp.and, [21, 5]⟩, ⟨GateOp.or, [12, 22]⟩, ⟨GateOp.or, [6, 7]⟩, ⟨GateOp.and, [24, 8]⟩, ⟨GateOp.or, [15, 25]⟩, ⟨GateOp.or, [20, 23]⟩, ⟨GateOp.or, [27, 26]⟩, ⟨GateOp.not, [28]⟩, ⟨GateOp.and, [14, 0]⟩, ⟨GateOp.and, [30, 29]⟩, ⟨GateOp.or, [3, 31]⟩, ⟨GateOp.or, [6, 32]⟩, ⟨GateOp.or, [33, 0]⟩, ⟨GateOp.and, [16, 1]⟩, ⟨GateOp.and, [35, 29]⟩, ⟨GateOp.or, [7, 36]⟩, ⟨GateOp.or, [4, 37]⟩, ⟨GateOp.or, [38, 1]⟩, ⟨GateOp.and, [12, 2]⟩, ⟨GateOp.and, [40, 29]⟩, ⟨GateOp.or, [5, 41]⟩, ⟨GateOp.or, [8, 42]⟩, ⟨GateOp.or, [43, 2]⟩, ⟨GateOp.and, [15, 4]⟩, ⟨GateOp.and, [45, 29]⟩, ⟨GateOp.or, [8, 46]⟩, ⟨GateOp.or, [0, 47]⟩, ⟨GateOp.or, [48, 4]⟩, ⟨GateOp.and, [17, 5]⟩, ⟨GateOp.and, [50, 29]⟩, ⟨GateOp.or, [6, 51]⟩, ⟨GateOp.or, [1, 52]⟩, ⟨GateOp.or, [53, 5]⟩, ⟨GateOp.and, [16, 3]⟩, ⟨GateOp.and, [55, 29]⟩, ⟨GateOp.or, [7, 56]⟩, ⟨GateOp.or, [2, 57]⟩, ⟨GateOp.or, [58, 3]⟩, ⟨GateOp.and, [12, 7]⟩, ⟨GateOp.and, [60, 29]⟩, ⟨GateOp.or, [5, 61]⟩, ⟨GateOp.or, [0, 62]⟩, ⟨GateOp.or, [63, 7]⟩, ⟨GateOp.and, [14, 8]⟩, ⟨GateOp.and, [65, 29]⟩, ⟨GateOp.or, [3, 66]⟩, ⟨GateOp.or, [1, 67]⟩, ⟨GateOp.or, [68, 8]⟩, ⟨GateOp.and, [9, 6]⟩, ⟨GateOp.and, [70, 29]⟩, ⟨GateOp.or, [2, 71]⟩, ⟨GateOp.or, [4, 72]⟩, ⟨GateOp.or, [73, 6]⟩]
+def pPappusJunkGainS : Fin 9 → Finset (Fin 9) := ![{0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {1, 5, 6}, {2, 3, 7}, {0, 5, 7}, {1, 3, 8}, {2, 4, 6}]
+def pPappusJunkGainC : Fin 9 → PureOpt 9 := ![PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {})]
+def pPappusJunkGainM : Fin 9 → Finset ℕ := ![{33, 34}, {38, 39}, {43, 44}, {48, 49}, {53, 54}, {58, 59}, {63, 64}, {68, 69}, {73, 74}]
+
+set_option maxRecDepth 100000 in
+theorem pPappusJunkGain_valid : ∀ w, PureValid pPappusJunkGainGates 20 (pPappusJunkGainS w) (pPappusJunkGainC w) := by decide
+
+set_option maxRecDepth 100000 in
+theorem pPappusJunkGain_cls : ∀ w, pureCls pPappusJunkGainGates 20 (pPappusJunkGainS w) (pPappusJunkGainC w) = pPappusJunkGainM w := by decide
+
+theorem pPappusJunkGain : PureSDR pPappusJunkGainS pPappusJunkGainGates 20 :=
+  pureSDR_of_cert _ _ _ pPappusJunkGainC pPappusJunkGainM pPappusJunkGain_valid pPappusJunkGain_cls (by decide)
 
 /-! ## Scaffold's v-ladder: PG(2,3) (`n = 13`, 13 lines) and AG(2,4) (`n = 16`, 20 lines) -/
 
