@@ -13,7 +13,9 @@ maximal false points of h on the face {x_{S_w} = 0}; they are the complements (i
 (Edmonds-Fulkerson). Type B (h(top_w) = 0): Min_w = ∅, T = ∅, Z = top_w only.
 ## (b) I0 atoms (definition, already circuit-free)
 Atom of u ∈ S_w: m_u ∪ {u} with m_u ∈ Min(h), m_u ∩ S_w ⊆ {u}; one choice per atom (zero point top_w, tables of C_0).
-A choice for u AVOIDING another set S_v exists iff h(¬((S_w ∪ S_v) \ {u})) = 1 (some minterm avoids (S_w \ {u}) ∪ S_v).
+A choice for u AVOIDING S_v \ {u} exists iff h(¬((S_w ∪ S_v) \ {u})) = 1 (some minterm avoids (S_w ∪ S_v) \ {u}).
+[Corrected 12:05 per coord / board integrator: the old wording 'avoiding S_v' was wrong when u ∈ S_w ∩ S_v (322 of 866
+cases); the h-formula itself was right, 2,619 / 2,619.]
 
 ## (c) The three open collision types in terms of h and the sets (two sets w ≠ v, |S_w ∩ S_v| <= 1)
 (i) I1(w, Z) vs I1(v, Z'), Z' = top_v \ T': |S_w \ Z'| = |S_w ∩ S_v| + |S_w ∩ T'| (T' ⊆ ¬S_v). So the open case
@@ -38,6 +40,6 @@ A choice for u AVOIDING another set S_v exists iff h(¬((S_w ∪ S_v) \ {u})) = 
 All three types occur in the corpus on systems with pairwise intersections <= 1 (49 / 180 / 5 collisions on the 63 small circuits; (iii) also with all minterms avoiding S_w, see D1 refutation), so the
 intersection condition alone excludes none of them. What it does: in (i) it caps |S_w ∩ S_v| at 1, so a collision needs the
 minimal transversal T' to use a point of S_w (>= 1 if the sets meet, >= 2 if disjoint); in (ii)/(iii) it is not involved:
-for (ii) the condition is the h-value h(¬((S_w ∪ S_v) \ {u})) = 0, i.e. 'every minterm of h avoiding S_w \ {u} meets S_v'; for (iii) no h-only condition is known (D1 refuted).
+for (ii) the condition is the h-value h(¬((S_w ∪ S_v) \ {u})) = 0, i.e. 'every minterm of h avoiding S_w \ {u} meets S_v \ {u}'; for (iii) no h-only condition is known (D1 refuted).
 So after (a)-(c) the open statement is purely about h: when h kills ¬((S_w ∪ S_v) \ {u}) (forced meeting) or a minimal
 transversal of Min_v uses >= 2 - |S_w ∩ S_v| points of S_w, show that an alternative pure class exists (PureSDR).
