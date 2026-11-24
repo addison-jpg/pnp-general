@@ -55,6 +55,7 @@ for the exact statement. Add a line whenever a kill test fails. coord and resear
 | PEEL (front B; research's E2 version, research-typeA-increment.md §3) | refuted | over Lean menus: the cxMU_* barriers; over GP menus: Pasch s = 14, cxT2; E2 version (I1 maximal Z + I0 at top_w): holds on 19,895 corpus circuits, fails on cxMU_dd / clean2 / clean2_DD (|U_E2| = base − 1, research re-check) | front B / C 12:17-12:20; research |
 | STAR-SEP (SDR form) over Menu1 and over Menu2; per-point STAR-SEP rules; the V-COUNT route | refuted | Menu1: cxMU_dd; Menu2: cx44_1_junk; per-point rules: ess_rand#529, selector path; V-COUNT: 35,396 / 44,090 | front A2 12:23, `agents/front-A2-final-1223.md` |
 | INC_N (type-A zero points avoiding ALL free points, so the free sets drop out of the increment) | refuted | 68 corpus circuits, deficit 1, K4-e graph systems (e.g. front-archive chk/k.jsonl:3074); zero points meeting free sets are needed | research 12:22, `agents/research-typeA-increment.md` §4 |
+| 'Merge sets of different sets at a COMMON zero point are disjoint' | refuted | 178 / 24,108 coincidences, e.g. chk/c#1174 (L-avoid concerns universal merges only) | front A2 12:31 |
 
 ## NOT dead ends (open or supported; do not list as refuted)
 Heavy-point exclusion is OPEN (no lemma excludes it; 842/842 essential clean circuits at s - base = 4 have a heavy unit); heavy split v2;

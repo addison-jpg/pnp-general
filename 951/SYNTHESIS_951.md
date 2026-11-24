@@ -133,3 +133,25 @@ U below is the union of NARROW pure classes (I1 at maximal h-zero Z, I0 at top_w
    the 13:30 convergence, per the owner's no-new-routes rule): MUL with 4-world lifted classes on a
    2-NOT PG(2,3) circuit with two hubs; a 2-selector selector path.
 
+## 6. A2's final HEAVY-COUNT delta (front, 12:31; front's lanes are now all stopped)
+
+1. GRAPH SYSTEMS, heavy v — PROVED ON PAPER, two constructions: (G1, inside Menu1 ⊆ menu2) if
+   h(X ∪ {a}) = 1 for every light neighbour a (X = V \ ({v} ∪ L); automatic when another point is
+   heavy over Q), the I0 classes at top_va with m_v = Q ∪ {v}, m_a = X ∪ {a} (light) / Q ∪ {a}
+   (heavy) are pairwise distinct v-gates, hence STAR-SEP and STAR-COUNT at v; (GL, in liftMenu_Q,
+   NOT in menu2) lifted classes with zero point (Q ∪ N[v] \ {v,a}, y_a), atoms (Q + e_v, 0),
+   (Q + e_a, t_a) are distinct v-gates unless two light neighbours both have C_1(o_va)(z_a) = 1.
+   Data: G1 ∨ GL covers 35,069 / 35,069 graph-heavy instances; the residual case (v the only heavy
+   point, two light neighbours with C_1 wrong at their points) never observed, open.
+2. MENU DECISION (pending at coord): GL needs liftMenu_Q := lifted classes with zero-point x-part ⊇ Q
+   and every atom x-part ⊇ Q (monotone, sound, L-U_v holds). Front recommends running the
+   STAR-COUNT / MU induction over liftMenu_Q; then LIGHT-COUNT must be stated over it too.
+3. |S| ≥ 3 still open: on cxMU_clean2 (v = 1) the gain is 4 ≥ 3 but only one new gate is a v-gate;
+   the rest come from non-v merges of the star class and from a NON-STAR class (output of
+   {0,4,5,6}) that disappears in the cube Q ∪ v.
+4. REFUTED (front's own suggestion): 'merge sets of different sets at a common zero point are
+   disjoint' — 178 / 24,108 coincidences, e.g. chk/c#1174.
+
+Referee (desktop Coord, 12:31): 2G-LIFT (A1 §8 Theorem 2G-b, §9 2G-lift) CORRECT; open: cxT2-type
+triples; cTAHG to state it in Lean.
+
