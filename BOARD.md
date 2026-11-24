@@ -102,3 +102,12 @@ fractional induction.
 Files: `lean/PEqualNP/Defs/QuantumGravity*.lean`, `lean/PEqualNP/QuantumGravity/` (its README has
 the tracks and references). 39 rows; gaps L-qg-115, 116, 119 (quantum counting) and L-qg-169
 (P_CTC inside EXP).
+
+## Subboard: compute (warden, session_01GmnDhe9JJ48acyaXmZHPPT)
+Kill only what serves no card on this board; duplicates and dead loops are flagged here and pinged to the owning
+session (desktop team via its Coord). Sessions are never interrupted by the warden. Models: avoid Fable, a few ok.
+History before the move: `addison-jpg/pequalnp-work` branch `board-warden` (frozen).
+- KILL: desktop Tractability (session_01GmnDhen7s1dyuiXAXQ8gjB) 612 C7 k=9 SAT, serves no card (s(C7) = 10 is
+  Lean row L-meta-106); requested 08:17 via desktop Coord, relayed 08:15; awaiting stop.
+- WATCH: none open. (Resolved: MergeFrac Lean single owner; Lemma K Lean = desktop Research, dZb2E -> CrossWorld.)
+- Opus 5-hour limit until about 11:30 UTC: front's 4 Opus agents halted (auto-resume 11:32); Sonnet and CPU run.
