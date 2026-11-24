@@ -198,4 +198,7 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
   Research, ResearcH, pnp-subproblem, checker-CHECKER, coord, scaffold). Only build still running: cTAHG's `lake build PEqualNP.Verify.All`
   (the board's required check; dRKvz already saw it pass on main at ede9c57, so a duplicate, cheap, left running). Nothing killed.
 - Idle seats asking which asteroid task to take: qg-d2 (gAdyD). Asteroid owner = main; seats take an asteroid task file themselves.
+- 23:40 loop: no session running except warden; no non-asteroid compute. Asteroid commits since 23:05 are all main (logo/asteroid-look,
+  .ath extension, Semantics.lean for asteroid-native, ath_prompt_method.md). asteroid-bench and asteroid-native each list two TAKEN lines,
+  both main's own agents handing off (not a cross-seat duplicate). Main waits on the owner for a texture file (asteroid-look).
 - Gap 18:55 -> 22:50: warden loop was disabled at 18:56 by GeNeRALIZE ("warden loop scheduled task disabled (not deleted)").
