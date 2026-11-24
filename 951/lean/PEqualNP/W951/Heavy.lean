@@ -27,6 +27,12 @@ Results.
     `refinedNoMixedFrac_iff_mergeFracOn`, `refinedPts_nonempty` (no extra hypothesis, by
     `exists_nonMixed_of_not_heavy`), `RefinedNoMixedPrice`, `refinedNoMixedFrac_iff_price`,
     `no_minCE_of_refinedNoMixedPrice`.
+(b') Case II, float form (front's v2 after the pinned rule was refuted on 320 essential circuits):
+    `heavyFloatPts` (star of `v`: all zero points; other sets: zero points with `x_v = 1`, all world-0),
+    `HeavySplitFloat`, `HeavySplitFloatPrice`, `heavySplitFloat_iff_price`,
+    `heavySplitFloat_of_heavySplit` (pinned ⇒ float), `mergeFrac_of_heavySplitFloat`,
+    `heavyFloatPts_v`, `heavy_float_C0` (floating sets read only `C0` merge sets),
+    `no_minCE_of_heavyFloatCases`.
 (c) The pinned disjointness that Case II would need ("`C0` merge sets of different sets at their own
     bases `Zof` are disjoint") FAILS for clean circuits: `pinned_collision_clean` is a monotone circuit
     on 4 inputs computing `x0 ∨ x1` and `x2 ∨ x3` with no copy gate (the `MinCE.clean` condition), all
@@ -141,6 +147,61 @@ theorem heavySplit_iff_price : HeavySplit S gates v ↔ HeavySplitPrice S gates 
 theorem mergeFrac_of_heavySplit (h : HeavySplit S gates v) : MergeFrac S gates :=
   (mergeFracOn_zeroPts_iff S gates).mp (mergeFracOn_mono (heavyPts_subset S v) h)
 
+/-! ### Case II, float form (front's v2, coord 09:01): sets `b ∌ v` float inside `{x_v = 1}` -/
+
+open Classical in
+/-- The allowed points of the float form: a set containing `v` keeps all its zero points; every
+other set keeps its zero points with `x_v = 1` (all world-0 when `v` is heavy, `heavy_world0`). -/
+noncomputable def heavyFloatPts (w : Fin m) : Finset (Fin n → Bool) :=
+  if v ∈ S w then zeroPts (S w) else (zeroPts (S w)).filter fun z => z v = true
+
+theorem heavyPts_subset_float (w : Fin m) : heavyPts S v w ⊆ heavyFloatPts S v w := by
+  classical
+  unfold heavyPts heavyFloatPts
+  split_ifs with hv
+  · exact le_rfl
+  · exact Finset.singleton_subset_iff.mpr
+      (Finset.mem_filter.mpr ⟨Zof_mem_zeroPts _, by simp [Zof, hv]⟩)
+
+theorem heavyFloatPts_nonempty (w : Fin m) : (heavyFloatPts S v w).Nonempty :=
+  (heavyPts_nonempty S v w).mono (heavyPts_subset_float S v w)
+
+theorem heavyFloatPts_subset (w : Fin m) : heavyFloatPts S v w ⊆ zeroPts (S w) := by
+  classical
+  unfold heavyFloatPts
+  split_ifs
+  · exact le_rfl
+  · exact Finset.filter_subset _ _
+
+/-- A floating point of a set `b ∌ v` has `x_v = 1`. -/
+theorem heavyFloatPts_v {w : Fin m} (hvw : v ∉ S w) {z : Fin n → Bool}
+    (hz : z ∈ heavyFloatPts S v w) : z v = true := by
+  classical
+  unfold heavyFloatPts at hz
+  rw [ite_eq_right hvw] at hz
+  exact (Finset.mem_filter.mp hz).2
+
+/-- **Case II, float form**: the star of `v` floats over its zero points, every other set floats
+over its zero points with `x_v = 1`, every wire load `≤ 1`. -/
+def HeavySplitFloat : Prop :=
+  MergeFracOn S gates (heavyFloatPts S v)
+
+/-- The price form of the float form. -/
+def HeavySplitFloatPrice : Prop :=
+  MergePriceOn S gates (heavyFloatPts S v) (heavyFloatPts_nonempty S v)
+
+/-- LP duality for the float form. -/
+theorem heavySplitFloat_iff_price : HeavySplitFloat S gates v ↔ HeavySplitFloatPrice S gates v :=
+  mergeFracOn_iff_mergePriceOn (heavyFloatPts_nonempty S v)
+
+/-- The pinned form implies the float form. -/
+theorem heavySplitFloat_of_heavySplit (h : HeavySplit S gates v) : HeavySplitFloat S gates v :=
+  mergeFracOn_mono (heavyPts_subset_float S v) h
+
+/-- The float form gives MergeFrac. -/
+theorem mergeFrac_of_heavySplitFloat (h : HeavySplitFloat S gates v) : MergeFrac S gates :=
+  (mergeFracOn_zeroPts_iff S gates).mp (mergeFracOn_mono (heavyFloatPts_subset S v) h)
+
 end Split
 
 /-- **The case split closes `no_minCE`**: if at every minimal counterexample either Case II holds for
@@ -155,6 +216,32 @@ theorem no_minCE_of_heavyCases
   no_minCE_of_mergeFrac fun n m S gates out M => by
     rcases H n m S gates out M with ⟨v, hv⟩ | ⟨p, h⟩
     · exact mergeFrac_of_heavySplit S gates v hv
+    · exact mergeFrac_of_refinedNoMixedFrac S gates p h
+
+/-- **Floating sets are monotone**: with `v` heavy, a set `w ∌ v` at any of its floating points has
+the merge set of the monotone circuit `C0` (the point has `x_v = 1`, so it is world-0). -/
+theorem heavy_float_C0 {n m : ℕ} (S : Fin m → Finset (Fin n)) {gates : List Gate} {p : ℕ}
+    (hp : p < gates.length)
+    (hg : ∀ g ∈ gates, (g.op = GateOp.and ∨ g.op = GateOp.or ∨ g.op = GateOp.not) ∧
+      g.inputs.length ≤ 2)
+    (hU : AtMostOneNot gates) (hN : (gates[p]'hp).op = GateOp.not) {v : Fin n}
+    (hv : Heavy gates p v) {w : Fin m} (hvw : v ∉ S w) {z : Fin n → Bool}
+    (hz : z ∈ heavyFloatPts S v w) :
+    mergeSet gates (S w) z = mergeSet (C0 gates) (S w) z :=
+  mergeSet_C0_of_world0 hg hU (S w) (heavy_world0 hp hg hU hN hv (heavyFloatPts_v S v hvw hz))
+
+/-- **The case split, float form, closes `no_minCE`**: Case II in the float form for some point, or
+Case I in the refined form, at every minimal counterexample. (Weaker hypothesis than
+`no_minCE_of_heavyCases`, by `heavySplitFloat_of_heavySplit`.) -/
+theorem no_minCE_of_heavyFloatCases
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out →
+        (∃ v : Fin n, HeavySplitFloat S gates v) ∨ ∃ p : ℕ, RefinedNoMixedFrac S gates p) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out :=
+  no_minCE_of_mergeFrac fun n m S gates out M => by
+    rcases H n m S gates out M with ⟨v, hv⟩ | ⟨p, h⟩
+    · exact mergeFrac_of_heavySplitFloat S gates v hv
     · exact mergeFrac_of_refinedNoMixedFrac S gates p h
 
 /-! ## (c) Pinned merge sets can collide in a clean circuit -/
