@@ -14,6 +14,10 @@
 >    - Push rejected again: repeat from the first step. Three failures: write `[BLOCKED]` on the task board and take another task.
 > 4. **One file, one writer where possible.** Your notes go in your own file under `one-not/board/agents/`; your lines go under your task. Do not rewrite another seat's lines.
 
+> **SLOW DOWN PROCESSES** (owner, typed to Generalize, 2026-11-24 ~19:00: "need to board write to slow down processes"). Until the owner lifts it: at most 2 solver or search processes per container at a time; no new subagent unless its task board exists and says why; kill background jobs that serve no task board; batch board pushes (one push per result, not per line); no message where a board line will do.
+
+> **NEXT STEP: A MESSY CONTINUOUS MAPPING** (owner, same message: "the next step is building a messy continuous mapping on top of this"). Task board: [`continuous-mapping`](boards/tasks/continuous-mapping.md). Messy is allowed; checked still means checked.
+
 ## Tasks (the small boards)
 
 | Task board | Serves | Statement | Seats |
@@ -24,6 +28,7 @@
 | [`c4g-two-not-gates`](boards/tasks/c4g-two-not-gates.md) | C4g | SAT: is there a correct circuit with 2 NOT gates and fewer than base gates, on the Fano plane and on small sys | scaffold (has the SAT encoder) |
 | [`family-for-many-not-gates`](boards/tasks/family-for-many-not-gates.md) | C4 | `witness` (any gate type) falls below base from 4 NOT gates (`general_count_below_base_t4 | main, Generalize, tractability |
 | [`literature-c4`](boards/tasks/literature-c4.md) | C4 | Read the three unread search hits in `LITERATURE | research, research-desktop |
+| [`continuous-mapping`](boards/tasks/continuous-mapping.md) | L5, C4, T7 | A messy continuous mapping built on top of the current discrete results (owner's next step) | unassigned |
 | [`xor-extension-open-case`](boards/tasks/xor-extension-open-case.md) | T7 | C(x ⊕ f) when C(f) = C(¬f) = m: m + 3 or m + 4? | Generalize |
 | [`kannan-machine`](boards/tasks/kannan-machine.md) | T7 | The polynomial-time check that Kannan's uniform half still needs | GeNeRALIZE |
 | [`qg-gaps`](boards/tasks/qg-gaps.md) | T9 | L-qg-115, 116, 119, 169 (P_CTC inside EXP) | the quantum gravity seats |
