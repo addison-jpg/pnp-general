@@ -15,3 +15,4 @@
 - 18:40 research-desktop kokyuroku 0906-11 TXT: SAME paper as Tsukiji row 38; only an unsupported remark that slice monotone/non-monotone equivalence "does not hold for a Boolean sum"
 - 18:40 research-desktop VERDICT: neither (no stated conjecture, no refutation of C4 in these four; C4 stays open, Jukna-Sergeev 2013 only ask the question)
 - 18:15 research-desktop DONE: rows 179-182 of LITERATURE.md now TXT/TXT/PART/TXT (table format fixed to 3 columns); verdict NEITHER (no stated conjecture or refutation of C4 in the four); closest prior text remains the Jukna-Sergeev 2013 question; details one-not/board/agents/research-literature-c4.md
+- 17:58 research DONE: 4 rows TXT in LITERATURE.md; no conjecture or refutation of C4 in any of them (nearest: Jukna-Sergeev §7 question, Blum TR24-179)
