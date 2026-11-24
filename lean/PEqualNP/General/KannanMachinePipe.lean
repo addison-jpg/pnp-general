@@ -130,4 +130,97 @@ noncomputable def cutRun :
       funext k; cases k <;> rfl
     exact (congrArg (fun c => Cut.cstep^[n] (some c)) hi).trans (h.trans (congrArg some hh).symm)⟩
 
+/-! ### The assembly -/
+
+theorem pow_le_blkK (kq K n : ℕ) (hK : kq ≤ K) (hK1 : 1 ≤ K) : n ^ kq + kq ≤ blkK K n := by
+  unfold blkK
+  rcases Nat.eq_zero_or_pos n with h0 | h0
+  · subst h0
+    rcases Nat.eq_zero_or_pos kq with h1 | h1
+    · subst h1; simp; omega
+    · rw [zero_pow (by omega)]; omega
+  · have : n ^ kq ≤ n ^ K := Nat.pow_le_pow_right h0 hK
+    have : n ^ K ≤ K * n ^ K := Nat.le_mul_of_pos_left _ (by omega)
+    omega
+
+/-- The uniform half of Kannan's theorem, from a polynomial-time check on the data regions. -/
+theorem kannan_of_core (k : ℕ)
+    (hcore : ComputableInPolyTime encodePair Computability.encodeBool
+      (fun p : List Bool × List Bool => CoreFn k p.1 p.2)) : KL k ∈ SigmaP 3 := by
+  classical
+  let pD : Polynomial ℕ := Polynomial.C (KK k) * Polynomial.X ^ (KK k) + Polynomial.C (KK k)
+  have hpD : ∀ n, pD.eval n = blk k n := by intro n; simp [pD, blk]
+  let f0 : List Bool → List Bool := fun x => Cut.mk (blk k x.length) ++ false :: x
+  have hf0 : ComputableInPolyTime (fun x : List Bool => x) (fun x : List Bool => x) f0 := by
+    have hc := clock_polyTime Universal.cpt_const pD
+    have h2 := Universal.cpt_app2 (Universal.cpt_const [false]) cpt_id
+    have h3 := Universal.cpt_app2 hc h2
+    have e : (fun s : List Bool => List.replicate (pD.eval s.length) true ++ ([false] ++ s)) = f0 := by
+      funext x; simp [f0, hpD, Cut.mk]
+    rw [e] at h3
+    exact h3
+  obtain ⟨p0, c0, hc0⟩ := time_of_polyTime hf0
+  obtain ⟨p3, c3, hc3⟩ := time_of_polyTime hcore
+  let S1 := GRun.ofP (PRun.first (PRun.ofTime c0)) (fun _ => True)
+  let S3 := GRun.ofP (PRun.ofTime c3) (fun _ => True)
+  let S := GRun.comp (GRun.comp S1 cutRun) S3
+  let q : Polynomial ℕ := p0 + p3.comp (Polynomial.X + Polynomial.C 3 * pD)
+  obtain ⟨kq, hkq⟩ := PEqualNP.Library.Helpers.polynomial_le_pow_add q
+  let K := kq + KK k + 1
+  let G : List Bool × List Bool → Prop := fun a => ∃ y1 y2 y3 : List Bool,
+    a.2 = y1 ++ y2 ++ y3 ∧ y1.length = blkK K a.1.length ∧ y2.length = blkK K a.1.length ∧
+      y3.length = blkK K a.1.length
+  let g : List Bool × List Bool → Bool := fun a =>
+    CoreFn k (cutF (f0 a.1, a.2)).1 (cutF (f0 a.1, a.2)).2
+  have hG : ∀ a, G a → ∃ n, n ≤ 100 * (encodePair a).length ∧
+      (flip bind (TM2.step S.tm.m))^[n] (some (initList S.tm ((encodePair a).map S.ia.invFun))) =
+        some (haltList S.tm [S.oa.invFun (g a)]) := by
+    rintro ⟨x, w⟩ ⟨y1, y2, y3, hw, h1, h2, h3⟩
+    simp only at hw h1 h2 h3
+    set s := blkK K x.length with hs
+    set D := blk k x.length with hDdef
+    have hDs : D ≤ s := blk_le_blkK k K x.length (by omega)
+    have hgood : CutGood (f0 x, w) := ⟨D, s, x, y1, y2, y3, rfl, hw, h1, h2, h3, hDs⟩
+    obtain ⟨n, hn, hrun⟩ := S.run (x, w) ⟨⟨trivial, hgood⟩, trivial⟩
+    refine ⟨n, ?_, hrun⟩
+    -- the bound
+    have hcut : cutF (f0 x, w) = (x, y1.take D ++ y2.take D ++ y3.take D) := by
+      rw [hw]; exact cutF_good D s x y1 y2 y3 h1 h2 h3 hDs
+    have hwl : w.length = 3 * s := by rw [hw]; simp; omega
+    have hsel : (y1.take D ++ y2.take D ++ y3.take D).length = 3 * D := by simp; omega
+    have hf0l : (f0 x).length = D + 1 + x.length := by simp [f0, Cut.mk, hDdef]; omega
+    have b0 : c0.time x.length ≤ p0.eval x.length := hc0 _
+    have b3 : c3.time (x.length + 3 * D) ≤ p3.eval (x.length + 3 * D) := hc3 _
+    have hq : p0.eval x.length + p3.eval (x.length + 3 * D) ≤ s := by
+      have := hkq x.length
+      have e : q.eval x.length = p0.eval x.length + p3.eval (x.length + 3 * D) := by
+        simp [q, hDdef, ← hpD]
+      have := pow_le_blkK kq K x.length (by omega) (by omega)
+      omega
+    have hs1 : 1 ≤ s := by simp only [hs, blkK]; omega
+    simp only [S, GRun.comp, GRun.ofP, PRun.first, PRun.ofTime, cutRun] at hn
+    simp only [encodePair_length, hcut, hsel, hf0l, hwl] at hn ⊢
+    omega
+  obtain ⟨f, K', hfg, hcomp⟩ := clocked encodePair S.tm S.ia S.oa g G 100 hG
+  refine ⟨K, {p | f p = true}, K', ⟨f, fun _ => Iff.rfl, hcomp⟩, fun x => ?_⟩
+  set s := blkK K x.length with hs
+  set D := blk k x.length with hDdef
+  have hDs : D ≤ s := blk_le_blkK k K x.length (by omega)
+  have hge := blk_ge k x.length
+  rw [mem_KL_iff_blocksS k x s (by omega), alt3]
+  apply exists_congr; intro y1
+  apply and_congr_right; intro h1
+  apply forall_congr'; intro y2
+  apply imp_congr_right; intro h2
+  apply exists_congr; intro y3
+  apply and_congr_right; intro h3
+  have hGa : G (x, y1 ++ (y2 ++ y3)) := ⟨y1, y2, y3, by simp, h1, h2, h3⟩
+  show _ ↔ f (x, y1 ++ (y2 ++ y3)) = true
+  rw [hfg _ hGa]
+  show _ ↔ CoreFn k (cutF (f0 x, y1 ++ (y2 ++ y3))).1 (cutF (f0 x, y1 ++ (y2 ++ y3))).2 = true
+  rw [← List.append_assoc, cutF_good D s x y1 y2 y3 h1 h2 h3 hDs]
+  simp only
+  rw [List.append_assoc, ← zipSel_maskOf D s hDs y1 y2 y3 h1 h2 h3,
+    CoreFn_blocks k x y1 y2 y3 s hDs h1 h2 h3]
+
 end PEqualNP.General.Kannan
