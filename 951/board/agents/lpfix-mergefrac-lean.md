@@ -211,3 +211,5 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   `restricted_gate_deficient` / `restricted1_gate_deficient` (desktop Coord / research: the GATE form, any bound k).
   `PureStar.lean`: front A2's STAR-SEP as the hypothesis `StarSep` (no new sorry; gate rule), and its induction checked:
   `menuSDR_of_starSep`, `pureSDR_of_starSep`, `no_minCE_of_starSep`. So 951 now reduces in Lean to STAR-SEP (∀ MinCE, ∀ Q).
+- (13:45 UTC) `no_minCE_of_MUL` (coord 12:01): MU over ALL valid lifted test systems (`liftMenu`), the weakest menu target;
+  `mu_of_liftSDR`, `muL_of_mu`. Implication chain in Lean: STAR-SEP ⇒ PureSDR ⇒ {LiftSDR, MU} ⇒ MUL ⇒ no_minCE.

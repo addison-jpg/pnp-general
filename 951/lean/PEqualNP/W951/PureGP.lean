@@ -22,6 +22,8 @@ its class is the union-find merge set (`runMT`) of that test system (`ltsCls`). 
   close `no_minCE`.
 * `PureOpt.toLTS`, `pureCls_eq_ltsCls` (by `rfl`), `pureValid_ltsValid`, `liftSDR_of_pureSDR`: all four
   pure option kinds (`one`, `zero`, `zeroAt`, `oneAt`) are lifted test systems.
+* `liftMenu`, `MUL` (`base ≤ |⋃_w liftMenu(S_w)|`), `mu_of_liftSDR`, `muL_of_mu`, `bound_of_muL`,
+  `no_minCE_of_MUL`: the weakest menu target (coord 12:01).
 * **GP** (front A1-a): `gpLTS b z A` = zero point `(z, b)`, atoms `(A_u, b)`; `gpLTS_valid`:
   `C_b(o_w)(z) = 0`, `C_b(o_w)(A_u) = 1`, `A_u ∩ A_v ⊆ z` (`u ≠ v`) ⇒ valid. (`u ∈ A_u` is not
   needed.)
@@ -365,6 +367,71 @@ theorem disjoint_gp (R R' : Finset (Fin n)) (b b' : Bool) (z z' : Fin n → Bool
   · exact Or.inl (ext_le_of_le (canonPt_le h1) hb)
   · exact Or.inr (ext_le_of_le (canonPt_le h1) hb)
 
+/-! ## MU over all lifted test systems (coord 12:01): the weakest menu target -/
+
+open Classical in
+/-- The menu of all valid lifted test systems of `R` (output wire `o`). -/
+noncomputable def liftMenu (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) (o : ℕ) : Finset ℕ :=
+  ((Finset.univ : Finset ((Fin (n + 1) → Bool) × (Fin (n + 1) → Fin (n + 1) → Bool))).filter
+    fun t => LTSValid gates p R o ⟨t.1, t.2⟩).biUnion fun t => ltsCls gates p R ⟨t.1, t.2⟩
+
+theorem mem_liftMenu {gates : List Gate} {p : ℕ} {R : Finset (Fin n)} {o g : ℕ} :
+    g ∈ liftMenu gates p R o ↔ ∃ t : LTS n, LTSValid gates p R o t ∧ g ∈ ltsCls gates p R t := by
+  classical
+  rw [liftMenu, Finset.mem_biUnion]
+  constructor
+  · rintro ⟨t, ht, hg⟩
+    exact ⟨⟨t.1, t.2⟩, (Finset.mem_filter.mp ht).2, hg⟩
+  · rintro ⟨⟨z, q⟩, ht, hg⟩
+    exact ⟨(z, q), Finset.mem_filter.mpr ⟨Finset.mem_univ _, ht⟩, hg⟩
+
+theorem liftMenu_subset (R : Finset (Fin n)) (o : ℕ) :
+    liftMenu gates p R o ⊆ Finset.Ico (n + 1) (n + 1 + (lift n p gates).length) := by
+  intro g hg
+  obtain ⟨t, -, hgt⟩ := mem_liftMenu.mp hg
+  exact ltsCls_subset gates p R t hgt
+
+/-- **MU over lifted test systems**: `base ≤ |⋃_w liftMenu(S_w)|`. -/
+def MUL {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ) (p : ℕ) : Prop :=
+  ∑ w, ((S w).card - 1) ≤ (Finset.univ.biUnion fun w => liftMenu gates p (S w) (out w)).card
+
+include hg hU hN in
+/-- **LiftSDR ⇒ MUL.** -/
+theorem mu_of_liftSDR {m : ℕ} (S : Fin m → Finset (Fin n)) (out : Fin m → ℕ)
+    (H : LiftSDR S gates out p) : MUL S gates out p := by
+  classical
+  obtain ⟨t, ht, hdis⟩ := H
+  have hpd : ((Finset.univ : Finset (Fin m)) : Set (Fin m)).PairwiseDisjoint
+      fun w => ltsCls gates p (S w) (t w) := fun w _ w' _ hww => hdis w w' hww
+  calc ∑ w, ((S w).card - 1)
+      ≤ ∑ w, (ltsCls gates p (S w) (t w)).card :=
+        Finset.sum_le_sum fun w _ => card_ltsCls gates p hp hg hU hN (S w) (out w) (t w) (ht w)
+    _ = (Finset.univ.biUnion fun w => ltsCls gates p (S w) (t w)).card :=
+        (Finset.card_biUnion hpd).symm
+    _ ≤ (Finset.univ.biUnion fun w => liftMenu gates p (S w) (out w)).card :=
+        Finset.card_le_card (Finset.biUnion_mono fun w _ g hg => mem_liftMenu.mpr ⟨t w, ht w, hg⟩)
+
+include hg hU hN in
+/-- **MU ⇒ MUL**: every pure menu lies in the lifted-test-system menu. -/
+theorem muL_of_mu {m : ℕ} (S : Fin m → Finset (Fin n)) (out : Fin m → ℕ)
+    (hev : ∀ (w : Fin m) (x : Fin n → Bool), val gates x (out w) = decide (∃ v ∈ S w, x v = true))
+    (H : MU S gates p) : MUL S gates out p := by
+  refine le_trans H (Finset.card_le_card (Finset.biUnion_mono fun w _ g hgm => ?_))
+  obtain ⟨c, hc, hgc⟩ := mem_pureMenu.mp hgm
+  rw [pureCls_eq_ltsCls] at hgc
+  exact mem_liftMenu.mpr ⟨c.toLTS (S w), pureValid_ltsValid gates p hp hg hU hN (S w) (out w) (hev w) c hc,
+    hgc⟩
+
+include hp in
+/-- **MUL ⇒ the bound with one gate to spare.** -/
+theorem bound_of_muL {m : ℕ} (S : Fin m → Finset (Fin n)) (out : Fin m → ℕ) (H : MUL S gates out p) :
+    ∑ w, ((S w).card - 1) ≤ gates.length - 1 := by
+  have h := Finset.card_le_card (Finset.biUnion_subset.mpr fun w (_ : w ∈ Finset.univ) =>
+    liftMenu_subset gates p (S w) (out w))
+  rw [Nat.card_Ico, length_lift n p gates hp] at h
+  unfold MUL at H
+  omega
+
 end PureGP
 
 /-- **951 from LiftSDR** (the most general pure-type target; contains PureSDR and GP-SDR): if every
@@ -378,6 +445,20 @@ theorem no_minCE_of_liftSDR
   intro n m S gates out M
   obtain ⟨p, hp, hN, hP⟩ := H n m S gates out M
   have h1 := bound_of_liftSDR gates p hp M.ce.hg M.ce.hU hN S out hP
+  have h2 := M.ce.hlt
+  omega
+
+/-- **951 from MUL** (the weakest menu target): if every minimal counterexample has a NOT gate whose
+lifted-test-system menus of all sets cover `base` gates, there is no minimal counterexample. -/
+theorem no_minCE_of_MUL
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out →
+        ∃ (p : ℕ) (hp : p < gates.length), (gates[p]'hp).op = GateOp.not ∧ MUL S gates out p) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out := by
+  intro n m S gates out M
+  obtain ⟨p, hp, -, hP⟩ := H n m S gates out M
+  have h1 := bound_of_muL gates p hp S out hP
   have h2 := M.ce.hlt
   omega
 
