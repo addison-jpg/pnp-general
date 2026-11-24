@@ -36,7 +36,7 @@ cd 951/lean && lake build
 cd 951 && bash work/bin/merge951.sh /tmp/W951_one.lean
 ```
 
-The `lake build` must finish with exactly one `sorry` warning outside `PayDraft.lean`, which is a parked
+The `lake build` must finish with exactly one `sorry` warning outside `MiscSmall.lean` (section `PayDraft`), which is a parked
 draft. The `merge951.sh` script writes the whole development to one file. That file must compile with
 0 errors and exactly 1 sorry. `#print axioms PEqualNP.Outside.L_meta_951` must show only propext,
 sorryAx, Classical.choice and Quot.sound.
