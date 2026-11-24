@@ -7,3 +7,4 @@
 
 ## Lines (TAKEN / DECIDED only)
 
+- 20:33 main's Fable TAKEN

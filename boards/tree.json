@@ -3,7 +3,7 @@
   "counts": {
    "tested": 4,
    "refuted": 3,
-   "checked": 12
+   "checked": 15
   },
   "verified": [
    "1b00e1bc",
@@ -24,7 +24,10 @@
    "c6da3456",
    "3671b9f4",
    "64defb2f",
-   "b293d3f3"
+   "b293d3f3",
+   "4617c228",
+   "c011de04",
+   "e793c0f4"
   ],
   "unverified_here": []
  },
@@ -44,7 +47,7 @@
   "counts": {
    "tested": 4,
    "refuted": 3,
-   "checked": 12
+   "checked": 15
   },
   "verified": [
    "1b00e1bc",
@@ -65,7 +68,10 @@
    "c6da3456",
    "3671b9f4",
    "64defb2f",
-   "b293d3f3"
+   "b293d3f3",
+   "4617c228",
+   "c011de04",
+   "e793c0f4"
   ],
   "unverified_here": []
  },
@@ -134,7 +140,7 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 11
+   "checked": 14
   },
   "verified": [
    "30cf54bf",
@@ -147,13 +153,16 @@
    "c6da3456",
    "3671b9f4",
    "64defb2f",
-   "b293d3f3"
+   "b293d3f3",
+   "4617c228",
+   "c011de04",
+   "e793c0f4"
   ],
   "unverified_here": []
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 11
+   "checked": 14
   },
   "verified": [
    "30cf54bf",
@@ -166,13 +175,16 @@
    "c6da3456",
    "3671b9f4",
    "64defb2f",
-   "b293d3f3"
+   "b293d3f3",
+   "4617c228",
+   "c011de04",
+   "e793c0f4"
   ],
   "unverified_here": []
  },
  "one-not/lean/PEqualNP/W951": {
   "counts": {
-   "checked": 11
+   "checked": 14
   },
   "verified": [
    "30cf54bf",
@@ -185,7 +197,10 @@
    "c6da3456",
    "3671b9f4",
    "64defb2f",
-   "b293d3f3"
+   "b293d3f3",
+   "4617c228",
+   "c011de04",
+   "e793c0f4"
   ],
   "unverified_here": []
  },
