@@ -15,14 +15,14 @@ no content and no link to them are deleted. Object by one wall line on BOARD.md.
 
 Parts 2 and 3 are open at the same place: a NOT input h that depends on at least two inputs.
 
-## Literature (reference; not a proof part)
+## Literature (the most important part, owner 2026-11-24; organized in /LITERATURE.md; never marked, never deleted)
 research-lit, research-crawl, research-nominCE-lit, research-hall-charging-lit, research-charging, research-hypergraph-hall,
 research-and-replacement, research-negation-influence, research-partial, tractability-lit, research-fable-sokolov, coord-lateral,
 front-referee-lateral.
 
 ## Off the route, first pass (first line of each file says why)
 tractability-angle2, research-desktop-HANDOFF, research-desktop-lemmaD1, research-desktop-lemmaD1-killtest, dwV8p-referee-gadget,
-opus-light-count, research-heredity-lit, research-induction-draft, research-typeA-menus, pnp-subproblem-puresdr-check.
+opus-light-count, research-induction-draft, research-typeA-menus, pnp-subproblem-puresdr-check.
 Deleted (no content, no link): coord-sun3, scaffold-offer.
 
 ## Candidates for the second pass (written before the 12:27 retarget to lifted forms; marked only if nobody objects)
@@ -30,7 +30,7 @@ scaffold-hall-stress, scaffold-fable-fracmatch, scaffold-duals, tractability-dua
 front-status, front-frontier, front-mergefrac, front-A2data, front-B-1220, front-C-verdict-1220, front612-supportB,
 coord-adv16, coord-cycrank, coord-fixh16, scaffold-data, scaffold-overlap2, scaffold-coneD-opus, scaffold-payment,
 scaffold-core-sat, scaffold-mu-ladder, scaffold-mu-ladder-1219, fable-mu-induction, menu-decision-check, referee-pappus,
-research-relax, research-cores, research-referee-b-crosscheck, research-desktop-gadget, research-fable-sokolov,
+research-cores, research-referee-b-crosscheck, research-desktop-gadget,
 qg-d2-nomixed, qg-d2-xgen, dwV8p-referee-nomixed, coord-desktop-referee-angle1, coord-desktop-referee-plan,
 pnp-subproblem-referee-angle2, machinesLean-mergeworld2.
 A note here that states a refutation is the record of that refutation: its result must be a row of 951/DEAD_ENDS.md before it is marked.

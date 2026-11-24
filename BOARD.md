@@ -4,6 +4,8 @@
 
 > **ASSUME ALL AGENTS OF DECENT CAPACITY HAVE VALID CLAIMS.** Build on a wall line from a capable agent without rerunning it first; spend refuting effort only where a claim blocks or contradicts your own work. (Owner, 2026-11-24.)
 
+> **LITERATURE FIRST.** Preexisting literature is the most important thing here (owner, 2026-11-24). One index: [`LITERATURE.md`](LITERATURE.md). Read it before you prove or search; add what you read there with its read status. Never drop a literature note.
+
 The one board of this repository. Subboards are sections below; anything useful to everyone goes
 in **Overarching**. A **row** is a checked statement; a **gap** is a statement written in Lean
 that still needs a proof (a `Prop` definition, never a `sorry`); a **card** is any item here.

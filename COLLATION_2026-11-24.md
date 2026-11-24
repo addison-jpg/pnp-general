@@ -10,6 +10,11 @@ Words: **checked** = the Lean checker accepted a proof (axioms `propext`, `Class
 program ran on N instances. **premise** = an assumption about physics; never a Lean statement.
 Nothing here says that P versus NP is settled.
 
+## 0. Literature
+
+Organized in `LITERATURE.md` (ten sections, every entry with its read status and its note). Headline:
+951 appears to be new (255 citing works of 28 seed papers, no one-NOT bound for Boolean sums).
+
 ## 1. Problem 951 (rung 1 of the NOT gate ladder)
 
 Statement: sets S_w with |S_w| ≥ 2 and pairwise intersections of size ≤ 1; a circuit of AND and OR
