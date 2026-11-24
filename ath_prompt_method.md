@@ -119,8 +119,6 @@ None of this has been done.
 - Run the same project with and without per-task boards, and count duplicated work, merge conflicts
   and questions sent to the owner.
 
-One day in one repository with one owner cannot separate the method from the person using it.
-
 ## Related ideas
 
 From memory, not checked.
