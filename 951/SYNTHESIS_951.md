@@ -1,0 +1,101 @@
+# 951 in three layers (front's draft, 2026-11-24 ~12:27 UTC)
+
+Sent by front (session_01GmnDheKL3UENhJCL6pD1hS) by message for SYNTHESIS.md §3-4; landed by coord
+(front cannot push; owner 12:05). Front's text, verbatim except headings. A2's 13:15 HEAVY-COUNT
+result will come as a short delta. Coord checked that every Lean name in layer 1 exists on main and
+that the full build has 1 sorry (no_minCE) with standard axioms.
+
+## 0. The whole chain in one paragraph
+
+951 (one NOT gate saves nothing on (1,1)-disjoint Boolean sums) is reduced in Lean to no_minCE, and
+no_minCE to ONE counting statement about the circuit's two monotone worlds. Every set w gets a menu
+of "classes": merge sets of a union-find run in the LIFTED monotone circuit M(x, y) (y replaces the
+NOT); each class has exactly d_w = |S_w| − 1 gates (Lemma M / GM'). If the union U of all valid
+classes has at least base = Σ d_w gates (MU / MUL), the circuit has at least base gates. Front's
+contribution: (a) the menu machinery that makes the reduction sound (Lemma R, L-LIFT, Theorem U);
+(b) the inductive counting form STAR-COUNT that peels one star (the sets through a point v) per
+step, whose heavy half HEAVY-COUNT has 0 failures on all data; (c) the lifted price route (2G-LIFT).
+Remaining maths: two counting lemmas, HEAVY-COUNT (front, A2) and LIGHT-COUNT (integrator's Opus).
+
+## 1. Layer 1 — THEOREMS (Lean, all gated, std axioms, only sorry = no_minCE)
+
+- no_minCE ⇐ MUL (base ≤ |⋃ liftMenu|): `no_minCE_of_MUL` (fb5dfef)
+- MUL ⇐ LiftSDR ⇐ MergeSDR (L-LIFT: real merge sets are lifted classes): `liftSDR_of_mergeSDR`,
+  `muL_of_mergeSDR`, `run_lift` (cc21bf9)
+- no_minCE ⇐ ∀ Q ∃ v StarCountG over menu2 (peeling induction): `no_minCE_of_starCount2`,
+  `sum_alive_le_UQG` (d6c12cf)
+- no_minCE ⇐ PurePrice (LP dual of the fractional form): `no_minCE_of_purePrice`,
+  `pureFrac_iff_purePrice` (ca2412c)
+- StarSep ⇒ PureSDR ⇒ PureFrac ⇔ PurePrice ⇒ MU ⇒ MUL ⇒ no_minCE (PureStar, PureMenu, PureGP)
+- heavy case of STAR-SEP: `starSep_heavy`, `starSep_of_hQ` (5f87562); L-U_v: `menu2_U_zero`
+  (621e1bf); GP + Theorem U: `disjoint_gp` (7faa424); menu transfer under 0/1 restriction:
+  `restrictedMenu*_subset_pureMenu`, `restricted*_deficient` (660700f, e73f27c)
+- (added by coord) MU over the count-set union UC: `no_minCE_of_MUC`, the point inductions with the
+  gain as hypothesis `no_minCE_of_gainOne` / `_gain` / `_gainOne_pts`, Lemma C0 `card_C0_le_gain`
+  (machines-Lean, MUInduct.lean, 1bc66bd + 96d1932)
+
+Paper (refereed by front's lane C unless marked): Lemma R (restricted classes = original classes at
+(Z ∪ R1, a ∪ R1), extended menus); L-LIFT; GM', Theorem U, Theorem ND (= GP form of
+bound_of_noDD); STAR-SEP ⇒ SDR and STAR-COUNT ⇒ MU inductions (only Q changes, never the circuit,
+so MinCE facts may be used); the heredity inequality is CIRCULAR; graph systems are vacuous
+(MinCE.has4); B1 (in a MinCE the whole family is Hall-deficient; heredity only reduces to the
+spanning family); 2G-LIFT (NOT yet refereed): Σ_w min_z |M_z(w) ∩ {g, g'}| ≤ 2 under condition
+C(b), proof = ceilings + pigeonhole force a triangle, then an odd-cycle contradiction; graph-system
+heavy v reduces to a Hall step inside the star; B3' (not refereed): type-B I0 classes lie at or
+before the wire h.
+
+## 2. Layer 2 — CERTIFICATES AND DATA
+
+- HEAVY-COUNT over Menu2 (every heavy v): 44,093/44,093 corpus + 64/64 barrier, 0 failures.
+- STAR-COUNT (∃ v) and MU over Menu2: 100% on 21,699 corpus instances (incl. cxMU_dd, selector
+  path, cxT2, PG(2,3)) and 36/36 barrier instances.
+- GP-SDR on every circuit run (incl. all barriers); U-certified GP selection on 29,751/29,753
+  (fails only on cxT2, cx44_1, all sets DD).
+- BARRIER SUITE (refutes every minimality-free statement over Lean's narrow menus; fine over
+  lifted/GP menus; run new conjectures here first): cxMU_dd, cxMU_clean2, cxMU_clean2_DD,
+  cx44_1_junk (`951/data/witnesses/`).
+- REFUTED (witnesses on board / DEAD_ENDS): heavy-star world rules; bounded local exchange (selector
+  path); D1/D+; CANON; PEEL; looseness lemma; STAR-SEP (SDR form) over Menu1 and Menu2; V-COUNT;
+  cxT2's '2-SAT core' (artefact of minimal atoms).
+
+## 3. Layer 3 — PREMISES AND MAPS
+
+- HEAVY-COUNT (front A2): h(Q ∪ e_v) = 1 ⇒ |U(Q) \ U(Q ∪ v)| ≥ Σ_{w ∈ star(v)} d_w over Menu2.
+  Map: on the cube Q ∪ v the NOT is constant (h ≡ 1), so U(Q ∪ v) consists of MONOTONE (C_0) classes
+  at top_w', all 0 at (Q + e_v, world 0) (L-U_v): a classical monotone-type count ('the star pays
+  d_w gates the monotone remainder cannot see'), with the twist that some paying gates are 0 at
+  Q + e_v (V-COUNT refuted), so the count must use classes, not single points. Graphs: a Hall step
+  inside the star.
+- LIGHT-COUNT (integrator's Opus): no heavy alive point ⇒ some v satisfies STAR-COUNT. Data hint:
+  every set is private on all 1,019 no-heavy-point corpus circuits (B) — likely the easier half.
+- Alternative (A1, lifted price form): ∀ π ≥ 0, Σ_w min_z π(M_z(w)) ≤ π(U); proved for 1-gate
+  prices and 2-gate prices under C(b); the 2-gate proof is a PARITY argument (odd triangle), not
+  uncrossing; a k-gate version needs an odd-cycle / 2-colouring statement on the hypergraph of
+  pairwise intersection points; the open 2-gate configuration is cxT2's.
+- Diagnosis (B): every obstruction seen is a HEAVY-POINT HUB (world 1: a wire with C_1 ≥ x_p ∨ h
+  merging for every set through p; world 0: one gate merging the heavy atom {u} for every set
+  through u) — exactly the HEAVY / LIGHT split.
+
+## 4. Barrier check per technique (honest)
+
+951 is a LINEAR bound in a restricted model (AND/OR + one NOT) for an explicit family; the three
+barriers concern super-polynomial bounds / class separations, so none blocks 951; the real question
+is whether the techniques scale.
+
+- Union-find merge counting (Lemma M, classes, MU/MUL, STAR-COUNT). Oracle: does not relativize and
+  need not — an oracle gate could compute all outputs at once (s ≥ base false), so a proof must
+  inspect AND/OR semantics, which ours does. Low-degree extension: the argument evaluates gates only
+  at Boolean cube points and uses monotonicity (g_0 ≤ g_1, h monotone); meaningless for gates
+  computing field extensions — not algebrizing, not ruled out. Natural proofs: the property ('a
+  (1,1)-disjoint Boolean sum needs ≥ base gates') is not LARGE and is circuit-specific — not
+  natural, not ruled out. Scaling: k NOT gates give up to 2^k worlds (lifted cube {0,1}^k), so the
+  method degrades with k; with O(log n) NOTs (Markov/Fischer) circuits are general up to poly
+  blow-up and counts are linear at best — no route past linear general bounds; its value is the
+  one-NOT / small-k rung.
+- Lifted price / LP duality (PurePrice, 2G-LIFT): same assessment; the parity step is a design
+  fact, not a random-function property.
+- Restriction / heredity (Lemma R): classical gate elimination; used only for menu transfer, known
+  to give linear bounds at most.
+
+Bottom line: the 951 chain is barrier-free (no barrier applies) and barrier-bounded (no technique
+here goes past linear for general circuits).

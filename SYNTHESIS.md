@@ -80,7 +80,10 @@ ruled out by L-lib-076; both can be discarded before anyone spends time on them.
   (`SIZENot`, L-gen-003, L-gen-004; top of the ladder = unrestricted circuits, gap L-gen-104).
 - It is a gate-level, exact, linear bound in a restricted model. It reads the inside of the
   circuit, so it is not an oracle argument, and it is far below the range the barriers speak about
-  (superpolynomial bounds against all circuits). It does not pass a barrier; it does not need to.
+  (superpolynomial bounds against all circuits): gate-level counting of this kind is not blocked by
+  the barriers, which concern superpolynomial lower bounds for unrestricted circuits. It does not
+  pass a barrier; it does not need to. The whole 951 chain in the three layers, with a barrier
+  check per technique: [`951/SYNTHESIS_951.md`](951/SYNTHESIS_951.md).
 - Its internal structure has the same shape as section 2, as an ANALOGY only: the single NOT gate
   splits every wire into two monotone "worlds" (NOT := 0, NOT := 1). Everything that stays inside
   one world is settled by monotone arguments (`CanonClass.lean`); the whole difficulty is the
@@ -88,7 +91,8 @@ ruled out by L-lib-076; both can be discarded before anyone spends time on them.
   count MUL (`no_minCE_of_MUL`) or the lifted disjoint choice LiftSDR (`no_minCE_of_liftSDR`); the
   same counts over the narrower pure classes are FALSE for general correct circuits (cxMU_dd:
   5 < 6) and could only hold for a minimal counterexample through s < base. The open step (the
-  count MU for the count-set union `UC`, a gate family that is sufficient on its own because
+  count MU for the count-set union `UC` (every OR gate false at a zero point Z of some set and
+  true at Z + e_u for two u of it, in one monotone face), a gate family that is sufficient on its own because
   Σ d_w ≤ |UC| ≤ s, and that has not failed on any circuit; by induction on points: HEAVY-COUNT
   and LIGHT-COUNT) is a
   statement about how the two worlds share gates. Nothing transfers
