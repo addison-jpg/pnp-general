@@ -19,8 +19,8 @@ is the value `y` of the NOT gate): world 1 is `y = true`, world 0 is `y = false`
 * `orClz_cross` (X): if a gate lies in both classes although the first system's atoms, moved to
   `a0`, satisfy the hypothesis of D, then the wire is true at an atom `a t` and false at its copy
   `a0 t`. With `a t` the world-1 atom and `a0 t` its world-0 copy: the wire depends on the NOT.
-* `ptOf A`: the point whose true coordinates are those of `A`. Canonical atoms are
-  `ptOf (insert (u t) m)` for an injective `u : Fin k → Fin N` into the set `S` and a base `m`
+* `canonPt A`: the point whose true coordinates are those of `A`. Canonical atoms are
+  `canonPt (insert (u t) m)` for an injective `u : Fin k → Fin N` into the set `S` and a base `m`
   (`m = ∅` or `{y}` in world 1, a minterm of the NOT input in world 0).
 * `canon_atoms_le`, `canon_size_pt`, `canon_disjoint` (W0 and W1), `canon_cross` (X): the same
   for canonical atoms and sets `S`, `S'` with `|S ∩ S'| ≤ 1`. The zero point of the second system
@@ -88,24 +88,24 @@ theorem orClz_cross (gs : List Gate) (hm : MonoList gs) (z z' : Fin N → Bool)
   exact Finset.disjoint_left.mp (orClz_disjoint gs hm z z' a0 a' h) hj0 hj'
 
 /-- The point whose true coordinates are exactly those of `A`. -/
-def ptOf (A : Finset (Fin N)) : Fin N → Bool := fun c => decide (c ∈ A)
+def canonPt (A : Finset (Fin N)) : Fin N → Bool := fun c => decide (c ∈ A)
 
-theorem ptOf_eq_true {A : Finset (Fin N)} {c : Fin N} : ptOf A c = true ↔ c ∈ A := by
-  simp [ptOf]
+theorem canonPt_eq_true {A : Finset (Fin N)} {c : Fin N} : canonPt A c = true ↔ c ∈ A := by
+  simp [canonPt]
 
-/-- Canonical atoms `ptOf (insert (u t) m)`, `u` injective into `S`: if `|S ∩ S'| ≤ 1`, the base
+/-- Canonical atoms `canonPt (insert (u t) m)`, `u` injective into `S`: if `|S ∩ S'| ≤ 1`, the base
 `m` avoids `S'` and `Y`, no `u t` is in `Y`, and `z'` is false only on `S' ∪ Y`, then of any two
 atoms one lies below `z'`. -/
 theorem canon_atoms_le (S S' m Y : Finset (Fin N)) (hSS : (S ∩ S').card ≤ 1)
     (hmS' : Disjoint m S') (hmY : Disjoint m Y) (u : Fin k → Fin N)
     (hu : Function.Injective u) (huS : ∀ t, u t ∈ S) (huY : ∀ t, u t ∉ Y)
     (z' : Fin N → Bool) (hz' : ∀ c, z' c = false → c ∈ S' ∨ c ∈ Y) :
-    ∀ s t : Fin k, s ≠ t → ptOf (insert (u s) m) ≤ z' ∨ ptOf (insert (u t) m) ≤ z' := by
-  have key : ∀ t : Fin k, u t ∉ S' → ptOf (insert (u t) m) ≤ z' := by
+    ∀ s t : Fin k, s ≠ t → canonPt (insert (u s) m) ≤ z' ∨ canonPt (insert (u t) m) ≤ z' := by
+  have key : ∀ t : Fin k, u t ∉ S' → canonPt (insert (u t) m) ≤ z' := by
     intro t ht c
     refine Bool.le_iff_imp.mpr fun hc => ?_
     by_contra hne
-    have hcm : c ∈ insert (u t) m := ptOf_eq_true.mp hc
+    have hcm : c ∈ insert (u t) m := canonPt_eq_true.mp hc
     rcases hz' c (by simpa using hne) with hS' | hY
     · rcases Finset.mem_insert.mp hcm with rfl | hcm
       · exact ht hS'
@@ -134,10 +134,10 @@ theorem canon_size_pt (gs : List Gate) (hm : MonoList gs) (S m Y : Finset (Fin N
     (hmS : Disjoint m S) (hmY : Disjoint m Y) (u : Fin k → Fin N)
     (hu : Function.Injective u) (z : Fin N → Bool) (hz : ∀ c, z c = false → c ∈ S ∨ c ∈ Y)
     (o : ℕ) (hzo : val gs z o = false)
-    (hao : ∀ t, val gs (ptOf (insert (u t) m)) o = true) :
-    ∃ M : Finset ℕ, M ⊆ orClz gs z (fun t => ptOf (insert (u t) m)) ∧ k - 1 ≤ M.card := by
+    (hao : ∀ t, val gs (canonPt (insert (u t) m)) o = true) :
+    ∃ M : Finset ℕ, M ⊆ orClz gs z (fun t => canonPt (insert (u t) m)) ∧ k - 1 ≤ M.card := by
   refine canon_size gs hm z _ u hu (fun c hc t ht => ?_) o hzo hao
-  have hcm : c ∈ insert (u t) m := ptOf_eq_true.mp ht
+  have hcm : c ∈ insert (u t) m := canonPt_eq_true.mp ht
   rcases Finset.mem_insert.mp hcm with h | h
   · exact h
   · rcases hz c hc with hS | hY
@@ -152,7 +152,7 @@ theorem canon_disjoint (gs : List Gate) (hm : MonoList gs) (S S' m Y : Finset (F
     (hu : Function.Injective u) (huS : ∀ t, u t ∈ S) (huY : ∀ t, u t ∉ Y)
     (z z' : Fin N → Bool) (hz' : ∀ c, z' c = false → c ∈ S' ∨ c ∈ Y)
     (a' : Fin k' → Fin N → Bool) :
-    Disjoint (orClz gs z (fun t => ptOf (insert (u t) m))) (orClz gs z' a') :=
+    Disjoint (orClz gs z (fun t => canonPt (insert (u t) m))) (orClz gs z' a') :=
   orClz_disjoint gs hm z z' _ a' (canon_atoms_le S S' m Y hSS hmS' hmY u hu huS huY z' hz')
 
 /-- **X for canonical atoms.** A gate in the class of `S` with base `m` and in a class with zero
@@ -164,10 +164,10 @@ theorem canon_cross (gs : List Gate) (hm : MonoList gs) (S S' m m0 Y : Finset (F
     (u : Fin k → Fin N) (hu : Function.Injective u) (huS : ∀ t, u t ∈ S) (huY : ∀ t, u t ∉ Y)
     (z z' : Fin N → Bool) (hz' : ∀ c, z' c = false → c ∈ S' ∨ c ∈ Y)
     (a' : Fin k' → Fin N → Bool) {j : ℕ}
-    (hj : j ∈ orClz gs z (fun t => ptOf (insert (u t) m))) (hj' : j ∈ orClz gs z' a') :
-    ∃ t, val gs (ptOf (insert (u t) m)) (N + j) = true ∧
-      val gs (ptOf (insert (u t) m0)) (N + j) = false :=
-  orClz_cross gs hm z z' _ (fun t => ptOf (insert (u t) m0)) a'
+    (hj : j ∈ orClz gs z (fun t => canonPt (insert (u t) m))) (hj' : j ∈ orClz gs z' a') :
+    ∃ t, val gs (canonPt (insert (u t) m)) (N + j) = true ∧
+      val gs (canonPt (insert (u t) m0)) (N + j) = false :=
+  orClz_cross gs hm z z' _ (fun t => canonPt (insert (u t) m0)) a'
     (canon_atoms_le S S' m0 Y hSS hm0S' hm0Y u hu huS huY z' hz') hj hj'
 
 end CanonClass
