@@ -1,9 +1,11 @@
 # pnp-general (by addison mccarl)
+disclaimer that a lot of the readmes are vibecoded. 
+the higher level gist is: quantum/gravity relativity maps onto the relativity barrier to P/NP, and can help bypass it. 
 
 P versus NP through general circuits: lower bounds for circuits of AND, OR and NOT gates with
 any number of NOT gates, attacked with circuit complexity, quantum gravity and pure mathematics.
 Every claim is a Lean 4 statement that the checker accepted against a pinned Mathlib; the word
-for that is "checked". **Nothing here says that P versus NP is settled.** ****yet****
+for that is "checked".
 
 - **The board:** [`BOARD.md`](BOARD.md): targets, the NOT gate ladder, the track pairs
   between the P versus NP tracks and their quantum gravity counterparts, roles, next steps.
