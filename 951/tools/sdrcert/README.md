@@ -22,3 +22,7 @@ Current certificates (`n`, gates, sets, menu sizes, chosen merge sets):
 Correctness of the circuits (each output computes OR(S_w)) is checked in Python (w951 `is_correct`); in Lean it costs
 about 25 s per circuit with n = 8 and grows as 2^n: `SDRWitnessCorrect.lean` checks it, with the set conditions,
 for every circuit with n <= 9 (about 2 minutes); ADV3 (n = 12) and cxT4 (n = 15) stay Python-checked.
+
+Group `fixh16` (`python3 export.py OUT --group fixh16`, output in `SDRWitnessFixh16.lean` with correctness bundles): scaffold's
+24 forced-h K4 circuits (data-corpora `fixh/fixh16_clean.jsonl`, 0-indexed lines 20, 66, 67, 169-178, 301-304, 1403, 1404,
+1873-1877; `s = 16`, where L-flip fails), stored in `fixh16_forced.json`. n = 4, 16 gates, 6 pair sets each; menus of size 1-3.

@@ -99,7 +99,17 @@ theorem sdr{N} : MergeSDR sdr{N}S sdr{N}Gates :=
 '''
 
 
+# scaffold (09:59): the 24 forced-h K4 circuits of data-corpora fixh/fixh16_clean.jsonl (s = 16) where L-flip fails;
+# written to fixh16_forced.json from that file (0-indexed line numbers in the names). Exported with `--group fixh16`.
+GROUPS = {'fixh16': 'tools/sdrcert/fixh16_forced.json'}
+
+
 if __name__ == '__main__':
+    if len(sys.argv) > 3 and sys.argv[2] == '--group':
+        src = GROUPS[sys.argv[3]]
+        INSTANCES[:] = [('fixh' + d['name'].split('_')[1], src, 'scaffold:' + d['name'])
+                        for d in json.load(open(os.path.join(ROOT, src)))]
+        sys.argv[2:] = []
     only = sys.argv[2:] or [x[0] for x in INSTANCES]
     parts, report = [], []
     for name, src, how in INSTANCES:

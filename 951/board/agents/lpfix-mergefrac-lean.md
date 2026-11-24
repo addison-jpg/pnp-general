@@ -124,3 +124,5 @@ Add a circuit: one line in export.py INSTANCES, re-run, paste.
 - (11:10) + cxT2 (n 9, 29 gates) and cxT4 (n 15, 47 gates; menus 190/82/81): MergeSDR kernel-checked (cxT4's certificate is
   11 s of decide; only its correctness over 2^15 inputs stays Python-checked); cxT2 also with correctness. 11 circuits in all.
   Scaffold's 24 forced-h fixh16 circuits: requested from scaffold, next batch.
+- (11:20) + scaffold's 24 forced-h K4 circuits (fixh16, s = 16, L-flip fails): MergeSDR + correctness + set conditions,
+  kernel-checked (SDRWitnessFixh16.lean, 33 s). 35 circuits certified in all (33 with correctness).
