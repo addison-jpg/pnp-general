@@ -36,6 +36,15 @@ Results:
   `degDQ ≤ |UC(D, Q) \ UC(D ∪ {v}, Q)|`). `base_le_UC_one`: `GainOne` at some star point for every
   `Q` ⇒ `base ≤ |UC S ∅ ∅|`. `base_le_UC`: one of the two moves at every `(D, Q)` with positive base
   ⇒ the same. `no_minCE_of_gainOne`, `no_minCE_of_gain`.
+* Induction on the unfixed points (a point in no alive set costs `0`, Fable N3): `base_le_UC_pts`
+  (either move at some `v ∉ D ∪ Q`), `base_le_UC_one_pts` (`x_v := 1` at some `v ∉ Q`, no deleted
+  points), `muc_of_gain_pts`, `muc_of_gainOne_pts`, `no_minCE_of_gainOne_pts`.
+* Lemma C0 (Fable N2): `not_UCWit_of_C0` (`C_0(g)(Q) = 1` ⇒ no witness with `Q` fixed to `1`),
+  `card_C0_le_gain` (the UC gates with `C_0 = 1` at `Q ∪ {v}` leave under `x_v := 1`).
+
+The Fable's report (`951/board/agents/fable-mu-induction.md`, N1): on FANO-FORMULA no point has
+`GainZero` for this UC (gain `deg(v) - 1` everywhere), so an induction by `x_v := 0` alone is dead;
+`x_v := 1` is good at every point there. The mixed inductions stay usable.
 -/
 
 namespace PEqualNP.Outside.L_meta_951_aux
@@ -346,6 +355,31 @@ theorem UQ_subset_UC (S : Fin m → Finset (Fin n)) (Q : Finset (Fin n)) :
   obtain ⟨hor, hwit⟩ := pureCls_UCWit gates p hp hg hU hN (S w) Q c hc.valid hQ hic
   exact mem_UC.mpr ⟨hor, w, hw, hwit⟩
 
+include hg hU hN in
+/-- **Lemma C0** (Fable N2): a lifted wire whose world-0 face `C_0` is `1` at `Q` has no UC witness
+with `Q` fixed to `1` (both faces are monotone and `C_0 ≤ C_b`, so they are `1` at every `Z ⊇ Q`). -/
+theorem not_UCWit_of_C0 (R D Q : Finset (Fin n)) {i : ℕ}
+    (h0 : val (lift n p gates) (ext (canonPt Q) false) i = true) : ¬ UCWit gates p R D Q i := by
+  rintro ⟨b, Z, -, -, -, -, -, -, -, -, -, hZQ, -, hz, -⟩
+  have hm := monoList_lift (n := n) gates p hp hg hU hN
+  have hle := val_le_of_le (lift n p gates) hm.andOr
+    (ext_le_of_le (canonPt_le fun c hc => hZQ c hc) (Bool.false_le b)) i
+  rw [h0, hz] at hle
+  exact absurd hle (by decide)
+
+include hg hU hN in
+/-- **The C0 count** (Fable N2): the UC gates whose `C_0` is `1` at `Q ∪ {v}` leave UC under
+`x_v := 1`. -/
+theorem card_C0_le_gain (S : Fin m → Finset (Fin n)) (D Q : Finset (Fin n)) (v : Fin n) :
+    ((UC gates p S D Q).filter fun i =>
+        val (lift n p gates) (ext (canonPt (insert v Q)) false) i = true).card ≤
+      (UC gates p S D Q \ UC gates p S D (insert v Q)).card := by
+  refine Finset.card_le_card fun i hi => ?_
+  obtain ⟨hi, h0⟩ := Finset.mem_filter.mp hi
+  refine Finset.mem_sdiff.mpr ⟨hi, fun hi' => ?_⟩
+  obtain ⟨-, w, -, hwit⟩ := mem_UC.mp hi'
+  exact not_UCWit_of_C0 gates p hp hg hU hN (S w) D (insert v Q) h0 hwit
+
 end Pure
 
 /-! ## MU for UC -/
@@ -532,6 +566,94 @@ theorem base_le_UC (gates : List Gate) (p : ℕ) (S : Fin m → Finset (Fin n))
       unfold GainZero at hgain
       omega
 
+/-- **Induction on the unfixed points**: at every `(D, Q)` with positive base, some point `v ∉ D ∪ Q`
+has `GainOne` or `GainZero`. A point in no alive set costs `0` for both moves (Fable N3), so it is
+always allowed. ⇒ `base(D, Q) ≤ |UC(D, Q)|`. -/
+theorem base_le_UC_pts (gates : List Gate) (p : ℕ) (S : Fin m → Finset (Fin n))
+    (H : ∀ D Q, 0 < baseDQ S D Q → ∃ v, v ∉ D ∧ v ∉ Q ∧
+      (GainOne gates p S D Q v ∨ GainZero gates p S D Q v)) :
+    ∀ k (D Q : Finset (Fin n)), (Finset.univ \ (D ∪ Q)).card ≤ k →
+      baseDQ S D Q ≤ (UC gates p S D Q).card := by
+  classical
+  intro k
+  induction k with
+  | zero =>
+    intro D Q hk
+    rcases Nat.eq_zero_or_pos (baseDQ S D Q) with h0 | hpos
+    · rw [h0]
+      exact Nat.zero_le _
+    obtain ⟨v, hvD, hvQ, -⟩ := H D Q hpos
+    have : v ∈ Finset.univ \ (D ∪ Q) := by simp [hvD, hvQ]
+    rw [Finset.card_eq_zero.mp (Nat.le_zero.mp hk)] at this
+    exact absurd this (Finset.notMem_empty v)
+  | succ k ih =>
+    intro D Q hk
+    rcases Nat.eq_zero_or_pos (baseDQ S D Q) with h0 | hpos
+    · rw [h0]
+      exact Nat.zero_le _
+    obtain ⟨v, hvD, hvQ, hgain⟩ := H D Q hpos
+    have hv : v ∈ Finset.univ \ (D ∪ Q) := by simp [hvD, hvQ]
+    have hdrop : ∀ D' Q' : Finset (Fin n), D' ∪ Q' = insert v (D ∪ Q) →
+        (Finset.univ \ (D' ∪ Q')).card ≤ k := by
+      intro D' Q' he
+      rw [he, Finset.sdiff_insert, Finset.card_erase_of_mem hv]
+      omega
+    rcases hgain with hgain | hgain
+    · have hih := ih D (insert v Q) (hdrop D (insert v Q) (by ext x; simp only [Finset.mem_union, Finset.mem_insert]; tauto))
+      have hb := baseDQ_insertQ S D Q v
+      have hcard := Finset.card_sdiff_add_card_eq_card (UC_insertQ_subset gates p S D Q v)
+      unfold GainOne at hgain
+      omega
+    · have hih := ih (insert v D) Q (hdrop (insert v D) Q (by ext x; simp only [Finset.mem_union, Finset.mem_insert]; tauto))
+      have hb := baseDQ_insertD S D Q hvD
+      have hcard := Finset.card_sdiff_add_card_eq_card (UC_insertD_subset gates p S D Q v)
+      unfold GainZero at hgain
+      omega
+
+/-- **The `x_v := 1` induction on the unfixed points** (no deleted points; free points allowed): at
+every `Q` with positive base, some `v ∉ Q` has `GainOne` ⇒ `base(Q) ≤ |UC(∅, Q)|`. -/
+theorem base_le_UC_one_pts (gates : List Gate) (p : ℕ) (S : Fin m → Finset (Fin n))
+    (H : ∀ Q, 0 < baseDQ S ∅ Q → ∃ v, v ∉ Q ∧ GainOne gates p S ∅ Q v) :
+    ∀ k (Q : Finset (Fin n)), (Finset.univ \ Q).card ≤ k →
+      baseDQ S ∅ Q ≤ (UC gates p S ∅ Q).card := by
+  classical
+  intro k
+  induction k with
+  | zero =>
+    intro Q hk
+    rcases Nat.eq_zero_or_pos (baseDQ S ∅ Q) with h0 | hpos
+    · rw [h0]
+      exact Nat.zero_le _
+    obtain ⟨v, hvQ, -⟩ := H Q hpos
+    have : v ∈ Finset.univ \ Q := by simp [hvQ]
+    rw [Finset.card_eq_zero.mp (Nat.le_zero.mp hk)] at this
+    exact absurd this (Finset.notMem_empty v)
+  | succ k ih =>
+    intro Q hk
+    rcases Nat.eq_zero_or_pos (baseDQ S ∅ Q) with h0 | hpos
+    · rw [h0]
+      exact Nat.zero_le _
+    obtain ⟨v, hvQ, hgain⟩ := H Q hpos
+    have hv : v ∈ Finset.univ \ Q := by simp [hvQ]
+    have hih := ih (insert v Q) (by rw [Finset.sdiff_insert, Finset.card_erase_of_mem hv]; omega)
+    have hb := baseDQ_insertQ S ∅ Q v
+    have hcard := Finset.card_sdiff_add_card_eq_card (UC_insertQ_subset gates p S ∅ Q v)
+    unfold GainOne at hgain
+    omega
+
+/-- **`x_v := 1` gains at unfixed points ⇒ MUC.** -/
+theorem muc_of_gainOne_pts (gates : List Gate) (p : ℕ) (S : Fin m → Finset (Fin n))
+    (H : ∀ Q, 0 < baseDQ S ∅ Q → ∃ v, v ∉ Q ∧ GainOne gates p S ∅ Q v) : MUC S gates p := by
+  have h := base_le_UC_one_pts gates p S H _ ∅ le_rfl
+  rwa [baseDQ_empty] at h
+
+/-- **Gains for either move at unfixed points ⇒ MUC.** -/
+theorem muc_of_gain_pts (gates : List Gate) (p : ℕ) (S : Fin m → Finset (Fin n))
+    (H : ∀ D Q, 0 < baseDQ S D Q → ∃ v, v ∉ D ∧ v ∉ Q ∧
+      (GainOne gates p S D Q v ∨ GainZero gates p S D Q v)) : MUC S gates p := by
+  have h := base_le_UC_pts gates p S H _ ∅ ∅ le_rfl
+  rwa [baseDQ_empty] at h
+
 /-- **`x_v := 1` gains ⇒ MUC.** -/
 theorem muc_of_gainOne (gates : List Gate) (p : ℕ) (S : Fin m → Finset (Fin n))
     (H : ∀ Q, (aliveSets S Q).Nonempty → ∃ v, (starSets S Q v).Nonempty ∧ GainOne gates p S ∅ Q v) :
@@ -585,5 +707,16 @@ theorem no_minCE_of_gain
   no_minCE_of_MUC fun n m S gates out M => by
     obtain ⟨p, hp, hN, hS⟩ := H n m S gates out M
     exact ⟨p, hp, hN, muc_of_gain gates p S hS⟩
+
+/-- **951 from `x_v := 1` gains at unfixed points** (free points allowed, Fable N3). -/
+theorem no_minCE_of_gainOne_pts
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out → ∃ (p : ℕ) (hp : p < gates.length), (gates[p]'hp).op = GateOp.not ∧
+        ∀ Q, 0 < baseDQ S ∅ Q → ∃ v, v ∉ Q ∧ GainOne gates p S ∅ Q v) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out :=
+  no_minCE_of_MUC fun n m S gates out M => by
+    obtain ⟨p, hp, hN, hS⟩ := H n m S gates out M
+    exact ⟨p, hp, hN, muc_of_gainOne_pts gates p S hS⟩
 
 end PEqualNP.Outside.L_meta_951_aux
