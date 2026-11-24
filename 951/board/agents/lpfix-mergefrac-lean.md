@@ -80,3 +80,20 @@ Zof(S_b) + e_u): exactly front's junk shape. Data (front): no collision on 4764 
   `refinedPts`, `refinedNoMixedFrac_iff_mergeFracOn`, `refinedPts_nonempty` (no extra hypothesis), `RefinedNoMixedPrice`,
   `refinedNoMixedFrac_iff_price`, `no_minCE_of_refinedNoMixedPrice`. Both cases of front's split now have a Lean price form:
   Case I `RefinedNoMixedPrice`, Case II `HeavySplitPrice`.
+
+## ChainPick (09:55, pnp-general 951/lean): research's CU chain lemma — CU ALONE IS NOT ENOUGH; what is (PROVED IN LEAN, no sorry)
+Coord 09:24: (1) state CU, (2) CU => MergePrice, (3) refined variant. File: 951/lean/PEqualNP/W951/ChainPick.lean.
+- WHY CU ALONE FAILS (step 2, exact reason): with π = Σ_t c_t 1_{U_t} (layer cake, `layerCake`), min_z π(M_z) >= Σ_t c_t
+  min_z |M_z ∩ U_t|: the layer cake bounds the left side of MergePrice from BELOW. CU (one WORLD per set per chain) lets the
+  bundle change from level to level inside a world, so it only bounds Σ_t c_t Σ_w min_z |M_z ∩ U_t| <= π(G): the wrong side.
+  Lean counterexample `cu_counterexample`: 2 sets, 4 gates, one world, menus {0,3}|{1,2} and {2,3}|{1,3}: every chain passes
+  (all 0/1 prices pass), but π = (0,1,1,2) gives 2 + 3 > 4 (set 0 prefers {0,3} on level {1,2,3} and {1,2} on level {3}).
+  This is exactly research's "within-world gap" (<= 1 per family on the data), which CU does not control.
+- WHAT WORKS: `ChainPick` = for every chain ONE bundle per set with Σ_w |M_w ∩ U_t| <= |U_t| at every level;
+  `price_of_chainPick` (layer cake, right direction). `chainPick_of_chainWorld`: CU + `WorldUniform` (inside each world one
+  bundle is minimal at every level of the chain) => ChainPick. So the 0/1-type target is ChainPick (or CU + WorldUniform).
+- Circuits: `ChainPickOn S gates A` (merge-set menus over allowed points A) => `MergePriceOn` (`mergePriceOn_of_chainPickOn`);
+  instances `mergePrice_of_chainPick`, `refinedNoMixedPrice_of_chainPick` (Case I), `heavySplitFloatPrice_of_chainPick`
+  (Case II v2); circuit CU `ChainWorldOn` (worlds World0 / not World0) + `WorldUniformOn` => `mergePriceOn_of_chainWorldOn`;
+  `no_minCE_of_chainPick`, `no_minCE_of_chainWorld`. Axioms: propext, Classical.choice, Quot.sound (13 theorems).
+- Suggested data check (scaffold / research): ChainPick and WorldUniform on the corpus (chains of level sets of optimal duals).
