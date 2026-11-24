@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 addison a mccarl
+Copyright (c) 2026 addison-jpg and contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
