@@ -34,42 +34,6 @@ theorem val_take_ge {n : ℕ} (gs : List Gate) (x : Fin n → Bool) (k i : ℕ)
     (hi : n + k ≤ i) : val (gs.take k) x i = false :=
   val_ge _ _ _ (by simp; omega)
 
-/-- `gates = A ++ g :: B` with `|A| = k`: the fold of `gates` runs `B` from `acc0` (the fold of
-`A ++ [g]`), and the fold of `dropGate` runs the redirected `B` from `acc0` without wire `n + k`. -/
-theorem dropGate_fold {n : ℕ} (gates : List Gate) (k j : ℕ) (hk : k < gates.length)
-    (x : Fin n → Bool) : ∃ acc0 : List Bool, acc0.length = n + k + 1 ∧
-      gates.foldl step (List.ofFn x) = (gates.drop (k + 1)).foldl step acc0 ∧
-      (dropGate gates k j n).foldl step (List.ofFn x) =
-        ((gates.drop (k + 1)).map (redirG (n + k) j)).foldl step (acc0.eraseIdx (n + k)) := by
-  have hlA : ((gates.take k).foldl step (List.ofFn x)).length = n + k := by
-    rw [fold_length]; simp; omega
-  have herase := step_erase ((gates.take k).foldl step (List.ofFn x)) gates[k]
-  rw [hlA] at herase
-  refine ⟨step ((gates.take k).foldl step (List.ofFn x)) gates[k], by rw [step_length, hlA], ?_,
-    by rw [dropGate, List.foldl_append, herase]⟩
-  have hsplit : gates = gates.take k ++ gates[k] :: gates.drop (k + 1) := by simp
-  conv_lhs => rw [hsplit, List.foldl_append, List.foldl_cons]
-
-/-- Pointwise version of `val_dropGate`. -/
-theorem val_dropGate_pt {n : ℕ} (gates : List Gate) (k j : ℕ) (hk : k < gates.length)
-    (hj : j < n + k) (x : Fin n → Bool) (hcopy : val gates x (n + k) = val gates x j) (i : ℕ) :
-    val (dropGate gates k j n) x (redir (n + k) j i) = val gates x i := by
-  obtain ⟨acc0, hl0, hfull, hdrop⟩ := dropGate_fold gates k j hk x
-  obtain ⟨r, hr⟩ := fold_prefix (gates.drop (k + 1)) acc0
-  unfold val at hcopy ⊢
-  rw [hfull] at hcopy
-  have heq0 : acc0.getD (n + k) false = acc0.getD j false := by
-    rw [hr] at hcopy
-    simp only [List.getD_eq_getElem?_getD] at hcopy ⊢
-    rwa [List.getElem?_append_left (by omega), List.getElem?_append_left (by omega)] at hcopy
-  rw [hdrop, fold_redir (n + k) j hj _ acc0 (by omega) heq0, hfull]
-  exact getD_eraseIdx_redir _ _ _ _ (by rw [hr]; simp; omega) hj hcopy
-
-/-- A gate whose value does not depend on what it reads at wire `p`. -/
-def Insens (p : ℕ) (g : Gate) : Prop :=
-  ∀ f f' : ℕ → Bool, (∀ i, i ≠ p → f i = f' i) →
-    g.op.eval (g.inputs.map f) = g.op.eval (g.inputs.map f')
-
 /-- An AND/OR/NOT gate that does not read wire `p` (AND/OR: `p` is not an input; NOT: `p` is not
 its first input) is insensitive to `p`. -/
 theorem insens_of_unread (p : ℕ) (g : Gate)
@@ -94,36 +58,6 @@ theorem val_congr_of_insens {n : ℕ} (p : ℕ) (gates : List Gate) (x y : Fin n
       val gates x (n + k) = val gates y (n + k) ∨ Insens p (gates[k]'hk)) :
     ∀ i, i ≠ p → val gates x i = val gates y i :=
   Kernel.listVal_rel_off Eq (fun _ => rfl) p gates x y hxy h
-
-theorem fold_redir_ins (p j : ℕ) : ∀ (rest : List Gate) (acc : List Bool),
-    p < acc.length → (∀ g ∈ rest, Insens p g) →
-    (rest.map (redirG p j)).foldl step (acc.eraseIdx p) = (rest.foldl step acc).eraseIdx p := by
-  intro rest
-  induction rest with
-  | nil => intro acc _ _; simp
-  | cons g rest ih =>
-    intro acc hp hno
-    simp only [List.map_cons, List.foldl_cons]
-    have hstep : step (acc.eraseIdx p) (redirG p j g) = (step acc g).eraseIdx p := by
-      unfold step redirG
-      rw [eraseIdx_snoc _ _ _ hp]
-      congr 2
-      simp only [List.map_map]
-      exact hno g (by simp) _ _ (fun i hi => getD_eraseIdx_ne acc p j i hi)
-    rw [hstep]
-    apply ih
-    · unfold step; simp; omega
-    · intro g' hg'; exact hno g' (by simp [hg'])
-
-/-- Dropping a gate that no later gate depends on. -/
-theorem val_dropIns {n : ℕ} (gates : List Gate) (k j : ℕ) (hk : k < gates.length)
-    (hno : ∀ g ∈ gates.drop (k + 1), Insens (n + k) g) (x : Fin n → Bool) (i : ℕ)
-    (hi : i ≠ n + k) :
-    val (dropGate gates k j n) x (redir (n + k) j i) = val gates x i := by
-  obtain ⟨acc0, hl0, hfull, hdrop⟩ := dropGate_fold gates k j hk x
-  unfold val
-  rw [hdrop, fold_redir_ins (n + k) j _ acc0 (by omega) hno, hfull]
-  exact getD_eraseIdx_ne _ _ _ _ hi
 
 theorem dropGate_hg (gates : List Gate) (k j n : ℕ)
     (hg : ∀ g ∈ gates, (g.op = GateOp.and ∨ g.op = GateOp.or ∨ g.op = GateOp.not) ∧
