@@ -90,8 +90,9 @@ ruled out by L-lib-076; both can be discarded before anyone spends time on them.
   count MUL (`no_minCE_of_MUL`) or the lifted disjoint choice LiftSDR (`no_minCE_of_liftSDR`); the
   same counts over the narrower pure classes are FALSE for general correct circuits (cxMU_dd:
   5 < 6) and could only hold for a minimal counterexample through s < base. The open step (the
-  count MU for the count-set union `UC`, which contains the lifted classes' gates that matter and
-  has not failed on any circuit, by induction on points: HEAVY-COUNT and LIGHT-COUNT) is a
+  count MU for the count-set union `UC`, a gate family that is sufficient on its own because
+  Σ d_w ≤ |UC| ≤ s, and that has not failed on any circuit; by induction on points: HEAVY-COUNT
+  and LIGHT-COUNT) is a
   statement about how the two worlds share gates. Nothing transfers
   along this analogy in either direction: the worlds of section 2 are oracles outside the machine;
   these two are the values of one wire inside the circuit (a restriction, as in gate elimination),
