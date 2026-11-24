@@ -209,23 +209,79 @@ add("general circuits program", ROOT, "neighbour", "L-gen, GeNeRALIZE, BoolSumNo
 
 for k, v in N.items():
     assert v["parent"] is None or v["parent"] in N, (k, v["parent"])
+# ---- formal names: the conventions of Lean 4 / Mathlib, one identifier and one role per entry
+FORMAL = {  # explicit where an identifier exists in Lean or the choice matters
+ ROOT: "L_meta_951", "minimal counterexample": "MinCE", "monotone optimum": "base", "demand of a set": "demand",
+ "NOT gate": "notGate", "NOT input": "notInput", "face with the NOT gate set to 0": "faceZero",
+ "face with the NOT gate set to 1": "faceOne", "world 0": "worldZero", "world 1": "worldOne", "cube": "cube",
+ "alive set": "Alive", "monotone optimum of a cube": "baseDQ", "local cube": "CubeLocal", "non-local cube": "CubeNonlocal",
+ "zero point of a set": "ZeroPoint", "top zero point of a set": "topZero", "atom": "atom", "heavy point": "Heavy",
+ "cost of a point": "cost", "gain of a point": "gain", "real merge set": "mergeSet", "pure class in world 0": "pureI0",
+ "pure class in world 1": "pureI1", "lifted circuit": "lift", "lifted class": "liftClass", "set system": "SetSystem",
+ "no constant gate": "MinCE.no_const", "no two gates compute the same function": "MinCE.no_dup",
+ "no gate computes an input": "MinCE.no_var", "every gate is read": "MinCE.live", "the NOT gate is essential": "MinCE.not_used",
+ "observability": "MinCE.observable", "no gate-saving rewiring": "MinCE.no_rewire", "private NOT cone": "MinCE.private_not_cone",
+ "one-face witness gates": "faceWitness", "real-witness gates": "realWitness", "repaired one-face witness gates": "faceWitnessRepaired",
+ "cone-restricted one-face witness gates": "faceWitnessCone", "cone-restricted real-witness gates": "realWitnessCone",
+ "disjoint representatives over real merge sets": "MergeSDR", "disjoint representatives over pure classes": "PureSDR",
+ "disjoint representatives over lifted classes": "LiftSDR", "lifted count": "LiftCount", "fractional merge matching": "MergeFrac",
+ "price inequality": "MergePrice", "point step for real-witness gates": "GainF2", "point step for one-face witness gates": "GainOne",
+ "point deletion": "DeleteStep", "mixed induction": "MixedStep", "gate elimination step": "ElimStep",
+ "lifted test system": "LTS", "pair certificate": "LTSCert", "certificate game won": "UGameWon",
+ "certificate game theorem": "liftSDR_of_ugame", "exact reach of value arguments": "ugame_exact_for_values",
+ "no mixing of worlds": "ugame_pure_of_normal", "one colouring per merge gate": "merge_gate_one_colouring", "lost game": "no_minCE_of_ugameLost",
+}
+ROLE = {"statement": "Theorem (one sorry: no_minCE)", "part": "Section", "object": "Definition", "fact": "Lemma",
+        "target": "Conjecture", "lean": "Theorem", "lean module": "Module", "dead family": "Refuted", "route": "Refuted",
+        "witness": "Counterexample", "named": "Definition", "neighbour": "Section"}
+ROLE_OVERRIDE = {"certificate game theorem": "Theorem", "exact reach of value arguments": "Proposition (paper)",
+ "no mixing of worlds": "Theorem (paper)", "one colouring per merge gate": "Lemma (paper)", "lost game": "Open",
+ "point step for one-face witness gates": "Refuted", "point deletion": "Refuted", "minimal counterexample": "Definition",
+ "no gate-saving rewiring": "Lemma (paper)", "private NOT cone": "Lemma (reported)", "mixed induction": "Open",
+ "point step for real-witness gates": "Refuted for all circuits; Open under MinCE.no_rewire",
+ "disjoint representatives over pure classes": "Refuted for all circuits", "disjoint representatives over real merge sets": "Refuted for all circuits; Open under MinCE",
+ "price inequality": "Refuted for all circuits; Open under MinCE", "fractional merge matching": "Refuted for all circuits; Open under MinCE",
+ "disjoint representatives over lifted classes": "Theorem when UGameWon; Open otherwise", "lifted count": "Theorem when UGameWon; Open otherwise",
+ "seen gates and the three-case rule": "Refuted", "light-star rule": "Refuted", "absorb and reroute": "Refuted", "cone certificate": "Open"}
+def camel(t, upper):
+    w = re.findall(r"[A-Za-z0-9]+", t)
+    out = "".join(x[:1].upper() + x[1:] for x in w)
+    return out if upper else out[:1].lower() + out[1:]
+for k, v in N.items():
+    v["role"] = ROLE_OVERRIDE.get(k, ROLE[v["kind"]])
+    if k in FORMAL: v["formal"] = FORMAL[k]
+    elif v["kind"] in ("lean", "lean module"): v["formal"] = v["code"]
+    elif v["kind"] == "witness": v["formal"] = "Cex." + camel(k, False)
+    elif v["kind"] in ("dead family", "route"): v["formal"] = "Refuted." + camel(k, False)
+    elif v["kind"] in ("part", "neighbour"): v["formal"] = "section " + camel(k, True)
+    else: v["formal"] = camel(k, v["kind"] == "target")
+assert len({v["formal"] for v in N.values()}) == len(N), "formal names must be unique"
 json.dump(N, open("NAMES.json", "w"), indent=1, ensure_ascii=False)
 
 kids = {}
 for k, v in N.items(): kids.setdefault(v["parent"], []).append(k)
-out = ["# Names", "", "Generated from `NAMES.json` by `tools/names_build.py`; edit the script, not this file.",
-       "One flat tree: every name has one parent. Read bottom up: a witness or a Lean theorem is a leaf,",
-       "its parent is the concept it serves, up to the root statement. `code` is the old short form.", ""]
+out = ["# Names", "", "Generated from `NAMES.json` by `tools/names_build.py`; edit the script, not this file.", "",
+ "## Conventions (formal proof style, Lean 4 / Mathlib)", "",
+ "1. Every item has ONE formal name and ONE role: Definition, Lemma, Proposition, Theorem, Conjecture, Open, Refuted, Counterexample.",
+ "2. A property or structure is `UpperCamelCase` (`MinCE`, `CubeLocal`, `UGameWon`). A function or object is `lowerCamelCase` (`notInput`, `mergeSet`, `realWitness`).",
+ "3. A theorem is `snake_case` and states its conclusion, then `_of_`, then its hypotheses: `no_minCE_of_ugame`, `liftSDR_of_ugame`, `muF2_of_notVar`.",
+ "4. A fact of a minimal counterexample lives in its namespace: `MinCE.no_dup`, `MinCE.observable`, `MinCE.no_rewire`.",
+ "5. A counterexample is `Cex.<name>` and says what it refutes; a refuted statement is `Refuted.<name>` and names its counterexample.",
+ "6. No bare letters or numbers as names in prose: write `realWitness` (F2), `MinCE.no_rewire` (R6); the old code goes in brackets once.",
+ "7. A statement keeps the word of its layer: checked (Lean), paper, tested n/N, premise. A Conjecture is never written as a Lemma.",
+ "8. Existing Lean identifiers are not renamed (a rename costs a full rebuild); new Lean follows 2 to 5.", "",
+ "## The tree", "",
+ "Every name has one parent. Read bottom up: a counterexample or a theorem is a leaf, its parent is the concept it serves.", ""]
 def walk(k, d):
     v = N[k]
-    out.append("  " * d + f"- **{k}**" + (f" (`{v['code']}`)" if v["code"] and v["code"] != k else "") + f" · {v['kind']}" + (f": {v['means']}" if v["means"] else ""))
+    out.append("  " * d + f"- `{v['formal']}` · {v['role']} · **{k}**" + (f" (old: {v['code']})" if v["code"] and v["code"] != v["formal"] and v["code"] != k else "") + (f": {v['means']}" if v["means"] else ""))
     for c in kids.get(k, []): walk(c, d + 1)
 walk(ROOT, 0)
 open("NAMES.md", "w").write("\n".join(out) + "\n")
 
 # coverage: which code-like tokens of the key documents have no name yet
 codes = " ".join(v["code"] + " " + k for k, v in N.items())
-docs = ["951/DEAD_ENDS.md", "COLLATION_2026-11-24.md", "951/FINDINGS_2026-11-24.md"]
+docs = ["951/DEAD_ENDS.md", "notes/synthesis/collation-2026-11-24.md", "951/FINDINGS_2026-11-24.md"]
 tok = {}
 for d in docs:
     for t in re.findall(r"\b(?:cx[A-Za-z0-9_]+|[A-Z][A-Za-z]*[0-9][A-Za-z0-9']*|[A-Z]{2,}(?:-[A-Z0-9]+)+|[A-Z][a-z]+[A-Z][A-Za-z0-9]*)\b", open(d).read()):
