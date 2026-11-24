@@ -168,6 +168,8 @@ Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the t
   `tools/xor-extension/`.
 
 ## Subboard: the NOT gate ladder, rung 1 (L-meta-951)
+Before starting a route: [`951/DEAD_ENDS.md`](951/DEAD_ENDS.md) (refuted routes, one line each).
+Suggestions for the open step, with kill tests: [`951/PROOF_PLAN_SUGGESTIONS.md`](951/PROOF_PLAN_SUGGESTIONS.md).
 How search code and Lean divide the work: [`951/PIPELINE.md`](951/PIPELINE.md) (the owner's framework:
 Python/C++ searches and exports compact witnesses, Lean only checks).
 Arrives one-to-one from `addison-jpg/pequalnp-work` branch `coord-951` (code) and `board` (notes).
