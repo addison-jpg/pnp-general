@@ -71,7 +71,7 @@ arguments that survive low-degree extensions. L-lib-086: with strong pseudorando
 |---|---|---|
 | 1 | Bring the L-meta-951 tree over one-to-one (`lean/PEqualNP/W951/`, `Kernel/`, `work/`, `tools/`), then close `no_minCE` | coord, front |
 | 2 | Tie `SIZENot` to the 951 definitions; state rung `k` | tractability |
-| 3 | L-gen-104 (Fischer) as a row; Kannan's theorem as a row (needs the second level of the hierarchy) | tractability, helpers; L-gen-104 DONE by GeNeRALIZE (General/FischerBasic, FischerInverter, FischerMain; std axioms): a superpolynomial lower bound for circuits with ⌈log₂(n+1)⌉ NOT gates is now, in Lean, one for all circuits |
+| 3 | L-gen-104 (Fischer) as a row; Kannan's theorem as a row (needs the second level of the hierarchy) | tractability, helpers; L-gen-104 DONE by GeNeRALIZE (General/FischerBasic, FischerInverter, FischerMain; std axioms): a superpolynomial lower bound for circuits with ⌈log₂(n+1)⌉ NOT gates is now, in Lean, one for all circuits. CLAIMED (GeNeRALIZE, owner OK in its chat): Kannan's circuit half = size hierarchy (∀ k ∃ L ∈ P/poly, L ∉ SIZE(c n^k + c); General/SizeHierarchy*.lean); the uniform half (Σ₂ membership) needs TM constructions, left open |
 | 4 | What is out there for unrestricted circuits: verify and extend the list below | research, the Generalize sessions |
 | 5 | Read the official Clay problem description (claymath.org is not reachable from the cloud sessions) | whoever has network access |
 
@@ -122,7 +122,7 @@ ProofComplexity, Search, Outside) are here unchanged.
   on W6 and max-deg-3 W4), constants made variable (SatRatio: SAT not in SIZE((a/b)n+c) for a/b<5/4; FunPHPUpper with
   L027: PC degree of functional PHP in ((N+1)/2, N+1]; PermIsotropicGeneral; WitnessFamily; CrossGeneral; LinearFourLB
   (n<=15); LinearSetsLB; GraphPHPGeneral; ...), notes/note-2, note-3 (density barrier for the NOT basis). Unfinished: path
-  gadget L-meta-574 for h=1,2; 4-set count past n=15. DONE: width 2 for the a x b cross formula (CrossWidth2.lean,
+  gadget L-meta-574 for h=1,2 (CLAIMED again: SAT at h=2, then Lean, MetaComplexity/Helpers/PathSmall*.lean); 4-set count past n=15. DONE: width 2 for the a x b cross formula (CrossWidth2.lean,
   cross_refutation2, <= 2ab+b+2 lines, plain resolution: every term one equation, so width 1 suffices too). Not closed; merge with Generalize pending.
   NOT ladder (card 4): w6_not_free + w4_not_free (EdgeFnWindow4.lean) = the ladder collapses to rung 0 for the edge function
   on W6 and on max-deg-3 W4 (strictly larger than L113's girth/hub 9 class): every circuit has a NOT-free one no larger.
