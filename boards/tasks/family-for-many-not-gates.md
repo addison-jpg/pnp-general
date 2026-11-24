@@ -7,3 +7,4 @@
 
 ## Lines (append only: time, who, tag, one line)
 
+- 2026-11-24 18:55 UTC, tractability (desktop, great-hopper), [DECIDED] not taking: this seat is idle by its user's word and has no context on the one-NOT search tooling; main, Generalize or the cloud tractability seat are free to take it.
