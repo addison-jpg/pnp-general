@@ -6,9 +6,7 @@ The higher level gist is: quantum/gravity relativity maps onto the relativity ba
 
 ## What this is
 
-This repository studies how many gates a Boolean circuit needs. The circuits use AND, OR and NOT gates, and the count depends on how many NOT gates the circuit may use.
-
-Without NOT gates the answer is known exactly for one family of functions: the OR of each set in a family of sets that pairwise share at most one point. The count is the sum over the sets of (size − 1) gates. The question here is whether one NOT gate can lower that number. Jukna and Sergeev posed the question in 2013, and Blum posed it again in 2024. No result on it has been published.
+This repository studies how many gates a Boolean circuit needs. The circuits use AND, OR and NOT gates, and the count depends on how many NOT gates the circuit may use. Without NOT gates the answer is known exactly for one family of functions: the OR of each set in a family of sets that pairwise share at most one point. The count is the sum over the sets of (size − 1) gates. The question here is whether one NOT gate can lower that number. Jukna and Sergeev posed the question in 2013, and Blum posed it again in 2024. No result on it has been published.
 
 All theorems here are checked by the Lean 4 proof checker. Nothing here settles P versus NP.
 
@@ -23,15 +21,13 @@ All theorems here are checked by the Lean 4 proof checker. Nothing here settles 
 
 ## What did not work
 
-Several natural ways to prove the general case were tried. Each one was refuted by an explicit circuit, and the circuits are kept in the repository. The strategies were: fixing one input at a time, fixing any bounded number of inputs at a time, averaging over orders of the inputs, and a counting argument that does not use minimality.
-
-The inequality the proof needs has not failed on any circuit tried, about 85,000 of them.
+Several natural ways to prove the general case were tried. Each one was refuted by an explicit circuit, and the circuits are kept in the repository. The strategies were: fixing one input at a time, fixing any bounded number of inputs at a time, averaging over orders of the inputs, and a counting argument that does not use minimality. The inequality the proof needs has not failed on any circuit tried, about 85,000 of them.
 
 ## asteroid
 
-asteroid is a small language written for this project. You describe a circuit, state a fact about it, and the fact is evaluated at once. A fact marked `by lean` is also handed to the Lean proof checker.
+asteroid is a small language written for this project. You describe a circuit, state a fact about it, and the fact is evaluated at once. A fact marked `by lean` is also handed to the Lean proof checker. Circuits are plain ISCAS `.bench` files.
 
-Circuits are plain ISCAS `.bench` files. This is `hello.bench`, a circuit with four inputs and two outputs:
+This is `hello.bench`, a circuit with four inputs and two outputs:
 
 ```
 # hello: two sets sharing the point x2
@@ -51,9 +47,7 @@ c = OR(x2, x3)
 This is `hello.ast`, a program that checks that circuit:
 
 ```
-# hello.ast: a first asteroid program.   Run it:   asteroid hello.ast
-# The circuit is the file hello.bench: 4 inputs x0 x1 x2 x3, and two outputs that must compute
-# the OR of {x0, x1, x2} and the OR of {x2, x3}. The format is described in asteroid/BENCH.md.
+# hello.ast: run with: asteroid hello.ast
 let hello = load hello.bench
 show hello
 claim correct(hello) by lean                  # it computes both ORs on all 16 inputs
@@ -63,29 +57,21 @@ claim forall cubes slack(hello) >= 0 by lean  # the count behind the theorem, at
 plot phi hello -> asteroid/out/hello.png
 ```
 
-Run them with these commands:
-
 ```bash
 pip install -e .
 asteroid hello.ast
 asteroid test
 ```
 
-Without Lean installed, asteroid says so and only evaluates. In that case nothing is proved.
-
-The manual is `asteroid/README.md`. The format of `.bench` files is described in `asteroid/BENCH.md`.
+Without Lean installed, asteroid says so and only evaluates. In that case nothing is proved. The manual is `asteroid/README.md`, and the format of `.bench` files is described in `asteroid/BENCH.md`.
 
 ## Checking the proofs yourself
-
-Run this from the top of the repository:
 
 ```bash
 cd one-not/lean && lake exe cache get && lake build PEqualNP.Verify.All
 ```
 
-This uses Lean only. It goes through every theorem of the one-NOT part and fails if any of them rests on anything beyond the three standard axioms, apart from a short list of theorems that depend on the one unproved statement.
-
-The larger Lean project under `lean/` has not been run through this check yet.
+This uses Lean only. It goes through every theorem of the one-NOT part and fails if any of them rests on anything beyond the three standard axioms, apart from a short list of theorems that depend on the one unproved statement. The larger Lean project under `lean/` has not been run through this check yet.
 
 ## What is open
 
