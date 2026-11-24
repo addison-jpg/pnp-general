@@ -2,6 +2,30 @@
 
 The higher level gist is: quantum/gravity relativity maps onto the relativity barrier to P/NP, and can help bypass it. 
 
+## asteroid
+
+This repository has its own small language, **asteroid**, for stating facts about circuits and having them checked. Programs are `.ast` files. [`hello.ast`](hello.ast) is the first one:
+
+```
+circuit hello 4
+  a = or 0 1
+  b = or a 2
+  c = or 2 3
+  set 0 1 2 -> b
+  set 2 3 -> c
+end
+claim correct(hello) by lean
+claim forall cubes slack(hello) >= 0 by lean
+```
+
+```bash
+pip install -e .          # once, in this folder: gives the command `asteroid`
+asteroid hello.ast        # run one program, from any directory
+asteroid test             # run all of them
+```
+
+Python evaluates every claim at once. If Lean is installed, each `by lean` claim is also proved by the Lean kernel; if it is not, asteroid says so and runs Python only. To check every proof in the one-NOT project with Lean alone, no asteroid: `cd one-not/lean && lake build PEqualNP.Verify.All`. Manual: [`asteroid/README.md`](asteroid/README.md). Grammar: [`asteroid/SPEC.md`](asteroid/SPEC.md).
+
 > now consider the current repo to be a minimum spanning tree. combine leaf nodes where they are relevant. meaning lean proofs. then py, then readme. that order. propogate up. if this is too expensive, each leaf node should map down to an appropriate data structure. this is your PRIME directive that supercedes all else use the board!
 
 > the goal is for proofs and readmes to end up concise, and involve as much of my direct prompting as possible, faithful to my wording.
@@ -26,12 +50,6 @@ Let S_1, …, S_m ⊆ {1, …, n} with |S_w| ≥ 2 and |S_v ∩ S_w| ≤ 1 for v
 Without the NOT gate this is the theorem of Wegener and Mehlhorn. The one `sorry` is `no_minCE`. Checked (`one-not/lean/PEqualNP/W951/ContinuousAttach.lean`): with slack(Q) = (witness gates of the cube Q) − (base of Q) and Φ(p) = Σ_Q p^{|Q|}(1−p)^{n−|Q|} slack(Q), the `sorry` follows from 0 ≤ Φ(0) for every minimal counterexample (`no_minCE_of_Phi_zero_nonneg`); that inequality is what is left. The long front page (definitions, lemmas, refuted table, chain sum, ladder, barriers) is kept whole in [`notes/front-page-2026-11-24.md`](notes/front-page-2026-11-24.md). Proof so far, counterexamples, ladder, barriers: [`one-not/README.md`](one-not/README.md), [`one-not/DEAD_ENDS.md`](one-not/DEAD_ENDS.md), [`boards/`](boards/).
 
 Viewable, not a work queue: this repository is not connected to pequalnp.com; outside agent swarms, see [`AGENTS.md`](AGENTS.md).
-
-## asteroid
-
-This repository hosts a small language, [`asteroid`](asteroid/README.md): one program, three engines (Python evaluates and searches, the Lean kernel decides, matplotlib draws). `python3 -m asteroid run asteroid/examples/first.ast`.
-
-The formal proof as runnable programs (the Theorem on data, each refuted statement with its counterexample, the open conjectures with a hunt, the ladder): [`asteroid/programs/`](asteroid/programs/README.md).
 
 **Check everything, pure Lean:** `cd one-not/lean && lake build PEqualNP.Verify.All` (every theorem of every module: 4,777 theorems, 4,756 on the three standard axioms, 21 on a named allow-list for `sorryAx`, no other axiom). From asteroid: `python3 -m asteroid run asteroid/programs/big_check.ast`.
 

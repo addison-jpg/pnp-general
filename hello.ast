@@ -1,0 +1,15 @@
+# hello.ast: a first asteroid program.   Run it:   asteroid hello.ast
+# A circuit with 4 inputs (named 0 1 2 3) that must compute two ORs: of {0,1,2} and of {2,3}.
+circuit hello 4
+  a = or 0 1
+  b = or a 2
+  c = or 2 3
+  set 0 1 2 -> b
+  set 2 3 -> c
+end
+show hello
+claim correct(hello) by lean                  # it computes both ORs on all 16 inputs
+claim gates(hello) = base(hello)              # 3 gates, and 3 is the least possible without a NOT gate
+claim hyps(hello) by lean                     # the theorem's side conditions hold
+claim forall cubes slack(hello) >= 0 by lean  # the count behind the theorem, at every cube
+plot phi hello -> asteroid/out/hello.png

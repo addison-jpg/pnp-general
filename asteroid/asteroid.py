@@ -25,13 +25,17 @@ A script is a list of lines; `#` starts a comment. The verbs:
   (extensions)                               a file asteroid/ext_NAME.py with `handle(line, api) -> bool` adds verbs
   record DIR ITEM WORD "STATEMENT"           a finding (boards.py) citing this script and, if built, its Lean module
 
-Run from the repository root:
-  python3 -m asteroid run SCRIPT.ast [--no-lean]     run one program
-  python3 -m asteroid test [--no-lean]               run every program under asteroid/examples
-  python3 -m asteroid version
+Run from anywhere (after `pip install -e .` in the repository; or `python3 -m asteroid …` from its root):
+  asteroid FILE.ast                 run one program (also: asteroid run FILE.ast)
+  asteroid test                     run every program under asteroid/examples and asteroid/programs
+  asteroid version
+  --no-lean                         Python and plots only. Chosen automatically when Lean is not installed.
 Python proposes, Lean decides: a `by lean` claim counts only if the generated module builds."""
 import sys, os, re, json, subprocess, shlex, operator, time
-ROOT = os.getcwd(); S = os.path.join(ROOT, "one-not/tools/search"); sys.path.insert(0, S); sys.path.insert(0, ROOT)
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # the repository, wherever the command is typed
+CALLER_DIR = os.getcwd()
+os.chdir(ROOT)
+S = os.path.join(ROOT, "one-not/tools/search"); sys.path.insert(0, S); sys.path.insert(0, ROOT)
 import core
 from conjectures import REGISTRY
 OPS = {"=": operator.eq, "!=": operator.ne, "<": operator.lt, "<=": operator.le, ">": operator.gt, ">=": operator.ge}
@@ -272,6 +276,13 @@ VERSION = "asteroid 0.3 (Python + Lean kernel + matplotlib)"
 def main(argv):
     global NO_LEAN
     NO_LEAN = "--no-lean" in argv; argv = [a for a in argv if a != "--no-lean"]
+    # a program path is read from where the command was typed
+    argv = [os.path.relpath(os.path.join(CALLER_DIR, a), ROOT) if a.endswith(".ast") and not os.path.isabs(a) else a for a in argv]
+    import shutil
+    local = "/home/user/pequalnp-proofs/tools/bin"
+    if not NO_LEAN and not shutil.which("lake", path=(local + ":" if os.path.isdir(local) else "") + os.environ.get("PATH", "")):
+        NO_LEAN = True
+        print("note: Lean (the command `lake`) is not installed here, so this run is Python only: claims are evaluated, nothing is formally checked.\n      To let the Lean kernel decide: install elan, then `cd one-not/lean && lake exe cache get`.")
     if argv[:1] == ["version"]: print(VERSION); return 0
     if argv[:1] == ["run"] and len(argv) == 2: return run(argv[1])
     if argv[:1] == ["test"]:
