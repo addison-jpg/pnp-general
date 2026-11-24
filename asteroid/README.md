@@ -1,5 +1,7 @@
 <picture><source media="(prefers-color-scheme: dark)" srcset="../site/logo-dark.svg"><img alt="4ST3RO1D (asteroid)" src="../site/logo-light.svg" height="56"></picture>
 
+*The logo is lettered in two fan-made fonts in the styles of Terezi Pyrope and Vriska Serket from* Homestuck, *Andrew Hussie's webcomic (2009 to 2016), a story in which most of the characters write code and the plot runs on game rules and timelines. Thanks to Hussie and to the makers of the fonts terezzzzzzz and Arachnidsgrip1. Details: [`site/LOGO.md`](../site/LOGO.md).*
+
 # asteroid
 
 A small language over three engines (owner, 2026-11-24: "lean for brute force, python for speed/background,
