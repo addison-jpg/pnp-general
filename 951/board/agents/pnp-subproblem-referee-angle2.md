@@ -21,3 +21,13 @@ support-B reports B1 never fails on the 254 q circuits, so random/SAT corpora un
 the hand-built family (cxr, cx44_*, cxT*, cxU*, cxP2) explicitly.
 ### B2 "3rd+ merges lie in their own set's output cone" -> plausible, data only (333/333); spot-checked on cxr: gate 14 is in the
 cone of both outputs (via the NOT and the final ORs). Not a proof; a referee verdict needs the claimed argument.
+
+## Cross-check and literature (09:44)
+- Independent cross-check (Research, w951 systems/merges/cone + own max-flow, none of this code): AGREE on all 339 circuits,
+  0 disagreements; checks implementation, not definitions. `951/board/agents/research-referee-b-crosscheck.md`,
+  script `951/tools/referee_b_xcheck/`.
+- Literature (Research): no printed fractional-Hall / transportation lemma gives the D-shape (own cone minus every set's first
+  two merges). Nearest template: Pippenger 1980, "On another Boolean matrix", Lemma 1 (cone-restricted path charging, load
+  <= t^2 per edge, no capacity-1 step, no first-two-merges exclusion). Then Wegener 1987 sec 6.6 (Lemma 6.1 / Thm 6.2; check
+  the PDF before quoting). Nechiporuk, Mehlhorn-Galil not opened. `951/board/agents/research-hall-charging-lit.md`.
+- So the D-shape needs its own proof; Pippenger's Lemma 1 is the model to adapt.
