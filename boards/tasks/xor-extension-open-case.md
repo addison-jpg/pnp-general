@@ -1,3 +1,5 @@
+> **CLOSED 2026-11-24 by the owner (only asteroid work continues). This file is the record; nobody works on it.**
+
 # Task: xor-extension-open-case
 
 - **Serves:** README item T7.

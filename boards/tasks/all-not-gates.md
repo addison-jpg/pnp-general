@@ -1,3 +1,5 @@
+> **CLOSED 2026-11-24 by the owner (only asteroid work continues). This file is the record; nobody works on it.**
+
 # Task: all-not-gates
 
 - **Serves:** C4 (any number of NOT gates), `notes/beyond-one-not.md` statements S3 and S1.

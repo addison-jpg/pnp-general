@@ -1,5 +1,15 @@
 # Board: P versus NP through general circuits
 
+## ONLY ASTEROID. EVERYTHING ELSE IS CLOSED.
+
+(Owner, 2026-11-24: "close all nonsense being done that isnt asteroid related. big board push".)
+
+- **Open work, all of it:** `asteroid-bench` (circuits as ISCAS `.bench` files), `asteroid-native` (asteroid as a Lean program with a proved evaluator, no Python), `asteroid-look` (the colour scheme the owner picks), and the wish list below.
+- **Closed, as of now:** every other task: the open cases of the one-NOT theorem, more NOT gates, the continuous form, the quantum-gravity gaps, the XOR extension, the Kannan machine, literature runs, searches, corpus runs, file merges. Nothing is deleted. Nobody continues them.
+- **Every session and agent, now:** stop what is not asteroid. Commit what you have that builds, push it, write one line on your task board saying where you stopped, and stop. Kill background searches and builds. Start nothing new unless it is one of the three open tasks or a row of the wish list, and say which.
+- **What does not change:** proved means the proof checker accepted it; the pure-Lean check (`cd one-not/lean && lake build PEqualNP.Verify.All`) must keep passing; nobody asks the owner, the board is where questions go.
+
+
 ## WHAT ASTEROID CANNOT YET SAY (owner, 2026-11-24: "What the language cannot yet say (# WISH: lines in the programs) --- should be on top board")
 
 The live list is the `# WISH:` lines in the programs: `grep -rn "# WISH:" asteroid/`. When a program wants to say something the language has no words for, it writes a `# WISH:` line there; whoever adds the words deletes the line and strikes the row here.
@@ -60,33 +70,11 @@ The live list is the `# WISH:` lines in the programs: `grep -rn "# WISH:" astero
 
 | Task board | Serves | Statement | Seats |
 |---|---|---|---|
-| [`asteroid-bridge`](boards/tasks/asteroid-bridge.md) | the asteroid language; README 'what is not there yet' | Attach formal proofs to asteroid's bit evaluator | main's Fable |
-| [`asteroid-mixed-slack`](boards/tasks/asteroid-mixed-slack.md) | the sorry (the missing arrow is about mixed states) | Mixed slack in asteroid | main's Sonnet |
-| [`asteroid-corpus`](boards/tasks/asteroid-corpus.md) | the asteroid language | Claims over many circuits at once | main's Sonnet |
-| [`lean-eureka-asteroid`](boards/tasks/lean-eureka-asteroid.md) | the asteroid language | Find what "Lean Eureka" is and connect it to asteroid | one small agent of main |
-| [`asteroid-cheap-proofs`](boards/tasks/asteroid-cheap-proofs.md) | the Theorem and its reductions | Harvest the proofs that are now cheap on top of the superstructure (AsteroidSound, AsteroidSound2, C | main's Fable (bounded) |
-| [`asteroid-programs`](boards/tasks/asteroid-programs.md) | every numbered item of the formal proof (notes/front-page-2026-11-24.md) | One asteroid program per item that can be run | main's Sonnet |
-| [`beyond-one-not`](boards/tasks/beyond-one-not.md) | C4, T6 | One NOT gate is rung 1: plan the next rungs with asteroid | one research agent of main |
-| [`edges`](boards/tasks/edges.md) | the whole structure | Fix up the edges: confirm findings, cheap language wishes, small Lean corollaries | three small agents of main |
-| [`all-not-gates`](boards/tasks/all-not-gates.md) | C4 | Two provable statements for any number of NOT gates: the per-set flip lemma, exact small cases | two agents of main |
 | [`asteroid-bench`](boards/tasks/asteroid-bench.md) | the asteroid language | Circuits in ONE pre-existing format: ISCAS ` | one Fable of main |
 | [`asteroid-native`](boards/tasks/asteroid-native.md) | the asteroid language | asteroid with no Python: a command-line program written in Lean (one Lake executable) that reads an  | one Fable of main |
 | [`asteroid-look`](boards/tasks/asteroid-look.md) | the asteroid website and terminal output | A colour scheme chosen by the owner: a small page with a colour picker per role (background, surface | coord, with small agents |
-| [`rewire-read-not`](boards/tasks/rewire-read-not.md) | C2 | Find a correct one-NOT circuit with every gate read, no gate-saving rewiring (`MinCE | scaffold, cTAHG (rewire_r6.py), main's hunter (`one-not/tools/search/`, needs a no-rewire filter) |
-| [`c2-under-no-rewire`](boards/tasks/c2-under-no-rewire.md) | C2 | Prove: every gate read + no gate-saving rewiring ⇒ at every cube with positive base some point has gain ≥ cost | dwV8p, front A2, qg-d2 |
-| [`c1-three-gate`](boards/tasks/c1-three-gate.md) | C1 | Smallest lost certificate game: sets {0,1,2}, {0,3,4}, NOT input x1 ∨ x3 | cTAHG, desktop Coord, scaffold (k = 3 data) |
-| [`c4g-two-not-gates`](boards/tasks/c4g-two-not-gates.md) | C4g | SAT: is there a correct circuit with 2 NOT gates and fewer than base gates, on the Fano plane and on small sys | scaffold (has the SAT encoder) |
-| [`family-for-many-not-gates`](boards/tasks/family-for-many-not-gates.md) | C4 | `witness` (any gate type) falls below base from 4 NOT gates (`general_count_below_base_t4 | main, Generalize, tractability |
-| [`literature-c4`](boards/tasks/literature-c4.md) | C4 | Read the three unread search hits in `LITERATURE | research, research-desktop |
-| [`continuous-mapping`](boards/tasks/continuous-mapping.md) | L5, C4, T7 | A messy continuous mapping built on top of the current discrete results (owner's next step) | unassigned |
-| [`xor-extension-open-case`](boards/tasks/xor-extension-open-case.md) | T7 | C(x ⊕ f) when C(f) = C(¬f) = m: m + 3 or m + 4? | Generalize |
-| [`kannan-machine`](boards/tasks/kannan-machine.md) | T7 | The polynomial-time check that Kannan's uniform half still needs | GeNeRALIZE |
-| [`qg-gaps`](boards/tasks/qg-gaps.md) | T9 | L-qg-115, 116, 119, 169 (P_CTC inside EXP) | the quantum gravity seats |
-| [`clay-model-equivalence`](boards/tasks/clay-model-equivalence.md) | §7 | Formalize one model equivalence between Cook's one-tape machines and `Defs/Base | checker |
-| [`file-tree-merge`](boards/tasks/file-tree-merge.md) | ops | Merge leaf files upward (Lean, then py, then READMEs); the rest mapped in `MST.json`. Done for `one-not/lean` and READMEs; `lean/` and py open | observer |
-| [`search-harness`](boards/tasks/search-harness.md) | C2, C4 | Put every open conjecture in `one-not/tools/search/conjectures | main, scaffold |
-| [`telescope-l5-l6`](boards/tasks/telescope-l5-l6.md) | L5, L6 | One Lean statement both L5 (chain sum) and L6 (Cesàro) instantiate, plus the average over all chains | qg-d2 |
-| [`lang-integration`](boards/tasks/lang-integration.md) | tooling (§8) | One Lean semantics for computation and proof; no new language (verdict + 4 open steps) | coord-desktop (report); steps unassigned |
+
+**Closed on 2026-11-24 by the owner ("close all nonsense being done that isnt asteroid related").** Their files stay as the record; nobody works on them: `asteroid-bridge`, `asteroid-mixed-slack`, `asteroid-corpus`, `lean-eureka-asteroid`, `asteroid-cheap-proofs`, `asteroid-programs`, `beyond-one-not`, `edges`, `all-not-gates`, `rewire-read-not`, `c2-under-no-rewire`, `c1-three-gate`, `c4g-two-not-gates`, `family-for-many-not-gates`, `literature-c4`, `continuous-mapping`, `xor-extension-open-case`, `kannan-machine`, `qg-gaps`, `clay-model-equivalence`, `file-tree-merge`, `search-harness`, `telescope-l5-l6`, `lang-integration`.
 
 
 > **SUBAGENTS SHOULD CHECK BOARD.** Every agent and subagent: pull and read THE WALL below before you start, and again before every commit. Write your one-liners there. (Owner, 2026-11-24.)

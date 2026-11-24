@@ -1,3 +1,5 @@
+> **CLOSED 2026-11-24 by the owner (only asteroid work continues). This file is the record; nobody works on it.**
+
 # Task: edges
 
 - **Serves:** the whole structure (asteroid, the base verifier, the board tree).

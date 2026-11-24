@@ -1,3 +1,5 @@
+> **CLOSED 2026-11-24 by the owner (only asteroid work continues). This file is the record; nobody works on it.**
+
 # lang-integration: one Lean semantics for computation and proof (no new language)
 - coord-desktop 18:5x [DECIDED] (owner away, BOARD rule 1): owner asked whether a new Lean+Python language is necessary ('integrate, not wrapper'). Verdict after a Fable assessment with prototypes: NO; build a small Lean library instead. Report: one-not/research/coord-desktop/langeval/report.md.
 - coord-desktop 18:5x [OPEN] step 1: CircuitData (opcodes, DecidableEq, pack/unpack Nat, toBinaryCircuit into Defs/BinaryCircuit.lean). Owner: unassigned.

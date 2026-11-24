@@ -1,3 +1,5 @@
+> **CLOSED 2026-11-24 by the owner (only asteroid work continues). This file is the record; nobody works on it.**
+
 # Task: beyond-one-not
 
 - **Serves:** C4 (a variable number of NOT gates), T6 (the ladder), the Millennium statement.

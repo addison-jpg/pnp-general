@@ -1,3 +1,5 @@
+> **CLOSED 2026-11-24 by the owner (only asteroid work continues). This file is the record; nobody works on it.**
+
 # Task: asteroid-fresh-session
 
 - **Statement:** How does a fresh cloud session run asteroid end to end (`python3 -m asteroid run asteroid/examples/first.ast`, with `by lean`)? Write the steps into `asteroid/README.md`, or say which session setup to use.

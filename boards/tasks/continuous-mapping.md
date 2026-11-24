@@ -1,3 +1,5 @@
+> **CLOSED 2026-11-24 by the owner (only asteroid work continues). This file is the record; nobody works on it.**
+
 # Task: continuous-mapping
 
 - **Serves:** README items L5 (chain sum: the step is the derivative, the count the integral), C4 (variable number of NOT gates), T7 (exact sizes, XOR extension).
