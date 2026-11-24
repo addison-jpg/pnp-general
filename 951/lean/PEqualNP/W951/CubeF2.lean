@@ -21,9 +21,14 @@ with `Q` fixed to `1`.
 * Instances: `cubeOK_var` (`h = x_a` on the cube, `T = R ∪ {a}`, `y0 = 1`, `yat u = [u ≠ a]`;
   pairs by `xv_pairs`), `cubeOK_const` (`ν = b` on the cube, `T = R`, `y0 = yat = b`; pairs by
   `|R ∩ R'| ≤ 1`). `CubeLocal gates p Q` (either case), **`baseDQ_le_F2_of_cubeLocal`**.
+* Front's LW1 (relative form, 13:19): `LW1 gates p S Q` (zero points `z_w ⊇ Q` off `S_w` with
+  `h(z_w) = 0`, light points stay light at `z_w + e_u`, pairwise `|S_w' \ z_w| ≤ 1` or
+  `|S_w \ z_w'| ≤ 1`), `cubeOK_LW1` (`T = {z_w = 0}`, `y0 = 1`, `yat u = ν(Q + e_u)`),
+  **`baseDQ_le_F2_of_LW1`**. The NotVar classes are the case `z_w = top_w \ {a}`.
 * The induction with local closures: `base_le_F2_pts_or` (at every `Q` with positive base, either
-  `base(Q) ≤ |F2(Q)|` or a `GainF2` step) and **`no_minCE_of_gainF2_or_cubeLocal`** (every `Q` with
-  positive base is `CubeLocal` or has a `GainF2` step ⇒ no minimal counterexample).
+  `base(Q) ≤ |F2(Q)|` or a `GainF2` step), **`no_minCE_of_gainF2_or_cubeLocal`** and
+  **`no_minCE_of_gainF2_or_local`** (every `Q` with positive base is `CubeLocal`, satisfies LW1, or has
+  a `GainF2` step ⇒ no minimal counterexample).
 -/
 
 namespace PEqualNP.Outside.L_meta_951_aux
@@ -306,6 +311,72 @@ theorem baseDQ_le_F2_of_cubeLocal (S : Fin m → Finset (Fin n)) (out : Fin m �
       (fun w hw => cubeOK_const gates p Q (S w) (mem_aliveSets.mp hw) b hc)
       (fun w _ w' _ hww => Or.inl (cubePair_const b (hS w w' hww)))
 
+/-! ## Front's LW1 (relative form): a third local closure -/
+
+/-- **LW1 at `Q`** (front A2, 13:19): zero points `z_w ⊇ Q` vanishing on `S_w` with `h(z_w) = 0` (the
+NOT gate is `1`), light points (NOT gate `1` at `Q + e_u`) staying light at `z_w + e_u`, and for every
+pair of alive sets `|S_w' \ z_w| ≤ 1` or `|S_w \ z_w'| ≤ 1`. -/
+def LW1 (gates : List Gate) (p : ℕ) (S : Fin m → Finset (Fin n)) (Q : Finset (Fin n)) : Prop :=
+  ∃ z : Fin m → Fin n → Bool,
+    (∀ w ∈ aliveSets S Q, (∀ q ∈ Q, z w q = true) ∧ (∀ u ∈ S w, z w u = false) ∧
+      val gates (z w) (n + p) = true ∧
+      ∀ u ∈ S w, val gates (canonPt (insert u Q)) (n + p) = true →
+        val gates (Function.update (z w) u true) (n + p) = true) ∧
+    ∀ w ∈ aliveSets S Q, ∀ w' ∈ aliveSets S Q, w ≠ w' →
+      ((S w').filter fun u => z w u = false).card ≤ 1 ∨
+        ((S w).filter fun u => z w' u = false).card ≤ 1
+
+theorem Zof_filter_false (z : Fin n → Bool) :
+    Zof (Finset.univ.filter fun x => z x = false) = z := by
+  funext x
+  cases h : z x <;> simp [Zof, h]
+
+/-- An LW1 zero point gives a cube test system: `T = {z = 0}`, `y0 = 1`, `yat u = ν(Q + e_u)`. -/
+theorem cubeOK_LW1 (Q R : Finset (Fin n)) (z : Fin n → Bool) (hzQ : ∀ q ∈ Q, z q = true)
+    (hzR : ∀ u ∈ R, z u = false) (hz : val gates z (n + p) = true)
+    (hlight : ∀ u ∈ R, val gates (canonPt (insert u Q)) (n + p) = true →
+      val gates (Function.update z u true) (n + p) = true) :
+    CubeOK gates p Q R (Finset.univ.filter fun x => z x = false) true
+      (fun u => val gates (canonPt (insert u Q)) (n + p)) := by
+  refine ⟨Finset.disjoint_left.mpr fun q hq hqT => ?_, fun u hu => ?_, ?_, fun _ _ => rfl,
+    fun _ _ => Bool.le_true _, fun u hu => ?_⟩
+  · rw [Finset.mem_filter, hzQ q hq] at hqT
+    exact absurd hqT.2 (by decide)
+  · exact Finset.mem_filter.mpr ⟨Finset.mem_univ u, hzR u hu⟩
+  · rw [Zof_filter_false]
+    exact hz
+  · rw [Zof_filter_false]
+    cases hl : val gates (canonPt (insert u Q)) (n + p)
+    · exact Bool.false_le _
+    · rw [hlight u hu hl]
+
+theorem cubePair_of_card {R : Finset (Fin n)} {z : Fin n → Bool} (yat : Fin n → Bool)
+    (h : (R.filter fun u => z u = false).card ≤ 1) :
+    CubePair R (Finset.univ.filter fun x => z x = false) true yat := by
+  intro u hu v hv huv
+  by_cases hu' : z u = false
+  · by_cases hv' : z v = false
+    · have : 1 < (R.filter fun u => z u = false).card := Finset.one_lt_card.mpr
+        ⟨u, Finset.mem_filter.mpr ⟨hu, hu'⟩, v, Finset.mem_filter.mpr ⟨hv, hv'⟩, huv⟩
+      omega
+    · exact Or.inr ⟨fun h => hv' (Finset.mem_filter.mp h).2, Bool.le_true _⟩
+  · exact Or.inl ⟨fun h => hu' (Finset.mem_filter.mp h).2, Bool.le_true _⟩
+
+include hp hg hU hN in
+/-- **LW1 ⇒ `base(Q) ≤ |F2(Q)|`** (front A2's LW1 in relative form; no minimality). -/
+theorem baseDQ_le_F2_of_LW1 (S : Fin m → Finset (Fin n)) (out : Fin m → ℕ) (Q : Finset (Fin n))
+    (hev : ∀ (w : Fin m) (x : Fin n → Bool), val gates x (out w) = decide (∃ v ∈ S w, x v = true))
+    (hL : LW1 gates p S Q) : baseDQ S ∅ Q ≤ (F2 gates S Q).card := by
+  obtain ⟨z, hz, hpair⟩ := hL
+  refine baseDQ_le_F2_of_cube gates p hp hg hU hN S out Q hev
+    (fun w => Finset.univ.filter fun x => z w x = false) (fun _ => true)
+    (fun _ u => val gates (canonPt (insert u Q)) (n + p))
+    (fun w hw => cubeOK_LW1 gates p Q (S w) (z w) (hz w hw).1 (hz w hw).2.1 (hz w hw).2.2.1
+      (hz w hw).2.2.2) (fun w hw w' hw' hww => ?_)
+  rcases hpair w hw w' hw' hww with h | h
+  · exact Or.inr (cubePair_of_card _ h)
+  · exact Or.inl (cubePair_of_card _ h)
+
 /-! ## The F2 induction with local closures -/
 
 /-- **The F2 induction with local closures**: at every `Q` with positive base, either
@@ -360,6 +431,29 @@ theorem no_minCE_of_gainF2_or_cubeLocal
   obtain ⟨p, hp, hN, hQ⟩ := H n m S gates out M
   have hb := base_le_F2_pts_or gates S (fun Q hpos => (hQ Q hpos).imp_left fun hL =>
     baseDQ_le_F2_of_cubeLocal gates p hp M.ce.hg M.ce.hU hN S out Q M.ce.hS M.ce.hev hL) _ ∅ le_rfl
+  rw [baseDQ_empty] at hb
+  have h2 := card_F2_le gates S ∅
+  have h3 := M.ce.hlt
+  omega
+
+/-- **951 from the F2 step with the three local closures**: if every minimal counterexample has a NOT
+gate such that every `Q` with positive base is `CubeLocal`, satisfies LW1, or has a `GainF2` step, there
+is no minimal counterexample. -/
+theorem no_minCE_of_gainF2_or_local
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out → ∃ (p : ℕ) (hp : p < gates.length), (gates[p]'hp).op = GateOp.not ∧
+        ∀ Q, 0 < baseDQ S ∅ Q →
+          CubeLocal gates p Q ∨ LW1 gates p S Q ∨ ∃ v, v ∉ Q ∧ GainF2 gates S Q v) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out := by
+  intro n m S gates out M
+  obtain ⟨p, hp, hN, hQ⟩ := H n m S gates out M
+  have hb := base_le_F2_pts_or gates S (fun Q hpos => by
+    rcases hQ Q hpos with hL | hL | hG
+    · exact Or.inl (baseDQ_le_F2_of_cubeLocal gates p hp M.ce.hg M.ce.hU hN S out Q M.ce.hS
+        M.ce.hev hL)
+    · exact Or.inl (baseDQ_le_F2_of_LW1 gates p hp M.ce.hg M.ce.hU hN S out Q M.ce.hev hL)
+    · exact Or.inr hG) _ ∅ le_rfl
   rw [baseDQ_empty] at hb
   have h2 := card_F2_le gates S ∅
   have h3 := M.ce.hlt

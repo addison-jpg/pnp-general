@@ -277,6 +277,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   `MinCE.not_notVar`: the NOT gate of a counterexample never computes an input literal).
   13:30: CubeF2: relative form CHECKED (`baseDQ_le_F2_of_cubeLocal`: NOT = ¬x_a or constant on the cube x_Q = 1 ⇒
   base(Q) ≤ |F2(Q)|; `no_minCE_of_gainF2_or_cubeLocal`: GainF2 needed only at Q where the NOT gate is not local).
+  13:45: LW1 + CERT-1c CHECKED (`baseDQ_le_F2_of_LW1`; ConeCert `gainF2_of_cert`: qg-d2's (D) ∧ (S) ⇒ GainF2;
+  `no_minCE_of_cert_or_local`: CubeLocal ∨ LW1 ∨ CERT-3c at every Q with positive base ⇒ no MinCE).
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.
