@@ -54,4 +54,7 @@ LIGHT-STAR(v) ⇒ gain(v) ≥ cost(v). RESULT: 0 failures.
   43 light instances, LIGHT-STAR at all 190 points.
 - Sanity: B (bottom merges ⊆ F2(Q) in light instances) 0 violations.
 So the Opus can build on: in a light instance, take v of least h-influence; the gates that die are the bottom merges of
-star(v) plus the K0 gates. (Corpus run, 19,828 circuits from the pequalnp-work branches, n ≤ 9: appended when done.)
+star(v) plus the K0 gates.
+- CORPUS (19,828 circuits, n ≤ 9, from the pequalnp-work branches front-archive chk/ w6B/ w6C/ w7/, data-fixh16 fixh16_clean,
+  workspace sc_n4-6): 16,281 light instances; LIGHT-STAR at SOME v 16,281 / 16,281, at the LEAST h-INFLUENCE v
+  16,281 / 16,281; per point 53,671 / 53,673; F2 step gain ≥ cost at EVERY alive point 16,281 / 16,281 instances.
