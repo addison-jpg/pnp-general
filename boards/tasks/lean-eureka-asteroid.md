@@ -1,0 +1,10 @@
+# Task: lean-eureka-asteroid
+
+- **Serves:** the asteroid language.
+- **Source:** owner, 2026-11-24: "get a small agent on lean eureka--> asteroid".
+- **Statement:** Find out what "Lean Eureka" is (nothing by that name is in this repository), say what it does, and connect it to asteroid: either a new verb backed by it, or a written reason why it does not fit.
+- **Done when:** a finding that names the tool with its source, and either a working asteroid verb with one example program or a `[DECIDED]` line with the reason.
+- **Seats:** one small agent of main. Why a subagent: the owner asked for one.
+
+## Lines (TAKEN / DECIDED only)
+
