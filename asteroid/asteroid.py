@@ -58,6 +58,10 @@ def term(m, i):
     f, conj, arg, num = m.group(i), m.group(i + 1), m.group(i + 2), m.group(i + 3)
     return (int(num), None) if num is not None else (F(f, arg, conj), (f, arg))
 
+RESERVED = ['Bool', 'Circ', 'F2_chain_sum', 'Fin', 'Gate', 'Int', 'LMeta951Stmt', 'List', 'MUF2_of_slackGe', 'MUF2_of_slackNonnegAll', 'Nat', 'Phi_nonneg_of_slackNonnegAll', 'Prop', 'Q', 'Type', 'aliveMixed', 'alive_iff', 'allStates', 'anyPair', 'any_testBit_ofBits', 'at', 'atMostOneNot_of_notCount', 'baseAt', 'baseAt_eq_baseDQ', 'baseMixed', 'baseMixed_zero', 'base_le_gates_of_LMeta951Stmt', 'base_le_gates_of_no_minCE', 'base_le_gates_of_slackGe', 'bitStep_testBit_succ', 'bitStep_testBit_zero', 'by', 'c', 'card_F2_eq_orWitnessAt', 'card_setFin', 'cellAt', 'correctB', 'correctB_sound', 'correctB_sound_project', 'def', 'do', 'else', 'end', 'exists_minCE_of_hunt_hit', 'exists_two_of_filter', 'false', 'first_ast_fano_hypsB', 'first_ast_tiny_concrete', 'first_ast_tiny_correct', 'first_ast_tiny_kstep', 'first_ast_tiny_setsOk', 'first_ast_tiny_slack', 'foldl_add_eq_sum', 'foldl_filter_ge_two', 'foldl_lor_testBit', 'foldl_snoc_length', 'foldl_ttStep_map', 'foldr_bits_testBit', 'from', 'full_testBit', 'fun', 'gateVal', 'gateVal_eq_eval', 'getD_map_testBit', 'hasWitness', 'hasWitnessAt', 'hasWitnessAt_iff', 'hasWitnessAt_iff_F2Wit', 'hasWitnessMixed', 'hasWitnessMixedNaive', 'hasWitnessMixedNaive_zero', 'have', 'hypsB', 'hypsB_sound', 'if', 'import', 'in', 'ins_getD_testBit', 'inter_card_le', 'iota_of_notCount', 'isCE_of_checks', 'isOrAt_toGates', 'lMeta951Stmt_of_L_meta_951', 'land_testBit', 'let', 'lor_testBit', 'maskOf', 'maskOf_empty', 'mem_setFin', 'mixPre', 'mixedStepAll', 'mixedStepAllWith', 'mslackGe', 'mslackGe_zero', 'mslackLe', 'mslackNonnegAll', 'mslackNonnegAllWith', 'mslackVal', 'mslackValWith', 'mslackVal_zero', 'naiveAgrees', 'namespace', 'notCount', 'not_LMeta951Stmt_of_hunt_hit', 'not_isCE_of_slackGe', 'not_minCE_of_slackGe', 'ofBits_rowOf', 'ofFn_eq_range_testBit', 'open', 'orTables', 'orWitnessAt', 'orWitnessAtWith', 'orWitnessAt_chain_sum', 'orWitnessAt_eq', 'or_two_pow_lt', 'p', 'payingStepAt', 'rowOf', 'rowOf_ofBits', 'rowOf_or', 'setsOkB', 'setsOk_of_setsOkB', 'show', 'slackGe', 'slackGe_sound', 'slackLe', 'slackNonnegAll', 'slackNonnegAllWith', 'slackNonnegAll_sound', 'slack_eq_asteroid', 'slack_nonneg_of_slackNonnegAll', 'sum_filter_map', 'sum_fin_getElem', 't4', 't4_below_base', 't4_correct', 't4_witness', 'table_val', 'tables_length', 'tables_map_testBit', 'tables_testBit', 'testBit_eq_false_of_ge', 'testBit_maskOf', 'then', 'theorem', 'toGate_not_iff', 'toGate_or_iff', 'toGates_wf', 'true', 'tt', 'ttStep', 'ttStep_testBit', 'tt_eq', 'tt_foldl_toList', 'two_le_filter', 'varTT', 'varTT_testBit', 'varTT_testBit_gen', 'w', 'wiresAt_eq_wires', 'wiresFrom', 'wiresFrom_eq_wires', 'witnessCount', 'witnessMixedWith', 'witnessTable', 'x', 'xor_testBit']
+def check_name(name, where):
+    if name in RESERVED: raise SystemExit(f"{where}: the name `{name}` is taken by the proof library; pick another name for this circuit")
+
 CONJ = {}      # name -> expression with the circuit variable `c`
 API = {}
 def _exts():
@@ -156,7 +160,7 @@ def build_lean(script):
     ok = r.returncode == 0
     ax = ""
     if ok:
-        tmp = os.path.join(ROOT, "asteroid/out/_axioms.lean")
+        tmp = os.path.join(ROOT, f"asteroid/out/_axioms_{os.getpid()}.lean")
         open(tmp, "w").write(f"import PEqualNP.W951.{mod}\n" + "".join(f"#print axioms SearchCheck.{mod}.{t}\n" for t in names))
         a = subprocess.run(["lake", "env", "lean", tmp], cwd="one-not/lean", env=envp, capture_output=True, text=True).stdout
         ax = "; ".join(sorted(set(re.findall(r"axioms: \[([^\]]*)\]", a.replace("\n", " "))))) or "none"; os.remove(tmp)
@@ -230,8 +234,9 @@ def run(script):
             elif m := re.fullmatch(r"set ([\d ]+) -> (\w+)", line): sets.append([int(x) for x in m.group(1).split()]); outs.append(W(m.group(2)))
             else: raise SystemExit(f"{script}:{ln}: cannot parse inside circuit: {line}")
             continue
-        if m := re.fullmatch(r"circuit (\w+) (\d+)", line): block = (m.group(1), int(m.group(2)), {}, [], [], []); continue
+        if m := re.fullmatch(r"circuit (\w+) (\d+)", line): check_name(m.group(1), f"{script}:{ln}"); block = (m.group(1), int(m.group(2)), {}, [], [], []); continue
         if m := re.fullmatch(r"let (\w+) = load (\S+)", line):
+            check_name(m.group(1), f"{script}:{ln}")
             d = json.load(open(m.group(2))); env[m.group(1)] = {k: d[k] for k in ("n", "sets", "gates", "outs")}; src[m.group(1)] = m.group(2)
             print(f"{ln}: {m.group(1)} loaded ({d['n']} inputs, {len(d['gates'])} gates)")
         elif m := re.fullmatch(r"show (\w+)", line):
