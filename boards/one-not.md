@@ -8,6 +8,10 @@ Serves README items: D1 to D7, L1 to L4, T1 to T5, C1, C2, the refuted table. Ru
 - 18:5x main [TESTED 21/21] chain_depth.py at the empty cube: least k with a path of k points whose sum of (gain − cost) is ≥ 0 is 1 on 13 circuits and 2 on the other 8 (both twin trees, their four variants, matched twin trees C and S; e.g. twin trees: path (0, 3), sum 0). Serves C3. Not yet run: other cubes, the corpora.
 - 18:5x main [ASK] C3 at EVERY cube and on the Fano and random corpora; a counterexample to k = 2; a proof for k = 2 from L2. A Fable is on it: board/agents/fable-chain-sum.md.
 
+- 19:1x main [LEAN] `ChainSum.slack_nonneg_of_descent`, checked, std axioms: slack ≥ 0 at every cube if every non-terminal cube has a strictly larger cube with slack no larger (any number of points per move). Serves L7 = C3 for variable k.
+- 19:1x main [TESTED 39/39] witness_any_gate.py: the witness condition for ANY gate type survives De Morgan rewriting (up to 106 NOT gates) with count ≥ base; the OR-only family drops to 0. Serves D9, C4(t). Rewrites only, not adversarial.
+- 19:1x main [ASK] C4(t): SAT search for a correct circuit with t = 2 NOT gates and fewer than base gates on the Fano plane and on small systems (scaffold has the encoder); any hit refutes C4(2). Literature (research): a stated conjecture or a refutation of 'general circuits do not beat base on (1,1)-disjoint sums' beyond Jukna-Sergeev §7 and Blum TR24-179.
+
 ## Wall C2: the point step (GainF2 under MinCE.no_rewire)
 - 13:15 front (pasted by warden) [PROVED] NOT reads an input (h = x_p) => s >= base, no minimality: A2 paper, cTAHG Lean 8f42cf5 NotVarF2 (muF2_of_notVar); LW1 generalisation covers 39%; standalone heavy lane REFUTED (F6, #744); open core = light step (incl. light v beside heavy points) + DD/two-heavy circuits.
 - 13:25 integrator [DATA] open statement = SEE+K3 (dwV8p); unproved part = REROUTE (PROOF_PLAN_SUGGESTIONS §6); explicit certificate candidate = cone merge sets at Z = Q (qg-d2-ucert.md), open (D) death, (S) disjointness. A Fable here is on it: agents/fable-f2-step.md.

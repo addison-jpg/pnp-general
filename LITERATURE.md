@@ -169,6 +169,19 @@ The full reference list of the quantum gravity program, kept here so that no cut
 - Z. Brakerski, Black-hole radiation decoding is quantum cryptography, CRYPTO 2023,
   arXiv:2211.05491.
 
+### The generalization question (README C4): do AND and NOT gates help for Boolean sums?
+
+| Source | What it gives | Status |
+|---|---|---|
+| Nechiporuk 1969; Wegener 1987 Thm 6.2; Mehlhorn 1979; Pippenger 1980 | AND gates do not help for (1,1)-disjoint sums in MONOTONE circuits; at most a factor max{h−1, k−1} for (h,k)-disjoint | TXT (Wegener, Pippenger), CITED (others) |
+| Jukna and Sergeev 2013 §7 | ASKS whether general circuits help for Boolean sums (OR against GEN): an open question, not a stated conjecture | TXT |
+| Blum, ECCC TR24-179 | proposes (1,1)-disjoint Boolean sums with negations as an open target | TXT (outlook) |
+| Find, Göös, Järvisalo, Kaski, Koivisto, Korhonen, "Separating OR, SUM, and XOR circuits", arXiv 1304.0513 | separations between OR, SUM and XOR circuits for the same matrix (a different basis from AND / OR / NOT) | search result 2026-11-24, NOT read |
+| Boyar and Find, "Cancellation-free circuits in unbounded and bounded depth", arXiv 1305.3041 | cancellation-free against general XOR circuits | search result, NOT read |
+| "Negations are powerful even in small depth", arXiv 2512.19515 (Dec 2025) | one negation gate (a difference of two monotone depth-3 circuits) is exponentially powerful against monotone circuits | search result (abstract line), NOT read. A caution for C4: one NOT gate can help a lot for other functions |
+| Kyoto RIMS paper on constant-slice functions (kokyuroku 0906-11) | says the monotone / non-monotone relation of slices "does not hold for a Boolean sum" | search result, NOT read |
+| Two web searches, 2026-11-24 | no paper found that states C4 as a conjecture or proves or refutes it | absence of a hit is not evidence of absence |
+
 ### Sums over paths (for README §6)
 
 | Source | What it gives | Status |

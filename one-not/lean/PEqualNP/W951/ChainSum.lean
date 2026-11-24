@@ -1,5 +1,6 @@
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 import Mathlib.Data.Finset.Card
+import Mathlib.Data.Fintype.Card
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
@@ -45,5 +46,24 @@ theorem base_le_card_of_step (F : ℕ → Finset α) (hF : ∀ i, F (i + 1) ⊆ 
   have h2 : ∑ i ∈ range N, cost i ≤ ∑ i ∈ range N, (F i \ F (i + 1)).card :=
     Finset.sum_le_sum hstep
   omega
+
+/-- **Descent of the slack, any path length** (README C3 for a variable number of points): if at
+every cube that is not terminal some strictly larger cube has slack no larger, and the slack is
+nonnegative at terminal cubes, then the slack is nonnegative at every cube. The number of points
+added in one move is not bounded: this is the k-point step for every k at once. -/
+theorem slack_nonneg_of_descent {n : ℕ} (slack : Finset (Fin n) → ℤ) (terminal : Finset (Fin n) → Prop)
+    (hterm : ∀ Q, terminal Q → 0 ≤ slack Q)
+    (hstep : ∀ Q, ¬ terminal Q → ∃ Q', Q ⊂ Q' ∧ slack Q' ≤ slack Q) :
+    ∀ Q, 0 ≤ slack Q := by
+  intro Q
+  induction h : (n - Q.card) using Nat.strong_induction_on generalizing Q with
+  | _ k ih =>
+    by_cases ht : terminal Q
+    · exact hterm Q ht
+    · obtain ⟨Q', hlt, hle⟩ := hstep Q ht
+      have hc : Q.card < Q'.card := Finset.card_lt_card hlt
+      have hn : Q'.card ≤ n := by simpa using Finset.card_le_univ Q'
+      have := ih (n - Q'.card) (by omega) Q' rfl
+      omega
 
 end PEqualNP.Outside.L_meta_951_aux.ChainSum
