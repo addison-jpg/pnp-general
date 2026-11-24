@@ -3,7 +3,7 @@ import PEqualNP.W951.MergeSDR
 /-!
 # Augment: `LAvoid ∧ LAugment ⇒ MergeSDR` by descent on the number of colliding pairs
 
-The referee's proof plan for `no_minCE`, with the two open lemmas kept as HYPOTHESES (`Prop`
+The referee's proof plan for `no_minCE`. `LAvoid` is PROVED (`lAvoid`, zero point `0`; scaffold 10:35); `LAugment` (`Prop`
 definitions; nothing here proves them). Without a size bound the loose form is MergeSDR itself
 (`mergeSDR_iff_avoid_augmentLoose`, the referee's catch), so the OFFICIAL open target is
 `LAvoid ∧ LAugmentK K` with re-picked groups of at most `K` sets (`no_minCE_of_augmentK`; data:
@@ -108,7 +108,7 @@ def AvoidOpt (w : Fin m) (z : Fin n → Bool) : Prop :=
   z ∈ zeroPts (S w) ∧
     ∀ w' : Fin m, w' ≠ w → Disjoint (mergeSet gates (S w) z) (univMergeSet S gates w')
 
-/-- **LAvoid** (open; a hypothesis here): every set has an avoiding option. -/
+/-- **LAvoid**: every set has an avoiding option. PROVED for every (1,1)-disjoint family: `lAvoid`. -/
 def LAvoid : Prop := ∀ w : Fin m, ∃ z, AvoidOpt S gates w z
 
 /-- **LAugment** (open; a hypothesis here). For every choice `z` of avoiding options with a
@@ -424,6 +424,47 @@ theorem mergeSDR_of_avoid_augment (hV : LAvoid S gates) (hA : LAugment S gates) 
     MergeSDR S gates :=
   mergeSDR_of_avoid_augmentLoose S gates hV (lAugmentLoose_of_lAugment S gates hA)
 
+/-- **LAvoid is PROVED** (scaffold 10:35; any circuit, no minimality): the zero point `0` is an
+avoiding option of every set. A gate in the merge set of `S w` at `0` is true at two units
+`e_u, e_v` of `S w`; a universal merge of `w' ≠ w` vanishes at every unit `e_x` with `x ∉ S w'`
+(those are zero points of `S w'`), so `u, v ∈ S w ∩ S w'`, against `|S w ∩ S w'| ≤ 1`.
+The argument of `univMerge_disjoint`, with `S w` used only at the zero point `0`. -/
+theorem avoidOpt_zero (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) (w : Fin m) :
+    AvoidOpt S gates w (fun _ => false) := by
+  classical
+  refine ⟨by simp [mem_zeroPts], fun w' hw' => Finset.disjoint_left.mpr fun g hg hg' => ?_⟩
+  have hb := (mem_univMergeSet S gates).mp hg'
+  set z0 : Fin n → Bool := fun _ => false with hz0
+  have h0 := mergeSet_subset_DT gates (S w) z0 hg
+  simp only [DT, Finset.mem_filter] at h0
+  obtain ⟨-, -, u, v, huv, hu, hv, hgu, hgv⟩ := h0
+  have key : ∀ x, val gates (upPt z0 x) g = true → x ∈ S w' := by
+    intro x hx
+    by_contra hxb
+    have hz : upPt z0 x ∈ zeroPts (S w') := by
+      rw [mem_zeroPts]
+      intro c hc
+      have hne : c ≠ x := fun h => hxb (h ▸ hc)
+      simp [upPt, Function.update_of_ne hne, hz0]
+    have h1 := mergeSet_subset_DT gates (S w') _ (hb _ hz)
+    simp only [DT, Finset.mem_filter] at h1
+    rw [h1.2.1] at hx
+    exact absurd hx (by simp)
+  have h2 : ({u, v} : Finset (Fin n)) ⊆ S w ∩ S w' := by
+    intro x hx
+    rw [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl
+    · exact Finset.mem_inter.mpr ⟨hu, key _ hgu⟩
+    · exact Finset.mem_inter.mpr ⟨hv, key _ hgv⟩
+  have h3 := Finset.card_le_card h2
+  rw [Finset.card_pair huv] at h3
+  have := hS w w' (Ne.symm hw')
+  omega
+
+/-- **LAvoid** holds for every (1,1)-disjoint family (`avoidOpt_zero`). -/
+theorem lAvoid (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) : LAvoid S gates :=
+  fun w => ⟨_, avoidOpt_zero S gates hS w⟩
+
 end Augment
 
 /-- **951 from LAvoid and LAugment**: if every minimal counterexample satisfies both, there is
@@ -464,5 +505,15 @@ theorem no_minCE_of_augmentReach (K : ℕ)
       ¬ MinCE S gates out :=
   no_minCE_of_mergeSDR fun n m S gates out M =>
     mergeSDR_of_augmentReach S gates K (H n m S gates out M)
+
+/-- **951 from LAugmentK K alone** (`LAvoid` is proved: `lAvoid`). The open target is now only the
+augmentation step. -/
+theorem no_minCE_of_augmentK_only (K : ℕ)
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out → LAugmentK S gates K) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out :=
+  no_minCE_of_augmentK K fun n m S gates out M =>
+    ⟨lAvoid S gates M.ce.hS, H n m S gates out M⟩
 
 end PEqualNP.Outside.L_meta_951_aux
