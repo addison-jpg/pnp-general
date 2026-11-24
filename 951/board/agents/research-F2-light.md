@@ -61,3 +61,7 @@ star(v) plus the K0 gates.
 - CORPUS (19,828 circuits, n ≤ 9, from the pequalnp-work branches front-archive chk/ w6B/ w6C/ w7/, data-fixh16 fixh16_clean,
   workspace sc_n4-6): 16,281 light instances; LIGHT-STAR at SOME v 16,281 / 16,281, at the LEAST h-INFLUENCE v
   16,281 / 16,281; per point 53,671 / 53,673; F2 step gain ≥ cost at EVERY alive point 16,281 / 16,281 instances.
+- Referee dwV8p 13:03 (dwV8p-synth-F1-F2.md): the repaired LIGHT-STAR also holds on all 62 light restrictions of FANO-FORMULA,
+  JUNK, cx44_1_junk and PAPPUS-JUNK. A pool-free alternative, SEE+K3, holds there and on heavy instances. It counts the gates
+  that are 1 at Q + e_v minus the survivors, plus the gates serving only star sets. The referee's F1* says the survivors are
+  exactly the K1 / K2 world-0 servants of type-A sets not through v.
