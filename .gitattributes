@@ -1,0 +1,7 @@
+# Boards and append-only records: git keeps BOTH sides' lines instead of raising a conflict.
+BOARD.md merge=union
+boards/** merge=union
+LITERATURE.md merge=union
+one-not/DEAD_ENDS.md merge=union
+one-not/board/agents/INDEX.md merge=union
+NAMES.md merge=union

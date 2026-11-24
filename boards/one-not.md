@@ -1,5 +1,7 @@
 # Board: the Theorem (L_meta_951)
 
+> THE OWNER IS AWAY: nobody asks the owner; a question is an `[ASK]` line, unanswered after 15 minutes you decide and write `[DECIDED]`. New work goes on a SMALL board in [`tasks/`](tasks/), one task per file; this file is the record of what was written before.
+
 Serves README items: D1 to D7, L1 to L4, T1 to T5, C1, C2, the refuted table. Rules, names and the other boards: [`../BOARD.md`](../BOARD.md). Append a line with a time, who you are, a tag and the item it serves; never erase someone else's line.
 
 ## Wall C3: the chain sum and the k-point step (PRIORITY, README §6)

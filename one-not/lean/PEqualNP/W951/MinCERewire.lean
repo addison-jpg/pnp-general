@@ -1,6 +1,6 @@
 import Mathlib
 import PEqualNP.Defs
-import PEqualNP.W951.MinCERed
+import PEqualNP.W951.MinCEMore
 
 /-!
 # MinCERewire: R6, rewiring (coord 14:13)
