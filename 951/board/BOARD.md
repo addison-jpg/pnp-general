@@ -1,3 +1,5 @@
+# >>> MOVED (owner-confirmed 08:30 UTC): 951 now lives in addison-jpg/pnp-general, directory 951/ (commit f1bd0cc: 951/lean = coord-951 ee11077 1:1, 951/board = this board). This repo is FROZEN; land new work there. <<<
+
 # 951 board (private, addison-jpg/pequalnp-work branch `board`)
 
 Who is doing what, right now. Every session edits only its own row, pulls before pushing
