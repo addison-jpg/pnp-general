@@ -44,7 +44,7 @@ its parent is the concept it serves, up to the root statement. `code` is the old
       - **CanonOneNot.lean** (`CanonOneNot`) · lean module
     - **lifted circuit** (`lift, y`) · object: the NOT gate replaced by a fresh input y; a monotone circuit for a partial function
     - **lifted class** · object: a class of a set read in the lifted circuit; need not sit above the zero point
-    - **set of type A** (`type A`) · object: meaning not re-derived here: see CanonClass.lean and research-typeA-increment.md
+    - **set of type A** (`type A`) · object: a set w with h(top_w) = 1, where h is the input of the NOT gate and top_w is the point that is 1 exactly off S_w; equivalently some minterm of h avoids S_w. The other sets (h(top_w) = 0) are the FREE sets, whose world-1 classes K_1(w) at top_w are pairwise disjoint (W1). Source: research-typeA-menus.md, research-typeA-increment.md
       - **TypeA.lean** (`TypeA`) · lean module
     - **set of type B** (`type B`) · object: meaning not re-derived here: see fable-global-price.md
     - **output in two-world normal form** (`DD, DD-normal`) · object: the output equals (set OR) AND h on one face and (set OR) OR h on the other
