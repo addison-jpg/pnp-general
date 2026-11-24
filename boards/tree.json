@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 17,
+   "checked": 18,
    "tested": 4,
    "refuted": 3
   },
@@ -29,7 +29,8 @@
    "4617c228",
    "c011de04",
    "e793c0f4",
-   "c324f5f5"
+   "c324f5f5",
+   "0d85fe20"
   ],
   "unverified_here": []
  },
@@ -59,7 +60,7 @@
   "counts": {
    "tested": 4,
    "refuted": 3,
-   "checked": 16
+   "checked": 17
   },
   "verified": [
    "1b00e1bc",
@@ -84,7 +85,8 @@
    "4617c228",
    "c011de04",
    "e793c0f4",
-   "c324f5f5"
+   "c324f5f5",
+   "0d85fe20"
   ],
   "unverified_here": []
  },
@@ -172,7 +174,7 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 15
+   "checked": 16
   },
   "verified": [
    "30cf54bf",
@@ -189,13 +191,14 @@
    "4617c228",
    "c011de04",
    "e793c0f4",
-   "c324f5f5"
+   "c324f5f5",
+   "0d85fe20"
   ],
   "unverified_here": []
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 15
+   "checked": 16
   },
   "verified": [
    "30cf54bf",
@@ -212,13 +215,14 @@
    "4617c228",
    "c011de04",
    "e793c0f4",
-   "c324f5f5"
+   "c324f5f5",
+   "0d85fe20"
   ],
   "unverified_here": []
  },
  "one-not/lean/PEqualNP/W951": {
   "counts": {
-   "checked": 15
+   "checked": 16
   },
   "verified": [
    "30cf54bf",
@@ -235,7 +239,8 @@
    "4617c228",
    "c011de04",
    "e793c0f4",
-   "c324f5f5"
+   "c324f5f5",
+   "0d85fe20"
   ],
   "unverified_here": [
    {

@@ -97,6 +97,20 @@ counts list positions and reads table bits; with a repeated point or a point ≥
 For `examples/first.ast`: `first_ast_tiny_concrete` (the three OR gates of `tiny` compute `x0 ∨ x1 ∨ x2` and
 `x2 ∨ x3` under `Circuit.eval`) and `first_ast_tiny_slack`.
 
+## Every run is also stated in the project's definitions
+
+After the main module builds, asteroid writes a second one, `Asteroid_<program>_sound.lean`, and builds it too.
+It restates each claim that has a soundness theorem (`AsteroidSound.lean`, `AsteroidSound2.lean`):
+
+| Claim in the program | Theorem in the second module |
+|---|---|
+| `correct(c) by lean` | the project's `Circuit.eval` on the translated gates computes the OR of every set, on every input (the correctness hypothesis of `L_meta_951`) |
+| `forall cubes slack(c) >= 0 by lean` | `baseDQ ≤ |F2|` at every cube, in the project's `F2` and `baseDQ` |
+| `slack(c) >= 0 by lean` | the sum of (\|S\| − 1) is at most the number of gates of this circuit |
+
+The well-formed-sets condition is proved for each circuit by `decide`. Claims about `witness` (gates of any
+type) and about mixed slack have no soundness theorem yet and stay statements about asteroid's evaluator.
+
 ## What is not there yet
 
 - The soundness theorems are applied by hand: `asteroid.py` still writes only the statements about its own
