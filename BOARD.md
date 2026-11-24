@@ -119,6 +119,10 @@ fractional induction.
   for no_minCE: charging templates (pequalnp-work agents/research-charging.md: Li-Yang packing = potential with memory, Weiß
   bottleneck; CHECKED: merge-set families {M_z(w)} are not matroid bases). Inherited open items: StrictGadget (strict
   (A|y)&(A|~y) for MinCE; general gadget Lean-checked on pequalnp-work gadget-research 5844d46, awaiting coord merge);
+  StrictGadget status (desktop Research, 08:36): FALSE for general circuits (cfgI: (A∨(x7∧h))∧(A∨¬h); cxstar5/44 Shannon
+  split ¬x0∧(x0∨A)); for MinCE no paper proof, only 24/24 strict cases on 4 SAT circuits with s - base <= 7; 'dies under
+  restriction' has no precise statement yet (y need not be a variable, e.g. x4|x6). PROVED with no extra hypothesis: MinCE.gadget
+  (A∨p)∧(A∨q), p∧q = 0 off S; may suffice if the charging only needs a resolution AND with a NOT-polluted input.
   lemmaK-research f47e66a is an ABANDONED duplicate (do not merge); f_G lane: s = bcs is the single level conjecture,
   false for large n (Jukna TR05-021).
 
