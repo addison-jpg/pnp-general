@@ -1,0 +1,11 @@
+19134 distinct graph-system circuits
+{'done': 2000, 'err': 0, 'hall_fail': 0, 'tight_circuits': 2000, 'min_slack_tight': 0}
+{'done': 4000, 'err': 0, 'hall_fail': 0, 'tight_circuits': 4000, 'min_slack_tight': 0}
+{'done': 6000, 'err': 0, 'hall_fail': 0, 'tight_circuits': 6000, 'min_slack_tight': 0}
+{'done': 8000, 'err': 0, 'hall_fail': 0, 'tight_circuits': 8000, 'min_slack_tight': 0}
+{'done': 10000, 'err': 0, 'hall_fail': 0, 'tight_circuits': 10000, 'min_slack_tight': 0}
+{'done': 12000, 'err': 0, 'hall_fail': 0, 'tight_circuits': 12000, 'min_slack_tight': 0}
+{'done': 14000, 'err': 0, 'hall_fail': 0, 'tight_circuits': 14000, 'min_slack_tight': 0}
+{'done': 16000, 'err': 0, 'hall_fail': 0, 'tight_circuits': 15991, 'min_slack_tight': 0}
+{'done': 18000, 'err': 0, 'hall_fail': 0, 'tight_circuits': 17991, 'min_slack_tight': 0}
+FINAL {'done': 19134, 'err': 0, 'hall_fail': 0, 'tight_circuits': 19125, 'min_slack_tight': 0}
