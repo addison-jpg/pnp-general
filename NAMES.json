@@ -275,7 +275,7 @@
   "parent": "objects",
   "kind": "object",
   "code": "type A",
-  "means": "meaning not re-derived here: see CanonClass.lean and research-typeA-increment.md",
+  "means": "a set w with h(top_w) = 1, where h is the input of the NOT gate and top_w is the point that is 1 exactly off S_w; equivalently some minterm of h avoids S_w. The other sets (h(top_w) = 0) are the FREE sets, whose world-1 classes K_1(w) at top_w are pairwise disjoint (W1). Source: research-typeA-menus.md, research-typeA-increment.md",
   "role": "Definition",
   "formal": "setOfTypeA"
  },
@@ -283,7 +283,7 @@
   "parent": "objects",
   "kind": "object",
   "code": "type B",
-  "means": "meaning not re-derived here: see fable-global-price.md",
+  "means": "the NOT input is 0 at the point with every input outside the set equal to 1 (h(top_w) = 0)",
   "role": "Definition",
   "formal": "setOfTypeB"
  },
@@ -355,7 +355,7 @@
   "parent": "facts of a minimal counterexample",
   "kind": "fact",
   "code": "R6, no_rewire",
-  "means": "no gate input can be moved to another wire so that the circuit stays correct and a gate goes unread [paper; Lean local to another session]",
+  "means": "no gate input can be moved to another wire so that the circuit stays correct and a gate goes unread [checked]",
   "role": "Lemma (paper)",
   "formal": "MinCE.no_rewire"
  },
@@ -363,7 +363,7 @@
   "parent": "facts of a minimal counterexample",
   "kind": "fact",
   "code": "R7",
-  "means": "meaning not re-derived here: see 951/FINDINGS_2026-11-24.md [reported]",
+  "means": "a gate that depends on the NOT gate, whose NOT-dependent feeding gates are read only inside its cone, differs from both faces C_0 and C_1; an instance of observability with the NOT gate as the wire [paper]",
   "role": "Lemma (reported)",
   "formal": "MinCE.private_not_cone"
  },
@@ -1051,7 +1051,7 @@
   "parent": "local cube",
   "kind": "named",
   "code": "LW1",
-  "means": "a second closure of a cube used in CubeF2.lean; meaning not re-derived here",
+  "means": "every alive set has a zero point inside the cube, off the set, where the NOT input is 0, light points stay light there, and any two alive sets have one set with at most one point outside the other set's zero point; then base(Q) <= |F2(Q)| (baseDQ_le_F2_of_LW1)",
   "role": "Definition",
   "formal": "localClosureByWeightOne"
  },

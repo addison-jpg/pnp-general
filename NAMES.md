@@ -34,7 +34,7 @@ Every name has one parent. Read bottom up: a counterexample or a theorem is a le
     - `baseDQ` · Definition · **monotone optimum of a cube** (old: base(Q), baseDQ): sum of the demands of the alive sets
     - `CubeLocal` · Definition · **local cube**: on the cube the NOT input is one input or constant
       - `muF2_of_notVar` · Theorem · **muF2_of_notVar**: NotVarF2: the statement when the NOT gate reads an input
-      - `localClosureByWeightOne` · Definition · **local closure by weight one** (old: LW1): a second closure of a cube used in CubeF2.lean; meaning not re-derived here
+      - `localClosureByWeightOne` · Definition · **local closure by weight one** (old: LW1): every alive set has a zero point inside the cube, off the set, where the NOT input is 0, light points stay light there, and any two alive sets have one set with at most one point outside the other set's zero point; then base(Q) <= |F2(Q)| (baseDQ_le_F2_of_LW1)
       - `CubeF2` · Module · **CubeF2.lean**
       - `NotVarF2` · Module · **NotVarF2.lean**
     - `CubeNonlocal` · Definition · **non-local cube**: on the cube the NOT input depends on at least two inputs
@@ -57,9 +57,9 @@ Every name has one parent. Read bottom up: a counterexample or a theorem is a le
       - `CanonOneNot` · Module · **CanonOneNot.lean**
     - `lift` · Definition · **lifted circuit** (old: lift, y): the NOT gate replaced by a fresh input y; a monotone circuit for a partial function
     - `liftClass` · Definition · **lifted class**: a class of a set read in the lifted circuit; need not sit above the zero point
-    - `setOfTypeA` · Definition · **set of type A** (old: type A): meaning not re-derived here: see CanonClass.lean and research-typeA-increment.md
+    - `setOfTypeA` · Definition · **set of type A** (old: type A): a set w with h(top_w) = 1, where h is the input of the NOT gate and top_w is the point that is 1 exactly off S_w; equivalently some minterm of h avoids S_w. The other sets (h(top_w) = 0) are the FREE sets, whose world-1 classes K_1(w) at top_w are pairwise disjoint (W1). Source: research-typeA-menus.md, research-typeA-increment.md
       - `TypeA` · Module · **TypeA.lean**
-    - `setOfTypeB` · Definition · **set of type B** (old: type B): meaning not re-derived here: see fable-global-price.md
+    - `setOfTypeB` · Definition · **set of type B** (old: type B): the NOT input is 0 at the point with every input outside the set equal to 1 (h(top_w) = 0)
     - `outputInTwoWorldNormalForm` · Definition · **output in two-world normal form** (old: DD, DD-normal): the output equals (set OR) AND h on one face and (set OR) OR h on the other
       - `TwoWorld` · Module · **TwoWorld.lean**
     - `completeGraphOnFourPointsAsSetSystem` · Definition · **complete graph on four points as set system** (old: K4): all six pairs of four points; the standard small test system
@@ -71,9 +71,9 @@ Every name has one parent. Read bottom up: a counterexample or a theorem is a le
     - `MinCE.live` · Lemma · **every gate is read** (old: R4, live): [checked]
     - `MinCE.not_used` · Lemma · **the NOT gate is essential** (old: R5', not_used): both faces are incorrect [checked]
     - `MinCE.observable` · Lemma · **observability** (old: R+, observable): a constant put on any nonempty set of readers of a wire makes the circuit incorrect [checked]
-    - `MinCE.no_rewire` · Lemma (paper) · **no gate-saving rewiring** (old: R6, no_rewire): no gate input can be moved to another wire so that the circuit stays correct and a gate goes unread [paper; Lean local to another session]
+    - `MinCE.no_rewire` · Lemma (paper) · **no gate-saving rewiring** (old: R6, no_rewire): no gate input can be moved to another wire so that the circuit stays correct and a gate goes unread [checked]
       - `MinCERewire` · Module · **MinCERewire.lean**
-    - `MinCE.private_not_cone` · Lemma (reported) · **private NOT cone** (old: R7): meaning not re-derived here: see 951/FINDINGS_2026-11-24.md [reported]
+    - `MinCE.private_not_cone` · Lemma (reported) · **private NOT cone** (old: R7): a gate that depends on the NOT gate, whose NOT-dependent feeding gates are read only inside its cone, differs from both faces C_0 and C_1; an instance of observability with the NOT gate as the wire [paper]
   - `section TheCount` · Section · **the count** (old: MU): some named family of gates has at least monotone-optimum members; this implies the statement
     - `faceWitness` · Conjecture · **one-face witness gates** (old: F1, UC): OR gates that are 0 at a zero point of an alive set and 1 at two of its atoms, in one face
     - `realWitness` · Conjecture · **real-witness gates** (old: F2): the same with the real circuit in place of a face
