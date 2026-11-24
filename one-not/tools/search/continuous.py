@@ -5,7 +5,9 @@ independently with probability p_v.  ext(p) = E_{mu_p}[slack(Q)].  ext(1_Q) = sl
 d ext / d p_v (p) = E_{mu_p}[slack(Q + v) - slack(Q) | v not in Q].
 Definition (Phi, the diagonal).  Phi(p) = ext(p, ..., p) = sum_i C(n,i) p^i (1-p)^(n-i) m_i, m_i = mean of slack over the
 cubes with i points (Bernstein form).  Phi(0) = slack(empty), Phi(1) = 0.
-Definition (lap, the up-Laplacian).  lap f (Q) = sum_{v not in Q} (f(Q+v) - f(Q)).  n (1-p) Phi'(p) ... see fable-continuous.md.
+Definition (lap, the up-Laplacian).  lap f (Q) = sum_{v not in Q} (f(Q+v) - f(Q)).  (1-p) Phi'(p) = E_p[lap slack].
+Definition (mixed state (Q, R)): x_Q = 1, x_R = 0; slack(Q, R) = slack of the cube Q of the circuit restricted by x_R = 0.
+Notes: one-not/board/agents/fable-continuous.md.
 
 Circuit = the dict of core.py.  Tables are numpy bool arrays over the 2^n inputs (bit v of the index = x_v).
 Run from the repository root:
@@ -24,6 +26,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import core
 
 WIT = 'one-not/data/witnesses/'
+# Counterexample to tight-cube rigidity (slack(Q) = 0 => slack(Q + v) = 0): Fano lines, 19 gates, Q = empty, v = 4, slack 0 -> 1.
+TIGHT_UP = {"n": 7, "sets": [[0, 1, 2], [0, 3, 4], [0, 5, 6], [1, 3, 5], [1, 4, 6], [2, 3, 6], [2, 4, 5]], "gates": [["not", 4], ["or", 2, 0], ["or", 8, 1], ["or", 3, 0], ["or", 10, 4], ["or", 0, 5], ["or", 12, 6], ["or", 3, 1], ["or", 14, 5], ["and", 6, 7], ["and", 6, 2], ["or", 16, 17], ["or", 18, 1], ["or", 19, 4], ["or", 3, 2], ["or", 21, 6], ["and", 2, 7], ["or", 23, 4], ["or", 24, 5]], "outs": [9, 11, 13, 15, 20, 22, 25]}
 
 def load(f):
     d = json.load(open(f)); return {"n": d['n'], "sets": d['sets'], "gates": d['gates'], "outs": d['outs'], "name": os.path.basename(f)[:-5]}
@@ -305,6 +309,8 @@ def cmd_check(files, trials=40):
         for _ in range(trials):
             Q = rng.randrange(1 << n); tot += 1; bad += core.slack(c, Q, w, any_gate) != int(sl[Q])
     print('fast slack table against core.slack: %d of %d agree' % (tot - bad, tot))
+    w = core.tables(7, TIGHT_UP['gates'])
+    print('TIGHT_UP: correct %s, slack(empty) = %d, slack({4}) = %d (core.slack)' % (core.correct(TIGHT_UP, w), core.slack(TIGHT_UP, 0, w, False), core.slack(TIGHT_UP, 16, w, False)))
 
 if __name__ == '__main__':
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'phi'; files = sys.argv[2:] or ([] if cmd == 'hunt' else default_files())

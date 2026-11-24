@@ -92,10 +92,19 @@ for name, code, means in [
  ("point step for real-witness gates", "F2 STEP, GainF2", "some point has gain >= cost; false for all correct circuits, open among circuits with no gate-saving rewiring"),
  ("point step for one-face witness gates", "GainOne, LIGHT-COUNT, HEAVY-COUNT", "the same for one-face witness gates; refuted"),
  ("point deletion", "x_v := 0", "induction that sets a point to 0; refuted"),
- ("mixed induction", "", "set a point to 0 at some cubes and to 1 at others; not refuted, two circuits tested"),
+ ("mixed induction", "mixed step", "at every mixed state (Q, R) (points of Q set to 1, points of R set to 0) with positive base some paying 0-step or 1-step has slack no larger; implies the count (maximum principle); not refuted: 72,106,627 of 72,106,627 states tested, including all states of the twin trees and of the matched twin trees with a 14-input NOT input (fable-continuous.md)"),
  ("k-point step for real-witness gates", "C3_k", "at every cube with positive base some set D of at most k further points has smaller base and slack no larger (a path of at most k points with sum of gain - cost >= 0 at its end); k = 1 is the point step; false for every fixed k for all correct circuits and with every fact of a minimal counterexample except no gate-saving rewiring (matched twin trees); open with it; with no bound on k it is the count"),
  ("gate elimination step", "GE, ElimStep", "setting a point to 1 and simplifying removes at least cost-many gates; the inductive form of the statement"),
 ]: add(name, S, "target", code, means)
+
+# ---- the continuous form (task continuous-mapping, one-not/board/agents/fable-continuous.md)
+for name, code, means in [
+ ("multilinear extension of the slack", "ext", "E[slack(Q)] when each point v is in Q independently with probability p_v; its gradient at a corner is the vector of one-point slack changes, so it has no monotone path from the corner 0 on the twin trees"),
+ ("product-measure average of the slack", "Phi", "ext on the diagonal p_v = p; Bernstein polynomial of the level means of the slack; Phi(0) = slack(empty), Phi(1) = 0; Lean: Phi in ContinuousAttach.lean"),
+ ("mixed slack", "slack(Q, R)", "slack of the cube Q of the circuit restricted by x_R = 0; python continuous.slack_table(c, R); no Lean definition yet"),
+ ("three-state extension of the slack", "ext3", "E[slack(Q, R)] when each point is in Q with probability p_v and in R with probability r_v; its coordinate directions at a corner are the 1-steps and 0-steps"),
+]: add(name, S, "object", code, means)
+add("tight cube rigidity", S, "route", "zero set of the slack is an up-set", "slack(Q) = 0 => slack(Q + v) = 0, equivalently the up-Laplacian of the slack is at most c times the slack; refuted on the Fano corpus (245 of 2,456,029 tight cubes; 19-gate circuit continuous.TIGHT_UP); true on the 3,155-circuit corpus and the witnesses")
 
 # ---- the game
 for name, code, means in [
@@ -122,6 +131,7 @@ for name, parent, means in [
  ("merge_run", "real merge set", "MergeRun.lean: the merge count lemma"),
  ("canon_size / canon_disjoint / canon_cross", "pure class in world 1", "CanonClass.lean"),
  ("lAvoid", "disjoint representatives over real merge sets", "Augment.lean"),
+ ("nonneg_of_descent_at_neg / Phi_zero_nonneg_of_mixed_descent / no_minCE_of_mixed_descent", "mixed induction", "Continuous.lean: maximum principle (descent is needed only at the states of negative slack) and the chain mixed descent => 0 <= Phi gates S 0 => no_minCE; the descent hypothesis is the missing arrow"),
  ("chainSum_eq_telescope / avg_orderings_telescope / sum_shapley", C, "ChainSum_qgd2.lean: the chain sum (L5) is the telescoping identity shared with the Cesaro displacement (L6, lean/.../Helpers/Telescope.lean); averaged over all orderings of the points the count is the sum of each point's chain-averaged step (Shapley value)"),
  ("certD_of_heavy_see / certD_of_see0", "point step for real-witness gates", "CertDHeavy.lean: death of the cone merge sets under x_v := 1 (lemma (D) of the cone certificate), from F1 / F1*"),
 ]: add(name, parent, "lean", name, means)
