@@ -4,7 +4,9 @@ import PEqualNP.W951.MergeSDR
 # Augment: `LAvoid ∧ LAugment ⇒ MergeSDR` by descent on the number of colliding pairs
 
 The referee's proof plan for `no_minCE`, with the two open lemmas kept as HYPOTHESES (`Prop`
-definitions; nothing here proves them).
+definitions; nothing here proves them). The official open target is the weakest form,
+`LAvoid ∧ LAugmentLoose` (`no_minCE_of_augmentLoose`); the referee's `LAugment` implies it
+(`lAugmentLoose_of_lAugment`).
 
 ## Statements
 
@@ -190,6 +192,48 @@ theorem repick_step (z : Fin m → (Fin n → Bool)) (hz : ∀ w, AvoidOpt S gat
     · obtain ⟨b, hb, hnd⟩ := h1
       exact ⟨ws 0, ⟨0, rfl⟩, b, hb, hnd⟩
 
+/-- **LAugmentLoose** (open; the WEAKEST form of the augmenting hypothesis, coord 10:13). For every
+choice `z` of avoiding options with a colliding pair there are distinct sets `ws 0, ..., ws k` and
+avoiding options `o i` such that (i) `ws 0` is in a colliding pair of `z`, every new merge set misses
+the current pick of every set outside `{ws i}`, and (iv) the new merge sets are pairwise disjoint.
+The chain shape of the referee's (ii) is dropped: `repick_step` never uses it. -/
+def LAugmentLoose : Prop :=
+  ∀ z : Fin m → (Fin n → Bool), (∀ w, AvoidOpt S gates w (z w)) →
+    (∃ a b : Fin m, a ≠ b ∧
+      ¬ Disjoint (mergeSet gates (S a) (z a)) (mergeSet gates (S b) (z b))) →
+    ∃ (k : ℕ) (ws : Fin (k + 1) → Fin m) (o : Fin (k + 1) → (Fin n → Bool)),
+      Function.Injective ws ∧ (∀ i, AvoidOpt S gates (ws i) (o i)) ∧
+      (∃ b, b ≠ ws 0 ∧
+        ¬ Disjoint (mergeSet gates (S (ws 0)) (z (ws 0))) (mergeSet gates (S b) (z b))) ∧
+      (∀ i v, (∀ j, v ≠ ws j) →
+        Disjoint (mergeSet gates (S (ws i)) (o i)) (mergeSet gates (S v) (z v))) ∧
+      (∀ i j, i ≠ j →
+        Disjoint (mergeSet gates (S (ws i)) (o i)) (mergeSet gates (S (ws j)) (o j)))
+
+/-- The referee's LAugment implies the loose form ((ii) for `i < k` and (iii) give the outside
+disjointness). -/
+theorem lAugmentLoose_of_lAugment (hA : LAugment S gates) : LAugmentLoose S gates := by
+  intro z hz hc
+  obtain ⟨k, ws, o, hinj, ho, h1, h2, h3, h4⟩ := hA z hz hc
+  refine ⟨k, ws, o, hinj, ho, h1, fun i v hv => ?_, h4⟩
+  by_cases hi : (i : ℕ) < k
+  · exact h2 i hi v (fun j _ => hv j) (hv _)
+  · have hil : i = Fin.last k := Fin.ext (by have := i.2; simp only [Fin.val_last]; omega)
+    subst hil
+    exact h3 v hv
+
+/-- One augmentation step under the loose hypothesis. -/
+theorem augmentLoose_step (hA : LAugmentLoose S gates) (z : Fin m → (Fin n → Bool))
+    (hz : ∀ w, AvoidOpt S gates w (z w))
+    (hc : ∃ a b : Fin m, a ≠ b ∧
+      ¬ Disjoint (mergeSet gates (S a) (z a)) (mergeSet gates (S b) (z b))) :
+    ∃ z' : Fin m → (Fin n → Bool), (∀ w, AvoidOpt S gates w (z' w)) ∧
+      (collPairs fun w => mergeSet gates (S w) (z' w)).card <
+        (collPairs fun w => mergeSet gates (S w) (z w)).card := by
+  obtain ⟨k, ws, o, hinj, ho, h1, hout, h4⟩ := hA z hz hc
+  obtain ⟨z', hz', -, -, hlt⟩ := repick_step S gates z hz ws o hinj ho h1 hout h4
+  exact ⟨z', hz', hlt⟩
+
 /-- **Augmentation step.** Under `LAugment`, a choice of avoiding options with a colliding pair
 can be replaced by one with strictly fewer colliding pairs. -/
 theorem augment_step (hA : LAugment S gates) (z : Fin m → (Fin n → Bool))
@@ -198,21 +242,11 @@ theorem augment_step (hA : LAugment S gates) (z : Fin m → (Fin n → Bool))
       ¬ Disjoint (mergeSet gates (S a) (z a)) (mergeSet gates (S b) (z b))) :
     ∃ z' : Fin m → (Fin n → Bool), (∀ w, AvoidOpt S gates w (z' w)) ∧
       (collPairs fun w => mergeSet gates (S w) (z' w)).card <
-        (collPairs fun w => mergeSet gates (S w) (z w)).card := by
-  obtain ⟨k, ws, o, hinj, ho, h1, h2, h3, h4⟩ := hA z hz hc
-  have hout : ∀ i v, (∀ j, v ≠ ws j) →
-      Disjoint (mergeSet gates (S (ws i)) (o i)) (mergeSet gates (S v) (z v)) := by
-    intro i v hv
-    by_cases hi : (i : ℕ) < k
-    · exact h2 i hi v (fun j _ => hv j) (hv _)
-    · have hil : i = Fin.last k := Fin.ext (by have := i.2; simp only [Fin.val_last]; omega)
-      subst hil
-      exact h3 v hv
-  obtain ⟨z', hz', -, -, hlt⟩ := repick_step S gates z hz ws o hinj ho h1 hout h4
-  exact ⟨z', hz', hlt⟩
+        (collPairs fun w => mergeSet gates (S w) (z w)).card :=
+  augmentLoose_step S gates (lAugmentLoose_of_lAugment S gates hA) z hz hc
 
-/-- **LAvoid ∧ LAugment ⇒ MergeSDR**, by descent on the number of colliding pairs. -/
-theorem mergeSDR_of_avoid_augment (hV : LAvoid S gates) (hA : LAugment S gates) :
+/-- **LAvoid ∧ LAugmentLoose ⇒ MergeSDR**, by descent on the number of colliding pairs. -/
+theorem mergeSDR_of_avoid_augmentLoose (hV : LAvoid S gates) (hA : LAugmentLoose S gates) :
     MergeSDR S gates := by
   have key : ∀ N : ℕ, ∀ z : Fin m → (Fin n → Bool), (∀ w, AvoidOpt S gates w (z w)) →
       (collPairs fun w => mergeSet gates (S w) (z w)).card = N → MergeSDR S gates := by
@@ -222,13 +256,18 @@ theorem mergeSDR_of_avoid_augment (hV : LAvoid S gates) (hA : LAugment S gates) 
       intro z hz hN
       by_cases hc : ∃ a b : Fin m, a ≠ b ∧
           ¬ Disjoint (mergeSet gates (S a) (z a)) (mergeSet gates (S b) (z b))
-      · obtain ⟨z', hz', hlt⟩ := augment_step S gates hA z hz hc
+      · obtain ⟨z', hz', hlt⟩ := augmentLoose_step S gates hA z hz hc
         exact ih _ (hN ▸ hlt) z' hz' rfl
       · refine ⟨z, fun w => mem_zeroPts.mp (hz w).1, fun a b hab => ?_⟩
         by_contra hnd
         exact hc ⟨a, b, hab, hnd⟩
   choose z hz using hV
   exact key _ z hz rfl
+
+/-- **LAvoid ∧ LAugment ⇒ MergeSDR** (the referee's form, through `lAugmentLoose_of_lAugment`). -/
+theorem mergeSDR_of_avoid_augment (hV : LAvoid S gates) (hA : LAugment S gates) :
+    MergeSDR S gates :=
+  mergeSDR_of_avoid_augmentLoose S gates hV (lAugmentLoose_of_lAugment S gates hA)
 
 end Augment
 
@@ -241,5 +280,15 @@ theorem no_minCE_of_augment
       ¬ MinCE S gates out :=
   no_minCE_of_mergeSDR fun n m S gates out M =>
     mergeSDR_of_avoid_augment S gates (H n m S gates out M).1 (H n m S gates out M).2
+
+/-- **951 from LAvoid and LAugmentLoose** (the weakest form, the official open target): if every
+minimal counterexample satisfies both, there is none. -/
+theorem no_minCE_of_augmentLoose
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out → LAvoid S gates ∧ LAugmentLoose S gates) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out :=
+  no_minCE_of_mergeSDR fun n m S gates out M =>
+    mergeSDR_of_avoid_augmentLoose S gates (H n m S gates out M).1 (H n m S gates out M).2
 
 end PEqualNP.Outside.L_meta_951_aux

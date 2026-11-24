@@ -136,3 +136,6 @@ misses the current pick of every set OUTSIDE {w_1..w_k}" are used (`repick_step`
 w_{i+1}'s pick) is never needed, because all of W is re-picked. So LAugment may be WEAKENED to (i) + (iv) + outside-
 disjointness with the same conclusion — a looser target for front. Avoidance is only the invariant that lets LAugment
 re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates). Axioms: propext, Classical.choice, Quot.sound.
+- (11:50) LAugmentLoose landed (coord 10:13): the weakest form, (i) + (iv) + "every new merge set misses the current pick
+  of every set outside the chain"; `lAugmentLoose_of_lAugment`, `no_minCE_of_augmentLoose`. OFFICIAL OPEN TARGET:
+  LAvoid ∧ LAugmentLoose at every MinCE. The referee's LAugment and its theorems are kept (statements unchanged) as instances.
