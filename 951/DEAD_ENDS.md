@@ -59,7 +59,7 @@ for the exact statement. Add a line whenever a kill test fails. coord and resear
 
 ## NOT dead ends (open or supported; do not list as refuted)
 Heavy-point exclusion is OPEN (no lemma excludes it; 842/842 essential clean circuits at s - base = 4 have a heavy unit); heavy split v2;
-refined no-mixed form; StrongCU / ChainPick; MergeSDR (0 failures on 75,619; kernel-checked on 35); L-avoid is PROVED (Lean `lAvoid`); L-augment_2 (= LAugmentK 2) ONLY under MinCE (false in general, row above); PureSDR (official target, 0 failures on 75,619).
+refined no-mixed form; StrongCU / ChainPick; MergeSDR (0 failures on 75,619; kernel-checked on 35); L-avoid is PROVED (Lean `lAvoid`); L-augment_2 (= LAugmentK 2) ONLY under MinCE (false in general, row above); official target since ~12:27: the LIFTED forms MUL / LiftSDR (0 failures; kernel-checked on the barrier suite); PureSDR / MU over pure classes are sufficient but FALSE for general correct circuits (cxMU_dd); UC-MU holds everywhere tested but its point induction is dead (FANO-FORMULA, PAPPUS-JUNK); candidate counted family F2 (real witnesses) under test.
 
 | World 1 only (class I1 for every set) | refuted | 15 of 62, e.g. cfgI, cxT2, cx1 | `kill_tests/ext.py` |
 | World 0 for sets with `h(top_w) = 1`, world 1 for the others (no choice of world) | refuted | 7 of 62: cx44_0, cx44_1, cxT2, cxe3, cxP4, cxtw3, cxtw3c | `kill_tests/ext.py` |

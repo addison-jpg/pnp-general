@@ -15,7 +15,7 @@ classes has at least base = Σ d_w gates (MU / MUL), the circuit has at least ba
 contribution: (a) the menu machinery that makes the reduction sound (Lemma R, L-LIFT, Theorem U);
 (b) the inductive counting form STAR-COUNT that peels one star (the sets through a point v) per
 step, whose heavy half HEAVY-COUNT has 0 failures on all data; (c) the lifted price route (2G-LIFT).
-Remaining maths: two counting lemmas, HEAVY-COUNT (front, A2) and LIGHT-COUNT (integrator's Opus).
+Remaining maths (as of 12:27): two counting lemmas, HEAVY-COUNT (front, A2) and LIGHT-COUNT (integrator's Opus). UPDATE 12:42: over UC, LIGHT-COUNT is FALSE for general circuits (PAPPUS-JUNK, s = 66, base 18; UC-MU still holds there); the heavy case transfers to UC on data (34,387/34,387). Candidate repair: count F2 (real witnesses only, F2 ⊆ UC), which passes MU and the step on everything tested so far, PAPPUS-JUNK included (tight); decision at 13:30.
 
 ## 1. Layer 1 — THEOREMS (Lean, all gated, std axioms, only sorry = no_minCE)
 
@@ -66,7 +66,7 @@ before the wire h.
   d_w gates the monotone remainder cannot see'), with the twist that some paying gates are 0 at
   Q + e_v (V-COUNT refuted), so the count must use classes, not single points. Graphs: a Hall step
   inside the star.
-- LIGHT-COUNT (integrator's Opus): no heavy alive point ⇒ some v satisfies STAR-COUNT. Data hint:
+- LIGHT-COUNT (integrator's Opus) — FALSE over UC for general circuits (PAPPUS-JUNK, 12:40); candidate repair F2. Original statement: no heavy alive point ⇒ some v satisfies STAR-COUNT. Data hint:
   every set is private on all 1,019 no-heavy-point corpus circuits (B) — likely the easier half.
 - Alternative (A1, lifted price form): ∀ π ≥ 0, Σ_w min_z π(M_z(w)) ≤ π(U); proved for 1-gate
   prices and 2-gate prices under C(b); the 2-gate proof is a PARITY argument (odd triangle), not
