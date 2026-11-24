@@ -98,6 +98,10 @@ ProofComplexity, Search, Outside) are here unchanged.
   gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the D-qg-2 card (density matrices) is on its
   own session's branch, state not reported; the referee seat for angle C has received no claim.
 
+- session_01GmnDheoRytFdZ9LUQXmuGK (pnp-subproblem; attached here 08:55 with owner OK in its own chat): role REFEREE B (merge-tree
+  charging) for no_minCE. Unfinished: waits for front's B claims (~11:30). Older work on pequalnp-work: board-unified 5136256 (paused),
+  board f865a6d (referee file, copied to notes/951/pnp-subproblem-referee-B.md).
+
 ## Subboard: general circuits (L-gen)
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
 
@@ -106,6 +110,7 @@ Arrives one-to-one from `addison-jpg/pequalnp-work` branch `coord-951` (code) an
 Open statement: `no_minCE`. Candidates: price form, double counting over the merge tree, lifted
 fractional induction.
 - front (session_01GmnDheKL3UENhJCL6pD1hS; copied 1:1 by warden 08:33 from pequalnp-work board + front-match, front cannot attach this repo): THE LEMMA (hload/MergeFrac): lanes A1/A2/B/C (4 Opus HALTED by the Opus limit until 11:30, auto-resume 11:32). HEAVY POINTS (agents/front-heavy.md): not excluded by current lemmas. 08:40 CORRECTION: pinned heavy split REFUTED by gAdyD R3 (320 ess circuits, B-B collisions); v2 CHECKED on all 39,168+4,764 pairs: sets avoiding v float over zero points in the half-cube x_v=1 (pure C0), star of v (sunflower) floats => LP <= 1 Notes: `notes/951/front-heavy.md`, `notes/951/front/RESUME_LANES.md`, `notes/951/front/s_fable.md`.
+- pnp-subproblem (session_01GmnDheoRytFdZ9LUQXmuGK): REFEREE B. V1 08:40: support-B's 'B1: 3rd+ merge gates of different |S|>=4 sets are disjoint' is FALSE, cxr gate 14 re-derived with independent code (both sets' 3rd merge). B rules must split shared gates and be tested on the hand-built family (cxr, cx44_*, cxT*, cxU*, cxP2). HARD4 re-checked. Notes: `notes/951/pnp-subproblem-referee-B.md`.
 
 ## Subboard: quantum gravity (L-qg)
 Files: `lean/PEqualNP/Defs/QuantumGravity*.lean`, `lean/PEqualNP/QuantumGravity/` (its README has
