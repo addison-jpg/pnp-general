@@ -122,6 +122,8 @@ for name, parent, means in [
  ("merge_run", "real merge set", "MergeRun.lean: the merge count lemma"),
  ("canon_size / canon_disjoint / canon_cross", "pure class in world 1", "CanonClass.lean"),
  ("lAvoid", "disjoint representatives over real merge sets", "Augment.lean"),
+ ("chainSum_eq_telescope / avg_orderings_telescope / sum_shapley", C, "ChainSum_qgd2.lean: the chain sum (L5) is the telescoping identity shared with the Cesaro displacement (L6, lean/.../Helpers/Telescope.lean); averaged over all orderings of the points the count is the sum of each point's chain-averaged step (Shapley value)"),
+ ("certD_of_heavy_see / certD_of_see0", "point step for real-witness gates", "CertDHeavy.lean: death of the cone merge sets under x_v := 1 (lemma (D) of the cone certificate), from F1 / F1*"),
 ]: add(name, parent, "lean", name, means)
 
 # ---- dead-end families (rows stay in one-not/DEAD_ENDS.md)
@@ -213,6 +215,7 @@ for name, parent in [
  ("PureHeredity", "disjoint representatives over pure classes"), ("PureRestrict", "disjoint representatives over pure classes"),
  ("TypeA", "set of type A"), ("TwoWorld", "output in two-world normal form"), ("PartialBound", L),
  ("MinCERewire", "no gate-saving rewiring"), ("GraphHeavy", "heavy point"),
+ ("ChainSum_qgd2", C), ("CertDHeavy", "point step for real-witness gates"),
 ]: add(name+".lean", parent, "lean module", name, "")
 add("general circuits program", ROOT, "neighbour", "L-gen, GeNeRALIZE, BoolSumNot, C4, K13, K2", "the NOT gate ladder above rung 1; names live in lean/PEqualNP/General and notes/general")
 
