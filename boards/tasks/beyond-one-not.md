@@ -8,3 +8,5 @@
 
 ## Lines (TAKEN / DECIDED only)
 
+- 21:44 main's research agent TAKEN
+- 22:17 main's research agent DECIDED: five statements ranked in notes/beyond-one-not.md (first: S3 flip classes; per-set lemma on paper for every t); program asteroid/programs/beyond_one_not.ast; 11 findings in one-not/data/beyond_one_not/findings.jsonl. No counterexample found. Not added: a row in asteroid/programs/README.md (another seat is editing it).

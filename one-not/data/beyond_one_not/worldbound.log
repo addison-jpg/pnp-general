@@ -1,0 +1,31 @@
+$ python3 -I one-not/tools/beyond_one_not/worldbound.py systems
+system | n | sets | base | W1 = max_x min(b1, b0) | W1 / base | a best x (points set to 1 in the up world) | weight bands: t -> value
+  two triples | 5 | 2 | 4 | 1 | 0.25 | [1, 2] | {1: 1, 2: 0, 3: 0}
+  triangle of triples | 6 | 3 | 6 | 2 | 0.33 | [1, 2, 3] | {1: 3, 2: 0, 3: 0}
+  two 4-sets | 7 | 2 | 6 | 2 | 0.33 | [1, 2, 3] | {1: 2, 2: 0, 3: 0}
+  Pasch | 6 | 4 | 8 | 2 | 0.25 | [0, 1, 3] | {1: 3, 2: 0, 3: 0}
+  Fano, q = 2 | 7 | 7 | 14 | 2 | 0.14 | [0, 1, 2] | {1: 3, 2: 0, 3: 0}
+  PG(2,3) | 13 | 13 | 39 | 6 | 0.15 | [0, 2, 3, 4] | not computed (n > 7)
+  PG(2,4) | 21 | 21 | 84 | 16 | 0.19 | [0, 1, 2, 4, 6, 7, 10] | not computed (n > 7)
+$ python3 -I one-not/tools/beyond_one_not/worldbound.py circuits
+file | n | NOT gates | AND/OR gates | base | worldbound | live NOT patterns | AND/OR gates >= worldbound
+  essential_t1_seed1.json | 5 | 1 | 8 | 5 | 3 | 2 | True
+  essential_t2_seed1.json | 5 | 2 | 9 | 5 | 3 | 3 | True
+  essential_t3_seed1.json | 7 | 3 | 6 | 6 | 2 | 4 | True
+  cx44_1_junk.json | 7 | 1 | 58 | 6 | 4 | 2 | True
+  cxMU_clean2.json | 7 | 1 | 29 | 6 | 4 | 2 | True
+  cxMU_clean2_DD.json | 7 | 1 | 32 | 6 | 4 | 2 | True
+  cxMU_dd.json | 7 | 1 | 35 | 6 | 4 | 2 | True
+  ess_rand_clean_744.json | 5 | 1 | 8 | 5 | 3 | 2 | True
+  fano_formula.json | 7 | 1 | 16 | 14 | 11 | 2 | True
+  junk.json | 5 | 1 | 8 | 4 | 3 | 2 | True
+  general_count_below_base_min.json | 7 | 4 | 6 | 6 | 2 | 8 | True
+  general_count_below_base_t4.json | 7 | 4 | 63 | 6 | 2 | 8 | True
+  general_count_below_base_t5.json | 7 | 5 | 47 | 6 | 2 | 8 | True
+  general_count_below_base_t6.json | 7 | 6 | 59 | 6 | 2 | 8 | True
+  pasch_s14_heavy_atmostone.json | 6 | 1 | 13 | 8 | 4 | 2 | True
+  see_gap_n5.json | 5 | 1 | 10 | 5 | 2 | 2 | True
+  star4.json | 4 | 1 | 46 | 3 | 1 | 2 | True
+  star4b_threshold.json | 4 | 1 | 13 | 3 | 1 | 2 | True
+  tri_all_5593.json | 6 | 1 | 14 | 8 | 4 | 2 | True
+worldbound | 19 correct circuits with at least one NOT gate and n <= 8 | failures of AND/OR gates >= worldbound: 0

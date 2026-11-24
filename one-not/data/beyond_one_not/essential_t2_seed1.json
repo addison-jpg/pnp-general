@@ -1,0 +1,1 @@
+{"n": 5, "sets": [[0, 3], [1, 2, 4], [2, 3], [1, 3]], "gates": [["and", 2, 3], ["not", 5], ["and", 1, 6], ["or", 7, 5], ["or", 2, 3], ["or", 4, 8], ["or", 2, 10], ["not", 2], ["and", 9, 12], ["or", 8, 13], ["or", 0, 3]], "outs": [15, 11, 9, 14], "name": "no face correct, no repeated function, 2 NOT gates", "gates_minus_base": 6}
