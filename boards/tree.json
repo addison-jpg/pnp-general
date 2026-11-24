@@ -2,11 +2,13 @@
  ".": {
   "counts": {
    "refuted": 2,
+   "tested": 1,
    "checked": 11
   },
   "verified": [
    "7dbb073c",
    "f4704cc4",
+   "c7512878",
    "30cf54bf",
    "0f8afdc1",
    "dcd62f26",
@@ -24,11 +26,13 @@
  "one-not": {
   "counts": {
    "refuted": 2,
+   "tested": 1,
    "checked": 11
   },
   "verified": [
    "7dbb073c",
    "f4704cc4",
+   "c7512878",
    "30cf54bf",
    "0f8afdc1",
    "dcd62f26",
@@ -129,6 +133,15 @@
   ],
   "unverified_here": []
  },
+ "one-not/tools": {
+  "counts": {
+   "tested": 1
+  },
+  "verified": [
+   "c7512878"
+  ],
+  "unverified_here": []
+ },
  "one-not/tools/kill_tests": {
   "counts": {},
   "verified": [],
@@ -142,17 +155,15 @@
   ]
  },
  "one-not/tools/search": {
-  "counts": {},
-  "verified": [],
+  "counts": {
+   "tested": 1
+  },
+  "verified": [
+   "c7512878"
+  ],
   "unverified_here": [
    {
     "id": "ed5f9c48",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "c7512878",
     "why": [
      "needs a second seat in by"
     ]
