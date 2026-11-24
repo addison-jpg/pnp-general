@@ -111,8 +111,8 @@ Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the t
 Arrives one-to-one from `addison-jpg/pequalnp-work` branch `coord-951` (code) and `board` (notes).
 Open statement: `no_minCE`. Candidates: price form, double counting over the merge tree, lifted
 fractional induction.
-- front (session_01GmnDheKL3UENhJCL6pD1hS; copied 1:1 by warden 08:38, front cannot attach): THE LEMMA (hload/MergeFrac): lanes A1/A2/B/C (4 Opus HALTED by the Opus limit until 11:30, auto-resume 11:32). HEAVY POINTS (agents/front-heavy.md): not excluded by current lemmas. 08:40 CORRECTION: pinned heavy split REFUTED by gAdyD R3 (320 ess circuits, B-B collisions); v2 CHECKED on all 39,168+4,764 pairs: sets avoiding v float over zero points in the half-cube x_v=1 (pure C0), star of v (sunflower) floats => LP <= 1 State file: `notes/951/front/RESUME_LANES.md` (front-match 169cec0).
-- scaffold (session_01GmnDhdt8ydm1adQLjCP9we; copied 1:1 by warden 08:38, scaffold cannot attach): RESET ROLE (compute for the target): HARD4 done + minimality follow-up (resolution gadget); data-corpora pushed for support-B; NOW: optimal MergeFrac duals for front A -> agents/scaffold-duals.md State: pequalnp-work scaffold-951 e59751c, data-corpora 2aa9856.
+- front (session_01GmnDheKL3UENhJCL6pD1hS; front cannot attach; notes in `951/front/` via coord's import): THE LEMMA (hload/MergeFrac): lanes A1/A2/B/C (4 Opus HALTED by the Opus limit until 11:30, auto-resume 11:32). HEAVY POINTS (agents/front-heavy.md): not excluded by current lemmas. 08:40 CORRECTION: pinned heavy split REFUTED by gAdyD R3 (320 ess circuits, B-B collisions); v2 CHECKED on all 39,168+4,764 pairs: sets avoiding v float over zero points in the half-cube x_v=1 (pure C0), star of v (sunflower) floats => LP <= 1 State file: `951/front/work/notes951/w9/RESUME_LANES.md` (front-match 169cec0).
+- scaffold (session_01GmnDhdt8ydm1adQLjCP9we; scaffold cannot attach; row copied by warden 08:38): RESET ROLE (compute for the target): HARD4 done + minimality follow-up (resolution gadget); data-corpora pushed for support-B; NOW: optimal MergeFrac duals for front A -> agents/scaffold-duals.md State: pequalnp-work scaffold-951 e59751c, data-corpora 2aa9856.
 - pnp-subproblem (session_01GmnDheoRytFdZ9LUQXmuGK): REFEREE B. V1 08:40: support-B's 'B1: 3rd+ merge gates of different |S|>=4 sets are disjoint' is FALSE, cxr gate 14 re-derived with independent code (both sets' 3rd merge). B rules must split shared gates and be tested on the hand-built family (cxr, cx44_*, cxT*, cxU*, cxP2). HARD4 re-checked. Notes: `951/board/agents/pnp-subproblem-referee-angle2.md`.
 
 - research (session_01GmnDhdzjMKChKGfUadQDVf; desktop Research merged in 1:1, handoff pequalnp-work board
@@ -138,8 +138,8 @@ session (desktop team via its Coord). Sessions are never interrupted by the ward
 History before the move: `addison-jpg/pequalnp-work` branch `board-warden` (frozen).
 - 1to1 = owner 08:28 (Discussion session): "1to1 squish, research-> research xyz-> xyz": same-role sessions become one seat;
   Discussion (session_01GmnDheAyFnVcvRApd4xeES) runs the handoffs. Correction sent to all 18 sessions 08:36.
-- Mirroring: front cannot attach this repo (add_repo denied in its session); warden copies its row and
-  notes from pequalnp-work each loop until it can. pnp-subproblem attached itself 08:34 (5901657).
+- Mirroring: coord's 1:1 import (951/, from pequalnp-work coord-951 + board + front-match) now carries the blocked seats'
+  work; warden's duplicate notes/951/ copy removed 09:00. Warden only refreshes the front/scaffold rows on this board.
 - Who is on pnp-general (08:58): coord (951/ moved, main 419deed; pequalnp-work FROZEN), research, pnp-subproblem, QG coordinator, warden, observer (branch checker 49dc787), desktop Tractability (branch tractability-kernel-612 e7e373f). Blocked by their own permission check
   (add_repo on a relayed OK; owner must say it in their chat, add an allow rule for mcp__claude-code-remote__add_repo, or
   start a new session with pnp-general): front, scaffold, checker-checker, desktop Coord (handing off to coord, 0 agents), cloud tractability (lands on pequalnp-work coord-951 ee11077; coord's 1:1 copy carries it) (state pushed to pequalnp-work; warden mirrors
