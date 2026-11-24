@@ -29,7 +29,8 @@ Run from anywhere (after `pip install -e .` in the repository; or `python3 -m as
   asteroid FILE.ast                 run one program (also: asteroid run FILE.ast)
   asteroid test                     run every program under asteroid/examples and asteroid/programs
   asteroid version
-  --no-lean                         Python and plots only. Chosen automatically when Lean is not installed.
+  --no-lean                         evaluate only, prove nothing. Chosen automatically when Lean is not installed.
+  --show-lean                       also print the generated Lean files and the axioms used
 Python proposes, Lean decides: a `by lean` claim counts only if the generated module builds."""
 import sys, os, re, json, subprocess, shlex, operator, time
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # the repository, wherever the command is typed
@@ -207,6 +208,7 @@ def plot_phi(names, out):
     ax[0].legend(fontsize=7); fig.tight_layout(); fig.savefig(out, dpi=150)
 
 NO_LEAN = False
+SHOW_LEAN = False
 FORCE = False
 FORCE_SEEN = {}
 EXTRA_LEAN = {"imports": [], "decls": []}   # extensions may add Lean imports and declarations to the generated module
@@ -259,23 +261,28 @@ def run(script):
                 if importlib.import_module("asteroid." + os.path.basename(f)[:-3]).handle(line, api): break
             else: raise SystemExit(f"{script}:{ln}: cannot parse: {line}")
     L = None if NO_LEAN else build_lean(script)
-    if NO_LEAN and lean_claims: print(f"lean: skipped (--no-lean); {len(lean_claims)} claims wait for the kernel")
-    if L: print(f"lean: {L['module']} {'BUILT' if L['ok'] else 'FAILED'} in {L['seconds']} s; {len(L['theorems'])} theorems; axioms: {L['axioms']}")
+    if NO_LEAN and lean_claims: print(f"not proved: {len(lean_claims)} claims were only evaluated (no proof checker in this run)")
+    if L:
+        if L["ok"]: print(f"proved: {len(L['theorems'])} claims accepted by the proof checker in {L['seconds']} s")
+        else: print(f"NOT PROVED: the proof checker rejected this program's claims ({L['seconds']} s)")
+        if SHOW_LEAN: print(f"  lean module {L['module']}; axioms: {L['axioms']}")
     if L and L.get("sound"):
-        Sd = L["sound"]; print(f"lean, project semantics: {Sd['module']} {'BUILT' if Sd['ok'] else 'FAILED'} in {Sd['seconds']} s; {len(Sd['theorems'])} claims restated with Circuit.eval / F2 / baseDQ")
+        Sd = L["sound"]
+        print((f"proved: {len(Sd['theorems'])} of them also hold in the project's own definitions" if Sd["ok"] else "NOT PROVED: the restatement in the project's own definitions failed") + f" ({Sd['seconds']} s)")
+        if SHOW_LEAN: print(f"  lean module {Sd['module']}")
     bad = [r for r in results if not r[2]]
     for d, item, word, stmt in records:
         if bad or (word == "checked" and not (L and L["ok"])): print(f"record skipped ({stmt[:40]}...): a claim failed or Lean did not build"); continue
         import boards
         ev = [script] + ([f"{L['module']}::{L['theorems'][-1]}"] if L and L["ok"] else []) + list(dict.fromkeys(src.values()))
         boards.add(d, "asteroid", item, word, stmt, ev); boards.build()
-    print(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; Lean decided {len(L['theorems'])}" if L and L["ok"] else ""))
+    print(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; {len(L['theorems'])} proved" if L and L["ok"] else ""))
     return 1 if bad or (L and not L["ok"]) or (L and L.get("sound") and not L["sound"]["ok"]) else 0
 
 VERSION = "asteroid 0.3 (Python + Lean kernel + matplotlib)"
 def main(argv):
-    global NO_LEAN
-    NO_LEAN = "--no-lean" in argv; argv = [a for a in argv if a != "--no-lean"]
+    global NO_LEAN, SHOW_LEAN
+    NO_LEAN = "--no-lean" in argv; SHOW_LEAN = "--show-lean" in argv; argv = [a for a in argv if a not in ("--no-lean", "--show-lean")]
     # a program path is read from where the command was typed
     argv = [os.path.relpath(os.path.join(CALLER_DIR, a), ROOT) if a.endswith(".ast") and not os.path.isabs(a) else a for a in argv]
     import shutil
