@@ -269,10 +269,24 @@ to repair a thin layer.
   the blocks B that one f-gate absorbs at once. For heavy v all of F(v) dies (F1); for light v, F1* bounds the survivors.
 - Caution (CHECKED false): a union-find merge into v's component need not be a SEE gate (its input block can sit in v's
   component without containing v). Use f(u), not "v-merges".
-- OPEN: ABSORB. For some alive v, the deficit and the surviving f-gates are covered by dying gates outside F(v):
+- OPEN: ABSORB (see the correction below: it is the step itself, rewritten). For some alive v, the deficit and the surviving f-gates are covered by dying gates outside F(v):
   |gain(v) \ F(v)| ≥ deficit(v) + |F(v) ∩ SURV(v)|. The candidates are the merges inside each absorbed block B
   (same-set ones are in F2(Q) and die iff no witness contains v; cross ones need not be in F2(Q)).
 **Kill test:** firstjoin.py. f(u) is an OR gate in F2(Q) ∩ SEE(v) on 59,398 random (instance, v) pairs + 519 witness pairs.
 Some v has deficit 0 and no surviving f-gate on 19,613 / 19,620 random instances and 120 / 124 witness restrictions (there
 the step is immediate). At every heavy v, gain \ F(v) covers the deficit on 25,597 / 25,597 random heavy pairs and 242 / 243
 witness heavy pairs.
+
+**Correction and status after machines-Lean's F2FirstJoin (dwV8p, 13:3x).**
+- ABSORB is NOT sharper than the step: F(v) ⊆ F2(Q) gives gain(v) = (F(v) \ SURV(v)) ⊔ (gain(v) \ F(v)), so
+  ABSORB at v is exactly gain(v) ≥ cost(v), rewritten. It is bookkeeping (gainF2_of_absorb is an equivalence in
+  substance), not a reduction. The real content is WHICH gates of gain \ F pay for the deficit.
+- INTERNAL (a genuinely stronger form; one part PROVED). For each block B absorbed at once by one f-gate, take the
+  union-find restricted to B over earlier OR gates whose real block avoids v. This gives |B| − 1 internal merges.
+  PROVED: internal merges are not in F(v), since their blocks avoid v while every f-gate's block contains v.
+  INTERNAL at v: the internal merges are distinct, all in F2(Q), all die, and F(v) ∩ SURV(v) = ∅. Then the step holds.
+  CHECKED (internal.py): some v satisfies INTERNAL on 59,078 / 59,078 random instances (ROOT-OK on 59,069). FALSE on the
+  witness data/witnesses/star4.json at Q = ∅ (light root): at every v, either an f-gate survives or an internal merge
+  joins two points of different star sets (a cross pair, not in F2(Q)); the step still holds there.
+- So a proof must pay for (a) f-gate survivors at light v (F1*: type-A world-0 servants) and (b) cross internal merges
+  from OTHER gates. star4 at Q = ∅ is the smallest place to see both; K3 gates are the first candidates (SEE+K3 holds there).
