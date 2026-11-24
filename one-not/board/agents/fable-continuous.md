@@ -140,8 +140,8 @@ edges, so it is the discrete statement and nothing more.
 | Fano corpus, every 20th circuit | 4,010 | 4,860,120 | 0 | 2 | 0 |
 | total | 7,199 | 72,106,627 | 8 | 6 | **0** |
 
-Hill climbing against `MixedStep` (`continuous.py hunt`, n ≤ 6 and n ≤ 7, see the task board for the counts):
-no counterexample; hill climbing that finds nothing proves nothing.
+Hill climbing against `MixedStep` (`continuous.py hunt 300 2 6` and `hunt 300 3 7`: 207,536 and 88,907 mutations,
+55,296 and 21,220 accepted): no counterexample; hill climbing that finds nothing proves nothing.
 
 **What it shows on the twin trees.** At (∅, ∅): every 1-step raises the slack (6 → 7, 8, 9, 11), but 0-steps change
 it by −2 (cost 1), −1 (cost 2) or +1 (cost 1). The junk of a leaf pair is an AND with one input; setting that

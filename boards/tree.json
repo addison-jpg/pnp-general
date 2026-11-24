@@ -3,6 +3,7 @@
   "counts": {
    "tested": 2,
    "refuted": 3,
+   "tested": 1,
    "checked": 11
   },
   "verified": [
@@ -29,6 +30,7 @@
   "counts": {
    "tested": 2,
    "refuted": 3,
+   "tested": 1,
    "checked": 11
   },
   "verified": [
@@ -245,6 +247,12 @@
    },
    {
     "id": "f2dd6892",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "32b2d9b4",
     "why": [
      "needs a second seat in by"
     ]
