@@ -1,5 +1,12 @@
 # Board: P versus NP through general circuits
 
+> # STATE RESULTS AT FULL STRENGTH. NO HEDGING BEFORE REVIEW.
+> (Owner, 2026-11-24: "we can be much stronger about the one not question... no point in hedging before review even starts".)
+>
+> - The one-NOT question is OPEN in the literature (posed by Jukna and Sergeev 2013 §7 and Blum 2024) and no result on it has been published. Write that as a fact. The results here are the first: write that too.
+> - Write what is proved as proved, in the strongest true form, without "to our knowledge", "it seems", "appears to". A reviewer's job is to challenge it; ours is to state it.
+> - The one line that does not move: a statement is called proved only if the proof checker accepted it. The general case of the one-NOT theorem is NOT proved (one open statement, `no_minCE`) and nothing says it is. Strong wording is for what is established; it never upgrades tested or conjectured to proved, and nothing says P versus NP is settled.
+
 > # THE BOARDS ARE A DATA STRUCTURE. NO MORE GRAFFITI.
 > (Owner, 2026-11-24: "the sub boards and main board are now a data structure. no more graffiti... propogate up from small verified findings. its sort of like a board tree built onto the tree of the GitHub repo.")
 >
