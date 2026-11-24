@@ -13,11 +13,10 @@ The format comes from two benchmark sets of the IEEE International Symposium on 
 - F. Brglez, D. Bryan and K. Kozminski, "Combinational profiles of sequential benchmark circuits",
   Proc. IEEE ISCAS, May 1989, pp. 1929-1934, doi:10.1109/ISCAS.1989.100747 (the ISCAS-89 circuits).
 
-The format was never formally specified. The 1985 circuits were distributed on tape in a numeric
-node-list form together with a Fortran translator; the `INPUT(…)` / `OUTPUT(…)` / `name = GATE(…)`
-text form is the one in which both sets circulate today, and its definition is the behaviour of the
-tools that read it: ABC (`read_bench`, `write_bench`), Atalanta, and the parser library lorina. No
-grammar was found in any of them. This page is therefore the grammar asteroid uses. Where practice
+The format has no formal grammar. The 1985 paper describes a numeric node-list form and a Fortran
+translator; the `INPUT(…)` / `OUTPUT(…)` / `name = GATE(…)` text form is the one in which both sets
+circulate today, and its definition is the behaviour of the tools that read it: ABC (`read_bench`,
+`write_bench`), Atalanta, and the parser library lorina. This page is the grammar asteroid uses. Where practice
 varies, the choice made here is marked *asteroid's choice*. Read status of every source:
 `LITERATURE.md`, section "Circuit file formats".
 

@@ -36,7 +36,7 @@ def python_line(path):
 
 
 def main():
-    files = [os.path.join(ROOT, "hello.bench")] + sorted(glob.glob(os.path.join(ROOT, "one-not/data/witnesses/**/*.bench"), recursive=True))
+    files = [os.path.join(ROOT, "hello.bench")] + sorted(glob.glob(os.path.join(ROOT, "one-not/data/witnesses/**/*.bench"), recursive=True)) + sorted(glob.glob(os.path.join(ROOT, "one-not/data/beyond_one_not/*.bench")))
     with tempfile.TemporaryDirectory() as d:
         bad = []
         for i, s in enumerate(MALFORMED):

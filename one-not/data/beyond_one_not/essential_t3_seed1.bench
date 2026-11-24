@@ -1,0 +1,23 @@
+# no face correct, no repeated function, 3 NOT gates
+INPUT(x0)
+INPUT(x1)
+INPUT(x2)
+INPUT(x3)
+INPUT(x4)
+INPUT(x5)
+INPUT(x6)
+OUTPUT(g4)
+OUTPUT(g6)
+OUTPUT(g8)
+#@ or g4 = x0 x1 x2
+#@ or g6 = x0 x3 x4
+#@ or g8 = x0 x5 x6
+g0 = NOT(x0)
+g1 = NOT(x1)
+g2 = AND(g0, g1)
+g3 = NOT(g2)
+g4 = OR(g3, x2)
+g5 = OR(x0, x3)
+g6 = OR(g5, x4)
+g7 = OR(x0, x5)
+g8 = OR(g7, x6)
