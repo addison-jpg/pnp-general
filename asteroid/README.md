@@ -1,10 +1,10 @@
-<picture><source media="(prefers-color-scheme: dark)" srcset="../site/logo-dark.svg"><img alt="4ST3RO1D (asteroid)" src="../site/logo-light.svg" height="56"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="../site/logo-dark.svg"><img alt="4STeroid (asteroid)" src="../site/logo-light.svg" height="56"></picture>
 
-*The logo is lettered in two fan-made fonts in the styles of Terezi Pyrope and Vriska Serket from* Homestuck, *Andrew Hussie's webcomic (2009 to 2016), a story in which most of the characters write code and the plot runs on game rules and timelines. Thanks to Hussie and to the makers of the fonts terezzzzzzz and Arachnidsgrip1. Details: [`site/LOGO.md`](../site/LOGO.md).*
+*The logo is lettered in two fan-made fonts: "4ST" in the style of Terezi Pyrope (her capitals, A as 4) and "eroid" in the style of Vriska Serket, from* Homestuck, *Andrew Hussie's webcomic (2009 to 2016), a story in which most of the characters write code and the plot runs on game rules and timelines. Thanks to Hussie, to the Homestuck: Beyond Canon team (Addison loved the existentialist Dirk monologues), and to the makers of the fonts terezzzzzzz and Arachnidsgrip1. Details: [`site/LOGO.md`](../site/LOGO.md).*
 
 # asteroid
 
-A small language over three engines (owner, 2026-11-24: "lean for brute force, python for speed/background,
+A small language over three engines (Addison, 2026-11-24: "lean for brute force, python for speed/background,
 and matplotlib as an available tool... take what they've built and integrate it into a novel, relatively
 simple, framework"; "please call it asteroid").
 

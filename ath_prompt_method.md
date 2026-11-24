@@ -7,9 +7,9 @@ measured, and nothing in it is proved.
 It is also not a claim about P versus NP. The method produced the tools in this repository, asteroid
 among them. That is all it is claimed to have done.
 
-## The owner's idea
+## Addison's idea
 
-In the owner's words:
+In Addison's words:
 
 > "informal prompting in small scale tasks, even as silly as a scene queen furry, helps to distill
 > tasks in fun ways for the user and agent (even if agent isnt conscious). then, the thing that
@@ -19,7 +19,7 @@ In the owner's words:
 > and the really special part-- they all have boards, which can be properly allocated to make
 > communication easier."
 
-The owner asked for this to be written down as "a qualitative conjecture about my prompting methods,
+Addison asked for this to be written down as "a qualitative conjecture about my prompting methods,
 including informality and scene speak. it adds taste", and as "a qual framework that assists
 asteroid without any actual formality".
 
@@ -37,7 +37,7 @@ asteroid without any actual formality".
 
 ## Informality and scene speak
 
-The owner writes to agents the way one writes to a friend: lower case, slang, jokes, sometimes a
+Addison writes to agents the way one writes to a friend: lower case, slang, jokes, sometimes a
 full scene register. Some of the lines that shaped this repository are in that voice. "no more
 graffiti" turned the boards into a data structure. "its like taking an icepick to an earhole" became
 the rule about agent size. "smaller tasks smaller boards" became the layout of `boards/tasks/`.
@@ -56,16 +56,16 @@ Four reasons this may help on small tasks:
 The phrase "it adds taste" is part of the claim. A voice carries preferences that a specification
 leaves out: what counts as too much, what counts as boring, when to stop.
 
-None of this assumes the agent is conscious, or that it enjoys anything. The owner says so in the
+None of this assumes the agent is conscious, or that it enjoys anything. Addison says so in the
 quote above. The effect, if it is real, is on how tasks get stated and handed over. A person who is
 having fun writes more asks, smaller asks, and more honest corrections.
 
 ## From informality to structure
 
-The owner built the frame by hand. On that day there were about a dozen parallel sessions with named
+Addison built the frame by hand. On that day there were about a dozen parallel sessions with named
 roles: coord, front, scaffold, research, warden, tractability, machines-Lean, cTAHG and others.
 Several came in pairs across two machines, a desktop coord and a cloud coord, a front with a front.
-One main session sat in the middle. It relayed the owner's words, split the work and merged the
+One main session sat in the middle. It relayed Addison's words, split the work and merged the
 results. Under it were subagents of different sizes.
 
 Every seat had somewhere to write. There was one main board (`BOARD.md`), area boards
@@ -75,7 +75,7 @@ findings kept in `findings.jsonl` next to their evidence, and a script (`boards.
 the verified ones up the directory tree into `boards/TREE.md`.
 
 The mirrored pairs give each seat a partner who has the same job and reads the same board. The
-coordinator gives the owner one place to speak. The boards mean that an instruction can stay
+coordinator gives Addison one place to speak. The boards mean that an instruction can stay
 informal and still not be lost, because the board holds the exact statement, who has it, and what
 would count as done.
 
@@ -83,8 +83,8 @@ would count as done.
 
 The rules in `BOARD.md` were not designed in advance. Each one is a repair.
 
-- Merge conflicts in shared files pulled the owner in to resolve them by hand. This produced "do not
-  ask the owner, use the board", and union merges for the boards, so both sides' lines are kept.
+- Merge conflicts in shared files pulled Addison in to resolve them by hand. This produced "do not
+  ask Addison, use the board", and union merges for the boards, so both sides' lines are kept.
 - Agents in a shared working tree swept up each other's files in their commits. This produced rules
   about staging only your own files, and the plan for one integrating seat that pushes while the
   others pull.
@@ -118,7 +118,7 @@ None of this has been done.
   informal one, many times over, and compare the length of the ask, the number of corrections and
   whether the result was right.
 - Run the same project with and without per-task boards, and count duplicated work, merge conflicts
-  and questions sent to the owner.
+  and questions sent to Addison.
 
 ## Related ideas
 
