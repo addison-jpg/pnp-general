@@ -14,6 +14,9 @@ star `1` at `Q + e_v`) with cTAHG's (S) (`certS_of_tu`, `certS_stair`, TUCert.le
 * `cert3c_of_heavy_stair`: the same at the staircase points (`h = 0` there).
 * `no_minCE_of_heavy_tu_or_local`: every `Q` with positive base is `CubeLocal`, satisfies LW1, or has a
   heavy `v ∉ Q` with such zero points ⇒ no minimal counterexample.
+* `cert3c_of_see0_tu`, `no_minCE_of_see0_tu_or_local`: the same at ANY `v` with qg-d2's SEE0 (cone merges
+  `1` at `Q + e_v` in the real circuit and in `C_0`, `certD_of_see0`): qg-d2's PROVED coverage 16,970 /
+  17,045 non-local all-read instances.
 
 Data (tools/kill_tests/tu_cert.py, flags `hsee_tu`, `hsee_stair`): heavy SEE + TU zero points exist at
 101 / 155 local non-local instances with a heavy point (staircase: 92). MATCH-C (board
@@ -63,6 +66,22 @@ theorem cert3c_of_heavy_stair (S : Fin m → Finset (Fin n)) (out : Fin m → �
   cert3c_of_stair gates p hp hg hU hN S out Q v hS rank hrank hnot
     (certD_of_heavy_see gates p hp hg hU hN S out Q v _ hv hsee)
 
+include hp hg hU hN in
+/-- **CERT-3c at any point** (qg-d2's SEE0, `certD_of_see0`): zero points `z_w ⊇ Q` off `S_w` whose cone
+merges are `1` at `Q + e_v` in the real circuit and in `C_0`, pairwise TU-compatible in one direction. -/
+theorem cert3c_of_see0_tu (S : Fin m → Finset (Fin n)) (out : Fin m → ℕ) (Q : Finset (Fin n))
+    (v : Fin n) (z : Fin m → Fin n → Bool)
+    (hzS : ∀ w ∈ starSets S Q v, ∀ u ∈ S w, z w u = false)
+    (hzQ : ∀ w ∈ starSets S Q v, ∀ q ∈ Q, z w q = true)
+    (hsee : ∀ w ∈ starSets S Q v, ∀ i ∈ coneMerge gates (S w) (out w) (z w),
+      val gates (canonPt (insert v Q)) i = true ∧
+        val (lift n p gates) (ext (canonPt (insert v Q)) false) (liftWire n p i) = true)
+    (htu : ∀ w ∈ starSets S Q v, ∀ w' ∈ starSets S Q v, w ≠ w' →
+      TUPair gates p (S w) (z w) (z w') ∨ TUPair gates p (S w') (z w') (z w)) :
+    Cert3c gates S out Q v :=
+  ⟨z, hzS, hzQ, certD_of_see0 gates p hp hg hU hN S out Q v z hsee,
+    certS_of_tu gates p hp hg hU hN S out Q v z htu⟩
+
 end CertStair
 
 /-- **951 from heavy SEE + TU zero points with the local closures.** -/
@@ -87,5 +106,29 @@ theorem no_minCE_of_heavy_tu_or_local
     · exact Or.inr (Or.inl h)
     · exact Or.inr (Or.inr ⟨v, hvQ, cert3c_of_heavy_tu gates p hp M.ce.hg M.ce.hU hN S out Q v z
         hzS hzQ hv hsee htu⟩)
+
+/-- **951 from SEE0 + TU zero points with the local closures** (the PROVED-coverage certificate of
+qg-d2's proved_cover.py, flag proved0). -/
+theorem no_minCE_of_see0_tu_or_local
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out → ∃ (p : ℕ) (hp : p < gates.length), (gates[p]'hp).op = GateOp.not ∧
+        ∀ Q, 0 < baseDQ S ∅ Q → CubeLocal gates p Q ∨ LW1 gates p S Q ∨
+          ∃ v, v ∉ Q ∧ ∃ z : Fin m → Fin n → Bool, (∀ w ∈ starSets S Q v, ∀ u ∈ S w, z w u = false) ∧
+            (∀ w ∈ starSets S Q v, ∀ q ∈ Q, z w q = true) ∧
+            (∀ w ∈ starSets S Q v, ∀ i ∈ coneMerge gates (S w) (out w) (z w),
+              val gates (canonPt (insert v Q)) i = true ∧
+                val (lift n p gates) (ext (canonPt (insert v Q)) false) (liftWire n p i) = true) ∧
+            ∀ w ∈ starSets S Q v, ∀ w' ∈ starSets S Q v, w ≠ w' →
+              TUPair gates p (S w) (z w) (z w') ∨ TUPair gates p (S w') (z w') (z w)) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out :=
+  no_minCE_of_cert_or_local fun n m S gates out M => by
+    obtain ⟨p, hp, hN, hQ⟩ := H n m S gates out M
+    refine ⟨p, hp, hN, fun Q hpos => ?_⟩
+    rcases hQ Q hpos with h | h | ⟨v, hvQ, z, hzS, hzQ, hsee, htu⟩
+    · exact Or.inl h
+    · exact Or.inr (Or.inl h)
+    · exact Or.inr (Or.inr ⟨v, hvQ, cert3c_of_see0_tu gates p hp M.ce.hg M.ce.hU hN S out Q v z
+        hzS hzQ hsee htu⟩)
 
 end PEqualNP.Outside.L_meta_951_aux

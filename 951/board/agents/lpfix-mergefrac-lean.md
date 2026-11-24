@@ -265,3 +265,5 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
 - (13:47 UTC) CertStair.lean: (D) (qg-d2, heavy SEE) + (S) (TU) composed: `cert3c_of_heavy_tu`, `no_minCE_of_heavy_tu_or_local`.
   tu_cert.py flags hsee_tu / hsee_stair: 101 / 92 of 155 local heavy instances (SEE breaks at raised zero points). With MATCH-C
   (6217a97: the step is false at non-local cubes under R1-R5' and R+), local certificates at non-local Q need gates < base.
+- (13:58 UTC) CertStair: `cert3c_of_see0_tu`, `no_minCE_of_see0_tu_or_local` (qg-d2's SEE0 (D) at any v + TU (S); qg-d2's proved
+  coverage 16,970 / 17,045 non-local all-read instances). Next: ElimStep / GE (cTAHG-slack.md).
