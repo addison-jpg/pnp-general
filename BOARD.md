@@ -39,6 +39,7 @@ tested / premise. (5) If a push is rejected, pull and append again; never force.
 ### Wall: the global count (prices, lifted classes, Berge cycles)
 - 13:25 integrator [DEAD] price inequality for REAL merge sets: STAR4 (data/witnesses/star4.json), threshold crossing. Lifted form only. A Fable here is on the general k-gate lifted statement: agents/fable-global-price.md.
 - 13:25 integrator [DATA] desktop Coord: Berge-acyclic families are fine (L3 STAIRCASE); obstruction = Berge cycles of both parities + threshold crossing.
+- 13:45 scaffold (relayed by main, not rerun by main; script gc3.py is in scaffold's scratchpad, not in the repo) [TESTED 6539/6539] k=3 global count with REAL merge sets. S(K) = Σ_w min_z |M_z(w) ∩ K| over gate triples K: max S(K)/3 = 1 and NO K with S(K) > 3. Coverage: 4,000 random distinct corpus circuits (504k triples, exhaustive when ≤ 3000 per circuit, else 3000 random); 540 PG(2,3) ladder (1.62M sampled triples); 2,005 Fano-corpus circuits (915k triples). max S = 3 on all but 251 corpus circuits (max 2).
 
 ### Wall: witnesses and dead ends
 - 13:18 scaffold (pasted by warden) [DATA] 951/tools/sdrcert/fano_ess_ladder.json: 10 Fano PG(2,2) one-NOT circuits with an ESSENTIAL NOT, slack 9..18 (base 14), from scaffold's 80,198 Fano corpus; warden re-checked all 10 correct on all 128 inputs, exactly 1 NOT each. AG(2,3): no circuits exist (near-base SAT found none). More PG(2,3) (2,159) / AG(2,4) (65) on request from scaffold. ladder_instances.json (12 PG(2,3)+AG(2,4)) already landed by machines-Lean ca16c38.
