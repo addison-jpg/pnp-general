@@ -6,6 +6,7 @@ that still needs a proof (a `Prop` definition, never a `sorry`); a **card** is a
 Nothing on this board says that P versus NP is settled.
 
 ## Overarching
+- OWNER RULE (~09:40, money is short): do NOT use the Claude API (anthropic SDK, api.anthropic.com, claude -p, scripts that call a model); it is billed per token. No thank-yous, acks or courtesy messages between sessions: message only when it changes work, and batch updates into one board push.
 
 **Goal.** Lower bounds for circuits of AND, OR and NOT gates with any number of NOT gates
 (`SIZE`, `PPoly` in `lean/PEqualNP/Defs/CircuitLowerBounds.lean`), with every method that fits:
@@ -25,6 +26,8 @@ each other directly. The Discussion session (session_01GmnDheAyFnVcvRApd4xeES) r
 
 Checked: L-gen-001 (101 gives 102), L-gen-002 (102 gives 103), L-gen-003 (`SIZENot s s = SIZE s`:
 the top of the NOT gate ladder is the general case), L-gen-004 (the ladder is monotone).
+L-gen-005 (for non-constant `f` and a fresh input `x`: `C(x ⊕ f) ≥ max(C(f), C(¬f)) + 3`, every gate counted),
+L-gen-006 (if `C(f) ≠ C(¬f)` then `C(x ⊕ f) = min(C(f), C(¬f)) + 4` exactly).
 
 **The NOT gate ladder (`SIZENot s t`: at most `t n` NOT gates).** This is how the restricted
 work reaches the general problem.
@@ -95,12 +98,15 @@ Open statements are `Prop` definitions. Physics premises never enter a Lean stat
 repositories are frozen as they are; new work lands here. Models: avoid Fable runs, a few are
 acceptable; Sonnet is fine. Never run `lake update`.
 
-**Status (2026-11-24).** In this repository's two own programs: 51 rows checked (47 quantum
-gravity, 4 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
+**Status (2026-11-24).** In this repository's two own programs: 53 rows checked (47 quantum
+gravity, 6 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
 inherited from `brilliant-hq/pequalnp-proofs` (Library, CircuitLowerBounds, MetaComplexity, Gct,
 ProofComplexity, Search, Outside) are here unchanged.
 
 ## Handoff lines (one per session: branch, commit, what is unfinished)
+- session_01GmnDhg8XTmohao5zo2MMaC (Generalize; attached here with owner OK in its own chat): `pnp-general` main (L-gen-005,
+  L-gen-006); older copy on pequalnp-work `mirror/pensive-galileo-7rfw13` (4c7bfb4). Unfinished: the case `C(f) = C(¬f)` of
+  `C(x ⊕ f) = min + 4`; not yet merged with the desktop GeNeRALIZE session (session_01GmnDhczcdJyEX4WwHrrzPx).
 - session_01GmnDhdRKvz5Z7gneQqGG3V (machines-Lean = Lean helper of tractability, ex QG L-qg-103; attached here 09:25 with owner
   OK in its own chat; lands in 951/lean itself, coord spot-verifies): in 951/: MergeWorld + hval bridge, sum_equivFin(_subtype),
   MergeWorld2 (HeavySet, onlyMixed_iff, refined load split), Peel2 dedup into W951Cube, audit #21 (Small3 exists_second3K,
@@ -137,6 +143,12 @@ ProofComplexity, Search, Outside) are here unchanged.
 
 ## Subboard: general circuits (L-gen)
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
+- Generalize (session_01GmnDhg8XTmohao5zo2MMaC), card rank 4 (exact sizes by gate elimination, NOT gates counted): rows
+  L-gen-005, L-gen-006 CHECKED (XOR with a fresh input; proof `lean/PEqualNP/General/XorExtension.lean`, no minimality
+  assumption: count the gates that are redundant after `x := c`). OPEN: `C(x ⊕ f) = min + 4` when `C(f) = C(¬f)`; a
+  counterexample must have one fixed circuit shape (hand argument), and SAT finds none for every `f` on <= 3 variables and
+  every 4-variable `f` with `C(f) = C(¬f) <= 5`. Note + evidence: `notes/general/generalize-xor-extension.md`,
+  `tools/xor-extension/`.
 
 ## Subboard: the NOT gate ladder, rung 1 (L-meta-951)
 How search code and Lean divide the work: [`951/PIPELINE.md`](951/PIPELINE.md) (the owner's framework:
@@ -173,7 +185,7 @@ fractional induction.
 - 09:45 SCAFFOLD (CU, research's two-world chain lemma; 26 instances + ADV3/ADV4, both world-1 variants, heavy sets all points): 54 level-set chains of optimal pi: 0 failures, and with the chosen c ONE zero point per set minimises at every level (54/54); exhaustive A1 ⊇ A2 over merge gates: 270,356 pairs, 0 failures; A1 ⊇ A2 ⊇ A3: 46,620 triples, 0 failures. Full ~86k corpus running. CU in Lean: cTAHG; CU referee: desktop Coord. dRKvz now lands its own Lean in 951/lean (owner-approved attach).
 - 10:00 P=NP Front (F1, data): MergeSDR (disjoint merge sets at some zero points z_w) HOLDS on ALL 27,991 distinct correct one-NOT circuits with >= 2 sets in the full corpus (data-corpora + w9 + instances; n - min|S| <= 14). The fixed two-world menu {0, top_w} fails on exactly 1: scaffold payment/ce3 (essential, n=8, s=34, 4 sets, max |S| = 3), besides ADV3. Files: 951/research/front612/sdr/. Next: F2 O2-PAIR hill-climb.
 - 09:55 STRONG RESULTS: P=NP Front F1: MergeSDR (one zero point per set, pairwise DISJOINT merge sets) holds on ALL 27,991 distinct correct one-NOT corpus circuits with >= 2 sets (951/research/front612/sdr/). Scaffold CU (h(z) = 0 partition): 0 failures on ~1.1M exhaustive pairs/triples of the 6 non-uniform families + 3,000 random integer pi each (heights <= 6); 26 instances: 251,696 pairs, 46,620 triples, 25,000 random pi. Referee (desktop Coord): STRONG CU (= chain-SDR: per chain ONE z_w per set with sum_w |M_{z_w}(w) ∩ A_t| <= |A_t| for all t) => MergePrice is a one-line proof; MergePrice <=> the fractional-mixture version (LP duality on each chain). Proof idea: Hall/Rado along a chain, greedy from the smallest level outward with exchange. Lean: dZb2E MergeSDR, cTAHG StrongCU. PriceOff landed (260c852), audit #2 landed (dRKvz d6d369d).
-- NEXT most important (09:55): PROVE MergeSDR or StrongCU (both integral, both supported by all data) — front A1/A2 from 11:32.
+- NEXT most important (10:00): PROVE MergeSDR = a system of disjoint representatives: one merge set M_{z_w}(w) per Boolean-sum set, pairwise disjoint. 0 failures on 75,619 circuits (scaffold); StrongCU 0 failures on ~2.7M chains. Referee: MergeSDR = MergeFrac with point masses => no_minCE via existing Lean (wrapper: dZb2E); strictly stronger than MergeFrac (fallback: StrongCU / fractional). Proof shape: Hall/Rado disjoint transversal over {M_z(w)}; facts: Lemma M |M_z(w)| = d_w, universal merges pairwise disjoint, |S_a ∩ S_b| <= 1. Scaffold: smallest circuits with a UNIQUE disjoint choice / where greedy fails.
 - NEXT most important (09:25): prove the REFINED price form; candidate routes: research's two-world chain lemma (CU), and the two-owner ShiftOff (dZb2E PriceOff: single-owner gates shift for free; cross-world gates are all two-owner).
 - FABLE ALLOCATION (owner 09:01, verified: "each opus should have two fables. maybe like 8 fables we can dole out here"; ~8 total):
   | # | Owner | Task |

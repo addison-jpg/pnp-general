@@ -1,0 +1,27 @@
+lvl 1 states 16
+lvl 2 states 204
+lvl 3 states 2468
+lvl 4 states 30036
+lvl 5 states 377810
+lvl 6 states 4966478
+lvl 7 states 68597872
+lvl 8 states 0
+(0,1): delta+4 x6
+(1,2): delta+4 x12
+(2,2): delta+4 x12
+(2,3): delta+4 x16
+(3,3): delta+4 x24
+(3,4): delta+4 x24
+(4,4): delta+4 x18
+(4,5): delta+4 x14
+(5,5): delta-1 x60
+(5,6): delta-1 x30
+(6,6): delta-1 x20
+(7,7): delta-1 x4
+(7,8): delta-1 x12
+(8,8): delta-1 x2
+violations of min+4: 0 (delta-1 = not reached by level 8)
+
+real	2m7.164s
+user	2m2.101s
+sys	0m3.904s
