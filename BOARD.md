@@ -315,6 +315,9 @@ ProofComplexity, Search, Outside) are here unchanged.
   13:56: ElimStep: what gates < base buys = `MinCE.sub_bound` / `elim_lt` (no restriction eliminates its cost) and
   `no_minCE_of_elimStep` (ONE elimination step at the top closes 951). GE holds at Q = ∅ on 104/104 local circuits incl. MATCH-C;
   the F2 step never holds without GE. Note 951/board/agents/cTAHG-slack.md.
+  14:04: Theorem G (Fable, global price) REFEREED CORRECT and PROVED in Lean (UGame.lean `liftSDR_of_ugame`, `no_minCE_of_ugame`,
+  G0/G1, corollaries (a)/(c)). U-game won on 19/21 barrier witnesses incl. MATCH-C and the twin trees; lost only on the DD core
+  (cxMU_dd, cx44_1_junk). Verdict 951/board/agents/cTAHG-referee-thmG.md.
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.
