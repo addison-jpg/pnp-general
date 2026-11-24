@@ -32,6 +32,10 @@ case B (all `m_w ≤ 1`: at most two sets have `m_w = 1` by `twoGate_triple`). U
 structure, `|S_i ∩ S_j| ≤ 1` and `C(b)`: no correctness of the outputs, no `|S_w| ≥ 2`, no minimality.
 Real merge sets are lifted classes (`mergeSet_eq_lift`), so this is a two-gate price inequality on a
 sub-menu of `liftMenu` (MUL / LiftSDR).
+
+Special cases (front §§8–9): `condB_of_hb`, `twoGate_of_hY` (`h(¬∪S) = 1`), `twoGate_of_heavy` (all points
+heavy), `twoGate_of_typeB` (all three sets type B relative to the triple). Open (front §9): triples
+where for every `b` some set has `h(X_l) = 1` and a light foreign point (cxT2's triple).
 -/
 
 namespace PEqualNP.Outside.L_meta_951_aux
@@ -411,6 +415,46 @@ theorem twoGate_lift (S : Fin m → Finset (Fin n)) (hS : ∀ i j : Fin m, i ≠
       _ = (Finset.univ.filter fun w => 1 ≤ minHit gates S w g g').card := by
           rw [Finset.sum_boole]; simp
       _ ≤ 2 := hcard
+
+/-! ## Special cases of `C(b)` (front §§8–9) -/
+
+include hp hg hU hN in
+/-- `h(b) = 1` (the NOT gate is `0` at `b`) gives `C(b)` for every set (`h(b + e_u) = 1` by monotonicity). -/
+theorem condB_of_hb {b : Fin n → Bool} (U Sl : Finset (Fin n)) (hb1 : val gates b (n + p) = false) :
+    CondB gates p b U Sl :=
+  Or.inr fun u _ _ => not_false_of_le gates p hp hg hU hN (le_upPt b u) hb1
+
+include hp hg hU hN in
+/-- **2G-LIFT, case `h(¬(S_i ∪ S_j ∪ S_k)) = 1`** for every triple (base point `b = ¬∪S`). -/
+theorem twoGate_of_hY (S : Fin m → Finset (Fin n)) (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hY : ∀ i j k : Fin m, i ≠ j → i ≠ k → j ≠ k → val gates (Zof (S i ∪ S j ∪ S k)) (n + p) = false)
+    (g g' : ℕ) : ∑ w, minHit gates S w g g' ≤ 2 :=
+  twoGate_lift gates p hp hg hU hN S hS (fun i j k hij hik hjk =>
+    ⟨Zof (S i ∪ S j ∪ S k), fun v hv => by simp only [Zof, hv, not_true_eq_false, decide_false],
+      fun _ _ => condB_of_hb gates p hp hg hU hN _ _ (hY i j k hij hik hjk)⟩) g g'
+
+include hp hg hU hN in
+/-- **2G-LIFT, all points heavy** (`h(e_u) = 1` for every point of every set; base point `b = 0`). -/
+theorem twoGate_of_heavy (S : Fin m → Finset (Fin n)) (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hheavy : ∀ w, ∀ u ∈ S w, val gates (upPt (fun _ => false) u) (n + p) = false) (g g' : ℕ) :
+    ∑ w, minHit gates S w g g' ≤ 2 :=
+  twoGate_lift gates p hp hg hU hN S hS (fun i j k _ _ _ =>
+    ⟨fun _ => false, fun _ _ => rfl, fun _ _ => Or.inr fun u hu _ => by
+      simp only [Finset.mem_union] at hu
+      rcases hu with (hu | hu) | hu
+      · exact hheavy i u hu
+      · exact hheavy j u hu
+      · exact hheavy k u hu⟩) g g'
+
+include hp hg hU hN in
+/-- **2G-LIFT, all sets type B relative to every triple** (`h((S_i ∪ S_j ∪ S_k) \ S_l) = 0`, i.e. the NOT
+gate is `1` there; base point `b = 0`). -/
+theorem twoGate_of_typeB (S : Fin m → Finset (Fin n)) (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hB : ∀ i j k : Fin m, i ≠ j → i ≠ k → j ≠ k → ∀ l, l = i ∨ l = j ∨ l = k →
+      val gates (ceilPt (fun _ => false) (S i ∪ S j ∪ S k) (S l)) (n + p) = true)
+    (g g' : ℕ) : ∑ w, minHit gates S w g g' ≤ 2 :=
+  twoGate_lift gates p hp hg hU hN S hS (fun i j k hij hik hjk =>
+    ⟨fun _ => false, fun _ _ => rfl, fun l hl => Or.inl (hB i j k hij hik hjk l hl)⟩) g g'
 
 end TwoGate
 
