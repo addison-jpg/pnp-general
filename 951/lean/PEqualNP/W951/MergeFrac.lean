@@ -677,6 +677,17 @@ theorem bound_of_coverPrice {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : 
   simp only [Finset.sum_const, nsmul_eq_mul, mul_one, Nat.card_Ico, add_tsub_cancel_left] at h
   exact_mod_cast h
 
+/-- **The cover-price form on minimal counterexamples closes 951.** -/
+theorem no_minCE_of_coverPrice
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out → CoverPrice S gates out) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out :=
+  fun {n m} S gates out M => by
+    have h1 := bound_of_coverPrice S gates out (H n m S gates out M)
+    have h2 := M.ce.hlt
+    omega
+
 /-- The cover-price form is weaker than `PriceIneq` (= `FracMatch`), with the same conclusion. -/
 theorem coverPrice_of_priceIneq {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate)
     (out : Fin m → ℕ) (hp : PriceIneq S gates out) : CoverPrice S gates out := by
