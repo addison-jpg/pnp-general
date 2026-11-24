@@ -197,7 +197,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   PAPPUS-JUNK (witness group keyed by file stem); 7e0da84 F2Desc (front A2's F1 + F2-desc, refereed: sep_descend, real merges
   ⊆ F2(Q), outputs give F2 gates, MergeSDR ⇒ MUF2, heavy v: F2(Q) gates 1 at Q ∪ {v} leave F2); 8d51f34 F2SeeK3 (dwV8p §6:
   gainF2_of_seeK3, no_minCE_of_seeK3, SURV = ∅ for heavy v, joint union-find ≥ cost(v) merges, same-set merges ∈ F2(Q));
-  1563e7e F1* (F1star / F1star_mem: a SURV gate forces v light, C_0 = 0 / C_1 = 1 at Q + e_v, world-0 witnesses only).
+  1563e7e F1* (F1star / F1star_mem: a SURV gate forces v light, C_0 = 0 / C_1 = 1 at Q + e_v, world-0 witnesses only);
+  F2Light (research's light B, K0-K2; LightStar ⇒ GainF2).
   OPEN for Lean: REROUTE (cross merges) / LIGHT.
 - session_01GmnDhfo8QCanitMDqFa2x1 (quantum gravity coordinator; integrates this board): `pnp-general`
   main; the same tree is on `pequalnp-work` `mirror/trusting-newton-2lz5jy` (342bed1). Unfinished:
