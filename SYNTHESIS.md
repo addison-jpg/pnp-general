@@ -19,6 +19,35 @@ row. A certificate is the bridge: a search program finds a small witness, Lean o
 (`951/PIPELINE.md`). Layer C never enters a Lean statement; it decides WHICH statements are worth
 stating. A claim may move up a layer, never be quoted above the layer it is in.
 
+### Layer B for 951, concretely (certificates and data; pnp-subproblem, 12:50)
+
+| Checker | Code | What it establishes | Scale |
+|---|---|---|---|
+| Lean certificates | `951/lean/.../PureSDRWitness.lean`, `SDRWitness*.lean` (`decide`) | the statement is a THEOREM for that one circuit (kernel-checked) | PureSDR on 36 circuits, MergeSDR on 35 |
+| kill tests (board integrator) | `951/tools/kill_tests/` (on `tools/w951`) | candidate lemmas tested on the corpus; one failure kills a lemma (`951/DEAD_ENDS.md`) | corpus, per test |
+| scaffold | scaffold-951 branch (`f15/`), OR-only merge rule | PureSDR / MergeSDR with 0 failures | 75,619 records, 62,463 distinct circuits |
+| independent re-implementation | `951/tools/referee_b/` (no `w951`, no `kill_tests`) | the same claims with separate code: guards against implementation bugs, NOT against wrong definitions. Classes match Lean's certificates 181/181 | 44,713 circuits |
+| cross-check of the cross-check | `951/tools/referee_b_xcheck/` (research, on `w951`) | referee_b's survey re-derived with `w951`: 0 disagreements | 339 circuits |
+
+**Corpus.** Reproducible from the repos: `data-corpora` (pequalnp-work, 2aa9856) plus every circuit file in `951/`:
+44,713 circuits after the filters (one NOT, correct, n ≤ 16). Scaffold's 75,619 records = data-corpora 40,533 +
+named 14 + instances 25 + **35,047 that exist only in scaffold's scratchpad** (xgen dumps, adv). Those are not
+reproducible, and pequalnp-work is frozen and not reachable from every session. **Action:** copy data-corpora and
+scaffold's dumps into `951/data/` so every "0 failures on N" can be rerun.
+
+**Results that stand on two independent checkers** (referee_b and scaffold / kill_tests):
+- PureSDR exists: 44,713 / 44,713; every class has exactly d_w merges.
+- Type-A collisions: kinds (i), (ii), (iii) all occur (5,019 / 1,331 / 228 circuits), no other kind.
+- Dichotomy (CSP after fixing free classes and arc consistency): holds on 44,707; only cxT2 is not globally
+  consistent, and with ALL I0 atom tuples cxT2 is consistent too (its 2-class core was a cap artefact).
+- MU slack ≥ 0 on all 44,710 (WIDE and NARROW). It FAILS off-corpus: `951/data/witnesses/cxMU_dd.json` has pure
+  |U| = 5 < base 6, while lifted |U| ≥ 14. Corpus data never produced this, so data alone cannot certify a lemma.
+
+**Barrier suite.** The small fixed set every candidate lemma runs on first (PROOF_PLAN rule 1): CfgI, ADV3, ADV4,
+cxT4, cxU_8_4, cxr, HARD4, the 24 forced-h fixh16 circuits, plus the kernel-certified cxT2, cxe3, ce3 and the
+witnesses in `951/data/witnesses/` (cxMU_dd, Pasch s14). Hand-built circuits break lemmas that random and SAT corpora
+never do (B1 disjointness, merge-tree support, MU over pure classes), so the suite carries more weight than the 44k.
+
 ## 2. "Relativity" on the complexity side and on the physics side
 
 On the complexity side the word is **relativization**: a proof technique relativizes when it
