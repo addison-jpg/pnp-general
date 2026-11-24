@@ -31,6 +31,8 @@ Viewable, not a work queue: this repository is not connected to pequalnp.com; ou
 
 This repository hosts a small language, [`asteroid`](asteroid/README.md): one program, three engines (Python evaluates and searches, the Lean kernel decides, matplotlib draws). `python3 -m asteroid run asteroid/examples/first.ast`.
 
+The formal proof as runnable programs (the Theorem on data, each refuted statement with its counterexample, the open conjectures with a hunt, the ladder): [`asteroid/programs/`](asteroid/programs/README.md).
+
 ## Where things are
 
 | Path | What it is |

@@ -1,0 +1,60 @@
+# Refuted statements of the formal proof (section 5, DEAD_ENDS.md), each with its counterexample circuit loaded from
+# one-not/data/witnesses. In every block the count itself survives: none of these refutes the Theorem.
+# Margin below 0 = counterexample (one-not/tools/search/conjectures.py REGISTRY).
+
+# --- 1. README section 5: "point step for realWitness, all correct circuits"  (C2 on correct circuits)
+#     Counterexample Cex.twinBalancedORTreesWithLeafJunk = twin_tree_f2step.json (n = 14).
+let twin = load one-not/data/witnesses/twin_tree_f2step.json
+claim correct(twin)                                  # n = 14: too big for the kernel table (16384 inputs)
+claim margin["C2 one-point step"](twin) < 0            # no single point has gain >= cost: refuted
+claim margin["C3 two-point step"](twin) >= 0           # two points suffice here (C3_2 holds on this circuit)
+claim slack(twin) >= 0                         # the count survives (slack 6)
+claim gates(twin) >= base(twin)                        # and so does the Theorem
+
+# --- 2. "the same under L2 without no_rewire, at a non-local cube"  (C2 on a MinCE-like circuit)
+#     Counterexample Cex.matchedTwinTreesWithA14InputNOTInput = nonlocal/match_c_k7.json (n = 16).
+let match = load one-not/data/witnesses/nonlocal/match_c_k7.json
+claim margin["C2 one-point step"](match) < 0
+claim slack(match) >= 0
+claim gates(match) >= base(match)
+# WISH: claim margin["C3 two-point step"](match) < 0 at k = 2 on match_c_k11 (C3_k refuted for every fixed k): the registry step is too slow at n = 24
+
+# --- 3. "point step for one-face witness gates"  (Cex.pappusConfigurationWithJunkGates = pappus_junk_gain.json)
+let pappus = load one-not/data/witnesses/pappus_junk_gain.json
+claim correct(pappus)
+claim slack(pappus) >= 0
+claim margin["C2 one-point step"](pappus) >= 0         # at the empty cube a 1-step pays; the refutation is about the 0-step
+# WISH: claim forall v: gain0(pappus, empty, v) < cost0(pappus, empty, v)   (pointwise 0-step: every v has 0-step gain 2 < cost 3)
+
+# --- 4. "induction that sets a point to 0"  (Cex.fanoFormulaWithAnUnusedNOTGate = fano_formula.json)
+let fano = load one-not/data/witnesses/fano_formula.json
+claim slack(fano) = 0
+claim gates(fano) >= base(fano)
+# WISH: claim mslack(fano, {}, {v}) < 0 for some v, stated as `exists v: mslack(fano, {}, {v}) < 0`
+
+# --- 5. "disjoint representatives over pure classes, all correct circuits"  (Cex.twoTwoWorldSetsSharingOneMergeGate = cxMU_dd.json)
+let mu = load one-not/data/witnesses/cxMU_dd.json
+claim correct(mu)
+claim slack(mu) >= 0
+claim gates(mu) >= base(mu)
+# WISH: claim sdr(pure_classes(mu))  is false   (classes of a set, with a function to name them, and an SDR test)
+
+# --- 6. "price inequality over real merge sets, without minimality"  (Cex.starOfFourPairsWithAThresholdNOTInput = star4b_threshold.json)
+let star = load one-not/data/witnesses/star4b_threshold.json
+claim correct(star)
+claim slack(star) >= 0
+claim gates(star) >= base(star)
+# WISH: claim price(star) > 1   (the sum over sets of the fractional price of a gate; no function for merge sets or prices)
+
+# --- 7. C4w: "the witness count for any gate type with >= 4 NOT gates"  (Cex.generalWitnessCountBelowBase)
+let g = load one-not/data/witnesses/nonlocal/general_count_below_base_min.json
+claim correct(g) by lean
+claim nots(g) = 4
+claim witness(g) < base(g) by lean                     # 5 witnesses < base 6: refuted
+claim margin["C4 count (any-gate witnesses)"](g) < 0
+claim margin["C4 count (flip classes)"](g) >= 0        # the repaired family holds
+claim gates(g) >= base(g)                              # the gate count (C4g) is not refuted
+let g4 = load one-not/data/witnesses/nonlocal/general_count_below_base_t4.json
+claim correct(g4)
+claim witness(g4) < base(g4)
+claim gates(g4) >= base(g4)

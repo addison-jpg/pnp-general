@@ -1,12 +1,15 @@
 {
  ".": {
   "counts": {
-   "checked": 26,
+   "checked": 29,
    "tested": 4,
    "refuted": 3
   },
   "verified": [
    "8d76417d",
+   "4a95d48e",
+   "1088bc27",
+   "a023c28e",
    "1b00e1bc",
    "04a575bf",
    "255631be",
@@ -44,10 +47,13 @@
  },
  "asteroid": {
   "counts": {
-   "checked": 1
+   "checked": 4
   },
   "verified": [
-   "8d76417d"
+   "8d76417d",
+   "4a95d48e",
+   "1088bc27",
+   "a023c28e"
   ],
   "unverified_here": [
    {
@@ -64,6 +70,24 @@
    },
    {
     "id": "d89ba628",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "asteroid/programs": {
+  "counts": {
+   "checked": 3
+  },
+  "verified": [
+   "4a95d48e",
+   "1088bc27",
+   "a023c28e"
+  ],
+  "unverified_here": [
+   {
+    "id": "d23edf3b",
     "why": [
      "needs a second seat in by"
     ]

@@ -1,0 +1,27 @@
+# The open items as conjectures: claimed over a small corpus, then hunted. Hunting finds nothing here (that proves nothing).
+# README items: C1, C2, C4 and "the sorry" (no_minCE). A counterexample would be a news item, not a bug.
+corpus W = one-not/data/witnesses/*.json where n <= 7
+
+# The count behind the Theorem (D5, D8, L5, L7): |witness(empty cube)| >= base for ONE NOT gate.
+# A counterexample circuit (one NOT gate) would not refute the Theorem, but it would close the route through the count
+# (T4 and L7 need it, at every cube) and the sorry would need another family.
+conjecture count: slack(c) >= 0
+# The mixed descent (L7 over states (Q,R)): at every state with positive base some paying step does not increase mslack.
+# A counterexample would refute the mixed form of the descent, the route to the sorry through C2 with 0-steps.
+conjecture mixed: forall states mixedstep(c)
+# C4 (t NOT gates), the repaired family: flip classes. The any-gate witness count is refuted for t >= 4 (see refuted.ast);
+# a circuit below zero here would refute the repair and leave C4g(t) with no counting family.
+conjecture flip: margin["C4 count (flip classes)"](c) >= 0
+# C2 (one-point step): refuted for correct circuits (refuted.ast); open under MinCE.no_rewire. The registry entry below is
+# vacuous (+1) unless the circuit has one NOT gate, every gate read and no gate-saving rewiring, n <= 8.
+conjecture c2norewire: margin["C2 one-point step under no-rewire"](c) >= 0
+
+claim forall c in W: count(c)
+claim forall c in W: flip(c)
+claim forall c in W: c2norewire(c)
+claim forall c in W: mixed(c)
+count c in W: mixed(c)
+
+hunt count 8 1 1
+hunt flip 8 3 1
+hunt c2norewire 8 1 1
