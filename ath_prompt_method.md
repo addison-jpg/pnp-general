@@ -27,11 +27,12 @@ asteroid without any actual formality".
 
 1. On a small task, an informal or playful instruction is often a better instruction than a formal
    one, because it is shorter and says what is wanted.
-2. Small informal instructions only add up to a large piece of work if they sit inside a strict
+2. This makes sense computationally! Tokens don't care if you use big words, they want efficient inputs. 
+3. Small informal instructions only add up to a large piece of work if they sit inside a strict
    frame. The frame is deliberate. It is the opposite of informal.
-3. The frame that worked here was: seats in mirrored pairs, one coordinator between them, and a
+4. The frame that worked here was: seats in mirrored pairs, one coordinator between them, and a
    written board for every seat and every task.
-4. The boards matter most. When each board has one owner and one subject, most communication can be
+5. The boards matter most. When each board has one owner and one subject, most communication can be
    read where the next reader will look, and few messages need to be sent.
 
 ## Informality and scene speak
