@@ -106,6 +106,22 @@ variables are not covered.
 The last row suggests a stronger statement that would close the gap: a circuit of the residual
 shape for `x ⊕ f` has at least `min(C(f), C(¬f)) + 5` gates. No proof is known here.
 
+### A lead for the residual shape (hand argument, unchecked)
+
+Notation as above, `t = m + 3`, and let `Z` be the `m - 1` gates other than `G1, H1, G2, H2`.
+Give the two readers separate inputs: `x1` feeds `G1`, `x2` feeds `G2`, and write `D(x1, x2, y)`.
+Then `D(0, 0) = f`, `D(1, 1) = ¬f`, and `φ = D(0, 1)` is computed by `Z` alone (`H1` passes
+`u1`, `H2` passes `u2`), so `C(φ) ≤ m - 1`. For every `y`, `φ(y)` is `f(y)` or `¬f(y)`; let `S`
+be the set where `φ = ¬f` and `T` its complement. Both are non-empty (else `Z` computes `f` or
+`¬f`). On `S`, `u2 = 1` and `h2 = 0`; on `T`, `h1 = 1` and `u1 = 0`.
+
+Consequence: with the wire `H2` replaced by a free input `z` and `x1 = 0`, the `m - 1` gates of
+`Z` compute `z ⊕ f` on `S`; with `H1` replaced by a free input `a` and `x2 = 1`, they compute
+`a ⊕ f` on `T`. So `Z` holds two partial XOR computations on complementary domains with fewer
+gates than `f` itself. L-gen-005 forbids this when `S` or `T` is everything. A version of
+L-gen-005 for a partial domain (count the gates that are redundant on the domain) is the natural
+next tool; it has not been worked out, and it is not clear that it closes the case.
+
 ## Prior work, as far as searched
 
 - Red'kin (1973) / Kombarov (2011): `C(XOR_n) = 4(n - 1)` in this basis with NOT counted. The
