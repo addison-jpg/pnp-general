@@ -259,3 +259,20 @@ PAPPUS-JUNK), so the K3 term is needed. A heavy v is not always the right v (1,5
 Of about 65,000 merges, 2,230 are cross and 119 same-set merges survive. "Some v has ≥ cost(v) dying joint merges" holds on
 14,898 / 14,905, and the 7 others are covered by SEE+K3. So the joint merges carry the count, and REROUTE only has
 to repair a thin layer.
+
+**Step 2' (dwV8p, 13:2x; refines Step 2 and replaces REROUTE by a sharper lemma).**
+- First-joining gates (PROVED): for u ∈ P \ {v}, let f(u) be the first wire that is 0 at Q and whose real block
+  {x ∈ P : wire(Q + e_x) = 1} contains both v and u. It exists (the output of a star set through u and v). It is an OR
+  gate: an input has a block of at most one point; the NOT gate, if 0 at Q, has an empty block (h monotone); an AND gate's
+  block lies inside the block of a child that is 0 at Q, which is earlier. So f(u) ∈ F2(Q) ∩ SEE(v) (witness Z = Q
+  with the star set through u and v). F(v) = {f(u)} has cost(v) − deficit(v) gates, where deficit(v) = Σ (|B| − 1) over
+  the blocks B that one f-gate absorbs at once. For heavy v all of F(v) dies (F1); for light v, F1* bounds the survivors.
+- Caution (CHECKED false): a union-find merge into v's component need not be a SEE gate (its input block can sit in v's
+  component without containing v). Use f(u), not "v-merges".
+- OPEN: ABSORB. For some alive v, the deficit and the surviving f-gates are covered by dying gates outside F(v):
+  |gain(v) \ F(v)| ≥ deficit(v) + |F(v) ∩ SURV(v)|. The candidates are the merges inside each absorbed block B
+  (same-set ones are in F2(Q) and die iff no witness contains v; cross ones need not be in F2(Q)).
+**Kill test:** firstjoin.py. f(u) is an OR gate in F2(Q) ∩ SEE(v) on 59,398 random (instance, v) pairs + 519 witness pairs.
+Some v has deficit 0 and no surviving f-gate on 19,613 / 19,620 random instances and 120 / 124 witness restrictions (there
+the step is immediate). At every heavy v, gain \ F(v) covers the deficit on 25,597 / 25,597 random heavy pairs and 242 / 243
+witness heavy pairs.
