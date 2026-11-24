@@ -146,7 +146,9 @@ ProofComplexity, Search, Outside) are here unchanged.
   gainOne_graphStar, gainOne_G1, gainOne_G1_of_heavy); ebc4670 F2Induct (DECISION 12:46: F2, GainF2, base_le_F2_pts,
   no_minCE_of_MUF2 / no_minCE_of_gainF2 with no NOT gate, F2 ⊆ UC, Lemma C0 for F2); e794294 PureSDR for FANO-FORMULA, JUNK,
   PAPPUS-JUNK (witness group keyed by file stem); 7e0da84 F2Desc (front A2's F1 + F2-desc, refereed: sep_descend, real merges
-  ⊆ F2(Q), outputs give F2 gates, MergeSDR ⇒ MUF2, heavy v: F2(Q) gates 1 at Q ∪ {v} leave F2).
+  ⊆ F2(Q), outputs give F2 gates, MergeSDR ⇒ MUF2, heavy v: F2(Q) gates 1 at Q ∪ {v} leave F2); 8d51f34 F2SeeK3 (dwV8p §6:
+  gainF2_of_seeK3, no_minCE_of_seeK3, SURV = ∅ for heavy v, joint union-find ≥ cost(v) merges, same-set merges ∈ F2(Q)).
+  OPEN for Lean: REROUTE (cross merges) / LIGHT.
 - session_01GmnDhfo8QCanitMDqFa2x1 (quantum gravity coordinator; integrates this board): `pnp-general`
   main; the same tree is on `pequalnp-work` `mirror/trusting-newton-2lz5jy` (342bed1). Unfinished:
   gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the referee seat for angle C has received no claim.
