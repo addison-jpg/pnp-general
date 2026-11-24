@@ -41,3 +41,20 @@ Per-file numbers: `951/tools/referee_b/data/puresdr_merged.json`.
   0 of 753,321 valid classes contain an AND-gate merge, so the two rules agree on all data. (Not a proof that AND merges never
   occur; a referee point if the PureSDR proof uses 'merges are OR gates'.)
 - Scaffold builds I0 only for type-A sets and caps I0 menus at 3000; this checker allows every valid I0 (a superset). Both: 0 failures.
+
+## Distinct classes per set (coord 11:46) [computed; tools/referee_b/i1_count.py, validated 169/169 sets vs puresdr_check]
+Corpus: scaffold's A + C, n <= 12: 40,554 circuits, 179,613 sets. Histograms (number of sets):
+| count of distinct classes | 1 | 2 | 3 | 4 | max |
+|---|---|---|---|---|---|
+| (a) I1, D-maximal Z, atoms e_u | 173,766 | 5,847 | 0 | 0 | 2 |
+| (b) I1, Lean's wide validity (any Z: h(Z) = 0, Z ∩ S_w = ∅) | 161,448 | 16,963 | 1,191 | 11 | 4 |
+| (c) pure classes, (b) ∪ I0 | 129,545 | 45,231 | 4,763 | 74 | 4 |
+| (c') pure classes, (a) ∪ I0 | 140,950 | 35,869 | 2,776 | 18 | 4 |
+- 'EVERY SET HAS EXACTLY ONE I1 CLASS (D-maximal form)': FALSE on 5,847 sets, ALL of them type-A (h(top_w) = 1).
+  Non-type-A sets: exactly one, 58,067 / 58,067 (as W1 predicts: top_w is then the unique D-maximal Z).
+  Type-A sets: 1 class on 115,699, 2 on 5,847, never 3+. So per set: <= 2 D-maximal I1 classes + the I0 classes.
+- SMALLEST COUNTEREXAMPLE: ess_k4e_clean.jsonl #2721 (n = 4, 11 gates), set [1, 3], type-A: D-maximal Z = {0} gives class {6},
+  Z = {2} gives class {11} (real wires). Circuit: data/dmax2_smallest_ess_k4e_clean_2721.json
+  {"n": 4, "sets": [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3]], "gates": [["or", 1, 2], ["or", 0, 3], ["or", 3, 4], ["and", 5, 6], ["not", 7], ["and", 0, 6], ["or", 2, 9], ["or", 1, 3], ["or", 0, 1], ["and", 5, 8], ["or", 10, 13]], "outs": [12, 14, 5, 4, 11]}
+- scaffold's 2 adv records (inline 11:46, data/scaffold_adv.jsonl): pure SDR on both, classes exact, collisions (i) 3, (ii) 8,704,
+  other 0; D-maximal I1 = 1 on all 5 sets.

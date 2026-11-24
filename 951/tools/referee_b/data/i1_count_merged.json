@@ -1,0 +1,52 @@
+{
+ "circuits": 40554,
+ "a_dmax_I1": {
+  "1": 173766,
+  "2": 5847
+ },
+ "b_wide_I1": {
+  "1": 161448,
+  "2": 16963,
+  "3": 1191,
+  "4": 11
+ },
+ "c_pure_wide": {
+  "1": 129545,
+  "2": 45231,
+  "3": 4763,
+  "4": 74
+ },
+ "c_pure_dmax": {
+  "1": 140950,
+  "2": 35869,
+  "3": 2776,
+  "4": 18
+ },
+ "a_dmax_I1_typeA": {
+  "1": 115699,
+  "2": 5847
+ },
+ "a_dmax_I1_nontypeA": {
+  "1": 58067
+ },
+ "max": {
+  "a_dmax_I1": 2,
+  "b_wide_I1": 4,
+  "c_pure_wide": 4,
+  "c_pure_dmax": 4,
+  "a_dmax_I1_typeA": 2,
+  "a_dmax_I1_nontypeA": 1
+ },
+ "examples_dmax_not_one": [
+  "corpora/tri/tri_now.jsonl#2819 dmax_I1=2",
+  "corpora/tri/tri_now.jsonl#2820 dmax_I1=2",
+  "corpora/tri/tri_now.jsonl#2938 dmax_I1=2",
+  "corpora/tri/tri_now.jsonl#5435 dmax_I1=2",
+  "corpora/tri/tri_now.jsonl#5436 dmax_I1=2",
+  "corpora/tri/tri_now.jsonl#5437 dmax_I1=2",
+  "corpora/ess/ess_k4_clean.jsonl#2270 dmax_I1=2",
+  "corpora/tri/tri_all.jsonl#3150 dmax_I1=2",
+  "corpora/tri/tri_all.jsonl#3151 dmax_I1=2",
+  "corpora/tri/tri_all.jsonl#3269 dmax_I1=2"
+ ]
+}
