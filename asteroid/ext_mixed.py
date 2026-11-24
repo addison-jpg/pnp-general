@@ -88,17 +88,14 @@ def mixedstep_holds(c):
 
 def _mask(s): return sum(1 << int(x) for x in s.split())
 
-def handle(line, api):
+def claim_expr(text, lean, api, force=False):
+    """Evaluate a mixed claim expression (no leading `claim`). Returns (ok, detail, text) or None if not a mixed form."""
     env, ln = api["env"], api["ln"]
-    m = re.fullmatch(r"claim(!?) mslack\((\w+),\s*\{([\d ]*)\},\s*\{([\d ]*)\}\)\s*(=|!=|<=|>=|<|>)\s*(-?\d+)(\s+by lean)?", line)
-    kind = "mslack"
-    if not m:
-        m2 = re.fullmatch(r"claim(!?) forall states (mslack|mixedstep)\((\w+)\)(?:\s*>=\s*0)?(\s+by lean)?", line)
-        if not m2: return False
-        kind = m2.group(2)
-    force, lean = (bool(m.group(1)), bool(m.group(7))) if m else (bool(m2.group(1)), bool(m2.group(4)))
+    m = re.fullmatch(r"mslack\((\w+),\s*\{([\d ]*)\},\s*\{([\d ]*)\}\)\s*(=|!=|<=|>=|<|>)\s*(-?\d+)", text)
+    m2 = None if m else re.fullmatch(r"forall states (mslack|mixedstep)\((\w+)\)(?:\s*>=\s*0)?", text)
+    if not m and not m2: return None
     if m:
-        name, qs, rs, op, k = m.group(2), m.group(3), m.group(4), m.group(5), int(m.group(6)); c = env[name]; n = c["n"]
+        name, qs, rs, op, k = m.group(1), m.group(2), m.group(3), m.group(4), int(m.group(5)); c = env[name]; n = c["n"]
         Q, R = _mask(qs), _mask(rs)
         if Q & R or max(Q | R, 0) >> n: raise SystemExit(f"{api['script']}:{ln}: Q and R must be disjoint points < {n}")
         cnt, base = mslack_state(c, Q, R); dc, db = direct_parts(c, Q, R)
@@ -113,7 +110,7 @@ def handle(line, api):
             Lk["="] = Lk[">="] + Lk["<="]
             for st in Lk[op]: api["lean_claims"].append((name, "claim", st, text))
     else:
-        name = m2.group(3); c = env[name]; n = c["n"]
+        kind, name = m2.group(1), m2.group(2); c = env[name]; n = c["n"]
         if kind == "mslack":
             mn, ns, pos = forall_min(c); ok = mn >= 0; text = f"forall states mslack({name}) >= 0"
             detail = f"least mslack over {ns} states = {mn} ({pos} states with positive base)"
@@ -124,8 +121,16 @@ def handle(line, api):
             st = f"mixedStepAll {name} = true"
         if lean and (ok or force): api["lean_claims"].append((name, "claim", st, text))
     if lean and (ok or force) and MODULE not in api["extra_lean"]["imports"]: api["extra_lean"]["imports"].append(MODULE)
-    api["results"].append((ln, text, ok, lean))
-    print(f"{ln}: claim {text}: python {'TRUE' if ok else 'FALSE'} ({detail})")
+    return ok, detail, text
+
+def handle(line, api):
+    m = re.fullmatch(r"claim(!?) (.+?)(\s+by lean)?", line)
+    if not m: return False
+    r = claim_expr(m.group(2).strip(), bool(m.group(3)), api, force=bool(m.group(1)))
+    if r is None: return False
+    ok, detail, text = r
+    api["results"].append((api["ln"], text, ok, bool(m.group(3))))
+    print(f"{api['ln']}: claim {text}: python {'TRUE' if ok else 'FALSE'} ({detail})")
     return True
 
 def _count_states(c):

@@ -6,23 +6,23 @@ open PEqualNP.CircuitLowerBounds (Circuit GateOp)
 open PEqualNP.Outside.L_meta_951_aux (F2 baseDQ MUF2)
 open Asteroid_first
 /-- `correct(tiny)`: the project's `Circuit.eval` computes the OR of every set. -/
-theorem tiny_claim0_project (w : Fin tiny.sets.length) (x : Fin tiny.n → Bool) :
-    Circuit.eval ⟨tiny.toGates, tiny.outs.getD w 0⟩ (List.ofFn x) = decide (∃ v ∈ tiny.setFin w, x v = true) :=
-  correctB_sound_project tiny tiny_claim0 (by decide) w x
+theorem tiny_claim0_project (w_ : Fin tiny.sets.length) (x_ : Fin tiny.n → Bool) :
+    Circuit.eval ⟨tiny.toGates, tiny.outs.getD w_ 0⟩ (List.ofFn x_) = decide (∃ v_ ∈ tiny.setFin w_, x_ v_ = true) :=
+  correctB_sound_project tiny tiny_claim0 (by decide) w_ x_
 theorem tiny_setsOk : Circ.SetsOk tiny := by unfold Circ.SetsOk; decide
 /-- `slack(tiny) = 0`: the sum of (|S| − 1) is at most the number of gates of this circuit. -/
-theorem tiny_claim2_project : ∑ w, ((tiny.setFin w).card - 1) ≤ tiny.toGates.length :=
+theorem tiny_claim2_project : ∑ w_, ((tiny.setFin w_).card - 1) ≤ tiny.toGates.length :=
   base_le_gates_of_slackGe tiny tiny_setsOk tiny_claim2
 /-- `forall cubes slack(tiny) >= 0`: base ≤ |F2| at every cube, in the project's definitions. -/
-theorem tiny_claim4_project (Q : Finset (Fin tiny.n)) :
-    baseDQ tiny.setFin ∅ Q ≤ (F2 tiny.toGates tiny.setFin Q).card :=
-  slackNonnegAll_sound tiny tiny_setsOk tiny_claim4 Q
+theorem tiny_claim4_project (Q_ : Finset (Fin tiny.n)) :
+    baseDQ tiny.setFin ∅ Q_ ≤ (F2 tiny.toGates tiny.setFin Q_).card :=
+  slackNonnegAll_sound tiny tiny_setsOk tiny_claim4 Q_
 theorem fano_setsOk : Circ.SetsOk fano := by unfold Circ.SetsOk; decide
 /-- `slack(fano) = 0`: the sum of (|S| − 1) is at most the number of gates of this circuit. -/
-theorem fano_claim5_project : ∑ w, ((fano.setFin w).card - 1) ≤ fano.toGates.length :=
+theorem fano_claim5_project : ∑ w_, ((fano.setFin w_).card - 1) ≤ fano.toGates.length :=
   base_le_gates_of_slackGe fano fano_setsOk fano_claim5
 /-- `forall cubes slack(fano) >= 0`: base ≤ |F2| at every cube, in the project's definitions. -/
-theorem fano_claim7_project (Q : Finset (Fin fano.n)) :
-    baseDQ fano.setFin ∅ Q ≤ (F2 fano.toGates fano.setFin Q).card :=
-  slackNonnegAll_sound fano fano_setsOk fano_claim7 Q
+theorem fano_claim7_project (Q_ : Finset (Fin fano.n)) :
+    baseDQ fano.setFin ∅ Q_ ≤ (F2 fano.toGates fano.setFin Q_).card :=
+  slackNonnegAll_sound fano fano_setsOk fano_claim7 Q_
 end SearchCheck

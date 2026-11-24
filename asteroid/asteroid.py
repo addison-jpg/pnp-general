@@ -19,6 +19,8 @@ A script is a list of lines; `#` starts a comment. The verbs:
   claim! EXPR by lean                        send the claim to Lean even when Python says it is false (to watch the kernel reject it)
   claim forall cubes slack(NAME) >= 0 [by lean]   slack at EVERY cube; `by lean` is brute force in the kernel (small n only)
   plot phi NAME [NAME ...] -> FILE.png       expected slack Phi(p) and level means
+  conjecture NAME: EXPR                      EXPR with the circuit variable c; then NAME(X) is a claim expression
+  hunt NAME SECONDS MAXNOT [SEED]            search for a circuit where the conjecture NAME fails; binds NAME_cex
   hunt "CONJECTURE" SECONDS MAXNOT [SEED] [&]   mutation search; `&` runs it in the background, log in asteroid/out/
   (extensions)                               a file asteroid/ext_NAME.py with `handle(line, api) -> bool` adds verbs
   record DIR ITEM WORD "STATEMENT"           a finding (boards.py) citing this script and, if built, its Lean module
@@ -48,7 +50,20 @@ def term(m, i):
     f, conj, arg, num = m.group(i), m.group(i + 1), m.group(i + 2), m.group(i + 3)
     return (int(num), None) if num is not None else (F(f, arg, conj), (f, arg))
 
+CONJ = {}      # name -> expression with the circuit variable `c`
+API = {}
+def _exts():
+    import glob, importlib
+    return [importlib.import_module("asteroid." + os.path.basename(f)[:-3]) for f in sorted(glob.glob(os.path.join(ROOT, "asteroid", "ext_*.py")))]
+
 def do_claim(text, lean):
+    m = re.fullmatch(r'(\w+)\((\w+)\)', text)
+    if m and m.group(1) in CONJ:                       # a conjecture applied to a circuit
+        return do_claim(re.sub(r"\(c\)", f"({m.group(2)})", CONJ[m.group(1)]), lean)
+    for e in _exts():                                  # claim forms added by extensions (mixed slack, ...)
+        if hasattr(e, "claim_expr"):
+            r = e.claim_expr(text, lean, API, force=FORCE)
+            if r is not None: return r[0], r[1]
     m = re.fullmatch(r'forall cubes slack\((\w+)\)\s*>=\s*0', text)
     if m:
         c = env[m.group(1)]; n = c["n"]
@@ -76,6 +91,36 @@ def do_claim(text, lean):
             for st in forms[op]: lean_claims.append((lt[1], "claim", st, text))
         else: return ok, f"{lv} {op} {rv}  (NO LEAN FORM for this expression yet: Python only)"
     return ok, f"{lv} {op} {rv}"
+
+def hunt_conjecture(name, secs, max_not, seed):
+    """Mutation search for a circuit on which the conjecture is false. Starts from every circuit in scope.
+    A counterexample is bound to NAME_cex and saved under asteroid/out/. Finding nothing proves nothing."""
+    import random, copy, hunt as H
+    rng = random.Random(seed); starts = [copy.deepcopy(c) for c in env.values() if c["n"] <= 8]
+    starts += [H.or_tree(c["n"], c["sets"]) for c in starts]
+    if not starts: return f"hunt {name}: no circuit with at most 8 inputs in scope"
+    def margin(c):
+        """lhs - rhs for `F(c) >= G(c)` or `F(c) >= k` (below 0 = counterexample); else 0 / -1 for true / false."""
+        env["_h"] = c
+        try:
+            ex = re.sub(r"\(c\)", "(_h)", CONJ[name]); m = re.fullmatch(TERM + r"\s*(>=|>)\s*" + TERM, ex)
+            if m:
+                (lv, _), (rv, _) = term(m, 1), term(m, 6); return lv - rv - (1 if m.group(5) == ">" else 0)
+            return 0 if do_claim(ex, False)[0] else -1
+        finally: env.pop("_h", None)
+    t0 = time.time(); tried = 0
+    while time.time() - t0 < secs:
+        cur = copy.deepcopy(rng.choice(starts)); mc = margin(cur); stall = 0
+        while time.time() - t0 < secs and stall < 300:
+            new = (H.rewrite if rng.random() < 0.4 else H.mutate)(cur, rng, max_not); tried += 1
+            if len(new["gates"]) > 70 or core.nots(new) > max_not or not core.correct(new): stall += 1; continue
+            new = core.prune(new); mn = margin(new)
+            if mn > mc: stall += 1; continue
+            stall = 0 if mn < mc else stall + 1; cur, mc = new, mn
+            if mn < 0:
+                env[name + "_cex"] = new; p = f"asteroid/out/{name}_cex.json"; json.dump(new, open(p, "w")); src[name + "_cex"] = p
+                return f"hunt {name}: COUNTEREXAMPLE after {tried} moves ({new['n']} inputs, {len(new['gates'])} gates, {core.nots(new)} NOT), bound to {name}_cex, saved {p}"
+    return f"hunt {name}: no counterexample in {tried} moves ({secs} s, at most {max_not} NOT gates); this proves nothing"
 
 def lean_literal(name):
     d = env[name]; op = {"and": 0, "or": 1, "not": 2}
@@ -123,13 +168,13 @@ def build_sound(mod, names, envp):
             done_ok.add(c); out.append(f"theorem {c}_setsOk : Circ.SetsOk {c} := by unfold Circ.SetsOk; decide")
         if stmt == f"correctB {c} = true":
             n = f"{t}_project"; made.append(n)
-            out.append(f"/-- `{text}`: the project's `Circuit.eval` computes the OR of every set. -/\ntheorem {n} (w : Fin {c}.sets.length) (x : Fin {c}.n → Bool) :\n    Circuit.eval ⟨{c}.toGates, {c}.outs.getD w 0⟩ (List.ofFn x) = decide (∃ v ∈ {c}.setFin w, x v = true) :=\n  correctB_sound_project {c} {t} (by decide) w x")
+            out.append(f"/-- `{text}`: the project's `Circuit.eval` computes the OR of every set. -/\ntheorem {n} (w_ : Fin {c}.sets.length) (x_ : Fin {c}.n → Bool) :\n    Circuit.eval ⟨{c}.toGates, {c}.outs.getD w_ 0⟩ (List.ofFn x_) = decide (∃ v_ ∈ {c}.setFin w_, x_ v_ = true) :=\n  correctB_sound_project {c} {t} (by decide) w_ x_")
         elif stmt.startswith("slackNonnegAll"):
             n = f"{t}_project"; made.append(n)
-            out.append(f"/-- `{text}`: base ≤ |F2| at every cube, in the project's definitions. -/\ntheorem {n} (Q : Finset (Fin {c}.n)) :\n    baseDQ {c}.setFin ∅ Q ≤ (F2 {c}.toGates {c}.setFin Q).card :=\n  slackNonnegAll_sound {c} {c}_setsOk {t} Q")
+            out.append(f"/-- `{text}`: base ≤ |F2| at every cube, in the project's definitions. -/\ntheorem {n} (Q_ : Finset (Fin {c}.n)) :\n    baseDQ {c}.setFin ∅ Q_ ≤ (F2 {c}.toGates {c}.setFin Q_).card :=\n  slackNonnegAll_sound {c} {c}_setsOk {t} Q_")
         elif stmt == f"slackGe {c} 0 (0) = true":
             n = f"{t}_project"; made.append(n)
-            out.append(f"/-- `{text}`: the sum of (|S| − 1) is at most the number of gates of this circuit. -/\ntheorem {n} : ∑ w, (({c}.setFin w).card - 1) ≤ {c}.toGates.length :=\n  base_le_gates_of_slackGe {c} {c}_setsOk {t}")
+            out.append(f"/-- `{text}`: the sum of (|S| − 1) is at most the number of gates of this circuit. -/\ntheorem {n} : ∑ w_, (({c}.setFin w_).card - 1) ≤ {c}.toGates.length :=\n  base_le_gates_of_slackGe {c} {c}_setsOk {t}")
     if not made: return None
     out.append("end SearchCheck"); smod = mod + "_sound"; path = f"one-not/lean/PEqualNP/W951/{smod}.lean"
     open(path, "w").write("\n".join(out) + "\n"); t0 = time.time()
@@ -157,6 +202,7 @@ def run(script):
     for ln, raw in enumerate(open(script), 1):
         line = raw.split("#", 1)[0].strip()
         if not line: continue
+        API.update({"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN})
         if block is not None:
             name, n, wires, gates, sets, outs = block
             W = lambda x: int(x) if x.isdigit() else wires[x]
@@ -174,13 +220,17 @@ def run(script):
             print(f"{ln}: {m.group(1)} loaded ({d['n']} inputs, {len(d['gates'])} gates)")
         elif m := re.fullmatch(r"show (\w+)", line):
             a = m.group(1); print(f"{ln}: {a}: " + ", ".join(f"{f} {F(f, a)}" for f in ("gates", "nots", "base", "witness", "orwitness", "correct")))
-        elif not re.match(r"claim!? (forall c in |forall states |mslack\()", line) and (m := re.fullmatch(r"claim(!?) (.+?)(\s+by lean)?", line)):
+        elif not re.match(r"claim!? forall c in ", line) and (m := re.fullmatch(r"claim(!?) (.+?)(\s+by lean)?", line)):
             global FORCE
             FORCE = bool(m.group(1)); m = re.fullmatch(r"claim!? (.+?)(\s+by lean)?", line)
             ok, detail = do_claim(m.group(1).strip(), bool(m.group(2)))
             results.append((ln, m.group(1).strip(), ok, bool(m.group(2)))); print(f"{ln}: claim {m.group(1).strip()}: python {'TRUE' if ok else 'FALSE'} ({detail})")
         elif m := re.fullmatch(r"plot phi (.+?) -> (\S+)", line):
             plot_phi(m.group(1).split(), m.group(2)); print(f"{ln}: wrote {m.group(2)}")
+        elif m := re.fullmatch(r"conjecture (\w+):\s*(.+)", line):
+            CONJ[m.group(1)] = m.group(2).strip(); print(f"{ln}: conjecture {m.group(1)}(c) := {m.group(2).strip()}")
+        elif (m := re.fullmatch(r"hunt (\w+) (\d+) (\d+)(?: (\d+))?", line)) and m.group(1) in CONJ:
+            print(f"{ln}: " + hunt_conjecture(m.group(1), int(m.group(2)), int(m.group(3)), int(m.group(4) or 0)))
         elif m := re.fullmatch(r'hunt "([^"]+)" (\d+) (\d+)(?: (\d+))?(\s*&)?', line):
             cmd = [sys.executable, "-I", "one-not/tools/search/hunt.py", m.group(1), m.group(2), m.group(3), m.group(4) or "0"]
             if m.group(5):
@@ -190,7 +240,7 @@ def run(script):
         elif m := re.fullmatch(r'record (\S+) (\S+) (\w+) "(.+)"', line): records.append(m.groups())
         else:
             import glob, importlib
-            api = {"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN}
+            api = API; api.update({"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN})
             for f in sorted(glob.glob(os.path.join(ROOT, "asteroid", "ext_*.py"))):
                 if importlib.import_module("asteroid." + os.path.basename(f)[:-3]).handle(line, api): break
             else: raise SystemExit(f"{script}:{ln}: cannot parse: {line}")
@@ -206,7 +256,7 @@ def run(script):
         ev = [script] + ([f"{L['module']}::{L['theorems'][-1]}"] if L and L["ok"] else []) + list(dict.fromkeys(src.values()))
         boards.add(d, "asteroid", item, word, stmt, ev); boards.build()
     print(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; Lean decided {len(L['theorems'])}" if L and L["ok"] else ""))
-    return 1 if bad or (L and not L["ok"]) else 0
+    return 1 if bad or (L and not L["ok"]) or (L and L.get("sound") and not L["sound"]["ok"]) else 0
 
 VERSION = "asteroid 0.3 (Python + Lean kernel + matplotlib)"
 def main(argv):

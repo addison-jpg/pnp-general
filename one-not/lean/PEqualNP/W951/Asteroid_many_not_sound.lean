@@ -6,11 +6,11 @@ open PEqualNP.CircuitLowerBounds (Circuit GateOp)
 open PEqualNP.Outside.L_meta_951_aux (F2 baseDQ MUF2)
 open Asteroid_many_not
 /-- `correct(c)`: the project's `Circuit.eval` computes the OR of every set. -/
-theorem c_claim0_project (w : Fin c.sets.length) (x : Fin c.n → Bool) :
-    Circuit.eval ⟨c.toGates, c.outs.getD w 0⟩ (List.ofFn x) = decide (∃ v ∈ c.setFin w, x v = true) :=
-  correctB_sound_project c c_claim0 (by decide) w x
+theorem c_claim0_project (w_ : Fin c.sets.length) (x_ : Fin c.n → Bool) :
+    Circuit.eval ⟨c.toGates, c.outs.getD w_ 0⟩ (List.ofFn x_) = decide (∃ v_ ∈ c.setFin w_, x_ v_ = true) :=
+  correctB_sound_project c c_claim0 (by decide) w_ x_
 /-- `correct(fano)`: the project's `Circuit.eval` computes the OR of every set. -/
-theorem fano_claim3_project (w : Fin fano.sets.length) (x : Fin fano.n → Bool) :
-    Circuit.eval ⟨fano.toGates, fano.outs.getD w 0⟩ (List.ofFn x) = decide (∃ v ∈ fano.setFin w, x v = true) :=
-  correctB_sound_project fano fano_claim3 (by decide) w x
+theorem fano_claim3_project (w_ : Fin fano.sets.length) (x_ : Fin fano.n → Bool) :
+    Circuit.eval ⟨fano.toGates, fano.outs.getD w_ 0⟩ (List.ofFn x_) = decide (∃ v_ ∈ fano.setFin w_, x_ v_ = true) :=
+  correctB_sound_project fano fano_claim3 (by decide) w_ x_
 end SearchCheck

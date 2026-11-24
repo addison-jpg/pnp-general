@@ -53,6 +53,8 @@ The exact grammar is in [`SPEC.md`](SPEC.md). On every push that touches the lan
 | `plot hist FUNC NAME -> FILE.png` | histogram of FUNC(c) over the corpus |
 | `claim mslack(NAME, {Q}, {R}) OP k`, `claim forall states mslack(NAME) >= 0`, `claim forall states mixedstep(NAME)` | mixed states: points of Q fixed to 1, points of R fixed to 0; MixedStep = at every state with positive base some paying 0-step or 1-step has mslack no larger (extension `ext_mixed.py`; definitions in `SPEC.md`) |
 | `prove "STATEMENT" by TACTIC` | stand-in for "Lean Eureka" (see `EUREKA.md`): a Lean proposition proved with one of decide, omega, simp, aesop, norm_num, rfl; the kernel accepts or rejects; skipped under `--no-lean` (extension `ext_eureka.py`) |
+| `conjecture NAME: EXPR` | a statement with the circuit variable `c`, written once; then `NAME(X)` is a claim, `forall c in W: NAME(c)` runs it over a corpus, and `hunt NAME …` searches against it |
+| `hunt NAME SECONDS MAXNOT [SEED]` | mutation search for a circuit where the conjecture fails; a hit is bound to `NAME_cex` and saved in `asteroid/out/` |
 | `plot phi NAME … -> FILE.png` | expected slack Φ(p) and the level means |
 | `hunt "CONJECTURE" SECONDS MAXNOT [SEED] [&]` | mutation search; `&` puts it in the background |
 | `record DIR ITEM WORD "STATEMENT"` | a finding in the board tree; skipped if a claim is false or Lean did not build |

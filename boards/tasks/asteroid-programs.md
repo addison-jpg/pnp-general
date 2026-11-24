@@ -1,0 +1,9 @@
+# Task: asteroid-programs
+
+- **Serves:** every numbered item of the formal proof (notes/front-page-2026-11-24.md).
+- **Statement:** One asteroid program per item that can be run: the Theorem's hypotheses on the corpus, each refuted statement with its counterexample, the open conjectures as `conjecture` + corpus claim + hunt.
+- **Done when:** `python3 -m asteroid test` runs them all and the README items point at them.
+- **Seats:** main's Sonnet. Results are findings (`python3 -I boards.py add …`).
+
+## Lines (TAKEN / DECIDED only)
+
