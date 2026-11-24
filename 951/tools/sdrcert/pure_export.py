@@ -12,6 +12,7 @@ i + 1, real wire i > n + p keeps its number). Lean recomputes every class (`deci
 `tables` and `merges` are those of kill_tests/canon.py.
 
 Usage (from 951/tools/sdrcert): python3 pure_export.py OUT.lean [name ...]  |  python3 pure_export.py OUT.lean --group fixh16
+       python3 pure_export.py OUT.lean --group witness   (every *.json in 951/data/witnesses)
 """
 import itertools, json, os, sys
 
@@ -34,7 +35,13 @@ INSTANCES = [  # (Lean name, source, loader)
     ('uniq2', 'tools/sdrcert/scaffold_certs.json', 'scaffold:unique_sdr_2'),
     ('cxT4', 'tools/w951/tests/instances/front-match__fc__cxT4.json', 'json'),
 ]
-GROUPS = {'fixh16': 'tools/sdrcert/fixh16_forced.json'}  # as export.py: `--group fixh16`
+GROUPS = {'fixh16': 'tools/sdrcert/fixh16_forced.json',  # as export.py: `--group fixh16`
+          'witness': 'data/witnesses'}  # a directory: one circuit per *.json (dict with name, n, sets, gates, outs)
+
+
+def camel(s):
+    parts = s.split('_')
+    return parts[0] + ''.join(q[:1].upper() + q[1:] for q in parts[1:])
 CAP = 4000  # per-atom minterm products per set, as kill_tests/ext.py
 
 
@@ -152,8 +159,13 @@ theorem {N} : PureSDR {N}S {N}Gates {p} :=
 if __name__ == '__main__':
     if len(sys.argv) > 3 and sys.argv[2] == '--group':
         src = GROUPS[sys.argv[3]]
-        INSTANCES[:] = [('fixh' + d['name'].split('_')[1], src, 'scaffold:' + d['name'])
-                        for d in json.load(open(os.path.join(ROOT, src)))]
+        path = os.path.join(ROOT, src)
+        if os.path.isdir(path):
+            INSTANCES[:] = [(camel(json.load(open(os.path.join(path, f)))['name']), os.path.join(src, f), 'json')
+                            for f in sorted(os.listdir(path)) if f.endswith('.json')]
+        else:
+            INSTANCES[:] = [('fixh' + d['name'].split('_')[1], src, 'scaffold:' + d['name'])
+                            for d in json.load(open(path))]
         sys.argv[2:] = []
     only = sys.argv[2:] or [x[0] for x in INSTANCES]
     parts, report = [], []

@@ -41,3 +41,6 @@ Regenerate: `python3 pure_export.py /tmp/p.lean` and `python3 pure_export.py /tm
 between the header and `end`. Current: cxT2, cxe3, ce3, hard4s, cxr, cfgI, adv3, adv4, hard4, uniq0, uniq2, cxT4, and the
 24 fixh16 circuits: 36 PureSDRs, all kernel-checked (about 40 s). Pure menus are small (1-10 distinct classes per set).
 
+Group `witness` (`python3 pure_export.py OUT --group witness`): every `*.json` in `951/data/witnesses` (one circuit per file,
+dict with name, n, sets, gates, outs). Output in `lean/PEqualNP/W951/PureSDRWitnessLadder.lean`, with a correctness bundle per
+circuit for small n. Current: pasch_s14_heavy_atmostone (n = 6, 14 gates, NOT gate 1, menus 1/2/1/2; worlds I1, I0, I1, I0).
