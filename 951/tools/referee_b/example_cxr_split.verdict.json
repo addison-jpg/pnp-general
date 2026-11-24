@@ -1,0 +1,39 @@
+{
+ "circuit_ok": true,
+ "coverage": {
+  "0": "1/2",
+  "1": "1/2"
+ },
+ "demand": {
+  "0": "1",
+  "1": "1"
+ },
+ "load": {
+  "14": "1"
+ },
+ "merges": {
+  "0": [
+   12,
+   13,
+   14
+  ],
+  "1": [
+   12,
+   13,
+   14
+  ]
+ },
+ "third_plus": {
+  "0": [
+   14
+  ],
+  "1": [
+   14
+  ]
+ },
+ "verdict": "FAIL",
+ "violations": [
+  "set 0 covered 1/2 < demand 1",
+  "set 1 covered 1/2 < demand 1"
+ ]
+}
