@@ -162,6 +162,17 @@ rewrite of the whole XOR chain, not by any constant or duplicate wire. If this c
 proof must use optimality of `E0`, `E1` in a non-local way. **First thing to do next: evaluate
 this circuit and run `build`'s constraints on it.**
 
+**Update by Generalize (CHECKED, `tools/xor-extension/residual/ex17.py`).** The example was
+built gate by gate and evaluated on all 32 inputs. It has 17 gates and the residual shape; it
+computes `x ⊕ f` with `f = y3 ⊕ y0 ⊕ (¬y0 ∧ y1 ∧ y2)`; at every `y` exactly one of `H1`, `H2`
+changes with `x`; the side-0 circuit and the side-1 circuit (14 gates each) have no constant
+wire and no two wires with the same function. The exact sizes are `C(f) = C(¬f) = 6`
+(`tools/xor-extension/sizes4.txt`, exhaustive search). So the local lemma is FALSE: a
+residual-shape circuit can have no constant or duplicate wire on either side while both sides
+are far from optimal (14 gates against 6). This is not a counterexample to the conjecture
+(17 > 6 + 3). It shows that a proof of the open case must use the optimality of the two side
+circuits, not only redundancy of single wires.
+
 ## 5. The cleanest open statement (CONJECTURE)
 
 In the frame of section 1 (`h2, u2` functions of `y`), let `z(a, b, y)` be the function of the
@@ -188,7 +199,7 @@ proof.
 Stopped on instruction, after roughly the exploration above; no proof attempt reached a
 complete argument and no counterexample candidate was found.
 
-1. Verify (or refute) the 17-gate example of section 4 mechanically.
+1. DONE (verified, see the update in section 4): the 17-gate example of section 4.
 2. Finish `loc2.py` for `(k, r) = (5, 9), (6, 9), (7, 9)` to get "no counterexample with
    `m ≤ 6`". Then `(4, 10)`, which needs more than 25 minutes or symmetry breaking (fix the
    dualized frame, order independent gates).
