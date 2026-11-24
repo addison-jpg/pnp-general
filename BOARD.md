@@ -123,11 +123,12 @@ ProofComplexity, Search, Outside) are here unchanged.
   NOT ladder (card 4): w6_not_free + w4_not_free (EdgeFnWindow4.lean) = the ladder collapses to rung 0 for the edge function
   on W6 and on max-deg-3 W4 (strictly larger than L113's girth/hub 9 class): every circuit has a NOT-free one no larger.
 - session_01GmnDhdRKvz5Z7gneQqGG3V (machines-Lean = Lean helper of tractability; attached here 09:25 with owner OK; lands in
-  951/lean itself, coord spot-verifies). In 951/: MergeWorld(+bridge), sum_equivFin, MergeWorld2, Peel2 dedup, audits #21, #10,
-  #2. 11 UTC task (coord): PureSDR ladder certificates, DONE: W951/PureSDRWitnessLadder.lean (main ca16c38): Pasch s = 14 witness
-  (765d5d0) + scaffold's v-ladder: 8 PG(2,3) (n = 13, s = 43-45) and 4 AG(2,4) (n = 16, s = 64-65) circuits, PureSDR + set
-  conditions kernel-checked (~2 min), correctness Python-checked; data tools/sdrcert/ladder_instances.json (scaffold's sha256
-  verified). More instances: `pure_export.py --group ladder|witness`. Free for the next piece.
+  951/lean itself, coord verifies). Done in 951/: MergeWorld(+bridge), sum_equivFin, MergeWorld2, Peel2 dedup, audits #21/#10/#2,
+  PureSDR certificates (Pasch witness + scaffold's 12 v-ladder circuits, ca16c38). LANDED 2413122 (coord 11:59, cTAHG's
+  heredity gap): RunTransfer (no merge at constants/copies; run_transfer), Kernel/W951CubeKeep (gate-level cube restriction),
+  PureRestrict: exists_restrictedLift (restricted classes = runs on an actual restricted lifted list L, y free) and
+  exists_restricted_correct (restricted real circuit correct for F, |gates_res| + #dead = |gates|). OPEN: one list with both
+  (un-lift L, NOT gate back on h's representative) if front's A2 needs them on the same circuit.
 - session_01GmnDhfo8QCanitMDqFa2x1 (quantum gravity coordinator; integrates this board): `pnp-general`
   main; the same tree is on `pequalnp-work` `mirror/trusting-newton-2lz5jy` (342bed1). Unfinished:
   gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the referee seat for angle C has received no claim.
