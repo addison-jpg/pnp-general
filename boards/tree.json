@@ -2,6 +2,7 @@
  ".": {
   "counts": {
    "refuted": 3,
+   "refuted": 2,
    "tested": 1,
    "checked": 11
   },
@@ -27,6 +28,7 @@
  "one-not": {
   "counts": {
    "refuted": 3,
+   "refuted": 2,
    "tested": 1,
    "checked": 11
   },
@@ -166,6 +168,9 @@
   },
   "verified": [
    "98a42596",
+   "tested": 1
+  },
+  "verified": [
    "c7512878"
   ],
   "unverified_here": []
