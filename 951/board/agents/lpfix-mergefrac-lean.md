@@ -262,3 +262,6 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   `certS_stair` ((S) whenever h = 0 at the staircase points), `cert3c_of_stair` (+ (D) ⇒ CERT-3c). Data (tu_cert.py, H3u = dying
   zero points with pairwise TUPair): 184/184 local non-local instances, incl. those where CERT-1c fails at every v; qg-d2 asked to
   run the 31,503 all-read corpus. Remaining for the F2 step: (D) at TU-compatible zero points.
+- (13:55 UTC) CertStair.lean: (D) (qg-d2, heavy SEE) + (S) (TU) composed: `cert3c_of_heavy_tu`, `no_minCE_of_heavy_tu_or_local`.
+  tu_cert.py flags hsee_tu / hsee_stair: 101 / 92 of 155 local heavy instances (SEE breaks at raised zero points). With MATCH-C
+  (6217a97: the step is false at non-local cubes under R1-R5' and R+), local certificates at non-local Q need gates < base.

@@ -9,7 +9,10 @@ Checks per (circuit, Q non-local, v):
   H3u: zero points z_w ⊇ Q off S_w for the sets through v, every cone merge dying under x_v := 1 (D), and every pair
        of star sets with TU in one direction  (=> (S) is PROVED, not just observed);
   stair: the staircase z_j = Q | union_{i<j} (S_{w_i} minus v) for some order, with (D) and TU;
-  c1: CERT-1c itself (z_w = Q, (S) and (D) observed).
+  c1: CERT-1c itself (z_w = Q, (S) and (D) observed);
+  hsee_stair: a HEAVY v whose staircase cone merges are all 1 at Q + e_v (SEE, so (D) by certD_of_heavy_see) and pairwise TU
+       (so (S) by certS_of_tu): CERT-3c PROVED at v (CertStair.lean `cert3c_of_heavy_tu`);
+  hsee_tu: the same with any zero points z_w ⊇ Q off S_w (search).
 Run from 951/:  python3 tools/kill_tests/tu_cert.py FILE_OR_DIR ...  (json circuits or jsonl corpora), one json line per instance.
 """
 import json, sys, os, itertools, random, zlib
@@ -122,9 +125,50 @@ def instance(c, Q):
                     for a in range(len(star)) for b in range(a + 1, len(star))):
                 stair = True
                 break
-        rec[v] = dict(deg=len(star), heavy=bool(h >> (Q | 1 << v) & 1), c1=c1, h3u=h3u, stair=stair)
+        # heavy v with SEE at TU-compatible staircase points ((D) free by qg-d2's certD_of_heavy_see)
+        hsee = False
+        if h >> (Q | 1 << v) & 1:
+            for order in itertools.permutations(range(len(star))):
+                z = Q
+                zs = [None] * len(star)
+                for j in order:
+                    zs[j] = z
+                    z |= sets[star[j]] & ~(1 << v)
+                see = all(T[g] >> (Q | 1 << v) & 1 for j in range(len(star))
+                          for g in merges_at(c, T, c.sets[star[j]], zs[j], cone[star[j]]))
+                if see and all(tu(h, c.sets[star[a]], zs[a], zs[b]) or tu(h, c.sets[star[b]], zs[b], zs[a])
+                               for a in range(len(star)) for b in range(a + 1, len(star))):
+                    hsee = True
+                    break
+        # heavy v, any zero points with SEE, pairwise TU (search)
+        hsee_any = False
+        if h >> (Q | 1 << v) & 1:
+            sopts = []
+            for i in star:
+                free = full & ~(Q | sets[i])
+                o = []
+                sub = free
+                while True:
+                    z = Q | sub
+                    if all(T[g] >> (Q | 1 << v) & 1 for g in merges_at(c, T, c.sets[i], z, cone[i])):
+                        o.append(z)
+                    if sub == 0:
+                        break
+                    sub = (sub - 1) & free
+                sopts.append(o)
+
+            def spick(j, chosen):
+                if j == len(star):
+                    return True
+                return any(all(tu(h, c.sets[star[a]], chosen[a], z) or tu(h, c.sets[star[j]], z, chosen[a])
+                               for a in range(j)) and spick(j + 1, chosen + [z]) for z in sopts[j])
+            hsee_any = spick(0, [])
+        rec[v] = dict(deg=len(star), heavy=bool(h >> (Q | 1 << v) & 1), c1=c1, h3u=h3u, stair=stair, hsee_stair=hsee,
+                      hsee_tu=hsee_any)
     return dict(Q=Q, rec=rec, c1=any(r['c1'] for r in rec.values()), h3u=any(r['h3u'] for r in rec.values()),
-                stair=any(r['stair'] for r in rec.values()))
+                stair=any(r['stair'] for r in rec.values()), hsee_stair=any(r['hsee_stair'] for r in rec.values()),
+                hsee_tu=any(r['hsee_tu'] for r in rec.values()),
+                has_heavy=any(r['heavy'] for r in rec.values()))
 
 
 def main(paths):
