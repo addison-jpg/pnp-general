@@ -72,7 +72,7 @@ arguments that survive low-degree extensions. L-lib-086: with strong pseudorando
 |---|---|---|
 | 1 | Bring the L-meta-951 tree over one-to-one (`lean/PEqualNP/W951/`, `Kernel/`, `work/`, `tools/`), then close `no_minCE` | coord, front |
 | 2 | Tie `SIZENot` to the 951 definitions; state rung `k` | tractability |
-| 3 | L-gen-104 (Fischer) as a row; Kannan's theorem as a row (needs the second level of the hierarchy) | tractability, helpers; L-gen-104 DONE by GeNeRALIZE (General/FischerBasic, FischerInverter, FischerMain; std axioms): a superpolynomial lower bound for circuits with ⌈log₂(n+1)⌉ NOT gates is now, in Lean, one for all circuits. CLAIMED (GeNeRALIZE, owner OK in its chat): Kannan's circuit half = size hierarchy (∀ k ∃ L ∈ P/poly, L ∉ SIZE(c n^k + c); General/SizeHierarchy*.lean); the uniform half (Σ₂ membership) needs TM constructions, left open |
+| 3 | L-gen-104 (Fischer) as a row; Kannan's theorem as a row (needs the second level of the hierarchy) | tractability, helpers; L-gen-104 DONE by GeNeRALIZE (General/FischerBasic, FischerInverter, FischerMain; std axioms): a superpolynomial lower bound for circuits with ⌈log₂(n+1)⌉ NOT gates is now, in Lean, one for all circuits. Kannan's circuit half DONE (GeNeRALIZE): `SizeHierarchy.size_hierarchy`: ∀ k ∃ L ∈ P/poly, ∀ c, L ∉ SIZE(c n^k + c) (General/SizeHierarchy.lean, std axioms); the uniform half (that L can be taken in Σ₂ ∩ Π₂) needs TM constructions, OPEN |
 | 4 | What is out there for unrestricted circuits: verify and extend the list below | research, the Generalize sessions |
 | 5 | Read the official Clay problem description (claymath.org is not reachable from the cloud sessions) | whoever has network access |
 
