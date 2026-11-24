@@ -4,7 +4,7 @@ Owner, 14:40: "the job now is to kill things at the bottom, but not too fast. we
 parts to come together." A note that is off the route gets a first line `OFF THE ROUTE` and stays; only notes with
 no content and no link to them are deleted. Object by one wall line on BOARD.md.
 
-## The route (one proof, four parts)
+## The route (one proof, four parts; the numbered items are in /README.md: part 1 = L1 to L3, T3 to T5; part 2 = C2, T4; part 3 = T1, T2, C1; part 4 = §6)
 
 | Part | Statement | State | Notes that feed it |
 |---|---|---|---|
