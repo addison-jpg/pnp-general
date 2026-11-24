@@ -45,7 +45,7 @@ work reaches the general problem.
 | 3 | Natural proofs: L-lib-086 (Razborov, Rudich) | pseudorandom boundary states under complexity = volume (Bouland, Fefferman, Vazirani): needs definitions | pseudorandomness blocks "natural" arguments on both sides |
 | 4 | Counting: L-clb-005 (some language is not in P/poly) | L-qg-001, L-qg-002, L-qg-101 (some reversible map needs exponentially many gates) | one counting argument |
 | 5 | One-way functions give P ≠ NP: L-qg-103 | hardness of decoding Hawking radiation (Harlow, Hayden; Aaronson): physics premise | the physics claim stands on a classical assumption that implies P ≠ NP |
-| 6 | Rung 1 of the ladder: `no_minCE`, reduced to MergeFrac, a linear-programming duality statement | convex duality and fixed points: L-qg-102, `QuantumGravity/Helpers/FixedPoint.lean` | the same convex-duality mathematics; the right-hand side is checked |
+| 6 | Rung 1 of the ladder: `no_minCE`, reduced to MergeFrac, a linear-programming duality statement | convex duality and fixed points: L-qg-102, L-qg-120 (every quantum channel has a fixed density matrix), `QuantumGravity/Helpers/FixedPoint.lean` | the same convex-duality mathematics; the right-hand side is checked |
 | 7 | Geometric complexity theory: permanent against determinant (`lean/PEqualNP/Gct/`) | geometry of circuits: dimension count (gap L-qg-119), Nielsen (needs definitions) | dimension counting of orbits on both sides |
 | 8 | Space-bounded computation: configuration counting | holographic bound: L-qg-010 | finitely many states bound the running time |
 
@@ -95,7 +95,7 @@ Open statements are `Prop` definitions. Physics premises never enter a Lean stat
 repositories are frozen as they are; new work lands here. Models: avoid Fable runs, a few are
 acceptable; Sonnet is fine. Never run `lake update`.
 
-**Status (2026-11-24).** In this repository's two own programs: 43 rows checked (39 quantum
+**Status (2026-11-24).** In this repository's two own programs: 51 rows checked (47 quantum
 gravity, 4 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
 inherited from `brilliant-hq/pequalnp-proofs` (Library, CircuitLowerBounds, MetaComplexity, Gct,
 ProofComplexity, Search, Outside) are here unchanged.
@@ -128,6 +128,13 @@ ProofComplexity, Search, Outside) are here unchanged.
   `951/work/notes951/lemmaK_referee/` (from pequalnp-work referee-lemmaK-dwV8p e0c113a); verdicts
   `951/board/agents/dwV8p-referee-*.md`. Earlier: D-qg-1 quantum circuits (L-qg-110 to 119, on main). Unfinished: nothing;
   free for the next referee assignment.
+
+- session_01GmnDhgAdyDijthBgZgJFWn (ex D-qg-2; scaffold helper for 951; attached here 09:25 with owner OK in
+  its own chat): D-qg-2 LANDED here (L-qg-120 to L-qg-127 checked, `Defs/QuantumGravityChannels.lean`;
+  first version on pequalnp-proofs `claude/modest-brahmagupta-66n1fr` bddc02a). 951: no-mixed / heavy split
+  rounds 1-4 in `951/board/agents/qg-d2-nomixed.md` (code: pequalnp-work `nomixed-951` 1bada7b). Unfinished:
+  xgen runs for scaffold (front-A falsification, 4 systems with a 4-set, essential, base+1..+4; no X so far)
+  -> `951/board/agents/qg-d2-xgen.md` when done.
 
 ## Subboard: general circuits (L-gen)
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
@@ -179,8 +186,11 @@ fractional induction.
 
 ## Subboard: quantum gravity (L-qg)
 Files: `lean/PEqualNP/Defs/QuantumGravity*.lean`, `lean/PEqualNP/QuantumGravity/` (its README has
-the tracks and references). 39 rows; gaps L-qg-115, 116, 119 (quantum counting) and L-qg-169
-(P_CTC inside EXP).
+the tracks and references). 47 rows; gaps L-qg-115, 116, 119 (quantum counting) and L-qg-169
+(P_CTC inside EXP). D-qg-2 landed: L-qg-120 (Deutsch's quantum consistency: every channel in Kraus form
+on `Fin d`, `d > 0`, has a fixed density matrix; from `Helpers/FixedPoint.lean`), L-qg-121 (the
+classical case embedded, from L-qg-102 via L-qg-127), L-qg-122 to L-qg-127 (channels preserve density
+matrices; unital channels; the channel of a map of the basis; L-qg-120 => L-qg-121; L-qg-102 => L-qg-121).
 
 ## Subboard: compute (warden, session_01GmnDhe9JJ48acyaXmZHPPT)
 Kill only what serves no card on this board; duplicates and dead loops are flagged here and pinged to the owning
