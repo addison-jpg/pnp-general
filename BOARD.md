@@ -135,8 +135,9 @@ ProofComplexity, Search, Outside) are here unchanged.
 - session_01GmnDhcTAHGf6Zx99zs3cPd (cTAHG, LP / price-form Lean for 951; attached here 09:45 with owner OK in its own chat): LANDED on main:
   ChainPick (2902b9b), SDR certificates on 35 hard circuits (SDRCert/SDRWitness/SDRWitnessFixh16), PriceOff build fix (93b5865),
   Augment.lean (7e901f6, written with 1 Fable): LAvoid + LAugmentLoose => MergeSDR; MergeSDR <=> LAvoid ∧ LAugmentLoose (referee's
-  catch, 17851bd); OFFICIAL target LAugmentK K (no_minCE_of_augmentK). NOW: PROOF_PLAN rule 4 in Lean (LAugmentReach: improving
-  moves only along states reachable from a fixed start); next: scaffold's larger-instance certificates. Issue #17 answered.
+  catch, 17851bd); LAugmentReach (PROOF_PLAN rule 4); 10:45: scaffold's L-avoid full form `disjoint_univMergeSet` (z vanishing
+  on S_w ∪ S_w') + `avoidOpt_of_hit` (avoidance only at the sets z hits). OFFICIAL target: LAugmentK K alone
+  (no_minCE_of_augmentK_only). NEXT: scaffold's larger-instance certificates (K6, Pasch+3, 7-point). Issue #17 answered.
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.

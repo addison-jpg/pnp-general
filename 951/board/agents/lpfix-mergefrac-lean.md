@@ -148,3 +148,9 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   improving moves (≤ K sets re-picked, strictly fewer colliding pairs) that still collides has a further such move.
   `mergeSDR_of_augmentReach`, `no_minCE_of_augmentReach`, and `lAugmentReach_of_avoid_augmentK` (LAvoid ∧ LAugmentK K ⇒
   LAugmentReach K): the reachable form is a WEAKER sufficient target, so a canonical start (PROOF_PLAN §3) can be used.
+- (10:45 UTC) LAvoid PROVED (scaffold's lemma). Coord landed the z = 0 case first (2d66d15: `avoidOpt_zero`, `lAvoid`,
+  `no_minCE_of_augmentK_only`); my parallel copy dropped. Added scaffold's FULL form: `disjoint_univMergeSet` — for w ≠ w' and
+  z vanishing on S_w ∪ S_w', M_z(w) ∩ U(w') = ∅ (only (1,1)-disjointness: no Lemma M, NOT gate or correctness) — and
+  `avoidOpt_of_hit`: a zero point z of S_w is an avoiding option once M_z(w) misses U(w') for every other set S_w' that z
+  HITS; sets z vanishes on are free. Use: any LAugment step that re-picks at a point z only has to check the sets z hits.
+  OFFICIAL OPEN TARGET: `LAugmentK K` alone. Axioms: propext, Classical.choice, Quot.sound.

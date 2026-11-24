@@ -465,6 +465,60 @@ theorem avoidOpt_zero (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 
 theorem lAvoid (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) : LAvoid S gates :=
   fun w => ⟨_, avoidOpt_zero S gates hS w⟩
 
+/-- **Scaffold's L-avoid lemma, full form** (10:35): for `w ≠ w'` and a point `z` vanishing on
+`S w ∪ S w'`, the merge set of `S w` at `z` misses the universal merges of `S w'`. A merge gate of
+`S w` at `z` is `1` at `z + e_u` and `z + e_v` for `u ≠ v ∈ S w`; a universal merge of `S w'` is `0`
+at every zero point of `S w'`, and `z + e_x` is one when `x ∉ S w'`; so `u, v ∈ S w'`, against
+`|S w ∩ S w'| ≤ 1`. `avoidOpt_zero` is the case `z = 0`. -/
+theorem disjoint_univMergeSet (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) {w w' : Fin m}
+    (hww : w ≠ w') (z : Fin n → Bool) (hz : ∀ v ∈ S w ∪ S w', z v = false) :
+    Disjoint (mergeSet gates (S w) z) (univMergeSet S gates w') := by
+  classical
+  rw [Finset.disjoint_left]
+  intro g hg hU
+  have h0 := mergeSet_subset_DT gates (S w) z hg
+  simp only [DT, Finset.mem_filter] at h0
+  obtain ⟨-, -, u, v, huv, hu, hv, hgu, hgv⟩ := h0
+  have key : ∀ x, val gates (upPt z x) g = true → x ∈ S w' := by
+    intro x hx
+    by_contra hxb
+    have hzx : upPt z x ∈ zeroPts (S w') := by
+      rw [mem_zeroPts]
+      intro c hc
+      have hne : c ≠ x := fun h => hxb (h ▸ hc)
+      rw [upPt, Function.update_of_ne hne]
+      exact hz c (Finset.mem_union_right _ hc)
+    have h1 := mergeSet_subset_DT gates (S w') _ ((mem_univMergeSet S gates).mp hU _ hzx)
+    simp only [DT, Finset.mem_filter] at h1
+    rw [h1.2.1] at hx
+    exact absurd hx (by simp)
+  have h2 : ({u, v} : Finset (Fin n)) ⊆ S w ∩ S w' := by
+    intro x hx
+    rw [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl
+    · exact Finset.mem_inter.mpr ⟨hu, key _ hgu⟩
+    · exact Finset.mem_inter.mpr ⟨hv, key _ hgv⟩
+  have h3 := Finset.card_le_card h2
+  rw [Finset.card_pair huv] at h3
+  have := hS w w' hww
+  omega
+
+/-- **Avoidance only needs checking at the sets a zero point hits.** A zero point `z` of `S w` is an
+avoiding option as soon as its merge set misses `U(w')` for every other set `S w'` that `z` HITS
+(`z v = true` for some `v ∈ S w'`); the sets `z` vanishes on are free by `disjoint_univMergeSet`. -/
+theorem avoidOpt_of_hit (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) {w : Fin m}
+    {z : Fin n → Bool} (hz : z ∈ zeroPts (S w))
+    (hhit : ∀ w' : Fin m, w' ≠ w → (∃ v ∈ S w', z v = true) →
+      Disjoint (mergeSet gates (S w) z) (univMergeSet S gates w')) :
+    AvoidOpt S gates w z := by
+  refine ⟨hz, fun w' hw' => ?_⟩
+  by_cases h : ∃ v ∈ S w', z v = true
+  · exact hhit w' hw' h
+  · refine disjoint_univMergeSet S gates hS (Ne.symm hw') z fun v hv => ?_
+    rcases Finset.mem_union.mp hv with hv | hv
+    · exact mem_zeroPts.mp hz v hv
+    · simpa using fun hzv => h ⟨v, hv, hzv⟩
+
 end Augment
 
 /-- **951 from LAvoid and LAugment**: if every minimal counterexample satisfies both, there is
