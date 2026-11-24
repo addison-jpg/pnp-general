@@ -1,0 +1,4 @@
+# prove: a Lean statement and one tactic; the kernel accepts or rejects (skipped under --no-lean).
+prove "2 ^ 10 = 1024" by decide
+prove "∀ a b : Nat, a + b = b + a" by omega
+prove "(List.range 20).sum = 190" by decide

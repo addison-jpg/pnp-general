@@ -26,6 +26,7 @@ corpus    := "corpus" NAME "=" GLOB ["where n <=" K] ["where nots <=" T]        
 forall    := "claim forall c in" NAME ":" expr ["by lean"]                          (expr written with the variable c)
 count     := "count c in" NAME ":" expr
 hist      := "plot hist" FUNC NAME "->" PATH
+prove     := "prove" STRING "by" TACTIC                                              (asteroid/ext_eureka.py; STRING is a Lean proposition)
 hunt      := "hunt" STRING SECONDS MAXNOT [SEED] ["&"]
 record    := "record" DIR ITEM WORD STRING
 WIRE      := POINT | NAME            (a point 0 .. N-1, or an earlier gate name)
@@ -47,6 +48,10 @@ WORD      := checked | paper | tested | refuted | open | premise
 - **MixedStep** at a state with base > 0: some point v outside Q ∪ R such that moving v into Q (a 1-step) or into R (a 0-step) gives a state whose mslack is ≤ the current mslack, where the step must **pay**: the base of the new state is strictly smaller than the base of the current one (exactly `continuous.py`: `cmd_mixed` and `mixed_margin`, which take the least mslack change over the paying steps and ask it to be ≤ 0). Python: `claim forall states mixedstep(c)` is true iff `mixed_margin(c)` is ≤ 0 at the states with positive base. Lean: `mixedStepAll`.
 - `claim mslack(c, {q…}, {r…}) OP k`: one state (Lean: `mslackGe`, `mslackLe`, `mslackVal`). `claim forall states mslack(c) >= 0` (Lean: `mslackNonnegAll`). `claim forall states mixedstep(c)` (Lean: `mixedStepAll`). `claim!` forces any of them to Lean.
 - Python cross-check: every single-state claim is compared with a naive direct implementation (`direct_parts`); `python3 -I asteroid/tests/test_mixed.py` compares all states and MixedStep on two circuits.
+
+## prove (extension `asteroid/ext_eureka.py`)
+
+`prove "P" by T` writes `theorem asteroid_prove : P := by T` into a scratch module (import Mathlib) and runs `lake env lean` in `one-not/lean`. Accepted = true claim, rejected = false claim (exit code 1). Skipped without effect under `--no-lean` or without `lake`. T is one of decide, omega, simp, aesop, norm_num, rfl, simp_arith, trivial, `decide +kernel`. It is a stand-in; no tool called Eureka was found (`EUREKA.md`).
 
 ## Engines
 

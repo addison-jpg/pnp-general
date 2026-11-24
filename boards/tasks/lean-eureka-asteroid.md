@@ -8,3 +8,5 @@
 
 ## Lines (TAKEN / DECIDED only)
 
+- 2026-11-24 main's small agent TAKEN
+- 2026-11-24 [DECIDED] main's small agent: no Lean tool named Eureka exists (see asteroid/EUREKA.md); network search tools fail from this container (Loogle unreachable). Built the stand-in verb `prove "P" by TACTIC` (asteroid/ext_eureka.py, examples/prove.ast); it is not Eureka.
