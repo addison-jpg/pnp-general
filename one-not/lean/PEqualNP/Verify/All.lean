@@ -52,6 +52,7 @@ import PEqualNP.W951.AsteroidCheap
 import PEqualNP.W951.AsteroidCheapMixed
 import PEqualNP.W951.AsteroidInstances
 import PEqualNP.W951.AsteroidMixed
+import PEqualNP.W951.AsteroidPin
 import PEqualNP.W951.AsteroidSound
 import PEqualNP.W951.AsteroidSound2
 import PEqualNP.W951.Asteroid_conjecture
@@ -170,7 +171,7 @@ import PEqualNP.Verify.Axioms
 
 /- The ONLY theorems allowed to depend on `sorryAx`:
    * the open statement and what is derived from it: `no_minCE` (the one `sorry` under `L_meta_951`), `L_meta_951`,
-     `L_meta_951_of_minCE`, `bound_of_noMinCE`, `hardCaseCore_of_minCE`, `hard_case`, `hard_case_core`, `L_meta_952`;
+     `L_meta_951_of_minCE`, `bound_of_noMinCE`, `hardCaseCore_of_minCE`, `hard_case`, `hard_case_core`, `L_meta_952`, and `lMeta951Stmt_of_L_meta_951` (AsteroidPin: the copied statement `LMeta951Stmt` is `L_meta_951`);
    * the 13 `PaySetting.pay_*` theorems of a parked draft, used by nothing above.
    Every other theorem of every module must rest on `propext`, `Classical.choice`, `Quot.sound` only, or this file does not build. -/
-#verify_axioms PEqualNP allowing no_minCE L_meta_951 L_meta_951_of_minCE bound_of_noMinCE hardCaseCore_of_minCE hard_case hard_case_core L_meta_952 pay_bypass_inj pay_coll_card pay_exists pay_final pay_inj pay_lemma4_exists pay_lemma4_inj pay_lemma6 pay_live_and pay_rewire_agree pay_rewire_le pay_rewire_reach pay_theoremP
+#verify_axioms PEqualNP allowing no_minCE L_meta_951 L_meta_951_of_minCE bound_of_noMinCE hardCaseCore_of_minCE hard_case hard_case_core L_meta_952 lMeta951Stmt_of_L_meta_951 pay_bypass_inj pay_coll_card pay_exists pay_final pay_inj pay_lemma4_exists pay_lemma4_inj pay_lemma6 pay_live_and pay_rewire_agree pay_rewire_le pay_rewire_reach pay_theoremP
