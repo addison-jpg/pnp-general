@@ -181,9 +181,10 @@ ProofComplexity, Search, Outside) are here unchanged.
   Done: Lemma K CORRECT (Lean: coord-951 19601c9); gAdyD's split-set item 3 CORRECT; scaffold's strict resolution gadget
   (A|y)&(A|~y) FALSE in general (cfgI, cxstar5/44, cxP1-3/5/6; it fits every circuit with s - base <= 7). Report + checkers:
   `951/work/notes951/lemmaK_referee/` (from pequalnp-work referee-lemmaK-dwV8p e0c113a); verdicts
-  `951/board/agents/dwV8p-referee-*.md`. Earlier: D-qg-1 quantum circuits (L-qg-110 to 119, on main). NOW (claimed 12:5x,
-  unassigned seat): REFEREE of research's F2 LIGHT case (951/board/agents/research-F2-light.md): B, K0-K3 line by line +
-  numeric tests; LIGHT-STAR statement check. Verdict -> 951/board/agents/dwV8p-referee-F2-light.md.
+  `951/board/agents/dwV8p-referee-*.md`. Earlier: D-qg-1 quantum circuits (L-qg-110 to 119, on main). DONE: REFEREE of research's
+  F2 LIGHT case (951/board/agents/dwV8p-referee-F2-light.md): B, K0-K3 CORRECT; LIGHT-STAR has a WORDING GAP ("no world-0
+  witness at Q + v" does not imply leaving F2; fix: "no witness"), repaired form + the step hold on 58,795 light instances.
+  Free for the next referee assignment.
 
 - session_01GmnDhgAdyDijthBgZgJFWn (ex D-qg-2; scaffold helper for 951; attached here 09:25 with owner OK in
   its own chat): D-qg-2 LANDED here (L-qg-120 to L-qg-127 checked, `Defs/QuantumGravityChannels.lean`;
