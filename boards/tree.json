@@ -1,12 +1,12 @@
 {
  ".": {
   "counts": {
+   "tested": 2,
    "refuted": 3,
-   "refuted": 2,
-   "tested": 1,
    "checked": 11
   },
   "verified": [
+   "1b00e1bc",
    "7dbb073c",
    "f4704cc4",
    "98a42596",
@@ -27,12 +27,12 @@
  },
  "one-not": {
   "counts": {
+   "tested": 2,
    "refuted": 3,
-   "refuted": 2,
-   "tested": 1,
    "checked": 11
   },
   "verified": [
+   "1b00e1bc",
    "7dbb073c",
    "f4704cc4",
    "98a42596",
@@ -53,24 +53,24 @@
  },
  "one-not/data": {
   "counts": {
+   "tested": 1,
    "refuted": 2
   },
   "verified": [
+   "1b00e1bc",
    "7dbb073c",
    "f4704cc4"
   ],
   "unverified_here": []
  },
  "one-not/data/c4g": {
-  "counts": {},
-  "verified": [],
+  "counts": {
+   "tested": 1
+  },
+  "verified": [
+   "1b00e1bc"
+  ],
   "unverified_here": [
-   {
-    "id": "1b00e1bc",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
    {
     "id": "64233838",
     "why": [
@@ -168,9 +168,6 @@
   },
   "verified": [
    "98a42596",
-   "tested": 1
-  },
-  "verified": [
    "c7512878"
   ],
   "unverified_here": []
