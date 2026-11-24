@@ -26,6 +26,15 @@ base drops by EXACTLY 1. If the identified circuit also loses one gate, s < base
   from minimal. Identification is needed in the best move on the other 2,005. Honest evidence for M1: plain IDENT
   9,089 / 9,089 plus those 2,005. The next test must be on minimal-like circuits (R1-R6 reduced, no output deletion
   saving): front's greedy reductions (c3_norewire_corpus.py) and the 66 SAT Fano circuits.
+- tested on MINIMAL-LIKE circuits (ident_minimal.py, ident_irred.py): greedy rewiring reduction kills the NOT gate on
+  3,066 of 3,067 (as the board warned); the one survivor satisfies IDENT. Filtering instead: of 27,983 corpus circuits
+  (n <= 9) only 8 are already rewire-irreducible with the NOT read. On all 8 IDENT+ holds (freed >= base lost). In 3
+  the identification is genuinely needed (2 plain IDENT incl. cxT2, 1 IDENT+); in the other 5 (K4, K4-e, Pasch;
+  bad_k4:3, bad_pasch:11, ess_k4e_clean:89/90/4298) output deletion alone already pays, which violates the Lean fact
+  MinCE.outDel (a MinCE frees fewer than d(F) gates when the outputs of F are deleted), so those 5 cannot be MinCE and
+  say nothing either way. No counterexample to M1 among circuits that respect outDel, but only 3 such circuits exist
+  in the corpus: the evidence is thin. Next: generate circuits that are rewire-irreducible, respect outDel and read the
+  NOT (SAT with those constraints, scaffold's encoder), then rerun.
 - Why it may beat family E: identification moves along the diagonal x_u = x_v, which is NOT a subcube, so the
   TWIN-TREE / MATCH-C mechanisms (junk x_y AND x_a at OR-tree leaves; gain < cost at every point of Q = ∅) are not
   automatically inherited; and the base drop is exactly 1, independent of degrees (constant restrictions drop
