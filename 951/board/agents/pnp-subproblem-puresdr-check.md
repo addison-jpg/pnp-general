@@ -58,3 +58,21 @@ Corpus: scaffold's A + C, n <= 12: 40,554 circuits, 179,613 sets. Histograms (nu
   {"n": 4, "sets": [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3]], "gates": [["or", 1, 2], ["or", 0, 3], ["or", 3, 4], ["and", 5, 6], ["not", 7], ["and", 0, 6], ["or", 2, 9], ["or", 1, 3], ["or", 0, 1], ["and", 5, 8], ["or", 10, 13]], "outs": [12, 14, 5, 4, 11]}
 - scaffold's 2 adv records (inline 11:46, data/scaffold_adv.jsonl): pure SDR on both, classes exact, collisions (i) 3, (ii) 8,704,
   other 0; D-maximal I1 = 1 on all 5 sets.
+
+## DICHOTOMY (coord 11:48; integrator 01cafc8, PROOF_PLAN_SUGGESTIONS §0 'Third run') [computed; tools/referee_b/dichotomy.py]
+Own code. Domains: Lean validity with the widened I1 (common A ⊆ Z added to every atom, all Z, all A) and I0 at top_w over all
+valid m-tuples (minterm tuples if > 20,000, first 20,000), as kill_tests/csp.py's header; sets with h(top_w) = 0 fixed at K_1(w);
+AC-3 on the type-A sets; then for EVERY surviving class: does it extend to a full pure SDR (exhaustive search).
+Filter as csp.py: one NOT, correct, |S_w| >= 2, pairwise |S_w ∩ S_w'| <= 1, n <= 12. Smoke test reproduces csp.py (cxT2 only).
+| | circuits |
+|---|---|
+| checked | 44,707 |
+| no type-A set (nothing to choose) | 4 |
+| free classes K_1 collide | 0 |
+| arc consistency wipes out a domain | 0 |
+| no pure SDR | 0 |
+| globally consistent (every surviving class extends) | 44,701 |
+| NOT globally consistent | 2 = cxT2 twice (instances copy + front copy), non-extendable part: 1 set with 2 classes |
+| DICHOTOMY FAILS (a non-extendable set with >= 3 classes) | 0 |
+- The dichotomy HOLDS on the whole repo corpus, and more strongly: cxT2 is the ONLY non-globally-consistent circuit (as on the
+  integrator's 64). Every other circuit is loose: any class surviving AC is part of a solution.
