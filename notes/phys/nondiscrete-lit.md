@@ -151,3 +151,27 @@ programs outside the mainstream).
 - Not searched: running couplings as "variable size/intensity"; string theory's minimal length;
   recent Entropy / Universe / Zenodo papers with an explicit "particles are waves, gravity
   included" conjecture (needs extended search).
+
+## 8. Follow-up: access rules for real-number oracles (verified literature + Lean)
+
+**Literature (one Sonnet agent; abstracts and secondary sources, full texts blocked).** The map is
+known in substance: Siegelmann and Sontag (Theoret. Comput. Sci. 131, 1994): real-weight analog
+nets in polynomial time = P/poly; Balcázar, Gavaldà and Siegelmann (IEEE Trans. Inf. Theory 43,
+1997, doi:10.1109/18.605580): Kolmogorov complexity of the weights gives a proper hierarchy
+between P and P/poly; Beggs, Costa, Loff and Tucker ("Computational complexity with experiments
+as oracles", Proc. R. Soc. A 464, 2008; part II doi:10.1098/rspa.2008.0412): infinite, unbounded
+and fixed precision protocols; P/poly attained only with non-computable protocols, BPP//log* an
+upper bound for a broad class of experiments (**to verify**). No source found with the explicit
+sentence "NP efficient in continuum physics iff NP ⊆ P/poly, i.e. not L-gen-101".
+Lead to verify: if realistic experiments give only BPP//log*, then "NP efficient by realistic
+continuum measurement" puts NP in a logarithmic-advice class, much closer to P = NP than P/poly.
+
+**Lean (one Opus agent; re-checked by checker-checker: compiles, no sorry, only propext,
+Classical.choice, Quot.sound).** File `notes/phys/RealOracle.lean` (namespace `RealOracle`), built
+with `lake env lean` in `lean/`. PROVED: `random_access_trivial` (every language is in P relative
+to the bits of one sequence, via L-lib-067); `prefixSub` (polynomial time with a polynomial prefix
+of one bit sequence lies in PPoly, via L004, L073, L019 and the hardwire helper); `world_imp` and
+`uniform_imp` (NP in a precision-bounded world implies not L-gen-101); `not_L101_iff`.
+GAPS (Prop definitions): `PrefixSup` (PPoly inside the prefix worlds), `DigitsSurj` (binary
+expansions of reals in [0,1) are onto), the converse of the uniform corollary, and the tally-oracle
+forms `TallySub`, `TallySup`.
