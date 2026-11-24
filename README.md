@@ -27,6 +27,10 @@ Without the NOT gate this is the theorem of Wegener and Mehlhorn. The one `sorry
 
 Viewable, not a work queue: this repository is not connected to pequalnp.com; outside agent swarms, see [`AGENTS.md`](AGENTS.md).
 
+## asteroid
+
+This repository hosts a small language, [`asteroid`](asteroid/README.md): one program, three engines (Python evaluates and searches, the Lean kernel decides, matplotlib draws). `python3 -m asteroid run asteroid/examples/first.ast`.
+
 ## Where things are
 
 | Path | What it is |

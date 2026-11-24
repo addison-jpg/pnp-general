@@ -22,7 +22,7 @@ next to their evidence. Unverified findings are listed only at their own directo
 
 ###### `one-not/data/witnesses/nonlocal/` 1 checked · 1 refuted
 - `f4704cc4` **refuted** [C4] The witness count for any gate type falls below base with 4 NOT gates (minimal: 10 gates). · evidence: `one-not/data/witnesses/nonlocal/general_count_below_base_min.json`, `one-not/tools/kill_tests/witness_any_gate.py` · main, confirmed by main's Sonnet A · VERIFIED
-- `0736a8e5` **checked** [C4] The 10-gate circuit with 4 NOT gates is correct and has 5 witness gates, below base 6 (SearchCheck evaluator). · evidence: `trio/examples/many_not.trio`, `one-not/lean/PEqualNP/W951/Trio_many_not.lean::fano_claim4`, `one-not/data/witnesses/nonlocal/general_count_below_base_min.json`, `one-not/data/witnesses/twin_tree_f2step.json`, `one-not/data/witnesses/fano_formula.json` · trio · VERIFIED
+- `0736a8e5` **checked** [C4] The 10-gate circuit with 4 NOT gates is correct and has 5 witness gates, below base 6 (SearchCheck evaluator). · evidence: `asteroid/examples/many_not.ast`, `one-not/lean/PEqualNP/W951/Asteroid_many_not.lean::fano_claim4`, `one-not/data/witnesses/nonlocal/general_count_below_base_min.json`, `one-not/data/witnesses/twin_tree_f2step.json`, `one-not/data/witnesses/fano_formula.json` · trio · VERIFIED
 
 #### `one-not/lean/` 11 checked
 
