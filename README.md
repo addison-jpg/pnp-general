@@ -65,8 +65,9 @@ The step of the proof is a derivative and the count is its integral. Three sums,
   Theorem from a descent with any number of points. Every counterexample to the pointwise form has a positive sum (+6, +15).
 - **Average over zero points (the fractional form).** Each set w spreads a probability distribution μ_w over its zero points so that no gate
   carries more than one unit: Σ_w Pr_{z∼μ_w}[g ∈ M_z(w)] ≤ 1 for every gate g. Summed over gates this gives base ≤ #gates. Its LP dual is the
-  price inequality; the reduction of `no_minCE` to the price form is checked in the one-NOT development; real merge sets fail it
-  (`Cex.starOfFourPairsWithAThresholdNOTInput`), and its lifted two-gate case has a paper proof (an odd-triangle parity argument).
+  price inequality, and the reduction of `no_minCE` to the price form is **checked** (`no_minCE_of_purePrice`,
+  [`one-not/lean/PEqualNP/W951/PureFrac.lean`](one-not/lean/PEqualNP/W951/PureFrac.lean)). Real merge sets fail it
+  (`Cex.starOfFourPairsWithAThresholdNOTInput`); its lifted two-gate case has a paper proof (an odd-triangle parity argument).
 - **Time average (L6, checked).** A Deutsch-consistent state of a closed timelike curve is reached by Cesàro averages, and the displacement is
   (end − start)/(n+1). L5 and L6 are the same identity; this is the link the gist names (a premise: it selects statements, it proves none).
 - **The limit.** A Riemann sum over inputs at one length (2⁻ⁿ Σ_x f(x), the "hypercomplex polynomial" / Walsh expansion) is a property of
