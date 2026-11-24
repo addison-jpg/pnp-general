@@ -57,3 +57,12 @@ K4-e graph circuits, restrict to ∪F for every F and compare restricted pure cl
   SAME circuit with RESTRICTED MENUS: for a subfamily F, the pure classes at embedded points (coordinates off ∪F equal 0).
   Menus shrink monotonically by construction, the counting uses one gate list, and no gate map is needed. MinCE.heredity is
   only needed when passing to a smaller COUNTEREXAMPLE, which a PureSDR induction does not do.
+- STATUS 12:15 (cTAHG via desktop Coord; names checked on main 00c9e45, PureHeredity.lean 0 sorry): both refinements are LEAN.
+  (a) PureOpt.zeroAt z m = I0 at ANY zero point z avoiding S_w with m_u ⊆ z ∪ {u}, h(m_u) = 1; card_pureI0At >= d_w (PureSDR.lean).
+  The '<= 1 atom' hypothesis above follows from m_u ⊆ z ∪ {u} (merge_countT uses that per-atom form); h(z) = 1 is NOT needed
+  (referee: C_0 <= real gives C_0(o_w)(z) = 0). So the proposed statement above is superseded by the weaker zeroAt hypothesis.
+  (b) PureHeredity on the SAME gate list: restrictedMenu_subset_pureMenu (x := 0 off V), restrictedMenu1_subset_pureMenu
+  (x := 1 off V, I1 widened by oneAt, atoms {u} ∪ A_u), restricted_deficient (class-count Hall deficiency passes to the
+  restriction); heredity_top_fails: top-only I0 fails under x := 0. Note: restricted_deficient counts CLASSES (|∪ menu| < |F|,
+  the d_w = 1 form); the GATE form needed for d_w >= 2 (|∪ of restricted classes| < base(F), research-induction-draft.md
+  'Referee answers' 3) follows from the same subset lemma in one line.

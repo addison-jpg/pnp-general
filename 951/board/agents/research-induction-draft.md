@@ -6,7 +6,7 @@ beyond what is marked. Templates: Halmos-Vaughan, Ore (research-heredity-lit.md 
 Correct one-NOT circuit, sets S_w, d_w = |S_w| - 1. Pure menu P(w): the distinct pure classes of w (I1 at a maximal zero point
 Z off S_w = top_w minus a minimal transversal of Min_w, research-typeA-menus.md (a); I0 at top_w with minterm atoms). Each class
 has exactly d_w gates (GM; Lean card_pureCls_le). PureSDR: one class per set, pairwise disjoint. Restricted menu for a family F:
-classes at embedded points (0 off ∪S(F)); I1 embeds as is; I0 needs the generalized pureI0 hypothesis (research-heredity-lit.md §6).
+classes at embedded points (0 off ∪S(F)); I1 embeds as is; I0 embeds via PureOpt.zeroAt (LEAN, PureHeredity.lean; research-heredity-lit.md §6 status 12:15).
 
 ## Induction skeleton (Halmos-Vaughan on menus of d_w-sets)
 Assume PureSDR fails for a MinCE. Take a CRITICAL family F: no pure SDR of F, but every F - w (w ∈ F) has one (minimal
