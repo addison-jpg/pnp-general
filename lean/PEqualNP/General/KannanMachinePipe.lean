@@ -143,10 +143,12 @@ theorem pow_le_blkK (kq K n : ℕ) (hK : kq ≤ K) (hK1 : 1 ≤ K) : n ^ kq + kq
     have : n ^ K ≤ K * n ^ K := Nat.le_mul_of_pos_left _ (by omega)
     omega
 
-/-- The uniform half of Kannan's theorem, from a polynomial-time check on the data regions. -/
-theorem kannan_of_core (k : ℕ)
-    (hcore : ComputableInPolyTime encodePair Computability.encodeBool
-      (fun p : List Bool × List Bool => CoreFn k p.1 p.2)) : KL k ∈ SigmaP 3 := by
+/-- The uniform half of Kannan's theorem, from a polynomial-time check on the data regions that
+is right on regions of the right total length `3 * blk k |x|`. -/
+theorem kannan_of_core' (k : ℕ) (gc : List Bool × List Bool → Bool)
+    (hcore : ComputableInPolyTime encodePair Computability.encodeBool gc)
+    (hgc : ∀ x sel : List Bool, sel.length = 3 * blk k x.length → gc (x, sel) = CoreFn k x sel) :
+    KL k ∈ SigmaP 3 := by
   classical
   let pD : Polynomial ℕ := Polynomial.C (KK k) * Polynomial.X ^ (KK k) + Polynomial.C (KK k)
   have hpD : ∀ n, pD.eval n = blk k n := by intro n; simp [pD, blk]
@@ -170,8 +172,7 @@ theorem kannan_of_core (k : ℕ)
   let G : List Bool × List Bool → Prop := fun a => ∃ y1 y2 y3 : List Bool,
     a.2 = y1 ++ y2 ++ y3 ∧ y1.length = blkK K a.1.length ∧ y2.length = blkK K a.1.length ∧
       y3.length = blkK K a.1.length
-  let g : List Bool × List Bool → Bool := fun a =>
-    CoreFn k (cutF (f0 a.1, a.2)).1 (cutF (f0 a.1, a.2)).2
+  let g : List Bool × List Bool → Bool := fun a => gc (cutF (f0 a.1, a.2))
   have hG : ∀ a, G a → ∃ n, n ≤ 100 * (encodePair a).length ∧
       (flip bind (TM2.step S.tm.m))^[n] (some (initList S.tm ((encodePair a).map S.ia.invFun))) =
         some (haltList S.tm [S.oa.invFun (g a)]) := by
@@ -217,10 +218,15 @@ theorem kannan_of_core (k : ℕ)
   have hGa : G (x, y1 ++ (y2 ++ y3)) := ⟨y1, y2, y3, by simp, h1, h2, h3⟩
   show _ ↔ f (x, y1 ++ (y2 ++ y3)) = true
   rw [hfg _ hGa]
-  show _ ↔ CoreFn k (cutF (f0 x, y1 ++ (y2 ++ y3))).1 (cutF (f0 x, y1 ++ (y2 ++ y3))).2 = true
-  rw [← List.append_assoc, cutF_good D s x y1 y2 y3 h1 h2 h3 hDs]
-  simp only
+  show _ ↔ gc (cutF (f0 x, y1 ++ (y2 ++ y3))) = true
+  rw [← List.append_assoc, cutF_good D s x y1 y2 y3 h1 h2 h3 hDs, hgc x _ (by simp; omega)]
   rw [List.append_assoc, ← zipSel_maskOf D s hDs y1 y2 y3 h1 h2 h3,
     CoreFn_blocks k x y1 y2 y3 s hDs h1 h2 h3]
+
+/-- The uniform half of Kannan's theorem, from a polynomial-time check on the data regions. -/
+theorem kannan_of_core (k : ℕ)
+    (hcore : ComputableInPolyTime encodePair Computability.encodeBool
+      (fun p : List Bool × List Bool => CoreFn k p.1 p.2)) : KL k ∈ SigmaP 3 :=
+  kannan_of_core' k _ hcore (fun _ _ _ => rfl)
 
 end PEqualNP.General.Kannan
