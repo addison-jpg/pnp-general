@@ -45,3 +45,11 @@ Q + e_v (so (D) by certD_of_heavy_see, no data). Then CERT-3c, hence the F2 step
   needed at higher zero points there (H3u at 50,851 / 57,209 such (instance, v)).
 - OPEN, exactly: (H') 249 heavy instances not covered (smallest w7/bad.jsonl:137, n = 5, s = 9, Q = 16); (L) the 4,192 instances with
   no heavy point, where (D) needs F1* (survivors that see v are world-0, NOT-dependent) instead of F1.
+
+## UNIFIED (D) (13:48 UTC): certD_of_see0 (Lean, W951/CertDHeavy.lean; propext / Classical.choice / Quot.sound)
+(D) at ANY v, heavy or light, when every cone merge of every set through v is 1 at Q + e_v in the real circuit AND in C_0 (NOT gate
+forced to 0): by F1* (F1star_mem), a gate of F2(Q ∪ {v}) that is 1 at Q + e_v has C_0 = 0 there. At a heavy v real = C_0, so this
+contains certD_of_heavy_see.
+PROVED COVERAGE with cTAHG's certS_of_tu (proved_cover.py, flag proved0): 16,970 / 17,045 non-local every-gate-read instances
+(99.56%): light 4,170 / 4,192, heavy 12,800 / 12,853. OPEN: 75 instances; smallest fixh16_clean.jsonl:1192 (n = 4, s = 16, light,
+h = (x0|x1)(x2|x3), the family where cTAHG's TU check also misses). Checks per 951/README.md re-run on main 8764bae + this.

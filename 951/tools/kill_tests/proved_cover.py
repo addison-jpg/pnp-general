@@ -3,7 +3,8 @@
 Q + e_v, and every cone merge of every set through v is 1 at Q + e_v). For each non-local, every-gate-read instance (circuit, Q)
 and each alive v: is there a choice of zero points z_w ⊇ Q off S_w for the star of v (any z for degree 1; for degree >= 2 search
 over all choices) with pairwise TU in one direction, AND v heavy with SEE at Q + e_v for all those cone merges (then (D) holds by the
-lemma, no data needed)? Also: the same with (D) only observed (dying merges), i.e. cTAHG's H3u, for comparison.
+lemma, no data needed)? proved0: the unified (D) from F1* (every cone merge is 1 at Q + e_v in the real circuit AND in C_0,
+the circuit with the NOT gate forced to 0), heavy or light v.
 Run from 951/:  python3 tools/kill_tests/proved_cover.py OUT.jsonl FILE_OR_DIR ...
 """
 import json
@@ -22,6 +23,7 @@ from tu_cert import tu, is_local  # noqa: E402
 def instance(c, Q):
     n = c.n
     T = c.tables()
+    T0 = c.tables(force=0)
     h = T[c.h_wire]
     full = (1 << n) - 1
     sets = [sum(1 << u for u in S) for S in c.sets]
@@ -35,32 +37,36 @@ def instance(c, Q):
         heavy = bool(h >> Qv & 1)
         star = [i for i in alive if sets[i] >> v & 1]
         cone = {i: c.cone(c.outs[i]) for i in star}
-        opts = []
+        opts, opts0 = [], []
         for i in star:
             free = full & ~(Q | sets[i])
-            o = []
+            o, o0 = [], []
             sub = free
             while True:
                 z = Q | sub
                 M = merges_at(c, T, c.sets[i], z, cone[i])
                 if all(T[g] >> Qv & 1 for g in M):
                     o.append(z)
+                    if all(T0[g] >> Qv & 1 for g in M):
+                        o0.append(z)
                 if sub == 0:
                     break
                 sub = (sub - 1) & free
             opts.append(o)
+            opts0.append(o0)
 
-        def pick(j, chosen):
+        def pick(j, chosen, opts=opts):
             if j == len(star):
                 return True
             for z in opts[j]:
                 if all(tu(h, c.sets[star[a]], chosen[a], z) or tu(h, c.sets[star[j]], z, chosen[a]) for a in range(j)):
-                    if pick(j + 1, chosen + [z]):
+                    if pick(j + 1, chosen + [z], opts):
                         return True
             return False
         see_tu = pick(0, [])
-        rec[v] = dict(deg=len(star), heavy=heavy, see_tu=see_tu, proved=heavy and see_tu)
-    return dict(Q=Q, proved=any(r['proved'] for r in rec.values()), rec=rec)
+        see0_tu = pick(0, [], opts0)
+        rec[v] = dict(deg=len(star), heavy=heavy, see_tu=see_tu, proved=heavy and see_tu, proved0=see0_tu)
+    return dict(Q=Q, proved=any(r['proved'] for r in rec.values()), proved0=any(r['proved0'] for r in rec.values()), rec=rec)
 
 
 def work(item):
