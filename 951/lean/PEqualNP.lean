@@ -162,4 +162,5 @@ import PEqualNP.W951.PureSDRWitnessLadder
 import PEqualNP.W951.PureHall
 import PEqualNP.W951.PureHeredity
 import PEqualNP.W951.PureGP
+import PEqualNP.W951.PureStar
 import PEqualNP.W951.CanonD1

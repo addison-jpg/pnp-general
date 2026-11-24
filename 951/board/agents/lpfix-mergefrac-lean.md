@@ -207,3 +207,7 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   no_graph_minCE_of_hall is vacuous (MinCE.has4); the cross-world D hypotheses (disjoint_pureI0_pureI1, CanonOneNot's
   disjoint_K0_K1) can never hold for valid options (h monotone) — true statements, but vacuous; Theorem U (world b ≤ b')
   is the usable cross-world criterion.
+- (13:35 UTC) MU + gate-form heredity + STAR-SEP. `no_minCE_of_MU` (coord: MU = base ≤ |⋃ of all pure menus|; `mu_of_pureSDR`).
+  `restricted_gate_deficient` / `restricted1_gate_deficient` (desktop Coord / research: the GATE form, any bound k).
+  `PureStar.lean`: front A2's STAR-SEP as the hypothesis `StarSep` (no new sorry; gate rule), and its induction checked:
+  `menuSDR_of_starSep`, `pureSDR_of_starSep`, `no_minCE_of_starSep`. So 951 now reduces in Lean to STAR-SEP (∀ MinCE, ∀ Q).

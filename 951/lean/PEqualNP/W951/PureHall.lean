@@ -17,7 +17,9 @@ union of the classes of all its valid pure options (`pureMenu`). Results:
   menus gives a PureSDR (Mathlib's Hall theorem, `Finset.all_card_le_biUnion_card_iff_exists_injective`).
 * `pureSDR_iff_hall` (GRAPH systems, all `|S_w| = 2`): each pure class is one gate, and
   PureSDR ⇔ Hall's condition `|F| ≤ |⋃_{w ∈ F} menu(w)|` for every family `F` of sets.
-* `no_graph_minCE_of_hall`: if Hall's condition holds on the pure menus of every minimal
+* `MU`, `mu_of_pureSDR`, `bound_of_mu`, `no_minCE_of_MU` (referee 11:53): the weakest menu target,
+  `base ≤ |⋃_w menu(w)|`; PureSDR ⇒ MU.
+* `no_graph_minCE_of_hall` (vacuous: a MinCE is never a graph system, `MinCE.has4`): if Hall's condition holds on the pure menus of every minimal
   counterexample that is a graph system, no minimal counterexample is a graph system (front's
   lane, 11:32: Hall via heredity).
 -/
@@ -161,6 +163,40 @@ theorem card_pureCls_graph (gates : List Gate) (p : ℕ) (hp : p < gates.length)
   rw [hR] at h1 h2
   omega
 
+/-! ## MU: the union of all menus (referee 11:53, research 5a1854f) -/
+
+/-- Every menu lies in the gate wires of the lift. -/
+theorem pureMenu_subset (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) :
+    pureMenu gates p R ⊆ Finset.Ico (n + 1) (n + 1 + (lift n p gates).length) := by
+  intro g hg
+  obtain ⟨c, -, hgc⟩ := mem_pureMenu.mp hg
+  exact pureCls_subset gates p R c hgc
+
+/-- **MU** (for the NOT gate at `p`): `base = ∑_w (|S_w| - 1)` is at most the number of gates in the
+union of ALL pure menus (all sets, all valid options of the four kinds). -/
+def MU {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ) : Prop :=
+  ∑ w, ((S w).card - 1) ≤ (Finset.univ.biUnion fun w => pureMenu gates p (S w)).card
+
+/-- **PureSDR ⇒ MU** (`hall_of_pureSDR` for the whole family). -/
+theorem mu_of_pureSDR {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ)
+    (hp : p < gates.length)
+    (hg : ∀ g ∈ gates, (g.op = GateOp.and ∨ g.op = GateOp.or ∨ g.op = GateOp.not) ∧
+      g.inputs.length ≤ 2)
+    (hU : AtMostOneNot gates) (hN : (gates[p]'hp).op = GateOp.not) (out : Fin m → ℕ)
+    (hev : ∀ (w : Fin m) (x : Fin n → Bool), val gates x (out w) = decide (∃ v ∈ S w, x v = true))
+    (H : PureSDR S gates p) : MU S gates p :=
+  hall_of_pureSDR S gates p hp hg hU hN out hev H Finset.univ
+
+/-- **MU ⇒ the bound with one gate to spare**: every menu lies in the `gates.length - 1` lifted
+gates. -/
+theorem bound_of_mu {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ)
+    (hp : p < gates.length) (H : MU S gates p) : ∑ w, ((S w).card - 1) ≤ gates.length - 1 := by
+  have h := Finset.card_le_card (Finset.biUnion_subset.mpr fun w (_ : w ∈ Finset.univ) =>
+    pureMenu_subset gates p (S w))
+  rw [Nat.card_Ico, length_lift n p gates hp] at h
+  unfold MU at H
+  omega
+
 end PureHall
 
 /-- **951 on graph systems from Hall** (front's lane): if Hall's condition holds on the pure menus
@@ -179,6 +215,19 @@ theorem no_graph_minCE_of_hall
     (H n m S gates out M h2 p hp hN)
   have h1 := bound_of_pureSDR gates p hp M.ce.hg M.ce.hU hN S out M.ce.hev hP
   have h3 := M.ce.hlt
+  omega
+
+/-- **951 from MU** (the weakest menu target): if every minimal counterexample has a NOT gate whose
+pure menus cover `base` gates, there is no minimal counterexample. -/
+theorem no_minCE_of_MU
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out → ∃ (p : ℕ) (hp : p < gates.length), (gates[p]'hp).op = GateOp.not ∧ MU S gates p) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out := by
+  intro n m S gates out M
+  obtain ⟨p, hp, -, hP⟩ := H n m S gates out M
+  have h1 := bound_of_mu S gates p hp hP
+  have h2 := M.ce.hlt
   omega
 
 end PEqualNP.Outside.L_meta_951_aux

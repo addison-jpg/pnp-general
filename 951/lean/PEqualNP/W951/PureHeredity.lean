@@ -163,6 +163,21 @@ theorem restricted_deficient {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : L
   lt_of_le_of_lt (Finset.card_le_card (Finset.biUnion_mono fun w _ =>
     restrictedMenu_subset_pureMenu gates p V (S w))) hdef
 
+/-- **Gate form** (desktop Coord / research 11:55): the union of the restricted menus of a family has
+at most as many gates as the union of its original menus; so `|⋃_F menu| < base(F)` passes to the
+restriction (any bound `k`, not only `|F|`). -/
+theorem restricted_union_le {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ)
+    (V : Finset (Fin n)) (F : Finset (Fin m)) :
+    (F.biUnion fun w => restrictedMenu gates p V (S w)).card ≤
+      (F.biUnion fun w => pureMenu gates p (S w)).card :=
+  Finset.card_le_card (Finset.biUnion_mono fun w _ => restrictedMenu_subset_pureMenu gates p V (S w))
+
+theorem restricted_gate_deficient {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ)
+    (V : Finset (Fin n)) (F : Finset (Fin m)) (k : ℕ)
+    (hdef : (F.biUnion fun w => pureMenu gates p (S w)).card < k) :
+    (F.biUnion fun w => restrictedMenu gates p V (S w)).card < k :=
+  lt_of_le_of_lt (restricted_union_le S gates p V F) hdef
+
 /-! ## The restriction `x_O := 1` off `V` (board integrator's kill test, 50293a5) -/
 
 /-- Options of the instance restricted by `x_v := 1` off `V`, as options of the original circuit:
@@ -220,6 +235,19 @@ theorem restricted1_deficient {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : 
     (F.biUnion fun w => restrictedMenu1 gates p V (S w)).card < F.card :=
   lt_of_le_of_lt (Finset.card_le_card (Finset.biUnion_mono fun w _ =>
     restrictedMenu1_subset_pureMenu gates p V (S w))) hdef
+
+/-- Gate form under `x_O := 1`. -/
+theorem restricted1_union_le {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ)
+    (V : Finset (Fin n)) (F : Finset (Fin m)) :
+    (F.biUnion fun w => restrictedMenu1 gates p V (S w)).card ≤
+      (F.biUnion fun w => pureMenu gates p (S w)).card :=
+  Finset.card_le_card (Finset.biUnion_mono fun w _ => restrictedMenu1_subset_pureMenu gates p V (S w))
+
+theorem restricted1_gate_deficient {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ)
+    (V : Finset (Fin n)) (F : Finset (Fin m)) (k : ℕ)
+    (hdef : (F.biUnion fun w => pureMenu gates p (S w)).card < k) :
+    (F.biUnion fun w => restrictedMenu1 gates p V (S w)).card < k :=
+  lt_of_le_of_lt (restricted1_union_le S gates p V F) hdef
 
 /-- The options of the first definition (top-only I0, plain I1 atoms). -/
 def PureOpt.IsTop : PureOpt n → Prop
