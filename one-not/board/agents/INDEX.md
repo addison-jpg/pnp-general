@@ -33,4 +33,5 @@ scaffold-core-sat, scaffold-mu-ladder, scaffold-mu-ladder-1219, fable-mu-inducti
 research-cores, research-referee-b-crosscheck, research-desktop-gadget,
 qg-d2-nomixed, qg-d2-xgen, dwV8p-referee-nomixed, coord-desktop-referee-angle1, coord-desktop-referee-plan,
 pnp-subproblem-referee-angle2, machinesLean-mergeworld2.
+fable-chain-sum: serves README L5, C3, L6; the k-point step C3_k is refuted for every fixed k (MATCH-C(k); row in DEAD_ENDS family E), open under `MinCE.no_rewire`.
 A note here that states a refutation is the record of that refutation: its result must be a row of one-not/DEAD_ENDS.md before it is marked.

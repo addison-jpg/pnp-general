@@ -52,13 +52,24 @@ def depths(c, cap):
             fr = nx
         hista[da] += 1
     return hist, hista, worst, minslack
-if __name__ == '__main__':
+if __name__ == '__main__' and len(sys.argv) > 2 and sys.argv[2] == 'corpus':
+    # python3 -I one-not/tools/kill_tests/c3_allq.py cap corpus NMAX seed count : every circuit file under one-not/ with n <= NMAX, plus randgen
+    cap = int(sys.argv[1]); CS = L.corpus(int(sys.argv[3])) + L.randgen(int(sys.argv[4]), int(sys.argv[5]))
+    tot = collections.Counter(); deep = []
+    for c in CS:
+        h, ha, worst, ms = depths(c, cap); tot.update(h)
+        if any(k != 1 for k in h): deep.append((c['name'], dict(h)))
+    print('circuits', len(CS), 'cubes with base > 0:', sum(tot.values()), 'depth histogram:', dict(sorted(tot.items(), key=str)))
+    for x in deep[:20]: print('  depth > 1:', x)
+elif __name__ == '__main__':
     cap = int(sys.argv[1]) if len(sys.argv) > 1 else 3
     files = sys.argv[2:] or sorted(glob.glob('one-not/data/witnesses/*.json') + glob.glob('one-not/data/witnesses/nonlocal/*.json'))
     print('| circuit | n | cubes with base > 0 | depth histogram (free) | depth histogram (alive paths) | min slack | a cube of largest depth |'); print('|---|---|---|---|---|---|---|')
     tot = collections.Counter()
     for f in files:
-        d = json.load(open(f)); c = L.mk(d.get('name', f), d['n'], d['sets'], d['gates'], d['outs'], need_not=False)
+        d = json.load(open(f))
+        if d['n'] > 16: continue                      # larger witnesses: c3_tab.py, c3_dnf.py, c3_cert.py
+        c = L.mk(d.get('name', f), d['n'], d['sets'], d['gates'], d['outs'], need_not=False)
         if c is None: print('|', os.path.basename(f), '| INCORRECT |'); continue
         h, ha, worst, ms = depths(c, cap); tot.update(h)
         print('|', os.path.basename(f), '|', d['n'], '|', sum(h.values()), '|', dict(sorted(h.items(), key=str)), '|', dict(sorted(ha.items(), key=str)), '|', ms, '|', (worst[0], [v for v in range(d['n']) if worst[1] >> v & 1]) if worst else '', '|', flush=True)
