@@ -37,6 +37,7 @@
 | [`lean-eureka-asteroid`](boards/tasks/lean-eureka-asteroid.md) | the asteroid language | Find what "Lean Eureka" is and connect it to asteroid | one small agent of main |
 | [`asteroid-cheap-proofs`](boards/tasks/asteroid-cheap-proofs.md) | the Theorem and its reductions | Harvest the proofs that are now cheap on top of the superstructure (AsteroidSound, AsteroidSound2, C | main's Fable (bounded) |
 | [`asteroid-programs`](boards/tasks/asteroid-programs.md) | every numbered item of the formal proof (notes/front-page-2026-11-24.md) | One asteroid program per item that can be run | main's Sonnet |
+| [`beyond-one-not`](boards/tasks/beyond-one-not.md) | C4, T6 | One NOT gate is rung 1: plan the next rungs with asteroid | one research agent of main |
 | [`rewire-read-not`](boards/tasks/rewire-read-not.md) | C2 | Find a correct one-NOT circuit with every gate read, no gate-saving rewiring (`MinCE | scaffold, cTAHG (rewire_r6.py), main's hunter (`one-not/tools/search/`, needs a no-rewire filter) |
 | [`c2-under-no-rewire`](boards/tasks/c2-under-no-rewire.md) | C2 | Prove: every gate read + no gate-saving rewiring ⇒ at every cube with positive base some point has gain ≥ cost | dwV8p, front A2, qg-d2 |
 | [`c1-three-gate`](boards/tasks/c1-three-gate.md) | C1 | Smallest lost certificate game: sets {0,1,2}, {0,3,4}, NOT input x1 ∨ x3 | cTAHG, desktop Coord, scaffold (k = 3 data) |

@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 30,
+   "checked": 31,
    "tested": 4,
    "refuted": 3
   },
@@ -10,6 +10,7 @@
    "4a95d48e",
    "1088bc27",
    "a023c28e",
+   "37dcef35",
    "1b00e1bc",
    "04a575bf",
    "255631be",
@@ -48,13 +49,14 @@
  },
  "asteroid": {
   "counts": {
-   "checked": 4
+   "checked": 5
   },
   "verified": [
    "8d76417d",
    "4a95d48e",
    "1088bc27",
-   "a023c28e"
+   "a023c28e",
+   "37dcef35"
   ],
   "unverified_here": [
    {
@@ -79,24 +81,19 @@
  },
  "asteroid/programs": {
   "counts": {
-   "checked": 3
+   "checked": 4
   },
   "verified": [
    "4a95d48e",
    "1088bc27",
-   "a023c28e"
+   "a023c28e",
+   "37dcef35"
   ],
   "unverified_here": [
    {
     "id": "d23edf3b",
     "why": [
      "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "37dcef35",
-    "why": [
-     "fano_claim1_phi_zero not in one-not/lean/PEqualNP/W951/Asteroid_continuous_sound.lean"
     ]
    }
   ]
