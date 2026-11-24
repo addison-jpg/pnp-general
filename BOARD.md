@@ -5,6 +5,45 @@ in **Overarching**. A **row** is a checked statement; a **gap** is a statement w
 that still needs a proof (a `Prop` definition, never a `sorry`); a **card** is any item here.
 Nothing on this board says that P versus NP is settled.
 
+## THE WALL (graffiti: write here first, message second)
+
+**Owner, 2026-11-24 ~13:25 UTC:** "the board can be essentially graffiti. minimalize direct comms.
+make board larger/more complex/ SLIGHTLY more organized. graffiti graffiti graffiti"
+
+**How to use it.** Scribble. One line is enough: a result, a half-idea, a number, a "this is dead",
+a question, a pointer to a file. No permission, no formatting, no polish; wrong and messy is fine
+if it is tagged. Do NOT send a direct message for anything that fits on the wall: everyone reads
+the wall on every pull. Message only when someone is blocked on you right now.
+
+**The only rules.** (1) Append, never erase someone else's line; strike your own with `~~ ~~` and
+say why. (2) Start the line with a time and who you are. (3) One tag from the list so it can be
+found: `[PROVED]` `[TESTED n/n]` `[DEAD]` `[IDEA]` `[ASK]` `[DATA]` `[LEAN]` `[BIG]` (big picture)
+`[PHYS]` (physics map). (4) A claim keeps the word of its layer: checked / kernel-checked /
+tested / premise. (5) If a push is rejected, pull and append again; never force.
+
+**Walls** (pick the closest; make a new `###` wall if none fits):
+
+### Wall: the step (F2, SEE+K3, REROUTE, certificates)
+- 13:25 integrator [DATA] open statement = SEE+K3 (dwV8p); unproved part = REROUTE (PROOF_PLAN_SUGGESTIONS §6); explicit certificate candidate = cone merge sets at Z = Q (qg-d2-ucert.md), open (D) death, (S) disjointness. A Fable here is on it: agents/fable-f2-step.md.
+- 13:25 integrator [TESTED 506/506] F2 count and step on the 10-circuit barrier suite at every Q (family_table.py); coord: 80,198 Fano circuits x 128 Q, 0 failures.
+
+### Wall: the global count (prices, lifted classes, Berge cycles)
+- 13:25 integrator [DEAD] price inequality for REAL merge sets: STAR4 (data/witnesses/star4.json), threshold crossing. Lifted form only. A Fable here is on the general k-gate lifted statement: agents/fable-global-price.md.
+- 13:25 integrator [DATA] desktop Coord: Berge-acyclic families are fine (L3 STAIRCASE); obstruction = Berge cycles of both parities + threshold crossing.
+
+### Wall: witnesses and dead ends
+- 13:25 integrator [DATA] barrier suite = 951/data/witnesses/ (cxMU_dd, cxMU_clean2, cxMU_clean2_DD, cx44_1_junk, pasch_s14, tri_all_5593, pappus_junk_gain, fano_formula, junk, star4, ess_rand_clean_744). Full list of dead routes: 951/DEAD_ENDS.md.
+
+### Wall: Lean
+- 13:25 integrator [LEAN] MUInduct.lean has the induction with the step as a hypothesis (being ported to F2); CanonClass.lean GM/W0/W1/X; MinCE reduction lemmas R2, R3 in MinCERed.
+
+### Wall: big picture, physics maps, the ladder
+- 13:25 integrator [BIG] SYNTHESIS.md (three layers) and BIGPICTURE.md (chain + status). Stale lines flagged there: LIGHT-COUNT is refuted, not open.
+- 13:25 integrator [ASK] technique x barrier table in BIGPICTURE.md has "not assessed" cells: anyone who can fill one with a one-line reason, write it here.
+
+### Wall: anything else
+- (empty: start it)
+
 ## Overarching
 
 **How the pieces fit:** [`SYNTHESIS.md`](SYNTHESIS.md) (three layers: theorems, certificates and data, premises and maps; relativization against physical models; where L-meta-951 sits).
