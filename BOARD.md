@@ -293,6 +293,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   base(Q) ≤ |F2(Q)|; `no_minCE_of_gainF2_or_cubeLocal`: GainF2 needed only at Q where the NOT gate is not local).
   13:24: LW1 + CERT-1c CHECKED (`baseDQ_le_F2_of_LW1`; ConeCert `gainF2_of_cert`: qg-d2's (D) ∧ (S) ⇒ GainF2;
   `no_minCE_of_cert_or_local`: CubeLocal ∨ LW1 ∨ CERT-3c at every Q with positive base ⇒ no MinCE).
+  13:35: TUCert: (S) PROVED from the real Theorem U (`certS_of_tu`: pairwise TUPair ⇒ (S); staircase `cert3c_of_stair`:
+  h = 0 at z_w = Q ∪ ⋃_{earlier} (S_w' \ v) and (D) ⇒ CERT-3c). Data H3u 184/184 local; remaining: (D) at TU zero points.
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.

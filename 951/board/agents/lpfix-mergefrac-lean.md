@@ -256,3 +256,9 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   local closure. `gainF2_of_cert`: qg-d2's (D) ∧ (S) at v ⇒ GainF2 at v (cone merge sets = Lemma M over the masked cone, any zero
   points z_w ⊇ Q off S_w). `no_minCE_of_cert_or_local`: 951 follows once every Q with positive base in a MinCE is CubeLocal, LW1, or
   has a v ∉ Q with (D) and (S). Paper proofs of (D)/(S) plug in as the hypotheses `CertD` / `CertS`.
+- (13:35 UTC) TUCert.lean: (S) PROVED from a combinatorial condition (coord 13:25). Real Theorem U `val_le_of_sameNot`: on one level
+  of h the real circuit is monotone. So the cone merge sets at z_w and z_w' are disjoint if of every two points of S_w one x has
+  z_w + e_x ≤ z_w' with h(z_w + e_x) = h(z_w') (`TUPair`, `certS_of_tu`). Staircase z_w = Q ∪ ⋃_{earlier w'} (S_w' \ v):
+  `certS_stair` ((S) whenever h = 0 at the staircase points), `cert3c_of_stair` (+ (D) ⇒ CERT-3c). Data (tu_cert.py, H3u = dying
+  zero points with pairwise TUPair): 184/184 local non-local instances, incl. those where CERT-1c fails at every v; qg-d2 asked to
+  run the 31,503 all-read corpus. Remaining for the F2 step: (D) at TU-compatible zero points.
