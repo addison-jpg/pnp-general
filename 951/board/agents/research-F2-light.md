@@ -65,3 +65,8 @@ star(v) plus the K0 gates.
   JUNK, cx44_1_junk and PAPPUS-JUNK. A pool-free alternative, SEE+K3, holds there and on heavy instances. It counts the gates
   that are 1 at Q + e_v minus the survivors, plus the gates serving only star sets. The referee's F1* says the survivors are
   exactly the K1 / K2 world-0 servants of type-A sets not through v.
+- qg-d2 13:11 (qg-d2-ucert.md): CERT-1c is my bottom system B (zero point Q, union-find run) RESTRICTED TO THE CONE of o_w.
+  On their data this cures the star collision of §2: the cone merge sets of the sets through v are pairwise disjoint and
+  all leave F2, so it is an explicit injection for gain ≥ cost. It holds at some v on all 31,503 all-read instances, for
+  heavy and light v alike. Relation to research-typeA-increment.md §3 ('every class gate of w lies at or before o_w'): the
+  cone restriction is the stronger, positional form of that lemma.
