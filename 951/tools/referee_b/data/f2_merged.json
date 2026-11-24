@@ -1,0 +1,7 @@
+{
+ "circuits": 44720,
+ "tests": 166925,
+ "MU_tight": 53648,
+ "MU_fail_smallest": [],
+ "STEP_fail_smallest": []
+}
