@@ -27,3 +27,4 @@ for the exact statement. Add a line whenever a kill test fails. coord and resear
 | Fourier / influence bounds (few negations) | no gate-count consequence | influence does not see size | pnp-general issue 11 |
 | Infinite series, martingales on Cantor space, zeta-type sums | no route | no coherence between input lengths; parity and IP are linear size | pnp-general issue 12 |
 | Physics maps (closed timelike curves, low-degree amplitudes, holographic complexity) | no route past the barriers | rows L-lib-061/062, 065/076, 086 | `951/PIPELINE.md` §3 |
+| P2 acyclic forcing with labels monotone in GATE INDEX order | refuted | fixh16_clean#20: forcing path {02}-{12}-{23}-{13} through gates 5, 13, 8 | referee (desktop Coord) 10:30, `951/board/agents/coord-desktop-referee-plan.md` |
