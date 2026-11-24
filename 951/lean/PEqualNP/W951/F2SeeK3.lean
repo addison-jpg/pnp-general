@@ -17,6 +17,10 @@ Notation of §6 (`Q` fixed to `1`, `v` a point): `cost(v) = ∑_{alive w ∋ v} 
 * `no_minCE_of_seeK3`: SEE+K3 at some `v ∉ Q` for every `Q` with positive base, in every minimal
   counterexample ⇒ 951.
 
+**F1*** (`F1star`, `F1star_mem`): a gate of `F2(Q ∪ {v})` that is `1` at `Q + e_v` (a SURV gate) forces
+`h(Q + e_v) = 0` (`v` light), `C_0(g)(Q + e_v) = 0`, `C_1(g)(Q + e_v) = 1`, and every witness of it is for
+a set `w' ∌ v` with `h(top_w') = 1` and `h = 1` at the witness point (world 0 only).
+
 **Step 2, the proved part (joint union-find).** The real run over `P` = the union of the star sets of
 `v`, at zero point `Q` (test points `Q + e_x`):
 * `cost_le_card_jointMerge`: with the star sets meeting pairwise in at most one point, it has at least
@@ -97,6 +101,86 @@ theorem no_minCE_of_seeK3
   no_minCE_of_gainF2 fun n m S gates out M Q hQ => by
     obtain ⟨v, hvQ, hv⟩ := H n m S gates out M Q hQ
     exact ⟨v, hvQ, gainF2_of_seeK3 gates S Q v hv⟩
+
+/-! ## F1*: what a surviving SEE gate looks like (dwV8p, PROVED there; refereed parts F1, K0, K1) -/
+
+section F1star
+
+variable {n m : ℕ} (gates : List Gate) (p : ℕ) (hp : p < gates.length)
+  (hg : ∀ g ∈ gates, (g.op = GateOp.and ∨ g.op = GateOp.or ∨ g.op = GateOp.not) ∧
+    g.inputs.length ≤ 2)
+  (hU : AtMostOneNot gates) (hN : (gates[p]'hp).op = GateOp.not)
+
+include hg hU hN in
+/-- **F1*** (one witness set): a gate with a real witness for `R` above `Q ∪ {v}` that is `1` at
+`Q + e_v` forces `v` light (`h(Q + e_v) = 0`: the NOT gate is `1` there), `C_0(g)(Q + e_v) = 0`,
+`C_1(g)(Q + e_v) = 1`, and every point `Z' ⊇ Q ∪ {v}` avoiding a set `R'` with `g(Z') = 0` (every real
+witness point of `g` above `Q ∪ {v}`) has `h(Z') = 1` and `h(top_R') = 1` (the NOT gate is `0` at `Z'` and
+at `top_R'`): only world-0 witnesses. -/
+theorem F1star (R Q : Finset (Fin n)) (v : Fin n) {i : ℕ}
+    (hreal : val gates (canonPt (insert v Q)) i = true) (hwit : F2Wit gates R (insert v Q) i) :
+    val gates (canonPt (insert v Q)) (n + p) = true ∧
+    val (lift n p gates) (ext (canonPt (insert v Q)) false) (liftWire n p i) = false ∧
+    val (lift n p gates) (ext (canonPt (insert v Q)) true) (liftWire n p i) = true ∧
+    ∀ (R' : Finset (Fin n)) (Z' : Fin n → Bool), (∀ x ∈ R', Z' x = false) →
+      (∀ x ∈ insert v Q, Z' x = true) → val gates Z' i = false →
+        val gates Z' (n + p) = false ∧ val gates (Zof R') (n + p) = false := by
+  have hm := monoList_lift (n := n) gates p hp hg hU hN
+  have hC1 : val (lift n p gates) (ext (canonPt (insert v Q)) true) (liftWire n p i) = true :=
+    (lift_exact (n := n) gates p hp hg hU hN _ i).2.1 hreal
+  refine ⟨?_, ?_, hC1, fun R' Z' hZR hZQ hz => ?_⟩
+  · cases hv : val gates (canonPt (insert v Q)) (n + p) with
+    | true => rfl
+    | false =>
+      rw [F1_real_zero gates p hp hg hU hN R Q v hv hwit] at hreal
+      exact absurd hreal (by decide)
+  · obtain ⟨Z, -, -, -, -, -, -, hZQ, hz, -⟩ := hwit
+    have hle : canonPt (insert v Q) ≤ Z := canonPt_le fun c hc => hZQ c hc
+    have hC0Z : val (lift n p gates) (ext Z false) (liftWire n p i) = false := by
+      cases h : val (lift n p gates) (ext Z false) (liftWire n p i) with
+      | false => rfl
+      | true =>
+        have := (lift_exact (n := n) gates p hp hg hU hN Z i).1 h
+        rw [hz] at this
+        exact absurd this (by decide)
+    have hmono := val_le_of_le (lift n p gates) hm.andOr (ext_le_of_le hle (le_refl false))
+      (liftWire n p i)
+    rw [hC0Z] at hmono
+    exact le_bot_iff.mp hmono
+  · have hle : canonPt (insert v Q) ≤ Z' := canonPt_le fun c hc => hZQ c hc
+    have hNZ : val gates Z' (n + p) = false := by
+      cases hN' : val gates Z' (n + p) with
+      | false => rfl
+      | true =>
+        have e := val_lift (n := n) gates p hp Z' i
+        rw [hN'] at e
+        have hmono := val_le_of_le (lift n p gates) hm.andOr (ext_le_of_le hle (le_refl true))
+          (liftWire n p i)
+        rw [hC1, ← e, hz] at hmono
+        exact absurd hmono (by decide)
+    refine ⟨hNZ, not_false_of_le gates p hp hg hU hN (fun c => ?_) hNZ⟩
+    refine Bool.le_iff_imp.mpr fun hc => ?_
+    have hcR : c ∉ R' := fun h => by rw [hZR c h] at hc; exact absurd hc (by decide)
+    simp [Zof, hcR]
+
+include hg hU hN in
+/-- **F1*** (membership form): a gate of `F2(Q ∪ {v})` that is `1` at `Q + e_v` forces `v` light,
+`C_0(g)(Q + e_v) = 0`, `C_1(g)(Q + e_v) = 1`, and each of its witnesses is for a set `w' ∌ v` with
+`h(top_w') = 1` and `h = 1` at the witness point. -/
+theorem F1star_mem (S : Fin m → Finset (Fin n)) (Q : Finset (Fin n)) (v : Fin n) {i : ℕ}
+    (hi : i ∈ F2 gates S (insert v Q)) (hreal : val gates (canonPt (insert v Q)) i = true) :
+    val gates (canonPt (insert v Q)) (n + p) = true ∧
+    val (lift n p gates) (ext (canonPt (insert v Q)) false) (liftWire n p i) = false ∧
+    val (lift n p gates) (ext (canonPt (insert v Q)) true) (liftWire n p i) = true ∧
+    ∀ w' ∈ aliveSets S (insert v Q), ∀ Z' : Fin n → Bool, (∀ x ∈ S w', Z' x = false) →
+      (∀ x ∈ insert v Q, Z' x = true) → val gates Z' i = false →
+        v ∉ S w' ∧ val gates Z' (n + p) = false ∧ val gates (Zof (S w')) (n + p) = false := by
+  obtain ⟨-, w, -, hwit⟩ := mem_F2.mp hi
+  obtain ⟨h1, h2, h3, h4⟩ := F1star gates p hp hg hU hN (S w) Q v hreal hwit
+  exact ⟨h1, h2, h3, fun w' hw' Z' hZR hZQ hz =>
+    ⟨((aliveSets_insert S Q v w').mp hw').2, h4 (S w') Z' hZR hZQ hz⟩⟩
+
+end F1star
 
 /-! ## Step 2, the proved part: the joint union-find -/
 
