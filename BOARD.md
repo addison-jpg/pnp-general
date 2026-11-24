@@ -160,6 +160,7 @@ ProofComplexity, Search, Outside) are here unchanged.
   in Lean (`starSep_heavy`, `starSep_of_hQ`); open = front's gap (light v; heavy v with non-heavy star points). 14:10:
   PureFrac.lean: `pureFrac_iff_purePrice` (LP duality), `no_minCE_of_purePrice` (front A1's target), PureFrac ⇒ MU.
   14:25: STAR-COUNT in Lean (`no_minCE_of_starCount`, `starCount_of_starSep`); open: HEAVY-COUNT, LIGHT-COUNT (front).
+  14:45: L-LIFT in Lean (PureLLift: `mergeSet_eq_lift`, `liftSDR_of_mergeSDR`, `muL_of_mergeSDR`): MergeSDR ⇒ LiftSDR ⇒ MUL.
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.

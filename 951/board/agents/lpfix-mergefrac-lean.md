@@ -221,3 +221,7 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   Lean chain now: StarSep ⇒ PureSDR ⇒ PureFrac ⇔ PurePrice ⇒ MU ⇒ MUL ⇒ no_minCE (and PureSDR ⇒ LiftSDR ⇒ MUL).
 - (14:25 UTC) STAR-COUNT (front A2): `no_minCE_of_starCount` via `mu_of_starCount` (induction on the alive sets, U(Q ∪ v) ⊆ U(Q))
   and `starCount_of_starSep`. Open conjectures (front): HEAVY-COUNT (heavy v ⇒ STAR-COUNT; data 78,451/78,451) and LIGHT-COUNT.
+- (14:45 UTC) L-LIFT checked (front A1): `mergeSet_eq_lift` — every real merge set M_z(w) is the class of the valid lifted test
+  system ((z, ν z), atoms (z + e_u, ν(z + e_u))) (`realLTS_valid`), via `run_lift` (gate-for-gate transfer of the union-find
+  run from the real circuit to its lift). Corollaries `liftSDR_of_mergeSDR`, `muL_of_mergeSDR`: the lifted targets (LiftSDR,
+  MUL) are WEAKER than MergeSDR, so they survive front A1's cxMU_dd (where the pure lists fail).
