@@ -8,10 +8,10 @@ import sys, os, json, itertools, collections, functools
 ROOT = sys.argv[1] if len(sys.argv) > 1 else '951'; NMAX = int(sys.argv[2]) if len(sys.argv) > 2 else 10
 sys.argv = ['x', ROOT, str(NMAX)]
 src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'canon.py')).read(); exec(src[:src.index("st=collections.Counter()")])
-def UC(n, G, W0, W1, hb, sets):
+def UC(n, G, W0, W1, hb, sets, avoid=0):
     P_ = 1 << n; ors = [n + k for k, g in enumerate(G) if g[0] == 'or']; out = set()
     for R in sets:
-        Rm = sum(1 << u for u in R); free = (P_ - 1) & ~Rm; Z = free
+        Rm = sum(1 << u for u in R); free = (P_ - 1) & ~Rm & ~avoid; Z = free
         while True:
             w1 = not hb(Z); w0 = all(hb(Z | 1 << u) for u in R)
             for g in ors:
@@ -48,6 +48,10 @@ for name, n, S, G, outs in circuits():
     if any(K[a] & K[b] for a, b in itertools.combinations(Fr, 2)): st['W1 VIOLATION (free classes meet)'] += 1
     Kf = frozenset().union(*K.values()) if Fr else frozenset()
     UE2 = frozenset().union(*[C for M in menus for C in M]); UCs = UC(n, G, W0, W1, hb, S)
+    UCA = UC(n, G, W0, W1, hb, [S[w] for w in A]); UCF = UC(n, G, W0, W1, hb, [S[w] for w in Fr])
+    Fpts = sum(1 << u for v in Fr for u in S[v]); UCN = UC(n, G, W0, W1, hb, [S[w] for w in A], Fpts)
+    st['sanity: UC_N(A) ∩ K_free (P2, must be 0)'] += len(frozenset(UCN) & Kf)
+    st['K_free ⊆ UC (must hold)'] += Kf <= frozenset(UCs)
     UA = frozenset().union(*[C for w in A for C in menus[w]]) if A else frozenset()
     I0A = []
     for w in A:
@@ -69,7 +73,7 @@ for name, n, S, G, outs in circuits():
         return (len(frozenset().union(*cl) - Kf) if cl else 0) - need
     need = sum(d[w] for w in A); st['circuits with a type-A set'] += bool(A)
     for lab, val in (('INC_A  (type-A E2 classes only)', len(UA - Kf) - need), ('INC0   (type-A I0 classes at top_w only, E6 counting)', len(U0A - Kf) - need), ('INC0 w/o K_free removal (|U0A| - Σ_A d)', len(U0A) - need), ('CANON-a: world 1 iff the type-A set has a heavy point', cnt(heavyA)), ('CANON-b: world 0 iff it has a heavy point', cnt(set(A) - heavyA)), ('INC    (U_E2, subset of Lean U)', len(UE2 - Kf) - need),
-                     ('INC    (UC, superset of Lean U)', len(UCs - Kf) - need), ('MU     (U_E2) |U|-base', len(UE2) - sum(d))):
+                     ('INC    (UC, superset of Lean U)', len(UCs - Kf) - need), ('INC_UC_A (type-A UC gates only) |UC(A) \\ K_free| - Σ_A d', len(frozenset(UCA) - Kf) - need), ('MU_UC |UC| - base', len(UCs) - sum(d)), ('INC_N: type-A UC gates at zero points avoiding all free points, |UC_N(A)| - Σ_A d', len(UCN) - need), ('free UC beyond K_free |UC(free) \\ K_free|', len(frozenset(UCF) - Kf)), ('MU     (U_E2) |U|-base', len(UE2) - sum(d))):
         hist[lab][val] += 1
         if val < 0 and len(fails[lab]) < 4: fails[lab].append((name, S, [w for w in A]))
     if A:
