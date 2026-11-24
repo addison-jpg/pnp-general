@@ -151,7 +151,7 @@ for name, code, parent, means in [
  ("adversary against the two-point menu", "ADV3", fam[0][0], "load 1.2"),
  ("adversary against the general world laws", "ADV4", fam[1][0], ""),
  ("junk circuit where a light point fails", "JUNK, junk.json", fam[4][0], ""),
- ("five-input gap for seen gates", "see_gap_n5.json", fam[4][0], "meaning not re-derived here"),
+ ("five-input gap for seen gates", "see_gap_n5.json", fam[4][0], "n = 5, sets {0,1}, {1,2,3,4}, {0,2}, h = x1 or x4, cube Q = {0}: at v = 1 only 2 of the 3 gates of F2(Q) are 1 at Q + e_v (cost 3) while the step holds; the third gate x2 or x3 dies because all its witnesses come from the one set through v (K3). Why the count needs the K3 term (dwV8p)"),
 ]: add(name, parent, "witness", code, means)
 
 # ---- second pass (bottom up): every remaining code of the key documents
@@ -178,9 +178,9 @@ for name, code, parent, means in [
  ("cross-world disjointness at every world-1 point", "D1", B_, "refuted, 4 collisions in 31,587 circuits"),
  ("heavy-first step", "F6", B_, "'a heavy point exists => some heavy point satisfies the step'; refuted"),
  ("no mixed zero points", "NoMixedPrice", B_, "refuted in the plain form"),
- ("seen gates and the three-case rule", "SEE+K3, SEE0, K0, K3, F2SeeK3", S, "a sufficient rule for the point step read from gates that see the point; false for all correct circuits"),
+ ("seen gates and star-only gates", "SEE+K3, SEE0, K0, K3, F2SeeK3", S, "SEE+K3: some point v has at least cost(v) gates of F2(Q) that leave it, counting the gates that are 1 at Q + e_v (SEE, minus survivors; K0 / K1 / F1* say which survive) and the gates whose witnesses all come from sets through v (K3). The reduction GainF2 <= SEE+K3 is checked in Lean (F2SeeK3.lean); the count itself fails on the twin trees, so it is not true for all correct circuits"),
  ("light-star rule", "LIGHT-STAR, LightStar, F2Light", S, "the point step at a light point from the star of the point; false for all correct circuits"),
- ("absorb and reroute", "ABSORB, REROUTE, INTERNAL", S, "bookkeeping forms of the point step; false for all correct circuits"),
+ ("absorb and reroute", "ABSORB, REROUTE, INTERNAL", S, "ABSORB is the point step at v rewritten with the first-joining gates (bookkeeping, equivalent to the step); REROUTE and INTERNAL are stronger sufficient forms (INTERNAL also fails on star4 at Q = empty); all three fail with the step on the twin trees"),
  ("cone certificate", "CERT-1c, CERT-3c, CertStair, (D)+(S)", S, "death (D) and disjointness (S) of cone merge sets"),
  ("local closure by weight one", "LW1", "local cube", "a second closure of a cube used in CubeF2.lean; meaning not re-derived here"),
  ("full charging without the cone", "ChargeOK", D_, "refuted, 3 counterexamples"),

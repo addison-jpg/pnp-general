@@ -122,13 +122,25 @@ The full reference list of the quantum gravity program, kept here so that no cut
   Phys. Rev. D 23 (1981) 287.
 - K. Kraus, States, Effects, and Operations, Lecture Notes in Physics 190, Springer (1983).
 - D. Deutsch, Quantum mechanics near closed timelike lines, Phys. Rev. D 44 (1991) 3197.
+- A. Barenco, C. H. Bennett, R. Cleve, D. P. DiVincenzo, N. Margolus, P. Shor, T. Sleator,
+  J. A. Smolin, H. Weinfurter, Elementary gates for quantum computation, Phys. Rev. A 52 (1995)
+  3457, arXiv:quant-ph/9503016.
+- E. Knill, Approximation by quantum circuits, LANL report LAUR-95-2225 (1995),
+  arXiv:quant-ph/9508006. (L-qg-115, 116, 119: Lemma 4.3, Theorem 4.1 / Corollary 4.2, Theorem 3.4.)
+- E. Bernstein, U. Vazirani, Quantum complexity theory, SIAM J. Comput. 26 (1997) 1411.
+- S. J. Szarek, Metric entropy of homogeneous spaces, Banach Center Publ. 43 (1998),
+  arXiv:math/9701213. (L-qg-115: Theorem 7.)
 - N. Margolus, L. B. Levitin, The maximum speed of dynamical evolution, Physica D 120 (1998) 188.
 - S. Lloyd, Ultimate physical limits to computation, Nature 406 (2000) 1047.
+- M. A. Nielsen, I. L. Chuang, Quantum computation and quantum information, Cambridge University
+  Press (2000), Section 4.5.
 - R. Bousso, The holographic principle, Rev. Mod. Phys. 74 (2002) 825, arXiv:hep-th/0203101.
 - T. A. Brun, Computers with closed timelike curves can solve hard problems efficiently, Found.
   Phys. Lett. 16 (2003) 245, arXiv:gr-qc/0209061.
 - S. Aaronson, NP-complete problems and physical reality, SIGACT News 36 (2005),
   arXiv:quant-ph/0502072.
+- C. M. Dawson, M. A. Nielsen, The Solovay-Kitaev algorithm, Quantum Inf. Comput. 6 (2006) 81,
+  arXiv:quant-ph/0505030.
 - M. A. Nielsen, A geometric approach to quantum circuit lower bounds, Quantum Inf. Comput. 6
   (2006) 213, arXiv:quant-ph/0502070.
 - S. Aaronson, J. Watrous, Closed timelike curves make quantum and classical computing
