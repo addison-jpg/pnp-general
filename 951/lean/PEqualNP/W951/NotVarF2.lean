@@ -25,7 +25,7 @@ outside `R ∪ {a}`), atoms `(e_u, [u ≠ a])`. Both are the `ν`-lifts of the r
 * `lowerWire_mem_F2_xv`: every gate of the class of `R = S_w` is a real F2 gate at `Q = ∅`: an OR gate
   (merges are OR gates) with the real witness `(top, u, u')`, since `top` is in world 1 and the atoms
   `(e_u, [u ≠ a])` lie below the lifts `ν(top + e_u)`.
-* **`muF2_of_notVar`**: `MUF2 S gates` (`base ≤ |F2(∅)|`).
+* **`muF2_of_notVar`**: `MUF2 S gates` (`base ≤ |F2(∅)|`); `liftSDR_of_notVar`: `LiftSDR S gates out p`.
 * **`IsCE.false_of_notVar`**, **`MinCE.not_notVar`**: no counterexample (minimal or not) has its NOT
   gate computing an input literal.
 -/
@@ -263,6 +263,15 @@ theorem muF2_of_notVar (S : Fin m → Finset (Fin n)) (out : Fin m → ℕ)
         obtain ⟨i, hi, rfl⟩ := Finset.mem_image.mp hg'
         obtain ⟨w, -, hw⟩ := Finset.mem_biUnion.mp hi
         exact lowerWire_mem_F2_xv gates p hp hg hU hN a hh S w hw
+
+include hp hg hU hN hh in
+/-- **LiftSDR for `h = x_a`** (front A2): the variable test systems are valid and pairwise disjoint. -/
+theorem liftSDR_of_notVar (S : Fin m → Finset (Fin n)) (out : Fin m → ℕ)
+    (hS : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hev : ∀ (w : Fin m) (x : Fin n → Bool), val gates x (out w) = decide (∃ v ∈ S w, x v = true)) :
+    LiftSDR S gates out p :=
+  ⟨fun w => xvLTS a (S w), fun w => xvLTS_valid gates p hp a hh (S w) (out w) (hev w),
+    fun w w' hww => xvLTS_disjoint gates p hp hg hU hN a (S w) (S w') (hS w w' hww)⟩
 
 end NotVarF2
 
