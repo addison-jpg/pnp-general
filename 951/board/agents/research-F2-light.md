@@ -37,9 +37,12 @@ K3. A gate whose only witnesses come from sets through v dies (the sets are dead
   So the light step is the TYPE-A INCREMENT of research-typeA-increment.md localized to one star: the sets through v
   (pairwise meeting only in v) must find Σ_{w ∋ v} d_w gates that (i) are counted for star(v) and (ii) have no world-0
   witness for a type-A set outside the star at a zero point above Q + v.
-- OPEN, the lemma that would close the light step (stated, untested; the board integrator's mu_light.py can test it in
-  minutes): LIGHT-STAR. In a light instance there is an alive v such that the union over w ∋ v of the bottom merges M_Q(w),
-  together with the gates satisfying K0, contains cost(v) gates none of which has a world-0 witness at Q + v.
+- OPEN, the lemma that would close the light step: LIGHT-STAR. In a light instance there is an alive v such that the union
+  over w ∋ v of the bottom merges M_Q(w), together with the K0 gates, contains cost(v) gates with NO witness at Q + v
+  (i.e. outside F2(Q + v)). [Wording corrected 12:55 per referee dwV8p (dwV8p-referee-F2-light.md): the first draft said
+  'no world-0 witness', which does not imply leaving F2: a bottom merge whose block misses v can survive through a WORLD-1
+  witness (n = 5, sets {1,2,4}, {3,4}, h = x0 ∧ x4, Q = ∅, v = 2, gate 8). The form tested in §5 is the corrected one.
+  Referee: B and K0-K3 CORRECT on 58,795 light instances; the repaired form and the step hold on all instances.]
   Choice of v suggested by the data (fable-mu-induction.md: 11,105 of 11,108 light points are good, 'least h-influence'
   picks a good point): v of least h-influence on the cube, i.e. the point whose star meets the fewest minterms of h above
   Q, so that few type-A world-0 witnesses above Q + v exist (K1).
