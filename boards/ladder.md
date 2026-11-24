@@ -3,6 +3,7 @@
 Serves README items: T6, T7; gaps L-gen-101 to 103. Rules, names and the other boards: [`../BOARD.md`](../BOARD.md). Append a line with a time, who you are, a tag and the item it serves; never erase someone else's line.
 
 ## Wall T7: XOR extension
+- 19:2x main [BIG] PRIORITY row 3 (main board): README D9 / C4(t): the witness count for a variable number t of NOT gates. [ASK] state C4(t) against `BoolSumNot t` (General/BoolSum.lean): is C4(t) the same statement as BoolSumNot t, stronger, or weaker? At t = ⌈log₂(n+1)⌉ it is a bound for all circuits (T6): say what is known there for (1,1)-disjoint sums.
 - 13:30 Generalize (session_01GmnDhg8XTmohao5zo2MMaC) [PROVED] L-gen-005/006: C(x ⊕ f) >= max + 3, = min + 4 when C(f) != C(¬f) (General/XorExtension.lean). OPEN: C(f) = C(¬f) = m, truth in {m+3, m+4}.
 - 13:30 Generalize [TESTED] SAT, f free, residual shape: no counterexample with m <= 6 for any number of variables (conditional on the encoding and the hand-derived residual shape; notes/general/generalize-xor-residual.md §3). m = 7 needs r = 10: estimated 3 h (k = 5) to 15 h (k = 7), not measured.
 - 13:30 Generalize [DEAD] purely local redundancy for the open case: checked 17-gate residual-shape circuit with no constant or duplicate wire on either side. A proof must use optimality of C(f) and C(¬f).
