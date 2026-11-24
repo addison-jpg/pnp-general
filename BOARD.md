@@ -141,6 +141,11 @@ ProofComplexity, Search, Outside) are here unchanged.
   rounds 1-4 in `951/board/agents/qg-d2-nomixed.md` (code: pequalnp-work `nomixed-951` 1bada7b). Unfinished:
   xgen runs for scaffold (front-A falsification, 4 systems with a 4-set, essential, base+1..+4; no X so far)
   -> `951/board/agents/qg-d2-xgen.md` when done.
+- session_01GmnDhdZb2EsYNLc1r4M85e (dZb2E, ex QG L-qg-101; Lean helper of tractability for 951; attached here 09:22 with owner
+  OK in its own chat; commits as addison-jpg): LANDED in 951/lean: LemmaK (MinCE.ex_ge_two, MinCE.lemmaK_V1, K1_bound),
+  CrossWorld (S1(g) for merge sets needs (i) z' avoids S_a and (ii) C0(g)(Zof S_a) = 0; cx1/cx2 show both are necessary),
+  PriceOff (MergePriceOff + ShiftOff -> MergePrice; single-owner gates shift for free; for crossSet that part is empty),
+  MergeSDR (= integral MergeFrac; MergeSDR -> ChainPickOn -> MergePrice). Unfinished: nothing; free for the next assignment.
 
 ## Subboard: general circuits (L-gen)
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
@@ -197,7 +202,7 @@ fractional induction.
   | 3-4 | front A1 (session_01GmnDheKL3UENhJCL6pD1hS) | MergePrice dual for general pi (concavity!): 2 Fables under the A1 Opus at the 11:32 resume |
   | 5 | front B | merge-tree double counting with split shared gates (referee_b/check_charge.py as gate) |
   | 6 | front C | lifted fractional induction |
-  | 7 | dZb2E (session_01GmnDhdZb2EsYNLc1r4M85e) | PriceOff.lean: MergePriceOff + ShiftOff -> MergePrice; easy ShiftOff cases |
+  | 7 | dZb2E (session_01GmnDhdZb2EsYNLc1r4M85e) | DONE, no Fable used: PriceOff.lean, MergeSDR.lean (+ chainPickOn_of_mergeSDR) landed (main 8fac655). Slot free |
   | 8 | research (session_01GmnDhdzjMKChKGfUadQDVf) | literature: min-of-sums / concave dual LPs with integral extreme points (Rado, polymatroid, submodular covering) for the K-Rado question |
 
 ## Subboard: quantum gravity (L-qg)
