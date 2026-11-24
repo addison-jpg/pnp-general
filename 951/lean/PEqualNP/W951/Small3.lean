@@ -165,11 +165,13 @@ theorem out_range3 (w : Fin m) : n ≤ out w ∧ out w < n + gates.length := by
     rw [this] at h
     exact absurd h (by simp)
 
-include h2 hS hg hU hev hclean in
-/-- The second gate of a set with at least three elements. -/
-theorem exists_second3 (w : Fin m) (h3 : 3 ≤ (S w).card) :
+include h2 hS hg hU hev in
+/-- The second gate of a set with at least three elements, WITHOUT the cleanliness hypothesis: a
+dedicated gate, or a leaf gate that is not constantly true (the proof of LemmaK's
+`exists_secondK`; a one-input output gate copies its child, which is then a dedicated gate). -/
+theorem exists_second3K (w : Fin m) (h3 : 3 ≤ (S w).card) :
     ∃ c, n ≤ c ∧ c < n + gates.length ∧ c ≠ out w ∧
-      (Ded3 S gates w c ∨ Leaf3 S gates w c) := by
+      (Ded3 S gates w c ∨ (Leaf3 S gates w c ∧ ∃ x : Fin n → Bool, val gates x c = false)) := by
   obtain ⟨hlo, hhi⟩ := out_range3 S h2 gates out hev w
   obtain ⟨j, hoj⟩ : ∃ j, out w = n + j := ⟨out w - n, by omega⟩
   have hev' : ∀ x : Fin n → Bool, val gates x (n + j) = decide (∃ v ∈ S w, x v = true) := by
@@ -183,8 +185,8 @@ theorem exists_second3 (w : Fin m) (h3 : 3 ≤ (S w).card) :
     intro x
     rw [← hev' x, val_gate gates x j hj]
   obtain ⟨u1, hu1, u2, hu2, u3, hu3, h12, h13, h23⟩ := Finset.two_lt_card.mp h3
-  -- value at the zero point and at units
-  have hF0 : g.op.eval (g.inputs.map fun i => val (gates.take j) (fun _ : Fin n => false) i) = false := by
+  have hF0 : g.op.eval (g.inputs.map fun i => val (gates.take j) (fun _ : Fin n => false) i) =
+      false := by
     rw [← hF]; simp
   have hFu : ∀ u ∈ S w, g.op.eval (g.inputs.map fun i => val (gates.take j) (eof u) i) = true := by
     intro u hu
@@ -234,42 +236,58 @@ theorem exists_second3 (w : Fin m) (h3 : 3 ≤ (S w).card) :
     · exact Or.inl h
     · exact Or.inr h
     · exact absurd h hnot
-  -- facts about a child wire
   have child_lt : ∀ a (x : Fin n → Bool), val (gates.take j) x a = true → a < n + j := by
     intro a x ha
     by_contra hge
-    rw [val_take3 gates x j a hjl, if_neg hge] at ha
+    rw [val_take3 gates x j a hjl, ite_eq_right hge] at ha
     exact absurd ha (by simp)
-  have child_eq : ∀ a, a < n + j → ∀ x : Fin n → Bool, val (gates.take j) x a = val gates x a := by
+  have child_eq : ∀ a, a < n + j → ∀ x : Fin n → Bool,
+      val (gates.take j) x a = val gates x a := by
     intro a ha x
-    rw [val_take3 gates x j a hjl, if_pos ha]
+    rw [val_take3 gates x j a hjl, ite_eq_left ha]
+  -- a child below the output that is true on two units of `S w` is a second `Ded3` gate
+  have hside : ∀ c, (∀ x : Fin n → Bool, val (gates.take j) x c = true →
+      g.op.eval (g.inputs.map fun i => val (gates.take j) x i) = true) →
+      ∀ u ∈ S w, ∀ u' ∈ S w, u ≠ u' → val (gates.take j) (eof u) c = true →
+      val (gates.take j) (eof u') c = true →
+      ∃ c, n ≤ c ∧ c < n + gates.length ∧ c ≠ n + j ∧
+        (Ded3 S gates w c ∨ (Leaf3 S gates w c ∧ ∃ x : Fin n → Bool, val gates x c = false)) := by
+    intro c hc u hu u' hu' hne e1 e2
+    have hlt := child_lt c _ e1
+    refine ⟨c, ?_, by omega, by omega, Or.inl ⟨?_, u, hu, u', hu', hne, ?_, ?_⟩⟩
+    · by_contra hcn
+      push Not at hcn
+      rw [child_eq c hlt, val_var3 _ _ _ hcn] at e1 e2
+      exact hne ((eof_true3 e1).symm.trans (eof_true3 e2))
+    · intro x hx
+      rw [← child_eq c hlt] at hx
+      exact hFf x (hc x hx)
+    · rw [← child_eq c hlt]; exact e1
+    · rw [← child_eq c hlt]; exact e2
   rcases GateShape.inputs_cases g hlen with hin | ⟨a, hin⟩ | ⟨a, b, hin⟩
   · -- no inputs: constant
     rw [hin] at hF0
     have hu := hFu u1 hu1
     rw [hin] at hu
     rcases hop' with h | h <;> rw [h] at hF0 hu <;> simp [GateOp.eval] at hF0 hu
-  · -- one input: copies a wire, not clean
-    exfalso
+  · -- one input: the output copies the child, which is a second `Ded3` gate
     have hcopy : ∀ x : Fin n → Bool, g.op.eval (g.inputs.map fun i => val (gates.take j) x i) =
         val (gates.take j) x a := by
       intro x
       rw [hin]
       rcases hop' with h | h <;> rw [h] <;> simp [GateOp.eval]
-    have hu := hFu u1 hu1
-    rw [hcopy] at hu
-    have ha := child_lt a _ hu
-    apply hclean j a hj ha
-    intro x
-    rw [val_gate gates x j hj, hcopy, child_eq a ha]
-  · -- two inputs
-    rcases hop' with h | h
-    · -- AND top
+    have e1 := hFu u1 hu1
+    have e2 := hFu u2 hu2
+    rw [hcopy] at e1 e2
+    exact hside a (fun x hx => by rw [hcopy]; exact hx) u1 hu1 u2 hu2 h12 e1 e2
+  · rcases hop' with h | h
+    · -- AND top: a child is a non-constant `Leaf3` gate, otherwise both children have witness sets
       have hand : ∀ x : Fin n → Bool, g.op.eval (g.inputs.map fun i => val (gates.take j) x i) =
           (val (gates.take j) x a && val (gates.take j) x b) := by
         intro x
         rw [hin, h]; simp [GateOp.eval]
-      have habove : ∀ c, (∀ x : Fin n → Bool, g.op.eval (g.inputs.map fun i => val (gates.take j) x i) = true →
+      have habove : ∀ c, (∀ x : Fin n → Bool,
+          g.op.eval (g.inputs.map fun i => val (gates.take j) x i) = true →
           val (gates.take j) x c = true) →
           n ≤ c ∧ c < n + j ∧ Above3 S gates (n := n) w c := by
         intro c hc
@@ -288,51 +306,44 @@ theorem exists_second3 (w : Fin m) (h3 : 3 ≤ (S w).card) :
         rw [hand] at hx; simp only [Bool.and_eq_true] at hx; exact hx.1)
       obtain ⟨hbn, hblt, hbab⟩ := habove b (fun x hx => by
         rw [hand] at hx; simp only [Bool.and_eq_true] at hx; exact hx.2)
-      by_cases hA : ∃ w', w' ≠ w ∧ Above3 S gates w' a
-      · by_cases hB : ∃ w', w' ≠ w ∧ Above3 S gates w' b
-        · exfalso
-          obtain ⟨wa, hwa, hAa⟩ := hA
-          obtain ⟨wb, hwb, hBb⟩ := hB
-          obtain ⟨u, hu, hunot⟩ := exists_diff3 S h2 hS w wa (Ne.symm hwa)
-          obtain ⟨v, hv, hvnot⟩ := exists_diff3 S h2 hS w wb (Ne.symm hwb)
-          set x : Fin n → Bool := fun c => eof u c || eof v c with hx
-          have ea := hAa x ⟨u, hu, by simp [hx, eof_self3]⟩
-          have eb := hBb x ⟨v, hv, by simp [hx, eof_self3]⟩
-          have := hFf x (by rw [hand, child_eq a halt, child_eq b hblt, ea, eb]; rfl)
-          obtain ⟨y, hy, hxy⟩ := this
-          simp only [hx, Bool.or_eq_true] at hxy
-          rcases hxy with e | e
-          · rw [eof_true3 e] at hy; exact hunot hy
-          · rw [eof_true3 e] at hy; exact hvnot hy
-        · refine ⟨b, hbn, by omega, by omega, Or.inr ⟨hbab, ?_⟩⟩
-          intro w' hw' hab
-          exact hB ⟨w', hw', hab⟩
-      · refine ⟨a, han, by omega, by omega, Or.inr ⟨haab, ?_⟩⟩
-        intro w' hw' hab
-        exact hA ⟨w', hw', hab⟩
-    · -- OR top
+      have wit : ∀ c, Above3 S gates w c →
+          ¬ (Leaf3 S gates w c ∧ ∃ x : Fin n → Bool, val gates x c = false) →
+          ∃ T : Finset (Fin n), (∀ t ∈ T, t ∉ S w) ∧
+            ∀ x : Fin n → Bool, (∀ t ∈ T, x t = true) → val gates x c = true := by
+        intro c hab hnl
+        by_cases hconst : ∀ x : Fin n → Bool, val gates x c = true
+        · exact ⟨∅, by simp, fun x _ => hconst x⟩
+        · push Not at hconst
+          obtain ⟨x0, hx0⟩ := hconst
+          have hnl3 : ¬ Leaf3 S gates w c := fun hl => hnl ⟨hl, x0, by simpa using hx0⟩
+          have hw' : ∃ w', w' ≠ w ∧ Above3 S gates w' c := by
+            by_contra hno
+            push Not at hno
+            exact hnl3 ⟨hab, fun w' hw' habw => hno w' hw' habw⟩
+          obtain ⟨w', hw', habw⟩ := hw'
+          obtain ⟨u, hu, hunot⟩ := exists_diff3 S h2 hS w w' (Ne.symm hw')
+          exact ⟨{u}, by simpa using hunot, fun x hx => habw x ⟨u, hu, hx u (by simp)⟩⟩
+      by_cases hA : (Leaf3 S gates w a ∧ ∃ x : Fin n → Bool, val gates x a = false)
+      · exact ⟨a, han, by omega, by omega, Or.inr hA⟩
+      by_cases hB : (Leaf3 S gates w b ∧ ∃ x : Fin n → Bool, val gates x b = false)
+      · exact ⟨b, hbn, by omega, by omega, Or.inr hB⟩
+      exfalso
+      classical
+      obtain ⟨Ta, hTa, hxa⟩ := wit a haab hA
+      obtain ⟨Tb, hTb, hxb⟩ := wit b hbab hB
+      set x : Fin n → Bool := fun c => decide (c ∈ Ta ∪ Tb) with hx
+      have ea := hxa x (fun t ht => by simp [hx, ht])
+      have eb := hxb x (fun t ht => by simp [hx, ht])
+      obtain ⟨y, hy, hxy⟩ := hFf x (by rw [hand, child_eq a halt, child_eq b hblt, ea, eb]; rfl)
+      simp only [hx, decide_eq_true_eq, Finset.mem_union] at hxy
+      rcases hxy with h' | h'
+      · exact hTa y h' hy
+      · exact hTb y h' hy
+    · -- OR top: pigeonhole on three units of `S w`
       have hor : ∀ x : Fin n → Bool, g.op.eval (g.inputs.map fun i => val (gates.take j) x i) =
           (val (gates.take j) x a || val (gates.take j) x b) := by
         intro x
         rw [hin, h]; simp [GateOp.eval]
-      have hside : ∀ c, (∀ x : Fin n → Bool, val (gates.take j) x c = true →
-          g.op.eval (g.inputs.map fun i => val (gates.take j) x i) = true) →
-          ∀ u ∈ S w, ∀ u' ∈ S w, u ≠ u' → val (gates.take j) (eof u) c = true →
-          val (gates.take j) (eof u') c = true →
-          ∃ c, n ≤ c ∧ c < n + gates.length ∧ c ≠ n + j ∧
-            (Ded3 S gates w c ∨ Leaf3 S gates w c) := by
-        intro c hc u hu u' hu' hne e1 e2
-        have hlt := child_lt c _ e1
-        refine ⟨c, ?_, by omega, by omega, Or.inl ⟨?_, u, hu, u', hu', hne, ?_, ?_⟩⟩
-        · by_contra hcn
-          push Not at hcn
-          rw [child_eq c hlt, val_var3 _ _ _ hcn] at e1 e2
-          exact hne ((eof_true3 e1).symm.trans (eof_true3 e2))
-        · intro x hx
-          rw [← child_eq c hlt] at hx
-          exact hFf x (hc x hx)
-        · rw [← child_eq c hlt]; exact e1
-        · rw [← child_eq c hlt]; exact e2
       have hsa := hside a (fun x hx => by rw [hor, hx]; rfl)
       have hsb := hside b (fun x hx => by rw [hor, hx]; simp)
       have e1 := hFu u1 hu1
@@ -351,18 +362,30 @@ theorem exists_second3 (w : Fin m) (h3 : 3 ≤ (S w).card) :
       · exact hsa u1 hu1 u2 hu2 h12 a1 a2
       · exact hsa u1 hu1 u2 hu2 h12 a1 a2
 
-include h2 hS hg hU hev hclean in
+include h2 hS hg hU hev in
+/-- The second gate of a set with at least three elements (instance of `exists_second3K`; the
+cleanliness hypothesis is not needed). -/
+theorem exists_second3
+    (_hclean : ∀ k j : ℕ, k < gates.length → j < n + k →
+      ¬ ∀ x : Fin n → Bool, val gates x (n + k) = val gates x j)
+    (w : Fin m) (h3 : 3 ≤ (S w).card) :
+    ∃ c, n ≤ c ∧ c < n + gates.length ∧ c ≠ out w ∧
+      (Ded3 S gates w c ∨ Leaf3 S gates w c) := by
+  obtain ⟨c, h1, h2', h3', hc⟩ := exists_second3K S h2 hS gates out hg hU hev w h3
+  exact ⟨c, h1, h2', h3', hc.imp_right And.left⟩
+
+include h2 hS hg hU hev in
 /-- T1, general form: every set owns its output gate, and every set with at least three elements
-owns a second gate; all these gates are distinct. -/
-theorem small_min2_bound :
+owns a second gate; all these gates are distinct. No cleanliness hypothesis. -/
+theorem small_min2_bound' :
     ∑ w : Fin m, min ((S w).card - 1) 2 ≤ gates.length := by
   classical
   have hex : ∀ w : Fin m, ∃ c, 3 ≤ (S w).card → (n ≤ c ∧ c < n + gates.length ∧ c ≠ out w ∧
       (Ded3 S gates w c ∨ Leaf3 S gates w c)) := by
     intro w
     by_cases h3 : 3 ≤ (S w).card
-    · obtain ⟨c, hc⟩ := exists_second3 S h2 hS gates out hg hU hev hclean w h3
-      exact ⟨c, fun _ => hc⟩
+    · obtain ⟨c, h1, h2', h3', hc⟩ := exists_second3K S h2 hS gates out hg hU hev w h3
+      exact ⟨c, fun _ => ⟨h1, h2', h3', hc.imp_right And.left⟩⟩
     · exact ⟨0, fun h => absurd h h3⟩
   choose φ hφ using hex
   let f : (Σ w : Fin m, Fin (min ((S w).card - 1) 2)) → ℕ :=
@@ -417,17 +440,36 @@ theorem small_min2_bound :
     exact hsub x
   simpa [Fintype.card_sigma] using hcard
 
-include h2 hS hg hU hev hclean in
-/-- T1: if all sets have at most three elements, the L-meta-951 bound holds. -/
-theorem small3_bound (h3 : ∀ w : Fin m, (S w).card ≤ 3) :
+include h2 hS hg hU hev in
+/-- T1, general form (instance of `small_min2_bound'`; the cleanliness hypothesis is not
+needed). -/
+theorem small_min2_bound
+    (_hclean : ∀ k j : ℕ, k < gates.length → j < n + k →
+      ¬ ∀ x : Fin n → Bool, val gates x (n + k) = val gates x j) :
+    ∑ w : Fin m, min ((S w).card - 1) 2 ≤ gates.length :=
+  small_min2_bound' S h2 hS gates out hg hU hev
+
+include h2 hS hg hU hev in
+/-- T1: if all sets have at most three elements, the L-meta-951 bound holds. No cleanliness
+hypothesis. -/
+theorem small3_bound' (h3 : ∀ w : Fin m, (S w).card ≤ 3) :
     ∑ w : Fin m, ((S w).card - 1) ≤ gates.length := by
-  have h := small_min2_bound S h2 hS gates out hg hU hev hclean
+  have h := small_min2_bound' S h2 hS gates out hg hU hev
   have he : ∀ w : Fin m, (S w).card - 1 = min ((S w).card - 1) 2 := by
     intro w
     have := h3 w
     omega
   rw [Finset.sum_congr rfl (fun w _ => he w)]
   exact h
+
+include h2 hS hg hU hev in
+/-- T1 (instance of `small3_bound'`; the cleanliness hypothesis is not needed). -/
+theorem small3_bound
+    (_hclean : ∀ k j : ℕ, k < gates.length → j < n + k →
+      ¬ ∀ x : Fin n → Bool, val gates x (n + k) = val gates x j)
+    (h3 : ∀ w : Fin m, (S w).card ≤ 3) :
+    ∑ w : Fin m, ((S w).card - 1) ≤ gates.length :=
+  small3_bound' S h2 hS gates out hg hU hev h3
 
 end
 

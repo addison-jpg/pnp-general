@@ -133,17 +133,18 @@ theorem own_unique (a b : Fin m) (c : ℕ)
   · exact sec_ne_out3 S h2 hS gates out hev b a c (Ne.symm hab) hb ha
   · exact hab (out_inj3 S h2 hS gates out hev a b (ha.symm.trans hb))
 
-include h2 hS hg hU hev hclean in
-/-- Corollary E': easy sets (those in `E`) pay `|S| - 1`, the other sets pay `min (|S| - 1) 2`. -/
-theorem easyHard_bound (E : Finset (Fin m)) (hE : ∀ w ∈ E, NotQuiet (S w) gates) :
+include h2 hS hg hU hev in
+/-- Corollary E': easy sets (those in `E`) pay `|S| - 1`, the other sets pay `min (|S| - 1) 2`.
+No cleanliness hypothesis. -/
+theorem easyHard_bound' (E : Finset (Fin m)) (hE : ∀ w ∈ E, NotQuiet (S w) gates) :
     ∑ w : Fin m, (if w ∈ E then (S w).card - 1 else min ((S w).card - 1) 2) ≤ gates.length := by
   classical
   have hex : ∀ w : Fin m, ∃ c, 3 ≤ (S w).card → (n ≤ c ∧ c < n + gates.length ∧ c ≠ out w ∧
       (Ded3 S gates w c ∨ Leaf3 S gates w c)) := by
     intro w
     by_cases h3 : 3 ≤ (S w).card
-    · obtain ⟨c, hc⟩ := exists_second3 S h2 hS gates out hg hU hev hclean w h3
-      exact ⟨c, fun _ => hc⟩
+    · obtain ⟨c, h1, h2', h3', hc⟩ := exists_second3K S h2 hS gates out hg hU hev w h3
+      exact ⟨c, fun _ => ⟨h1, h2', h3', hc.imp_right And.left⟩⟩
     · exact ⟨0, fun h => absurd h h3⟩
   choose φ hφ using hex
   let G : Fin m → Finset ℕ := fun w =>
@@ -191,18 +192,37 @@ theorem easyHard_bound (E : Finset (Fin m)) (hE : ∀ w ∈ E, NotQuiet (S w) ga
         exact (hmem w c hw).1
     _ = gates.length := by simp
 
-include h2 hS hg hU hev hclean in
-/-- If every set with at least four elements is easy, the L-meta-951 bound holds. -/
-theorem easy4_bound (h4 : ∀ w : Fin m, 4 ≤ (S w).card → NotQuiet (S w) gates) :
+include h2 hS hg hU hev in
+/-- Corollary E' (instance of `easyHard_bound'`; the cleanliness hypothesis is not needed). -/
+theorem easyHard_bound
+    (_hclean : ∀ k j : ℕ, k < gates.length → j < n + k →
+      ¬ ∀ x : Fin n → Bool, val gates x (n + k) = val gates x j)
+    (E : Finset (Fin m)) (hE : ∀ w ∈ E, NotQuiet (S w) gates) :
+    ∑ w : Fin m, (if w ∈ E then (S w).card - 1 else min ((S w).card - 1) 2) ≤ gates.length :=
+  easyHard_bound' S h2 hS gates out hg hU hev E hE
+
+include h2 hS hg hU hev in
+/-- If every set with at least four elements is easy, the L-meta-951 bound holds. No cleanliness
+hypothesis. -/
+theorem easy4_bound' (h4 : ∀ w : Fin m, 4 ≤ (S w).card → NotQuiet (S w) gates) :
     ∑ w : Fin m, ((S w).card - 1) ≤ gates.length := by
   classical
-  have h := easyHard_bound S h2 hS gates out hg hU hev hclean
+  have h := easyHard_bound' S h2 hS gates out hg hU hev
     (Finset.univ.filter fun w => 4 ≤ (S w).card) (fun w hw => h4 w (Finset.mem_filter.mp hw).2)
   refine le_trans (Finset.sum_le_sum fun w _ => ?_) h
   split_ifs with hw
   · exact le_rfl
   · have : ¬ 4 ≤ (S w).card := fun h' => hw (Finset.mem_filter.mpr ⟨Finset.mem_univ w, h'⟩)
     omega
+
+include h2 hS hg hU hev in
+/-- Instance of `easy4_bound'` (the cleanliness hypothesis is not needed). -/
+theorem easy4_bound
+    (_hclean : ∀ k j : ℕ, k < gates.length → j < n + k →
+      ¬ ∀ x : Fin n → Bool, val gates x (n + k) = val gates x j)
+    (h4 : ∀ w : Fin m, 4 ≤ (S w).card → NotQuiet (S w) gates) :
+    ∑ w : Fin m, ((S w).card - 1) ≤ gates.length :=
+  easy4_bound' S h2 hS gates out hg hU hev h4
 
 end
 
