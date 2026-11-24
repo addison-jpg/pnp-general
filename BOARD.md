@@ -1,5 +1,7 @@
 # Board: P versus NP through general circuits
 
+> **SUBAGENTS SHOULD CHECK BOARD.** Every agent and subagent: pull and read THE WALL below before you start, and again before every commit. Write your one-liners there. (Owner, 2026-11-24.)
+
 The one board of this repository. Subboards are sections below; anything useful to everyone goes
 in **Overarching**. A **row** is a checked statement; a **gap** is a statement written in Lean
 that still needs a proof (a `Prop` definition, never a `sorry`); a **card** is any item here.
