@@ -5,6 +5,7 @@ namespace SearchCheck
 open PEqualNP.CircuitLowerBounds (Circuit GateOp)
 open PEqualNP.Outside.L_meta_951_aux (F2 baseDQ MUF2)
 open Asteroid_ladder
+namespace Asteroid_ladder_sound
 /-- `correct(M_0)`: the project's `Circuit.eval` computes the OR of every set. -/
 theorem M_0_claim0_project (w_ : Fin M_0.sets.length) (x_ : Fin M_0.n → Bool) :
     Circuit.eval ⟨M_0.toGates, M_0.outs.getD w_ 0⟩ (List.ofFn x_) = decide (∃ v_ ∈ M_0.setFin w_, x_ v_ = true) :=
@@ -25,4 +26,5 @@ theorem M_1_claim3_project : ∑ w_, ((M_1.setFin w_).card - 1) ≤ M_1.toGates.
 theorem x_claim4_project (w_ : Fin x.sets.length) (x_ : Fin x.n → Bool) :
     Circuit.eval ⟨x.toGates, x.outs.getD w_ 0⟩ (List.ofFn x_) = decide (∃ v_ ∈ x.setFin w_, x_ v_ = true) :=
   correctB_sound_project x x_claim4 (by decide) w_ x_
+end Asteroid_ladder_sound
 end SearchCheck

@@ -135,6 +135,27 @@ statement `no_minCE`; where it appears it is a hypothesis.
 Not done: `asteroid.py` does not yet emit `hypsB c` as a claim; the bit-parallel mixed witness test is tied to
 the naive one only per circuit (`naiveAgrees`). Notes: `one-not/board/agents/fable-cheap-proofs.md`.
 
+## The base verifier is pure Lean
+
+asteroid drives the proofs; it is not what vouches for them. The verdict comes from one Lean file per project,
+`PEqualNP/Verify/Axioms.lean`, whose command `#verify_axioms` walks EVERY theorem of every module and fails the
+build on any axiom besides `propext`, `Classical.choice`, `Quot.sound` (a named allow-list may use `sorryAx`).
+
+```bash
+cd one-not/lean && lake build PEqualNP.Verify.All        # no Python, no asteroid
+```
+
+```bash
+python3 -m asteroid run asteroid/programs/big_check.ast  # the same, started from asteroid, plus the cited theorems one by one
+```
+
+| Project | Modules | Theorems | Standard axioms only | Allowed `sorryAx` | Other axioms |
+|---|---|---|---|---|---|
+| `one-not/lean` | 154 | 4,777 | 4,756 | 21 (the open `no_minCE`, 7 theorems derived from it, 13 of a parked draft) | 0 |
+| `lean` (main project, 1,631 modules) | `PEqualNP/Verify/All.lean` is written; the full build has not been run to the end here | | | none allowed | |
+
+Verbs: `verify lean DIR [within SECONDS]`, `theorem FULL.NAME from MODULE in DIR`.
+
 ## What is not there yet
 
 - The soundness theorems are applied by hand: `asteroid.py` still writes only the statements about its own

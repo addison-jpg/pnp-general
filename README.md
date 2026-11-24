@@ -33,6 +33,8 @@ This repository hosts a small language, [`asteroid`](asteroid/README.md): one pr
 
 The formal proof as runnable programs (the Theorem on data, each refuted statement with its counterexample, the open conjectures with a hunt, the ladder): [`asteroid/programs/`](asteroid/programs/README.md).
 
+**Check everything, pure Lean:** `cd one-not/lean && lake build PEqualNP.Verify.All` (every theorem of every module: 4,777 theorems, 4,756 on the three standard axioms, 21 on a named allow-list for `sorryAx`, no other axiom). From asteroid: `python3 -m asteroid run asteroid/programs/big_check.ast`.
+
 ## Where things are
 
 | Path | What it is |

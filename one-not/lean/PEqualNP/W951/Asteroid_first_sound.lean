@@ -5,6 +5,7 @@ namespace SearchCheck
 open PEqualNP.CircuitLowerBounds (Circuit GateOp)
 open PEqualNP.Outside.L_meta_951_aux (F2 baseDQ MUF2)
 open Asteroid_first
+namespace Asteroid_first_sound
 /-- `correct(tiny)`: the project's `Circuit.eval` computes the OR of every set. -/
 theorem tiny_claim0_project (w_ : Fin tiny.sets.length) (x_ : Fin tiny.n → Bool) :
     Circuit.eval ⟨tiny.toGates, tiny.outs.getD w_ 0⟩ (List.ofFn x_) = decide (∃ v_ ∈ tiny.setFin w_, x_ v_ = true) :=
@@ -25,4 +26,5 @@ theorem fano_claim5_project : ∑ w_, ((fano.setFin w_).card - 1) ≤ fano.toGat
 theorem fano_claim7_project (Q_ : Finset (Fin fano.n)) :
     baseDQ fano.setFin ∅ Q_ ≤ (F2 fano.toGates fano.setFin Q_).card :=
   slackNonnegAll_sound fano fano_setsOk fano_claim7 Q_
+end Asteroid_first_sound
 end SearchCheck

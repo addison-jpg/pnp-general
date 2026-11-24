@@ -5,6 +5,7 @@ namespace SearchCheck
 open PEqualNP.CircuitLowerBounds (Circuit GateOp)
 open PEqualNP.Outside.L_meta_951_aux (F2 baseDQ MUF2)
 open Asteroid_theorem
+namespace Asteroid_theorem_sound
 /-- `correct(W_0)`: the project's `Circuit.eval` computes the OR of every set. -/
 theorem W_0_claim0_project (w_ : Fin W_0.sets.length) (x_ : Fin W_0.n → Bool) :
     Circuit.eval ⟨W_0.toGates, W_0.outs.getD w_ 0⟩ (List.ofFn x_) = decide (∃ v_ ∈ W_0.setFin w_, x_ v_ = true) :=
@@ -139,4 +140,5 @@ theorem fano_setsOk : Circ.SetsOk fano := by unfold Circ.SetsOk; decide
 theorem fano_claim32_project (Q_ : Finset (Fin fano.n)) :
     baseDQ fano.setFin ∅ Q_ ≤ (F2 fano.toGates fano.setFin Q_).card :=
   slackNonnegAll_sound fano fano_setsOk fano_claim32 Q_
+end Asteroid_theorem_sound
 end SearchCheck

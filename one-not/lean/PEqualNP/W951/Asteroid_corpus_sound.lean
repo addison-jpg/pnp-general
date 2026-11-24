@@ -5,6 +5,7 @@ namespace SearchCheck
 open PEqualNP.CircuitLowerBounds (Circuit GateOp)
 open PEqualNP.Outside.L_meta_951_aux (F2 baseDQ MUF2)
 open Asteroid_corpus
+namespace Asteroid_corpus_sound
 /-- `correct(W_0)`: the project's `Circuit.eval` computes the OR of every set. -/
 theorem W_0_claim0_project (w_ : Fin W_0.sets.length) (x_ : Fin W_0.n → Bool) :
     Circuit.eval ⟨W_0.toGates, W_0.outs.getD w_ 0⟩ (List.ofFn x_) = decide (∃ v_ ∈ W_0.setFin w_, x_ v_ = true) :=
@@ -125,4 +126,5 @@ theorem W_14_setsOk : Circ.SetsOk W_14 := by unfold Circ.SetsOk; decide
 /-- `slack(W_14) >= 0`: the sum of (|S| − 1) is at most the number of gates of this circuit. -/
 theorem W_14_claim29_project : ∑ w_, ((W_14.setFin w_).card - 1) ≤ W_14.toGates.length :=
   base_le_gates_of_slackGe W_14 W_14_setsOk W_14_claim29
+end Asteroid_corpus_sound
 end SearchCheck

@@ -5,8 +5,10 @@ namespace SearchCheck
 open PEqualNP.CircuitLowerBounds (Circuit GateOp)
 open PEqualNP.Outside.L_meta_951_aux (F2 baseDQ MUF2)
 open Asteroid_refuted
+namespace Asteroid_refuted_sound
 /-- `correct(g)`: the project's `Circuit.eval` computes the OR of every set. -/
 theorem g_claim0_project (w_ : Fin g.sets.length) (x_ : Fin g.n → Bool) :
     Circuit.eval ⟨g.toGates, g.outs.getD w_ 0⟩ (List.ofFn x_) = decide (∃ v_ ∈ g.setFin w_, x_ v_ = true) :=
   correctB_sound_project g g_claim0 (by decide) w_ x_
+end Asteroid_refuted_sound
 end SearchCheck
