@@ -173,6 +173,7 @@ import PEqualNP.W951.F2Bridge
 import PEqualNP.W951.GraphHeavyF2
 import PEqualNP.W951.MinCERed
 import PEqualNP.W951.NotVarF2
+import PEqualNP.W951.CubeF2
 import PEqualNP.W951.CanonD1
 import PEqualNP.Kernel.W951CubeKeep
 import PEqualNP.W951.RunTransfer

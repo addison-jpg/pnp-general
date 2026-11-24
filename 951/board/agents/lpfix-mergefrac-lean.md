@@ -249,3 +249,6 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   lifted SDR with zero (top, 1), atoms (e_u, [u ≠ a]); no minimality), `IsCE.false_of_notVar`, `MinCE.not_notVar`. Disjointness
   needs only |S_w ∩ S_w'| ≤ 1: if a ∈ S_w' the atoms of S_w meet S_w' in ≤ 1 point, else the atoms of S_w' meet S_w ∪ {a} in ≤ 1.
   (Clock note: the 16:20 / 16:45 labels above are off; commit e408ec8 is 13:05 UTC.)
+- (13:30 UTC) CubeF2.lean: the relative form CHECKED. `baseDQ_le_F2_of_cubeLocal`: if on the cube x_Q = 1 the NOT gate is ¬x_a
+  (a ∉ Q) or constant, then base(Q) ≤ |F2(Q)| (no minimality). `no_minCE_of_gainF2_or_cubeLocal`: the F2 induction now closes a
+  branch at any Q where the NOT gate is local (literal or constant on the cube); only the non-local Q need a GainF2 step.

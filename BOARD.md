@@ -251,6 +251,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   MinCE reduction lemmas R+ `observable`, R2 `no_dup`, R3 `no_var`, R5' `not_used` (R1 `no_const` Peel, R4 `live` existed).
   13:15: NotVarF2: front A2 case h = x_a CHECKED (`muF2_of_notVar`: base ≤ |F2(∅)|; `IsCE.false_of_notVar`,
   `MinCE.not_notVar`: the NOT gate of a counterexample never computes an input literal).
+  13:30: CubeF2: relative form CHECKED (`baseDQ_le_F2_of_cubeLocal`: NOT = ¬x_a or constant on the cube x_Q = 1 ⇒
+  base(Q) ≤ |F2(Q)|; `no_minCE_of_gainF2_or_cubeLocal`: GainF2 needed only at Q where the NOT gate is not local).
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.
