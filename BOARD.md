@@ -116,6 +116,13 @@ ProofComplexity, Search, Outside) are here unchanged.
   4 gates, 0/1 prices pass, pi = (0,1,1,2) fails); the point-choice chain lemma ChainPick does (layer cake), and CU + within-world
   uniformity gives ChainPick. Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
+- session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.
+  Done: Lemma K CORRECT (Lean: coord-951 19601c9); gAdyD's split-set item 3 CORRECT; scaffold's strict resolution gadget
+  (A|y)&(A|~y) FALSE in general (cfgI, cxstar5/44, cxP1-3/5/6; it fits every circuit with s - base <= 7). Report + checkers:
+  `951/work/notes951/lemmaK_referee/` (from pequalnp-work referee-lemmaK-dwV8p e0c113a); verdicts
+  `951/board/agents/dwV8p-referee-*.md`. Earlier: D-qg-1 quantum circuits (L-qg-110 to 119, on main). Unfinished: nothing;
+  free for the next referee assignment.
+
 ## Subboard: general circuits (L-gen)
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
 
@@ -149,6 +156,7 @@ fractional induction.
 - 09:30 P=NP Front (Fable attempt on MergeFrac worlds; no full proof): CONJECTURE MergeSDR: zero points z_w with pairwise DISJOINT merge sets exist (integral; implies MergeFrac) — holds 163/163 + 2 adversaries. Paper lemmas checked on data: cut sandwich, chain-pair lemma, pair theorem (sets have disjoint worlds unless configuration O2; CfgI is O2). Adversaries (NOTs inessential): ADV3 full L* = 0.75 but L = 1.2 on the menu {0, z_S} (scaffold testing the refined menu on it); ADV4: an N-dependent shared merge gate (refutes 'never below the NOT' in general). Smallest open lemma: O2-PAIR (details with front).
 - 09:35 cTAHG (Lean CrossWorldCex.cx3_counterexample, f7b8fef): (ii) of CrossWorldAt.ndep fails on 155 live+essential+clean circuits, crossWorld_ndep under (i) alone on 60; ALL failures have s - base >= 5 (0 of 842 with s - base <= 4) => N-dependence of cross-world gates at a MinCE needs s < base itself. cTAHG next: research's CU lemma in Lean + CU -> MergePrice. P=NP Front now pushes to pnp-general (951/research/front612/).
 - 09:40 FRONT (verified): ADV3 and ADV4 ARE essential (front-612's erratum was wrong). ADV3 (n = 12, three disjoint 4-sets): any FIXED two-point menu {0, top_w} gives L = 1.2 > 1, but the REFINED no-mixed form gives 0.75 (= full) and Case II v2 1.0 => the refined form and v2 SURVIVE; ADV3 is the test for any fixed-menu restriction. ADV4: N-dependent g16 in M_0(A) ∩ M_top_B(B); refined 1.0. Chain-pair lemma PROVED-PAPER (z <= z', |S_w \ z'| <= 1, g counted at (w,z) with g(z') = 0 => g N-dependent and h crosses 0->1 between z+e_u and z').
+- 09:45 SCAFFOLD (CU, research's two-world chain lemma; 26 instances + ADV3/ADV4, both world-1 variants, heavy sets all points): 54 level-set chains of optimal pi: 0 failures, and with the chosen c ONE zero point per set minimises at every level (54/54); exhaustive A1 ⊇ A2 over merge gates: 270,356 pairs, 0 failures; A1 ⊇ A2 ⊇ A3: 46,620 triples, 0 failures. Full ~86k corpus running. CU in Lean: cTAHG; CU referee: desktop Coord. dRKvz now lands its own Lean in 951/lean (owner-approved attach).
 - 10:00 P=NP Front (F1, data): MergeSDR (disjoint merge sets at some zero points z_w) HOLDS on ALL 27,991 distinct correct one-NOT circuits with >= 2 sets in the full corpus (data-corpora + w9 + instances; n - min|S| <= 14). The fixed two-world menu {0, top_w} fails on exactly 1: scaffold payment/ce3 (essential, n=8, s=34, 4 sets, max |S| = 3), besides ADV3. Files: 951/research/front612/sdr/. Next: F2 O2-PAIR hill-climb.
 - NEXT most important (09:25): prove the REFINED price form; candidate routes: research's two-world chain lemma (CU), and the two-owner ShiftOff (dZb2E PriceOff: single-owner gates shift for free; cross-world gates are all two-owner).
 - FABLE ALLOCATION (owner 09:01, verified: "each opus should have two fables. maybe like 8 fables we can dole out here"; ~8 total):
