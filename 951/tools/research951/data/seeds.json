@@ -1,0 +1,824 @@
+{
+ "Some remarks on Boolean sums": [
+  {
+   "id": "W1501812634",
+   "title": "Some remarks on Boolean sums",
+   "year": 1979,
+   "cites": 39,
+   "authors": [
+    "Kurt Mehlhorn"
+   ]
+  },
+  {
+   "id": "W2041453074",
+   "title": "Some remarks onp-rings and their Boolean geometry",
+   "year": 1956,
+   "cites": 41,
+   "authors": [
+    "Joseph L. Zemmer"
+   ]
+  },
+  {
+   "id": "W4253457880",
+   "title": "Remarks on Boolean functions II.",
+   "year": 1956,
+   "cites": 2,
+   "authors": [
+    "David ELLIS"
+   ]
+  },
+  {
+   "id": "W2025576605",
+   "title": "On a small class of Boolean sums",
+   "year": 1996,
+   "cites": 0,
+   "authors": [
+    "Tatsuie Tsukiji"
+   ]
+  }
+ ],
+ "On another Boolean matrix": [
+  {
+   "id": "W2056094722",
+   "title": "On another Boolean matrix",
+   "year": 1980,
+   "cites": 39,
+   "authors": [
+    "Nicholas J. Pippenger"
+   ]
+  },
+  {
+   "id": "W3112236022",
+   "title": "Recent Developments in Boolean Matrix Factorization",
+   "year": 2020,
+   "cites": 23,
+   "authors": [
+    "Pauli Miettinen",
+    "Stefan Neumann"
+   ]
+  },
+  {
+   "id": "W2153364687",
+   "title": "Input-state incidence matrix of Boolean control networks and its applications",
+   "year": 2010,
+   "cites": 314,
+   "authors": [
+    "Zhao Yin",
+    "Hongsheng Qi",
+    "Daizhan Cheng"
+   ]
+  },
+  {
+   "id": "W4408353254",
+   "title": "Boolean Matrix Tri-Factorization",
+   "year": 2025,
+   "cites": 3,
+   "authors": [
+    "Christos Kolomvakis",
+    "Arnaud Vandaele",
+    "Nicolas Gillis"
+   ]
+  }
+ ],
+ "A new lower bound on the monotone network complexity of Boolean sums": [
+  {
+   "id": "W2007805020",
+   "title": "A new lower bound on the monotone network complexity of Boolean sums",
+   "year": 1980,
+   "cites": 20,
+   "authors": [
+    "Ingo Wegener"
+   ]
+  },
+  {
+   "id": "W2033239368",
+   "title": "An n3/2 lower bound on the monotone network complexity of the Boolean convolution",
+   "year": 1983,
+   "cites": 11,
+   "authors": [
+    "J\u00fcrgen Wei\u00df"
+   ]
+  },
+  {
+   "id": "W4230950430",
+   "title": "Boolean functions whose monotone complexity is of size n2log n",
+   "year": 1982,
+   "cites": 27,
+   "authors": [
+    "Ingo Wegener"
+   ]
+  },
+  {
+   "id": "W2089119058",
+   "title": "An \u03a9(n43) lower bound on the monotone network complexity of the nth degree convolution",
+   "year": 1985,
+   "cites": 10,
+   "authors": [
+    "Norbert Bl\u00fcm"
+   ]
+  }
+ ],
+ "On a Boolean matrix Nechiporuk": [
+  {
+   "id": "W2056094722",
+   "title": "On another Boolean matrix",
+   "year": 1980,
+   "cites": 39,
+   "authors": [
+    "Nicholas J. Pippenger"
+   ]
+  },
+  {
+   "id": "W2327018399",
+   "title": "New lower bounds on the formula size of Boolean functions",
+   "year": 1983,
+   "cites": 6,
+   "authors": [
+    "Ute Sch\ufffdrfeld"
+   ]
+  },
+  {
+   "id": "W2763246596",
+   "title": "Minimization of Boolean functions by combinatorial method",
+   "year": 2017,
+   "cites": 16,
+   "authors": [
+    "Volodymyr Riznyk",
+    "Mykhailo Solomko"
+   ]
+  },
+  {
+   "id": "W1552613710",
+   "title": "On relative OR-complexity of Boolean matrices and their complements",
+   "year": 2014,
+   "cites": 0,
+   "authors": [
+    "I. S. Sergeev"
+   ]
+  }
+ ],
+ "Complexity of monotone networks for computing conjunctions": [
+  {
+   "id": "W1495932320",
+   "title": "Complexity of Monotone Networks for Computing Conjunctions",
+   "year": 1978,
+   "cites": 35,
+   "authors": [
+    "Robert Endre Tarjan"
+   ]
+  },
+  {
+   "id": "W2569195351",
+   "title": "Complexity of monotone networks for Boolean matrix product",
+   "year": 1975,
+   "cites": 62,
+   "authors": [
+    "Michael S. Paterson"
+   ]
+  },
+  {
+   "id": "W2089119058",
+   "title": "An \u03a9(n43) lower bound on the monotone network complexity of the nth degree convolution",
+   "year": 1985,
+   "cites": 10,
+   "authors": [
+    "Norbert Bl\u00fcm"
+   ]
+  },
+  {
+   "id": "W4230950430",
+   "title": "Boolean functions whose monotone complexity is of size n2log n",
+   "year": 1982,
+   "cites": 27,
+   "authors": [
+    "Ingo Wegener"
+   ]
+  }
+ ],
+ "On negations in Boolean networks": [
+  {
+   "id": "W2125793194",
+   "title": "On Negations in Boolean Networks",
+   "year": 2009,
+   "cites": 9,
+   "authors": [
+    "Norbert Bl\u00fcm"
+   ]
+  },
+  {
+   "id": "W2069191912",
+   "title": "On the Complexity of Negation-Limited Boolean Networks",
+   "year": 1998,
+   "cites": 33,
+   "authors": [
+    "Robert Beals",
+    "Tetsuro Nishino",
+    "Keisuke Tanaka"
+   ]
+  },
+  {
+   "id": "W2044799855",
+   "title": "On the complexity of negation-limited Boolean networks",
+   "year": 1994,
+   "cites": 21,
+   "authors": [
+    "Keisuke Tanaka",
+    "Tetsuro Nishino"
+   ]
+  },
+  {
+   "id": "W366813648",
+   "title": "On the complexity of negation-limited Boolean networks",
+   "year": 1993,
+   "cites": 0,
+   "authors": [
+    "\u572d\u4ecb \u7530\u4e2d",
+    "\u54f2\u6717 \u897f\u91ce"
+   ]
+  }
+ ],
+ "A superpolynomial lower bound for a circuit computing the clique function with at most (1/6) log log n negation gates": [
+  {
+   "id": "W2024435371",
+   "title": "A Superpolynomial Lower Bound for a Circuit Computing the Clique Function with at most (1/6)log log n Negation Gates",
+   "year": 2005,
+   "cites": 46,
+   "authors": [
+    "Kazuyuki Amano",
+    "Akira Maruoka"
+   ]
+  },
+  {
+   "id": "W1571026820",
+   "title": "A superpolynomial lower bound for a circuit computing the clique function with at most (1/6) log log n negation gates",
+   "year": 1998,
+   "cites": 5,
+   "authors": [
+    "Kazuyuki Amano",
+    "Akira Maruoka"
+   ]
+  },
+  {
+   "id": "W2077017336",
+   "title": "Limiting negations in non-deterministic circuits",
+   "year": 2009,
+   "cites": 16,
+   "authors": [
+    "Hiroki Morizumi"
+   ]
+  },
+  {
+   "id": "W1755464633",
+   "title": "Learning circuits with few negations",
+   "year": 2014,
+   "cites": 18,
+   "authors": [
+    "Blais, Eric",
+    "Cl\u00e9ment L. Canonne",
+    "Igor Carboni Oliveira"
+   ]
+  }
+ ],
+ "On the negation-limited circuit complexity of merging": [
+  {
+   "id": "W2022093588",
+   "title": "On the negation-limited circuit complexity of merging",
+   "year": 2002,
+   "cites": 18,
+   "authors": [
+    "Kazuyuki Amano",
+    "Akira Maruoka",
+    "Jun Tarui"
+   ]
+  },
+  {
+   "id": "W2992996724",
+   "title": "On the Negation-Limited Circuit Complexity of Merging",
+   "year": 1999,
+   "cites": 0,
+   "authors": [
+    "Kazuyuki Amano",
+    "Akira Maruoka",
+    "Jun Tarui"
+   ]
+  },
+  {
+   "id": "W2334650602",
+   "title": "The Negation Limited Circuit Complexity of Merging and Sorting",
+   "year": 1998,
+   "cites": 0,
+   "authors": [
+    "Kazuyuki Amano",
+    "Akira Maruoka"
+   ]
+  },
+  {
+   "id": "W1591728857",
+   "title": "On the Negation-Limited Circuit Complexity of Sorting and Inverting k-tonic Sequences",
+   "year": 2006,
+   "cites": 7,
+   "authors": [
+    "Takayuki Sato",
+    "Kazuyuki Amano",
+    "Akira Maruoka"
+   ]
+  }
+ ],
+ "An exponential gap with the removal of one negation gate": [
+  {
+   "id": "W2053969720",
+   "title": "An exponential gap with the removal of one negation gate",
+   "year": 2002,
+   "cites": 11,
+   "authors": [
+    "Shao-Chin Sung",
+    "Keisuke Tanaka"
+   ]
+  },
+  {
+   "id": "W2077017336",
+   "title": "Limiting negations in non-deterministic circuits",
+   "year": 2009,
+   "cites": 16,
+   "authors": [
+    "Hiroki Morizumi"
+   ]
+  },
+  {
+   "id": "W2002850049",
+   "title": "Negation-Limited Inverters of Linear Size",
+   "year": 2010,
+   "cites": 7,
+   "authors": [
+    "Hiroki Morizumi",
+    "Genki Suzuki"
+   ]
+  },
+  {
+   "id": "W7163992731",
+   "title": "Negations Are Powerful Even in Small Depth",
+   "year": 2026,
+   "cites": 4,
+   "authors": [
+    "Bruno Pasqualotto Cavalar",
+    "Th\u00e9o Bor\u00e9m Fabris",
+    "Partha Mukhopadhyay"
+   ]
+  }
+ ],
+ "Lower bounds for Boolean circuits of bounded negation width": [
+  {
+   "id": "W4281619035",
+   "title": "Lower bounds for Boolean circuits of bounded negation width",
+   "year": 2022,
+   "cites": 0,
+   "authors": [
+    "Stasys P. Jukna",
+    "Andrzej Lingas"
+   ]
+  },
+  {
+   "id": "W2934762734",
+   "title": "Lower Bounds for DeMorgan Circuits of Bounded Negation Width",
+   "year": 2019,
+   "cites": 2,
+   "authors": [
+    "Stasys P. Jukna",
+    "Andrzej Lingas"
+   ]
+  },
+  {
+   "id": "W1898488645",
+   "title": "Unconditional Lower Bounds in Complexity Theory",
+   "year": 2015,
+   "cites": 15,
+   "authors": [
+    "Igor Carboni Oliveira"
+   ]
+  },
+  {
+   "id": "W3140699786",
+   "title": "Algorithms and Lower Bounds in Circuit Complexity",
+   "year": 2020,
+   "cites": 0,
+   "authors": [
+    "Zhenjian Lu"
+   ]
+  }
+ ],
+ "Lower bounds for DeMorgan circuits of bounded negation width": [
+  {
+   "id": "W2934762734",
+   "title": "Lower Bounds for DeMorgan Circuits of Bounded Negation Width",
+   "year": 2019,
+   "cites": 2,
+   "authors": [
+    "Stasys P. Jukna",
+    "Andrzej Lingas"
+   ]
+  },
+  {
+   "id": "W7142356184",
+   "title": "Starflower Robustness: Negation Bottlenecks, Semantic Compression, and McCulloch\u2013Pitts Networks",
+   "year": 2026,
+   "cites": 0,
+   "authors": [
+    "Richard Brazil"
+   ]
+  },
+  {
+   "id": "W7143044338",
+   "title": "Starflower VI: Clique Starflower via Orientation and Width for Formulas",
+   "year": 2026,
+   "cites": 0,
+   "authors": [
+    "Richard Brazil"
+   ]
+  },
+  {
+   "id": "W2782583418",
+   "title": "Fast and Deterministic Constant Factor Approximation Algorithms for LCS Imply New Circuit Lower Bounds",
+   "year": 2018,
+   "cites": 40,
+   "authors": [
+    "Amir Abboud",
+    "Aviad Rubinstein"
+   ]
+  }
+ ],
+ "On the complexity of slice functions": [
+  {
+   "id": "W2054417980",
+   "title": "On the complexity of slice functions",
+   "year": 1985,
+   "cites": 23,
+   "authors": [
+    "Ingo Wegener"
+   ]
+  },
+  {
+   "id": "W1492165320",
+   "title": "On the complexity of slice functions",
+   "year": 2006,
+   "cites": 4,
+   "authors": [
+    "Ingo Wegener"
+   ]
+  },
+  {
+   "id": "W2001924771",
+   "title": "More on the complexity of slice functions",
+   "year": 1986,
+   "cites": 11,
+   "authors": [
+    "Ingo Wegener"
+   ]
+  },
+  {
+   "id": "W2108073694",
+   "title": "Graph Complexity and Slice Functions",
+   "year": 2003,
+   "cites": 12,
+   "authors": [
+    "Satyanarayana V. Lokam"
+   ]
+  }
+ ],
+ "Negation-limited complexity of parity and inverters": [
+  {
+   "id": "W2614435365",
+   "title": "Negation-Limited Complexity of Parity and Inverters",
+   "year": 2007,
+   "cites": 2,
+   "authors": [
+    "Kazuo Iwama",
+    "Hiroki Morizumi",
+    "Jun Tarui"
+   ]
+  },
+  {
+   "id": "W1588568034",
+   "title": "Negation-Limited Complexity of Parity and Inverters",
+   "year": 2006,
+   "cites": 5,
+   "authors": [
+    "Kazuo Iwama",
+    "Hiroki Morizumi",
+    "Jun Tarui"
+   ]
+  },
+  {
+   "id": "W2763534100",
+   "title": "Negation-Limited Complexity of Parity and Inverters",
+   "year": null,
+   "cites": 0,
+   "authors": [
+    "Kazuo Iwama",
+    "Hiroki Morizumi",
+    "Jun Tarui"
+   ]
+  },
+  {
+   "id": "W302911704",
+   "title": "Negation-Limited Complexity of Parity and Inverters(Theory of Computer Science and Its Applications)",
+   "year": 2007,
+   "cites": 0,
+   "authors": [
+    "\u5927\u6a39 \u68ee\u4f4f",
+    "\u6df3 \u5782\u4e95",
+    "\u4e00\u96c4 \u5ca9\u9593"
+   ]
+  }
+ ],
+ "Limiting negations in non-deterministic circuits": [
+  {
+   "id": "W2077017336",
+   "title": "Limiting negations in non-deterministic circuits",
+   "year": 2009,
+   "cites": 16,
+   "authors": [
+    "Hiroki Morizumi"
+   ]
+  },
+  {
+   "id": "W1755464633",
+   "title": "Learning circuits with few negations",
+   "year": 2014,
+   "cites": 18,
+   "authors": [
+    "Blais, Eric",
+    "Cl\u00e9ment L. Canonne",
+    "Igor Carboni Oliveira"
+   ]
+  },
+  {
+   "id": "W2595009776",
+   "title": "Learning Circuits with few Negations",
+   "year": 2015,
+   "cites": 19,
+   "authors": [
+    "Eric Blais",
+    "Cl\u00e9ment L. Canonne",
+    "Igor Carboni Oliveira"
+   ]
+  },
+  {
+   "id": "W567540747",
+   "title": "Limiting Negations in Probabilistic Circuits (New Trends in Algorithms and Theory of Computation)",
+   "year": 2012,
+   "cites": 2,
+   "authors": [
+    "Hiroki Morizumi"
+   ]
+  }
+ ],
+ "The power of negations in cryptography": [
+  {
+   "id": "W74032123",
+   "title": "The Power of Negations in Cryptography",
+   "year": 2015,
+   "cites": 33,
+   "authors": [
+    "Siyao Guo",
+    "Tal Malkin",
+    "Igor Carboni Oliveira"
+   ]
+  },
+  {
+   "id": "W2397126800",
+   "title": "The Power of Negations in Cryptography.",
+   "year": 2015,
+   "cites": 0,
+   "authors": [
+    "Igor Carboni Oliveira",
+    "Siyao Guo",
+    "Tal Malkin"
+   ]
+  },
+  {
+   "id": "W4214950786",
+   "title": "Experimental quantum cryptography",
+   "year": 1992,
+   "cites": 2206,
+   "authors": [
+    "Charles H. Bennett",
+    "Fran\u00e7ois Bessette",
+    "Gilles Brassard"
+   ]
+  },
+  {
+   "id": "W1597998262",
+   "title": "Torus-Based Cryptography",
+   "year": 2003,
+   "cites": 117,
+   "authors": [
+    "Karl Rubin",
+    "Alice Silverberg"
+   ]
+  }
+ ],
+ "Learning circuits with few negations": [
+  {
+   "id": "W1755464633",
+   "title": "Learning circuits with few negations",
+   "year": 2014,
+   "cites": 18,
+   "authors": [
+    "Blais, Eric",
+    "Cl\u00e9ment L. Canonne",
+    "Igor Carboni Oliveira"
+   ]
+  },
+  {
+   "id": "W2595009776",
+   "title": "Learning Circuits with few Negations",
+   "year": 2015,
+   "cites": 19,
+   "authors": [
+    "Eric Blais",
+    "Cl\u00e9ment L. Canonne",
+    "Igor Carboni Oliveira"
+   ]
+  },
+  {
+   "id": "W2289623787",
+   "title": "Learning Circuits with Few Negations Boolean functions are not that monoton(ous).",
+   "year": 2015,
+   "cites": 0,
+   "authors": [
+    "Eric Blais",
+    "Igor Carboni",
+    "Oliveira Rocco Servedio"
+   ]
+  },
+  {
+   "id": "W1760941220",
+   "title": "Learning Arithmetic Circuits",
+   "year": 2012,
+   "cites": 92,
+   "authors": [
+    "Daniel Lowd",
+    "Pedro Domingos"
+   ]
+  }
+ ],
+ "Complexity of linear Boolean operators": [
+  {
+   "id": "W1967668295",
+   "title": "Complexity of Linear Boolean Operators",
+   "year": 2013,
+   "cites": 46,
+   "authors": [
+    "Stasys P. Jukna",
+    "I. S. Sergeev"
+   ]
+  },
+  {
+   "id": "W2029596768",
+   "title": "On the complexity of linear boolean operators with thin matrices",
+   "year": 2011,
+   "cites": 10,
+   "authors": [
+    "Sergey Borisovich Gashkov",
+    "I. S. Sergeev"
+   ]
+  },
+  {
+   "id": "W1984446092",
+   "title": "On complexity of linear operators on the class of circuits of depth 2",
+   "year": 2008,
+   "cites": 1,
+   "authors": [
+    "D. Yu. Cherukhin"
+   ]
+  },
+  {
+   "id": "W2016803580",
+   "title": "Limitations of Lower-Bound Methods for the Wire Complexity of Boolean Operators",
+   "year": 2012,
+   "cites": 8,
+   "authors": [
+    "Andrew Drucker"
+   ]
+  }
+ ],
+ "Thin circulant matrices and lower bounds on the complexity of some Boolean operators": [
+  {
+   "id": "W2585022148",
+   "title": "Thin circulant matrices and lower bounds on the complexity of some Boolean operators",
+   "year": 2017,
+   "cites": 7,
+   "authors": [
+    "M. I. Grinchuk",
+    "I. S. Sergeev"
+   ]
+  },
+  {
+   "id": "W1515823136",
+   "title": "Implementation of linear maps with circulant matrices via modulo 2 rectifier circuits of bounded depth",
+   "year": 2013,
+   "cites": 1,
+   "authors": [
+    "I. S. Sergeev"
+   ]
+  },
+  {
+   "id": "W2946332557",
+   "title": "On the monotone complexity of the shift operator",
+   "year": 2019,
+   "cites": 0,
+   "authors": [
+    "I. S. Sergeev"
+   ]
+  },
+  {
+   "id": "W3035052232",
+   "title": "On the Approximation Method and the P versus NP Problem",
+   "year": 2017,
+   "cites": 7,
+   "authors": [
+    "Norbert Bl\u00fcm"
+   ]
+  }
+ ],
+ "On the complexity of negation-limited Boolean networks": [
+  {
+   "id": "W2069191912",
+   "title": "On the Complexity of Negation-Limited Boolean Networks",
+   "year": 1998,
+   "cites": 33,
+   "authors": [
+    "Robert Beals",
+    "Tetsuro Nishino",
+    "Keisuke Tanaka"
+   ]
+  },
+  {
+   "id": "W2044799855",
+   "title": "On the complexity of negation-limited Boolean networks",
+   "year": 1994,
+   "cites": 21,
+   "authors": [
+    "Keisuke Tanaka",
+    "Tetsuro Nishino"
+   ]
+  },
+  {
+   "id": "W366813648",
+   "title": "On the complexity of negation-limited Boolean networks",
+   "year": 1993,
+   "cites": 0,
+   "authors": [
+    "\u572d\u4ecb \u7530\u4e2d",
+    "\u54f2\u6717 \u897f\u91ce"
+   ]
+  },
+  {
+   "id": "W205871068",
+   "title": "The complexity of negation-limited networks \u2014 A brief survey",
+   "year": 1975,
+   "cites": 64,
+   "authors": [
+    "Michael J. Fischer"
+   ]
+  }
+ ],
+ "The monotone network complexity of Boolean sums": [
+  {
+   "id": "W2007805020",
+   "title": "A new lower bound on the monotone network complexity of Boolean sums",
+   "year": 1980,
+   "cites": 20,
+   "authors": [
+    "Ingo Wegener"
+   ]
+  },
+  {
+   "id": "W1501812634",
+   "title": "Some remarks on Boolean sums",
+   "year": 1979,
+   "cites": 39,
+   "authors": [
+    "Kurt Mehlhorn"
+   ]
+  },
+  {
+   "id": "W4230950430",
+   "title": "Boolean functions whose monotone complexity is of size n2log n",
+   "year": 1982,
+   "cites": 27,
+   "authors": [
+    "Ingo Wegener"
+   ]
+  },
+  {
+   "id": "W2033239368",
+   "title": "An n3/2 lower bound on the monotone network complexity of the Boolean convolution",
+   "year": 1983,
+   "cites": 11,
+   "authors": [
+    "J\u00fcrgen Wei\u00df"
+   ]
+  }
+ ]
+}
