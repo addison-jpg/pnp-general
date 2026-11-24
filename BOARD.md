@@ -209,6 +209,9 @@ ProofComplexity, Search, Outside) are here unchanged.
   rounds 1-4 in `951/board/agents/qg-d2-nomixed.md` (code: pequalnp-work `nomixed-951` 1bada7b). xgen for
   scaffold DONE (`951/board/agents/qg-d2-xgen.md`: 7,176 essential circuits on 4 systems with a hard 4-set, no
   cross-world gate at all, no counterexample). Unfinished: B at base+3 undecided; random 4-set systems not run.
+  13:11 CERT-1c (`951/board/agents/qg-d2-ucert.md`): an explicit certificate for the F2 step, the cone merge sets at Z = Q of the
+  sets through v, holds at some v on all 31,503 all-read instances (102,136 / 102,137 overall); proof plan = lemmas (D) death and
+  (S) disjointness for a well-chosen v. Base+5 xgen stopped 13:03 (owner 12:05: minimal refutes).
 - session_01GmnDhdZb2EsYNLc1r4M85e (dZb2E, ex QG L-qg-101; Lean helper of tractability for 951; attached here 09:22 with owner
   OK in its own chat; commits as addison-jpg): LANDED in 951/lean: LemmaK (MinCE.ex_ge_two, MinCE.lemmaK_V1, K1_bound),
   CrossWorld (S1(g) for merge sets needs (i) z' avoids S_a and (ii) C0(g)(Zof S_a) = 0; cx1/cx2 show both are necessary),
