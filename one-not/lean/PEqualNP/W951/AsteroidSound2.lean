@@ -370,23 +370,9 @@ theorem base_le_gates_of_slackGe (C : Circ) (hC : C.SetsOk) (h : slackGe C 0 0 =
     ∑ w, ((C.setFin w).card - 1) ≤ C.toGates.length :=
   le_trans (MUF2_of_slackGe C hC h) (card_F2_le _ _ _)
 
-/-! ## The instance: `asteroid/examples/first.ast` -/
-
-theorem first_ast_tiny_setsOk : Asteroid_first.tiny.SetsOk := by
-  intro S hS
-  simp only [Asteroid_first.tiny, List.mem_cons, List.not_mem_nil, or_false] at hS
-  rcases hS with rfl | rfl <;> decide
-
-/-- `claim forall cubes slack(tiny) >= 0 by lean`, read in the project's definitions -/
-theorem first_ast_tiny_slack (Q : Finset (Fin Asteroid_first.tiny.n)) :
-    baseDQ Asteroid_first.tiny.setFin ∅ Q
-      ≤ (F2 Asteroid_first.tiny.toGates Asteroid_first.tiny.setFin Q).card :=
-  slackNonnegAll_sound _ first_ast_tiny_setsOk Asteroid_first.tiny_claim4 Q
-
 end SearchCheck
 
 #print axioms SearchCheck.hasWitnessAt_iff_F2Wit
 #print axioms SearchCheck.card_F2_eq_orWitnessAt
 #print axioms SearchCheck.slackNonnegAll_sound
 #print axioms SearchCheck.base_le_gates_of_slackGe
-#print axioms SearchCheck.first_ast_tiny_slack

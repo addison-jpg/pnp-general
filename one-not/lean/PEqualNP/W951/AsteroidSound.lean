@@ -1,7 +1,6 @@
 import Mathlib
 import PEqualNP.Defs.CircuitLowerBounds
 import PEqualNP.W951.Asteroid
-import PEqualNP.W951.Asteroid_first
 /-!
 # AsteroidSound: what asteroid's kernel checks say about the project's circuits
 
@@ -18,7 +17,7 @@ those tables are what they are meant to be.
   `Circuit.wires` of the project), `toGates_wf` (ops in {and, or, not}, at most two inputs), and the headline
   `correctB_sound_project`: the correctness hypothesis of `L_meta_951` for `C.toGates`, `C.setFin`,
   `fun w => C.outs.getD w 0`.
-* The instance `first_ast_tiny_correct`: the circuit of `asteroid/examples/first.ast`.
+* The instance `first_ast_tiny_correct` (now in `AsteroidInstances`): the circuit of `asteroid/examples/first.ast`.
 -/
 namespace SearchCheck
 
@@ -279,40 +278,9 @@ theorem correctB_sound_project (C : Circ) (h : correctB C = true)
   rw [Circuit.eval, ← wiresAt_eq_wires C x, h2, Bool.eq_iff_iff, any_testBit_ofBits]
   simp [Circ.setFin]
 
-/-! ## The instance: `asteroid/examples/first.ast` -/
-
-/-- **End to end.** The circuit `tiny` written in `asteroid/examples/first.ast`
-(`a = or 0 1`, `b = or a 2`, `c = or 2 3`, `set 0 1 2 -> b`, `set 2 3 -> c`), read as a gate list of the
-project, computes its two ORs on every input, in the project's semantics. Proved from the generated
-kernel check `Asteroid_first.tiny_claim0 : correctB tiny = true`. -/
-theorem first_ast_tiny_correct (w : Fin Asteroid_first.tiny.sets.length)
-    (x : Fin Asteroid_first.tiny.n → Bool) :
-    Circuit.eval ⟨Asteroid_first.tiny.toGates, Asteroid_first.tiny.outs.getD w 0⟩ (List.ofFn x)
-      = decide (∃ v ∈ Asteroid_first.tiny.setFin w, x v = true) :=
-  correctB_sound_project Asteroid_first.tiny Asteroid_first.tiny_claim0 (by decide) w x
-
-/-- The same, with everything written out: no `SearchCheck` object in the statement. -/
-theorem first_ast_tiny_concrete (x : Fin 4 → Bool) :
-    Circuit.eval ⟨[⟨GateOp.or, [0, 1]⟩, ⟨GateOp.or, [4, 2]⟩, ⟨GateOp.or, [2, 3]⟩], 5⟩ (List.ofFn x)
-        = (x 0 || x 1 || x 2) ∧
-    Circuit.eval ⟨[⟨GateOp.or, [0, 1]⟩, ⟨GateOp.or, [4, 2]⟩, ⟨GateOp.or, [2, 3]⟩], 6⟩ (List.ofFn x)
-        = (x 2 || x 3) := by
-  have h0 := first_ast_tiny_correct ⟨0, by decide⟩ x
-  have h1 := first_ast_tiny_correct ⟨1, by decide⟩ x
-  refine ⟨h0.trans ?_, h1.trans ?_⟩
-  · change decide (∃ v ∈ (Finset.univ : Finset (Fin 4)).filter (fun v => v.val ∈ [0, 1, 2]),
-      x v = true) = _
-    rw [Bool.eq_iff_iff]
-    simp [Fin.exists_fin_succ, or_assoc]
-  · change decide (∃ v ∈ (Finset.univ : Finset (Fin 4)).filter (fun v => v.val ∈ [2, 3]),
-      x v = true) = _
-    rw [Bool.eq_iff_iff]
-    simp [Fin.exists_fin_succ]
-
 end SearchCheck
 
 #print axioms SearchCheck.tables_testBit
 #print axioms SearchCheck.correctB_sound
 #print axioms SearchCheck.wiresAt_eq_wires
 #print axioms SearchCheck.correctB_sound_project
-#print axioms SearchCheck.first_ast_tiny_concrete

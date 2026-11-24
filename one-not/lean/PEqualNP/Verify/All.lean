@@ -50,6 +50,7 @@ import PEqualNP.W951.Absorb
 import PEqualNP.W951.Asteroid
 import PEqualNP.W951.AsteroidCheap
 import PEqualNP.W951.AsteroidCheapMixed
+import PEqualNP.W951.AsteroidInstances
 import PEqualNP.W951.AsteroidMixed
 import PEqualNP.W951.AsteroidSound
 import PEqualNP.W951.AsteroidSound2

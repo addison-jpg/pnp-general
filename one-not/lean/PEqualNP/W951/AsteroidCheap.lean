@@ -228,10 +228,6 @@ theorem not_LMeta951Stmt_of_hunt_hit (C : Circ) (hc : correctB C = true) (hh : h
     (hlt : C.toGates.length < ∑ w, ((C.setFin w).card - 1)) : ¬ LMeta951Stmt :=
   fun H => absurd (base_le_gates_of_LMeta951Stmt H C hc hh) (not_le.mpr hlt)
 
-/-! ## The instance: `fano` of `asteroid/examples/first.ast` passes the side conditions -/
-
-theorem first_ast_fano_hypsB : hypsB Asteroid_first.fano = true := by decide +kernel
-
 end SearchCheck
 
 #print axioms SearchCheck.not_isCE_of_slackGe
@@ -246,4 +242,3 @@ end SearchCheck
 #print axioms SearchCheck.base_le_gates_of_no_minCE
 #print axioms SearchCheck.base_le_gates_of_LMeta951Stmt
 #print axioms SearchCheck.not_LMeta951Stmt_of_hunt_hit
-#print axioms SearchCheck.first_ast_fano_hypsB
