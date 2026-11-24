@@ -21,6 +21,7 @@ Private repo only. Results go on the board first (branch `board`).
 | Layer | What it is | Main entry points |
 |---|---|---|
 | `Base/Matching` | combinatorics, no circuits | `hasBMatching_iff` (Hall with capacities), `hasSimpleBMatching_iff` (each vertex uses an item at most once, i.e. max-flow/min-cut), `exists_frac_iff_prices` (LP duality), `load_le_one_of_injective`, `sum_card_le_of_pairwiseDisjoint`, `image_props_of_injective*` |
+| `Base/Blocker` | monotone functions on a face, no circuits | `isMaxFalse_iff` (maximal false points of a monotone `h` on `{x_S = 0}` = `(univ \ S) \ T`, `T` a minimal transversal of the minterms avoiding `S`), `not_iff_isTransversal`, `exists_minterm_subset`, `IsMinTransversal.subset_compl` |
 | `Kernel/Circuit` | well-scoped Dag: gate `i` reads `Fin (n+i)`, any arity, `KGate` = W951 op + input list | `val_natAdd`, `snocInduction`, `val_rel` (`agree_off`, `val_le_val`, `val_mono`), `sandwich`, `restrict`/`restrictGE`, `cone`, `orOf`/`ComputesOn` |
 | `Kernel/GateShape` | arity/op case analysis, done once | `inputs_cases`, `and_or_shape`, `not_shape` |
 | `Kernel/Privacy`, `Kernel/AndReplace` | Wegener §6.6 machinery | `supp`, `privacy_*`, `boolSum_and_split`, `card_biUnion_supp_le`; `sum_card_sub_one_le_andOr` = exact Nechiporuk for monotone circuits on `{x ≥ z}` |

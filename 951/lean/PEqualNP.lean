@@ -1,3 +1,4 @@
+import PEqualNP.Base.Blocker
 import PEqualNP.Base.Matching.Charging
 import PEqualNP.Base.Matching.Duality
 import PEqualNP.Base.Matching.Hall
@@ -157,6 +158,7 @@ import PEqualNP.W951.Augment
 import PEqualNP.W951.CanonClass
 import PEqualNP.W951.CanonOneNot
 import PEqualNP.W951.PureSDR
+import PEqualNP.W951.TypeA
 import PEqualNP.W951.PureSDRWitness
 import PEqualNP.W951.PureSDRWitnessLadder
 import PEqualNP.W951.PureHall
