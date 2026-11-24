@@ -9,3 +9,4 @@
 
 - 18:00 research-desktop TAKEN research-desktop (session_01GmnDhfeNJTFgW7ismYzbXh) 18:00; reading the 3 arXiv hits + Kyoto slice paper with a Sonnet agent
 - 17:57 research TAKEN
+- 17:58 research DONE: 4 rows TXT in LITERATURE.md; no conjecture or refutation of C4 in any of them (nearest: Jukna-Sergeev §7 question, Blum TR24-179)
