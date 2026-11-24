@@ -227,3 +227,35 @@ keep MergeSDR.
 A correct one-NOT circuit with no MergeSDR and no `MatchG` choice at plain zero points. Then the
 target moves to general test systems (section 2) or back to the fractional form. Scaffold's
 adversarial search around CfgI and the fixh16 family is the right place to look for it.
+
+## 6. The F2 step: GainF2 from one count, and a route to it (dwV8p, 2026-11-24, after the 12:46 DECISION)
+
+For: machines-Lean (`F2Induct.GainF2`, the open gain lemma) and the integrator's F2-step Opus. Details and data:
+`board/agents/dwV8p-synth-F1-F2.md`; scripts `work/notes951/lemmaK_referee/{f2synth,juf}.py`; witness
+`data/witnesses/see_gap_n5.json`. Notation: F2(Q), gain(v) = |F2(Q) \ F2(Q + v)|, cost(v) = Σ_{alive w ∋ v} d_w;
+star(v) = alive sets through v, P = their union (so |P| − 1 = cost(v)); SEE(v) = {g ∈ F2(Q) : real g(Q + e_v) = 1};
+SURV(v) = SEE(v) ∩ F2(Q + v); K3(v) = {g ∈ F2(Q) : every witness of g at Q belongs to a set of star(v)}.
+
+**Step 1 (PROVED, ready for Lean).** GainF2 ⇐ SEE+K3, where
+SEE+K3: some alive v has |(SEE(v) \ SURV(v)) ∪ K3(v)| ≥ cost(v).
+Both parts lie in the gain: SEE \ SURV by definition, K3 by Lemma D (a witness of a set through v never contains v).
+SURV is described by F1* (PROVED, refereed parts F1, K0, K1): a gate of F2(Q + v) that is 1 at Q + e_v forces v light,
+C_0(g)(Q + e_v) = 0, C_1(g)(Q + e_v) = 1, and only world-0 witnesses of type-A sets; so SURV(v) = ∅ for heavy v
+(`F2Desc`: heavy v, F2(Q) gates 1 at Q ∪ {v} leave F2, already in Lean).
+**Kill test:** f2synth.py. SEE+K3 holds on 197,689 random instances (158,506 heavy, 39,183 light) and on every witness
+restriction (incl. FANO-FORMULA, PAPPUS-JUNK, all 62 light ones). SEE alone fails (13 heavy random; FANO-FORMULA,
+PAPPUS-JUNK), so the K3 term is needed. A heavy v is not always the right v (1,539 random instances need a light one).
+
+**Step 2 (route for the count; PROVED part + OPEN part).**
+- JOINT UNION-FIND (PROVED): run union-find over P at the zero point Q in the REAL circuit (blocks {x ∈ P : real
+  g(Q + e_x) = 1}). The invariant holds at any Q: the NOT gate is 1 at Q, or 0 at Q with an empty block (h monotone).
+  Every star set ends in v's component, so there are ≥ |P| − 1 = cost(v) DISTINCT merge OR gates.
+- A merge whose two merged units lie in ONE star set is in F2(Q) (witness at Z = Q). If its block contains v it is a SEE
+  gate (dies for heavy v; F1* for light v); otherwise it dies iff no witness contains v (Lemma D; K3 if it serves only
+  star sets).
+- OPEN (the remaining lemma): REROUTE. A CROSS merge (units in two different star sets, maybe not in F2(Q)) or a
+  surviving same-set merge is matched by a dying gate of (SEE \ SURV) ∪ K3 outside the merge list.
+**Kill test:** juf.py (30,000 draws, 14,905 instances, 45,243 (instance, v) pairs). ≥ cost(v) merges on all 45,243.
+Of about 65,000 merges, 2,230 are cross and 119 same-set merges survive. "Some v has ≥ cost(v) dying joint merges" holds on
+14,898 / 14,905, and the 7 others are covered by SEE+K3. So the joint merges carry the count, and REROUTE only has
+to repair a thin layer.

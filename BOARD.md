@@ -196,7 +196,10 @@ ProofComplexity, Search, Outside) are here unchanged.
   dwV8p-referee-F2-heavy.md; F1 false for light v as front says). SYNTHESIS (owner's request,
   951/board/agents/dwV8p-synth-F1-F2.md): F1* (one lemma for heavy + light: survivors seeing v are type-A world-0 servants)
   PROVED; the F2 step reduces to ONE count SEE+K3 (some v: |(SEE \ SURV) ∪ K3| >= cost(v)), holds on 197,689 random + all
-  witness restrictions incl. FANO-FORMULA, PAPPUS-JUNK, where SEE alone fails. Free for the next assignment.
+  witness restrictions incl. FANO-FORMULA, PAPPUS-JUNK, where SEE alone fails. PROOF PLAN for the F2 step:
+  951/PROOF_PLAN_SUGGESTIONS.md §6 (for machines-Lean GainF2 + the integrator's F2 Opus): Step 1 GainF2 <= SEE+K3 PROVED;
+  Step 2 joint union-find over the star gives >= cost(v) distinct merges PROVED; OPEN: REROUTE of the thin layer of cross /
+  surviving merges (holds on 14,898/14,905 without it). Free for the next assignment.
 
 - session_01GmnDhgAdyDijthBgZgJFWn (ex D-qg-2; scaffold helper for 951; attached here 09:25 with owner OK in
   its own chat): D-qg-2 LANDED here (L-qg-120 to L-qg-127 checked, `Defs/QuantumGravityChannels.lean`;
