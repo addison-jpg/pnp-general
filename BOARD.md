@@ -138,6 +138,9 @@ ProofComplexity, Search, Outside) are here unchanged.
   witness (runMT_or / runMT_wit), pureMenu ⊆ UC(∅, ∅) and U(Q) ⊆ UC(∅, Q), MU ⇒ MUC ⇒ no_minCE, heredity for x_v := 0 and
   x_v := 1, base drops (Σ_star d_w; exactly deg(v)), gain inductions with GainOne / GainZero as hypotheses (also over
   unfixed points, free points allowed), Lemma C0. OPEN for Lean: the gain lemma itself (HEAVY-COUNT / LIGHT-COUNT for UC).
+  LANDED 9a626c1 + 423b9d1: barrier suite skipped by pure_export --group witness; PureSDR for tri_all_5593 (LOOSENESS
+  counterexample); LiftSDRWitness.lean: kernel-checked LiftSDR (GP systems, tools/sdrcert/lift_export.py) + correctness for
+  all 4 barrier circuits, so they are no barrier to LiftSDR / MUL.
 - session_01GmnDhfo8QCanitMDqFa2x1 (quantum gravity coordinator; integrates this board): `pnp-general`
   main; the same tree is on `pequalnp-work` `mirror/trusting-newton-2lz5jy` (342bed1). Unfinished:
   gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the referee seat for angle C has received no claim.
