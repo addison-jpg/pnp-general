@@ -16,3 +16,4 @@ __pycache__/
 artifacts/
 __pycache__/
 boards/tree.json
+trio/out/*.log
