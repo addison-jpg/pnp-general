@@ -219,3 +219,5 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
 - (14:10 UTC) PureFrac.lean (coord item 3; front A1's target): `PureFrac` ⇔ `PurePrice` (LP duality, items = gates of the menu
   union), `mu_of_purePrice` (constant price 1), `pureFrac_of_pureSDR`, `no_minCE_of_purePrice`, `no_minCE_of_pureFrac`.
   Lean chain now: StarSep ⇒ PureSDR ⇒ PureFrac ⇔ PurePrice ⇒ MU ⇒ MUL ⇒ no_minCE (and PureSDR ⇒ LiftSDR ⇒ MUL).
+- (14:25 UTC) STAR-COUNT (front A2): `no_minCE_of_starCount` via `mu_of_starCount` (induction on the alive sets, U(Q ∪ v) ⊆ U(Q))
+  and `starCount_of_starSep`. Open conjectures (front): HEAVY-COUNT (heavy v ⇒ STAR-COUNT; data 78,451/78,451) and LIGHT-COUNT.

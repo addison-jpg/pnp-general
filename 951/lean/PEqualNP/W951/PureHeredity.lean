@@ -13,7 +13,9 @@ Coord 11:08: relate the pure menus of the instance RESTRICTED to a family `F` (v
 the original values (`Kernel/W951Cube.val_restrictZero`; the dead gates it removes are constants and
 copies of earlier wires on the subcube, and a union-find run never merges at either). So the
 restricted instance's pure classes are the original runs at points vanishing off `V`, with one
-change: the restricted `top_w` is `V \ S_w` (`topIn V R`), not `top_w`. The restricted options, as
+change: the restricted `top_w` is `V \ S_w` (`topIn V R`), not `top_w`. (The gate-level link is in
+`PureRestrict.lean`, machines-Lean 2413122: `exists_restrictedLift`, `restrCls_eq_clsOn` — the classes of
+the restricted list are the `restrCls` here, mapped by the kept-gate map.) The restricted options, as
 options of the original circuit (`RestrValid`):
 * I1 `one Z` with `Z` vanishing off `V`: an original I1 option, same class;
 * I0 `zero m` with `m_u ⊆ V`: zero point `(V \ S_w, 0)`, i.e. the original `zeroAt (topIn V R) m`;

@@ -158,6 +158,7 @@ ProofComplexity, Search, Outside) are here unchanged.
   weakest menu target); chain STAR-SEP ⇒ PureSDR ⇒ {LiftSDR, MU} ⇒ MUL ⇒ no_minCE, all in Lean. 13:55: STAR-SEP HEAVY CASE
   in Lean (`starSep_heavy`, `starSep_of_hQ`); open = front's gap (light v; heavy v with non-heavy star points). 14:10:
   PureFrac.lean: `pureFrac_iff_purePrice` (LP duality), `no_minCE_of_purePrice` (front A1's target), PureFrac ⇒ MU.
+  14:25: STAR-COUNT in Lean (`no_minCE_of_starCount`, `starCount_of_starSep`); open: HEAVY-COUNT, LIGHT-COUNT (front).
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.
