@@ -23,6 +23,10 @@ Results.
 (b) `heavyPts`, `HeavySplit`, `HeavySplitPrice`, `heavySplit_iff_price` (LP duality),
     `mergeFrac_of_heavySplit`, `no_minCE_of_heavyCases` (Case II for some point, or Case I in the
     refined form, at every MinCE closes `no_minCE`).
+(d) Case I price form: `refinedPts` (heavy sets: all zero points; others: non-mixed zero points),
+    `refinedNoMixedFrac_iff_mergeFracOn`, `refinedPts_nonempty` (no extra hypothesis, by
+    `exists_nonMixed_of_not_heavy`), `RefinedNoMixedPrice`, `refinedNoMixedFrac_iff_price`,
+    `no_minCE_of_refinedNoMixedPrice`.
 (c) The pinned disjointness that Case II would need ("`C0` merge sets of different sets at their own
     bases `Zof` are disjoint") FAILS for clean circuits: `pinned_collision_clean` is a monotone circuit
     on 4 inputs computing `x0 ∨ x1` and `x2 ∨ x3` with no copy gate (the `MinCE.clean` condition), all
@@ -190,5 +194,94 @@ theorem pinned_collision_clean :
   · intro k j hk hj
     simp only [collisionGates, List.length_cons, List.length_nil] at hk
     interval_cases k <;> interval_cases j <;> decide
+
+/-! ## Case I: the price form of the refined no-mixed target -/
+
+section Refined
+
+variable {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ)
+
+open Classical in
+/-- The allowed points of `RefinedNoMixedFrac` (MergeWorld2): a heavy set keeps all its zero points,
+every other set keeps its non-mixed zero points. -/
+noncomputable def refinedPts (w : Fin m) : Finset (Fin n → Bool) :=
+  if HeavySet gates p (S w) then zeroPts (S w) else nonMixedPts gates (S w)
+
+theorem mem_refinedPts_zero {w : Fin m} {z : Fin n → Bool} (hz : z ∈ refinedPts S gates p w) :
+    ∀ v ∈ S w, z v = false := by
+  classical
+  unfold refinedPts at hz
+  split_ifs at hz
+  · exact mem_zeroPts.mp hz
+  · exact (mem_nonMixedPts.mp hz).1
+
+/-- `RefinedNoMixedFrac` is `MergeFracOn` on the refined points. -/
+theorem refinedNoMixedFrac_iff_mergeFracOn :
+    RefinedNoMixedFrac S gates p ↔ MergeFracOn S gates (refinedPts S gates p) := by
+  classical
+  have hzero : ∀ (w : Fin m) (z : Fin n → Bool), ¬ (∀ v ∈ S w, z v = false) →
+      ∃ v ∈ S w, z v = true := by
+    intro w z hz
+    by_contra hc
+    exact hz fun v hv => by
+      by_contra hv'
+      exact hc ⟨v, hv, by simpa using hv'⟩
+  constructor
+  · rintro ⟨μ, h0, hS, hM, h1, hl⟩
+    refine ⟨μ, h0, fun w z hz => ?_, h1, hl⟩
+    unfold refinedPts at hz
+    split_ifs at hz with hH
+    · exact hS w z (hzero w z fun h => hz (mem_zeroPts.mpr h))
+    · rw [mem_nonMixedPts, not_and_or] at hz
+      rcases hz with hz | hz
+      · exact hS w z (hzero w z hz)
+      · exact hM w z hH (not_not.mp hz)
+  · rintro ⟨μ, h0, hA, h1, hl⟩
+    refine ⟨μ, h0, fun w z ⟨v, hv, hzv⟩ => hA w z fun hz => ?_,
+      fun w z hH hmix => hA w z fun hz => ?_, h1, hl⟩
+    · rw [mem_refinedPts_zero S gates p hz v hv] at hzv
+      exact absurd hzv (by simp)
+    · unfold refinedPts at hz
+      rw [ite_eq_right hH] at hz
+      exact (mem_nonMixedPts.mp hz).2 hmix
+
+variable {S gates p} in
+/-- Every set has a refined point (a set that is not heavy has a non-mixed zero point,
+`exists_nonMixed_of_not_heavy`). -/
+theorem refinedPts_nonempty
+    (hg : ∀ g ∈ gates, (g.op = GateOp.and ∨ g.op = GateOp.or ∨ g.op = GateOp.not) ∧
+      g.inputs.length ≤ 2)
+    (hU : AtMostOneNot gates) (hp : p < gates.length) (hN : (gates[p]'hp).op = GateOp.not)
+    (w : Fin m) : (refinedPts S gates p w).Nonempty := by
+  classical
+  unfold refinedPts
+  split_ifs with hH
+  · exact zeroPts_nonempty _
+  · obtain ⟨z, hz, hmix⟩ := exists_nonMixed_of_not_heavy hg hU hp hN hH
+    exact ⟨z, mem_nonMixedPts.mpr ⟨hz, hmix⟩⟩
+
+/-- **RefinedNoMixedPrice**, the price form of `RefinedNoMixedFrac`:
+`∀ π ≥ 0, ∑ w, min_{z refined point of w} π(M_z(w)) ≤ π(gates)`. -/
+def RefinedNoMixedPrice (hA : ∀ w, (refinedPts S gates p w).Nonempty) : Prop :=
+  MergePriceOn S gates (refinedPts S gates p) hA
+
+/-- **LP duality: `RefinedNoMixedFrac ⇔ RefinedNoMixedPrice`.** -/
+theorem refinedNoMixedFrac_iff_price (hA : ∀ w, (refinedPts S gates p w).Nonempty) :
+    RefinedNoMixedFrac S gates p ↔ RefinedNoMixedPrice S gates p hA :=
+  (refinedNoMixedFrac_iff_mergeFracOn S gates p).trans (mergeFracOn_iff_mergePriceOn hA)
+
+end Refined
+
+/-- **RefinedNoMixedPrice on minimal counterexamples closes 951.** -/
+theorem no_minCE_of_refinedNoMixedPrice
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out → ∃ (p : ℕ) (hA : ∀ w, (refinedPts S gates p w).Nonempty),
+        RefinedNoMixedPrice S gates p hA) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out :=
+  no_minCE_of_mergeFrac fun n m S gates out M => by
+    obtain ⟨p, hA, hP⟩ := H n m S gates out M
+    exact mergeFrac_of_refinedNoMixedFrac S gates p
+      ((refinedNoMixedFrac_iff_price S gates p hA).mpr hP)
 
 end PEqualNP.Outside.L_meta_951_aux
