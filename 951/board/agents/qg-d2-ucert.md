@@ -20,5 +20,5 @@ PROOF PLAN this suggests (OPEN): two size-independent lemmas about cone merge se
   (D) death: no gate of M^cone_Q(w), w ∋ v, has a witness Z' ⊇ Q + v (by Lemma D: none of its witnesses at Q contains v);
   (S) disjointness: the cone merge sets at Q of the sunflower of sets through v are pairwise disjoint.
   The v choice must avoid the two failure kinds above; the data says almost any v works, none of the simple rules always does.
-- LEAN (cTAHG, 13:45): the reduction (D) ∧ (S) at v ⇒ GainF2 at v is CHECKED, ConeCert.lean `gainF2_of_cert` / `gainF2_of_cert1c`
+- LEAN (cTAHG, 13:24 UTC): the reduction (D) ∧ (S) at v ⇒ GainF2 at v is CHECKED, ConeCert.lean `gainF2_of_cert` / `gainF2_of_cert1c`
   (`CertD`, `CertS` as hypotheses; `coneMerge` = Lemma M over the masked cone), plugged into `no_minCE_of_cert_or_local`.

@@ -273,11 +273,11 @@ ProofComplexity, Search, Outside) are here unchanged.
   C(b) for every triple; no output correctness needed). 16:20: F2Bridge (lifted ⇒ real witnesses) + GraphHeavyF2:
   G1 in F2-gain form (`gainF2_G1`) when h(top_va) = 1 for every star set; open: h(top_va) = 0. 16:45: MinCERed:
   MinCE reduction lemmas R+ `observable`, R2 `no_dup`, R3 `no_var`, R5' `not_used` (R1 `no_const` Peel, R4 `live` existed).
-  13:15: NotVarF2: front A2 case h = x_a CHECKED (`muF2_of_notVar`: base ≤ |F2(∅)|; `IsCE.false_of_notVar`,
+  13:12: NotVarF2: front A2 case h = x_a CHECKED (`muF2_of_notVar`: base ≤ |F2(∅)|; `IsCE.false_of_notVar`,
   `MinCE.not_notVar`: the NOT gate of a counterexample never computes an input literal).
-  13:30: CubeF2: relative form CHECKED (`baseDQ_le_F2_of_cubeLocal`: NOT = ¬x_a or constant on the cube x_Q = 1 ⇒
+  13:16: CubeF2: relative form CHECKED (`baseDQ_le_F2_of_cubeLocal`: NOT = ¬x_a or constant on the cube x_Q = 1 ⇒
   base(Q) ≤ |F2(Q)|; `no_minCE_of_gainF2_or_cubeLocal`: GainF2 needed only at Q where the NOT gate is not local).
-  13:45: LW1 + CERT-1c CHECKED (`baseDQ_le_F2_of_LW1`; ConeCert `gainF2_of_cert`: qg-d2's (D) ∧ (S) ⇒ GainF2;
+  13:24: LW1 + CERT-1c CHECKED (`baseDQ_le_F2_of_LW1`; ConeCert `gainF2_of_cert`: qg-d2's (D) ∧ (S) ⇒ GainF2;
   `no_minCE_of_cert_or_local`: CubeLocal ∨ LW1 ∨ CERT-3c at every Q with positive base ⇒ no MinCE).
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 

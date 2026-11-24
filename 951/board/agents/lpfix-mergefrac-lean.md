@@ -245,14 +245,14 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   out-edges (`subGates`, value congruence), `shrink_of_const`, `shrink_of_copy`. Note: in our gate model a NOT gate may read two
   wires (only the first counts), so R+ is stated for readers that are AND/OR gates or NOT gates reading the wire first; for an
   ignored second NOT input the substitution is a no-op and R+ would be false.
-- (13:15 UTC) NotVarF2.lean: front A2's case h = x_a (the NOT gate reads an input) CHECKED: `muF2_of_notVar` (base ≤ |F2(∅)|,
+- (13:12 UTC) NotVarF2.lean: front A2's case h = x_a (the NOT gate reads an input) CHECKED: `muF2_of_notVar` (base ≤ |F2(∅)|,
   lifted SDR with zero (top, 1), atoms (e_u, [u ≠ a]); no minimality), `IsCE.false_of_notVar`, `MinCE.not_notVar`. Disjointness
   needs only |S_w ∩ S_w'| ≤ 1: if a ∈ S_w' the atoms of S_w meet S_w' in ≤ 1 point, else the atoms of S_w' meet S_w ∪ {a} in ≤ 1.
   (Clock note: the 16:20 / 16:45 labels above are off; commit e408ec8 is 13:05 UTC.)
-- (13:30 UTC) CubeF2.lean: the relative form CHECKED. `baseDQ_le_F2_of_cubeLocal`: if on the cube x_Q = 1 the NOT gate is ¬x_a
+- (13:16 UTC) CubeF2.lean: the relative form CHECKED. `baseDQ_le_F2_of_cubeLocal`: if on the cube x_Q = 1 the NOT gate is ¬x_a
   (a ∉ Q) or constant, then base(Q) ≤ |F2(Q)| (no minimality). `no_minCE_of_gainF2_or_cubeLocal`: the F2 induction now closes a
   branch at any Q where the NOT gate is local (literal or constant on the cube); only the non-local Q need a GainF2 step.
-- (13:45 UTC) LW1 (CubeF2) and CERT-1c (ConeCert.lean) CHECKED. `baseDQ_le_F2_of_LW1`: front's LW1 in relative form is a third
+- (13:24 UTC) LW1 (CubeF2) and CERT-1c (ConeCert.lean) CHECKED. `baseDQ_le_F2_of_LW1`: front's LW1 in relative form is a third
   local closure. `gainF2_of_cert`: qg-d2's (D) ∧ (S) at v ⇒ GainF2 at v (cone merge sets = Lemma M over the masked cone, any zero
   points z_w ⊇ Q off S_w). `no_minCE_of_cert_or_local`: 951 follows once every Q with positive base in a MinCE is CubeLocal, LW1, or
   has a v ∉ Q with (D) and (S). Paper proofs of (D)/(S) plug in as the hypotheses `CertD` / `CertS`.
