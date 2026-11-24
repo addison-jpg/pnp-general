@@ -45,3 +45,15 @@ cxMU_dd and cx44_1 need neither: R+ / R2 already exclude them.
   A greedy R6 reduction (55 → 45 gates) keeps one NOT and a non-local h for 10 rewires. The F2 step still fails at Q = ∅ at
   55..50 gates, holds at 49..46 gates, and at 45 the NOT is dead (monotone circuit). So MATCH-C is not a witness against the
   step in the R6-irreducible class; whether one exists is OPEN.
+
+## 5. How MergeSDR beats the lost U-game on cxT2 (fc) (CHECKED; first step of the triangle analysis)
+108 pairwise disjoint choices of real merge sets exist. A typical one MIXES worlds:
+- set {0,2,3,4} at z = {1,5,6,7,8} (h = 1, world 0, NOT gate 0): merges {14, 16, 19}, i.e. junk AND/OR gates of the layer
+  x1x3 ∨ x2x5 ∨ x0x7 ∨ x1x4 ∨ x2x6 ∨ x0x8;
+- sets {0,1,5,6} at z = {3,4,7,8} and {1,2,7,8} at z = {3,4,5,6} (h = 0, world 1): merges {9, 32, 33} and {10, 35, 36}.
+By Theorem D a pure world-0 system and a pure world-1 system never certify each other, so this disjointness is NOT monotonicity
+(Theorem U). It is value-specific first-merge structure: e.g. gate 14 = x1x3 ∨ x2x5 is 0 at z = {3,4,7,8} and has trace {1}
+only on the atoms of {0,1,5,6}, so it never merges there. The plain DD circuits of the (X) pairs (lift_obstruction.dd_circuit)
+compute each OR(S_w) as a private chain and have a MergeSDR trivially, so the hard DD instances are exactly those whose
+outputs share junk structure (cxT2-type). A proof for the DD core must therefore control traces of shared gates across worlds
+(Lemma T across two frames). Open.
