@@ -29,6 +29,7 @@
 | [`qg-gaps`](boards/tasks/qg-gaps.md) | T9 | L-qg-115, 116, 119, 169 (P_CTC inside EXP) | the quantum gravity seats |
 | [`clay-model-equivalence`](boards/tasks/clay-model-equivalence.md) | §7 | Formalize one model equivalence between Cook's one-tape machines and `Defs/Base | checker |
 | [`search-harness`](boards/tasks/search-harness.md) | C2, C4 | Put every open conjecture in `one-not/tools/search/conjectures | main, scaffold |
+| [`telescope-l5-l6`](boards/tasks/telescope-l5-l6.md) | L5, L6 | One Lean statement both L5 (chain sum) and L6 (Cesàro) instantiate, plus the average over all chains | qg-d2 |
 
 
 > **SUBAGENTS SHOULD CHECK BOARD.** Every agent and subagent: pull and read THE WALL below before you start, and again before every commit. Write your one-liners there. (Owner, 2026-11-24.)
