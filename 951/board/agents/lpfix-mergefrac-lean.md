@@ -121,3 +121,6 @@ Build cost: ~20 s (witnesses) + ~2 min (correctness). Axioms: propext, Classical
 Add a circuit: one line in export.py INSTANCES, re-run, paste.
 - (10:55) + scaffold's inline certificates (09:43): its HARD4 variant (10 gates) and the two smallest unique-SDR circuits added
   (`sdrHard4s`, `sdrUniq0`, `sdrUniq2`, with `_correct`); 9 circuits certified in all, 8 with kernel-checked correctness.
+- (11:10) + cxT2 (n 9, 29 gates) and cxT4 (n 15, 47 gates; menus 190/82/81): MergeSDR kernel-checked (cxT4's certificate is
+  11 s of decide; only its correctness over 2^15 inputs stays Python-checked); cxT2 also with correctness. 11 circuits in all.
+  Scaffold's 24 forced-h fixh16 circuits: requested from scaffold, next batch.

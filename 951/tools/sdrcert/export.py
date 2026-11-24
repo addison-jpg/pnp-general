@@ -21,6 +21,9 @@ INSTANCES = [  # (Lean name, source, loader)
     ('hard4s', 'tools/sdrcert/scaffold_certs.json', 'scaffold:HARD4'),
     ('uniq0', 'tools/sdrcert/scaffold_certs.json', 'scaffold:unique_sdr_0'),
     ('uniq2', 'tools/sdrcert/scaffold_certs.json', 'scaffold:unique_sdr_2'),
+    # whole-class charging fails on these (chist_fable C1): cxT2 (n = 9), cxT4 (n = 15)
+    ('cxT2', 'tools/w951/tests/instances/front-match__fc__cxT2.json', 'json'),
+    ('cxT4', 'tools/w951/tests/instances/front-match__fc__cxT4.json', 'json'),
 ]
 
 

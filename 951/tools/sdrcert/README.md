@@ -17,6 +17,8 @@ Current certificates (`n`, gates, sets, menu sizes, chosen merge sets):
 - cxr: n = 8, 24 gates, 2 sets, menus 9/9; {12,13,14}, {28,29,30}
 - hard4s (scaffold's HARD4): n = 6, 10 gates, 2 sets, menus 2/1; {8,11,15}, {6,9}
 - uniq0, uniq2 (scaffold's smallest unique-SDR circuits): n = 4, 7 / 8 gates, 3 / 5 sets, every menu of size 1
+- cxT2: n = 9, 29 gates, 3 sets, menus 16/10/13; {16,21,25}, {9,14,19}, {10,35,36}
+- cxT4: n = 15, 47 gates, 3 sets, menus 190/82/81; {22,27,32,37,43}, {15,20,25,30,35}, {16,57,58,59,60}
 Correctness of the circuits (each output computes OR(S_w)) is checked in Python (w951 `is_correct`); in Lean it costs
 about 25 s per circuit with n = 8 and grows as 2^n: `SDRWitnessCorrect.lean` checks it, with the set conditions,
-for every circuit with n <= 9 (about 2 minutes); ADV3 (n = 12, about 20 minutes) stays Python-checked.
+for every circuit with n <= 9 (about 2 minutes); ADV3 (n = 12) and cxT4 (n = 15) stay Python-checked.

@@ -2,8 +2,9 @@ import PEqualNP.W951.SDRWitness
 
 /-! SDRWitnessCorrect: the circuits of `SDRWitness` are correct (each output computes `OR (S w)`) and
 satisfy the set conditions of 951 (sets of size at least 2, pairwise intersections of size at most 1),
-checked by the kernel (`decide` over all inputs), bundled with MergeSDR. ADV3 (`n = 12`) is left out:
-its correctness check over `2^12` inputs takes about 20 minutes (checked in Python, w951 `is_correct`).
+checked by the kernel (`decide` over all inputs), bundled with MergeSDR. ADV3 (`n = 12`) and cxT4
+(`n = 15`) are left out: their correctness checks over `2^12` / `2^15` inputs are too slow for `decide`
+(checked in Python, w951 `is_correct`).
 Cost: about 2 minutes for the circuits below. -/
 
 namespace PEqualNP.Outside.L_meta_951_aux
@@ -89,5 +90,15 @@ theorem sdrUniq2_correct :
     (∀ w, 2 ≤ (sdrUniq2S w).card) ∧ (∀ a b : Fin 5, a ≠ b → (sdrUniq2S a ∩ sdrUniq2S b).card ≤ 1) ∧
     MergeSDR sdrUniq2S sdrUniq2Gates :=
   ⟨by decide, by decide, by decide, sdrUniq2⟩
+
+set_option maxHeartbeats 4000000 in
+set_option maxRecDepth 100000 in
+/-- cxT2: correct, (1,1)-disjoint sets of size at least 2, and MergeSDR. -/
+theorem sdrCxT2_correct :
+    (∀ (w : Fin 3) (x : Fin 9 → Bool),
+      val sdrCxT2Gates x (sdrCxT2Out w) = decide (∃ v ∈ sdrCxT2S w, x v = true)) ∧
+    (∀ w, 2 ≤ (sdrCxT2S w).card) ∧ (∀ a b : Fin 3, a ≠ b → (sdrCxT2S a ∩ sdrCxT2S b).card ≤ 1) ∧
+    MergeSDR sdrCxT2S sdrCxT2Gates :=
+  ⟨by decide, by decide, by decide, sdrCxT2⟩
 
 end PEqualNP.Outside.L_meta_951_aux

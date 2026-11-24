@@ -6,7 +6,8 @@ kernel recompute the merge sets of the chosen zero points (`decide`); `sdrX` is 
 circuit. Sources: Config (I) `951/research/front612/cfgI/cfgI.json`; ADV3, ADV4
 `951/research/front612/fable_worlds.md`; payment/ce3, cxr `951/tools/w951/tests/instances/`;
 HARD4 `951/front/work/notes951/w9/A2s/hard4.json`; scaffold's HARD4 variant (`hard4s`) and the two
-smallest unique-SDR circuits (`uniq0`, `uniq2`) `951/tools/sdrcert/scaffold_certs.json`. -/
+smallest unique-SDR circuits (`uniq0`, `uniq2`) `951/tools/sdrcert/scaffold_certs.json`; cxT2, cxT4 (whole-class
+charging fails on them, chist_fable C1) `951/tools/w951/tests/instances/`. -/
 
 namespace PEqualNP.Outside.L_meta_951_aux
 
@@ -137,5 +138,33 @@ theorem sdrUniq2_merge : ∀ w, mergeSet sdrUniq2Gates (sdrUniq2S w) (sdrUniq2Z 
 
 theorem sdrUniq2 : MergeSDR sdrUniq2S sdrUniq2Gates :=
   mergeSDR_of_cert _ _ sdrUniq2Z sdrUniq2M (by decide) sdrUniq2_merge (by decide)
+
+/-! ### cxT2: n = 9, 29 gates, 3 sets -/
+
+def sdrCxT2Gates : List Gate := [⟨GateOp.or, [0, 1]⟩, ⟨GateOp.or, [9, 2]⟩, ⟨GateOp.not, [10]⟩, ⟨GateOp.and, [1, 3]⟩, ⟨GateOp.and, [2, 5]⟩, ⟨GateOp.or, [12, 13]⟩, ⟨GateOp.and, [0, 7]⟩, ⟨GateOp.or, [14, 15]⟩, ⟨GateOp.and, [1, 4]⟩, ⟨GateOp.and, [2, 6]⟩, ⟨GateOp.or, [17, 18]⟩, ⟨GateOp.and, [0, 8]⟩, ⟨GateOp.or, [19, 20]⟩, ⟨GateOp.or, [16, 21]⟩, ⟨GateOp.or, [11, 22]⟩, ⟨GateOp.or, [23, 0]⟩, ⟨GateOp.or, [23, 2]⟩, ⟨GateOp.or, [24, 25]⟩, ⟨GateOp.or, [24, 1]⟩, ⟨GateOp.or, [25, 1]⟩, ⟨GateOp.or, [10, 3]⟩, ⟨GateOp.or, [29, 4]⟩, ⟨GateOp.and, [30, 26]⟩, ⟨GateOp.or, [10, 5]⟩, ⟨GateOp.or, [32, 6]⟩, ⟨GateOp.and, [33, 27]⟩, ⟨GateOp.or, [10, 7]⟩, ⟨GateOp.or, [35, 8]⟩, ⟨GateOp.and, [36, 28]⟩]
+def sdrCxT2S : Fin 3 → Finset (Fin 9) := ![{0, 2, 3, 4}, {0, 1, 5, 6}, {1, 2, 7, 8}]
+def sdrCxT2Out : Fin 3 → ℕ := ![31, 34, 37]
+def sdrCxT2Z : Fin 3 → Fin 9 → Bool := ![ptOf {1, 7, 8}, ptOf {2, 3, 4}, ptOf {}]
+def sdrCxT2M : Fin 3 → Finset ℕ := ![{16, 21, 25}, {9, 14, 19}, {10, 35, 36}]
+
+set_option maxRecDepth 100000 in
+theorem sdrCxT2_merge : ∀ w, mergeSet sdrCxT2Gates (sdrCxT2S w) (sdrCxT2Z w) = sdrCxT2M w := by decide
+
+theorem sdrCxT2 : MergeSDR sdrCxT2S sdrCxT2Gates :=
+  mergeSDR_of_cert _ _ sdrCxT2Z sdrCxT2M (by decide) sdrCxT2_merge (by decide)
+
+/-! ### cxT4: n = 15, 47 gates, 3 sets -/
+
+def sdrCxT4Gates : List Gate := [⟨GateOp.or, [0, 1]⟩, ⟨GateOp.or, [15, 2]⟩, ⟨GateOp.not, [16]⟩, ⟨GateOp.and, [1, 3]⟩, ⟨GateOp.and, [2, 7]⟩, ⟨GateOp.or, [18, 19]⟩, ⟨GateOp.and, [0, 11]⟩, ⟨GateOp.or, [20, 21]⟩, ⟨GateOp.and, [1, 4]⟩, ⟨GateOp.and, [2, 8]⟩, ⟨GateOp.or, [23, 24]⟩, ⟨GateOp.and, [0, 12]⟩, ⟨GateOp.or, [25, 26]⟩, ⟨GateOp.and, [1, 5]⟩, ⟨GateOp.and, [2, 9]⟩, ⟨GateOp.or, [28, 29]⟩, ⟨GateOp.and, [0, 13]⟩, ⟨GateOp.or, [30, 31]⟩, ⟨GateOp.and, [1, 6]⟩, ⟨GateOp.and, [2, 10]⟩, ⟨GateOp.or, [33, 34]⟩, ⟨GateOp.and, [0, 14]⟩, ⟨GateOp.or, [35, 36]⟩, ⟨GateOp.or, [22, 27]⟩, ⟨GateOp.or, [38, 32]⟩, ⟨GateOp.or, [39, 37]⟩, ⟨GateOp.or, [17, 40]⟩, ⟨GateOp.or, [41, 0]⟩, ⟨GateOp.or, [41, 2]⟩, ⟨GateOp.or, [42, 43]⟩, ⟨GateOp.or, [42, 1]⟩, ⟨GateOp.or, [43, 1]⟩, ⟨GateOp.or, [16, 3]⟩, ⟨GateOp.or, [47, 4]⟩, ⟨GateOp.or, [48, 5]⟩, ⟨GateOp.or, [49, 6]⟩, ⟨GateOp.and, [50, 44]⟩, ⟨GateOp.or, [16, 7]⟩, ⟨GateOp.or, [52, 8]⟩, ⟨GateOp.or, [53, 9]⟩, ⟨GateOp.or, [54, 10]⟩, ⟨GateOp.and, [55, 45]⟩, ⟨GateOp.or, [16, 11]⟩, ⟨GateOp.or, [57, 12]⟩, ⟨GateOp.or, [58, 13]⟩, ⟨GateOp.or, [59, 14]⟩, ⟨GateOp.and, [60, 46]⟩]
+def sdrCxT4S : Fin 3 → Finset (Fin 15) := ![{0, 2, 3, 4, 5, 6}, {0, 1, 7, 8, 9, 10}, {1, 2, 11, 12, 13, 14}]
+def sdrCxT4Out : Fin 3 → ℕ := ![51, 56, 61]
+def sdrCxT4Z : Fin 3 → Fin 15 → Bool := ![ptOf {1, 11, 12, 13, 14}, ptOf {2, 3, 4, 5, 6}, ptOf {}]
+def sdrCxT4M : Fin 3 → Finset ℕ := ![{22, 27, 32, 37, 43}, {15, 20, 25, 30, 35}, {16, 57, 58, 59, 60}]
+
+set_option maxRecDepth 100000 in
+theorem sdrCxT4_merge : ∀ w, mergeSet sdrCxT4Gates (sdrCxT4S w) (sdrCxT4Z w) = sdrCxT4M w := by decide
+
+theorem sdrCxT4 : MergeSDR sdrCxT4S sdrCxT4Gates :=
+  mergeSDR_of_cert _ _ sdrCxT4Z sdrCxT4M (by decide) sdrCxT4_merge (by decide)
 
 end PEqualNP.Outside.L_meta_951_aux
