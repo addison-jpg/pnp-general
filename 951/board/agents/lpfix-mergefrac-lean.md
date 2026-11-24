@@ -229,3 +229,8 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   `no_minCE_of_starCountG`), and Menu2 = Menu1 ∪ lifted real merge sets (`menu2_mono`, `menu2_sound` via L-LIFT):
   `no_minCE_of_starSep2`, `no_minCE_of_starCount2`. Menu2 survives cxMU_dd (A2's rerun pending).
 - (15:10 UTC) L-U_v (front A2): `menu2_U_zero` — every gate of U(Q) over Menu2 is 0 in C_0 at (Q, 0).
+- (15:40 UTC) 2G-LIFT CHECKED (front A1, refereed): `twoGate_lift` — ∑_w min_z |M_z(w) ∩ {g, g'}| ≤ 2 under C(b) for every
+  triple. The Lean proof follows front's §9: ceilings at (X_l, ν X_l) via the monotone lift, pigeonhole (no WLOG: base merges
+  are never low at other ceilings), triangle, and the odd cycle with ONE cover of the merge gate valid for all three runs
+  (mr_coverT over univ, so it does not depend on the set). Weaker hypotheses than the paper: correctness of the outputs and
+  |S_w| ≥ 2 are not used.
