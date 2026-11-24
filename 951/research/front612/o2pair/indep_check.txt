@@ -1,0 +1,41 @@
+== Task 1: start circuits (climber: cfgI 960/1024 O2 True; cxT2 547/1024 O2 True) ==
+cfgI sets=[[0, 1, 2, 3], [0, 4, 5, 6]] gates=20 correct=True O2=True essential=False score=960/1024 (swapped order: 960/1024 O2=True) >=3-block=[]
+cxT2 sets=[[1, 2, 7, 8], [0, 2, 3, 4]] gates=25 correct=True O2=True essential=True score=547/1024 (swapped order: 547/1024 O2=True) >=3-block=[]
+
+== Task 2: climber records ==
+file:line | claimed disj/pairs ess | mine disj/pairs correct O2 ess | status
+climb_cfgI_1.jsonl:1 | 896/1024 False | 896/1024 True True False | OK
+climb_cfgI_1.jsonl:2 | 768/1024 False | 768/1024 True True False | OK
+climb_cfgI_1.jsonl:3 | 672/1024 False | 672/1024 True True False | OK
+climb_cfgI_1.jsonl:4 | 640/1024 False | 640/1024 True True False | OK
+climb_cfgI_1.jsonl:5 | 520/1024 False | 520/1024 True True False | OK
+climb_cfgI_1.jsonl:6 | 480/1024 False | 480/1024 True True False | OK
+climb_cfgI_1.jsonl:7 | 432/1024 False | 432/1024 True True False | OK
+climb_cfgI_1.jsonl:8 | 384/1024 False | 384/1024 True True False | OK
+climb_cfgI_1.jsonl:9 | 352/1024 False | 352/1024 True True False | OK
+climb_cfgI_2.jsonl:1 | 896/1024 False | 896/1024 True True False | OK
+climb_cfgI_2.jsonl:2 | 800/1024 False | 800/1024 True True False | OK
+climb_cfgI_2.jsonl:3 | 576/1024 False | 576/1024 True True False | OK
+climb_cfgI_2.jsonl:4 | 512/1024 False | 512/1024 True True False | OK
+climb_cfgI_2.jsonl:5 | 480/1024 False | 480/1024 True True False | OK
+climb_cfgI_2.jsonl:6 | 384/1024 False | 384/1024 True True False | OK
+climb_cfgI_2.jsonl:7 | 320/1024 False | 320/1024 True True False | OK
+climb_cfgI_2.jsonl:8 | 256/1024 False | 256/1024 True True False | OK
+climb_cfgI_2.jsonl:9 | 192/1024 False | 192/1024 True True False | OK
+climb_cxT2_1.jsonl:1 | 544/1024 True | 544/1024 True True True | OK
+climb_cxT2_1.jsonl:2 | 524/1024 True | 524/1024 True True True | OK
+climb_cxT2_1.jsonl:3 | 512/1024 True | 512/1024 True True True | OK
+climb_cxT2_1.jsonl:4 | 480/1024 True | 480/1024 True True True | OK
+climb_cxT2_1.jsonl:5 | 384/1024 True | 384/1024 True True True | OK
+climb_cxT2_1.jsonl:6 | 288/1024 False | 288/1024 True True False | OK
+climb_cxT2_1.jsonl:7 | 224/1024 False | 224/1024 True True False | OK
+climb_cxT2_2.jsonl:1 | 524/1024 True | 524/1024 True True True | OK
+climb_cxT2_2.jsonl:2 | 512/1024 True | 512/1024 True True True | OK
+climb_cxT2_2.jsonl:3 | 480/1024 True | 480/1024 True True True | OK
+climb_cxT2_2.jsonl:4 | 384/1024 True | 384/1024 True True True | OK
+climb_cxT2_2.jsonl:5 | 320/1024 False | 320/1024 True True False | OK
+
+records checked: 30 (30 in first read, 0 new in second read)
+mismatches: 0
+lowest score: 192/.. at climb_cfgI_2.jsonl:9
+Task 3: gates seeing >=3 blocks: none
