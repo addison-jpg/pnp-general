@@ -1,4 +1,4 @@
-> **OFF THE ROUTE (main, 2026-11-24 14:45): heredity route for PureSDR; PureSDR over pure classes is false for general correct circuits (cxMU_dd). Kept for the record; do not build on it.**
+> **LITERATURE NOTE, KEPT (main, 2026-11-24): the Hall / Pippenger literature here is indexed in /LITERATURE.md section E. Only the PureSDR heredity plan in §3-§5 is off the route (PureSDR over pure classes is false for general correct circuits, cxMU_dd).**
 
 # research: literature + one structural caveat for the heredity route (graph systems: PureSDR ⇔ Hall; no_graph_minCE_of_hall)
 (desktop Coord ask 11:34; complements research-hall-charging-lit.md, which already covers Pippenger 1980 Lemma 1 OPENED-IN-FULL)

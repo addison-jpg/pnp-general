@@ -78,3 +78,12 @@ Filter as csp.py: one NOT, correct, |S_w| >= 2, pairwise |S_w ∩ S_w'| <= 1, n 
 | DICHOTOMY FAILS (a non-extendable set with >= 3 classes) | 0 |
 - The dichotomy HOLDS on the whole repo corpus, and more strongly: cxT2 is the ONLY non-globally-consistent circuit (as on the
   integrator's 64). Every other circuit is loose: any class surviving AC is part of a solution.
+
+## F2 family (coord 12:43; board integrator's family-table.md) [computed; tools/referee_b/f2_test.py, own code]
+F2(Q) = OR gates g with an alive set w (S_w ∩ Q = ∅, |S_w| >= 2), Z ⊇ Q, Z ∩ S_w = ∅, u != u' in S_w, REAL g(Z) = 0,
+g(Z + e_u) = g(Z + e_u') = 1. Q = ∅ plus 3 random Q of size 1-2 per circuit (seed 951). Bitset-exact over all Z.
+Corpus: 44,713 repo circuits + 951/data/witnesses/*.json (7): 44,720 circuits, 166,925 (circuit, Q) tests with an alive set.
+- (1) MU  Σ_alive d_w <= |F2(Q)|: 0 FAILURES; tight in 53,648 tests.
+- (2) STEP ∃ v: |F2(Q) \ F2(Q ∪ v)| >= Σ_{alive w ∋ v} d_w: 0 FAILURES.
+Witnesses at Q = ∅ (|F2| / base): cx44_1_junk 20/6, cxMU_clean2 11/6, cxMU_clean2_DD 12/6, cxMU_dd 14/6, pappus_junk_gain 20/18,
+tri_all_5593 11/8, pasch_s14_heavy_atmostone 8/8 (tight). Data in tools/referee_b/data/f2_merged.json. Q sampled, not exhaustive.

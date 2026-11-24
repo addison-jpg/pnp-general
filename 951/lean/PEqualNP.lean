@@ -180,6 +180,7 @@ import PEqualNP.W951.CertDHeavy
 import PEqualNP.W951.CertStair
 import PEqualNP.W951.ElimStep
 import PEqualNP.W951.UGame
+import PEqualNP.W951.MinCERewire
 import PEqualNP.W951.CanonD1
 import PEqualNP.Kernel.W951CubeKeep
 import PEqualNP.W951.RunTransfer

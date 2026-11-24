@@ -1,0 +1,168 @@
+# Names
+
+Generated from `NAMES.json` by `tools/names_build.py`; edit the script, not this file.
+One flat tree: every name has one parent. Read bottom up: a witness or a Lean theorem is a leaf,
+its parent is the concept it serves, up to the root statement. `code` is the old short form.
+
+- **one NOT gate saves nothing on Boolean sums** (`951, L-meta-951`) · statement: sets of size >= 2 that pairwise share at most one point; a circuit of AND and OR gates and one NOT gate computes the OR of every set; then number of gates >= monotone optimum
+  - **objects** · part: the things every statement is about
+    - **set system** (`S_w`) · object: the sets; any two share at most one point
+    - **demand of a set** (`d_w`) · object: size of the set minus 1
+    - **monotone optimum** (`base`) · object: sum of the demands; the exact gate count without a NOT gate (Wegener, Mehlhorn)
+    - **NOT gate** (`N`) · object: the single NOT gate
+    - **NOT input** (`h`) · object: the wire the NOT gate reads; a monotone function of the inputs
+    - **face with the NOT gate set to 0** (`C_0`) · object: monotone circuit; never above the real circuit
+    - **face with the NOT gate set to 1** (`C_1`) · object: monotone circuit; never below the real circuit
+    - **world 0** (`U, {h = 1}`) · object: inputs where the NOT gate outputs 0
+    - **world 1** (`D, {h = 0}`) · object: inputs where the NOT gate outputs 1
+    - **cube** (`Q, x_Q = 1`) · object: the inputs with every point of Q set to 1
+      - **W951CubeKeep.lean** (`W951CubeKeep`) · lean module
+    - **alive set** · object: a set that does not meet Q
+    - **monotone optimum of a cube** (`base(Q), baseDQ`) · object: sum of the demands of the alive sets
+    - **local cube** (`CubeLocal`) · object: on the cube the NOT input is one input or constant
+      - **muF2_of_notVar** · lean: NotVarF2: the statement when the NOT gate reads an input
+      - **local closure by weight one** (`LW1`) · named: a second closure of a cube used in CubeF2.lean; meaning not re-derived here
+      - **CubeF2.lean** (`CubeF2`) · lean module
+      - **NotVarF2.lean** (`NotVarF2`) · lean module
+    - **non-local cube** · object: on the cube the NOT input depends on at least two inputs
+    - **zero point of a set** (`z, Z`) · object: an input that is 0 on the whole set
+    - **top zero point of a set** (`top_w`) · object: 0 on the set, 1 everywhere else
+    - **atom** (`e_u, Z + e_u`) · object: a zero point of a set with one point of the set switched on
+    - **heavy point** · object: a point v with NOT input = 1 at Q + e_v
+      - **GraphHeavy.lean** (`GraphHeavy`) · lean module
+    - **cost of a point** (`cost(v)`) · object: sum of the demands of the alive sets through the point
+    - **gain of a point** (`gain(v)`) · object: number of family gates that leave the family when the point is set to 1
+    - **real merge set** (`M_z(w)`) · object: the OR gates that join two blocks of a set in a union-find run at a zero point; always demand-many (merge count lemma, Lemma M)
+      - **merge_run** · lean: MergeRun.lean: the merge count lemma
+      - **RunTransfer.lean** (`RunTransfer`) · lean module
+      - **MergeRun.lean** (`MergeRun`) · lean module
+    - **pure class in world 0** (`I0`) · object: a class of a set read at a zero point in world 0
+    - **pure class in world 1** (`I1`) · object: a class of a set read at a zero point in world 1
+      - **canon_size / canon_disjoint / canon_cross** · lean: CanonClass.lean
+      - **world lemmas** (`W0, W1`) · named: CanonClass lemmas: size and disjointness inside one world
+      - **CanonClass.lean** (`CanonClass`) · lean module
+      - **CanonOneNot.lean** (`CanonOneNot`) · lean module
+    - **lifted circuit** (`lift, y`) · object: the NOT gate replaced by a fresh input y; a monotone circuit for a partial function
+    - **lifted class** · object: a class of a set read in the lifted circuit; need not sit above the zero point
+    - **set of type A** (`type A`) · object: meaning not re-derived here: see CanonClass.lean and research-typeA-increment.md
+      - **TypeA.lean** (`TypeA`) · lean module
+    - **set of type B** (`type B`) · object: meaning not re-derived here: see fable-global-price.md
+    - **output in two-world normal form** (`DD, DD-normal`) · object: the output equals (set OR) AND h on one face and (set OR) OR h on the other
+      - **TwoWorld.lean** (`TwoWorld`) · lean module
+    - **complete graph on four points as set system** (`K4`) · named: all six pairs of four points; the standard small test system
+  - **facts of a minimal counterexample** (`R1 to R7, MinCERed`) · part: what a counterexample with the fewest gates must satisfy
+    - **minimal counterexample** (`MinCE`) · fact: a correct circuit with fewer gates than the monotone optimum and the fewest gates among such [definition]
+    - **no constant gate** (`R1, no_const`) · fact: [checked]
+    - **no two gates compute the same function** (`R2, no_dup`) · fact: [checked]
+    - **no gate computes an input** (`R3, no_var`) · fact: [checked]
+    - **every gate is read** (`R4, live`) · fact: [checked]
+    - **the NOT gate is essential** (`R5', not_used`) · fact: both faces are incorrect [checked]
+    - **observability** (`R+, observable`) · fact: a constant put on any nonempty set of readers of a wire makes the circuit incorrect [checked]
+    - **no gate-saving rewiring** (`R6, no_rewire`) · fact: no gate input can be moved to another wire so that the circuit stays correct and a gate goes unread [paper; Lean local to another session]
+      - **MinCERewire.lean** (`MinCERewire`) · lean module
+    - **private NOT cone** (`R7`) · fact: meaning not re-derived here: see 951/FINDINGS_2026-11-24.md [reported]
+  - **the count** (`MU`) · part: some named family of gates has at least monotone-optimum members; this implies the statement
+    - **one-face witness gates** (`F1, UC`) · target: OR gates that are 0 at a zero point of an alive set and 1 at two of its atoms, in one face
+    - **real-witness gates** (`F2`) · target: the same with the real circuit in place of a face
+    - **repaired one-face witness gates** (`F3`) · target: one-face witness gates with an extra condition on face 1 atoms
+    - **cone-restricted one-face witness gates** (`F4`) · target: one-face witness gates inside the cone of the output of the witnessing set
+    - **cone-restricted real-witness gates** (`F5`) · target: real-witness gates inside the cone of the output of the witnessing set
+    - **disjoint representatives over real merge sets** (`MergeSDR`) · target: one real merge set per set, pairwise disjoint
+      - **lAvoid** · lean: Augment.lean
+    - **disjoint representatives over pure classes** (`PureSDR`) · target: one pure class per set, pairwise disjoint
+      - **PureHeredity.lean** (`PureHeredity`) · lean module
+      - **PureRestrict.lean** (`PureRestrict`) · lean module
+    - **disjoint representatives over lifted classes** (`LiftSDR`) · target: one lifted class per set, pairwise disjoint
+    - **lifted count** (`MUL`) · target: the union of lifted classes has at least monotone-optimum gates
+    - **fractional merge matching** (`MergeFrac, FracMatch`) · target: weights on zero points with load at most 1 on every gate
+    - **price inequality** (`MergePrice`) · target: for every price on gates, the cheapest classes together cost at most all gates
+    - **separation of the star of a point** (`STAR-SEP, STAR-COUNT, StarCount2`) · named: the sets through one point get pairwise disjoint classes (counting form: STAR-COUNT)
+    - **strong common-universal property and chain pick** (`StrongCU, ChainPick, CU`) · named: supported, not refuted; CU alone does not give the price inequality
+    - **pair hill-climb** (`O2, O2-PAIR`) · named: search for a counterexample to disjoint representatives; none found
+    - **price form over pure classes** (`PureFrac, PurePrice`) · named: pureFrac_iff_purePrice: LP duality, checked
+    - **dual and link of the fractional merge matching** (`MergeDual, MergeLink`) · named: Lean modules of the MergeFrac <=> MergePrice chain
+  - **the point step** (`STEP, GainF2, GainOne`) · part: prove the count one input at a time: setting some input to 1 removes at least cost-of-the-point gates from the family
+    - **point step for real-witness gates** (`F2 STEP, GainF2`) · target: some point has gain >= cost; false for all correct circuits, open among circuits with no gate-saving rewiring
+      - **no_minCE_of_gainF2_or_cubeLocal** · lean: CubeF2.lean:353: local cube or point step at every cube => the statement
+      - **F2Induct.lean** (`F2Induct`) · lean module
+      - **F2Desc.lean** (`F2Desc`) · lean module
+      - **F2FirstJoin.lean** (`F2FirstJoin`) · lean module
+    - **point step for one-face witness gates** (`GainOne, LIGHT-COUNT, HEAVY-COUNT`) · target: the same for one-face witness gates; refuted
+    - **point deletion** (`x_v := 0`) · target: induction that sets a point to 0; refuted
+    - **mixed induction** · target: set a point to 0 at some cubes and to 1 at others; not refuted, two circuits tested
+    - **gate elimination step** (`GE, ElimStep`) · target: setting a point to 1 and simplifying removes at least cost-many gates; the inductive form of the statement
+    - **seen gates and the three-case rule** (`SEE+K3, SEE0, K0, K3, F2SeeK3`) · named: a sufficient rule for the point step read from gates that see the point; false for all correct circuits
+    - **light-star rule** (`LIGHT-STAR, LightStar, F2Light`) · named: the point step at a light point from the star of the point; false for all correct circuits
+    - **absorb and reroute** (`ABSORB, REROUTE, INTERNAL`) · named: bookkeeping forms of the point step; false for all correct circuits
+    - **cone certificate** (`CERT-1c, CERT-3c, CertStair, (D)+(S)`) · named: death (D) and disjointness (S) of cone merge sets
+  - **the certificate game** (`U-game, Theorem G`) · part: a pairwise test on the lifted outputs; when it is won the statement is checked in Lean
+    - **lifted test system** (`LTS`) · target: a zero point and atoms chosen for a set in the lifted circuit
+    - **pair certificate** (`LTSCert`) · target: for two sets: at most one atom of one system is not below the zero point of the other
+    - **certificate game won** (`U-game won`) · target: every set has a system and every pair has a pair certificate in one direction
+      - **ugame_of_G1 / ugame_of_G0 / ugame_of_allHeavy / ugame_of_typeB** · lean: four cases where the game is always won
+    - **certificate game theorem** (`Theorem G, liftSDR_of_ugame`) · target: game won => disjoint representatives over lifted classes => the statement; no minimality [checked]
+      - **no_minCE_of_ugame** · lean: UGame.lean
+    - **exact reach of value arguments** (`Proposition S`) · target: an argument reading only gate values at test points stops exactly at the game [paper]
+    - **no mixing of worlds** (`Theorem D`) · target: with two-world normal outputs and sets of size >= 3 a winning choice stays in one world [paper]
+    - **one colouring per merge gate** (`Lemma T`) · target: a merge gate splits every set it serves by one colouring; forbids odd cycles of 2-point traces only [paper]
+    - **lost game** (`open part (X)`) · target: OPEN: circuits whose lifted outputs lose the game; smallest: sets {0,1,2}, {0,3,4}, NOT input x1 OR x3
+    - **staircase lemmas** (`L1, L3, L4, STAIRCASE`) · named: Berge-acyclic families have a winning order
+    - **lift of two-gate configurations** (`2G-LIFT, 2G-b`) · named: no two gates serve as all classes of two sets in the lifted form
+  - **dead ends** (`DEAD_ENDS.md`) · part: refuted or exhausted routes, in seven families
+    - **class chosen without looking at the other sets** (`family A`) · dead family: kills: disjoint representatives over pure classes; rows in 951/DEAD_ENDS.md section A
+      - **three 4-sets in a triangle** (`cxT2`) · witness: n = 9; no gate-saving rewiring found in 1,679 tries; loses the certificate game; the hard core named by cTAHG
+      - **adversary against the two-point menu** (`ADV3`) · witness: load 1.2
+      - **three circuits against canonical matching** (`cx1, cx2, cx3`) · route: cx2: sunflower {0,1,4},{0,2,5},{0,3,6}, 18 gates, counted union 5 < demand 6
+      - **circuit against the coin rule** (`cxtw3, cxtw3c`) · route: n = 9, 34 gates; outside the minimal-counterexample case
+      - **six circuits against the product rule** (`cxP, cxP1, cxP3, cxP4, cxP6, Π*`) · route
+      - **circuit against the star rule** (`cxstar5, ★`) · route
+      - **circuit against the restricted relative sandwich** (`cxT4`) · route: also kills whole-class charging
+      - **circuits against fixed zero-point distributions** (`cxrb, cxU_8_4`) · route: cxU_8_4: n = 20
+      - **circuit against world-pure plain zero points** (`cxe3`) · route: every plain choice uses mixed points for two of the three sets through the heavy point
+      - **circuit against the world-0 canonical start** (`cx44_0`) · route
+      - **unconfirmed witness** (`cxE`) · route: named as a witness once; not confirmed
+    - **rule fixing the world of a set** (`family B`) · dead family: kills: world 0; rows in 951/DEAD_ENDS.md section B
+      - **Pasch configuration, 14 gates, heavy point** (`pasch_s14_heavy_atmostone.json`) · witness: kills 'at most one world-0 set through a heavy point'
+      - **five-input circuit where only a light point works** (`ess_rand_clean_744.json`) · witness: n = 5, 9 gates; violates no fact of a minimal counterexample that scaffold tested
+      - **adversary against the general world laws** (`ADV4`) · witness
+      - **three counterexamples to gate dependence on the NOT gate** (`cx3_counterexample, CrossWorld, CrossWorldCex`) · route: Lean files CrossWorld.lean, CrossWorldCex.lean
+      - **cross-world disjointness at every world-1 point** (`D1`) · route: refuted, 4 collisions in 31,587 circuits
+      - **heavy-first step** (`F6`) · route: 'a heavy point exists => some heavy point satisfies the step'; refuted
+      - **no mixed zero points** (`NoMixedPrice`) · route: refuted in the plain form
+      - **merge-set law without its two conditions** (`S1`) · route: false
+    - **counting over pure classes for all correct circuits** (`family C`) · dead family: kills: disjoint representatives over pure classes; rows in 951/DEAD_ENDS.md section C
+      - **two two-world sets sharing one merge gate** (`cxMU_dd, cxMU_clean2, cxMU_clean2_DD`) · witness: n = 7, 36 gates; pure classes cover 5 < 6; loses the certificate game
+      - **Pasch configuration with a doubly served class** (`tri_all_5593.json`) · witness: kills the looseness lemma
+      - **two 4-sets with junk** (`cx44_1_junk.json`) · witness: loses the certificate game
+      - **first and second class menus** (`Menu1, Menu2`) · route: two lists of allowed classes; star separation fails over both
+      - **peeling** (`PEEL, E2`) · route: remove one set at a time keeping a free class; refuted over every menu tried
+      - **increment avoiding all free points** (`INC_N`) · route: refuted, deficit 1
+      - **looseness lemma** (`LOOSENESS, A4`) · route: after fixing the free classes every arc-consistent class extends; refuted
+    - **counting over real merge sets without minimality** (`family D`) · dead family: kills: disjoint representatives over real merge sets; rows in 951/DEAD_ENDS.md section D
+      - **star of four pairs with a threshold NOT input** (`STAR4, star4.json; STAR4b, star4b_threshold.json`) · witness: real merge sets cover 2 < 3 (threshold crossing)
+      - **selector path** · witness: kills bounded augmenting for all correct circuits
+      - **inner-product junk design** (`cxr`) · witness: kills 'later merge gates of different sets are disjoint'
+      - **full charging without the cone** (`ChargeOK`) · route: refuted, 3 counterexamples
+      - **acyclic forcing in gate order** (`P2`) · route: refuted
+    - **induction one input at a time for all correct circuits** (`family E`) · dead family: kills: the point step; rows in 951/DEAD_ENDS.md section E
+      - **Fano formula with an unused NOT gate** (`FANO-FORMULA, fano_formula.json`) · witness: 17 gates; kills point deletion
+      - **Pappus configuration with junk gates** (`PAPPUS-JUNK, pappus_junk_gain.json`) · witness: n = 9, 66 gates; kills the point step for one-face witness gates
+      - **twin balanced OR trees with leaf junk** (`TWIN-TREE, twin_tree_f2step.json`) · witness: n = 14, 28 gates; kills the point step for real-witness gates; every cube is local
+      - **twin trees with the NOT gate read** (`TWIN-TREE-N, twin_tree_N_f2step.json`) · witness: 30 gates; the NOT gate reads one input
+      - **matched twin trees with a 14-input NOT input** (`MATCH-C, nonlocal/match_c_k7.json`) · witness: n = 16, 55 gates; kills the step at a non-local cube under R1 to R5' and R+; has a gate-saving rewiring; certificate game won
+      - **junk circuit where a light point fails** (`JUNK, junk.json`) · witness
+      - **five-input gap for seen gates** (`see_gap_n5.json`) · witness: meaning not re-derived here
+      - **variants of the twin trees with a two- or three-input NOT input** (`OR2, AND2, MAJ3`) · route: nonlocal/twin_tree_{or2,and2,maj3}.json; the step fails for one-face and real-witness gates only
+      - **junk circuit against the least-influence rule** (`JUNK2`) · route
+    - **local or memoryless argument** (`family F`) · dead family: kills: gate elimination step; rows in 951/DEAD_ENDS.md section F
+      - **memoryless potential** (`S4`) · route: increments above 1
+    - **method from outside circuits** (`family G`) · dead family: kills: one NOT gate saves nothing on Boolean sums; rows in 951/DEAD_ENDS.md section G
+    - **front lanes** (`A1, A2, B8, C3, N2`) · named: labels of work lanes and of items inside other sessions' notes, not mathematical objects
+  - **witness circuits** (`951/data/witnesses`) · part: correct circuits that refute a route; none refutes the statement
+  - **checked in Lean** (`951/lean/PEqualNP/W951`) · part: statements the Lean checker accepted
+    - **small3_bound** · lean: the statement when every set has at most 3 points
+    - **bound_of_noDD** · lean: TwoWorld.lean: the bound when no output is in two-world normal form
+    - **partial_bound** · lean: PartialBound.lean
+    - **PartialBound.lean** (`PartialBound`) · lean module
+  - **no_minCE** · lean: the one unproved declaration under L-meta-951
+  - **general circuits program** (`L-gen, GeNeRALIZE, BoolSumNot, C4, K13, K2`) · neighbour: the NOT gate ladder above rung 1; names live in lean/PEqualNP/General and notes/general

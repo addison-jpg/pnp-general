@@ -33,3 +33,18 @@ Build one row: `cd lean && lake exe cache get && lake build PEqualNP.General.L00
 
 The Lean project started from `brilliant-hq/pequalnp-proofs` (Apache License 2.0, see
 [`LICENSE.md`](LICENSE.md)); earlier work is frozen in `addison-jpg/pequalnp-work`.
+
+## Mini board (final pass, 2026-11-24)
+
+READMEs are mini boards: state, open, dead, names, and the way up. The main board is [`BOARD.md`](BOARD.md).
+
+| | |
+|---|---|
+| Names | [`NAMES.md`](NAMES.md) / `NAMES.json`: every code has a name; one flat tree, bottom up |
+| Literature | [`LITERATURE.md`](LITERATURE.md): everything read, by topic, with read status. Most important file here |
+| Findings | [`COLLATION_2026-11-24.md`](COLLATION_2026-11-24.md), [`951/FINDINGS_2026-11-24.md`](951/FINDINGS_2026-11-24.md) |
+| Dead | [`951/DEAD_ENDS.md`](951/DEAD_ENDS.md): seven named families |
+| Tree | `MST.json`: every leaf file -> its parent |
+| State | 951 is checked in Lean when the certificate game is won; general circuits: Markov and Fischer checked, Kannan's uniform half reduced; quantum gravity: 47 rows checked |
+| Open | 951 for circuits that lose the certificate game; L-gen-101 to 103; the XOR extension when C(f) = C(¬f); L-qg-115, 116, 119, 169 |
+| Rule | do not ask the owner; write on the board |

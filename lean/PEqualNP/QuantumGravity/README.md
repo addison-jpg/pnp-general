@@ -3,6 +3,15 @@
 The quantum gravity program (gap ids `L-qg-NNN`). Its board is [`BOARD.md`](../../../BOARD.md) at
 the root of the repository.
 
+## Mini board (final pass, 2026-11-24)
+
+- State: 47 rows checked. Open gaps: L-qg-115, 116, 119, 169 (P_CTC inside EXP).
+- The physics premises appear in no Lean statement. No row says that P versus NP is settled.
+- References: kept in full in [`LITERATURE.md`](../../../LITERATURE.md) section I.
+- Up: [`BOARD.md`](../../../BOARD.md), subboard "quantum gravity".
+
+## What the program is for
+
 Several arguments in quantum gravity are arguments about computational complexity. Each rests on a classical, finite core (a counting bound, a fixed point, a reduction), stated in Lean against [`Defs/QuantumGravity.lean`](../Defs/QuantumGravity.lean) and checked. A row is "checked"; no row says that P versus NP is settled, and the physics premises appear in no Lean statement.
 
 P versus NP enters two ways: a hardness argument that assumes a classical one-way function implies P ≠ NP (gap L-qg-103), and if closed timelike curves exist one pass of a polynomial-size circuit decides satisfiability (L-qg-009).
