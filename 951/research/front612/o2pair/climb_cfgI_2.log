@@ -1,0 +1,10 @@
+start cfgI: sets ((0, 1, 2, 3), (0, 4, 5, 6)) n=9 s=20 disjoint pairs 960/1024
+     0s it=269 best disjoint 896/1024 s=45 ess=False
+     1s it=1630 best disjoint 800/1024 s=45 ess=False
+     3s it=4185 best disjoint 576/1024 s=45 ess=False
+     6s it=6776 best disjoint 512/1024 s=45 ess=False
+     6s it=7187 best disjoint 480/1024 s=45 ess=False
+     7s it=8279 best disjoint 384/1024 s=45 ess=False
+    10s it=10548 best disjoint 320/1024 s=45 ess=False
+    10s it=11210 best disjoint 256/1024 s=45 ess=False
+    12s it=12934 best disjoint 192/1024 s=45 ess=False

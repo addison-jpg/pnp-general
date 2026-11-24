@@ -1,0 +1,8 @@
+start cxT2: sets ((0, 2, 3, 4), (1, 2, 7, 8)) n=9 s=25 disjoint pairs 547/1024
+     0s it=90 best disjoint 544/1024 s=44 ess=True
+     0s it=173 best disjoint 524/1024 s=44 ess=True
+     0s it=332 best disjoint 512/1024 s=44 ess=True
+     3s it=5271 best disjoint 480/1024 s=44 ess=True
+     6s it=9854 best disjoint 384/1024 s=44 ess=True
+    10s it=13976 best disjoint 288/1024 s=44 ess=False
+    14s it=18349 best disjoint 224/1024 s=44 ess=False
