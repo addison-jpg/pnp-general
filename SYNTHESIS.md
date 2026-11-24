@@ -86,8 +86,13 @@ ruled out by L-lib-076; both can be discarded before anyone spends time on them.
 - Its internal structure has the same shape as section 2, as an ANALOGY only: the single NOT gate
   splits every wire into two monotone "worlds" (NOT := 0, NOT := 1). Everything that stays inside
   one world is settled by monotone arguments (`CanonClass.lean`); the whole difficulty is the
-  gates that differ between the worlds. The open step (the count MU for the union `UC`, by
-  induction on points) is a statement about how the two worlds share gates. Nothing transfers
+  gates that differ between the worlds. The official target (owner, 2026-11-24) is the LIFTED
+  count MUL (`no_minCE_of_MUL`) or the lifted disjoint choice LiftSDR (`no_minCE_of_liftSDR`); the
+  same counts over the narrower pure classes are FALSE for general correct circuits (cxMU_dd:
+  5 < 6) and could only hold for a minimal counterexample through s < base. The open step (the
+  count MU for the count-set union `UC`, which contains the lifted classes' gates that matter and
+  has not failed on any circuit, by induction on points: HEAVY-COUNT and LIGHT-COUNT) is a
+  statement about how the two worlds share gates. Nothing transfers
   along this analogy in either direction: the worlds of section 2 are oracles outside the machine;
   these two are the values of one wire inside the circuit (a restriction, as in gate elimination),
   which is why an argument that uses them does not relativize.
