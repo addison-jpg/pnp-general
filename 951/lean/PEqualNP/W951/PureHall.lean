@@ -36,22 +36,28 @@ noncomputable def pureMenu (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) : 
   ((Finset.univ : Finset (Fin n → Bool)).filter fun Z => PureValid gates p R (.one Z)).biUnion
       (fun Z => pureI1 gates p R Z) ∪
     ((Finset.univ : Finset (Fin n → Finset (Fin n))).filter
-      fun m => PureValid gates p R (.zero m)).biUnion fun m => pureI0 gates p R m
+      fun m => PureValid gates p R (.zero m)).biUnion (fun m => pureI0 gates p R m) ∪
+    ((Finset.univ : Finset ((Fin n → Bool) × (Fin n → Finset (Fin n)))).filter
+      fun zm => PureValid gates p R (.zeroAt zm.1 zm.2)).biUnion fun zm => pureI0At gates p R zm.1 zm.2
 
 theorem mem_pureMenu {gates : List Gate} {p : ℕ} {R : Finset (Fin n)} {g : ℕ} :
     g ∈ pureMenu gates p R ↔ ∃ c, PureValid gates p R c ∧ g ∈ pureCls gates p R c := by
   classical
   constructor
   · intro h
-    rw [pureMenu, Finset.mem_union, Finset.mem_biUnion, Finset.mem_biUnion] at h
-    rcases h with ⟨Z, hZ, hg⟩ | ⟨m, hm, hg⟩
+    rw [pureMenu, Finset.mem_union, Finset.mem_union, Finset.mem_biUnion, Finset.mem_biUnion,
+      Finset.mem_biUnion] at h
+    rcases h with (⟨Z, hZ, hg⟩ | ⟨m, hm, hg⟩) | ⟨zm, hzm, hg⟩
     · exact ⟨.one Z, (Finset.mem_filter.mp hZ).2, hg⟩
     · exact ⟨.zero m, (Finset.mem_filter.mp hm).2, hg⟩
+    · exact ⟨.zeroAt zm.1 zm.2, (Finset.mem_filter.mp hzm).2, hg⟩
   · rintro ⟨c, hc, hg⟩
-    rw [pureMenu, Finset.mem_union, Finset.mem_biUnion, Finset.mem_biUnion]
+    rw [pureMenu, Finset.mem_union, Finset.mem_union, Finset.mem_biUnion, Finset.mem_biUnion,
+      Finset.mem_biUnion]
     cases c with
-    | one Z => exact Or.inl ⟨Z, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hc⟩, hg⟩
-    | zero m => exact Or.inr ⟨m, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hc⟩, hg⟩
+    | one Z => exact Or.inl (Or.inl ⟨Z, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hc⟩, hg⟩)
+    | zero m => exact Or.inl (Or.inr ⟨m, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hc⟩, hg⟩)
+    | zeroAt z m => exact Or.inr ⟨(z, m), Finset.mem_filter.mpr ⟨Finset.mem_univ _, hc⟩, hg⟩
 
 theorem pureCls_subset_menu {gates : List Gate} {p : ℕ} {R : Finset (Fin n)} {c : PureOpt n}
     (hc : PureValid gates p R c) : pureCls gates p R c ⊆ pureMenu gates p R :=
@@ -66,6 +72,10 @@ theorem card_pureCls_le (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) (c : 
     rwa [card_liftSet] at this
   | zero m =>
     have := runMT_card_le (ext (Zof R) false) (atom0 m) (liftSet R) (lift n p gates)
+      (lift n p gates).length
+    rwa [card_liftSet] at this
+  | zeroAt z m =>
+    have := runMT_card_le (ext z false) (atom0 m) (liftSet R) (lift n p gates)
       (lift n p gates).length
     rwa [card_liftSet] at this
 

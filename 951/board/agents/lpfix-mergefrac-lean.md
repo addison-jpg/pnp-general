@@ -184,3 +184,14 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   menus (`pureMenu` = union of all valid classes of a set). `no_graph_minCE_of_hall`: Hall on the pure menus of every
   graph-system MinCE ⇒ no MinCE is a graph system — the exact Lean target of front's heredity lane. For any system,
   `hall_of_pureSDR` (necessary: ∑_{w∈F} d_w ≤ |⋃ menus|) and `card_pureCls_le` (classes have EXACTLY d_w merges).
+- (12:35 UTC) HEREDITY of pure menus (coord 11:08; front's graph lane), `PureHeredity.lean`. Natural statement
+  (x_v := 0 off V = V(F), NOT gate kept; restricted menu ⊆ original menu) is FALSE for the top-only I0: the restricted
+  top is V \ S_w, a lower zero point, so earlier wires merge. Data (research/heredity/): 144 failing restricted I0 classes
+  on the 26 graph systems (full Lean menus), 344 on all 63. Kernel-checked witness `heredity_top_fails` (fixh16_20,
+  F = {S_1, S_2}, V = {0,2,3}, S_w = {0,3}, m_0 = {0,2}, m_3 = {2,3}): the restricted class is {h} (the NOT gate's input),
+  h ∉ any one/zero class (C_0(h)(top_w) = 1, C_1(h)(e_0) = C_1(h)(e_3) = 0). FIX, in Lean: `PureOpt.zeroAt z m` (I0 at any
+  zero point z ∌ S_w with m_u ⊆ z ∪ {u}; `card_pureI0At` ≥ d_w). Then `restrictedMenu_subset_pureMenu` and
+  `restricted_deficient` (a Hall-deficient F stays deficient after restriction). PureSDR / pureMenu / pureSDR_iff_hall now
+  include zeroAt (more options; all earlier data claims stay true). Gap NOT formalized: the restricted circuit is modelled
+  by evaluating at points vanishing off V (= Kernel/W951Cube.val_restrictZero; its dead gates are constants and copies,
+  at which a union-find run never merges).

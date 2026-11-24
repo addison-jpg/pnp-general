@@ -21,6 +21,11 @@ lift at `y = 1`, `C_0` the lift at `y = 0`. For a set `R = S_w`:
 * **I0** (`pureI0 gates p R m`, world 0): zero point `(top_w, 0)`, atom of `u ∈ R` the point
   `(m_u ∪ {u}, 0)`, one point `m_u` per atom. VALID when `m_u ∩ R ⊆ {u}` and `h(m_u) = 1` (the
   NOT gate is `0` at `m_u`; `m_u` need not be a minterm, and `h(top_w) = 1` is not needed).
+* **I0 at a general zero point** (`pureI0At gates p R z m`, option `zeroAt z m`): zero point `(z, 0)`,
+  same atoms. VALID when `z` vanishes on `R`, `m_u ⊆ z ∪ {u}` and `h(m_u) = 1`. Contains I0
+  (`z = top_w`). Needed for heredity (`PureHeredity.lean`): restricting `x_v := 0` off `V` moves
+  the world-0 zero point to `V \ S_w`, and with top-only I0 the restricted menus are NOT inside the
+  original ones (witness there).
 
 `PureSDR S gates p`: every set picks a valid pure option and the chosen classes are pairwise
 disjoint. These are the classes `merges(W1, …)` / `merges(W0, …)` of `tools/kill_tests/ext.py`,
@@ -85,26 +90,43 @@ noncomputable def pureI0 (gates : List Gate) (p : ℕ) (R : Finset (Fin n))
     (m : Fin n → Finset (Fin n)) : Finset ℕ :=
   runMT (ext (Zof R) false) (atom0 m) (liftSet R) (lift n p gates) (lift n p gates).length
 
-/-- A pure option: world 1 with zero point `Z`, or world 0 with atom points `m`. -/
+/-- **I0 at a general zero point** `(z, 0)` (atoms `(m_u ∪ {u}, 0)`); `pureI0 = pureI0At (Zof R)`.
+The restriction `x_v := 0` off a set `V` turns `top_w` into `V \ S_w`, so the restricted instance's
+world-0 classes are classes at a lower zero point (`PureHeredity.lean`). -/
+noncomputable def pureI0At (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) (z : Fin n → Bool)
+    (m : Fin n → Finset (Fin n)) : Finset ℕ :=
+  runMT (ext z false) (atom0 m) (liftSet R) (lift n p gates) (lift n p gates).length
+
+theorem pureI0_eq_pureI0At (gates : List Gate) (p : ℕ) (R : Finset (Fin n))
+    (m : Fin n → Finset (Fin n)) : pureI0 gates p R m = pureI0At gates p R (Zof R) m := rfl
+
+/-- A pure option: world 1 with zero point `Z`, world 0 at `top_w` with atom points `m`, or world 0
+at a general zero point `z` (`zeroAt`, which contains `zero m` as `zeroAt (Zof R) m`). -/
 inductive PureOpt (n : ℕ) where
   | one (Z : Fin n → Bool)
   | zero (m : Fin n → Finset (Fin n))
+  | zeroAt (z : Fin n → Bool) (m : Fin n → Finset (Fin n))
 
 /-- The class of a pure option. -/
 noncomputable def pureCls (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) : PureOpt n → Finset ℕ
   | .one Z => pureI1 gates p R Z
   | .zero m => pureI0 gates p R m
+  | .zeroAt z m => pureI0At gates p R z m
 
 /-- Validity of a pure option for the set `R` (NOT gate at `p`, wire `n + p`). -/
 def PureValid (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) : PureOpt n → Prop
   | .one Z => (∀ v ∈ R, Z v = false) ∧ val gates Z (n + p) = true
   | .zero m => (∀ u ∈ R, ∀ v ∈ m u, v ∈ R → v = u) ∧ ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false
+  | .zeroAt z m => (∀ v ∈ R, z v = false) ∧ (∀ u ∈ R, ∀ v ∈ m u, v = u ∨ z v = true) ∧
+      ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false
 
 instance PureValid.decidable (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) :
     (c : PureOpt n) → Decidable (PureValid gates p R c)
   | .one Z => inferInstanceAs (Decidable ((∀ v ∈ R, Z v = false) ∧ val gates Z (n + p) = true))
   | .zero m => inferInstanceAs (Decidable ((∀ u ∈ R, ∀ v ∈ m u, v ∈ R → v = u) ∧
       ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false))
+  | .zeroAt z m => inferInstanceAs (Decidable ((∀ v ∈ R, z v = false) ∧
+      (∀ u ∈ R, ∀ v ∈ m u, v = u ∨ z v = true) ∧ ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false))
 
 /-- **PureSDR** (for the NOT gate at `p`): every set picks a valid pure option, and the chosen
 classes are pairwise disjoint. -/
@@ -218,6 +240,58 @@ theorem card_pureI0 (R : Finset (Fin n)) (m : Fin n → Finset (Fin n))
   rwa [card_liftSet] at this
 
 include hg hU hN in
+/-- **I0 size at a general zero point.** `z` vanishing on `R`, every `m_u ⊆ z ∪ {u}`, NOT gate `0`
+at every `m_u`, `o` computing `OR_R`: at least `|R| - 1` merges. -/
+theorem card_pureI0At (R : Finset (Fin n)) (z : Fin n → Bool) (m : Fin n → Finset (Fin n))
+    (hzR : ∀ v ∈ R, z v = false) (hmz : ∀ u ∈ R, ∀ v ∈ m u, v = u ∨ z v = true)
+    (hmN : ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false) (o : ℕ)
+    (hev : ∀ x : Fin n → Bool, val gates x o = decide (∃ v ∈ R, x v = true)) :
+    R.card - 1 ≤ (pureI0At gates p R z m).card := by
+  classical
+  have hm := monoList_lift (n := n) gates p hp hg hU hN
+  have hT : ∀ c ∈ liftSet R, ∀ c' : Fin (n + 1), atom0 m c c' = true →
+      ext z false c' = false → c' = c := by
+    intro c hc c' h1 h2
+    obtain ⟨u, hu, rfl⟩ := mem_liftSet_iff.mp hc
+    rw [atom0_castSucc] at h1
+    induction c' using Fin.lastCases with
+    | last => rw [ext_last] at h1; exact absurd h1 (by decide)
+    | cast v =>
+      rw [ext_castSucc, canonPt_eq_true, Finset.mem_insert] at h1
+      rw [ext_castSucc] at h2
+      rcases h1 with rfl | h1
+      · rfl
+      · rcases hmz u hu v h1 with rfl | h3
+        · rfl
+        · rw [h3] at h2; exact absurd h2 (by decide)
+  have hz : val (lift n p gates) (ext z false) (liftWire n p o) = false := by
+    have h1 := (lift_exact (n := n) gates p hp hg hU hN z o).1
+    cases hv : val (lift n p gates) (ext z false) (liftWire n p o)
+    · rfl
+    · have := h1 hv
+      rw [hev] at this
+      simp only [decide_eq_true_eq] at this
+      obtain ⟨v, hv, hzv⟩ := this
+      rw [hzR v hv] at hzv
+      exact absurd hzv (by decide)
+  have hao : ∀ c ∈ liftSet R, val (lift n p gates) (atom0 m c) (liftWire n p o) = true := by
+    intro c hc
+    obtain ⟨u, hu, rfl⟩ := mem_liftSet_iff.mp hc
+    rw [atom0_castSucc]
+    have hle : canonPt (m u) ≤ canonPt (insert u (m u)) := by
+      intro c
+      refine Bool.le_iff_imp.mpr fun hc => ?_
+      exact canonPt_eq_true.mpr (Finset.mem_insert_of_mem (canonPt_eq_true.mp hc))
+    have hν := not_false_of_le gates p hp hg hU hN hle (hmN u hu)
+    have hl := val_lift (n := n) gates p hp (canonPt (insert u (m u))) o
+    rw [hν] at hl
+    rw [← hl, hev]
+    exact decide_eq_true ⟨u, hu, canonPt_eq_true.mpr (Finset.mem_insert_self _ _)⟩
+  have := merge_countT (ext z false) (atom0 m) (liftSet R) (lift n p gates) hT
+    (goodT_of_monoList _ _ _ _ hm) (liftWire n p o) hz hao
+  rwa [card_liftSet] at this
+
+include hg hU hN in
 /-- Every valid pure class has at least `|R| - 1` merges. -/
 theorem card_pureCls (R : Finset (Fin n)) (c : PureOpt n) (hc : PureValid gates p R c) (o : ℕ)
     (hev : ∀ x : Fin n → Bool, val gates x o = decide (∃ v ∈ R, x v = true)) :
@@ -225,6 +299,7 @@ theorem card_pureCls (R : Finset (Fin n)) (c : PureOpt n) (hc : PureValid gates 
   cases c with
   | one Z => exact card_pureI1 gates p hp hg hU hN R Z hc.1 hc.2 o hev
   | zero m => exact card_pureI0 gates p hp hg hU hN R m hc.1 hc.2 o hev
+  | zeroAt z m => exact card_pureI0At gates p hp hg hU hN R z m hc.1 hc.2.1 hc.2.2 o hev
 
 /-- Every class lies in the gate wires of the lift. -/
 theorem pureCls_subset (R : Finset (Fin n)) (c : PureOpt n) :
@@ -241,6 +316,7 @@ theorem pureCls_subset (R : Finset (Fin n)) (c : PureOpt n) :
   cases c with
   | one Z => exact hsub hi
   | zero m => exact hsub hi
+  | zeroAt z m => exact hsub hi
 
 /-! ## Disjointness of pure classes (W0, W1, D across worlds, for the merge sets themselves) -/
 
