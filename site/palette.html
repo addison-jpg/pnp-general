@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>asteroid colour scheme picker</title>
+<style>
+:root{--bg:#f6f6f4;--fg:#1f1f1d;--mu:#62625d;--bd:#d6d6d0;--pn:#fff;--ac:#2f5d8a;--bad:#a3352b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:1000px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.3rem;margin:0 0 4px}h2{font-size:1rem;margin:0 0 12px}
+.sub{color:var(--mu);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:760px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--pn);border:1px solid var(--bd);border-radius:6px;padding:16px;margin-bottom:20px}
+.seg{display:inline-flex;border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin-bottom:14px}
+.seg button{border:0;background:var(--pn);color:var(--fg);padding:6px 16px;font:inherit;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--fg);color:var(--pn)}
+.row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.row label{flex:1;min-width:0}
+.row input[type=color]{width:36px;height:30px;padding:0;border:1px solid var(--bd);border-radius:4px;background:none;cursor:pointer}
+.row input[type=text]{width:92px;font:13px ui-monospace,Menlo,Consolas,monospace;padding:5px 6px;border:1px solid var(--bd);border-radius:4px;background:var(--pn);color:var(--fg)}
+.row input.bad{border-color:var(--bad);outline:1px solid var(--bad)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.actions button{font:inherit;padding:6px 12px;border:1px solid var(--bd);border-radius:6px;background:var(--pn);color:var(--fg);cursor:pointer}
+.actions button:hover{border-color:var(--fg)}
+#copied{color:var(--mu);font-size:13px;min-height:1em}
+table.c{width:100%;border-collapse:collapse;font-size:13px}
+table.c th,table.c td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--bd)}
+.tw{overflow-x:auto}
+.flag{color:var(--bad);font-weight:600}.ok{color:var(--mu)}
+.sw{display:inline-block;width:10px;height:10px;border:1px solid var(--bd);vertical-align:baseline;margin-right:4px}
+/* preview */
+#preview{background:var(--background);color:var(--text);border:1px solid var(--bd);border-radius:6px;padding:0 0 16px;overflow:hidden}
+#preview header{padding:14px 18px;border-bottom:2px solid var(--accent);font-weight:600;font-size:1.15rem;letter-spacing:.02em}
+#preview .in{padding:16px 18px}
+#preview a{color:var(--accent)}
+#preview .muted{color:var(--muted)}
+#preview .card{background:var(--surface);border:1px solid color-mix(in srgb,var(--text) 14%,transparent);border-radius:4px;padding:4px 10px;overflow-x:auto}
+#preview table{width:100%;border-collapse:collapse}
+#preview th,#preview td{text-align:left;padding:6px 8px;border-bottom:1px solid color-mix(in srgb,var(--text) 12%,transparent)}
+#preview th{color:var(--muted);font-weight:600;font-size:.85rem}
+#preview tr:last-child td{border-bottom:0}
+#preview pre{margin:8px 0;padding:10px 12px;background:var(--codeBackground);color:var(--codeText);border-radius:4px;overflow-x:auto;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace}
+#preview .lbl{font-size:.8rem;color:var(--muted);margin-top:12px}
+.p{color:var(--proved)}.r{color:var(--refuted)}.o{color:var(--open)}
+</style>
+</head>
+<body>
+<main>
+<h1>asteroid colour scheme picker</h1>
+<p class="sub">Edit one variant at a time; the preview and contrast table follow the selected variant. The URL hash records the choice.</p>
+<div class="grid">
+<div>
+ <div class="panel">
+  <div class="seg" role="group" aria-label="Variant">
+   <button type="button" id="bl" aria-pressed="true">Light</button><button type="button" id="bd" aria-pressed="false">Dark</button>
+  </div>
+  <div id="controls"></div>
+  <div class="actions">
+   <button type="button" id="cj">copy as JSON</button>
+   <button type="button" id="cc">copy as CSS variables</button>
+   <button type="button" id="rs">reset to start values</button>
+  </div>
+  <div id="copied" role="status" aria-live="polite"></div>
+ </div>
+ <div class="panel"><h2>Contrast (WCAG 2.x)</h2><div class="tw"><table class="c" id="ct"></table></div></div>
+</div>
+<div id="preview">
+ <header>asteroid</header>
+ <div class="in">
+  <p>Circuit lower bounds, checked by machine. Every claim below is decided by an engine and, where possible, a proof checker; see the <a href="#" onclick="return false">method notes</a> for details.</p>
+  <p class="muted">Muted text is used for captions and secondary labels.</p>
+  <div class="card"><table>
+   <tr><th>claim</th><th>engine</th><th>result</th></tr>
+   <tr><td>correct(tiny)</td><td>lean</td><td class="p">proved</td></tr>
+   <tr><td>gates(tiny) &lt; base(tiny)</td><td>sat</td><td class="r">refuted</td></tr>
+   <tr><td>slack(tiny) = 0</td><td>search</td><td class="o">open</td></tr>
+  </table></div>
+  <div class="lbl">.bench circuit</div>
+<pre>INPUT(x0)
+INPUT(x1)
+INPUT(x2)
+OUTPUT(y)
+a = OR(x0, x1)
+y = OR(a, x2)</pre>
+  <div class="lbl">asteroid program</div>
+<pre>circuit tiny 4
+  a = or 0 1
+  b = or a 2
+  c = or 2 3
+  set 0 1 2 -> b
+  set 2 3 -> c
+end
+claim correct(tiny) by lean
+claim slack(tiny) = 0 by lean</pre>
+  <div class="lbl">terminal</div>
+<pre><span class="p">proved</span>: 3 claims accepted by the proof checker
+claims: 4 true, 0 false; <span class="p">3 proved</span>
+<span class="r">FAIL</span> claim gates(tiny) &lt; base(tiny)
+<span class="o">open</span>: 1 claim not decided</pre>
+ </div>
+</div>
+</div>
+</main>
+<script>
+(function(){
+"use strict";
+var ROLES=["background","surface","text","muted","accent","proved","refuted","open","codeBackground","codeText"];
+var START={
+ light:{background:"#fafaf7",surface:"#ffffff",text:"#1c1c1a",muted:"#5f5f5a",accent:"#2f5d8a",proved:"#2e6b3a",refuted:"#a3352b",open:"#8a5a00",codeBackground:"#f1f0ec",codeText:"#1c1c1a"},
+ dark:{background:"#141413",surface:"#1d1d1b",text:"#ecebe6",muted:"#a19f97",accent:"#8db4dc",proved:"#7fbf8a",refuted:"#e58a80",open:"#d9a650",codeBackground:"#0f0f0e",codeText:"#e6e5e0"}
+};
+var HEX=/^#[0-9a-f]{6}$/;
+var state={light:{},dark:{}},cur="light",inputs={};
+function clone(o){return JSON.parse(JSON.stringify(o));}
+function reset(){state=clone(START);}
+function parseHash(){
+ var h=location.hash.replace(/^#/,"");if(!h)return;
+ h.split(";").forEach(function(p){
+  var kv=p.split("="),k=kv[0],v=(kv[1]||"").split(",");
+  var name=k==="l"?"light":k==="d"?"dark":null;
+  if(!name||v.length!==ROLES.length)return;
+  if(!v.every(function(x){return /^[0-9a-f]{6}$/i.test(x);}))return;
+  ROLES.forEach(function(r,i){state[name][r]="#"+v[i].toLowerCase();});
+ });
+}
+function writeHash(){
+ var f=function(n){return ROLES.map(function(r){return state[n][r].slice(1);}).join(",");};
+ try{history.replaceState(null,"","#l="+f("light")+";d="+f("dark"));}catch(e){}
+}
+function lum(hex){
+ var c=[1,3,5].map(function(i){var v=parseInt(hex.substr(i,2),16)/255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4);});
+ return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2];
+}
+function ratio(a,b){var x=lum(a),y=lum(b);if(x<y){var t=x;x=y;y=t;}return (x+0.05)/(y+0.05);}
+var PAIRS=[["text","background"],["muted","background"],["text","surface"],["accent","background"],["codeText","codeBackground"],
+ ["proved","codeBackground"],["refuted","codeBackground"],["open","codeBackground"],["proved","background"],["refuted","background"],["open","background"]];
+function renderContrast(){
+ var s=state[cur],t=document.getElementById("ct");
+ var h="<tr><th>pair</th><th>ratio</th><th></th></tr>";
+ PAIRS.forEach(function(p){
+  var r=ratio(s[p[0]],s[p[1]]);
+  h+="<tr><td>"+p[0]+" on "+p[1]+"</td><td>"+r.toFixed(2)+"</td><td>"+(r<4.5?'<span class="flag">below 4.5</span>':'<span class="ok">ok</span>')+"</td></tr>";
+ });
+ t.innerHTML=h;
+}
+function applyPreview(){
+ var el=document.getElementById("preview"),s=state[cur];
+ ROLES.forEach(function(r){el.style.setProperty("--"+r,s[r]);});
+}
+function syncInputs(){
+ ROLES.forEach(function(r){var i=inputs[r];i.c.value=state[cur][r];i.t.value=state[cur][r];i.t.classList.remove("bad");});
+}
+function update(){applyPreview();renderContrast();writeHash();}
+function build(){
+ var box=document.getElementById("controls");
+ ROLES.forEach(function(r){
+  var d=document.createElement("div");d.className="row";
+  var l=document.createElement("label");l.textContent=r;l.htmlFor="t-"+r;
+  var c=document.createElement("input");c.type="color";c.setAttribute("aria-label",r+" colour picker");
+  var t=document.createElement("input");t.type="text";t.id="t-"+r;t.maxLength=7;t.spellcheck=false;t.autocomplete="off";
+  c.addEventListener("input",function(){state[cur][r]=c.value.toLowerCase();t.value=c.value.toLowerCase();t.classList.remove("bad");update();});
+  t.addEventListener("input",function(){
+   var v=t.value.trim().toLowerCase();if(v&&v[0]!=="#")v="#"+v;
+   if(HEX.test(v)){t.classList.remove("bad");state[cur][r]=v;c.value=v;update();}else t.classList.add("bad");
+  });
+  t.addEventListener("blur",function(){t.value=state[cur][r];t.classList.remove("bad");});
+  d.appendChild(l);d.appendChild(c);d.appendChild(t);box.appendChild(d);
+  inputs[r]={c:c,t:t};
+ });
+}
+function setVariant(v){
+ cur=v;
+ document.getElementById("bl").setAttribute("aria-pressed",v==="light");
+ document.getElementById("bd").setAttribute("aria-pressed",v==="dark");
+ syncInputs();applyPreview();renderContrast();
+}
+function toJSON(){return JSON.stringify(state,null,2);}
+function toCSS(){
+ var b=function(n,ind){return ROLES.map(function(r){return ind+"--"+r+": "+state[n][r]+";";}).join("\n");};
+ return ":root {\n"+b("light","  ")+"\n}\n@media (prefers-color-scheme: dark) {\n  :root {\n"+b("dark","    ")+"\n  }\n}\n";
+}
+function copy(text){
+ var msg=document.getElementById("copied");
+ function done(ok){msg.textContent=ok?"copied":"copy failed; select and copy manually";setTimeout(function(){msg.textContent="";},1800);}
+ function fallback(){
+  var ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";
+  document.body.appendChild(ta);ta.select();var ok=false;
+  try{ok=document.execCommand("copy");}catch(e){}
+  document.body.removeChild(ta);done(ok);
+ }
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fallback);}
+ else fallback();
+}
+reset();parseHash();build();
+document.getElementById("bl").onclick=function(){setVariant("light");};
+document.getElementById("bd").onclick=function(){setVariant("dark");};
+document.getElementById("cj").onclick=function(){copy(toJSON());};
+document.getElementById("cc").onclick=function(){copy(toCSS());};
+document.getElementById("rs").onclick=function(){reset();syncInputs();update();};
+window.addEventListener("hashchange",function(){parseHash();syncInputs();applyPreview();renderContrast();});
+setVariant("light");writeHash();
+})();
+</script>
+</body>
+</html>
