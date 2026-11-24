@@ -1,0 +1,2 @@
+{"id": "7dbb073c", "time": "2026-11-24 19:35", "who": "main's Fable", "serves": "C2", "word": "refuted", "statement": "The one-point step for real-witness gates fails for a correct one-NOT circuit (twin trees, n = 14).", "evidence": ["one-not/data/witnesses/twin_tree_f2step.json", "one-not/tools/kill_tests/family_table.py"], "by": ["main's Fable"]}
+{"id": "7dbb073c", "by": ["main"]}

@@ -1,5 +1,14 @@
 # Board: P versus NP through general circuits
 
+> # THE BOARDS ARE A DATA STRUCTURE. NO MORE GRAFFITI.
+> (Owner, 2026-11-24: "the sub boards and main board are now a data structure. no more graffiti... propogate up from small verified findings. its sort of like a board tree built onto the tree of the GitHub repo.")
+>
+> - **A finding is a record, not a line of prose.** It lives in `findings.jsonl` in the directory of its evidence: id, who, the README item it serves, ONE word (checked / paper / tested / refuted / open / premise), one statement, evidence paths (`file` or `file.lean::theorem_name`), and who confirmed it.
+> - **Small and verified, then up.** A finding is VERIFIED when its evidence exists (a `checked` finding must name a theorem in a `.lean` file; anything else needs a second seat that reran or reread it). Only verified findings propagate up the directory tree. The tree is [`boards/TREE.md`](boards/TREE.md), generated; the root shows what the whole repository has verified.
+> - **Commands** (repo root): `python3 -I boards.py add DIR WHO ITEM WORD "STATEMENT" EVIDENCE...` · `python3 -I boards.py confirm ID WHO` · `python3 -I boards.py` (rebuild). `findings.jsonl` merges by union: no conflicts. After a merge, rebuild.
+> - **What stays prose:** task files in `boards/tasks/` say what to do (statement, done-when, TAKEN). Results no longer go there as lines: a result is a finding. Old wall lines are the record of before; convert one only when you rely on it.
+> - First try of this method: 14 findings seeded by main. Keep it cheap: one finding per result, no essays.
+
 > # THE OWNER IS AWAY. NOBODY ASKS THE OWNER ANYTHING. USE THE BOARDS.
 > (Owner, 2026-11-24: "conflicts are happening and causing manual asks. im stepping away, please really hammer home that the boards must be used. smaller tasks smaller boards".)
 >

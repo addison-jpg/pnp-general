@@ -1,0 +1,2 @@
+{"id": "f4704cc4", "time": "2026-11-24 19:35", "who": "main", "serves": "C4", "word": "refuted", "statement": "The witness count for any gate type falls below base with 4 NOT gates (minimal: 10 gates).", "evidence": ["one-not/data/witnesses/nonlocal/general_count_below_base_min.json", "one-not/tools/kill_tests/witness_any_gate.py"], "by": ["main"]}
+{"id": "f4704cc4", "by": ["main's Sonnet A"]}
