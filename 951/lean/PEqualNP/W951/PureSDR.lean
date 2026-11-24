@@ -26,6 +26,9 @@ lift at `y = 1`, `C_0` the lift at `y = 0`. For a set `R = S_w`:
   (`z = top_w`). Needed for heredity (`PureHeredity.lean`): restricting `x_v := 0` off `V` moves
   the world-0 zero point to `V \ S_w`, and with top-only I0 the restricted menus are NOT inside the
   original ones (witness there).
+* **I1 with widened atoms** (`pureI1At gates p R Z A`, option `oneAt Z A`): zero point `(Z, 1)`, atoms
+  `({u} ∪ A_u, 1)`. VALID when `Z` vanishes on `R`, `h(Z) = 0` and `A_u ⊆ Z ∪ {u}`. Contains I1
+  (`A = ∅`). Needed for heredity under `x_O := 1` (the restricted atoms are `{u} ∪ O`).
 
 `PureSDR S gates p`: every set picks a valid pure option and the chosen classes are pairwise
 disjoint. These are the classes `merges(W1, …)` / `merges(W0, …)` of `tools/kill_tests/ext.py`,
@@ -71,6 +74,19 @@ theorem atom0_castSucc (m : Fin n → Finset (Fin n)) (u : Fin n) :
     atom0 m (Fin.castSucc u) = ext (canonPt (insert u (m u))) false := by
   rw [atom0, dite_eq_right (Fin.castSucc_ne_last u), Fin.castPred_castSucc, atom0_eq]
 
+/-- Widened world-1 atoms for the sets `A u`: the atom of the lifted coordinate `u` is
+`({u} ∪ A_u, 1)` (`atom1W (fun _ => ∅)` is `atom1` on the lifted coordinates of `R`). -/
+def atom1W (A : Fin n → Finset (Fin n)) (c : Fin (n + 1)) : Fin (n + 1) → Bool :=
+  if h : c = Fin.last n then canonPt ∅
+  else canonPt (insert c (insert (Fin.last n) (liftSet (A (c.castPred h)))))
+
+theorem atom1W_castSucc (A : Fin n → Finset (Fin n)) (u : Fin n) :
+    atom1W A (Fin.castSucc u) = ext (canonPt (insert u (A u))) true := by
+  rw [atom1W, dite_eq_right (Fin.castSucc_ne_last u), Fin.castPred_castSucc, ext_canonPt_true]
+  congr 1
+  simp only [liftSet, Finset.map_insert, Fin.castSuccEmb_apply]
+  exact Finset.insert_comm _ _ _
+
 theorem mem_liftSet_iff {R : Finset (Fin n)} {c : Fin (n + 1)} :
     c ∈ liftSet R ↔ ∃ u ∈ R, Fin.castSucc u = c := by
   simp [liftSet]
@@ -100,18 +116,27 @@ noncomputable def pureI0At (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) (z
 theorem pureI0_eq_pureI0At (gates : List Gate) (p : ℕ) (R : Finset (Fin n))
     (m : Fin n → Finset (Fin n)) : pureI0 gates p R m = pureI0At gates p R (Zof R) m := rfl
 
-/-- A pure option: world 1 with zero point `Z`, world 0 at `top_w` with atom points `m`, or world 0
-at a general zero point `z` (`zeroAt`, which contains `zero m` as `zeroAt (Zof R) m`). -/
+/-- **I1 with widened atoms** `({u} ∪ A_u, 1)`, `A_u ⊆ Z` (`pureI1At`); `x_O := 1` off `V` turns
+the restricted atoms `e_u` into `{u} ∪ O` (`PureHeredity.lean`). -/
+noncomputable def pureI1At (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) (Z : Fin n → Bool)
+    (A : Fin n → Finset (Fin n)) : Finset ℕ :=
+  runMT (ext Z true) (atom1W A) (liftSet R) (lift n p gates) (lift n p gates).length
+
+/-- A pure option: world 1 with zero point `Z`, world 0 at `top_w` with atom points `m`, world 0
+at a general zero point `z` (`zeroAt`, which contains `zero m` as `zeroAt (Zof R) m`), or world 1
+with widened atoms `{u} ∪ A_u` (`oneAt`). -/
 inductive PureOpt (n : ℕ) where
   | one (Z : Fin n → Bool)
   | zero (m : Fin n → Finset (Fin n))
   | zeroAt (z : Fin n → Bool) (m : Fin n → Finset (Fin n))
+  | oneAt (Z : Fin n → Bool) (A : Fin n → Finset (Fin n))
 
 /-- The class of a pure option. -/
 noncomputable def pureCls (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) : PureOpt n → Finset ℕ
   | .one Z => pureI1 gates p R Z
   | .zero m => pureI0 gates p R m
   | .zeroAt z m => pureI0At gates p R z m
+  | .oneAt Z A => pureI1At gates p R Z A
 
 /-- Validity of a pure option for the set `R` (NOT gate at `p`, wire `n + p`). -/
 def PureValid (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) : PureOpt n → Prop
@@ -119,6 +144,8 @@ def PureValid (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) : PureOpt n →
   | .zero m => (∀ u ∈ R, ∀ v ∈ m u, v ∈ R → v = u) ∧ ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false
   | .zeroAt z m => (∀ v ∈ R, z v = false) ∧ (∀ u ∈ R, ∀ v ∈ m u, v = u ∨ z v = true) ∧
       ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false
+  | .oneAt Z A => (∀ v ∈ R, Z v = false) ∧ val gates Z (n + p) = true ∧
+      ∀ u ∈ R, ∀ v ∈ A u, v = u ∨ Z v = true
 
 instance PureValid.decidable (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) :
     (c : PureOpt n) → Decidable (PureValid gates p R c)
@@ -127,6 +154,8 @@ instance PureValid.decidable (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) 
       ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false))
   | .zeroAt z m => inferInstanceAs (Decidable ((∀ v ∈ R, z v = false) ∧
       (∀ u ∈ R, ∀ v ∈ m u, v = u ∨ z v = true) ∧ ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false))
+  | .oneAt Z A => inferInstanceAs (Decidable ((∀ v ∈ R, Z v = false) ∧ val gates Z (n + p) = true ∧
+      ∀ u ∈ R, ∀ v ∈ A u, v = u ∨ Z v = true))
 
 /-- **PureSDR** (for the NOT gate at `p`): every set picks a valid pure option, and the chosen
 classes are pairwise disjoint. -/
@@ -292,6 +321,50 @@ theorem card_pureI0At (R : Finset (Fin n)) (z : Fin n → Bool) (m : Fin n → F
   rwa [card_liftSet] at this
 
 include hg hU hN in
+/-- **I1 size with widened atoms.** `Z` vanishing on `R`, NOT gate `1` at `Z`, every `A_u ⊆ Z ∪ {u}`,
+`o` computing `OR_R`: at least `|R| - 1` merges. -/
+theorem card_pureI1At (R : Finset (Fin n)) (Z : Fin n → Bool) (A : Fin n → Finset (Fin n))
+    (hZR : ∀ v ∈ R, Z v = false) (hZ : val gates Z (n + p) = true)
+    (hA : ∀ u ∈ R, ∀ v ∈ A u, v = u ∨ Z v = true) (o : ℕ)
+    (hev : ∀ x : Fin n → Bool, val gates x o = decide (∃ v ∈ R, x v = true)) :
+    R.card - 1 ≤ (pureI1At gates p R Z A).card := by
+  classical
+  have hm := monoList_lift (n := n) gates p hp hg hU hN
+  have hT : ∀ c ∈ liftSet R, ∀ c' : Fin (n + 1), atom1W A c c' = true → ext Z true c' = false →
+      c' = c := by
+    intro c hc c' h1 h2
+    obtain ⟨u, hu, rfl⟩ := mem_liftSet_iff.mp hc
+    rw [atom1W_castSucc] at h1
+    induction c' using Fin.lastCases with
+    | last => rw [ext_last] at h2; exact absurd h2 (by decide)
+    | cast v =>
+      rw [ext_castSucc, canonPt_eq_true, Finset.mem_insert] at h1
+      rw [ext_castSucc] at h2
+      rcases h1 with rfl | h1
+      · rfl
+      · rcases hA u hu v h1 with rfl | h3
+        · rfl
+        · rw [h3] at h2; exact absurd h2 (by decide)
+  have hz : val (lift n p gates) (ext Z true) (liftWire n p o) = false := by
+    have hl := val_lift (n := n) gates p hp Z o
+    rw [hZ, hev] at hl
+    rw [← hl]
+    simp only [decide_eq_false_iff_not, not_exists, not_and]
+    intro v hv hzv
+    rw [hZR v hv] at hzv
+    exact absurd hzv (by decide)
+  have hao : ∀ c ∈ liftSet R, val (lift n p gates) (atom1W A c) (liftWire n p o) = true := by
+    intro c hc
+    obtain ⟨u, hu, rfl⟩ := mem_liftSet_iff.mp hc
+    rw [atom1W_castSucc]
+    refine (lift_exact (n := n) gates p hp hg hU hN (canonPt (insert u (A u))) o).2.1 ?_
+    rw [hev]
+    exact decide_eq_true ⟨u, hu, canonPt_eq_true.mpr (Finset.mem_insert_self _ _)⟩
+  have := merge_countT (ext Z true) (atom1W A) (liftSet R) (lift n p gates) hT
+    (goodT_of_monoList _ _ _ _ hm) (liftWire n p o) hz hao
+  rwa [card_liftSet] at this
+
+include hg hU hN in
 /-- Every valid pure class has at least `|R| - 1` merges. -/
 theorem card_pureCls (R : Finset (Fin n)) (c : PureOpt n) (hc : PureValid gates p R c) (o : ℕ)
     (hev : ∀ x : Fin n → Bool, val gates x o = decide (∃ v ∈ R, x v = true)) :
@@ -300,6 +373,7 @@ theorem card_pureCls (R : Finset (Fin n)) (c : PureOpt n) (hc : PureValid gates 
   | one Z => exact card_pureI1 gates p hp hg hU hN R Z hc.1 hc.2 o hev
   | zero m => exact card_pureI0 gates p hp hg hU hN R m hc.1 hc.2 o hev
   | zeroAt z m => exact card_pureI0At gates p hp hg hU hN R z m hc.1 hc.2.1 hc.2.2 o hev
+  | oneAt Z A => exact card_pureI1At gates p hp hg hU hN R Z A hc.1 hc.2.1 hc.2.2 o hev
 
 /-- Every class lies in the gate wires of the lift. -/
 theorem pureCls_subset (R : Finset (Fin n)) (c : PureOpt n) :
@@ -317,6 +391,7 @@ theorem pureCls_subset (R : Finset (Fin n)) (c : PureOpt n) :
   | one Z => exact hsub hi
   | zero m => exact hsub hi
   | zeroAt z m => exact hsub hi
+  | oneAt Z A => exact hsub hi
 
 /-! ## Disjointness of pure classes (W0, W1, D across worlds, for the merge sets themselves) -/
 

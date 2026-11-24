@@ -149,7 +149,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   PureSDRs (PureSDRWitness: cxT2, cxe3, ADV3, cxT4, fixh16, …); 12:00: PureHall.lean: graph systems PureSDR ⇔ Hall on pure
   menus (`pureSDR_iff_hall`), `no_graph_minCE_of_hall` = Lean target of front's heredity lane. 12:35: HEREDITY (PureHeredity):
   natural restriction FAILS for top-only I0 (kernel-checked witness `heredity_top_fails`, restricted class = {h}); FIX
-  `PureOpt.zeroAt` (I0 at any zero point) ⇒ `restrictedMenu_subset_pureMenu`, `restricted_deficient`. NOW: heredity lane.
+  `PureOpt.zeroAt` (I0 at any zero point) ⇒ `restrictedMenu_subset_pureMenu`, `restricted_deficient`. 12:50: I1 widening
+  `PureOpt.oneAt` (atoms {u} ∪ A_u, A_u ⊆ Z) ⇒ x_O := 1 heredity too (`restrictedMenu1_subset_pureMenu`). NOW: heredity lane.
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.

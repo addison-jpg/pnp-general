@@ -195,3 +195,8 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   include zeroAt (more options; all earlier data claims stay true). Gap NOT formalized: the restricted circuit is modelled
   by evaluating at points vanishing off V (= Kernel/W951Cube.val_restrictZero; its dead gates are constants and copies,
   at which a union-find run never merges).
+- (12:50 UTC) I1 WIDENING (board: 'cTAHG widening PureValid'): `PureOpt.oneAt Z A`, atoms ({u} ∪ A_u, 1) with A_u ⊆ Z ∪ {u}
+  (`card_pureI1At` ≥ d_w: the extra coordinates are 1 at the zero point, so GM applies). Heredity under the board integrator's
+  x_O := 1 (where plain I1 fails, 1,160 of 18,210): `restrictedMenu1_subset_pureMenu`, `restricted1_deficient`. So with
+  zeroAt (x := 0) and oneAt (x := 1) both restrictions keep restricted menus inside the original menus, and a Hall-deficient
+  F stays deficient after either restriction. All PureSDR / PureHall theorems cover the four option kinds.

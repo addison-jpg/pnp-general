@@ -23,6 +23,10 @@ options of the original circuit (`RestrValid`):
 * `restrValid_valid`, `restrictedMenu_subset_pureMenu`: every restricted option is a valid option of
   the original instance with the same class, so `restricted menu(w) ⊆ menu(w)` for `R = S_w ⊆ V`.
   This uses the general zero point `zeroAt` (`PureSDR.lean`).
+* `oneAt` (`PureSDR.lean`: I1 atoms `({u} ∪ A_u, 1)`, `A_u ⊆ Z ∪ {u}`) does the same for the board
+  integrator's restriction `x_O := 1` (50293a5: there I0 transfers and plain I1 does not, the
+  restricted atoms being `{u} ∪ O`): `RestrValid1`, `restrOpt1`, `restrValid1_valid`,
+  `restrictedMenu1_subset_pureMenu`, `restricted1_deficient`.
 * `heredity_top_fails` (Lean-checked witness): with the top-only options (`one`, `zero`) the inclusion
   is FALSE. In scaffold's forced-h circuit fixh16_20 (`n = 4`, `K4` pairs, 16 gates), for
   `F = {S_1, S_2}`, `V = {0, 2, 3}`, `w = 2`, `S_w = {0, 3}`, the restricted I0 option `m_0 = {0, 2}`,
@@ -73,18 +77,21 @@ def RestrValid (gates : List Gate) (p : ℕ) (V R : Finset (Fin n)) : PureOpt n 
   | .one Z => PureValid gates p R (.one Z) ∧ ∀ v, v ∉ V → Z v = false
   | .zero m => PureValid gates p R (.zero m) ∧ ∀ u ∈ R, m u ⊆ V
   | .zeroAt z m => PureValid gates p R (.zeroAt z m) ∧ (∀ v, v ∉ V → z v = false) ∧ ∀ u ∈ R, m u ⊆ V
+  | .oneAt Z A => PureValid gates p R (.oneAt Z A) ∧ (∀ v, v ∉ V → Z v = false) ∧ ∀ u ∈ R, A u ⊆ V
 
 /-- The class of a restricted option, in the original circuit (lifted wires). -/
 noncomputable def restrCls (gates : List Gate) (p : ℕ) (V R : Finset (Fin n)) : PureOpt n → Finset ℕ
   | .one Z => pureI1 gates p R Z
   | .zero m => pureI0At gates p R (topIn V R) m
   | .zeroAt z m => pureI0At gates p R z m
+  | .oneAt Z A => pureI1At gates p R Z A
 
 /-- The original option a restricted option stands for. -/
 def restrOpt (V R : Finset (Fin n)) : PureOpt n → PureOpt n
   | .one Z => .one Z
   | .zero m => .zeroAt (topIn V R) m
   | .zeroAt z m => .zeroAt z m
+  | .oneAt Z A => .oneAt Z A
 
 theorem restrCls_eq (gates : List Gate) (p : ℕ) (V R : Finset (Fin n)) (c : PureOpt n) :
     restrCls gates p V R c = pureCls gates p R (restrOpt V R c) := by
@@ -105,19 +112,22 @@ theorem restrValid_valid (gates : List Gate) (p : ℕ) (V R : Finset (Fin n)) (c
         have hvR : v ∉ R := fun h => hvu (hmR u hu v hv h)
         simp [topIn, canonPt, hmV u hu hv, hvR]
   | zeroAt z m => exact hc.1
+  | oneAt Z A => exact hc.1
 
 /-- Options as a finite sum type (for menus as `Finset`s). -/
-def optOfSum : (Fin n → Bool) ⊕ (Fin n → Finset (Fin n)) ⊕ ((Fin n → Bool) × (Fin n → Finset (Fin n))) →
-    PureOpt n
+def optOfSum : (Fin n → Bool) ⊕ (Fin n → Finset (Fin n)) ⊕ ((Fin n → Bool) × (Fin n → Finset (Fin n))) ⊕
+    ((Fin n → Bool) × (Fin n → Finset (Fin n))) → PureOpt n
   | .inl Z => .one Z
   | .inr (.inl m) => .zero m
-  | .inr (.inr zm) => .zeroAt zm.1 zm.2
+  | .inr (.inr (.inl zm)) => .zeroAt zm.1 zm.2
+  | .inr (.inr (.inr ZA)) => .oneAt ZA.1 ZA.2
 
 theorem optOfSum_surj (c : PureOpt n) : ∃ s, optOfSum s = c := by
   cases c with
   | one Z => exact ⟨.inl Z, rfl⟩
   | zero m => exact ⟨.inr (.inl m), rfl⟩
-  | zeroAt z m => exact ⟨.inr (.inr (z, m)), rfl⟩
+  | zeroAt z m => exact ⟨.inr (.inr (.inl (z, m))), rfl⟩
+  | oneAt Z A => exact ⟨.inr (.inr (.inr (Z, A))), rfl⟩
 
 open Classical in
 /-- **The restricted menu** of `R`: the union of the classes of the restricted options. -/
@@ -153,12 +163,77 @@ theorem restricted_deficient {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : L
   lt_of_le_of_lt (Finset.card_le_card (Finset.biUnion_mono fun w _ =>
     restrictedMenu_subset_pureMenu gates p V (S w))) hdef
 
-/-- A wire that is `1` at `(top_w, 0)` and `0` at every atom `(e_u, 1)` lies in no class of a valid
+/-! ## The restriction `x_O := 1` off `V` (board integrator's kill test, 50293a5) -/
+
+/-- Options of the instance restricted by `x_v := 1` off `V`, as options of the original circuit:
+every point is `1` off `V`; the restricted world-1 atoms `e_u` are `{u} ∪ Vᶜ` (`oneAt Z (· ∪ Vᶜ)`),
+the restricted `top_w` is `top_w` itself (for `R ⊆ V`). -/
+def RestrValid1 (gates : List Gate) (p : ℕ) (V R : Finset (Fin n)) : PureOpt n → Prop
+  | .one Z => PureValid gates p R (.one Z) ∧ ∀ v, v ∉ V → Z v = true
+  | .zero m => PureValid gates p R (.zero m) ∧ ∀ u ∈ R, Vᶜ ⊆ m u
+  | .zeroAt z m => PureValid gates p R (.zeroAt z m) ∧ ∀ v, v ∉ V → z v = true
+  | .oneAt Z A => PureValid gates p R (.oneAt Z A) ∧ ∀ v, v ∉ V → Z v = true
+
+/-- The original option a `x_O := 1` restricted option stands for. -/
+def restrOpt1 (V : Finset (Fin n)) : PureOpt n → PureOpt n
+  | .one Z => .oneAt Z fun _ => Vᶜ
+  | .zero m => .zero m
+  | .zeroAt z m => .zeroAt z m
+  | .oneAt Z A => .oneAt Z fun u => A u ∪ Vᶜ
+
+/-- **Heredity of options under `x_O := 1`.** -/
+theorem restrValid1_valid (gates : List Gate) (p : ℕ) (V R : Finset (Fin n)) (c : PureOpt n)
+    (hc : RestrValid1 gates p V R c) : PureValid gates p R (restrOpt1 V c) := by
+  cases c with
+  | one Z =>
+    obtain ⟨⟨hZR, hZ⟩, hV⟩ := hc
+    exact ⟨hZR, hZ, fun u _ v hv => Or.inr (hV v (Finset.mem_compl.mp hv))⟩
+  | zero m => exact hc.1
+  | zeroAt z m => exact hc.1
+  | oneAt Z A =>
+    obtain ⟨⟨hZR, hZ, hA⟩, hV⟩ := hc
+    refine ⟨hZR, hZ, fun u hu v hv => ?_⟩
+    rcases Finset.mem_union.mp hv with hv | hv
+    · exact hA u hu v hv
+    · exact Or.inr (hV v (Finset.mem_compl.mp hv))
+
+open Classical in
+/-- **The restricted menu under `x_O := 1`**: the union of the original classes of the restricted
+options (each restricted option's class is the class of `restrOpt1`). -/
+noncomputable def restrictedMenu1 (gates : List Gate) (p : ℕ) (V R : Finset (Fin n)) : Finset ℕ :=
+  (Finset.univ.filter fun s => RestrValid1 gates p V R (optOfSum s)).biUnion
+    fun s => pureCls gates p R (restrOpt1 V (optOfSum s))
+
+/-- **Heredity of menus under `x_O := 1`.** -/
+theorem restrictedMenu1_subset_pureMenu (gates : List Gate) (p : ℕ) (V R : Finset (Fin n)) :
+    restrictedMenu1 gates p V R ⊆ pureMenu gates p R := by
+  classical
+  intro g hg
+  rw [restrictedMenu1, Finset.mem_biUnion] at hg
+  obtain ⟨s, hs, hgs⟩ := hg
+  exact mem_pureMenu.mpr ⟨_, restrValid1_valid gates p V R _ (Finset.mem_filter.mp hs).2, hgs⟩
+
+/-- Hall deficiency passes to the `x_O := 1` restriction. -/
+theorem restricted1_deficient {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ)
+    (V : Finset (Fin n)) (F : Finset (Fin m))
+    (hdef : (F.biUnion fun w => pureMenu gates p (S w)).card < F.card) :
+    (F.biUnion fun w => restrictedMenu1 gates p V (S w)).card < F.card :=
+  lt_of_le_of_lt (Finset.card_le_card (Finset.biUnion_mono fun w _ =>
+    restrictedMenu1_subset_pureMenu gates p V (S w))) hdef
+
+/-- The options of the first definition (top-only I0, plain I1 atoms). -/
+def PureOpt.IsTop : PureOpt n → Prop
+  | .one _ => True
+  | .zero _ => True
+  | .zeroAt _ _ => False
+  | .oneAt _ _ => False
+
+/-- A wire that is `1` at `(top_w, 0)` and `0` at every atom `(e_u, 1)` lies in no class of a
 `one` / `zero` option. -/
 theorem not_mem_top_classes (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) (i : ℕ)
     (h0 : val (lift n p gates) (ext (Zof R) false) i = true)
     (h1 : ∀ c ∈ liftSet R, val (lift n p gates) (atom1 c) i = false) (c : PureOpt n)
-    (hc : ∀ z m, c ≠ .zeroAt z m) : i ∉ pureCls gates p R c := by
+    (hc : c.IsTop) : i ∉ pureCls gates p R c := by
   intro hi
   cases c with
   | one Z =>
@@ -169,7 +244,8 @@ theorem not_mem_top_classes (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) (
     have h := pureI0At_zero (gates := gates) (p := p) (R := R) (z := Zof R) (m := m) hi
     rw [h0] at h
     exact absurd h (by decide)
-  | zeroAt z m => exact absurd rfl (hc z m)
+  | zeroAt z m => exact hc.elim
+  | oneAt Z A => exact hc.elim
 
 theorem mem_restrictedMenu_of {gates : List Gate} {p : ℕ} {V R : Finset (Fin n)} {g : ℕ}
     (c : PureOpt n) (hc : RestrValid gates p V R c) (hg : g ∈ restrCls gates p V R c) :
@@ -203,7 +279,7 @@ theorem hf_mem9 : 9 ∈ restrCls sdrFixh20Gates 5 hfV (sdrFixh20S 2) (.zero hfM)
   rw [hf_restrCls]; exact Finset.mem_singleton_self 9
 
 theorem hf_notTop :
-    ∀ c : PureOpt 4, (∀ z m, c ≠ .zeroAt z m) → 9 ∉ pureCls sdrFixh20Gates 5 (sdrFixh20S 2) c :=
+    ∀ c : PureOpt 4, c.IsTop → 9 ∉ pureCls sdrFixh20Gates 5 (sdrFixh20S 2) c :=
   not_mem_top_classes sdrFixh20Gates 5 (sdrFixh20S 2) 9 hf_values.1 hf_values.2
 
 /-- **Heredity fails for the top-only options.** The restricted instance of fixh16_20 to
@@ -211,7 +287,7 @@ theorem hf_notTop :
 option of the original instance (it IS in the original `zeroAt` menu, `restrictedMenu_subset_pureMenu`). -/
 theorem heredity_top_fails :
     9 ∈ restrictedMenu sdrFixh20Gates 5 hfV (sdrFixh20S 2) ∧
-      ∀ c : PureOpt 4, (∀ z m, c ≠ .zeroAt z m) → 9 ∉ pureCls sdrFixh20Gates 5 (sdrFixh20S 2) c :=
+      ∀ c : PureOpt 4, c.IsTop → 9 ∉ pureCls sdrFixh20Gates 5 (sdrFixh20S 2) c :=
   ⟨@mem_restrictedMenu_of 4 sdrFixh20Gates 5 hfV (sdrFixh20S 2) 9 (.zero hfM) hf_restrValid hf_mem9,
     hf_notTop⟩
 
