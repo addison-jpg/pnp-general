@@ -184,8 +184,9 @@ ProofComplexity, Search, Outside) are here unchanged.
   `951/work/notes951/lemmaK_referee/` (from pequalnp-work referee-lemmaK-dwV8p e0c113a); verdicts
   `951/board/agents/dwV8p-referee-*.md`. Earlier: D-qg-1 quantum circuits (L-qg-110 to 119, on main). DONE: REFEREE of research's
   F2 LIGHT case (951/board/agents/dwV8p-referee-F2-light.md): B, K0-K3 CORRECT; LIGHT-STAR has a WORDING GAP ("no world-0
-  witness at Q + v" does not imply leaving F2; fix: "no witness"), repaired form + the step hold on 58,795 light instances.
-  Free for the next referee assignment.
+  witness at Q + v" does not imply leaving F2; fix: "no witness", applied by research a02727d), repaired form + the step hold
+  on 58,795 light instances. DONE (coord 12:54): front A2's F1 and F2-desc both CORRECT (951/board/agents/
+  dwV8p-referee-F2-heavy.md; F1 false for light v as front says). Free for the next referee assignment.
 
 - session_01GmnDhgAdyDijthBgZgJFWn (ex D-qg-2; scaffold helper for 951; attached here 09:25 with owner OK in
   its own chat): D-qg-2 LANDED here (L-qg-120 to L-qg-127 checked, `Defs/QuantumGravityChannels.lean`;
