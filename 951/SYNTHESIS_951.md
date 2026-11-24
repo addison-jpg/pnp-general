@@ -99,3 +99,37 @@ is whether the techniques scale.
 
 Bottom line: the 951 chain is barrier-free (no barrier applies) and barrier-bounded (no technique
 here goes past linear for general circuits).
+
+## 5. The ladder's big picture (scaffold, 12:30; landed by coord)
+
+Data: 2,159 essential one-NOT circuits on PG(2,3) (v = 13, base 39) and 65 on AG(2,4) (v = 16,
+base 60), all correct, slack s − base = 4..8; Fano v = 7 and AG(2,3) v = 9 at slack 1..5 found
+nothing in 30-40 min per size (not UNSAT). So this is about near-minimal circuits, NOT s < base.
+U below is the union of NARROW pure classes (I1 at maximal h-zero Z, I0 at top_w).
+
+1. **The count is tight at the merge layer; the slack is NOT-gadget overhead.** MU = |U| − base ∈
+   {0, 1, 2} on every ladder circuit while s − base = 4..8: each circuit is a monotone merge
+   skeleton (about one d_w-gate class per line) plus a NOT gadget that never merges in any pure
+   world (gates outside U: about 4.2 per circuit — the NOT, ANDs gated by N, other ANDs, some ORs).
+   U does use 2-3 N-dependent merges: the NOT does not save merges, it moves a few. Tight circuits
+   (MU = 0, 8%) occur at every slack.
+2. **Hub structure.** h is almost always one point (the hub u) or an OR of 2-3 points. Lines through
+   u are type B (world-1 class at top_w); the other q² lines are type A (u ∈ top_w). On
+   28,066 / 28,067 sets the I1 class is unique, at Z = top_w − {u}, and for most type-A lines it
+   EQUALS the I0 class: both worlds merge the line at the same gates.
+3. **Sharing is rare, local and paid for.** Shared U gates: 0 on 1,975 circuits, 1 on 182, 2 on 2.
+   A shared gate has the world-switching shape g = (y ∧ A) ∨ (¬y ∧ B) (merges line a in one world,
+   line b in the other); the line gets a second class, net |U| change 0. Long chains of switching
+   gates (selector path) need an off-plane system; none on planes.
+4. **Point deletion is almost free; the hub is always good.** x_v := 0: MU = MU'_v + (lost − new −
+   deg v) exactly; the step holds at every point on 2,106 / 2,159 circuits and at ≥ 11 of 13 on
+   all; all 60 bad points are NON-hub; deleting a heavy point is always good (narrow menus; for the
+   count-set union UC the x_v := 0 route is dead, see the Fable's N1).
+5. **MUL and the next rung (speculative).** The barriers (cxMU_dd) are the opposite regime: high
+   slack, junk gates that collapse classes. The real enemy is a long chain of world-switching
+   gates; with one NOT there is one selector y. With 2 NOTs (4 worlds, selectors y1, y2) a switching
+   gate can serve up to 4 lines and chains can branch; prediction: on planes the count stays
+   tight; where 2 NOTs could beat base is a 2-selector selector path. Proposed later tests (after
+   the 13:30 convergence, per the owner's no-new-routes rule): MUL with 4-world lifted classes on a
+   2-NOT PG(2,3) circuit with two hubs; a 2-selector selector path.
+

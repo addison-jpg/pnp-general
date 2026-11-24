@@ -60,7 +60,8 @@ stays valid with every oracle. The three barrier rows say what a proof of P ≠ 
 | Natural proofs: L-lib-086 (not L-lib-035: its hypothesis holds for no function, L-lib-093) | natural properties (constructive: decidable in time polynomial in the truth table; large) useful against P/poly, provided an exponentially secure pseudorandom function exists in P | complexity = volume needs states whose complexity grows; Bouland, Fefferman and Vazirani (ITCS 2020): pseudorandom boundary states defeat every efficient boundary test, the same shape as a pseudorandom function defeating every constructive test. Hardness of decoding Hawking radiation (Harlow and Hayden; Aaronson) rests on the same kind of cryptographic premise | L-qg-103 (if P = NP, every polynomial-time, length-preserving function is invertible in polynomial time): the classical core, a complexity row. Pseudorandom states need definitions |
 
 **What the map says, and its limit.** Premise (layer C, owner): a physical model is an oracle
-world, so "relative to the physics" is "relative to the oracle". Closed timelike curves are taken
+world, so "relative to the physics" is "relative to the oracle". (P_CTC is a computational model, not an
+oracle; the identification is the premise, not a result.) Closed timelike curves are taken
 as the world of a PSPACE-complete oracle (P_CTC = PSPACE), quantum black-box access as a
 random-oracle world (`notes/checker/note-2-physics-models-and-the-three-barriers.md`). So physics can tell us what is computable IN a model (model route), and
 which hardness claims rest on which assumptions (assumption route). A proof that works unchanged
