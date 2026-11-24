@@ -194,5 +194,8 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 **Snapshot 22:55 UTC: ONLY ASTEROID** (owner 22:49, verified in main's chat: "close all nonsense being done that isnt asteroid related. big board push").
 - Warden's single duty now: every seat has stopped non-asteroid work and no solver, search or build runs for a closed task.
   Open tasks: asteroid-bench, asteroid-native, asteroid-look, and the WISH rows at the top of BOARD.md. All else CLOSED.
-- 22:50: main relayed the stop to every seat. Seen stopping: C4(2) seat (pkill c4t_sat.py, fclasses). Recheck at ~23:05.
+- 23:05 stop check: every non-asteroid seat is stopped and idle with stop lines pushed (C4(2), dRKvz, qg-d2, Generalize, desktop Coord,
+  Research, ResearcH, pnp-subproblem, checker-CHECKER, coord, scaffold). Only build still running: cTAHG's `lake build PEqualNP.Verify.All`
+  (the board's required check; dRKvz already saw it pass on main at ede9c57, so a duplicate, cheap, left running). Nothing killed.
+- Idle seats asking which asteroid task to take: qg-d2 (gAdyD). Asteroid owner = main; seats take an asteroid task file themselves.
 - Gap 18:55 -> 22:50: warden loop was disabled at 18:56 by GeNeRALIZE ("warden loop scheduled task disabled (not deleted)").
