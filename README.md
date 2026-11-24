@@ -61,7 +61,7 @@ counting bound), L-qg-119 (two-qubit circuits are Haar-null when 9k + 3n + 1 < 4
 The step of the proof is a derivative and the count is its integral. Three sums, all over finite objects, carry the idea (details in §6):
 
 - **Chain sum (L5, checked).** Along every chain of cubes, slack(∅) = Σ_i (gain_i − cost_i). The Theorem needs only the sum to be ≥ 0
-  (integral form); Conjecture C2 asks every term to be ≥ 0 (pointwise form); C3 asks for paths of at most k points; **L7 (checked)** proves the
+  (integral form); Conjecture C2 asks every term to be ≥ 0 (pointwise form); C3 asks for paths of at most k points (refuted for every fixed k without `MinCE.no_rewire`, open with it); **L7 (checked)** proves the
   Theorem from a descent with any number of points. Every counterexample to the pointwise form has a positive sum (+6, +15).
 - **Average over zero points (the fractional form).** Each set w spreads a probability distribution μ_w over its zero points so that no gate
   carries more than one unit: Σ_w Pr_{z∼μ_w}[g ∈ M_z(w)] ≤ 1 for every gate g. Summed over gates this gives base ≤ #gates. Its LP dual is the
@@ -79,7 +79,7 @@ One NOT gate saves nothing on (1,1)-disjoint Boolean sums (statement below). Wit
 **Proved (checked):** every circuit whose lift wins the certificate game (T1, T2); the NOT gate reads an input (T3, no minimality); every cube
 that is local (T4); all |S_w| ≤ 3, and every circuit with no output in two-world normal form, for any number of NOT gates (T5).
 **Open:** exactly the minimal counterexamples whose lift loses the game: C1 (a disjoint system of lifted classes) or C2 (a positive point step
-under `MinCE.no_rewire`). If true for every number t of NOT gates (C4(t)), dense designs would give a superlinear lower bound for general
+under `MinCE.no_rewire`). If the gate count holds for every number t of NOT gates (C4g(t); its witness-count form C4w is refuted for t ≥ 4), dense designs would give a superlinear lower bound for general
 circuits, which is not known for any explicit function.
 
 ### The ladder and the general gaps
@@ -88,7 +88,7 @@ circuits, which is not known for any explicit function.
 |---|---|
 | 0 NOT gates (monotone) | exponential bounds (Razborov 1985); exact `base` for Boolean sums (Wegener, Mehlhorn) |
 | **1 NOT gate** | **the Theorem below: one `sorry`** |
-| t NOT gates | Conjecture C4(t); Amano–Maruoka 2005; a circuit with t NOT gates is a parity of O(2^t) monotone functions (Blais et al., arXiv 1410.8420), and t = 1 is the two-world split used here |
+| t NOT gates | Conjecture C4g(t) (gate count, open for t ≥ 2; witness count C4w refuted for t ≥ 4); Amano–Maruoka 2005; a circuit with t NOT gates is a parity of O(2^t) monotone functions (Blais et al., arXiv 1410.8420), and t = 1 is the two-world split used here |
 | ⌈log₂(n+1)⌉ NOT gates | **checked**: as strong as unrestricted circuits up to polynomial size (T6, L-gen-104) |
 | unrestricted | **checked:** L-gen-001–004 (the gaps imply each other; the ladder is monotone; its top is the general case), XOR: C(x ⊕ f) ≥ max(C f, C ¬f) + 3, = min + 4 when C(f) ≠ C(¬f) (L-gen-005, 006), C(f) + 1 ≤ C(¬x ∧ f) ≤ C(f) + 2 (L-gen-007). **Open:** L-gen-101 (NP ⊄ P/poly, = P ≠ NP in circuit form), 102 (NP ⊄ SIZE(n^k) for every k; Kannan proves it one level up), 103 (no linear-size circuits; best known ≈ 5n, 3.1n by Li–Yang 2022), the XOR case C(f) = C(¬f) |
 
