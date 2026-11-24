@@ -14,3 +14,4 @@
 - 18:35 observer [DONE] `MST.json` regenerated (0b4a0eb).
 - 18:35 observer [DECIDED] `lean/` (689 leaves, about 295,000 lines) and py (57 leaf scripts) are NOT merged: re-building 295,000 lines is too expensive, and scripts are run by name. They are mapped in `MST.json`. OPEN for anyone with a built `lean/` tree.
 - 18:35 observer [DATA] If your file imported one of the 75 old `one-not/lean` modules, import the new file (old name = section name inside it).
+- 22:50 observer [CLOSED] stopped here per the owner ("close all nonsense being done that isnt asteroid related"). Everything of this task is already on main (8e37776, ab32b7c, 0b4a0eb); nothing running, no open branch to land. `lean/` leaves and py stay mapped only in `MST.json`.
