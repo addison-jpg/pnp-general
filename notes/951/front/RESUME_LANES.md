@@ -31,3 +31,23 @@ with optimal prices vanishing on cross-world gates.
 Lean landing: MergeFrac levels 1–4 (no_minCE_of_mergePrice, bound_of_coverPrice, bound_of_servablePacking); MergeWorld + MergeLink
 (coord-951 37d69f6; NoMixedFrac; mergestack d68ad9d world split of the price form); cTAHG W951/Heavy.lean; qg101 CrossWorld.lean.
 Test via scaffold (session_01GmnDhdt8ydm1adQLjCP9we), gAdyD (session_01GmnDhgAdyDijthBgZgJFWn), front-612 (session_01GmnDhc6FBZAseL8bDQaYsu).
+(j) 08:32 scaffold: heavy split v2 (split3.py unchanged) holds on 20,508 more heavy pairs, max LP 1.0, 0 failures ({0123},{04},{15},{45}
+    6060 circuits incl. the 47 pinned failures; star {0123}+{x4}; q_all/q_and_q2t; HARD4). Background checker runs v2 on every new
+    generator circuit. Total v2 evidence: ~64k (circuit, heavy v) pairs, 0 failures.
+(k) 08:33 gAdyD R4 (agents/qg-d2-nomixed.md): v2 ≤ 1 on all 39,168 pairs. Q1: B's menu can shrink to TWO points per set,
+    {e_v, z_{S_b}} (common base e_v = Wegener single-base point, or own top point z_{S_b}): ≤ 1 on all; B over {e_v} alone fails on 196.
+    Q2: the star NEEDS mixed points: world-0-only star fails on 8 essential clean circuits (cxe3: 3.0); in 35,045 pairs some star set
+    has no world-0 point at all. => Case II = each b ∌ v mixes 2 C0 points {e_v, z_{S_b}}; the sunflower uses mixed points.
+(l) 08:33 HANDOFF front-612 -> front (owner's 1to1 seat merge; front-612 = session_01GmnDhc6FBZAseL8bDQaYsu folds into front).
+    State: pequalnp-work mirror/laughing-mccarthy-ifdzly 205e5c0 (board line aa931d2). All data/LP, no Lean.
+    - support-B harness research/front/no_minCE/supportB/harness.py (imports coord-951 tools/w951; data-corpora + w9 + instances, 41,079 circuits;
+      plug rules via harness.run_rule).
+    - MergeFrac LP on 163: L* ≤ 1, duals 0/1; 14 adversarial circuits with optimal K + world choice (dual_worlds.*).
+    - Config (I) (research/front/no_minCE/cfgI/): 7 extreme price vectors, 1/3 on {a ∈ g12/g13/g15, b ∈ g17/g18/g19, g33}; world contradiction
+      L = 2 when S0, S1 both have h = 0; FracMatch 7/20; HANDOFF_tractability.md matches coord's MergeWorld2 / RefinedNoMixed target.
+    - OPEN: 3 cfgI hill-climbers for a full MergeFrac L* > 1 (climb_mf.py, end ~08:55; best = forced L* = 1); tractability's angle-2 rules.py
+      not delivered yet (plug into harness.run_rule when it lands).
+(m) 08:35 front-612 (supportB/heavy_split.py/.txt on mirror/laughing-mccarthy-ifdzly): on the 14 adversarial circuits, heavy points exist in 8
+    (cfgI, cx1, cx3, j_cx1, r_cx1, v1, relworst_a, xfail1; none in cxU6, cxU8, cx44_0/1, cxP2, cxr). v2 and the R4 menu {e_v, z_{S_b}}: max LP 1.000
+    for every heavy v, never > 1. The 1.0 is FORCED (a B-set's private chain lies in every restricted merge set: cfgI v=1, S1 ⊇ g17-g19,
+    S2 ∋ g22; cx1 S1 ⊇ g20-g22, S2 ∋ g26), not a conflict.
