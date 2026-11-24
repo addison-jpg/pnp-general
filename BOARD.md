@@ -24,7 +24,7 @@ each other directly. The Discussion session (session_01GmnDheAyFnVcvRApd4xeES) r
 | L-gen-101 | some language in NP has no polynomial-size circuits | open; it gives P ≠ NP; the circuit form of the problem |
 | L-gen-102 | for every degree `k`, some language in NP has no circuits of size `c * n^k + c` (the smaller version: fixed degree) | open for NP for every `k ≥ 1`; proved one level up the polynomial hierarchy (Kannan 1982) |
 | L-gen-103 | some language in NP has no linear-size circuits | open; best explicit bounds are linear: about `5n` gates for AND, OR, NOT; `3.1n - o(n)` for all two-input gates (Li, Yang 2022), by gate elimination |
-| L-gen-104 | `⌈log₂ (n + 1)⌉` NOT gates are as good as any number, up to a polynomial factor | known mathematics (Markov 1958; Fischer 1975); not yet a row |
+| L-gen-104 | `⌈log₂ (n + 1)⌉` NOT gates are as good as any number, up to a polynomial factor | CHECKED 2026-11-24: `PEqualNP.General.Fischer.L104 : Gap.L104` (`General/FischerMain.lean`), p = 30 (X + 1)^3; Markov 1958, Fischer 1975 |
 
 Checked: L-gen-001 (101 gives 102), L-gen-002 (102 gives 103), L-gen-003 (`SIZENot s s = SIZE s`:
 the top of the NOT gate ladder is the general case), L-gen-004 (the ladder is monotone).
@@ -40,7 +40,8 @@ work reaches the general problem.
 | 0 | 0 (monotone) | superpolynomial bounds known (Razborov 1985) |
 | 1 | 1 | L-meta-951: one NOT gate saves nothing on Boolean sums; one open statement, `no_minCE`. Lives in `951/` (separate Lake project `951/lean`, imported 1:1 from pequalnp-work coord-951 ee11077; board history `951/board/`). Sharpest open form: `MergePrice` for a minimal counterexample. Coord: session_01GmnDhdShHMzucEAq9ottn6 |
 | k | fixed `k`, then `k` growing | Amano, Maruoka 2005: clique with `(1/6) log log n` NOT gates |
-| top | `⌈log₂ (n + 1)⌉` | equal to unrestricted circuits up to a polynomial factor (gap L-gen-104) |
+| n | `n` (NOTs on inputs only) | CHECKED: `Fischer.stage1`: SIZE s ⊆ SIZENot (2s + n + 2) n (dual rail) |
+| top | `⌈log₂ (n + 1)⌉` | equal to unrestricted circuits up to a polynomial factor: CHECKED (L-gen-104, `Fischer.L104`) |
 
 **Track pairs: each P versus NP track beside its counterpart.**
 
@@ -70,7 +71,7 @@ arguments that survive low-degree extensions. L-lib-086: with strong pseudorando
 |---|---|---|
 | 1 | Bring the L-meta-951 tree over one-to-one (`lean/PEqualNP/W951/`, `Kernel/`, `work/`, `tools/`), then close `no_minCE` | coord, front |
 | 2 | Tie `SIZENot` to the 951 definitions; state rung `k` | tractability |
-| 3 | L-gen-104 (Fischer) as a row; Kannan's theorem as a row (needs the second level of the hierarchy) | tractability, helpers; CLAIMED for L-gen-104 by GeNeRALIZE (session_01GmnDhczcdJyEX4WwHrrzPx, 2026-11-24): stage 1 dual-rail (SIZE s ⊆ SIZENot (2s+n) n), stage 2 Fischer inverter (lean/PEqualNP/General/Fischer*.lean) |
+| 3 | L-gen-104 (Fischer) as a row; Kannan's theorem as a row (needs the second level of the hierarchy) | tractability, helpers; L-gen-104 DONE by GeNeRALIZE (General/FischerBasic, FischerInverter, FischerMain; std axioms): a superpolynomial lower bound for circuits with ⌈log₂(n+1)⌉ NOT gates is now, in Lean, one for all circuits |
 | 4 | What is out there for unrestricted circuits: verify and extend the list below | research, the Generalize sessions |
 | 5 | Read the official Clay problem description (claymath.org is not reachable from the cloud sessions) | whoever has network access |
 
