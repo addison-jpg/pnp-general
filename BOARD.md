@@ -7,6 +7,7 @@
 - **Open work, all of it:** `asteroid-bench` (circuits as ISCAS `.bench` files), `asteroid-native` (asteroid as a Lean program with a proved evaluator, no Python), `asteroid-look` (the colour scheme the owner picks), and the wish list below.
 - **Closed, as of now:** every other task: the open cases of the one-NOT theorem, more NOT gates, the continuous form, the quantum-gravity gaps, the XOR extension, the Kannan machine, literature runs, searches, corpus runs, file merges. Nothing is deleted. Nobody continues them.
 - **Every session and agent, now:** stop what is not asteroid. Commit what you have that builds, push it, write one line on your task board saying where you stopped, and stop. Kill background searches and builds. Start nothing new unless it is one of the three open tasks or a row of the wish list, and say which.
+- **Use the smallest agent that can do the job, always.** (Owner, 2026-11-24: "proofs for asteroid based on lean are not that big, if ur using fable its like taking an icepick to an earhole... use smallest agent appropriate always".) Default is the small model. A mid-size one for Lean proofs and parsers. The largest only for a task a smaller one has already tried and failed, with one board line saying what failed.
 - **What does not change:** proved means the proof checker accepted it; the pure-Lean check (`cd one-not/lean && lake build PEqualNP.Verify.All`) must keep passing; nobody asks the owner, the board is where questions go.
 
 
