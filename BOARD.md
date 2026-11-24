@@ -46,6 +46,7 @@
 | [`asteroid-programs`](boards/tasks/asteroid-programs.md) | every numbered item of the formal proof (notes/front-page-2026-11-24.md) | One asteroid program per item that can be run | main's Sonnet |
 | [`beyond-one-not`](boards/tasks/beyond-one-not.md) | C4, T6 | One NOT gate is rung 1: plan the next rungs with asteroid | one research agent of main |
 | [`edges`](boards/tasks/edges.md) | the whole structure | Fix up the edges: confirm findings, cheap language wishes, small Lean corollaries | three small agents of main |
+| [`all-not-gates`](boards/tasks/all-not-gates.md) | C4 | Two provable statements for any number of NOT gates: the per-set flip lemma, exact small cases | two agents of main |
 | [`rewire-read-not`](boards/tasks/rewire-read-not.md) | C2 | Find a correct one-NOT circuit with every gate read, no gate-saving rewiring (`MinCE | scaffold, cTAHG (rewire_r6.py), main's hunter (`one-not/tools/search/`, needs a no-rewire filter) |
 | [`c2-under-no-rewire`](boards/tasks/c2-under-no-rewire.md) | C2 | Prove: every gate read + no gate-saving rewiring ⇒ at every cube with positive base some point has gain ≥ cost | dwV8p, front A2, qg-d2 |
 | [`c1-three-gate`](boards/tasks/c1-three-gate.md) | C1 | Smallest lost certificate game: sets {0,1,2}, {0,3,4}, NOT input x1 ∨ x3 | cTAHG, desktop Coord, scaffold (k = 3 data) |
