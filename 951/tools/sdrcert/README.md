@@ -44,3 +44,9 @@ between the header and `end`. Current: cxT2, cxe3, ce3, hard4s, cxr, cfgI, adv3,
 Group `witness` (`python3 pure_export.py OUT --group witness`): every `*.json` in `951/data/witnesses` (one circuit per file,
 dict with name, n, sets, gates, outs). Output in `lean/PEqualNP/W951/PureSDRWitnessLadder.lean`, with a correctness bundle per
 circuit for small n. Current: pasch_s14_heavy_atmostone (n = 6, 14 gates, NOT gate 1, menus 1/2/1/2; worlds I1, I0, I1, I0).
+
+Group `ladder` (`python3 pure_export.py OUT --group ladder`): scaffold's v-ladder, `ladder_instances.json` (sent 11:38 by
+message, sha256 of the minified list 8f73fe7c…2ff6 verified; correctness, one NOT and the line structure re-checked here in
+Python). 8 PG(2,3) circuits (n = 13, 13 lines, s = 43-45) and 4 AG(2,4) circuits (n = 16, 20 lines, s = 64-65); every one
+has a PureSDR, kernel-checked in `PureSDRWitnessLadder.lean` (about 2 min). Export: 42 s (n = 16 tables are 2^16-bit ints).
+

@@ -13,6 +13,7 @@ i + 1, real wire i > n + p keeps its number). Lean recomputes every class (`deci
 
 Usage (from 951/tools/sdrcert): python3 pure_export.py OUT.lean [name ...]  |  python3 pure_export.py OUT.lean --group fixh16
        python3 pure_export.py OUT.lean --group witness   (every *.json in 951/data/witnesses)
+       python3 pure_export.py OUT.lean --group ladder    (scaffold's v-ladder, ladder_instances.json)
 """
 import itertools, json, os, sys
 
@@ -36,7 +37,8 @@ INSTANCES = [  # (Lean name, source, loader)
     ('cxT4', 'tools/w951/tests/instances/front-match__fc__cxT4.json', 'json'),
 ]
 GROUPS = {'fixh16': 'tools/sdrcert/fixh16_forced.json',  # as export.py: `--group fixh16`
-          'witness': 'data/witnesses'}  # a directory: one circuit per *.json (dict with name, n, sets, gates, outs)
+          'witness': 'data/witnesses',  # a directory: one circuit per *.json (dict with name, n, sets, gates, outs)
+          'ladder': 'tools/sdrcert/ladder_instances.json'}  # scaffold's v-ladder (PG(2,3), AG(2,4)), a JSON list
 
 
 def camel(s):
@@ -164,8 +166,8 @@ if __name__ == '__main__':
             INSTANCES[:] = [(camel(json.load(open(os.path.join(path, f)))['name']), os.path.join(src, f), 'json')
                             for f in sorted(os.listdir(path)) if f.endswith('.json')]
         else:
-            INSTANCES[:] = [('fixh' + d['name'].split('_')[1], src, 'scaffold:' + d['name'])
-                            for d in json.load(open(path))]
+            pre = (lambda d: 'fixh' + d['name'].split('_')[1]) if sys.argv[3] == 'fixh16' else (lambda d: camel(d['name']))
+            INSTANCES[:] = [(pre(d), src, 'scaffold:' + d['name']) for d in json.load(open(path))]
         sys.argv[2:] = []
     only = sys.argv[2:] or [x[0] for x in INSTANCES]
     parts, report = [], []
