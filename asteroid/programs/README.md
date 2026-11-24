@@ -21,3 +21,31 @@ One program per group of items of [`notes/front-page-2026-11-24.md`](../../notes
 5. A Lean form for `gates(c) >= base(c)` (the Theorem has no kernel statement; only the OR-only count does) and for `witness` soundness.
 6. `C3 two-point step` at k = 2 on the matched twin trees at n >= 16 is too slow in the registry (minutes), so the C3_k refutation is not shown.
 7. Kernel claims for n = 14 to 16 (twin trees): tables of 16,384 inputs time out (a `correct` claim on the twin tree took more than 2 minutes).
+
+### New in edges (for the docs seat)
+
+Extension `asteroid/ext_edges.py`; program `programs/edges.ast` (Lean 28 s / no Lean 1 s; 26 Python claims, 15 kernel theorems); unit test `tests/test_edges.py`. Core change: `asteroid.py` has `EXTRA_F` (a dict name -> function of a circuit) and two lines at the top of `F` that consult it.
+
+Grammar lines:
+
+    F(NAME) OP RHS           F also in  flip flipclasses flipslack   (Python only; "Python only" is printed under `by lean`)
+    claim hyps(NAME) [= true|false] [by lean]
+    claim if EXPR1 then EXPR2                       also  claim forall c in W: if EXPR1 then EXPR2
+    claim EXPR1 and EXPR2 [and ...] [by lean]       each part is any claim expression; Lean claims of each part are emitted
+    claim theorem(NAME) [by lean]
+    note (printed, not a claim)                     `note: NAME has k NOT gates; slack counts OR witnesses (the one-NOT count); use flipslack for several NOT gates`
+                                                    whenever slack / orwitness / phi / forall cubes slack is used on a circuit with more than one NOT gate
+
+Verb-table rows:
+
+| Form | Meaning |
+|---|---|
+| `flip(c)` | gates whose value changes (either direction) from a zero point of a set to two of its atoms (`conjectures._flip_gates`, mode flip) |
+| `flipclasses(c)` | flip gates counted once per function up to complement |
+| `flipslack(c)` | `flipclasses(c) - base(c)`; equals `margin["C4 count (flip classes)"](c)` (checked on every witness file with n <= 9 and the 4 many-NOT files); the repaired count for several NOT gates |
+| `hyps(c)` | the Theorem's other hypotheses, identical to `hypsB` (AsteroidCheap.lean): sets nodup and < n, one output wire per set, at least one gate, every set at least 2 points, two sets share at most 1 point, at most one NOT gate. Lean: `hypsB c = true` (or `= false` for `hyps(c) = false`) by `decide +kernel` |
+| `if A then B` | true when A is false or B is true; Python only |
+| `A and B` | both; with `by lean` each part keeps its own Lean form |
+| `theorem(c)` | `if hyps(c) and correct(c) then gates(c) >= base(c)`; Lean (when the hypotheses hold): `hypsB`, `correctB` and `(c.sets.map (fun S => S.length - 1)).sum ≤ c.gates.length`, three kernel theorems. A script `conjecture theorem: ...` shadows the builtin |
+
+Done from the WISH list above: items 1 (implication, hypotheses), 4 (negated claim: `claim not if ...` and `not hyps(c)`), 5 (Lean form for `gates >= base` through `theorem(c)`).

@@ -1,12 +1,13 @@
 {
  ".": {
   "counts": {
-   "checked": 31,
-   "tested": 4,
+   "checked": 34,
+   "tested": 5,
    "refuted": 3
   },
   "verified": [
    "8d76417d",
+   "7d2be507",
    "4a95d48e",
    "1088bc27",
    "a023c28e",
@@ -15,6 +16,7 @@
    "04a575bf",
    "255631be",
    "7dbb073c",
+   "4825af69",
    "f4704cc4",
    "0736a8e5",
    "98a42596",
@@ -33,7 +35,6 @@
    "b293d3f3",
    "4617c228",
    "c011de04",
-   "e793c0f4",
    "c324f5f5",
    "0d85fe20",
    "3bdca250",
@@ -43,16 +44,21 @@
    "cd97a6ec",
    "8ab74f39",
    "9421c6de",
-   "b35aefb4"
+   "b35aefb4",
+   "86ffd5a1",
+   "015ef337",
+   "4290878b"
   ],
   "unverified_here": []
  },
  "asteroid": {
   "counts": {
-   "checked": 5
+   "checked": 5,
+   "tested": 1
   },
   "verified": [
    "8d76417d",
+   "7d2be507",
    "4a95d48e",
    "1088bc27",
    "a023c28e",
@@ -61,12 +67,6 @@
   "unverified_here": [
    {
     "id": "ff1f357b",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "7d2be507",
     "why": [
      "needs a second seat in by"
     ]
@@ -102,13 +102,14 @@
   "counts": {
    "tested": 4,
    "refuted": 3,
-   "checked": 26
+   "checked": 29
   },
   "verified": [
    "1b00e1bc",
    "04a575bf",
    "255631be",
    "7dbb073c",
+   "4825af69",
    "f4704cc4",
    "0736a8e5",
    "98a42596",
@@ -127,7 +128,6 @@
    "b293d3f3",
    "4617c228",
    "c011de04",
-   "e793c0f4",
    "c324f5f5",
    "0d85fe20",
    "3bdca250",
@@ -137,7 +137,10 @@
    "cd97a6ec",
    "8ab74f39",
    "9421c6de",
-   "b35aefb4"
+   "b35aefb4",
+   "86ffd5a1",
+   "015ef337",
+   "4290878b"
   ],
   "unverified_here": []
  },
@@ -145,13 +148,14 @@
   "counts": {
    "tested": 3,
    "refuted": 2,
-   "checked": 1
+   "checked": 2
   },
   "verified": [
    "1b00e1bc",
    "04a575bf",
    "255631be",
    "7dbb073c",
+   "4825af69",
    "f4704cc4",
    "0736a8e5"
   ],
@@ -196,18 +200,19 @@
  "one-not/data/witnesses": {
   "counts": {
    "refuted": 2,
-   "checked": 1
+   "checked": 2
   },
   "verified": [
    "7dbb073c",
+   "4825af69",
    "f4704cc4",
    "0736a8e5"
   ],
   "unverified_here": [
    {
-    "id": "4825af69",
+    "id": "7374a4e3",
     "why": [
-     "SearchCheck.Asteroid_corpus.W_0_claim0 not in one-not/lean/PEqualNP/W951/Asteroid_corpus.lean"
+     "needs a second seat in by"
     ]
    }
   ]
@@ -225,7 +230,7 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 25
+   "checked": 27
   },
   "verified": [
    "5fe90015",
@@ -242,7 +247,6 @@
    "b293d3f3",
    "4617c228",
    "c011de04",
-   "e793c0f4",
    "c324f5f5",
    "0d85fe20",
    "3bdca250",
@@ -252,13 +256,16 @@
    "cd97a6ec",
    "8ab74f39",
    "9421c6de",
-   "b35aefb4"
+   "b35aefb4",
+   "86ffd5a1",
+   "015ef337",
+   "4290878b"
   ],
   "unverified_here": []
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 25
+   "checked": 27
   },
   "verified": [
    "5fe90015",
@@ -275,7 +282,6 @@
    "b293d3f3",
    "4617c228",
    "c011de04",
-   "e793c0f4",
    "c324f5f5",
    "0d85fe20",
    "3bdca250",
@@ -285,7 +291,10 @@
    "cd97a6ec",
    "8ab74f39",
    "9421c6de",
-   "b35aefb4"
+   "b35aefb4",
+   "86ffd5a1",
+   "015ef337",
+   "4290878b"
   ],
   "unverified_here": []
  },
@@ -300,7 +309,7 @@
  },
  "one-not/lean/PEqualNP/W951": {
   "counts": {
-   "checked": 24
+   "checked": 26
   },
   "verified": [
    "30cf54bf",
@@ -316,7 +325,6 @@
    "b293d3f3",
    "4617c228",
    "c011de04",
-   "e793c0f4",
    "c324f5f5",
    "0d85fe20",
    "3bdca250",
@@ -326,9 +334,18 @@
    "cd97a6ec",
    "8ab74f39",
    "9421c6de",
-   "b35aefb4"
+   "b35aefb4",
+   "86ffd5a1",
+   "015ef337",
+   "4290878b"
   ],
   "unverified_here": [
+   {
+    "id": "e793c0f4",
+    "why": [
+     "first_ast_tiny_concrete not in one-not/lean/PEqualNP/W951/AsteroidSound.lean"
+    ]
+   },
    {
     "id": "3c831627",
     "why": [
@@ -339,6 +356,18 @@
     "id": "b33eef97",
     "why": [
      "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "8e96673f",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "6403b575",
+    "why": [
+     "SearchCheck.Asteroid_edges.ok_claim0 not in one-not/lean/PEqualNP/W951/Asteroid_edges.lean"
     ]
    }
   ]

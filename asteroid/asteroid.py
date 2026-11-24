@@ -38,8 +38,11 @@ OPS = {"=": operator.eq, "!=": operator.ne, "<": operator.lt, "<=": operator.le,
 LEANOP = {"=": "=", "!=": "≠", "<": "<", "<=": "≤", ">": ">", ">=": "≥"}
 env, src, lean_claims, results = {}, {}, [], []
 
+EXTRA_F = {}     # name -> function of a circuit; extensions add first-class terms here (ext_edges: flip, flipclasses, flipslack)
 def F(name, arg, conj=None):
     c = env[arg]
+    if not EXTRA_F: _exts()
+    if name in EXTRA_F: return EXTRA_F[name](c)
     return {"gates": lambda: len(c["gates"]), "nots": lambda: core.nots(c), "base": lambda: core.base(c),
             "witness": lambda: len(core.witness(c, 0, any_gate=True)), "orwitness": lambda: len(core.witness(c, 0, any_gate=False)),
             "slack": lambda: core.slack(c, 0, any_gate=False), "anyslack": lambda: core.slack(c, 0, any_gate=True),

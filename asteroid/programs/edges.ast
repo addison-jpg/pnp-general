@@ -1,0 +1,76 @@
+# The edges: the NOT-gate fix (flip, flipclasses, flipslack), hyps, implication, `and`, and the Theorem as one claim (ext_edges.py).
+# README items: Theorem, C4, C4w, T6.
+corpus W = one-not/data/witnesses/*.json where n <= 9
+corpus N = one-not/data/witnesses/nonlocal/general_count_below_base_*.json
+
+# 1. flip classes as first-class functions, cross-checked against the registry conjecture "C4 count (flip classes)".
+claim forall c in W: flipslack(c) = margin["C4 count (flip classes)"](c)
+claim forall c in W: flipslack(c) >= 0
+claim forall c in W: flipclasses(c) >= base(c)
+count c in W: flip(c) > flipclasses(c)
+claim forall c in N: flipslack(c) = margin["C4 count (flip classes)"](c)
+claim forall c in N: flipslack(c) >= 0            # the many-NOT files: the repaired count holds
+count c in N: slack(c) >= 0                       # prints the one-NOT note for each many-NOT file
+count c in N: witness(c) < base(c)                # the OR-gate count (any gate type) falls below base here
+claim forall c in N: if nots(c) >= 2 then flipslack(c) >= 0
+
+# 2. hyps: true on the corpus, and false on tiny circuits that fail exactly one condition each.
+claim forall c in W: hyps(c)
+claim forall c in N: if nots(c) <= 1 then hyps(c)
+circuit ok 3
+  g = or 0 1
+  h = or 1 2
+  set 0 1 -> g
+  set 2 1 -> h
+end
+circuit single 2
+  g = or 0 1
+  set 0 -> 0
+  set 0 1 -> g
+end
+circuit share2 3
+  g = or 0 1
+  h = or g 2
+  set 0 1 -> g
+  set 0 1 2 -> h
+end
+circuit twonot 2
+  a = not 0
+  b = not a
+  g = or b 1
+  set 0 1 -> g
+end
+circuit nogate 2
+end
+circuit repeated 2
+  g = or 0 1
+  set 0 0 1 -> g
+end
+circuit outside 2
+  g = or 0 1
+  h = or 0 g
+  set 0 3 -> g
+end
+claim hyps(ok) by lean
+claim hyps(single) = false by lean              # a set with 1 point
+claim hyps(share2) = false by lean              # two sets share 2 points
+claim hyps(twonot) = false by lean              # 2 NOT gates
+claim hyps(nogate) = false by lean              # no gate
+claim hyps(repeated) = false by lean            # a repeated element
+claim hyps(outside) = false by lean             # an element not < n
+claim not hyps(single)
+claim hyps(single) = false and hyps(twonot) = false
+
+# 3. implication, also over a corpus.
+claim forall c in W: if nots(c) <= 1 then gates(c) >= base(c)
+claim if nots(twonot) <= 1 then gates(twonot) < 0     # false hypothesis: holds
+claim not if nots(ok) <= 1 then gates(ok) < 0
+
+# 4. the Theorem as one claim; in the kernel on small circuits (hypsB, correctB, gate count).
+claim forall c in W: theorem(c)
+claim forall c in N: theorem(c)                         # vacuous where nots >= 2
+claim theorem(ok) by lean
+claim theorem(twonot)                                   # hypotheses fail: vacuous, Python only
+let x = load one-not/data/witnesses/ess_rand_clean_744.json
+claim theorem(x) by lean
+claim hyps(x) and correct(x) and gates(x) >= base(x) by lean

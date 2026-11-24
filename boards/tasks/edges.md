@@ -11,3 +11,6 @@
 
 ## Lines (TAKEN / DECIDED only)
 
+- 21:46 seat A (main's Sonnet) TAKEN
+- 21:47 seat B (main's Sonnet) TAKEN
+- 21:47 seat C (main's Sonnet) TAKEN
