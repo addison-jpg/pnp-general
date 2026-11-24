@@ -82,3 +82,15 @@ general: pairs of distinct classes of one set by |C − C'| on 27 circuits: 1: 5
    - (T') for d_w >= 2: Hall for F plus tightness of G give |U(F) \ U(G)| >= base(F − G), but a class of v ∈ F − G that meets U(G)
      in part is lost WHOLE while its other gates still count on the left; so Hall for the restricted menus of F − G does not
      follow (same gap as (M)); (T') is again a consequence of PureSDR, so untestable on the corpus.
+
+## Data from scaffold 11:58 (ladder corpus; scaffold's numbers, not re-run by research except where marked)
+- Unique pure SDR on 177 ladder circuits (173 of 2,159 PG(2,3), 4 of 65 AG(2,4)). 171: every set has exactly ONE pure class and
+  the classes are pairwise disjoint (Hall with equality, nothing to force; test case 1 is of this kind). 6: one set has 2
+  classes and a single-class neighbour kills one in ONE step (test case 2's kind). 0 need more than unit propagation.
+  #pure SDRs on PG(2,3): {1: 173, 2: 1747, 3: 163, 4: 63, 5: 1, 6: 11, 9: 1}.
+- Desktop Coord's choice-free candidate CANON fails its Q1: type-A sets whose I1 and I0 classes never coincide (smallest
+  essential: named.jsonl:12, n = 5, w0 I1 {7,8,9} vs I0 {15,16,17}, disjoint). CORROBORATED by research (kinds.py, 27 circuits):
+  of 111 sets with both an I1 and an I0 class, 46 have EVERY I1 class gate-disjoint from EVERY I0 class (e.g. cfgI set
+  [0,1,2,3]: I1 {12,13,15}, I0 {30,31,33}; there sets [0,1,2,3] and [0,4,5,6] even share the I1 class {12,13,15}).
+  For (M): the two worlds of one set can offer gate-disjoint options, so a deletion argument cannot assume a set's options
+  overlap (contrast pg2 / pg3, where alternatives differ in one gate).
