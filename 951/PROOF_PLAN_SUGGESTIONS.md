@@ -21,8 +21,41 @@ rerun them there.
 | Canonical start (section 3) | **DEAD.** Its options admit no SDR on 13 of 62 circuits. |
 | Interval classes at extreme points only | **DEAD**, also in the matching form: fail on cxT2 and cxe3 even when split sets get every plain zero point. |
 | Plain zero points (MergeSDR) | holds on 62 of 62, as scaffold found on the full corpus. |
-| Mixed zero points | **NECESSARY for sets through a heavy point, also when `h(top_w) = 1`.** cxe3: all 8 solutions use a mixed point for at least two of the three sets through the heavy point 0. cxT2: 2 of 108 solutions are world-pure. |
+| Mixed zero points | Needed among PLAIN zero points (cxe3: all 8 plain solutions use one for at least two of the three sets through the heavy point). **Not needed with interval classes: see the second run below.** |
 | One-set induction in a fixed order of the sets | **DEAD.** No tested order makes every partial disjoint choice extendable: best is "latest output first", 53 of 62; every failure is a fixh16 circuit. |
+
+### Second run (after the referee strengthened W1): pure interval classes suffice on all 62
+
+The referee showed W1's size bound needs no "no heavy point" hypothesis (`C_1 ≥ real` wirewise, so
+`C_1(o_w)(e_u) = 1` always). So world-1 classes exist for EVERY set, and world-0 atoms can be
+chosen per atom. `kill_tests/ext.py` tests exactly these two kinds of class, with no plain and no
+mixed zero point anywhere:
+
+* **I1 (world 1, every set):** tables of `C_1`, zero point any point of `D` avoiding `S_w` that is
+  maximal with that property (`top_w` when `h(top_w) = 0`), atoms `e_u`.
+* **I0 (world 0, sets with `h(top_w) = 1`):** tables of `C_0`, zero point `top_w`, atom of `u` =
+  `m_u ∪ {u}` for a minterm `m_u` of `h` with `m_u ∩ S_w ⊆ {u}`, chosen separately for each `u`
+  (a heavy point uses `m_u = {u}`).
+
+| Family of options | Circuits with an SDR (of 62) |
+|---|---|
+| I0 and I1 only | **62** (every class has exactly `d_w` merges) |
+| I1 only (world 1 everywhere) | 47 |
+| I0 for sets with `h(top_w) = 1`, I1 for the others | 55 |
+| canonical start of section 3, plus the W1 class for split sets | 49 (the same 13 failures) |
+
+So mixed zero points are NOT needed: the earlier "necessary" was an artefact of offering only one
+minterm for all atoms and no world-1 class to sets with a heavy point. On the two hard circuits:
+cxT2 has exactly 2 pure SDRs, cxe3 has 8, and in every one of them **exactly one set through each
+heavy point is in world 0 and the other sets through it are in world 1**.
+
+**Proposed target (replaces plain MergeSDR if scaffold confirms it on the full corpus): PureSDR.**
+Every set picks a class of kind I0 or I1, pairwise disjoint. Every class lives in one of the two
+MONOTONE circuits `C_0`, `C_1`, so `CanonClass.lean` applies to all of them: sizes by
+`canon_size`, same-world disjointness by `orClz_disjoint` (explicit crossing condition),
+cross-world collisions only at NOT-dependent wires by `orClz_cross`. What remains is a choice of
+world per set (and of minterms / of the point of `D`), with the heavy-star rule above as the first
+conjecture to test.
 
 **What this changes.** Sections 3 and P1 below are withdrawn as stated. The sets that carry the
 difficulty are the sets through a heavy point (`h ≥ x_u`), at mixed zero points; for the other
@@ -74,7 +107,8 @@ Then `|K_0(w; m)| ≥ d_w`, and `K_0(w; m) ∩ K_0(w'; m') = ∅` unless `m ∩ 
 function, so `C_0(g)(top_w') = 0` gives `C_0(g) ≤ o_w'`; with `C_0(g)(m + e_u) = 1` for two
 `u ∈ S_w` and `m ∩ S_w' = ∅`, both `u` lie in `S_w'`, against `|S_w ∩ S_w'| ≤ 1`.
 
-**W1 (world 1).** Let `h(top_w) = 0` and `h(e_u) = 0` for every `u ∈ S_w` (no heavy point). Put
+**W1 (world 1).** Let `h(top_w) = 0` (the referee: no condition on heavy points is needed,
+because `C_1 ≥ real` wirewise gives `C_1(o_w)(e_u) = 1` for every `u`). Put
 `K_1(w) = {OR gates g : C_1(g)(top_w) = 0 and C_1(g)(e_u) = 1 for at least two u ∈ S_w}`.
 Then `|K_1(w)| ≥ d_w`, and `K_1(w) ∩ K_1(w') = ∅` for every other such set `w'`.
 *Proof.* Size: GM in `C_1` with `Z = top_w` and `p_u = e_u` (NOT `top_w + e_u`: the atoms are
