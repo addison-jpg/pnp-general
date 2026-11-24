@@ -7,6 +7,16 @@ Data: repo 951/ (67 circuits, n ≤ 10) and 19,828 circuits (n ≤ 10) from pequ
 (chk/, w6B/, w6C/, w7/), data-fixh16 (fixh16_clean) and workspace (sc_n4-6); E2 menus = ext.py (I1 at maximal Z, I0 at top_w
 per atom), a SUBSET of the Lean U, so every 'holds' below holds a fortiori for the Lean U.
 
+## !! CORRECTION (research, after front A1's 12:20 TARGET WARNING): over PURE classes MU itself is FALSE for general circuits
+VERIFIED independently (typeA_inc.py, peel_mu.py on 951/data/witnesses/cxMU_dd.json, cxMU_clean2.json, cxMU_clean2_DD.json;
+sets {0,1,2,3}, {0,4,5,6}, both type A, s = 30 / 33 / 36, base 6): |U_E2| = 5 = base − 1, so INC*, MU over E2 and PEEL all
+FAIL there (deficit 1), although they hold on all 19,895 corpus circuits; the UC superset count holds there (slack 5 to 8).
+Front B also refutes PEEL over the larger GP menus on Pasch s = 14 and cxT2 (where the E2 version holds: PEEL is not monotone
+in the menus). So §2's 'holds' rows and §3's 'no minimality needed' are corpus facts only: over pure classes the increment, and
+any peeling step, MUST use s < base. What survives: P1, P0 and 'merges precede the output' (§1, §3) are proved for arbitrary
+zero points and atoms of the lifted monotone circuit (D needs nothing else), so the reduction MU ⇐ INC* carries over verbatim
+to the LIFTED classes of the proposed target (MUL / L-LIFT): K_free costs the world-1 lifted classes nothing.
+
 ## 1. What the free classes cost the type-A sets (PROVED: instances of Lean D = CanonClass.orClz_disjoint)
 P1. Every world-1 class (atoms e_u, ANY valid zero point Z, Lean .one Z) of ANY set w is disjoint from K_1(v) for every free
     v ≠ w. Proof: a merge gate g of w is true (C_1) at e_a and e_b for two points a ≠ b of S_w; |S_w ∩ S_v| ≤ 1, so one of
