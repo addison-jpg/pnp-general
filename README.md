@@ -5,6 +5,107 @@ The higher level gist is: quantum/gravity relativity maps onto the relativity ba
 
 **Claim of this repository.** Lower bounds for circuits of AND, OR and NOT gates, written as a formal proof. Each numbered item below is a Definition, Lemma, Theorem, Conjecture or Counterexample; each says whether it is **checked** (the Lean checker accepted it, axioms `propext`, `Classical.choice`, `Quot.sound`), **paper**, or **tested n/N**. Nothing here says that P versus NP is settled. Names: [`NAMES.md`](NAMES.md). Sources: [`LITERATURE.md`](LITERATURE.md). Work in progress: [`BOARD.md`](BOARD.md) and the four boards under [`boards/`](boards/).
 
+---
+
+## At a glance
+
+| | |
+|---:|:---|
+| **54** | rows checked in Lean: **47 quantum gravity**, 7 general circuit rows ([`lean/PEqualNP/QuantumGravity/`](lean/PEqualNP/QuantumGravity/README.md), [`lean/PEqualNP/General/`](lean/PEqualNP/General/)) |
+| **1** | `sorry` left in the one-NOT development (`no_minCE`), and two conjectures that would close it (C1, C2) |
+| **0** | failures of the count \|`realWitness`\| ≥ `base`: 19,534 suite instances and 80,198 Fano circuits × 128 cubes |
+| **60+** | refuted statements, each with a counterexample ([`one-not/DEAD_ENDS.md`](one-not/DEAD_ENDS.md)) |
+| **3** | barriers checked as Lean statements: relativization, algebrization, natural proofs |
+| **⌈log₂(n+1)⌉** | NOT gates already give all circuits up to polynomial size (Markov, Fischer; checked) |
+
+## One map, four programs
+
+```mermaid
+flowchart LR
+  QG["<b>Quantum gravity</b><br/>47 checked rows<br/>complexity growth · CTCs · holographic codes"]
+  RS["<b>Riemann sums</b><br/>chain sums over cubes (L5, L7)<br/>averages over zero points (§6)"]
+  ONE["<b>One-NOT theorem</b><br/>L_meta_951<br/>one sorry: C1 / C2"]
+  LAD["<b>NOT-gate ladder</b><br/>rung 0 monotone · rung 1 · rung ⌈log₂(n+1)⌉ = all circuits"]
+  BAR["<b>Barriers</b><br/>relativization · algebrization · natural proofs"]
+  PNP["<b>P vs NP</b>, circuit form<br/>L-gen-101 (open)"]
+  QG -- "Cesàro time average on a closed timelike curve (L6) = chain sum (L5)" --> RS
+  QG -- "a physical model is an oracle world (premise)" --> BAR
+  RS -- "the step is a derivative, the count its integral (C2, C3)" --> ONE
+  ONE -- "rung 1" --> LAD
+  LAD -- "top rung = general circuits (T6)" --> PNP
+  BAR -- "which arguments cannot work, in which world" --> PNP
+```
+
+### Quantum gravity → complexity (47 rows, checked)
+
+Several arguments in quantum gravity are arguments about computational complexity: complexity = volume / = action, the hardness of decoding
+Hawking radiation, the hardness of the AdS/CFT dictionary, computers on closed timelike curves, bounds on the number of states of a region.
+Each rests on a classical, finite core: a counting bound, a fixed point, a reduction. This program states those cores in Lean and checks them.
+Physical premises appear in no Lean statement. Overview: [`lean/PEqualNP/QuantumGravity/README.md`](lean/PEqualNP/QuantumGravity/README.md).
+
+| Theme | What is checked | Rows |
+|---|---|---|
+| **Complexity growth** (complexity = volume / action) | gate-word counting, (\|S\|+1)^k bounds and hard reversible maps; subadditivity; at most linear growth in time; minimal prefixes; linear growth up to exponential length; recurrence to zero in a finite group; local reversible circuits are exponentially hard; no countable exactly-universal gate set; errors add; approximate complexity; compiling gate sets; reversible ⊂ quantum; Haar-ball ⇒ Knill counting; the counting bound gives a hard unitary | L-qg-001–007, 101, 110–114, 117, 118 |
+| **Closed timelike curves** (Deutsch consistency, P_CTC) | a consistent state always exists: classical, probabilistic (stationary distribution) and quantum (fixed density matrix of every Kraus channel; unital case; classical embeddings); a CTC finds solutions; P_CTC is never vacuous; P ⊆ P_CTC; **NP ⊆ P_CTC and coNP ⊆ P_CTC** (Brun; Aaronson–Watrous); closure under complement; Brun's counter; the deterministic decision rule | L-qg-008, 009, 102, 120–127, 160–168 |
+| **Holography and codes** (bulk reconstruction, perfect tensors) | finite-state holographic bound; the five-qubit code is a distance-3 stabilizer code, recovers from the loss of any two qubits, distance not four; the six-qubit perfect state and its Lagrangian stabilizer group; the code inside the perfect state (stabilizers, logical operators); operator pushing through the perfect tensor; the counts 16 / 64 / one logical qubit; distance-d codes recover from < d erasures | L-qg-010, 140–149 |
+| **Hardness assumptions** | if P = NP, every polynomial-time length-preserving function is invertible in polynomial time (so one-way functions imply P ≠ NP) | L-qg-103 |
+
+**Two routes to P vs NP, neither settles it.** *Assumption route:* hardness arguments in gravity assume a primitive; classical one-way
+functions imply P ≠ NP (L-qg-103), while quantum-only primitives (pseudorandom states, EFI) are not known to (Kretschmer's oracle).
+*Model route:* physics fixes the machine model; with closed timelike curves one pass of a polynomial-size circuit decides SAT (L-qg-009 and the
+P_CTC rows). **Open:** L-qg-115 (Haar measure of an operator-distance ball ≤ (C ε)^(4^n), Knill 4.3 / Szarek), L-qg-116 (Knill's quantum
+counting bound), L-qg-119 (two-qubit circuits are Haar-null when 9k + 3n + 1 < 4^n, Knill 3.4), L-qg-169 (P_CTC ⊆ EXP).
+
+### Riemann sums: chain sums, averages and the time average
+
+The step of the proof is a derivative and the count is its integral. Three sums, all over finite objects, carry the idea (details in §6):
+
+- **Chain sum (L5, checked).** Along every chain of cubes, slack(∅) = Σ_i (gain_i − cost_i). The Theorem needs only the sum to be ≥ 0
+  (integral form); Conjecture C2 asks every term to be ≥ 0 (pointwise form); C3 asks for paths of at most k points; **L7 (checked)** proves the
+  Theorem from a descent with any number of points. Every counterexample to the pointwise form has a positive sum (+6, +15).
+- **Average over zero points (the fractional form).** Each set w spreads a probability distribution μ_w over its zero points so that no gate
+  carries more than one unit: Σ_w Pr_{z∼μ_w}[g ∈ M_z(w)] ≤ 1 for every gate g. Summed over gates this gives base ≤ #gates. Its LP dual is the
+  price inequality; the reduction of `no_minCE` to the price form is checked in the one-NOT development; real merge sets fail it
+  (`Cex.starOfFourPairsWithAThresholdNOTInput`), and its lifted two-gate case has a paper proof (an odd-triangle parity argument).
+- **Time average (L6, checked).** A Deutsch-consistent state of a closed timelike curve is reached by Cesàro averages, and the displacement is
+  (end − start)/(n+1). L5 and L6 are the same identity; this is the link the gist names (a premise: it selects statements, it proves none).
+- **The limit.** A Riemann sum over inputs at one length (2⁻ⁿ Σ_x f(x), the "hypercomplex polynomial" / Walsh expansion) is a property of
+  the function and cannot see circuit size; across lengths there is no coherence to take a limit of. The sums that see size run over cubes,
+  chains and zero points (issue 12; [`one-not/DEAD_ENDS.md`](one-not/DEAD_ENDS.md), family G).
+
+### The one-NOT theorem (rung 1)
+
+One NOT gate saves nothing on (1,1)-disjoint Boolean sums (statement below). Without the NOT gate this is the theorem of Wegener and Mehlhorn.
+**Proved (checked):** every circuit whose lift wins the certificate game (T1, T2); the NOT gate reads an input (T3, no minimality); every cube
+that is local (T4); all |S_w| ≤ 3, and every circuit with no output in two-world normal form, for any number of NOT gates (T5).
+**Open:** exactly the minimal counterexamples whose lift loses the game: C1 (a disjoint system of lifted classes) or C2 (a positive point step
+under `MinCE.no_rewire`). If true for every number t of NOT gates (C4(t)), dense designs would give a superlinear lower bound for general
+circuits, which is not known for any explicit function.
+
+### The ladder and the general gaps
+
+| Rung | Status |
+|---|---|
+| 0 NOT gates (monotone) | exponential bounds (Razborov 1985); exact `base` for Boolean sums (Wegener, Mehlhorn) |
+| **1 NOT gate** | **the Theorem below: one `sorry`** |
+| t NOT gates | Conjecture C4(t); Amano–Maruoka 2005; a circuit with t NOT gates is a parity of O(2^t) monotone functions (Blais et al., arXiv 1410.8420), and t = 1 is the two-world split used here |
+| ⌈log₂(n+1)⌉ NOT gates | **checked**: as strong as unrestricted circuits up to polynomial size (T6, L-gen-104) |
+| unrestricted | **checked:** L-gen-001–004 (the gaps imply each other; the ladder is monotone; its top is the general case), XOR: C(x ⊕ f) ≥ max(C f, C ¬f) + 3, = min + 4 when C(f) ≠ C(¬f) (L-gen-005, 006), C(f) + 1 ≤ C(¬x ∧ f) ≤ C(f) + 2 (L-gen-007). **Open:** L-gen-101 (NP ⊄ P/poly, = P ≠ NP in circuit form), 102 (NP ⊄ SIZE(n^k) for every k; Kannan proves it one level up), 103 (no linear-size circuits; best known ≈ 5n, 3.1n by Li–Yang 2022), the XOR case C(f) = C(¬f) |
+
+### Barriers
+
+The three barriers are checked as Lean statements (T8). The techniques of this repository are placed against them:
+
+| Technique | Relativization | Algebrization | Natural proofs | Reach |
+|---|---|---|---|---|
+| merge counting, lifted classes, witness gates | not ruled out: reads AND/OR gate semantics | not ruled out: Boolean points and monotonicity only | not ruled out: the property is not large | linear; 2^t worlds with t NOT gates |
+| chain sums and averages (L5, L7, prices) | same | same | the parity step is a design fact, not a property of random functions | linear |
+| physical models (quantum gravity) | a physical model is an oracle world: it says which arguments cannot work in which world | — | spectral / Fourier arguments are natural (L-lib-086) | selects statements |
+
+---
+
+# Part II — the formal proof
+
 ## Theorem (`L_meta_951`, one `sorry`)
 
 Let S_1, …, S_m ⊆ {1, …, n} with |S_w| ≥ 2 and |S_v ∩ S_w| ≤ 1 for v ≠ w. Let C be a circuit of fan-in-2 AND and OR gates and at most one NOT gate whose w-th output is the OR of the inputs in S_w. Then
@@ -35,7 +136,7 @@ Without the NOT gate this is the theorem of Wegener and Mehlhorn, and `base` is 
 - **T1** `liftSDR_of_ugame`, `no_minCE_of_ugame` (checked). `UGameWon` ⇒ `LiftSDR`. Hence the Theorem holds for every circuit whose lift wins the certificate game.
 - **T2** `ugame_of_G1`, `ugame_of_G0`, `ugame_of_allHeavy`, `ugame_of_typeB` (checked). The game is won in four named cases.
 - **T3** `muF2_of_notVar` (checked). The Theorem holds when the NOT gate reads an input, with no minimality.
-- **T4** `no_minCE_of_gainF2_or_cubeLocal` (checked). If at every cube with positive `base` the cube is local, or some point v has gain(v) ≥ cost(v) for `realWitness`, there is no minimal counterexample.
+- **T4** `no_minCE_of_gainF2_or_cubeLocal`, `no_minCE_of_gainF2_or_local`, `baseDQ_le_F2_of_LW1` (checked). If at every cube with positive `base` the cube is local, or satisfies LW1, or some point v has gain(v) ≥ cost(v) for `realWitness`, there is no minimal counterexample.
 - **T5** `small3_bound`, `bound_of_noDD`, `partial_bound` (checked). The Theorem holds when all |S_w| ≤ 3; when no output is in two-world normal form (any number of NOT gates); and a partial bound.
 
 ## 4. Proof of the Theorem, as far as it goes
