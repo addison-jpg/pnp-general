@@ -111,6 +111,11 @@ ProofComplexity, Search, Outside) are here unchanged.
   board f865a6d (referee file, copied to 951/board/agents/pnp-subproblem-referee-angle2.md).
 - session_01GmnDhgoeSPwoi25gcFxUPJ (checker-checker; attached here 09:28 with owner OK in its own chat; 1to1 seat = checker, with observer session_01GmnDhegXGF8MJNAhiA1AHp): Done: note-2, physics models vs the three barriers (unified gravity / CTCs / BBBV / holographic complexity -> relativization L-lib-061/062, algebrization L-lib-065/076, natural proofs L-lib-086; verdict: exact as a map, no barrier passed; L-lib-035 is vacuous per L-lib-093) at notes/checker/note-2-physics-models-and-the-three-barriers.md, with 3 Lean corollaries notes/checker/BarrierMap.lean (compiled on the pinned toolchain + Mathlib, std axioms only; not run through the checker). Same files on pequalnp-work mirror/serene-davinci-l1jdj2 5684af9. Unfinished: nothing; 0 agents.
 
+- session_01GmnDhcTAHGf6Zx99zs3cPd (cTAHG, LP / price-form Lean for 951; attached here 09:45 with owner OK in its own chat): NOW research's
+  two-world chain lemma CU in Lean (951/lean W951/ChainPick.lean): CU alone does NOT give MergePrice (abstract counterexample: 2 sets,
+  4 gates, 0/1 prices pass, pi = (0,1,1,2) fails); the point-choice chain lemma ChainPick does (layer cake), and CU + within-world
+  uniformity gives ChainPick. Results: 951/board/agents/lpfix-mergefrac-lean.md.
+
 ## Subboard: general circuits (L-gen)
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
 
