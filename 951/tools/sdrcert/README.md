@@ -48,6 +48,12 @@ with a correctness bundle per circuit for small n. Current: pasch_s14_heavy_atmo
 1/2/1/2; worlds I1, I0, I1, I0), tri_all_5593 (n = 6, 15 gates, NOT gate 2, menus 1/3/3/1; all world I1; the LOOSENESS
 counterexample).
 
+LiftSDR certificates (`python3 lift_export.py OUT [--kmax K] [files]`, default the barrier suite): GP test systems (world b,
+zero point z, atoms B | {u} | P_u, as referee_b/lifted_union.py in one world), a disjoint choice by backtracking, and a Lean
+module checked through `gpLTS_valid` and `ltsCls` (`decide`). Output in `lean/PEqualNP/W951/LiftSDRWitness.lean`. Current: the
+4 barrier circuits (no pure SDR): cxMU_dd (worlds C0, C1), cxMU_clean2, cxMU_clean2_DD, cx44_1_junk (C1, C1); each LiftSDR +
+correctness + set conditions kernel-checked (about 1 min). Export: 0.2 s.
+
 Group `ladder` (`python3 pure_export.py OUT --group ladder`): scaffold's v-ladder, `ladder_instances.json` (sent 11:38 by
 message, sha256 of the minified list 8f73fe7c…2ff6 verified; correctness, one NOT and the line structure re-checked here in
 Python). 8 PG(2,3) circuits (n = 13, 13 lines, s = 43-45) and 4 AG(2,4) circuits (n = 16, 20 lines, s = 64-65); every one
