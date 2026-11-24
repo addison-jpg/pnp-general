@@ -120,6 +120,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   L027: PC degree of functional PHP in ((N+1)/2, N+1]; PermIsotropicGeneral; WitnessFamily; CrossGeneral; LinearFourLB
   (n<=15); LinearSetsLB; GraphPHPGeneral; ...), notes/note-2, note-3 (density barrier for the NOT basis). Unfinished: path
   gadget L-meta-574 for h=1,2; 4-set count past n=15; width-2 cross formula. Not closed; merge with Generalize pending.
+  NOT ladder (card 4): w6_not_free + w4_not_free (EdgeFnWindow4.lean) = the ladder collapses to rung 0 for the edge function
+  on W6 and on max-deg-3 W4 (strictly larger than L113's girth/hub 9 class): every circuit has a NOT-free one no larger.
 - session_01GmnDhdRKvz5Z7gneQqGG3V (machines-Lean = Lean helper of tractability, ex QG L-qg-103; attached here 09:25 with owner
   OK in its own chat; lands in 951/lean itself, coord spot-verifies): in 951/: MergeWorld + hval bridge, sum_equivFin(_subtype),
   MergeWorld2 (HeavySet, onlyMixed_iff, refined load split), Peel2 dedup into W951Cube, audit #21 (Small3 exists_second3K,

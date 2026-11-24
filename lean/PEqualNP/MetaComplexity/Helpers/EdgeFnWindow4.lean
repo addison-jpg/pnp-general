@@ -180,4 +180,31 @@ theorem w4_exact (n s : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj]
     obtain ⟨D, hD, -, hDfun, hDsize⟩ := Helpers.NotFreeCor.nfc_edge_upper_mono n G T hE hT
     exact ⟨D, hD, by omega, fun x => congrFun hDfun x⟩
 
+/-- NOT gates never save a gate on maximum degree 3 graphs of `W4`: every fan-in two circuit for the
+edge function has an equivalent one with no NOT gate and no more gates (the NOT gate ladder
+collapses to rung 0 on this class). -/
+theorem w4_not_free (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj]
+    (hdeg : ∀ v : Fin n, (G.neighborSet v).ncard ≤ 3) (hW : W4 G)
+    (C : PEqualNP.CircuitLowerBounds.Circuit) (hC : FanInTwo C)
+    (hfun : circuitFun n C =
+      (fun x : Fin n → Bool => decide (∃ i j : Fin n, G.Adj i j ∧ x i = true ∧ x j = true))) :
+    ∃ D : PEqualNP.CircuitLowerBounds.Circuit, FanInTwo D ∧
+      (∀ g ∈ D.gates, g.op ≠ PEqualNP.CircuitLowerBounds.GateOp.not) ∧
+      circuitFun n D = circuitFun n C ∧ D.size ≤ C.size := by
+  by_cases hE : ∃ i j : Fin n, G.Adj i j
+  · obtain ⟨T, hT, hTc⟩ := Loc.tau_attained G
+    have hmin : ∀ T' : Finset (Fin n),
+        (∀ i j : Fin n, G.Adj i j → i ∈ T' ∨ j ∈ T') → T.card ≤ T'.card := fun T' hT' =>
+      hTc ▸ Loc.tau_le G T' hT'
+    have hlb := (w4_exact n C.size G hdeg hW hE T hT hmin).1 ⟨C, hC, le_rfl, fun x => congrFun hfun x⟩
+    obtain ⟨D, hD, hDnot, hDfun, hDsize⟩ := Helpers.NotFreeCor.nfc_edge_upper_mono n G T hE hT
+    exact ⟨D, hD, hDnot, hDfun.trans hfun.symm, by omega⟩
+  · exact Window.w6_not_free n G (fun v c hc => absurd hc (by
+      intro hcyc
+      obtain ⟨i, j, hij⟩ : ∃ i j, G.Adj i j := by
+        cases c with
+        | nil => exact absurd hcyc (by simp)
+        | cons h _ => exact ⟨_, _, h⟩
+      exact hE ⟨i, j, hij⟩)) C hC hfun
+
 end PEqualNP.MetaComplexity.EdgeFn.Window4
