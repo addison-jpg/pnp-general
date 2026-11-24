@@ -9,6 +9,27 @@ Notation: `h` is the input of the NOT gate (monotone), `C_0` / `C_1` the circuit
 (both monotone, `C_0(g) ≤ C_1(g)` on every wire), `U = {h = 1}`, `D = {h = 0}`, `top_w` the point
 with every variable outside `S_w` set to 1, `o_w` the sum of `S_w`, `d_w = |S_w| - 1`.
 
+## 0. Results of the first kill tests (integrator, 2026-11-24)
+
+Run on the 62 correct one-NOT circuits with `n ≤ 10` and at least two sets that are in this
+repository (scripts and commands: `951/tools/kill_tests/`). Scaffold has the full corpus and should
+rerun them there.
+
+| Item | Result |
+|---|---|
+| Lemmas W0, W1, X (section 2) | 0 violations on 62 circuits (sizes, both disjointness claims, NOT-dependence of cross-world gates). Still need the referee. |
+| Canonical start (section 3) | **DEAD.** Its options admit no SDR on 13 of 62 circuits. |
+| Interval classes at extreme points only | **DEAD**, also in the matching form: fail on cxT2 and cxe3 even when split sets get every plain zero point. |
+| Plain zero points (MergeSDR) | holds on 62 of 62, as scaffold found on the full corpus. |
+| Mixed zero points | **NECESSARY for sets through a heavy point, also when `h(top_w) = 1`.** cxe3: all 8 solutions use a mixed point for at least two of the three sets through the heavy point 0. cxT2: 2 of 108 solutions are world-pure. |
+| One-set induction in a fixed order of the sets | **DEAD.** No tested order makes every partial disjoint choice extendable: best is "latest output first", 53 of 62; every failure is a fixh16 circuit. |
+
+**What this changes.** Sections 3 and P1 below are withdrawn as stated. The sets that carry the
+difficulty are the sets through a heavy point (`h ≥ x_u`), at mixed zero points; for the other
+sets W0, W1 and X give provable disjointness. The existence argument has to be about the star of
+a heavy point, which is what front's Case II (`HeavySplitFloat`) already isolates. P2 and P3 stand
+untested.
+
 ## 1. Rules that keep us out of dead ends
 
 1. **Test before proving.** Every candidate lemma is run on the corpus first, always including
