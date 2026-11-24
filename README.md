@@ -2,7 +2,7 @@
 disclaimer that a lot of the readmes are vibecoded. 
 the higher level gist is: quantum/gravity relativity maps onto the relativity barrier to P/NP, and can help bypass it. 
 
-**Claim of this repository.** Lower bounds for circuits of AND, OR and NOT gates, written as a formal proof. Each numbered item below is a Definition, Lemma, Theorem, Conjecture or Counterexample; each says whether it is **checked** (the Lean checker accepted it, axioms `propext`, `Classical.choice`, `Quot.sound`), **paper**, or **tested n/N**. Nothing here says that P versus NP is settled. Names: [`NAMES.md`](NAMES.md). Sources: [`LITERATURE.md`](LITERATURE.md). Work in progress: [`BOARD.md`](BOARD.md).
+**Claim of this repository.** Lower bounds for circuits of AND, OR and NOT gates, written as a formal proof. Each numbered item below is a Definition, Lemma, Theorem, Conjecture or Counterexample; each says whether it is **checked** (the Lean checker accepted it, axioms `propext`, `Classical.choice`, `Quot.sound`), **paper**, or **tested n/N**. Nothing here says that P versus NP is settled. Names: [`NAMES.md`](NAMES.md). Sources: [`LITERATURE.md`](LITERATURE.md). Work in progress: [`BOARD.md`](BOARD.md) and the four boards under [`boards/`](boards/).
 
 ## Theorem (`L_meta_951`, one `sorry`)
 

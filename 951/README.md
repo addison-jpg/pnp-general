@@ -16,7 +16,7 @@ would mean refactoring.
 
 ## State
 
-Mini board of this directory (final pass, 2026-11-24). Up: [`../README.md`](../README.md), [`../BOARD.md`](../BOARD.md). Names: [`../NAMES.md`](../NAMES.md).
+Mini board of this directory (final pass, 2026-11-24). Up: [`../README.md`](../README.md) (the proof), [`../boards/951.md`](../boards/951.md) (the board of this directory). Names: [`../NAMES.md`](../NAMES.md).
 
 - The only `sorry` is `no_minCE` in `lean/PEqualNP/W951/MinCE.lean`: there is no minimal counterexample.
 - Checked: the statement holds when the certificate game (U-game) on the lifted outputs is won (`W951/UGame.lean`, `no_minCE_of_ugame`); when the NOT gate reads an input (`NotVarF2`); when every cube is local or has a point step (`CubeF2.lean`).
