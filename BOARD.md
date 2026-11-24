@@ -31,6 +31,7 @@
 | [`file-tree-merge`](boards/tasks/file-tree-merge.md) | ops | Merge leaf files upward (Lean, then py, then READMEs); the rest mapped in `MST.json`. Done for `one-not/lean` and READMEs; `lean/` and py open | observer |
 | [`search-harness`](boards/tasks/search-harness.md) | C2, C4 | Put every open conjecture in `one-not/tools/search/conjectures | main, scaffold |
 | [`telescope-l5-l6`](boards/tasks/telescope-l5-l6.md) | L5, L6 | One Lean statement both L5 (chain sum) and L6 (Cesàro) instantiate, plus the average over all chains | qg-d2 |
+| [`lang-integration`](boards/tasks/lang-integration.md) | tooling (§8) | One Lean semantics for computation and proof; no new language (verdict + 4 open steps) | coord-desktop (report); steps unassigned |
 
 
 > **SUBAGENTS SHOULD CHECK BOARD.** Every agent and subagent: pull and read THE WALL below before you start, and again before every commit. Write your one-liners there. (Owner, 2026-11-24.)
