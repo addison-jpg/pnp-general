@@ -124,10 +124,10 @@ ProofComplexity, Search, Outside) are here unchanged.
   on W6 and on max-deg-3 W4 (strictly larger than L113's girth/hub 9 class): every circuit has a NOT-free one no larger.
 - session_01GmnDhdRKvz5Z7gneQqGG3V (machines-Lean = Lean helper of tractability; attached here 09:25 with owner OK; lands in
   951/lean itself, coord spot-verifies). In 951/: MergeWorld(+bridge), sum_equivFin, MergeWorld2, Peel2 dedup, audits #21, #10,
-  #2. 11 UTC task (coord): PureSDR ladder certificates. LANDED 765d5d0: W951/PureSDRWitnessLadder.lean, group `witness`
-  (pure_export.py; every *.json in 951/data/witnesses): Pasch s = 14 witness kernel-checked (PureSDR with two world-0 sets
-  through heavy point 4, + correctness, set conditions, heaviness). Unfinished: the v-ladder (Fano, AG(2,3), PG(2,3), AG(2,4))
-  is BLOCKED ON DATA: scaffold cannot push here; drop the JSONs into 951/data/witnesses and they certify with one command.
+  #2. 11 UTC task (coord): PureSDR ladder certificates, DONE: W951/PureSDRWitnessLadder.lean (main ca16c38): Pasch s = 14 witness
+  (765d5d0) + scaffold's v-ladder: 8 PG(2,3) (n = 13, s = 43-45) and 4 AG(2,4) (n = 16, s = 64-65) circuits, PureSDR + set
+  conditions kernel-checked (~2 min), correctness Python-checked; data tools/sdrcert/ladder_instances.json (scaffold's sha256
+  verified). More instances: `pure_export.py --group ladder|witness`. Free for the next piece.
 - session_01GmnDhfo8QCanitMDqFa2x1 (quantum gravity coordinator; integrates this board): `pnp-general`
   main; the same tree is on `pequalnp-work` `mirror/trusting-newton-2lz5jy` (342bed1). Unfinished:
   gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the referee seat for angle C has received no claim.
