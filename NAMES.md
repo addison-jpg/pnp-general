@@ -126,7 +126,7 @@ its parent is the concept it serves, up to the root statement. `code` is the old
       - **five-input circuit where only a light point works** (`ess_rand_clean_744.json`) · witness: n = 5, 9 gates; violates no fact of a minimal counterexample that scaffold tested
       - **adversary against the general world laws** (`ADV4`) · witness
       - **three counterexamples to gate dependence on the NOT gate** (`cx3_counterexample, CrossWorld, CrossWorldCex`) · route: Lean files CrossWorld.lean, CrossWorldCex.lean
-      - **cross-world disjointness at every world-1 point** (`D1`) · route: refuted, 4 collisions in 31,587 circuits
+      - **cross-world disjointness at every world-1 point** (`D1`) · route: refuted, 4 collisions in 31,587 circuits; refuted in Lean (`not_D1Stmt`, CanonD1.lean, decide-checked n = 5 circuit); the repair D1' (add Z ∩ S_v = ∅) also fails once dead gates are added, so any fix must use s < base
       - **heavy-first step** (`F6`) · route: 'a heavy point exists => some heavy point satisfies the step'; refuted
       - **no mixed zero points** (`NoMixedPrice`) · route: refuted in the plain form
       - **merge-set law without its two conditions** (`S1`) · route: false
