@@ -25,6 +25,8 @@ each other directly. The Discussion session (session_01GmnDheAyFnVcvRApd4xeES) r
 
 Checked: L-gen-001 (101 gives 102), L-gen-002 (102 gives 103), L-gen-003 (`SIZENot s s = SIZE s`:
 the top of the NOT gate ladder is the general case), L-gen-004 (the ladder is monotone).
+L-gen-005 (for non-constant `f` and a fresh input `x`: `C(x ⊕ f) ≥ max(C(f), C(¬f)) + 3`, every gate counted),
+L-gen-006 (if `C(f) ≠ C(¬f)` then `C(x ⊕ f) = min(C(f), C(¬f)) + 4` exactly).
 
 **The NOT gate ladder (`SIZENot s t`: at most `t n` NOT gates).** This is how the restricted
 work reaches the general problem.
@@ -95,12 +97,15 @@ Open statements are `Prop` definitions. Physics premises never enter a Lean stat
 repositories are frozen as they are; new work lands here. Models: avoid Fable runs, a few are
 acceptable; Sonnet is fine. Never run `lake update`.
 
-**Status (2026-11-24).** In this repository's two own programs: 51 rows checked (47 quantum
-gravity, 4 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
+**Status (2026-11-24).** In this repository's two own programs: 53 rows checked (47 quantum
+gravity, 6 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
 inherited from `brilliant-hq/pequalnp-proofs` (Library, CircuitLowerBounds, MetaComplexity, Gct,
 ProofComplexity, Search, Outside) are here unchanged.
 
 ## Handoff lines (one per session: branch, commit, what is unfinished)
+- session_01GmnDhg8XTmohao5zo2MMaC (Generalize; attached here with owner OK in its own chat): `pnp-general` main (L-gen-005,
+  L-gen-006); older copy on pequalnp-work `mirror/pensive-galileo-7rfw13` (4c7bfb4). Unfinished: the case `C(f) = C(¬f)` of
+  `C(x ⊕ f) = min + 4`; not yet merged with the desktop GeNeRALIZE session (session_01GmnDhczcdJyEX4WwHrrzPx).
 - session_01GmnDhdRKvz5Z7gneQqGG3V (machines-Lean = Lean helper of tractability, ex QG L-qg-103; attached here 09:25 with owner
   OK in its own chat; lands in 951/lean itself, coord spot-verifies): in 951/: MergeWorld + hval bridge, sum_equivFin(_subtype),
   MergeWorld2 (HeavySet, onlyMixed_iff, refined load split), Peel2 dedup into W951Cube, audit #21 (Small3 exists_second3K,
@@ -138,6 +143,12 @@ ProofComplexity, Search, Outside) are here unchanged.
 
 ## Subboard: general circuits (L-gen)
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
+- Generalize (session_01GmnDhg8XTmohao5zo2MMaC), card rank 4 (exact sizes by gate elimination, NOT gates counted): rows
+  L-gen-005, L-gen-006 CHECKED (XOR with a fresh input; proof `lean/PEqualNP/General/XorExtension.lean`, no minimality
+  assumption: count the gates that are redundant after `x := c`). OPEN: `C(x ⊕ f) = min + 4` when `C(f) = C(¬f)`; a
+  counterexample must have one fixed circuit shape (hand argument), and SAT finds none for every `f` on <= 3 variables and
+  every 4-variable `f` with `C(f) = C(¬f) <= 5`. Note + evidence: `notes/general/generalize-xor-extension.md`,
+  `tools/xor-extension/`.
 
 ## Subboard: the NOT gate ladder, rung 1 (L-meta-951)
 Arrives one-to-one from `addison-jpg/pequalnp-work` branch `coord-951` (code) and `board` (notes).
