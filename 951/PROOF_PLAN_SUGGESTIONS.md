@@ -57,6 +57,28 @@ cross-world collisions only at NOT-dependent wires by `orClz_cross`. What remain
 world per set (and of minterms / of the point of `D`), with the heavy-star rule above as the first
 conjecture to test.
 
+### Third run: PureSDR as a constraint problem (`kill_tests/csp.py`, 64 circuits with `n ≤ 9`)
+
+One variable per set, domain = its valid pure classes (Lean's validity with the widened I1; the I0
+menu is capped to minterm atoms on 19 circuits), constraint = disjoint. Sets with `h(top_w) = 0`
+are fixed at their free class `K_1(w)`.
+
+| Question | Result |
+|---|---|
+| Domain sizes, all 280 sets | 1: 63, 2: 137, 3: 63, 4: 10, 5 to 7: 4, 9 or more: 3 (largest 26, cxP1) |
+| Fixing the 46 free classes | always compatible: they never collide and never empty a domain of another set |
+| Arc consistency | prunes 2 of 234 sets; the largest domain in which it forces a choice has 2 classes |
+| Search after arc consistency (smallest domain first, arc consistency maintained) | 63 of 63 solved with 0 dead ends |
+| Every remaining class extends to a full solution | 62 of 63 circuits. The exception is cxT2: three sets with 2 classes each, 2 of the 8 choices work |
+| 2-SAT? | only where every domain has at most 2 classes: 30 of 63 circuits |
+| Matching? | only where every class is one gate: 31 of 63 circuits (the systems of pairs) |
+
+So the open part is neither 2-SAT nor a matching in general. On this corpus it is LOOSE: outside
+cxT2 any choice of classes that survives arc consistency is part of a solution. **Dichotomy to
+test on the full corpus:** after fixing the free classes, either every surviving class extends
+to a solution, or all domains of the sets involved have at most 2 classes (a 2-SAT core, as in
+cxT2).
+
 **What this changes.** Sections 3 and P1 below are withdrawn as stated. The sets that carry the
 difficulty are the sets through a heavy point (`h ≥ x_u`), at mixed zero points; for the other
 sets W0, W1 and X give provable disjointness. The existence argument has to be about the star of
