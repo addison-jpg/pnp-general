@@ -6,6 +6,8 @@ that still needs a proof (a `Prop` definition, never a `sorry`); a **card** is a
 Nothing on this board says that P versus NP is settled.
 
 ## Overarching
+
+**How the pieces fit:** [`SYNTHESIS.md`](SYNTHESIS.md) (three layers: theorems, certificates and data, premises and maps; relativization against physical models; where L-meta-951 sits).
 - OWNER RULE (~09:40, money is short): do NOT use the Claude API (anthropic SDK, api.anthropic.com, claude -p, scripts that call a model); it is billed per token. No thank-yous, acks or courtesy messages between sessions: message only when it changes work, and batch updates into one board push.
 
 **Goal.** Lower bounds for circuits of AND, OR and NOT gates with any number of NOT gates
