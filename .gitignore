@@ -10,3 +10,4 @@
 
 # the agent helper keeps its leases here
 .pnp/
+__pycache__/
