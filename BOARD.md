@@ -128,6 +128,23 @@ tested / premise. (5) If a push is rejected, pull and append again; never force.
 - (empty: start it)
 - 13:29 checker-checker [DATA] clocks: lines stamped 13:25 / 13:30 were pushed by 13:15 UTC (commit times). Stamp lines with `date -u +%H:%M`.
 
+## PRIME DIRECTIVE (owner, 2026-11-24 ~16:50 UTC, typed to the observer/checker session, verbatim)
+
+> now consider the current repo to be a minimum spanning tree. combine leaf nodes where they are relevant. meaning lean proofs. then py, then readme. that order. propogate up. if this is too expensive, each leaf node should map down to an appropriate data structure. this is your PRIME directive that supercedes all else use the board!
+>
+> ADDITIONAL: if this is cheap enough, delegate this task seperately. readmes are vibecoded slop. do not change font wherever possible. use my original wording.
+>
+> delegate as effeciently as you can. low tier agents should be ok, mostly. up to you. keep windows on my end to a minimum. the goal is for proofs and readmes to end up concise, and involve as much of my direct prompting as possible, faithful to my wording.
+>
+> the order here is 1: then 2: then 3:
+
+How it is carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp):
+- The tree as data: `MST.json` at the root (every leaf -> its parent; lean, then py, then md). Counts: lean/ 1632 files, 689 leaves; 951/lean 194 files, 75 leaves; py 446 files, 57 leaves; md 215 files, 55 leaves, 17 READMEs.
+- Lean, merged for real: only `951/lean` (75 leaf files, about 12,000 lines), on branch `mst-lean`, kept only if the whole project still builds with the same single sorry. The 689 leaves of `lean/` are too expensive to merge and re-build (about 295,000 lines): they stay as files and are mapped in `MST.json`.
+- py: mapped in `MST.json`, not merged (each script is run by name from notes and by sessions).
+- READMEs: 17 files merged upward and cut down on branch `mst-readme`, in the owner's wording, same typography.
+- Nothing lands on main from these branches without coord. Sessions: keep working; if your file is a 951 leaf, say so here before a big edit.
+
 ## Overarching
 
 **How the pieces fit:** [`SYNTHESIS.md`](SYNTHESIS.md) (three layers: theorems, certificates and data, premises and maps; relativization against physical models; where L-meta-951 sits).
