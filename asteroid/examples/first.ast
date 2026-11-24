@@ -1,0 +1,21 @@
+# asteroid, first program: a circuit written in the script, checked by all three engines.
+# Two sets {0,1,2} and {2,3} sharing the point 2; three OR gates; base = 2 + 1 = 3.
+circuit tiny 4
+  a = or 0 1
+  b = or a 2
+  c = or 2 3
+  set 0 1 2 -> b
+  set 2 3 -> c
+end
+show tiny
+claim correct(tiny) by lean
+claim gates(tiny) = base(tiny)
+claim orwitness(tiny) = 3 by lean
+claim slack(tiny) = 0 by lean
+claim forall cubes slack(tiny) >= 0 by lean
+
+# the same question on the Fano formula (7 inputs, 17 gates, tight: slack 0)
+let fano = load one-not/data/witnesses/fano_formula.json
+claim slack(fano) = 0 by lean
+claim forall cubes slack(fano) >= 0 by lean
+plot phi tiny fano -> asteroid/out/first.png

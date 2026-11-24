@@ -11,6 +11,5 @@ claim margin["C4 count (flip classes)"](c) >= 0      # the repaired family holds
 claim correct(fano) by lean
 claim witness(fano) >= base(fano) by lean
 claim slack(twin) >= 0
-plot phi c twin fano -> trio/out/many_not.png
+plot phi c twin fano -> asteroid/out/many_not.png
 hunt "C4 count (flip classes)" 20 4 1 &
-record one-not/data/witnesses/nonlocal C4 checked "The 10-gate circuit with 4 NOT gates is correct and has 5 witness gates, below base 6 (SearchCheck evaluator)."

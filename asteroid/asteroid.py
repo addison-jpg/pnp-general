@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
-"""trio: one small language over three engines.
+"""asteroid: one small language over three engines.
   Python      fast evaluation, search, background jobs      (one-not/tools/search)
   Lean        the kernel decides                             (one-not/lean, SearchCheck.lean, `decide +kernel`)
-  matplotlib  pictures                                       (trio/out/*.png)
+  matplotlib  pictures                                       (asteroid/out/*.png)
 A script is a list of lines; `#` starts a comment. The verbs:
 
   let NAME = load FILE.json                  a circuit {"n","sets","gates","outs"}
+  circuit NAME N                             a circuit written in the script, N inputs named 0 .. N-1, until `end`:
+    W = or X Y | W = and X Y | W = not X       a gate; X, Y are inputs or earlier gate names
+    set I J K -> W                             the output for the set {I, J, K} is the wire W
+  end
   show NAME                                  n, gates, NOT gates, base, witness counts, slack
   claim EXPR [by lean]                       EXPR is  correct(NAME)  or  F(NAME) OP RHS
                                              F in gates nots base witness orwitness slack anyslack margin["conjecture"]
                                              OP in = != < <= > >= ; RHS an integer or F(NAME)
                                              Python evaluates every claim. `by lean` also makes it a Lean theorem
-                                             (supported in Lean: correct(NAME), witness(NAME) OP integer-or-base(NAME)).
+                                             (supported in Lean: correct(NAME); witness / orwitness / slack (NAME) OP integer or base(NAME)).
+  claim forall cubes slack(NAME) >= 0 [by lean]   slack at EVERY cube; `by lean` is brute force in the kernel (small n only)
   plot phi NAME [NAME ...] -> FILE.png       expected slack Phi(p) and level means
-  hunt "CONJECTURE" SECONDS MAXNOT [SEED] [&]   mutation search; `&` runs it in the background, log in trio/out/
+  hunt "CONJECTURE" SECONDS MAXNOT [SEED] [&]   mutation search; `&` runs it in the background, log in asteroid/out/
   record DIR ITEM WORD "STATEMENT"           a finding (boards.py) citing this script and, if built, its Lean module
 
-Run from the repository root:  python3 -I trio/trio.py SCRIPT.trio
+Run from the repository root:  python3 -I asteroid/asteroid.py SCRIPT.ast
 Python proposes, Lean decides: a `by lean` claim counts only if the generated module builds."""
 import sys, os, re, json, subprocess, shlex, operator, time
 ROOT = os.getcwd(); S = os.path.join(ROOT, "one-not/tools/search"); sys.path.insert(0, S); sys.path.insert(0, ROOT)
@@ -39,6 +44,14 @@ def term(m, i):
     return (int(num), None) if num is not None else (F(f, arg, conj), (f, arg))
 
 def do_claim(text, lean):
+    m = re.fullmatch(r'forall cubes slack\((\w+)\)\s*>=\s*0', text)
+    if m:
+        c = env[m.group(1)]; n = c["n"]
+        import continuous as C
+        sl = C.slack_table(c, 0, any_gate=False); alive = [Q for Q in range(1 << n) if core.base(c, Q) > 0]
+        worst = min(int(sl[Q]) for Q in range(1 << n)); ok = worst >= 0
+        if lean and ok: lean_claims.append((m.group(1), "claim", f"slackNonnegAll {m.group(1)} = true", text))
+        return ok, f"least slack over {1 << n} cubes = {worst} ({len(alive)} cubes with positive base)"
     m = re.fullmatch(r'correct\((\w+)\)', text)
     if m:
         v = F("correct", m.group(1)); ok = v is True
@@ -49,8 +62,13 @@ def do_claim(text, lean):
     (lv, lt), op, (rv, rt) = term(m, 1), m.group(5), term(m, 6)
     ok = OPS[op](lv, rv)
     if lean and ok:
-        if lt and lt[0] == "witness" and (rt is None or rt[0] == "base"):
-            lean_claims.append((lt[1], "claim", f"witnessCount {lt[1]} {LEANOP[op]} {rv}", text))
+        if lt and lt[0] in ("witness", "orwitness") and (rt is None or rt[0] == "base"):
+            fn = "witnessCount" if lt[0] == "witness" else "(fun C => orWitnessAt C 0)"
+            lean_claims.append((lt[1], "claim", f"{fn} {lt[1]} {LEANOP[op]} {rv}", text))
+        elif lt and lt[0] == "slack" and rt is None and op in (">=", "<=", "="):
+            forms = {">=": [f"slackGe {lt[1]} 0 ({rv}) = true"], "<=": [f"slackLe {lt[1]} 0 ({rv}) = true"]}
+            forms["="] = forms[">="] + forms["<="]
+            for st in forms[op]: lean_claims.append((lt[1], "claim", st, text))
         else: return ok, f"{lv} {op} {rv}  (NO LEAN FORM for this expression yet: Python only)"
     return ok, f"{lv} {op} {rv}"
 
@@ -61,14 +79,14 @@ def lean_literal(name):
 
 def build_lean(script):
     if not lean_claims: return None
-    mod = "Trio_" + re.sub(r"\W", "_", os.path.splitext(os.path.basename(script))[0])
+    mod = "Asteroid_" + re.sub(r"\W", "_", os.path.splitext(os.path.basename(script))[0])
     path = f"one-not/lean/PEqualNP/W951/{mod}.lean"; names = []
-    out = ["import PEqualNP.W951.SearchCheck", f"/-! Generated by trio/trio.py from {script}. Do not edit.",
+    out = ["import PEqualNP.W951.Asteroid", f"/-! Generated by asteroid/asteroid.py from {script}. Do not edit.",
            "Statements about SearchCheck's bit-parallel evaluator (not yet tied to the project's Circuit.eval). -/",
            f"namespace SearchCheck.{mod}"]
     for n in dict.fromkeys(c for c, *_ in lean_claims): out.append(lean_literal(n))
     for i, (c, kind, stmt, text) in enumerate(lean_claims):
-        t = f"{c}_claim{i}"; names.append(t); out.append(f"/-- trio: `claim {text}` -/\ntheorem {t} : {stmt} := by decide +kernel")
+        t = f"{c}_claim{i}"; names.append(t); out.append(f"/-- asteroid: `claim {text}` -/\ntheorem {t} : {stmt} := by decide +kernel")
     out.append(f"end SearchCheck.{mod}")
     open(path, "w").write("\n".join(out) + "\n")
     envp = dict(os.environ, PATH="/home/user/pequalnp-proofs/tools/bin:" + os.environ["PATH"]); t0 = time.time()
@@ -76,7 +94,7 @@ def build_lean(script):
     ok = r.returncode == 0
     ax = ""
     if ok:
-        tmp = os.path.join(ROOT, "trio/out/_axioms.lean")
+        tmp = os.path.join(ROOT, "asteroid/out/_axioms.lean")
         open(tmp, "w").write(f"import PEqualNP.W951.{mod}\n" + "".join(f"#print axioms SearchCheck.{mod}.{t}\n" for t in names))
         a = subprocess.run(["lake", "env", "lean", tmp], cwd="one-not/lean", env=envp, capture_output=True, text=True).stdout
         ax = "; ".join(sorted(set(re.findall(r"axioms: \[([^\]]*)\]", a.replace("\n", " "))))) or "none"; os.remove(tmp)
@@ -95,9 +113,22 @@ def plot_phi(names, out):
 
 def main():
     script = sys.argv[1]; records = []
+    block = None
     for ln, raw in enumerate(open(script), 1):
         line = raw.split("#", 1)[0].strip()
         if not line: continue
+        if block is not None:
+            name, n, wires, gates, sets, outs = block
+            W = lambda x: int(x) if x.isdigit() else wires[x]
+            if line == "end":
+                env[name] = {"n": n, "sets": sets, "gates": gates, "outs": outs}; block = None
+                print(f"{ln}: {name} defined ({n} inputs, {len(gates)} gates, correct {core.correct(env[name])})"); continue
+            if m := re.fullmatch(r"(\w+) = (or|and) (\w+) (\w+)", line): gates.append([m.group(2), W(m.group(3)), W(m.group(4))]); wires[m.group(1)] = n + len(gates) - 1
+            elif m := re.fullmatch(r"(\w+) = not (\w+)", line): gates.append(["not", W(m.group(2))]); wires[m.group(1)] = n + len(gates) - 1
+            elif m := re.fullmatch(r"set ([\d ]+) -> (\w+)", line): sets.append([int(x) for x in m.group(1).split()]); outs.append(W(m.group(2)))
+            else: raise SystemExit(f"{script}:{ln}: cannot parse inside circuit: {line}")
+            continue
+        if m := re.fullmatch(r"circuit (\w+) (\d+)", line): block = (m.group(1), int(m.group(2)), {}, [], [], []); continue
         if m := re.fullmatch(r"let (\w+) = load (\S+)", line):
             d = json.load(open(m.group(2))); env[m.group(1)] = {k: d[k] for k in ("n", "sets", "gates", "outs")}; src[m.group(1)] = m.group(2)
             print(f"{ln}: {m.group(1)} loaded ({d['n']} inputs, {len(d['gates'])} gates)")
@@ -111,7 +142,7 @@ def main():
         elif m := re.fullmatch(r'hunt "([^"]+)" (\d+) (\d+)(?: (\d+))?(\s*&)?', line):
             cmd = [sys.executable, "-I", "one-not/tools/search/hunt.py", m.group(1), m.group(2), m.group(3), m.group(4) or "0"]
             if m.group(5):
-                log = f"trio/out/hunt_{int(time.time())}.log"; subprocess.Popen(cmd, stdout=open(log, "w"), stderr=subprocess.STDOUT, start_new_session=True)
+                log = f"asteroid/out/hunt_{int(time.time())}.log"; subprocess.Popen(cmd, stdout=open(log, "w"), stderr=subprocess.STDOUT, start_new_session=True)
                 print(f"{ln}: hunt started in the background, log {log}")
             else: print(f"{ln}: " + subprocess.run(cmd, capture_output=True, text=True).stdout.strip().splitlines()[-1])
         elif m := re.fullmatch(r'record (\S+) (\S+) (\w+) "(.+)"', line): records.append(m.groups())
@@ -123,7 +154,7 @@ def main():
         if bad or (word == "checked" and not (L and L["ok"])): print(f"record skipped ({stmt[:40]}...): a claim failed or Lean did not build"); continue
         import boards
         ev = [script] + ([f"{L['module']}::{L['theorems'][-1]}"] if L and L["ok"] else []) + list(dict.fromkeys(src.values()))
-        boards.add(d, "trio", item, word, stmt, ev); boards.build()
+        boards.add(d, "asteroid", item, word, stmt, ev); boards.build()
     print(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; Lean decided {len(L['theorems'])}" if L and L["ok"] else ""))
     sys.exit(1 if bad or (L and not L["ok"]) else 0)
 main()
