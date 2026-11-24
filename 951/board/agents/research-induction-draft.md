@@ -37,6 +37,14 @@ class (I1 = I0), except w6 [1,5,8,11]: I1 {20,38,40}, I0 {38,39,40} (the two cla
 {20,22,33} meets w6's I1 class in gate 20, so w6 is forced to I0: unit propagation fixes all 13 in 2 rounds. Note for (M): a
 set's alternative classes can overlap in d_w - 1 gates, so deleting one class may delete all but one gate of another.
 
+Third case pg13 line 603 (scaffold 11:50, gates 28, 29 corrected 11:50; induct/pg3.json) CHECKED by research (own evaluation on all
+8,192 inputs: correct, s = 44, base 39, one NOT): the only set among 28,067 with TWO I1 classes, so 'one I1 class per set' is
+FALSE as a lemma. w0 [1,4,7,10] (type A: top_w contains the minterm {6,12}): I1 at Z1 = top_w − {12} gives {17,23,24} (= its I0
+class), I1 at Z2 = top_w − {6} gives {17,22,24} (I1 only). w11 [2,6,7,11]: I1 {22,52,53}, I0 {16,52,53}. Exactly 3 pure SDRs
+(w0, w11) = (Z2, I0), (Z1, I1), (Z1, I0); every class lies in some SDR. Alternatives again differ in ONE gate (as in pg2); not so in
+general: pairs of distinct classes of one set by |C − C'| on 27 circuits: 1: 53, 2: 7, 3: 27 (e.g. cfgI set [0,1,2,3]:
+{12,13,15} vs {30,31,33}).
+
 ## Referee answers (desktop Coord, 11:50) [research 12:00; CHECKED = computed, scripts tools/research951/induct/]
 1. (M) CANNOT FAIL ON THE CORPUS, in either form. The unconditional form (M'): "for every family F with no tight proper subfamily,
    some class C of some w ∈ F leaves every v ∈ F − w a class disjoint from C" FOLLOWS from a pure SDR of F (any w, C = its class in
@@ -65,6 +73,9 @@ set's alternative classes can overlap in d_w - 1 gates, so deleting one class ma
    - The weakest menu statement that gives the bound is choice-free: MU: |U(all)| >= base, U(all) = all gates in some pure class
      of some set (PureSDR ⇒ MU ⇒ s >= base; MU is strictly weaker for d_w >= 2, example in item 1). It is TIGHT on real circuits,
      so a proof of MU has no surplus to spend.
+   - Corroborated by research-desktop (11:49, CanonD1.lean): the repaired D1' (adds Z ∩ S_v = ∅) has 0 collisions on the corpus
+     but FAILS on a hand-built n = 5 circuit with extra gates feeding no output, so no condition on h, the sets, Z, m alone
+     can work; the gate budget must enter.
    - An induction on deficient families uses minimality only for a minimal deficient PROPER family F (|U(F)| < base(F), every
      proper subfamily fine): that is heredity step (a3), "a deficient F forces a smaller counterexample", 'not as stated' in
      DEAD_ENDS (restricted circuits keep live gates outside the restricted menus).
