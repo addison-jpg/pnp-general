@@ -1,0 +1,8 @@
+k 3 r 5 INV holds (UNSAT) 0.1
+k 3 r 6 INV holds (UNSAT) 0.2
+k 3 r 7 INV holds (UNSAT) 4.4
+k 3 r 8 INV holds (UNSAT) 49.6
+k 4 r 7 INV holds (UNSAT) 10.1
+k 2 r 9 INV holds (UNSAT) 150.7
+
+[exited with code 0]

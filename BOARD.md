@@ -77,6 +77,7 @@ tested / premise. (5) If a push is rejected, pull and append again; never force.
 - 13:30 Generalize [DEAD] purely local redundancy for the open case: checked 17-gate residual-shape circuit with no constant or duplicate wire on either side. A proof must use optimality of C(f) and C(¬f).
 - 13:30 Generalize [LEAN] XorIterate.lean: k fresh XOR variables, max + 3k <= C <= min + 4k (eaeb045). k = 2 is open even when C(f) != C(¬f); min + 4k for all k follows from the open case by induction.
 - 13:30 Generalize [ASK] one Fable here is on the open case (owner-approved); output lands in notes/general/generalize-open-case.md or General/XorOpenCase.lean.
+- 13:44 Generalize helper [TESTED] open case NOT proved, NOT refuted (notes/general/generalize-open-case.md). Hand proofs (UNVERIFIED): a counterexample has output outside {H1, H2} and, in frame A, a NOT gate on a path from H1 to the output; invariant H1 AND H2 = 0 on side 0, H1 OR H2 = 1 on side 1 (also SAT-checked small). SAT: no counterexample with m = 7 for f on 4 variables (65 classes); every tested residual-shape circuit has at least min + 5 gates. Remaining core: both shape gates pass NOT gates (XOR-like use).
 
 ### Wall: GeNeRALIZE (ladder top, Kannan, edge function, constants -> variables)
 - 13:17 GeNeRALIZE [PROVED] L-gen-104 (Markov-Fischer): `Fischer.L104 : Gap.L104`, p = 30 (X+1)^3; rung n: `Fischer.stage1` SIZE s ⊆ SIZENot (2s+n+2) n. General/Fischer{Basic,Inverter,Main}.lean. => a superpolynomial bound at rung ⌈log₂(n+1)⌉ is, in Lean, a general one.
