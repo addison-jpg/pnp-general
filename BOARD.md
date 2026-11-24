@@ -68,13 +68,15 @@ arguments that survive low-degree extensions. L-lib-086: with strong pseudorando
 | 4 | What is out there for unrestricted circuits: verify and extend the list below | research, the Generalize sessions |
 | 5 | Read the official Clay problem description (claymath.org is not reachable from the cloud sessions) | whoever has network access |
 
-**Ideas in the literature (research verifies; items marked * are from memory).** Gate
-elimination (Li, Yang 2022 and earlier; its limits*: Golovnev, Hirsch, Knop, Kulikov). Fixed-degree
-bounds above NP*: Kannan; Santhanam; Vinodchandran. Near-maximum bounds by range avoidance*:
-Korten; Chen, Hirahara, Ren; Li. Algorithms give lower bounds*: Williams (NEXP not in ACC0).
-Hardness magnification*: Oliveira, Santhanam; a slightly superlinear bound for one special problem
-would give L-gen-101. Meta-complexity*: Hirahara; Liu, Pass. NOT gates*: Markov; Fischer; Beals,
-Nishino, Tanaka; Amano, Maruoka; Jukna.
+**Ideas in the literature (research verified 2026-11-24; exact statements, DOIs and what was read:
+`notes/general/research-lit-unrestricted.md`).** Gate elimination: Li, Yang 2022 3.1n - o(n) over all binary gates; Iwama,
+Morizumi 2002 5n - o(n) in the De Morgan basis (NOT gates not counted); limits: Golovnev, Hirsch, Knop, Kulikov. Fixed degree
+above NP: Kannan 1982 (Σ2 ∩ Π2; one summary disagrees, flagged), Cai (S2P ⊆ ZPP^NP), Vinodchandran (PP), Santhanam (MA/1).
+Near-maximum: Korten 2021; Chen, Hirahara, Ren 2024 (S2E/1, 2^n/n); Li 2024 (S2E, almost everywhere). Algorithms to lower
+bounds: Williams (NEXP ⊄ ACC0); Murray, Williams (NQP). Hardness magnification: Oliveira, Santhanam 2018; McKay, Murray,
+Williams 2019; locality barrier: Chen et al. 2020. Meta-complexity: Hirahara 2018; Liu, Pass 2020. NOT gates: Markov;
+Fischer; Amano, Maruoka; Sung, Tanaka; Jukna; Jukna, Lingas. Slice functions (monotone bounds transfer to unrestricted
+circuits): Berkowitz; Valiant 1986; Wegener; Hiltgen, Paterson 1995.
 
 **Roles (they stay; coord assigns sessions).** coord: owns targets and assignments. front:
 proofs. scaffold: compute (SAT, LP, small exact sizes). tractability: Lean landing. research and
