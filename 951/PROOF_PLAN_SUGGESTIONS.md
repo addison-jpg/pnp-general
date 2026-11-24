@@ -79,6 +79,21 @@ test on the full corpus:** after fixing the free classes, either every surviving
 to a solution, or all domains of the sets involved have at most 2 classes (a 2-SAT core, as in
 cxT2).
 
+### Fourth run: MU by induction on points (`kill_tests/mu_induct.py`, 66 circuits with `n ≤ 9`)
+
+`UC` = OR gates that, in one of the two monotone faces, are false at a zero point `Z` of some set
+`w` and true at `Z + e_u` for two `u ∈ S_w` (world 1: `h(Z) = 0`, tables of `C_1`; world 0:
+`h(Z + e_u) = 1` on `S_w`, tables of `C_0`). It contains every valid pure class. MU: `|UC| ≥ base`.
+
+| Question | Result |
+|---|---|
+| MU for this `UC` | 66 of 66; slack 0 on 2 circuits, 1 on 2, 2 on 6 |
+| Delete a point `v` (`x_v := 0`): do at least `deg(v)` gates leave `UC`? | at EVERY point on 20 circuits; at SOME point on 65 of 66; 286 of 390 points |
+| Heredity `UC' ⊆ UC` | fails once, because world-0 validity asks `h(Z + e_u) = 1` for every `u` including `v`; a restriction-closed definition repairs it |
+
+So an induction that deletes a WELL-CHOSEN point is alive: prove the gain lemma for a rule that
+picks the point. One Fable agent is on this route (`951/board/agents/fable-mu-induction.md`).
+
 **What this changes.** Sections 3 and P1 below are withdrawn as stated. The sets that carry the
 difficulty are the sets through a heavy point (`h ≥ x_u`), at mixed zero points; for the other
 sets W0, W1 and X give provable disjointness. The existence argument has to be about the star of
