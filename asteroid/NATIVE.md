@@ -9,8 +9,8 @@ page.
 
 ```
 cd one-not/lean && lake exe cache get && lake build asteroid
-lake exe asteroid ../../hello.ast              # evaluate, then prove
-lake exe asteroid ../../hello.ast --no-proof   # evaluate only
+lake exe asteroid ../../hello.ath              # evaluate, then prove
+lake exe asteroid ../../hello.ath --no-proof   # evaluate only
 ```
 
 Exit code 0: every claim true and (unless `--no-proof`) accepted by the proof checker. Exit 1: a claim
@@ -31,9 +31,9 @@ error, missing or bad `.bench` file, a claim naming a circuit that is not define
 
 | | Python | Lean |
 |---|---|---|
-| `hello.ast` | 4 claims, 3 proved | same 4 claims, same verdicts, 3 proved |
-| `asteroid/examples/first.ast` | 7 true, 8 proved | same |
-| `asteroid/tests/notgate.ast` | 11 true, 1 false (forced claim, rejected by the checker) | same |
+| `hello.ath` | 4 claims, 3 proved | same 4 claims, same verdicts, 3 proved |
+| `asteroid/examples/first.ath` | 7 true, 8 proved | same |
+| `asteroid/tests/notgate.ath` | 11 true, 1 false (forced claim, rejected by the checker) | same |
 | claims agreed | | 23 of 23 in 3 programs (verdict and detail text) |
 | run, evaluate only | 0.1 to 0.6 s | about 0.9 s (`lake exe` start included) |
 | run with proofs, hello / first / notgate | 16.8 / 8.8 / 9.4 s | 12.7 / 7.7 / 9.8 s |

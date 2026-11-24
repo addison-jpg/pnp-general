@@ -52,10 +52,10 @@ b = OR(a, x2)
 c = OR(x2, x3)
 ```
 
-This is `hello.ast`, a program that checks that circuit:
+This is `hello.ath`, a program that checks that circuit:
 
 ```
-# hello.ast: run with: asteroid hello.ast
+# hello.ath: run with: asteroid hello.ath
 let hello = load hello.bench
 show hello
 claim correct(hello) by lean                  # it computes both ORs on all 16 inputs
@@ -67,7 +67,7 @@ plot phi hello -> asteroid/out/hello.png
 
 ```bash
 pip install -e .
-asteroid hello.ast
+asteroid hello.ath
 asteroid test
 ```
 

@@ -9,10 +9,10 @@ conjecture count: slack(c) >= 0
 # The mixed descent (L7 over states (Q,R)): at every state with positive base some paying step does not increase mslack.
 # A counterexample would refute the mixed form of the descent, the route to the sorry through C2 with 0-steps.
 conjecture mixed: forall states mixedstep(c)
-# C4 (t NOT gates), the repaired family: flip classes. The any-gate witness count is refuted for t >= 4 (see refuted.ast);
+# C4 (t NOT gates), the repaired family: flip classes. The any-gate witness count is refuted for t >= 4 (see refuted.ath);
 # a circuit below zero here would refute the repair and leave C4g(t) with no counting family.
 conjecture flip: margin["C4 count (flip classes)"](c) >= 0
-# C2 (one-point step): refuted for correct circuits (refuted.ast); open under MinCE.no_rewire. The registry entry below is
+# C2 (one-point step): refuted for correct circuits (refuted.ath); open under MinCE.no_rewire. The registry entry below is
 # vacuous (+1) unless the circuit has one NOT gate, every gate read and no gate-saving rewiring, n <= 8.
 conjecture c2norewire: margin["C2 one-point step under no-rewire"](c) >= 0
 

@@ -5,7 +5,7 @@ name: asteroid
 on:
   push:
     branches: [main]
-    paths: ['asteroid/**', '**.ast', 'one-not/tools/search/**', 'one-not/lean/PEqualNP/W951/Asteroid.lean', 'one-not/lean/PEqualNP/W951/SearchCheck.lean']
+    paths: ['asteroid/**', '**.ath', 'one-not/tools/search/**', 'one-not/lean/PEqualNP/W951/Asteroid.lean', 'one-not/lean/PEqualNP/W951/SearchCheck.lean']
   workflow_dispatch:
 
 permissions:

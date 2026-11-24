@@ -4,7 +4,7 @@ Serves C4, T6 (task beyond-one-not)
 
 Research agent of main, 2026-11-24. Words used: **paper** = proved here on paper, not in Lean; **tested** = ran, counts given;
 **open** = a statement nobody has proved or refuted. Nothing here says that P versus NP is settled or close.
-Program: [`asteroid/programs/beyond_one_not.ast`](../asteroid/programs/beyond_one_not.ast). Scripts:
+Program: [`asteroid/programs/beyond_one_not.ath`](../asteroid/programs/beyond_one_not.ath). Scripts:
 `one-not/tools/beyond_one_not/`. Data: `one-not/data/beyond_one_not/`.
 
 ## Answer in five lines
@@ -100,7 +100,7 @@ One process at a time; every hunt is hill climbing (finding nothing proves nothi
 | E3 | S3 | `python3 -I one-not/tools/beyond_one_not/experiments.py local 40 1`; `hunt.py "C4 count (flip classes)" 45 T 11`; `hunt.py "C4 count (any-gate witnesses)" 45 T 11`, T = 2, 3 | lemma (a): 0 failures on 18 + 39,363 circuits; (b): 125,616 / 134,042 mutations, 0 counterexamples; any-gate count: 137,880 / 146,714, 0 |
 | E4 | S2 | `experiments.py notfree 30 T 1`, T = 2, 3; `experiments.py worlds 60 1 1`, `worlds 80 2 1`, `worlds 80 3 1` | NOT-free hunt: 477,525 / 504,203 mutations, 0 below base; least gates − base with t NOT gates, no correct face, no repeated function: 4, 6, 3 for t = 1, 2, 3 (files `essential_t*_seed1.json`) |
 | E5 | S5 | `python3 -I one-not/tools/beyond_one_not/worldbound.py systems`; `… circuits` (`worldbound.log`) | W1: two triples 1 of 4, triangle 2 of 6, two 4-sets 2 of 6, Pasch 2 of 8, Fano 2 of 14, PG(2,3) 6 of 39, PG(2,4) 16 of 84; weight bands give 0 at t = 2 for all n ≤ 7; world bound holds on 19 of 19 circuits |
-| P | all | `python3 -m asteroid run asteroid/programs/beyond_one_not.ast` (and `--no-lean`) | exit 0; 23 claims true; 4 kernel theorems, 3 restated in the project's definitions; 5 hunts of 6 s with ≤ 2, 3 NOT gates, no counterexample; 30 s without Lean, about 45 s with |
+| P | all | `python3 -m asteroid run asteroid/programs/beyond_one_not.ath` (and `--no-lean`) | exit 0; 23 claims true; 4 kernel theorems, 3 restated in the project's definitions; 5 hunts of 6 s with ≤ 2, 3 NOT gates, no counterexample; 30 s without Lean, about 45 s with |
 
 No counterexample circuit was found, so nothing was added to `one-not/data/witnesses/nonlocal/`.
 

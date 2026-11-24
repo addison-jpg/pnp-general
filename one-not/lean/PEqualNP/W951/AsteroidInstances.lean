@@ -7,7 +7,7 @@ import PEqualNP.W951.ChainTelescope
 
 /-! # Example instances of the asteroid soundness theorems
 
-Sanity instances on the generated module `Asteroid_first` (`asteroid/examples/first.ast`). They live here so
+Sanity instances on the generated module `Asteroid_first` (`asteroid/examples/first.ath`). They live here so
 that no library file (`AsteroidSound`, `AsteroidSound2`, `AsteroidCheap`) depends on a generated file. -/
 
 namespace SearchCheck
@@ -15,9 +15,9 @@ namespace SearchCheck
 open PEqualNP.CircuitLowerBounds (Circuit GateOp)
 open PEqualNP.Outside.L_meta_951_aux (val F2 F2Wit mem_F2 aliveSets mem_aliveSets baseDQ baseDQ_empty slack)
 
-/-! ## The instance: `asteroid/examples/first.ast` -/
+/-! ## The instance: `asteroid/examples/first.ath` -/
 
-/-- **End to end.** The circuit `tiny` written in `asteroid/examples/first.ast`
+/-- **End to end.** The circuit `tiny` written in `asteroid/examples/first.ath`
 (`a = or 0 1`, `b = or a 2`, `c = or 2 3`, `set 0 1 2 -> b`, `set 2 3 -> c`), read as a gate list of the
 project, computes its two ORs on every input, in the project's semantics. Proved from the generated
 kernel check `Asteroid_first.tiny_claim0 : correctB tiny = true`. -/
@@ -45,7 +45,7 @@ theorem first_ast_tiny_concrete (x : Fin 4 → Bool) :
     rw [Bool.eq_iff_iff]
     simp [Fin.exists_fin_succ]
 
-/-! ## The instance: `asteroid/examples/first.ast` -/
+/-! ## The instance: `asteroid/examples/first.ath` -/
 
 theorem first_ast_tiny_setsOk : Asteroid_first.tiny.SetsOk := by
   intro S hS
@@ -58,7 +58,7 @@ theorem first_ast_tiny_slack (Q : Finset (Fin Asteroid_first.tiny.n)) :
       ≤ (F2 Asteroid_first.tiny.toGates Asteroid_first.tiny.setFin Q).card :=
   slackNonnegAll_sound _ first_ast_tiny_setsOk Asteroid_first.tiny_claim4 Q
 
-/-! ## The instance: `fano` of `asteroid/examples/first.ast` passes the side conditions -/
+/-! ## The instance: `fano` of `asteroid/examples/first.ath` passes the side conditions -/
 
 theorem first_ast_fano_hypsB : hypsB Asteroid_first.fano = true := by decide +kernel
 

@@ -1,6 +1,6 @@
 # asteroid: the language, exactly
 
-A program is a text file `NAME.ast`. Lines are read top to bottom. `#` starts a comment. Blank lines are ignored.
+A program is a text file `NAME.ath`. Lines are read top to bottom. `#` starts a comment. Blank lines are ignored.
 
 ```
 program   := line*
@@ -82,7 +82,7 @@ What a Lean form says about the project's circuits (`Circuit.eval`, `F2`, `baseD
 Exit code 0 when every claim is true and (unless `--no-lean`) the Lean module builds; 1 otherwise. A `record` writes a finding to `findings.jsonl` in DIR, citing the program and the Lean theorem, only on exit code 0.
 
 ```bash
-python3 -m asteroid run asteroid/examples/first.ast
+python3 -m asteroid run asteroid/examples/first.ath
 python3 -m asteroid test            # every program under asteroid/examples
 python3 -m asteroid test --no-lean  # Python and plots only (what GitHub Actions runs on every push)
 ```

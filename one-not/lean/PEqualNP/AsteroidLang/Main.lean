@@ -5,8 +5,8 @@ import PEqualNP.AsteroidLang.Bench
 # asteroid: the command line
 
 ```
-asteroid FILE.ast             run a program: evaluate its claims, then have Lean check the proofs
-asteroid FILE.ast --no-proof  evaluate only
+asteroid FILE.ath             run a program: evaluate its claims, then have Lean check the proofs
+asteroid FILE.ath --no-proof  evaluate only
 asteroid version
 ```
 
@@ -22,7 +22,7 @@ def version : String := "asteroid 0.4 (Lean: compiled evaluator, proofs checked 
 
 /-- how to call the program -/
 def usage : String :=
-  "usage: asteroid FILE.ast [--no-proof]    run a program (--no-proof: evaluate only)\n" ++
+  "usage: asteroid FILE.ath [--no-proof]    run a program (--no-proof: evaluate only)\n" ++
   "       asteroid version"
 
 /-- a circuit from the JSON form `{\"n\", \"sets\", \"gates\", \"outs\"}` -/

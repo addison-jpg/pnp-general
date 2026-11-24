@@ -76,7 +76,7 @@ count c in N: witness(c) < base(c)
 count c in R2: gates(c) = base(c)
 # WISH: corpus ... where nots = T            (exactly T NOT gates; only an upper limit exists)
 # WISH: savings(W, t) = max over c in W with nots(c) <= t of base(c) - gates(c)     (S2: the savings function f(t); 0 on everything seen)
-# WISH: claim forall c in W: nots(c) <= 2 -> gates(c) >= base(c)                    (implication, as in theorem.ast)
+# WISH: claim forall c in W: nots(c) <= 2 -> gates(c) >= base(c)                    (implication, as in theorem.ath)
 # WISH: claim hyps(c) by lean                (hypsB with the NOT limit as a parameter t: today hypsB fixes "at most one NOT gate")
 # WISH: a Lean form for c4g and for fc       (gates >= base and the flip-classes count have no kernel statement)
 # WISH: claim forall sets forall zeros localflip(c) >= 0     (S3a, the per-set lemma: flip classes at one zero point of one set >= |S| - 1;

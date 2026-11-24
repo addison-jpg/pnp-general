@@ -2,7 +2,7 @@
 
 # Task: asteroid-fresh-session
 
-- **Statement:** How does a fresh cloud session run asteroid end to end (`python3 -m asteroid run asteroid/examples/first.ast`, with `by lean`)? Write the steps into `asteroid/README.md`, or say which session setup to use.
+- **Statement:** How does a fresh cloud session run asteroid end to end (`python3 -m asteroid run asteroid/examples/first.ath`, with `by lean`)? Write the steps into `asteroid/README.md`, or say which session setup to use.
 - **What happened (front612, 2026-11-24 evening, fresh container):**
   - `run` stops at `plot phi`: `ModuleNotFoundError: No module named 'matplotlib'`. The README lists no Python requirements.
   - `run FILE --no-lean` is not accepted: `--no-lean` only works for `test`, while `main` requires exactly `run FILE`. Is a Python-only `run` wanted?

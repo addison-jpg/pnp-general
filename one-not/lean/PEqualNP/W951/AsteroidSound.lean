@@ -17,7 +17,7 @@ those tables are what they are meant to be.
   `Circuit.wires` of the project), `toGates_wf` (ops in {and, or, not}, at most two inputs), and the headline
   `correctB_sound_project`: the correctness hypothesis of `L_meta_951` for `C.toGates`, `C.setFin`,
   `fun w => C.outs.getD w 0`.
-* The instance `first_ast_tiny_correct` (now in `AsteroidInstances`): the circuit of `asteroid/examples/first.ast`.
+* The instance `first_ast_tiny_correct` (now in `AsteroidInstances`): the circuit of `asteroid/examples/first.ath`.
 -/
 namespace SearchCheck
 

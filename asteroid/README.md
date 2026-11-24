@@ -32,7 +32,7 @@ record one-not/data/witnesses C2 checked "…"
 ```
 
 ```bash
-python3 -m asteroid run asteroid/examples/first.ast
+python3 -m asteroid run asteroid/examples/first.ath
 python3 -m asteroid test
 ```
 
@@ -74,7 +74,7 @@ compares the two on every `.bench` file of the repository. Every witness circuit
 | `save NAME -> FILE.bench` | write a circuit as a `.bench` file (extension `ext_bench.py`) |
 | `show NAME` | gates, NOT gates, base, witness counts, correctness |
 | `claim EXPR [by lean]` | `correct(NAME)`, or `F(NAME) OP RHS` with `F` in `gates nots base witness orwitness slack anyslack margin["conjecture"]`, `OP` in `= != < <= > >=`; `claim not EXPR` (Python only) |
-| `claim! EXPR by lean` | send the claim to Lean even when Python says it is false, to watch the kernel reject it (`tests/kernel_rejects.ast`, `tests/mixed_kernel_rejects.ast`) |
+| `claim! EXPR by lean` | send the claim to Lean even when Python says it is false, to watch the kernel reject it (`tests/kernel_rejects.ath`, `tests/mixed_kernel_rejects.ath`) |
 | `claim hyps(NAME) [= false]`, `claim theorem(NAME)`, `claim if E1 then E2`, `claim E1 and E2`, terms `flip flipclasses flipslack` | the Theorem's other hypotheses (Lean `hypsB`), the Theorem as one claim (hyps and correct imply gates ≥ base), implication and conjunction (Python only), the flip counts (Python only) (extension `ext_edges.py`) |
 | `claim forall p phi(NAME) >= 0 [by lean]`, `claim monotone phi(NAME)`, term `phi(NAME, P)`, `levelmeans NAME` | the continuous form Φ (extension `ext_continuous.py`; see the section below) |
 | `verify lean DIR [within SECONDS]`, `theorem FULL.NAME from MODULE in DIR` | run the pure-Lean verifier; cite one theorem (extension `ext_verify.py`; see "The base verifier is pure Lean") |
@@ -98,16 +98,16 @@ Python proposes, Lean decides: a `by lean` claim counts only when the generated 
 
 | Script | Python | Lean kernel | Time |
 |---|---|---|---|
-| `examples/first.ast` | 7 claims true | 8 theorems, incl. slack ≥ 0 at all 16 cubes of `tiny` and all 128 cubes of the Fano formula | 14 s |
-| `examples/many_not.ast` | 8 claims true | 5 theorems (the 4-NOT-gate circuit is correct and has 5 witness gates, below base 6) | 11 s |
-| `examples/corpus.ast` | 3 claims true over 15 witness circuits (n ≤ 9); counts: 2 of 15 tight, 0 of 4 nonlocal files at or above base | 30 theorems (correct and slack ≥ 0 on each of 15 circuits) | 21 s |
-| `examples/conjecture.ast` | 6 claims true | 4 theorems | |
-| `examples/mixed.ast` | 11 claims true; mslack ≥ 0 and MixedStep at all 243 states of the n = 5 circuit `ess_rand_clean_744` (1 NOT gate) and all 81 states of a 4-input circuit written in the script; Python cross-checked against a direct implementation (`tests/test_mixed.py`) | 11 theorems, incl. `mixedStepAll` at 243 and 81 states | 7 s |
+| `examples/first.ath` | 7 claims true | 8 theorems, incl. slack ≥ 0 at all 16 cubes of `tiny` and all 128 cubes of the Fano formula | 14 s |
+| `examples/many_not.ath` | 8 claims true | 5 theorems (the 4-NOT-gate circuit is correct and has 5 witness gates, below base 6) | 11 s |
+| `examples/corpus.ath` | 3 claims true over 15 witness circuits (n ≤ 9); counts: 2 of 15 tight, 0 of 4 nonlocal files at or above base | 30 theorems (correct and slack ≥ 0 on each of 15 circuits) | 21 s |
+| `examples/conjecture.ath` | 6 claims true | 4 theorems | |
+| `examples/mixed.ath` | 11 claims true; mslack ≥ 0 and MixedStep at all 243 states of the n = 5 circuit `ess_rand_clean_744` (1 NOT gate) and all 81 states of a 4-input circuit written in the script; Python cross-checked against a direct implementation (`tests/test_mixed.py`) | 11 theorems, incl. `mixedStepAll` at 243 and 81 states | 7 s |
 
-| `examples/prove.ast` | 0 claims (`prove` statements only) | kernel-checked by `prove` | |
-| `programs/*.ast` | see "The proof as programs" below | | |
+| `examples/prove.ath` | 0 claims (`prove` statements only) | kernel-checked by `prove` | |
+| `programs/*.ath` | see "The proof as programs" below | | |
 
-Totals, 2026-11-24, 15 programs (`examples/` 6, `programs/` 9 incl. `edges.ast`): `python3 -m asteroid test --no-lean`: all ok, 68 s; `python3 -m asteroid test` with Lean: all ok, 3 min 44 s. Claims true / Lean theorems per program, from the second run: conjecture 6 / 4, corpus 3 / 30, first 7 / 8, many_not 8 / 5, mixed 11 / 11, prove 0 / –, big_check 11 / –, continuous 13 / 6, edges 26 / 15, ladder 10 / 6, open 4 / 0, pictures 1 / 0, refuted 28 / 2, theorem 10 / 33.
+Totals, 2026-11-24, 15 programs (`examples/` 6, `programs/` 9 incl. `edges.ath`): `python3 -m asteroid test --no-lean`: all ok, 68 s; `python3 -m asteroid test` with Lean: all ok, 3 min 44 s. Claims true / Lean theorems per program, from the second run: conjecture 6 / 4, corpus 3 / 30, first 7 / 8, many_not 8 / 5, mixed 11 / 11, prove 0 / –, big_check 11 / –, continuous 13 / 6, edges 26 / 15, ladder 10 / 6, open 4 / 0, pictures 1 / 0, refuted 28 / 2, theorem 10 / 33.
 
 Axioms of the generated theorems: `propext` only.
 
@@ -134,7 +134,7 @@ as a `Finset (Fin n)`, `maskOf Q` is the cube `Q` as a bit mask.
 
 The last five need `SetsOk`: every set is written without a repeated point and with points below N (asteroid
 counts list positions and reads table bits; with a repeated point or a point ≥ N the two counts can differ).
-For `examples/first.ast`: `first_ast_tiny_concrete` (the three OR gates of `tiny` compute `x0 ∨ x1 ∨ x2` and
+For `examples/first.ath`: `first_ast_tiny_concrete` (the three OR gates of `tiny` compute `x0 ∨ x1 ∨ x2` and
 `x2 ∨ x3` under `Circuit.eval`) and `first_ast_tiny_slack`.
 
 ## Every run is also stated in the project's definitions
@@ -166,7 +166,7 @@ statement `no_minCE`; where it appears it is a hypothesis.
 | `hypsB`, `hypsB_sound` | a Bool checker for the other hypotheses of `L_meta_951` (well-formed sets, an output per set, at least one gate, sets of ≥ 2 points, two sets share ≤ 1 point, at most one NOT gate) and its soundness for `C.setFin`, `C.toGates` |
 | `isCE_of_checks`, `exists_minCE_of_hunt_hit`, `not_LMeta951Stmt_of_hunt_hit` | a literal passing `correctB` and `hypsB` with gates < base is a counterexample (`IsCE`), yields a minimal counterexample, and refutes the statement of `L_meta_951` (`LMeta951Stmt`, copied verbatim): a `hunt` hit is a formal counterexample |
 | `base_le_gates_of_no_minCE`, `base_le_gates_of_LMeta951Stmt` | if there is no minimal counterexample (hypothesis), or the statement of `L_meta_951` holds, every literal passing `correctB` and `hypsB` has base ≤ gates, with no further work |
-| `first_ast_fano_hypsB` | `hypsB fano = true` for the Fano circuit of `examples/first.ast`, by `decide +kernel` |
+| `first_ast_fano_hypsB` | `hypsB fano = true` for the Fano circuit of `examples/first.ath`, by `decide +kernel` |
 | `baseMixed_zero`, `hasWitnessMixedNaive_zero`, `mslackVal_zero`, `mslackGe_zero` (AsteroidCheapMixed) | at `r = 0` the mixed base is the base, the naive mixed witness test is `hasWitnessAt`, and, given the kernel check `naiveAgrees C`, `mslack` at `(q, 0)` is `slack` at `q` |
 
 Not done: the bit-parallel mixed witness test is tied to
@@ -175,7 +175,7 @@ the naive one only per circuit (`naiveAgrees`). Notes: `one-not/board/agents/fab
 ## The continuous form in asteroid
 
 Φ(p) is the expected slack when each point is set to 1 with probability p. Φ(0) is the slack of the empty cube,
-and the one remaining `sorry` is `0 ≤ Φ(0)` for a minimal counterexample. `programs/continuous.ast` maps the
+and the one remaining `sorry` is `0 ≤ Φ(0)` for a minimal counterexample. `programs/continuous.ath` maps the
 findings that matter onto claims:
 
 | Claim | What it shows | Decided by |
@@ -196,7 +196,7 @@ cd one-not/lean && lake build PEqualNP.Verify.All        # no Python, no asteroi
 ```
 
 ```bash
-python3 -m asteroid run asteroid/programs/big_check.ast  # the same, started from asteroid, plus the cited theorems one by one
+python3 -m asteroid run asteroid/programs/big_check.ath  # the same, started from asteroid, plus the cited theorems one by one
 ```
 
 | Project | Modules | Theorems | Standard axioms only | Allowed `sorryAx` | Other axioms |
@@ -219,11 +219,11 @@ Programs in [`programs/`](programs/README.md), one per group of numbered items; 
 
 | Program | README items | What it checks | Python claims / Lean theorems | Time (Lean / no Lean) |
 |---|---|---|---|---|
-| `programs/theorem.ast` | Theorem, D5, D8, T3, T4 | all 15 witness circuits with n <= 9: correct (kernel), `gates >= base`, the count `slack >= 0` (kernel), 0 tight by gates / how many tight by count; a one-NOT circuit written in the script with `forall cubes slack >= 0` (16 cubes) and the Fano formula (128 cubes) in the kernel | 10 / 33 | 49 s / 1 s |
-| `programs/refuted.ast` | section 5: C2 (twin trees, matched twin trees), pointwise 0-step (Pappus), induction on 0 (Fano), pure-class SDR (cxMU), price inequality (star4b), C4w | seven blocks, each with its counterexample file; the C2 step margin is below 0 on twin_tree_f2step and match_c_k7, the any-gate witness count is below base on general_count_below_base_min / t4 (kernel for the 4-NOT circuit); the count and `gates >= base` hold on every one | 28 / 2 | 32 s / 18 s |
-| `programs/open.ast` | C1/C2/C4, the open step of `no_minCE` | conjectures `count`, `mixed` (MixedStep at all states), `flip` (C4 flip classes), `c2norewire` over 14 circuits, then `hunt` 8 s each (no counterexample) | 4 / 0 (3 hunts) | 30 s / 30 s |
-| `programs/ladder.ast` | T6, C4, C4w, Theorem | rung 0 (circuits with no NOT gate: count >= 0 and `gates >= base`, kernel) against the four many-NOT files (all have `witness < base`, all have `gates >= base`, flip classes >= 0) | 10 / 6 | 15 s / 1 s |
-| `programs/pictures.ast` | D8, L5 | plot phi for the twin tree, MATCH-C, Pappus, Fano; histograms of slack and gates over the corpus | 1 / 0 (6 PNGs in `asteroid/out/`) | 2 s / 2 s |
+| `programs/theorem.ath` | Theorem, D5, D8, T3, T4 | all 15 witness circuits with n <= 9: correct (kernel), `gates >= base`, the count `slack >= 0` (kernel), 0 tight by gates / how many tight by count; a one-NOT circuit written in the script with `forall cubes slack >= 0` (16 cubes) and the Fano formula (128 cubes) in the kernel | 10 / 33 | 49 s / 1 s |
+| `programs/refuted.ath` | section 5: C2 (twin trees, matched twin trees), pointwise 0-step (Pappus), induction on 0 (Fano), pure-class SDR (cxMU), price inequality (star4b), C4w | seven blocks, each with its counterexample file; the C2 step margin is below 0 on twin_tree_f2step and match_c_k7, the any-gate witness count is below base on general_count_below_base_min / t4 (kernel for the 4-NOT circuit); the count and `gates >= base` hold on every one | 28 / 2 | 32 s / 18 s |
+| `programs/open.ath` | C1/C2/C4, the open step of `no_minCE` | conjectures `count`, `mixed` (MixedStep at all states), `flip` (C4 flip classes), `c2norewire` over 14 circuits, then `hunt` 8 s each (no counterexample) | 4 / 0 (3 hunts) | 30 s / 30 s |
+| `programs/ladder.ath` | T6, C4, C4w, Theorem | rung 0 (circuits with no NOT gate: count >= 0 and `gates >= base`, kernel) against the four many-NOT files (all have `witness < base`, all have `gates >= base`, flip classes >= 0) | 10 / 6 | 15 s / 1 s |
+| `programs/pictures.ath` | D8, L5 | plot phi for the twin tree, MATCH-C, Pappus, Fano; histograms of slack and gates over the corpus | 1 / 0 (6 PNGs in `asteroid/out/`) | 2 s / 2 s |
 
 `python3 -m asteroid test` runs them (with Lean 3 min 44 s for examples and programs together; `--no-lean` 68 s).
 

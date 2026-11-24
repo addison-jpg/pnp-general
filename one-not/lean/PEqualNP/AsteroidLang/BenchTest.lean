@@ -7,7 +7,7 @@ build fails if a check is false. These are tests on the listed inputs. Nothing i
 theorem.
 
 1. `parse (print n) = n` on three netlists.
-2. `toCirc` of the hello file is the `Circ` literal that asteroid generates for `hello.ast`
+2. `toCirc` of the hello file is the `Circ` literal that asteroid generates for `hello.ath`
    (`PEqualNP/W951/Asteroid_hello.lean`).
 3. `toCirc (ofCirc C) = C` on `hello` and on `SearchCheck.t4` (73 gates, 4 NOT gates).
 4. Gates out of order are sorted; `BUFF` costs no gate.
@@ -45,7 +45,7 @@ b = OR(a, x2)
 c = OR(x2, x3)
 "
 
-/-- The literal asteroid generates for `hello.ast`. -/
+/-- The literal asteroid generates for `hello.ath`. -/
 def helloCirc : Circ :=
   ⟨4, [[0, 1, 2], [2, 3]], [5, 6], [⟨1, 0, 1⟩, ⟨1, 4, 2⟩, ⟨1, 2, 3⟩]⟩
 

@@ -27,7 +27,7 @@ A script is a list of lines; `#` starts a comment. The verbs:
   record DIR ITEM WORD "STATEMENT"           a finding (boards.py) citing this script and, if built, its Lean module
 
 Run from anywhere (after `pip install -e .` in the repository; or `python3 -m asteroid …` from its root):
-  asteroid FILE.ast                 run one program (also: asteroid run FILE.ast)
+  asteroid FILE.ath                 run one program (also: asteroid run FILE.ath)
   asteroid test                     run every program under asteroid/examples and asteroid/programs
   asteroid version
   --no-lean                         evaluate only, prove nothing. Chosen automatically when Lean is not installed.
@@ -290,7 +290,7 @@ def main(argv):
     global NO_LEAN, SHOW_LEAN
     NO_LEAN = "--no-lean" in argv; SHOW_LEAN = "--show-lean" in argv; argv = [a for a in argv if a not in ("--no-lean", "--show-lean")]
     # a program path is read from where the command was typed
-    argv = [os.path.relpath(os.path.join(CALLER_DIR, a), ROOT) if a.endswith(".ast") and not os.path.isabs(a) else a for a in argv]
+    argv = [os.path.relpath(os.path.join(CALLER_DIR, a), ROOT) if a.endswith((".ath", ".ast")) and not os.path.isabs(a) else a for a in argv]
     import shutil
     local = "/home/user/pequalnp-proofs/tools/bin"
     if not NO_LEAN and not shutil.which("lake", path=(local + ":" if os.path.isdir(local) else "") + os.environ.get("PATH", "")):
@@ -300,11 +300,11 @@ def main(argv):
     if argv[:1] == ["run"] and len(argv) == 2: return run(argv[1])
     if argv[:1] == ["test"]:
         import glob; bad = 0
-        for f in sorted(glob.glob("asteroid/examples/*.ast") + glob.glob("asteroid/programs/*.ast")):
+        for f in sorted(glob.glob("asteroid/examples/*.ath") + glob.glob("asteroid/programs/*.ath")):
             r = subprocess.run([sys.executable, "-m", "asteroid", "run", f] + (["--no-lean"] if NO_LEAN else []), capture_output=True, text=True)
             print(("ok   " if r.returncode == 0 else "FAIL ") + f + "  |  " + (r.stdout.strip().splitlines() or ["(no output)"])[-1]); bad += r.returncode != 0
         return 1 if bad else 0
-    if len(argv) == 1 and argv[0].endswith(".ast"): return run(argv[0])
+    if len(argv) == 1 and argv[0].endswith((".ath", ".ast")): return run(argv[0])   # .ast: the old extension, still read
     print(__doc__); return 2
 
 if __name__ == "__main__": sys.exit(main(sys.argv[1:]))
