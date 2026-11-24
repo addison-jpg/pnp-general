@@ -13,3 +13,8 @@ Conventions: C_1 = NOT := 1, C_0 = NOT := 0, C_0 <= real <= C_1 (monotone), top_
   the canonical start alone fails on 10,083 circuits; must be data-checked (scaffold K2).
 - P2 (acyclic forcing by gate position): FAILS with gate-index order on scaffold's fixh16_clean#20 (forcing path {02}-{12}-{23}-{13} through
   gates 5, 13, 8, not monotone); needs another order (depth, cone inclusion), check on that circuit first.
+
+## Addendum 10:35 (coord, checked step by step; the referee may contest)
+- W1 SIZE GAP: RESOLVED. The board integrator's GM (pnp-general 4d2750d, PROOF_PLAN_SUGGESTIONS §2) is correct: invariant "B of a processed wire of V lies in one block"; inputs by (2); OR in V has both inputs in V; AND in V has one input in V with B(g) ⊆ B(that input); so each gate merges at most two blocks and the run makes exactly |S| - 1 merges, at OR gates. No order between Z and the atoms is needed. W1 is GM in C_1 with Z = top_w, p_u = e_u (both in D). The objection (atoms top_w + e_u) applied to the plain Lemma M, not to GM.
+- GM IS ALREADY IN LEAN: `LiftCount.lift_merges_pt` (one zero point z, atoms a, hL = condition (2), MonoList), also `TestSys.hT` in GapG.lean; neither requires p_u ≥ z. W0 = `lift_merges_pt` in C_0 + `liftCl_disjoint` / `liftClOr_disjoint` (S2.2). X bounds: justified in the file; Lean via `Kernel/W951Extra.listVal_le` (C_0 ≤ C_1 wirewise, NOT := 0 vs 1).
+- d (Lean W1, X; W0 as a corollary of S2.2) may start.
