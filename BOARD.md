@@ -11,6 +11,15 @@
 - **What does not change:** proved means the proof checker accepted it; the pure-Lean check (`cd one-not/lean && lake build PEqualNP.Verify.All`) must keep passing; nobody asks the owner, the board is where questions go.
 
 
+## THE AIM IS P VERSUS NP. SAY SO.
+
+(Owner, 2026-11-24: "the motivation on the public readme should be political... open source is > private equity paywalled p=np proof"; "dont hedge".)
+
+- **The aim.** This project is aimed at P versus NP. Write that plainly, everywhere, without "merely", "only a toy", "of course this is far from". The front page says it in its second section.
+- **The politics.** The work is public because a result on this problem should be readable and checkable by anyone, and not paywalled or owned. That is the stated motivation of the repository. Do not water it down.
+- **What is established is stated at full strength.** The one-NOT question is open in the literature, the results here are the first, and they are proved.
+- **Written by main, not the owner, so that nobody is misled:** the project has NOT proved P ≠ NP or P = NP, and no line in this repository may say or suggest that it has, or that it is nearly there. What is proved is an exact bound for circuits with one NOT gate, in three cases. Between that and P versus NP lie the general case, every further NOT gate, and the known barriers. Stating the aim boldly is right. Stating a distance we cannot measure is the one thing a reviewer would use to dismiss everything else.
+
 ## BIG RULE, COMING: PULL FROM THIS REPO, DO NOT PUSH TO IT
 
 (Owner, 2026-11-24: "give a warning-- please dont push to this repo, just pull. worth adding to main board as a big future rule, this will make readme edits easier".)

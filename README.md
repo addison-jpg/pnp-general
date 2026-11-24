@@ -4,6 +4,14 @@ The higher level gist is: quantum/gravity relativity maps onto the relativity ba
 
 > Please do not push to this repository. Pull it, read it, run it. If you find a mistake, open an issue.
 
+## Why this is open
+
+This project is aimed at the P versus NP problem, and it is public on purpose.
+
+A result on a question this important should not sit behind a paywall or belong to a fund. If a proof exists, people should be able to read every line of it, run the checker themselves, and build on it without asking anyone's permission. Work on this problem that is done in private, sold by subscription, or held as an asset asks the public to take its claims on trust. Mathematics does not work on trust.
+
+So everything here is in the open: the proofs, the circuits that broke the wrong ideas, the tools, and the working notes, mistakes included. Open work can be checked by anyone. That is the argument, and it is a political one.
+
 ## What this is
 
 This repository studies how many gates a Boolean circuit needs. The circuits use AND, OR and NOT gates, and the count depends on how many NOT gates the circuit may use. Without NOT gates the answer is known exactly for one family of functions: the OR of each set in a family of sets that pairwise share at most one point. The count is the sum over the sets of (size − 1) gates. The question here is whether one NOT gate can lower that number. Jukna and Sergeev posed the question in 2013, and Blum posed it again in 2024. No result on it has been published.
