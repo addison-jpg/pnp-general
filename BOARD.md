@@ -174,7 +174,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   14:45: L-LIFT in Lean (PureLLift: `mergeSet_eq_lift`, `liftSDR_of_mergeSDR`, `muL_of_mergeSDR`): MergeSDR ⇒ LiftSDR ⇒ MUL.
   15:00: PureMenu.lean: STAR-SEP / STAR-COUNT for any monotone sound menu system; Menu2 (Menu1 ∪ lifted real merge sets):
   `no_minCE_of_starSep2`, `no_minCE_of_starCount2`. 15:40: 2G-LIFT CHECKED (TwoGateLift: `twoGate_lift`, ∑_w m_w ≤ 2 under
-  C(b) for every triple; no output correctness needed).
+  C(b) for every triple; no output correctness needed). 16:20: F2Bridge (lifted ⇒ real witnesses) + GraphHeavyF2:
+  G1 in F2-gain form (`gainF2_G1`) when h(top_va) = 1 for every star set; open: h(top_va) = 0.
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.

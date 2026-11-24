@@ -237,3 +237,6 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
 - (16:00 UTC) F2Bridge.lean: lifted ⇒ real witnesses (`real_zero_of_lift`, `real_one_of_lift`) and the F2 exclusion
   (`real_one_of_C0`). G1 in F2 form follows for star edges {v, a} with h(top_va) = 1 (the I0 class at (top_va, 0) is then
   consistent); h(top_va) = 0 star edges = front's open bridge. F2 definition: coordinating with machines-Lean.
+- (16:20 UTC) GraphHeavyF2.lean: G1 in F2-gain form (`gainF2_graphStar`, `gainF2_G1`) under h(top_va) = 1 for every star set
+  (front A2's (F5)), on machines-Lean's F2 (F2Induct: F2Wit / F2 / GainF2). Stated for a chosen v (front: 'heavy v exists ⇒
+  works' is refuted for F2). Open: h(top_va) = 0 star sets.
