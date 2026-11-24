@@ -55,3 +55,4 @@ refined no-mixed form; StrongCU / ChainPick; MergeSDR (0 failures on 75,619; ker
 
 | World 1 only (class I1 for every set) | refuted | 15 of 62, e.g. cfgI, cxT2, cx1 | `kill_tests/ext.py` |
 | World 0 for sets with `h(top_w) = 1`, world 1 for the others (no choice of world) | refuted | 7 of 62: cx44_0, cx44_1, cxT2, cxe3, cxP4, cxtw3, cxtw3c | `kill_tests/ext.py` |
+| Choice-free private classes `P(w)` = OR gates with `real g ≤ o_w` and two atoms `e_u` (pairwise disjoint for free) | too small | 69 of 273 sets have fewer than `d_w` such gates; cx1, cx2, cx3 have none | `kill_tests/private.py` |
