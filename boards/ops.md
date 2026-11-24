@@ -38,12 +38,12 @@ Serves README items: none directly: this board keeps the sessions and the reposi
 >
 > the order here is 1: then 2: then 3:
 
-How it is carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp):
-- The tree as data: `MST.json` at the root (every leaf -> its parent; lean, then py, then md). Counts: lean/ 1632 files, 689 leaves; one-not/lean 194 files, 75 leaves; py 446 files, 57 leaves; md 215 files, 55 leaves, 17 READMEs.
-- Lean, merged for real: only `one-not/lean` (75 leaf files, about 12,000 lines), on branch `mst-lean`, kept only if the whole project still builds with the same single sorry. The 689 leaves of `lean/` are too expensive to merge and re-build (about 295,000 lines): they stay as files and are mapped in `MST.json`.
-- py: mapped in `MST.json`, not merged (each script is run by name from notes and by sessions).
-- READMEs: 17 files merged upward and cut down on branch `mst-readme`, in the owner's wording, same typography.
-- Nothing lands on main from these branches without coord. Sessions: keep working; if your file is a 951 leaf, say so here before a big edit.
+Carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp), landed on main 2026-11-24 ~18:30 UTC:
+- The tree as data: `MST.json` at the root (every leaf -> its parent; lean, then py, then md), regenerated after the merges.
+- Lean, merged for real: `one-not/lean`, 75 leaf files -> 14 (each old file is a `section <OldName>` inside its new file, bodies unchanged). Gate passed: `lake build PEqualNP` completes; the sorry warnings are the same 9 declarations (`no_minCE` + the 8 PayDraft drafts, now in `W951/MiscSmall.lean`). If you import one of the 75 old modules, import the new file instead (old -> new: `git show 8e37776 --stat`, or the section names).
+- Lean in `lean/`: 689 leaves (about 295,000 lines) NOT merged, too expensive to re-build; mapped in `MST.json`.
+- py: mapped in `MST.json`, not merged (scripts are run by name).
+- READMEs: 19 -> 5 files, about 90 KB -> 14 KB; the owner's line and quotes verbatim; the long front page is kept whole in `notes/front-page-2026-11-24.md`.
 
 
 ## Handoff lines (one per session: branch, commit, what is unfinished)
