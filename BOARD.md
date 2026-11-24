@@ -119,7 +119,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   on W6 and max-deg-3 W4), constants made variable (SatRatio: SAT not in SIZE((a/b)n+c) for a/b<5/4; FunPHPUpper with
   L027: PC degree of functional PHP in ((N+1)/2, N+1]; PermIsotropicGeneral; WitnessFamily; CrossGeneral; LinearFourLB
   (n<=15); LinearSetsLB; GraphPHPGeneral; ...), notes/note-2, note-3 (density barrier for the NOT basis). Unfinished: path
-  gadget L-meta-574 for h=1,2; 4-set count past n=15; width-2 cross formula. Not closed; merge with Generalize pending.
+  gadget L-meta-574 for h=1,2; 4-set count past n=15. DONE: width 2 for the a x b cross formula (CrossWidth2.lean,
+  cross_refutation2, <= 2ab+b+2 lines, plain resolution: every term one equation, so width 1 suffices too). Not closed; merge with Generalize pending.
   NOT ladder (card 4): w6_not_free + w4_not_free (EdgeFnWindow4.lean) = the ladder collapses to rung 0 for the edge function
   on W6 and on max-deg-3 W4 (strictly larger than L113's girth/hub 9 class): every circuit has a NOT-free one no larger.
 - session_01GmnDhdRKvz5Z7gneQqGG3V (machines-Lean = Lean helper of tractability; attached here 09:25 with owner OK; lands in
