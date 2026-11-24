@@ -144,7 +144,7 @@ def run(script):
             print(f"{ln}: {m.group(1)} loaded ({d['n']} inputs, {len(d['gates'])} gates)")
         elif m := re.fullmatch(r"show (\w+)", line):
             a = m.group(1); print(f"{ln}: {a}: " + ", ".join(f"{f} {F(f, a)}" for f in ("gates", "nots", "base", "witness", "orwitness", "correct")))
-        elif m := re.fullmatch(r"claim(!?) (.+?)(\s+by lean)?", line):
+        elif not re.match(r"claim!? (forall c in |forall states |mslack\()", line) and (m := re.fullmatch(r"claim(!?) (.+?)(\s+by lean)?", line)):
             global FORCE
             FORCE = bool(m.group(1)); m = re.fullmatch(r"claim!? (.+?)(\s+by lean)?", line)
             ok, detail = do_claim(m.group(1).strip(), bool(m.group(2)))

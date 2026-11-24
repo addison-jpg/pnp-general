@@ -47,6 +47,11 @@ The exact grammar is in [`SPEC.md`](SPEC.md). On every push that touches the lan
 | `show NAME` | gates, NOT gates, base, witness counts, correctness |
 | `claim EXPR [by lean]` | `correct(NAME)`, or `F(NAME) OP RHS` with `F` in `gates nots base witness orwitness slack anyslack margin["conjecture"]`, `OP` in `= != < <= > >=` |
 | `claim forall cubes slack(NAME) >= 0 [by lean]` | slack at every cube; with `by lean` the kernel checks all 2^n cubes |
+| `corpus NAME = GLOB [where n <= K] [where nots <= T]` | load every correct circuit of the matching `.json` / `.jsonl` files (extension `ext_corpus.py`) |
+| `claim forall c in NAME: EXPR [by lean]` | EXPR with the variable `c` on every circuit of the corpus; one summary line; `by lean` adds one theorem per circuit (at most 40 circuits) |
+| `count c in NAME: EXPR` | how many circuits satisfy EXPR |
+| `plot hist FUNC NAME -> FILE.png` | histogram of FUNC(c) over the corpus |
+| `claim mslack(NAME, {Q}, {R}) OP k`, `claim forall states mslack(NAME) >= 0`, `claim forall states mixedstep(NAME)` | mixed states: points of Q fixed to 1, points of R fixed to 0; MixedStep = at every state with positive base some paying 0-step or 1-step has mslack no larger (extension `ext_mixed.py`; definitions in `SPEC.md`) |
 | `plot phi NAME … -> FILE.png` | expected slack Φ(p) and the level means |
 | `hunt "CONJECTURE" SECONDS MAXNOT [SEED] [&]` | mutation search; `&` puts it in the background |
 | `record DIR ITEM WORD "STATEMENT"` | a finding in the board tree; skipped if a claim is false or Lean did not build |
@@ -61,6 +66,8 @@ Python proposes, Lean decides: a `by lean` claim counts only when the generated 
 |---|---|---|---|
 | `examples/first.ast` | 7 claims true | 8 theorems, incl. slack ≥ 0 at all 16 cubes of `tiny` and all 128 cubes of the Fano formula | 14 s |
 | `examples/many_not.ast` | 8 claims true | 5 theorems (the 4-NOT-gate circuit is correct and has 5 witness gates, below base 6) | 11 s |
+| `examples/corpus.ast` | 3 claims true over 15 witness circuits (n ≤ 9); counts: 2 of 15 tight, 0 of 4 nonlocal files at or above base | 30 theorems (correct and slack ≥ 0 on each of 15 circuits) | 21 s |
+| `examples/mixed.ast` | 11 claims true; mslack ≥ 0 and MixedStep at all 243 states of the n = 5 circuit `ess_rand_clean_744` (1 NOT gate) and all 81 states of a 4-input circuit written in the script; Python cross-checked against a direct implementation (`tests/test_mixed.py`) | 11 theorems, incl. `mixedStepAll` at 243 and 81 states | 7 s |
 
 Axioms of the generated theorems: `propext` only.
 
@@ -101,4 +108,5 @@ For `examples/first.ast`: `first_ast_tiny_concrete` (the three OR gates of `tiny
 - Python evaluates first and a false claim never reaches Lean, so Lean has not yet been seen to reject a claim
   Python accepted.
 - `forall cubes … by lean` is brute force: fine at 7 inputs, not at 14 (the twin trees have 16,384 cubes).
-- No mixed slack (points set to 0 as well as 1), no quantifier over circuits, no functions defined in a script.
+- No functions defined in a script.
+- Mixed slack (`ext_mixed.py`, `AsteroidMixed.lean`) is brute force over all 3^n states: the kernel decides `forall states mslack ≥ 0` and `forall states mixedstep` up to n = 7 (2,187 states; 33 s and 49 s, about 5 and 7 GB of memory, Fano formula). n = 8 (6,561 states) would need roughly 3 times the states and the memory: not tried.
