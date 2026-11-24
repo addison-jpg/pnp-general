@@ -157,3 +157,4 @@ import PEqualNP.W951.Augment
 import PEqualNP.W951.CanonClass
 import PEqualNP.W951.CanonOneNot
 import PEqualNP.W951.PureSDR
+import PEqualNP.W951.PureSDRWitness

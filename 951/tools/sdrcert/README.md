@@ -26,3 +26,18 @@ for every circuit with n <= 9 (about 2 minutes); ADV3 (n = 12) and cxT4 (n = 15)
 Group `fixh16` (`python3 export.py OUT --group fixh16`, output in `SDRWitnessFixh16.lean` with correctness bundles): scaffold's
 24 forced-h K4 circuits (data-corpora `fixh/fixh16_clean.jsonl`, 0-indexed lines 20, 66, 67, 169-178, 301-304, 1403, 1404,
 1873-1877; `s = 16`, where L-flip fails), stored in `fixh16_forced.json`. n = 4, 16 gates, 6 pair sets each; menus of size 1-3.
+
+# PureSDR certificates (`pure_export.py`)
+
+`pure_export.py` builds, for each one-NOT circuit, the menu of PURE classes of `PROOF_PLAN_SUGGESTIONS.md` §0 as
+defined in `lean/PEqualNP/W951/PureSDR.lean`: I1(w, Z) (union-find merges in C_1, zero point any Z avoiding S_w with
+h(Z) = 0, atoms e_u) and I0(w, m) (merges in C_0, zero point top_w, atoms m_u | e_u, m_u a minterm of h with
+m_u ∩ S_w ⊆ {u}, per atom, up to 4000 combinations per set). `tables` and `merges` are those of `kill_tests/canon.py`. It
+then finds a pairwise disjoint choice and writes it with the classes as literals in LIFTED wire numbers (real wire
+i < n + p is lifted wire i + 1; later wires keep their numbers). The kernel recomputes every class (`pureCls`, `decide`)
+and checks validity (`PureValid`), so nothing from Python is trusted. Output: `lean/PEqualNP/W951/PureSDRWitness.lean`.
+
+Regenerate: `python3 pure_export.py /tmp/p.lean` and `python3 pure_export.py /tmp/f.lean --group fixh16`, paste both
+between the header and `end`. Current: cxT2, cxe3, ce3, hard4s, cxr, cfgI, adv3, adv4, hard4, uniq0, uniq2, cxT4, and the
+24 fixh16 circuits: 36 PureSDRs, all kernel-checked (about 40 s). Pure menus are small (1-10 distinct classes per set).
+

@@ -175,3 +175,7 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   |S_w ∩ S_w'| ≤ 1 corollaries `disjoint_pureI1_top`, `disjoint_pureI0_avoid`, `disjoint_pureI0_top`. What is left of PureSDR
   after these: I1 pairs whose Z' vanishes off S_w' at two points of S_w; I0 pairs whose points m_u meet S_w'; I1 ∩ I0 pairs
   (world-1 class vs world-0 class: never D-disjoint from the world-1 side, since its atoms have y = 1).
+- (11:45 UTC) PureSDR CERTIFICATES: `PureSDRWitness.lean` (36 kernel-checked PureSDRs: the 12 MergeSDR-certificate circuits
+  incl. cxT2, cxe3, ADV3, cxT4, plus the 24 fixh16), by `tools/sdrcert/pure_export.py` (Python finds, Lean checks; ~40 s).
+  The Lean `pureCls` (runMT in the lift) equals kill_tests' `merges` on every chosen class: the Lean definitions match the
+  data. Pure menus are small: 1-10 distinct classes per set (cxT4: 2/2/2 against 190/82/81 plain merge sets).

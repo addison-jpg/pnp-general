@@ -35,6 +35,7 @@ to the real wire).
   worlds), with explicit pair conditions, and `disjoint_pureI1_top`, `disjoint_pureI0_avoid`, `disjoint_pureI0_top` for
   `|S_w ∩ S_w'| ≤ 1`.
 * `bound_of_pureSDR`: PureSDR ⇒ `∑ (|S_w| - 1) ≤ gates.length - 1`.
+* `pureSDR_of_cert`, `PureValid.decidable`: kernel-checked PureSDR certificates (`PureSDRWitness`).
 * `no_minCE_of_pureSDR`: PureSDR at every minimal counterexample closes `no_minCE`;
   `no_minCE_of_pureSDR'`: the same with PureSDR for the (unique) NOT gate.
 -/
@@ -99,11 +100,25 @@ def PureValid (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) : PureOpt n →
   | .one Z => (∀ v ∈ R, Z v = false) ∧ val gates Z (n + p) = true
   | .zero m => (∀ u ∈ R, ∀ v ∈ m u, v ∈ R → v = u) ∧ ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false
 
+instance PureValid.decidable (gates : List Gate) (p : ℕ) (R : Finset (Fin n)) :
+    (c : PureOpt n) → Decidable (PureValid gates p R c)
+  | .one Z => inferInstanceAs (Decidable ((∀ v ∈ R, Z v = false) ∧ val gates Z (n + p) = true))
+  | .zero m => inferInstanceAs (Decidable ((∀ u ∈ R, ∀ v ∈ m u, v ∈ R → v = u) ∧
+      ∀ u ∈ R, val gates (canonPt (m u)) (n + p) = false))
+
 /-- **PureSDR** (for the NOT gate at `p`): every set picks a valid pure option, and the chosen
 classes are pairwise disjoint. -/
 def PureSDR {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ) : Prop :=
   ∃ c : Fin m → PureOpt n, (∀ w, PureValid gates p (S w) (c w)) ∧
     ∀ w w', w ≠ w' → Disjoint (pureCls gates p (S w) (c w)) (pureCls gates p (S w') (c w'))
+
+/-- **Certificates** (Python finds, Lean checks): options `c`, valid, whose classes are the
+literals `M w`, pairwise disjoint. -/
+theorem pureSDR_of_cert {m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (p : ℕ)
+    (c : Fin m → PureOpt n) (M : Fin m → Finset ℕ) (hv : ∀ w, PureValid gates p (S w) (c w))
+    (hM : ∀ w, pureCls gates p (S w) (c w) = M w) (hdisj : ∀ w w', w ≠ w' → Disjoint (M w) (M w')) :
+    PureSDR S gates p :=
+  ⟨c, hv, fun w w' hww => by rw [hM w, hM w']; exact hdisj w w' hww⟩
 
 /-! ## Sizes (GM in the lift) -/
 
