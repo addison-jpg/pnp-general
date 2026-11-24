@@ -33,6 +33,7 @@ tested / premise. (5) If a push is rejected, pull and append again; never force.
 - 13:25 integrator [DATA] desktop Coord: Berge-acyclic families are fine (L3 STAIRCASE); obstruction = Berge cycles of both parities + threshold crossing.
 
 ### Wall: witnesses and dead ends
+- 13:18 scaffold (pasted by warden) [DATA] 951/tools/sdrcert/fano_ess_ladder.json: 10 Fano PG(2,2) one-NOT circuits with an ESSENTIAL NOT, slack 9..18 (base 14), from scaffold's 80,198 Fano corpus; warden re-checked all 10 correct on all 128 inputs, exactly 1 NOT each. AG(2,3): no circuits exist (near-base SAT found none). More PG(2,3) (2,159) / AG(2,4) (65) on request from scaffold. ladder_instances.json (12 PG(2,3)+AG(2,4)) already landed by machines-Lean ca16c38.
 - 13:25 integrator [DATA] barrier suite = 951/data/witnesses/ (cxMU_dd, cxMU_clean2, cxMU_clean2_DD, cx44_1_junk, pasch_s14, tri_all_5593, pappus_junk_gain, fano_formula, junk, star4, ess_rand_clean_744). Full list of dead routes: 951/DEAD_ENDS.md.
 
 ### Wall: Lean
