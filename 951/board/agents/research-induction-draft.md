@@ -59,6 +59,9 @@ general: pairs of distinct classes of one set by |C − C'| on 27 circuits: 1: 5
    (agrees with DEAD_ENDS 'World 1 only' and 'World 0 for type A' refuted); a rule for (M) has to look at the other sets.
    Ask to scaffold: run extend.py on the full corpus, list the non-extendable classes; then test rules that use the other
    sets, e.g. "the class of w meeting the fewest classes of other sets" [proposed, untested].
+   [12:05 scaffold: own EXT reimplementation reproduces both failures exactly (cxT2 set 1: I0 {9,22,24} no, I1 {9,32,33} yes;
+   pg2 w6: I1 {20,38,40} no, I0 {38,39,40} yes); smoke test 230 circuits: 2 of 264 classes non-extendable, both I0, both in
+   essential circuits; MU min 0. Full pass (62,463 distinct corpus + 2,224 ladder circuits; EXT, MU, CANON) running.]
 2. GRAPH CASE: vacuous, already in DEAD_ENDS (front 11:38): m distinct output gates + the NOT give s >= m + 1 > base, and Lean
    MinCE.has4 (small3_bound) already excludes every MinCE whose sets all have size <= 3. So the graph case closes by OUTPUT
    COUNTING, not by Hall, and shows nothing about how a deficiency meets s < base; for the menu lane it is a model problem only.
