@@ -1,3 +1,4 @@
+-- Superseded by 951/lean/PEqualNP/Kernel (same Dag, exact-count passes); see coord. No new work here.
 import PEqualNP.Kernel.Circuit
 
 /-!

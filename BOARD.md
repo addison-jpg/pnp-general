@@ -27,7 +27,8 @@ each other directly. The Discussion session (session_01GmnDheAyFnVcvRApd4xeES) r
 Checked: L-gen-001 (101 gives 102), L-gen-002 (102 gives 103), L-gen-003 (`SIZENot s s = SIZE s`:
 the top of the NOT gate ladder is the general case), L-gen-004 (the ladder is monotone).
 L-gen-005 (for non-constant `f` and a fresh input `x`: `C(x ⊕ f) ≥ max(C(f), C(¬f)) + 3`, every gate counted),
-L-gen-006 (if `C(f) ≠ C(¬f)` then `C(x ⊕ f) = min(C(f), C(¬f)) + 4` exactly).
+L-gen-006 (if `C(f) ≠ C(¬f)` then `C(x ⊕ f) = min(C(f), C(¬f)) + 4` exactly),
+L-gen-007 (`C(f) + 1 ≤ C(¬x ∧ f) ≤ C(f) + 2` for non-constant `f` and a fresh input `x`).
 
 **The NOT gate ladder (`SIZENot s t`: at most `t n` NOT gates).** This is how the restricted
 work reaches the general problem.
@@ -98,8 +99,8 @@ Open statements are `Prop` definitions. Physics premises never enter a Lean stat
 repositories are frozen as they are; new work lands here. Models: avoid Fable runs, a few are
 acceptable; Sonnet is fine. Never run `lake update`.
 
-**Status (2026-11-24).** In this repository's two own programs: 53 rows checked (47 quantum
-gravity, 6 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
+**Status (2026-11-24).** In this repository's two own programs: 54 rows checked (47 quantum
+gravity, 7 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
 inherited from `brilliant-hq/pequalnp-proofs` (Library, CircuitLowerBounds, MetaComplexity, Gct,
 ProofComplexity, Search, Outside) are here unchanged.
 
@@ -115,8 +116,7 @@ ProofComplexity, Search, Outside) are here unchanged.
   from 11:32 bottleneck Lean (two-owner ShiftOff, CU) has priority over audits.
 - session_01GmnDhfo8QCanitMDqFa2x1 (quantum gravity coordinator; integrates this board): `pnp-general`
   main; the same tree is on `pequalnp-work` `mirror/trusting-newton-2lz5jy` (342bed1). Unfinished:
-  gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the D-qg-2 card (density matrices) is on its
-  own session's branch, state not reported; the referee seat for angle C has received no claim.
+  gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the referee seat for angle C has received no claim.
 
 - session_01GmnDheoRytFdZ9LUQXmuGK (pnp-subproblem; attached here 08:55 with owner OK in its own chat): role REFEREE B (merge-tree
   charging) for no_minCE. Unfinished: waits for front's B claims (~11:30). Older work on pequalnp-work: board-unified 5136256 (paused),
@@ -141,23 +141,31 @@ ProofComplexity, Search, Outside) are here unchanged.
   rounds 1-4 in `951/board/agents/qg-d2-nomixed.md` (code: pequalnp-work `nomixed-951` 1bada7b). Unfinished:
   xgen runs for scaffold (front-A falsification, 4 systems with a 4-set, essential, base+1..+4; no X so far)
   -> `951/board/agents/qg-d2-xgen.md` when done.
+- session_01GmnDhdZb2EsYNLc1r4M85e (dZb2E, ex QG L-qg-101; Lean helper of tractability for 951; attached here 09:22 with owner
+  OK in its own chat; commits as addison-jpg): LANDED in 951/lean: LemmaK (MinCE.ex_ge_two, MinCE.lemmaK_V1, K1_bound),
+  CrossWorld (S1(g) for merge sets needs (i) z' avoids S_a and (ii) C0(g)(Zof S_a) = 0; cx1/cx2 show both are necessary),
+  PriceOff (MergePriceOff + ShiftOff -> MergePrice; single-owner gates shift for free; for crossSet that part is empty),
+  MergeSDR (= integral MergeFrac; MergeSDR -> ChainPickOn -> MergePrice). Unfinished: nothing; free for the next assignment.
 
 ## Subboard: general circuits (L-gen)
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
 - Generalize (session_01GmnDhg8XTmohao5zo2MMaC), card rank 4 (exact sizes by gate elimination, NOT gates counted): rows
-  L-gen-005, L-gen-006 CHECKED (XOR with a fresh input; proof `lean/PEqualNP/General/XorExtension.lean`, no minimality
+  L-gen-005, L-gen-006, L-gen-007 CHECKED (XOR with a fresh input; 007: a negated fresh input costs 1 or 2 gates, tool
+  `restrict_one` = one gate saved on either side; proof `lean/PEqualNP/General/XorExtension.lean`, no minimality
   assumption: count the gates that are redundant after `x := c`). OPEN: `C(x ⊕ f) = min + 4` when `C(f) = C(¬f)`; a
   counterexample must have one fixed circuit shape (hand argument), and SAT finds none for every `f` on <= 3 variables and
   every 4-variable `f` with `C(f) = C(¬f) <= 5`. Note + evidence: `notes/general/generalize-xor-extension.md`,
   `tools/xor-extension/`.
 
 ## Subboard: the NOT gate ladder, rung 1 (L-meta-951)
+How search code and Lean divide the work: [`951/PIPELINE.md`](951/PIPELINE.md) (the owner's framework:
+Python/C++ searches and exports compact witnesses, Lean only checks).
 Arrives one-to-one from `addison-jpg/pequalnp-work` branch `coord-951` (code) and `board` (notes).
 Open statement: `no_minCE`. Candidates: price form, double counting over the merge tree, lifted
 fractional induction.
 - front (session_01GmnDheKL3UENhJCL6pD1hS; front cannot attach; notes in `951/front/` via coord's import): THE LEMMA (hload/MergeFrac): lanes A1/A2/B/C (4 Opus HALTED by the Opus limit until 11:30, auto-resume 11:32). HEAVY POINTS (agents/front-heavy.md): not excluded by current lemmas. 08:40 CORRECTION: pinned heavy split REFUTED by gAdyD R3 (320 ess circuits, B-B collisions); v2 CHECKED on all 39,168+4,764 pairs: sets avoiding v float over zero points in the half-cube x_v=1 (pure C0), star of v (sunflower) floats => LP <= 1 State file: `951/front/work/notes951/w9/RESUME_LANES.md` (front-match 169cec0).
 - scaffold (session_01GmnDhdt8ydm1adQLjCP9we; scaffold cannot attach; row copied by warden 08:38): RESET ROLE (compute for the target): HARD4 done + minimality follow-up (resolution gadget); data-corpora pushed for support-B; NOW: optimal MergeFrac duals for front A -> agents/scaffold-duals.md State: pequalnp-work scaffold-951 e59751c, data-corpora 2aa9856.
-- pnp-subproblem (session_01GmnDheoRytFdZ9LUQXmuGK): REFEREE B. V1 08:40: support-B's 'B1: 3rd+ merge gates of different |S|>=4 sets are disjoint' is FALSE, cxr gate 14 re-derived with independent code (both sets' 3rd merge). B rules must split shared gates and be tested on the hand-built family (cxr, cx44_*, cxT*, cxU*, cxP2). HARD4 re-checked. Notes: `951/board/agents/pnp-subproblem-referee-angle2.md`. PYTHON (owner rollout, discovery only): `951/tools/referee_b/check_charge.py` = JSON in / exact-rational JSON verdict out for any candidate B charge; on cxr, every charge supported only on 3rd+ merge gates FAILS, so B rules must charge gates outside them. SURVEY 09:30 (`951/tools/referee_b/README.md`): on 339 one-NOT circuits with a 4+-set, charging 3rd+ merges inside each set's own merge gates FAILS on cxU6/cxU8/cxU_6_4/cxU_8_4/cxP2, while support 'own cone minus every set's first two merges' is feasible on all 339 (data, necessary-condition check only).
+- pnp-subproblem (session_01GmnDheoRytFdZ9LUQXmuGK): REFEREE B. V1 08:40: support-B's 'B1: 3rd+ merge gates of different |S|>=4 sets are disjoint' is FALSE, cxr gate 14 re-derived with independent code (both sets' 3rd merge). B rules must split shared gates and be tested on the hand-built family (cxr, cx44_*, cxT*, cxU*, cxP2). HARD4 re-checked. Notes: `951/board/agents/pnp-subproblem-referee-angle2.md`. PYTHON (owner rollout, discovery only): `951/tools/referee_b/check_charge.py` = JSON in / exact-rational JSON verdict out for any candidate B charge; on cxr, every charge supported only on 3rd+ merge gates FAILS, so B rules must charge gates outside them. SURVEY 09:30 (`951/tools/referee_b/README.md`): on 339 one-NOT circuits with a 4+-set, charging 3rd+ merges inside each set's own merge gates FAILS on cxU6/cxU8/cxU_6_4/cxU_8_4/cxP2, while support 'own cone minus every set's first two merges' is feasible on all 339 (data, necessary-condition check only). CROSS-CHECKED 09:43 by Research with w951 systems/merges/cone + own max-flow: 0 disagreements (951/board/agents/research-referee-b-crosscheck.md); definitions (z_S, atoms, first-two removal) shared, so this checks implementation, not definitions. LIT 09:44 (951/board/agents/research-hall-charging-lit.md): no printed fractional-Hall lemma for the D-shape; nearest template Pippenger 1980 Lemma 1 (cone-restricted path charging, load <= t^2, no capacity-1 step), then Wegener 1987 sec 6.6. The D-shape needs its own proof.
 
 - research (session_01GmnDhdzjMKChKGfUadQDVf; desktop Research merged in 1:1, handoff pequalnp-work board
   agents/research-desktop-HANDOFF.md, 08:50): literature for unrestricted circuits done (notes/general/research-lit-unrestricted.md);
@@ -184,6 +192,7 @@ fractional induction.
 - 09:45 SCAFFOLD (CU, research's two-world chain lemma; 26 instances + ADV3/ADV4, both world-1 variants, heavy sets all points): 54 level-set chains of optimal pi: 0 failures, and with the chosen c ONE zero point per set minimises at every level (54/54); exhaustive A1 ⊇ A2 over merge gates: 270,356 pairs, 0 failures; A1 ⊇ A2 ⊇ A3: 46,620 triples, 0 failures. Full ~86k corpus running. CU in Lean: cTAHG; CU referee: desktop Coord. dRKvz now lands its own Lean in 951/lean (owner-approved attach).
 - 10:00 P=NP Front (F1, data): MergeSDR (disjoint merge sets at some zero points z_w) HOLDS on ALL 27,991 distinct correct one-NOT circuits with >= 2 sets in the full corpus (data-corpora + w9 + instances; n - min|S| <= 14). The fixed two-world menu {0, top_w} fails on exactly 1: scaffold payment/ce3 (essential, n=8, s=34, 4 sets, max |S| = 3), besides ADV3. Files: 951/research/front612/sdr/. Next: F2 O2-PAIR hill-climb.
 - 09:55 STRONG RESULTS: P=NP Front F1: MergeSDR (one zero point per set, pairwise DISJOINT merge sets) holds on ALL 27,991 distinct correct one-NOT corpus circuits with >= 2 sets (951/research/front612/sdr/). Scaffold CU (h(z) = 0 partition): 0 failures on ~1.1M exhaustive pairs/triples of the 6 non-uniform families + 3,000 random integer pi each (heights <= 6); 26 instances: 251,696 pairs, 46,620 triples, 25,000 random pi. Referee (desktop Coord): STRONG CU (= chain-SDR: per chain ONE z_w per set with sum_w |M_{z_w}(w) ∩ A_t| <= |A_t| for all t) => MergePrice is a one-line proof; MergePrice <=> the fractional-mixture version (LP duality on each chain). Proof idea: Hall/Rado along a chain, greedy from the smallest level outward with exchange. Lean: dZb2E MergeSDR, cTAHG StrongCU. PriceOff landed (260c852), audit #2 landed (dRKvz d6d369d).
+- 10:15 (batched) LANDED: MergeSDR (no_minCE_of_mergeSDR, mergeSDR_of_integral), chainPickOn_of_mergeSDR, ChainPick (cTAHG; cu_counterexample: CU alone does NOT give MergePrice, ChainPick does), PriceOff — main 8fac655, 1 sorry. ASSIGNED: research = Aharoni-Haxell hypergraph Hall for MergeSDR (agents/research-hypergraph-hall.md); cTAHG = W951/SDRCert.lean, decide-checked MergeSDR certificates (CfgI, ADV3/4, ce3, HARD4, cxr; scaffold exports). OWNER via front's chat: research also assesses Blais-Canonne-Oliveira-Servedio-Tan 2015 (t NOT gates => total influence O(2^t sqrt n)) + the polynomial method for 951 (agents/research-negation-influence.md); tractability considers an infinite-series / continuous formulation (multilinear extension, noise-stability power series, n -> infinity limits). Framework: 951/PIPELINE.md.
 - NEXT most important (10:00): PROVE MergeSDR = a system of disjoint representatives: one merge set M_{z_w}(w) per Boolean-sum set, pairwise disjoint. 0 failures on 75,619 circuits (scaffold); StrongCU 0 failures on ~2.7M chains. Referee: MergeSDR = MergeFrac with point masses => no_minCE via existing Lean (wrapper: dZb2E); strictly stronger than MergeFrac (fallback: StrongCU / fractional). Proof shape: Hall/Rado disjoint transversal over {M_z(w)}; facts: Lemma M |M_z(w)| = d_w, universal merges pairwise disjoint, |S_a ∩ S_b| <= 1. Scaffold: smallest circuits with a UNIQUE disjoint choice / where greedy fails.
 - NEXT most important (09:25): prove the REFINED price form; candidate routes: research's two-world chain lemma (CU), and the two-owner ShiftOff (dZb2E PriceOff: single-owner gates shift for free; cross-world gates are all two-owner).
 - FABLE ALLOCATION (owner 09:01, verified: "each opus should have two fables. maybe like 8 fables we can dole out here"; ~8 total):
@@ -193,7 +202,7 @@ fractional induction.
   | 3-4 | front A1 (session_01GmnDheKL3UENhJCL6pD1hS) | MergePrice dual for general pi (concavity!): 2 Fables under the A1 Opus at the 11:32 resume |
   | 5 | front B | merge-tree double counting with split shared gates (referee_b/check_charge.py as gate) |
   | 6 | front C | lifted fractional induction |
-  | 7 | dZb2E (session_01GmnDhdZb2EsYNLc1r4M85e) | PriceOff.lean: MergePriceOff + ShiftOff -> MergePrice; easy ShiftOff cases |
+  | 7 | dZb2E (session_01GmnDhdZb2EsYNLc1r4M85e) | DONE, no Fable used: PriceOff.lean, MergeSDR.lean (+ chainPickOn_of_mergeSDR) landed (main 8fac655). Slot free |
   | 8 | research (session_01GmnDhdzjMKChKGfUadQDVf) | literature: min-of-sums / concave dual LPs with integral extreme points (Rado, polymatroid, submodular covering) for the K-Rado question |
 
 ## Subboard: quantum gravity (L-qg)
