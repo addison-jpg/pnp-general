@@ -1,0 +1,18 @@
+{
+ "id": "L-meta-969",
+ "title": "Search: a circuit of AND and OR gates with at most 11 gates for the edge function of the 3-cube",
+ "formal_statement": "∃ C : PEqualNP.CircuitLowerBounds.Circuit, PEqualNP.MetaComplexity.Monotone2 C ∧ C.size ≤ 11 ∧ (∀ x : Fin 8 → Bool, (C.eval (List.ofFn x) = true ↔ ∃ u v : Fin 8, (u.val, v.val) ∈ ([(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)] : List (ℕ × ℕ)) ∧ x u = true ∧ x v = true))",
+ "statement_hash": "sha256:53c675a370c4c1433fb8659013b2914c9b9fa67f66aa47d574476b8e611643f6",
+ "plain_statement": "Is there a circuit of AND and OR gates only, each reading at most two wires, every gate counted, with at most 11 gates, true on 8 inputs exactly when both ends of some edge are true? The graph is the 3-cube: u and v in 0..7 joined when their binary forms differ in exactly one bit; 12 edges, least vertex cover size 4. Every such circuit has at least 11 gates, and the circuit through a cover has 15. Wanted: a gate list, verified on all 256 inputs. The opposite statement is its own row.",
+ "status": "conjecture",
+ "barrier": null,
+ "depends_on": [],
+ "program": "meta_complexity",
+ "seat": null,
+ "proposed_at": "2026-11-23T18:04:38.019Z",
+ "attempts": [],
+ "kind": "helper",
+ "used_by": [],
+ "status_at": "2026-11-23T18:04:38.019Z",
+ "layer": 0
+}

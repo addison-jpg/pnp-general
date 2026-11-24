@@ -1,0 +1,18 @@
+{
+ "id": "L-meta-1342",
+ "title": "Search: a fan-in-two AND/OR circuit with at most 21 gates for the edge function of an 11-vertex graph with no 4-cycle, 16 edges and cover number 7",
+ "formal_statement": "∃ C : PEqualNP.CircuitLowerBounds.Circuit, PEqualNP.MetaComplexity.Monotone2 C ∧ (∀ x : Fin 11 → Bool, (C.eval (List.ofFn x) = true ↔ ∃ u v : Fin 11, (u.val, v.val) ∈ ([(0, 9), (0, 10), (1, 4), (1, 8), (2, 5), (2, 10), (3, 6), (3, 7), (4, 8), (4, 10), (5, 8), (5, 9), (6, 7), (6, 10), (7, 9), (8, 9)] : List (ℕ × ℕ)) ∧ x u = true ∧ x v = true)) ∧ C.size ≤ 21",
+ "statement_hash": "sha256:e7607a14c3df27ffd8d610d7fa1b55ca5ca23f5d5116298642ed491428fb9ed5",
+ "plain_statement": "Is there a circuit of AND and OR gates only, each reading at most two wires, every gate counted, with at most 21 gates, true on 11 inputs exactly when both ends of one of the edges 0-9, 0-10, 1-4, 1-8, 2-5, 2-10, 3-6, 3-7, 4-8, 4-10, 5-8, 5-9, 6-7, 6-10, 7-9, 8-9 are true? The graph has no 4-cycle and least vertex cover size 7, so the circuit from a least cover has 22 gates. Wanted either way: a gate list verified on all 2048 inputs, or that none exists. Conjecture either way.",
+ "status": "conjecture",
+ "barrier": null,
+ "depends_on": [],
+ "program": "meta_complexity",
+ "seat": null,
+ "proposed_at": "2026-11-23T20:42:01.598Z",
+ "attempts": [],
+ "kind": "helper",
+ "used_by": [],
+ "status_at": "2026-11-23T20:42:01.598Z",
+ "layer": 0
+}

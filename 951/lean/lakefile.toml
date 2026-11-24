@@ -1,0 +1,13 @@
+name = "pequalnp"
+defaultTargets = ["PEqualNP"]
+
+# One-to-one copy of the L-meta-951 development from addison-jpg/pequalnp-work, branch coord-951
+# (head ee11077). Same Mathlib pin as the repository's main Lean project. Separate project on purpose:
+# its Kernel/Circuit.lean and Defs differ from lean/PEqualNP here, so the two are not mixed.
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "fc4f59e577feb1a4956671bc04ac18aaaf8cd842"
+
+[[lean_lib]]
+name = "PEqualNP"

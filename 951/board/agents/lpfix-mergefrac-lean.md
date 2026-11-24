@@ -1,0 +1,82 @@
+# lpfix: MergeFrac Lean landing (session_01GmnDhcTAHGf6Zx99zs3cPd, 2026-11-24)
+
+STATUS: PROVED IN LEAN (levels 1-4; MergeFrac itself stays OPEN). No sorry; axioms of all 17 public theorems:
+propext, Classical.choice, Quot.sound. Module `lean/PEqualNP/W951/MergeFrac.lean` (nothing imports it; outside the
+merge951.sh one-file, so the one-file and its single sorry `no_minCE` are unchanged).
+WHERE: branch `mergefrac-land` 415e2c2 = coord-951 f3af239 + level 4 (c98c24b) + W951.md entry; landing via auto951 run 45353814694 (direct push to coord-951 was blocked for this session). Gate run locally: full build of PEqualNP + every W951/Kernel/Base module OK (18528 jobs); merge951.sh one-file 0 errors / exactly 1 sorry (no_minCE); L_meta_951 axioms propext, sorryAx, Classical.choice, Quot.sound; branch `mergefrac` 697170e (the fix on top of the WIP).
+
+- Level 1, Lemma M: `mergeSet_card` (|M_z(w)| = |S_w| - 1 at EVERY zero point, no Good condition), `zeroSys`.
+- Level 2: `MergeFrac`, `fracMatch_of_mergeFrac`, `bound_of_mergeFrac`, `no_minCE_of_mergeFrac`, `mergeFrac_load_sum`.
+- Level 3: `MergePrice`, `mergeFrac_iff_mergePrice` (LP duality), `no_minCE_of_mergePrice`, `univMerge_disjoint`,
+  `mergePrice_single`.
+- Level 4 (chist C0/C2/C3): `subselection_bound` (form (U)), `CoverPrice`, `bound_of_coverPrice`,
+  `coverPrice_of_priceIneq`, `coverPrice_of_mergeFrac`, `Servable`, Lemma R `servable_of_gate`, Theorem F
+  `servablePacking_mono` / `bound_of_servablePacking` (s >= 1 + V_fun), NEW `IsCE.servablePacking_le`.
+- WIP fix: 77196d1 did not parse (a `by exact_mod_cast` term split across lines in `servablePacking_mono`); now fixed.
+
+PAPER CHECK (chist_fable C0-C3, C6; SORRY_DISSECTION §20): no false step.
+- C3 "new minimality fact V_fun < base": Lean proves the sharper V_fun <= base - 2 on EVERY counterexample
+  (`IsCE.servablePacking_le`), since s - 1 >= V_fun and s <= base - 1.
+- Not formalised (not needed downstream): the converse of Lemma R; "V_fun <= base is automatic".
+- Header of the WIP named `bound_of_packing` (C0); it was never written. The C0 arithmetic is `subselection_bound`
+  (and `sum_mul_card_le_card_biUnion` inside Theorem F).
+- Lean `bound_of_servablePacking` needs no h(0) = 0 hypothesis and no correctness of the circuit: only the entry facts
+  on the lifted output wires (zero on Z e, one at the atoms). So it is slightly more general than the paper's statement.
+- `CoverPrice` quantifies over all d_w-subsets of every test system's counted wires; the paper's "the c_e cheapest
+  gates" is the same constraint (vacuous for a class with < d_w gates, which Lemma M rules out for merge sets).
+
+NEXT (offer, role "Lean for the price form and LP duality"): land in Lean whatever sub-lane A (price form) or the
+no-mixed-points test produces; ask tractability for the next landing.
+
+## MergeLink (08:35): hload => MergeFrac — ONE LANDING SLOT (PROVED IN LEAN, no sorry)
+WHERE: branch `mergelink-r1` 1bc1bfc (ff from coord-951 ac80489; gate: full build OK, one-file 0 errors / 1 sorry): MergeFrac.lean + `mergeSet_or`; new W951/MergeLink.lean; W951.md.
+- `mergeSet_or`: every merge gate of the run at a zero point is an OR gate (any circuit with <= 1 NOT).
+- `realCl_of_mem_mergeSet`: at a zero point z of S, every merge gate n+i is in `RealCl gates p S z i` (LiftHelpers'
+  whole class at the real base point z).
+- `mergeFrac_of_realBasePoints`: the `hload` of `liftClassFrac_of_realBasePoints` (weights on zero points, whole
+  classes RealCl, load <= 1 at gates i != p) implies `MergeFrac` with the same weights; `mergePrice_of_realBasePoints`.
+CONSEQUENCE: MergeFrac / MergePrice is the WEAKEST fractional target on the no_minCE path. Every lane's result
+(price form A, merge-tree B, lifted induction C, or a real-base-point hload family) lands in `no_minCE_of_mergePrice`.
+PRECISION NOTE for the board text "Lean reduces no_minCE to hload ... This is MergeFrac": not the same statement.
+hload charges WHOLE classes RealCl (gives s >= base+1); MergeFrac charges merge sets (|S_w|-1 gates; gives s >= base).
+hload => MergeFrac (proved); the converse fails as a method: whole-class charging is refuted on cxT2 (LP 6 < 9) and
+cxT4 (10 < 15), chist_fable C1, while MergeFrac holds on all ~15,300 checked circuits. So the target to attack is
+MergePrice, not hload.
+
+## MergeDual (08:50): MergeFrac on allowed points + LP dual; NoMixedPrice (PROVED IN LEAN, no sorry)
+WHERE: branch `mergestack` 7c0a445 = coord-951 19601c9 + MergeLink (2 commits) + MergeDual (1 commit); replaces
+`mergelink-r1` (same MergeLink content, older base). Gate: full build OK, one-file 0 errors / 1 sorry.
+- `MergeFracOn S gates A` / `MergePriceOn S gates A hA` for ANY allowed point sets A w; LP duality
+  `mergeFracOn_iff_mergePriceOn`; `nonempty_of_mergeFracOn`, `mergeFracOn_mono`.
+- A = zero points: `mergeFracOn_zeroPts_iff` (= MergeFrac), `mergePriceOn_zeroPts_iff` (= MergePrice).
+- A = non-mixed zero points (MergeWorld): `nonMixedPts`, `noMixedFrac_iff_mergeFracOn` (= NoMixedFrac), the price form
+  `NoMixedPrice` (∀ π ≥ 0, Σ_w min_{z non-mixed} π(M_z(w)) ≤ π(gates)), `noMixedFrac_iff_noMixedPrice`,
+  `no_minCE_of_noMixedPrice`.
+USE: scaffold's restricted-LP tests (no mixed points; one world; minterms of h) now each have a Lean price form for free:
+pick A, and `mergeFracOn_iff_mergePriceOn` gives the dual; `mergeFracOn_mono` + `mergeFracOn_zeroPts_iff` send any
+feasible restriction to MergeFrac, hence to no_minCE.
+- (09:00) + world split on `mergestack` d68ad9d: `worldCost` (merge-set price in the monotone world of the point: C0 at
+  world-0, C1 at world-1), `worldCost_eq`, `noMixedPrice_iff_worlds`: NoMixedPrice reads only the merge sets of the two
+  monotone circuits C0, C1. This is the Lean form of the board's "MergeFrac reduces to C_0, C_1" test (no mixed points).
+
+## Heavy (09:20): heavy points and the heavy split (coord re-aim 08:23; front-heavy.md) — PROVED IN LEAN, no sorry
+WHERE: branch `heavy-r1` 5bf3e06 (on coord-951 13e0dbc; gate: full build OK, one-file 0 errors / 1 sorry), W951/Heavy.lean.
+(a) `heavy_val_C0`: h >= x_v (h(e_v) = 1) => on {x_v = 1} EVERY wire equals C0 (NOT := 0). `heavy_world0`,
+    `heavy_pinned_C0` (a set R not containing v, at its base Zof R: real merge set = C0 merge set),
+    `heavy_star_not_world1` (= MergeWorld2's HeavySet.not_world1), `heavySet_iff` (HeavySet = contains a heavy point).
+(b) Case II as a Prop: `HeavySplit S gates v` = MergeFracOn with star(v) free over its zero points and every other set
+    pinned at {Zof (S b)}; `HeavySplitPrice` + `heavySplit_iff_price` (LP duality), `mergeFrac_of_heavySplit`,
+    `no_minCE_of_heavyCases`: (∃ v, HeavySplit) ∨ (∃ p, RefinedNoMixedFrac) at every MinCE closes no_minCE.
+(c) ANSWER to front's caveat / coord's question: cleanliness is NOT enough. `pinned_collision_clean` (decide):
+    n = 4, sets {0,1}, {2,3}; gates x0&x2, x1&x3, g = (x0&x2)|(x1&x3), g|x0, (g|x0)|x1 (= x0|x1), g|x2, (g|x2)|x3 (= x2|x3);
+    AND/OR fan-in 2, outputs correct, NO gate equals an earlier wire (MinCE.clean's condition), and g is in BOTH
+    pinned C0 merge sets (at Zof{0,1} and Zof{2,3}). Unlike K_{2,2} (Kernel/MultiBase: outputs only correct on
+    {x >= z_w}), this circuit computes OR(S_w) everywhere. It is NOT gate-minimal (7 gates vs 2).
+RESIDUAL (precise): pinned disjointness for sets b, b' not containing v needs gate-MINIMALITY of the MinCE (MinCE.min:
+no smaller one-NOT circuit for the same outputs), or the NOT/world structure; MinCE.clean / live do not suffice. A collision
+gate g at Zof(S_b), Zof(S_b') has a minterm {u, a, ...} with u in S_b \ S_b', a in S_b' \ S_b (it is 0 on both bases and 1 at
+Zof(S_b) + e_u): exactly front's junk shape. Data (front): no collision on 4764 (circuit, heavy v) pairs.
+- (09:35) Heavy LANDED (coord-951 f7cc5c6). + Case I price form on branch `refined` 03c7a91 (ff from f7cc5c6, gated):
+  `refinedPts`, `refinedNoMixedFrac_iff_mergeFracOn`, `refinedPts_nonempty` (no extra hypothesis), `RefinedNoMixedPrice`,
+  `refinedNoMixedFrac_iff_price`, `no_minCE_of_refinedNoMixedPrice`. Both cases of front's split now have a Lean price form:
+  Case I `RefinedNoMixedPrice`, Case II `HeavySplitPrice`.

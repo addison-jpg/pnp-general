@@ -1,0 +1,188 @@
+{
+  "compiled_at": "2026-11-23T14:57:00-06:00 (history-bounded; upstream newest commit 2026-11-23T22:54:08+02:00 = 14:54 CST)",
+  "time_note": "upstream commit timestamps are +02:00; CST = +02:00 minus 8h. Chat times are CST.",
+  "sources": {
+    "refs/remotes/origin/tools/l951-charging": "3c0882a26bd5a0351e16691e0bb6ca98c78b5fa7",
+    "refs/remotes/origin/tools/nb-stat-search": "7cdc65bf957bf5a32abcf3044701def2f0f8d02d (STATUS.json there was compiled at 57beebd; branch has since advanced)",
+    "refs/remotes/origin/L-meta-986": "b92c40a62ed773637cc1d064d61ce9b1a1eb3ee5",
+    "refs/remotes/upstream/main": "e7cfac4283c3d52070a0a0671307f4a3ba0bb9cd"
+  },
+  "upstream_window": {
+    "oldest_commit": "2026-11-23T01:17:40+02:00",
+    "newest_commit": "2026-11-23T22:54:08+02:00",
+    "commit_count": 494,
+    "caveat": "Only covers 2026-11-23; a step with no commit here is OPEN only as of that window (and the last fetch). Note 'L-meta-567 (#612)' is PR number 612, NOT step 612."
+  },
+  "steps": {
+    "L-meta-951": {
+      "upstream_status": "OPEN (no commit L-meta-951 in upstream/main window); STATUS.json says 'claimed_by_others: none through PR #2141 (checked 14:06)'",
+      "statement": "One NOT gate saves nothing on Boolean sums of sets (|S_i|>=2, pairwise |S_i \u2229 S_j|<=1): any circuit with <=1 NOT computing all OR(S_i) has size >= sum(|S_i|-1)",
+      "DONE": [
+        "Paper (tools/l951_charging/STATUS.json proved_on_paper, branch tools/l951-charging): per-set count: every S needs |S|-1 merges (zero point Z'_S = 0 on S\u222aT_S)",
+        "Paper: global invariant w(Z'_S)=0 => w(e_x)=0 for x outside S\u222aT_S",
+        "Paper: NOT gate is never a merge (+1 slack)",
+        "Paper: no shared merge easy-easy or easy-hard; shared merge hard-hard needs S_a\u2229T_b and S_b\u2229T_a both nonempty",
+        "Paper: identity size = sum(|S|-1) - excess + #zero_merge; excess <= number of crossing incidences |S_a \u2229 T_b|",
+        "Paper (crude_argument): shared merges for a crossing pair <= |S_a \u2229 T_b|; each crossing element lies on a minterm of h avoiding S_b so h reads x_p and h needs >= (#crossing elements - 1) gates",
+        "Data (STATUS.json): ~1900 SAT near-opt circuits (size<=opt+4) zero double merges; 15200 + 36870 targeted/wide-adversarial circuits: max excess 3, 0 charge conflicts, excess>zero never, min(zero-excess)=6",
+        "Scripts (branch tools/l951-charging, tools/l951_charging/): README.md (definitions), inj951.py (targeted scaffold + charging rule), inj951w.py (wide/adversarial generator, hill-climb on excess-zero), merge951b.py (transversal scheme analyse2 on SAT circuits, samples 5 per size/NOT position), ov951.py (SAT circuit generator over wires, NOT at position p), exh951.py (exhaustive enumeration w/ blocking clauses at base+1, base+2; cap per cell), sat951.py (SAT counterexample search 'fano|k4 S K [timeout]')",
+        "SCAFFOLD results (tools/l951_charging/INBOX.json 15:00 msg): base+1 with the NOT actually read is UNSAT on ALL 5 systems (every NOT position exhausted); base+2: 586,352 circuits enumerated (cap hit, not exhausted), excess=0 in every one, 418,711 had >=2 hard sets",
+        "SCAFFOLD sat951 sanity (chat, ~14:50): K4 edges 6 SAT / 5 UNSAT with or without NOT; Fano monotone 14 gates SAT in 3s",
+        "Related merged Lean code: L-meta-986 (closed upstream) proves 1 + sum(|S_s|-1) <= gates.length + sum_{u in T.erase t0} deg(u) for a circuit with <=1 NOT whose read wire h vanishes on T; lean/PEqualNP/Outside/L_meta_986.lean on upstream/main (branch addison-jpg version at origin/L-meta-986 b92c40a is statement-identical in spirit, no sorry in grep of theorem lines)"
+      ],
+      "DEAD_REFUTED": [
+        "No refuted approach is recorded in the 951 STATUS/INBOX/README files (no explicit refutations); the pure 'no-overlap' wire example from the brief (g = (x2\u2227(x3\u2228x4))\u2228(\u00acx2\u2227(x0\u2228x1))) does not appear in any of the 4 refs' tracked 951/stat_search files I read, so cite it as chat-only if used",
+        "Naive claim 'h's merges serve only easy sets' is NOT implied by the no-sharing rule (STATUS.json replies_to_scaffold pushback_on_note): gate w on h's path with w<=h can still merge a hard set S if u,v in S are singleton minterms of h"
+      ],
+      "IN_PROGRESS": [
+        "FRONTIER subagent 1 (launched ~14:52, output not on any branch): Lean file for 951 reusing 986 code with the missing lemma (excess <= #zero_merge) as a hypothesis",
+        "FRONTIER subagent 2 (launched ~14:52, not on any branch): math agent on 'excess <= #zero_merge' via (a) crossing-input ancestor x_p\u2228x_q, (b) charge to h-subcircuit gates merging no hard set, (c) smarter transversal choice",
+        "FRONTIER main thread: testing target (b) in inj951w.py (per STATUS pushback)",
+        "SCAFFOLD (~14:50, chat): sat951 Fano 13 gates with <=1 NOT AND monotone, 3300s timeout, result unknown (SAT would refute 951)",
+        "SCAFFOLD: base+2 exhaustive run capped; cells not exhausted"
+      ],
+      "DO_NOT_REPEAT": [
+        "Do not re-sample near-opt circuits on the 5 systems in exh951.py/merge951b.py: opt+1 with used NOT is UNSAT on all 5 (INBOX 15:00), opt+2 gave 586,352 circuits all with excess 0",
+        "Do not re-run the K4 / Fano monotone sanity checks of sat951 (K4 6 SAT/5 UNSAT; Fano monotone 14 SAT in 3s)",
+        "Do not re-derive the identity size = sum(|S|-1) - excess + #zero_merge, the per-set merge count, or the 'NOT is never a merge' fact (STATUS.json proved_on_paper)",
+        "Do not re-run the 36870 wide-adversarial / 15200 targeted charging tests (max excess 3, 0 conflicts, min zero-excess = 6); more random search is unlikely to refute",
+        "Do not write a second Lean skeleton: reuse the 986 Lean code already merged upstream (stierms, #1700) and FRONTIER subagent 1's file once pushed"
+      ],
+      "OPEN_GAPS": [
+        "Prove excess <= #zero_merge (equivalently, data suggests the stronger excess <= #zero_merge - 1, i.e. 'if the NOT is read then size >= base+2')",
+        "Exact gap per STATUS.json: gates inside h's subcircuit can themselves be merges (e.g. h = x1\u2228x2 with {1,2} inside an easy set), so they are not automatically zero-merge; show a merge inside h's subcircuit cannot belong to a set in a crossing pair, or bound such merges separately",
+        "Fano 13 gates with <=1 NOT: result pending (SAT = counterexample to 951)"
+      ]
+    },
+    "L-meta-969": {
+      "upstream_status": "OPEN as posted but FALSE: L-meta-970 (checked, #1830) proves every monotone Q3 circuit has >= 12 gates, contradicting size <= 11. Do not try to prove it; release with statement_seems_false or prove its negated twin.",
+      "statement": "Search: exists monotone2 circuit C with C.size <= 11 computing the Q3 edge function (12 edges, 8 inputs). Read from data.pequalnp.com/data/lemma/L-meta-969.0d476e999742.json (hash sha256:53c675a3...). NOT 'an upper bound' of 13.",
+      "DONE": [
+        "Branch tools/nb-stat-search (tools/stat_search/STATUS.json results): 14-gate monotone circuit for Q3, checked on all 256 inputs; |E|+tau-1 = 15; produced by nb_search.py biclique cover + NB beam",
+        "Chat (SCAFFOLD): found a 13-gate monotone circuit for Q3; test-built a Lean file (scratch, NOT submitted)",
+        "Benchmark (tools/stat_search/STATUS.json): biclique-beam 1302 vs |E|+tau-1 1525 total gates over 65 random graphs, wins on 44/65, all from graphs with 4-cycles; README table: 45 graphs, beam 890 vs 1045",
+        "2026-11-23 15:xx: 13-gate circuit pushed as tools/stat_search/Q3_13GATE.json, verified on 256 inputs. So opt(Q3) is 12 or 13."
+      ],
+      "DEAD_REFUTED": [
+        "Chat: tree search at Q3/13 gates: 1.1M nodes in 150s, inconclusive; do not use tree search at Q3 scale (SAT is the tool)"
+      ],
+      "IN_PROGRESS": [
+        "SCAFFOLD (chat): SAT runs at 12 and 11 gates launched, results unknown"
+      ],
+      "DO_NOT_REPEAT": [
+        "Do not rebuild a 14-gate Q3 circuit (superseded by 13-gate one from SCAFFOLD)",
+        "Do not use nb_search.py tree on Q3 (1.1M nodes/150s inconclusive)",
+        "Do not re-find a Lean encoding for the 13-gate circuit; scratch file exists in SCAFFOLD's workspace (not pushed)",
+        "Do NOT build a Lean file for 969 from the 13-gate circuit: the posted bound is <= 11, 13 does not satisfy it"
+      ],
+      "OPEN_GAPS": [
+        "Decide opt(Q3) in {12,13}: SAT at 12 gates (nb_search.py graph q3 --sat 12)",
+        "Negated twin of 969 (no <=11 circuit) should follow from merged 970 - check the desk if still open"
+      ]
+    },
+    "L-meta-970": {
+      "upstream_status": "CLOSED by Marco Visentini-Scarzanella, PR #1830, commit 4398ba4, 2026-11-23T21:26:40+02:00 (13:26:40 CST)",
+      "statement": "3-cube Q3 needs >= 12 AND/OR (per tools/stat_search/STATUS.json relevance_to_steps)",
+      "DONE": [
+        "Closed upstream; commit 4398ba4 on upstream/main",
+        "nb-stat-search STATUS: Q3 upper bound 14 from tool (now superseded by 13 per chat)"
+      ],
+      "DEAD_REFUTED": [],
+      "IN_PROGRESS": [
+        "Any 970 effort by either thread should stop"
+      ],
+      "DO_NOT_REPEAT": [
+        "Do not work on 970; it is merged (#1830)",
+        "SAT at 12/11 gates for Q3 is relevant only to 969 now"
+      ],
+      "OPEN_GAPS": []
+    },
+    "L-meta-612": {
+      "upstream_status": "OPEN (no commit L-meta-612 in upstream/main window; 'L-meta-567 (#612)' is a different step with PR number 612)",
+      "statement": "C4-free graphs need >= |E|+tau-1 gates (monotone)",
+      "DONE": [
+        "tools/stat_search/STATUS.json: no biclique win on C4-free graphs; opus thread's exact SAT found no counterexample up to 6 vertices",
+        "Biclique covers only beat |E|+tau-1 on graphs with 4-cycles (README: 32 of 45 graphs; STATUS: all wins from graphs with 4-cycles)"
+      ],
+      "DEAD_REFUTED": [],
+      "IN_PROGRESS": [],
+      "DO_NOT_REPEAT": [
+        "Do not rerun SAT for C4-free graphs up to 6 vertices (no counterexample)",
+        "Do not rerun bench to find biclique wins on C4-free graphs"
+      ],
+      "OPEN_GAPS": [
+        "Actual proof of >= |E|+tau-1 for C4-free graphs; only empirical consistency exists"
+      ]
+    },
+    "L-meta-986": {
+      "upstream_status": "CLOSED by stierms, PR #1700, commit d774779, 2026-11-23T21:24:31+02:00 (13:24:31 CST)",
+      "statement": "1 + sum(|S_s|-1) <= gates.length + sum_{u in T.erase t0} deg(u), circuits with <=1 NOT whose read wire hw vanishes when T all zero (lean/PEqualNP/Outside/L_meta_986.lean)",
+      "DONE": [
+        "chat: addison-jpg branch pushed 13:03:06 CST (origin/L-meta-986 b92c40a, 469-line Lean file) but stierms' proof merged 13:24 CST first (21 min later)",
+        "Code is reusable for 951 (lemmas fold_length, val_append, D_mono, main_inv, gate_cases)"
+      ],
+      "DEAD_REFUTED": [],
+      "IN_PROGRESS": [],
+      "DO_NOT_REPEAT": [
+        "Do not submit/open a PR for origin/L-meta-986; closed upstream",
+        "Reuse merged upstream Lean file rather than own branch"
+      ],
+      "OPEN_GAPS": []
+    },
+    "L-meta-701": {
+      "upstream_status": "CLOSED by bluish, PR #1518, commit 140849f, 2026-11-23T19:51:52+02:00 (11:51:52 CST)",
+      "statement": "Weighted gate-count measure on the L-meta-701 graph (tools/stat_search/STATUS.json: plain count 7 gates, 6 UNSAT, but 'not the weighted measure the step asks for')",
+      "DONE": [
+        "Closed upstream",
+        "SAT check plain count: 7 gates, 6 UNSAT (nb-stat-search, not the weighted measure)"
+      ],
+      "DEAD_REFUTED": [],
+      "IN_PROGRESS": [],
+      "DO_NOT_REPEAT": [
+        "Do not work on 701; merged #1518"
+      ],
+      "OPEN_GAPS": []
+    },
+    "L-meta-1003": {
+      "upstream_status": "CLOSED by Federico Devigili, PR #1814, commit 35ab360, 2026-11-23T21:02:16+02:00 (13:02:16 CST)",
+      "statement": "not described in any of the 951/stat_search files; unknown content",
+      "DONE": [
+        "Closed upstream"
+      ],
+      "DEAD_REFUTED": [],
+      "IN_PROGRESS": [],
+      "DO_NOT_REPEAT": [
+        "Do not work on 1003; merged #1814 (it is also the parent commit of the origin/L-meta-986 branch tip's base, so it is already in upstream)"
+      ],
+      "OPEN_GAPS": []
+    }
+  },
+  "duplication_risks": [
+    "Step 970 is CLOSED upstream (Marco V-S, #1830, 13:26 CST, 2 min after 986), yet nb-stat-search STATUS.json lists 970 under relevance and SCAFFOLD's Q3 SAT at 12/11 gates is only useful for 969 now. Confirm neither thread is spending effort on 970.",
+    "986 was closed 21 min after the addison-jpg branch push (13:03 vs 13:24 CST): any further effort on 986 is wasted; reuse stierms' merged Lean file.",
+    "701 closed 11:51 CST by bluish: nb-stat-search still lists 701 graph SAT; nothing further to do.",
+    "Both threads work on 951 evidence generation: FRONTIER samples/hill-climbs (inj951w.py, merge951b.py), SCAFFOLD enumerates (exh951.py) and runs sat951 Fano; SCAFFOLD's exh951 reuses FRONTIER's code unchanged, so another enumerator would be a third copy.",
+    "SCAFFOLD's note 'h's merges can only serve EASY sets' conflicts with FRONTIER's pushback; both may test the same charging target (gate on h's path merging no hard set): FRONTIER subagent 2 direction (b) and SCAFFOLD's suggestion are the same idea.",
+    "Two Lean-side efforts may overlap: FRONTIER subagent 1 (951 Lean with hypothesis) and SCAFFOLD's scratch 13-gate Q3 Lean file (969) are different steps, but both rebuild circuit-eval scaffolding already in the merged 986 file.",
+    "L-meta-969 and 612 depend on same nb_search.py SAT tool; 969 12/11-gate SAT runs and 951 Fano 13-gate SAT run on the same SCAFFOLD machine/process budget."
+  ],
+  "not_on_branch": [
+    "FRONTIER subagent 1: Lean file for 951 reusing 986 code with the missing lemma as hypothesis (launched ~14:52)",
+    "FRONTIER subagent 2: math agent output on excess <= #zero_merge (3 directions) (launched ~14:52)",
+    "SCAFFOLD: 13-gate monotone Q3 circuit itself (only the 14-gate result is in tools/stat_search/STATUS.json) and its scratch Lean file",
+    "SCAFFOLD: SAT951 Fano 13-gate (<=1 NOT, monotone) run and result; 12/11-gate Q3 SAT results; K4 6 SAT / 5 UNSAT table (only sat951.py itself is pushed)",
+    "SCAFFOLD: tree-search Q3/13 'inconclusive, 1.1M nodes in 150s' (not recorded in tools/stat_search/STATUS.json)",
+    "nb-stat-search branch STATUS.json was compiled by the FRONTIER thread at 57beebd; branch head is now 7cdc65b and the file is stale",
+    "L-meta-986 / 701 closure facts and times (only in chat; here verified from upstream/main git log)"
+  ],
+  "summary_for_frontier": [
+    "CLOSED upstream: 986 (stierms #1700, 13:24 CST), 970 (Marco #1830, 13:26), 1003 (Devigili #1814, 13:02), 701 (bluish #1518, 11:51). Stop all work on them; reuse merged 986 Lean code.",
+    "951 and 969 are OPEN in upstream window (01:17-22:54 +02:00 on 11-23). 612 has no commit (L-meta-567 (#612) is a PR number, not step 612).",
+    "951 gap: prove excess <= #zero_merge; sticking point is merges inside h's subcircuit (h = x1\u2228x2 inside an easy set).",
+    "Do not re-sample near-opt circuits: opt+1 with read NOT is UNSAT on all 5 systems; 586,352 opt+2 circuits all excess 0; 51k adversarial circuits max excess 3, min zero-excess 6. Target the stronger 'NOT read => size >= base+2'.",
+    "Fano 13-gate <=1 NOT SAT (SCAFFOLD, 3300s) is the only direct refutation test pending; K4 and Fano-monotone-14 sanity done.",
+    "969: Q3 has 13-gate monotone circuit (SCAFFOLD, unsubmitted); 14 on branch; tree search at 13 is a dead end (1.1M nodes inconclusive), use SAT; 12/11-gate runs pending.",
+    "Push to a branch: FRONTIER subagent outputs (951 Lean + math), SCAFFOLD 13-gate Q3 circuit/Lean and SAT results; the nb-stat-search STATUS.json is stale.",
+    "Unsupported by any branch file: the 'pure no-overlap claim is false' wire example is chat-only; cite as chat."
+  ]
+}

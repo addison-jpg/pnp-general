@@ -1,0 +1,31 @@
+sys 0 size base+2 {'all1': 270} sec 3
+sys 0 size base+3 {'all0': 192, 'all1': 363, 'mixed': 45} sec 5
+sys 0 size base+4 {'mixed': 107, 'all0': 259, 'all1': 384} sec 9
+sys 1 size base+2 {'all1': 600} sec 13
+sys 1 size base+3 {'all1': 415, 'all0': 299, 'mixed': 36} sec 14
+sys 1 size base+4 {'all0': 291, 'mixed': 175, 'all1': 434} sec 28
+sys 10 size base+2 {'all1': 181} sec 143
+sys 10 size base+3 {'all1': 68, 'mixed': 39, 'all0': 44} sec 156
+sys 2 size base+2 {'all1': 522} sec 20
+sys 2 size base+3 {'all1': 454, 'all0': 259, 'mixed': 37} sec 34
+sys 2 size base+4 {'all1': 411, 'mixed': 106, 'all0': 383} sec 44
+sys 3 size base+2 {'all1': 600} sec 21
+sys 3 size base+3 {'all1': 466, 'all0': 250, 'mixed': 34} sec 23
+sys 3 size base+4 {'all1': 441, 'mixed': 195, 'all0': 264} sec 49
+sys 4 size base+2 {} sec 41
+sys 4 size base+3 {'all1': 484, 'all0': 416} sec 68
+sys 4 size base+4 {'all0': 464, 'all1': 511, 'mixed': 75} sec 60
+sys 5 size base+2 {'all1': 151} sec 144
+sys 5 size base+3 {'all1': 80, 'mixed': 13, 'all0': 75} sec 156
+sys 6 size base+2 {'all1': 5} sec 156
+sys 6 size base+3 {'all1': 83, 'all0': 4, 'mixed': 1} sec 158
+sys 7 size base+2 {'all1': 26} sec 209
+sys 7 size base+3 {'all1': 45, 'all0': 64} sec 157
+sys 8 size base+2 {'all1': 565} sec 132
+sys 8 size base+3 {'mixed': 31, 'all0': 420, 'all1': 599} sec 111
+sys 8 size base+4 {'all1': 371, 'all0': 313, 'mixed': 145} sec 132
+sys 9 size base+2 {'all1': 151} sec 141
+sys 9 size base+3 {'all0': 376, 'all1': 345, 'mixed': 30} sec 135
+sys 9 size base+4 {'all1': 173, 'mixed': 95, 'all0': 316} sec 140
+
+[exited with code 0]

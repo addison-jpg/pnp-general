@@ -1,0 +1,256 @@
+score	year	openalex	title	authors	doi	seeds_cited	keywords
+20	2003	W2333420052	Монотонные булевы функции	A. D. Korshunov	https://doi.org/10.4213/rm667	AmanoMaruoka05; AmanoMaruoka98; Fischer75 survey; Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Tarjan78; Wegener80 BoolSums; Wegener82; Wegener85 slices; Weiss83	
+20	2024	W4405314747	On the non-monotone complexity of Boolean and k-value logic functions	V. V. Kochergin; Anna Vitalievna Mihajlovich	https://doi.org/10.20948/mvk-2024-51	AMT02 merging; AmanoMaruoka05; BNT98; Fischer75 survey; GMO15 crypto; Morizumi09; MorizumiSuzuki10	inversion,inverter,monotone,negation
+19	2017	W3035052232	On the Approximation Method and the P versus NP Problem	Norbert Blüm	https://doi.org/10.48550/arxiv.1708.03486	Blum09 Negations; GrinchukSergeev17; Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Tarjan78; Wegener80 BoolSums; Wegener82; Weiss83	monotone
+19	2015	W2962704124	Some Extensions of the Inversion Complexity of Boolean Functions	V. V. Kochergin; A. V. Mikhailovich	https://doi.org/10.48550/arxiv.1506.04485	BCO14 learning; BCO15 learning; Fischer75 survey; GMO15 crypto; Morizumi09; MorizumiSuzuki10; TanakaNishino94	inversion,monotone,not gate
+17	2003	W2069683079	Monotone Boolean functions	A. D. Korshunov	https://doi.org/10.1070/rm2003v058n05abeh000667	AmanoMaruoka05; Fischer75 survey; Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Tarjan78; Wegener80 BoolSums; Wegener85 slices; Weiss83	monotone
+17	2009	W2125793194	On Negations in Boolean Networks	Norbert Blüm	https://doi.org/10.1007/978-3-642-03456-5_2	AmanoMaruoka05; BNT98; Fischer75 survey; Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Wegener80 BoolSums; Wegener82; Weiss83	negation
+17	2016	W2405402675	Negation-limited formulas	Siyao Guo; Ilan Komargodski	https://doi.org/10.1016/j.tcs.2016.11.027	AmanoMaruoka05; BCO14 learning; BCO15 learning; BNT98; Fischer75 survey; GMO15 crypto; IMT07 parity	negation
+17	2010	W2002850049	Negation-Limited Inverters of Linear Size	Hiroki Morizumi; Genki Suzuki	https://doi.org/10.1587/transinf.e93.d.257	AMT02 merging; AmanoMaruoka05; BNT98; Fischer75 survey; IMT06 parity; SungTanaka02; TanakaNishino94	inverter,negation,not gate
+16	2015	W1898488645	Unconditional Lower Bounds in Complexity Theory	Igor Carboni Oliveira	https://doi.org/10.7916/d8zp45kt	AmanoMaruoka05; BCO15 learning; BNT98; Fischer75 survey; Morizumi09; SungTanaka02	monotone,negation
+16	2015	W2273842690	Negation-Limited Formulas	Siyao Guo; Ilan Komargodski	https://doi.org/10.4230/lipics.approx-random.2015.850	AmanoMaruoka05; BCO14 learning; BNT98; Fischer75 survey; GMO15 crypto; IMT07 parity	monotone,negation
+16	2008	W98017123	Negation-Limited Inverters of Linear Size	Hiroki Morizumi; Genki Suzuki	https://doi.org/10.1007/978-3-540-92182-0_54	AMT02 merging; AmanoMaruoka05; BNT98; Fischer75 survey; IMT06 parity; SungTanaka02; TanakaNishino94	inverter,negation
+15	2015	W74032123	The Power of Negations in Cryptography	Siyao Guo; Tal Malkin; Igor Carboni Oliveira; Alon Rosen	https://doi.org/10.1007/978-3-662-46494-6_3	AmanoMaruoka05; BCO14 learning; BNT98; Fischer75 survey; Morizumi09; SungTanaka02	negation
+15	2009	W1930088680	Limiting Negations in Formulas	Hiroki Morizumi	https://doi.org/10.1007/978-3-642-02927-1_58	AMT02 merging; AmanoMaruoka05; BNT98; Fischer75 survey; Morizumi09; MorizumiSuzuki10; SungTanaka02	negation
+15	2016	W2555190460	On Negation Complexity of Injections, Surjections and Collision-Resistance in Cryptography	Douglas J. Miller; Adam Scrivener; Jesse Stern; Muthuramakrishnan Venkitasubramaniam	https://doi.org/10.1007/978-3-319-49890-4_19	AmanoMaruoka05; BCO14 learning; BNT98; Fischer75 survey; GMO15 crypto; Morizumi09	negation
+14	2017	W2763840267	The minimum number of negations in circuits for systems of multi-valued functions	V. V. Kochergin; A. V. Mikhailovich	https://doi.org/10.1515/dma-2017-0030	BCO14 learning; Fischer75 survey; GMO15 crypto; MorizumiSuzuki10	inversion,monotone,negation,not gate
+13	1995	W2025523787	PI k mass production and an optimal circuit for the Ne?iporuk slice	Alain P. Hiltgen; Mike Paterson	https://doi.org/10.1007/bf01268142	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Tarjan78; Wegener80 BoolSums; Wegener85 slices; Wegener86 slices	slice
+13	2022	W4281619035	Lower bounds for Boolean circuits of bounded negation width	Stasys P. Jukna; Andrzej Lingas	https://doi.org/10.1016/j.jcss.2022.05.003	AmanoMaruoka05; BCO14 learning; GMO15 crypto; JuknaLingas19; Morizumi09	negation
+13	2019	W2937666310	Exact Value of the Nonmonotone Complexity of Boolean Functions	V. V. Kochergin; A. V. Mikhailovich	https://doi.org/10.1134/s0001434619010048	BCO14 learning; BCO15 learning; Fischer75 survey; GMO15 crypto	inversion,monotone,negation
+12	2017	W4236635680	Subspace Trail Cryptanalysis and its Applications to AES	Lorenzo Grassi; Christian Rechberger; Sondre Rønjom	https://doi.org/10.46586/tosc.v2016.i2.192-225	AmanoMaruoka05; BCO15 learning; BNT98; GMO15 crypto; Morizumi09	
+12	2008	W2174212315	Linear-size log-depth negation-limited inverter for k-tonic binary sequences	Hiroki Morizumi; Jun Tarui	https://doi.org/10.1016/j.tcs.2008.10.030	AMT02 merging; AmanoMaruoka05; BNT98; Fischer75 survey; IMT06 parity	inverter,negation
+12	2007	W4235086921	Linear-Size Log-Depth Negation-Limited Inverter for k-Tonic Binary Sequences	Hiroki Morizumi; Jun Tarui	https://doi.org/10.1007/978-3-540-72504-6_55	AMT02 merging; AmanoMaruoka05; BNT98; Fischer75 survey; IMT06 parity	inverter,negation
+12	2007	W302911704	Negation-Limited Complexity of Parity and Inverters(Theory of Computer Science and Its Applications)	大樹 森住; 淳 垂井; 一雄 岩間	None	AMT02 merging; AmanoMaruoka05; BNT98; TanakaNishino94	inverter,monotone,negation,not gate
+11	1985	W2089119058	An Ω(n43) lower bound on the monotone network complexity of the nth degree convolution	Norbert Blüm	https://doi.org/10.1016/0304-3975(85)90030-1	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Tarjan78; Wegener80 BoolSums; Wegener82	monotone
+11	2015	W2962943772	Fractional Coverings, Greedy Coverings, and Rectifier Networks	Dmitry V. Chistikov; Szabolcs Iván; Anna Lubiw; Jeffrey O. Shallit	https://doi.org/10.4230/lipics.stacs.2017.23	JuknaSergeev13; Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Wegener80 BoolSums	rectifier
+11	1984	W1714759042	Proving lower bounds on the monotone complexity of Boolean functions	Ingo Wegener	https://doi.org/10.1007/3-540-13331-3_58	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Tarjan78; Wegener80 BoolSums; Wegener82	monotone
+11	1981	W2050585014	An O(N4/3) lower bound on the mono tone network complexity of N-TH degree convolution	Norbert Blüm	https://doi.org/10.1109/sfcs.1981.10	Fischer75 survey; Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Tarjan78; Wegener80 BoolSums	monotone
+11	None	W2265337971	Correlation Bounds Against Monotone NC1	Benjamin Rossman	None	AmanoMaruoka05; BNT98; Blum09 Negations; Fischer75 survey; Wegener86 slices	monotone
+11	2009	W2077017336	Limiting negations in non-deterministic circuits	Hiroki Morizumi	https://doi.org/10.1016/j.tcs.2009.05.018	AMT02 merging; AmanoMaruoka05; BNT98; Fischer75 survey; SungTanaka02	negation
+11	2003	W1972349717	On the minimum number of negations leading to super-polynomial savings	Stasys P. Jukna	https://doi.org/10.1016/j.ipl.2003.10.003	AmanoMaruoka05; AmanoMaruoka98; BNT98; Fischer75 survey; TanakaNishino94	negation
+11	2008	W1996760375	Reductions for monotone Boolean circuits	Kazuo Iwama; Hiroki Morizumi; Jun Tarui	https://doi.org/10.1016/j.tcs.2008.08.009	AMT02 merging; AmanoMaruoka05; BNT98; IMT06 parity; SungTanaka02	monotone
+11	2006	W1591728857	On the Negation-Limited Circuit Complexity of Sorting and Inverting k-tonic Sequences	Takayuki Sato; Kazuyuki Amano; Akira Maruoka	https://doi.org/10.1007/11809678_13	AMT02 merging; AmanoMaruoka05; BNT98; Fischer75 survey; SungTanaka02	negation
+11	2020	W3081991160	On the Mystery of Negations in Circuits: Structure vs Power	Prashanth Amireddy; Sai Jayasurya; Jayalal Sarma	https://doi.org/10.1007/978-3-030-58150-3_46	AmanoMaruoka05; Fischer75 survey; JuknaLingas19; Wegener85 slices	negation
+11	1997	W597238530	Computational Difficulty-Scheduling and Circuit Complexity(計算の難しさ -スケジューリングと回路計算量)	圭介 田中	https://doi.org/10.11501/3125319	Fischer75 survey; TanakaNishino94; Wegener85 slices; Wegener86 slices	inverter,negation,slice
+10	2014	W1888922747	Cancellation-free circuits in unbounded and bounded depth	Joan Boyar; Magnus Gausdal Find	https://doi.org/10.1016/j.tcs.2014.10.014	GrinchukSergeev17; JuknaSergeev13; Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Wegener80 BoolSums	
+10	2016	W1650093283	Separating OR, SUM, and XOR circuits	Magnus Gausdal Find; Mika Göös; Matti Järvisalo; Petteri Kaski	https://doi.org/10.1016/j.jcss.2016.01.001	GrinchukSergeev17; JuknaSergeev13; Mehlhorn79 BoolSums; Pippenger80 BoolMatrix	
+10	2012	W2490907619	Boolean Function Complexity: Advances and Frontiers	Stasys P. Jukna	https://doi.org/10.1007/978-3-642-24508-4	AmanoMaruoka05; BNT98; Fischer75 survey; TanakaNishino94; Wegener85 slices	
+10	2015	W2595009776	Learning Circuits with few Negations	Eric Blais; Clément L. Canonne; Igor Carboni Oliveira; Rocco A. Servedio	https://doi.org/10.4230/lipics.approx-random.2015.512	AmanoMaruoka05; GMO15 crypto; Morizumi09	monotone,negation
+10	2007	W2614435365	Negation-Limited Complexity of Parity and Inverters	Kazuo Iwama; Hiroki Morizumi; Jun Tarui	https://doi.org/10.1007/s00453-007-9135-1	AMT02 merging; AmanoMaruoka05; BNT98; TanakaNishino94	inverter,negation
+10	2006	W1588568034	Negation-Limited Complexity of Parity and Inverters	Kazuo Iwama; Hiroki Morizumi; Jun Tarui	https://doi.org/10.1007/11940128_24	AMT02 merging; AmanoMaruoka05; BNT98; TanakaNishino94	inverter,negation
+10	1998	W2069191912	On the Complexity of Negation-Limited Boolean Networks	Robert Beals; Tetsuro Nishino; Keisuke Tanaka	https://doi.org/10.1137/s0097539794275136	Fischer75 survey; TanakaNishino94; Wegener85 slices	inverter,monotone,negation,slice
+10	2018	W2791263225	On the Complexity of Multivalued Logic Functions over Some Infinite Basis	V. V. Kochergin; A. V. Mikhailovich	https://doi.org/10.1134/s1990478918010052	BCO14 learning; Fischer75 survey; GMO15 crypto	monotone,negation
+10	2015	W2963600464	Inversion Complexity of Functions of Multi-Valued Logic	V. V. Kochergin; A. V. Mikhailovich	https://doi.org/10.48550/arxiv.1510.05942	Fischer75 survey; GMO15 crypto	inversion,monotone,negation,not gate
+9	1982	W4230950430	Boolean functions whose monotone complexity is of size n2log n	Ingo Wegener	https://doi.org/10.1016/0304-3975(89)90084-4	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Tarjan78; Wegener80 BoolSums	monotone
+9	2006	W2056263286	The Monotone Circuit Complexity of Quadratic Boolean Functions	Kazuyuki Amano; Akira Maruoka	https://doi.org/10.1007/s00453-006-0073-0	Mehlhorn79 BoolSums; Tarjan78; Wegener86 slices; Weiss83	monotone
+9	2005	W2002337670	Boolean functions whose monotone complexity is of size n2/log n	Ingo Wegener	https://doi.org/10.1007/bfb0017292	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Tarjan78; Wegener80 BoolSums	monotone
+9	2017	W2598290983	Towards an Almost Quadratic Lower Bound on the Monotone Circuit Complexity of the Boolean Convolution	Andrzej Lingas	https://doi.org/10.1007/978-3-319-55911-7_29	Blum09 Negations; Wegener82; Weiss83	monotone
+9	2020	W3011760933	Small normalized circuits for semi-disjoint bilinear forms require logarithmic and-depth	Andrzej Lingas	https://doi.org/10.1016/j.tcs.2020.03.005	Blum09 Negations; GrinchukSergeev17; Weiss83	semi-disjoint
+9	2018	W3196788791	Small Normalized Boolean Circuits for Semi-disjoint Bilinear Forms Require Logarithmic Conjunction-depth	Andrzej Lingas	https://doi.org/10.4230/lipics.ccc.2018.26	Blum09 Negations; Weiss83	disjunction,negation,semi-disjoint
+9	2016	W2514222156	Testing $k$-Monotonicity	Clément L. Canonne; Elena Grigorescu; Siyao Guo; Akash S. Kumar	https://doi.org/10.4230/lipics.itcs.2017.29	AmanoMaruoka05; BCO15 learning; GMO15 crypto	monotone
+9	2019	W2942259633		Clément L. Canonne; Elena Grigorescu; Siyao Guo; Akash S. Kumar	https://doi.org/10.4086/toc.2019.v015a001	AmanoMaruoka05; BCO15 learning; GMO15 crypto	monotone
+9	2006	W1487679090	Reductions for Monotone Boolean Circuits	Kazuo Iwama; Hiroki Morizumi	https://doi.org/10.1007/11821069_47	AMT02 merging; AmanoMaruoka05; BNT98; SungTanaka02	monotone
+9	2002	W2022093588	On the negation-limited circuit complexity of merging	Kazuyuki Amano; Akira Maruoka; Jun Tarui	https://doi.org/10.1016/s0166-218x(02)00215-9	AmanoMaruoka98; BNT98; Fischer75 survey; TanakaNishino94	negation
+9	2003	W1575829710	Limiting Negations in Bounded-Depth Circuits: An Extension of Markov’s Theorem	Shao Chin Sung; Keisuke Tanaka	https://doi.org/10.1007/978-3-540-24587-2_13	AMT02 merging; BNT98; Fischer75 survey; SungTanaka02	negation
+9	2004	W1974426418	Limiting negations in bounded-depth circuits: An extension of Markov's theorem	Shao Chin Sung; Keisuke Tanaka	https://doi.org/10.1016/j.ipl.2004.01.003	AMT02 merging; BNT98; Fischer75 survey; SungTanaka02	negation
+9	1995	W2054271696	More on the complexity of negation-limited circuits	Robert Beals; Tetsuro Nishino; Keisuke Tanaka	https://doi.org/10.1145/225058.225276	Fischer75 survey; TanakaNishino94; Wegener85 slices; Wegener86 slices	negation
+9	2016	W2962917999	Sensitivity Conjecture and Log-Rank Conjecture for Functions with Small Alternating Numbers	Chengyu Lin; Shengyu Zhang	https://doi.org/10.4230/lipics.icalp.2017.51	BCO14 learning; GMO15 crypto; Morizumi09	monotone
+9	2024	W4401034741		Zhihuai Chen; Siyao Guo; Qian Li; Chengyu Lin	https://doi.org/10.4086/toc.2024.v020a002	BCO15 learning; GMO15 crypto	monotone,negation,slice
+9	1986	W2043629999	Negation is Powerless for Boolean Slice Functions	Leslie Gabriel Valiant	https://doi.org/10.1137/0215037	Fischer75 survey; Wegener82; Weiss83	monotone,negation,slice
+8	2013	W1967668295	Complexity of Linear Boolean Operators	Stasys P. Jukna; I. S. Sergeev	https://doi.org/10.1561/9781601987273	GrinchukSergeev17; Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Wegener80 BoolSums	
+8	2006	W1495791143	Disproving the Single Level Conjecture	Stasys P. Jukna	https://doi.org/10.1137/s0097539705447001	Mehlhorn79 BoolSums; Tarjan78; Wegener80 BoolSums	disjunction,monotone
+8	2017	W2585022148	Thin circulant matrices and lower bounds on the complexity of some Boolean operators	M. I. Grinchuk; I. S. Sergeev	https://doi.org/10.48550/arxiv.1701.08557	Blum09 Negations; Mehlhorn79 BoolSums	boolean sum,monotone
+8	2022	W4313228342	Bellman's, Knut's, Lupanov's, Pippenger's problems and their variations as generalizations of the addition chain problem	V. V. Kochergin	https://doi.org/10.20948/mvk-2022-119	JuknaSergeev13; Pippenger80 BoolMatrix; Tarjan78	
+8	2017	W2405300893	Depth Lower Bounds against Circuits with Sparse Orientation	Sajin Koroth; Jayalal Sarma	https://doi.org/10.3233/fi-2017-1515	AmanoMaruoka05; Fischer75 survey	monotone,negation
+8	2021	W7223740834	Diameter Versus Certificate Complexity of Boolean Functions	Siddhesh Chaubal; Anna Gál	https://doi.org/10.4230/lipics.mfcs.2021.31	BCO14 learning; GMO15 crypto; Morizumi09	
+8	2020	W3160582795	Complexity measures of Boolean functions and their applications	Siddhesh Chaubal	https://doi.org/10.26153/tsw/12529	BCO14 learning; GMO15 crypto; Morizumi09	
+8	2016	W2564785713	О минимальном числе отрицаний при реализации систем функций многозначной логики	V. V. Kochergin; Anna Vital'evna Mikhailovich	https://doi.org/10.4213/dm1394	Fischer75 survey; GMO15 crypto; MorizumiSuzuki10	
+8	2019	W2906994359	Точное значение немонотонной сложности булевых функций	V. V. Kochergin; Anna Vital'evna Mikhailovich	https://doi.org/10.4213/mzm11693	BCO14 learning; Fischer75 survey; GMO15 crypto	
+7	2014	W130606490	Biclique Coverings, Rectifier Networks and the Cost of ε-Removal	Szabolcs Iván; Ádám D. Lelkes; Judit Nagy-György; Balázs Szörényi	https://doi.org/10.1007/978-3-319-09704-6_16	JuknaSergeev13; Mehlhorn79 BoolSums; Wegener80 BoolSums	rectifier
+7	1983	W2033239368	An n3/2 lower bound on the monotone network complexity of the Boolean convolution	Jürgen Weiß	https://doi.org/10.1016/s0019-9958(83)80035-7	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Wegener82	monotone
+7	2004	W2132783122	On the Monotone Circuit Complexity of Quadratic Boolean Functions	Kazuyuki Amano; Akira Maruoka	https://doi.org/10.1007/978-3-540-30551-4_5	Mehlhorn79 BoolSums; Tarjan78; Wegener86 slices	monotone
+7	1995	W268036438	Circuit Complexity of An Explicity Defined First Slice Function	Tatsuie Tsukiji	None	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Wegener80 BoolSums	slice
+7	2026	W7225347659	A recursion-theoretic characterization of monotone NP	Isabel Oitavem; Eduardo Skapinakis	https://doi.org/10.1007/s00153-026-01040-4	AmanoMaruoka05; Fischer75 survey	monotone
+7	1999	W2992996724	On the Negation-Limited Circuit Complexity of Merging	Kazuyuki Amano; Akira Maruoka; Jun Tarui	https://doi.org/10.1007/3-540-48686-0_20	AmanoMaruoka98; Fischer75 survey; TanakaNishino94	negation
+7	1986	W2051306408	The complexity of central slice functions	Paul E.S. Dunne	https://doi.org/10.1016/0304-3975(86)90122-2	Wegener82; Wegener85 slices; Wegener86 slices	slice
+7	1989	W1963559764	On monotone simulations of nonmonotone networks	Paul E.S. Dunne	https://doi.org/10.1016/0304-3975(89)90142-4	Wegener82; Wegener85 slices; Wegener86 slices	monotone
+7	2022	W4221155977	New Distinguishers for Negation-Limited Weak Pseudorandom Functions	Zhihuai Chen; Siyao Guo; Qian Li; Chengyu Lin	https://doi.org/10.48550/arxiv.2203.12246	GMO15 crypto	monotone,negation,slice
+7	2026	W7160118319	A Note on the Existence of Monotone Distributional Collision Resistant Hash Functions	Kirthivaasan Puniamurthy	https://doi.org/10.62056/akp2fh888	Fischer75 survey; GMO15 crypto	monotone
+7	2025	W4416667296	Simple Circuit Extensions for XOR in PTIME	Marco Carmosino; Ngu Dang; Tim Jackman	https://doi.org/10.4230/lipics.stacs.2026.23	BCO14 learning; BCO15 learning	partial
+7	2020	W3082025249	Power of Decision Trees with Monotone Queries	Prashanth Amireddy; Sai Jayasurya; Jayalal Sarma	https://doi.org/10.1007/978-3-030-58150-3_23	BCO15 learning; Fischer75 survey	monotone
+7	2021	W3181024884	Karchmer-Wigderson Games for Hazard-Free Computation	Christian Ikenmeyer; Balagopal Komarath; Nitin Saurabh	https://doi.org/10.4230/lipics.itcs.2023.74	BNT98; Fischer75 survey	monotone
+7	1998	W194837624	The Complexity of Negation-Limited Inverters	Shao-Chin Sung; Keisuke Tanaka	None	Fischer75 survey; TanakaNishino94	inverter,monotone,negation
+6	1990	W1575886793	The Complexity of Finite Functions	Ravi B. Boppana; Michael Sipser	https://doi.org/10.1016/b978-0-444-88071-0.50019-9	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Wegener82	
+6	2013	W1518577411	Computational Complexity of Graphs	Stasys P. Jukna	https://doi.org/10.1002/9783527670468.ch05	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Wegener80 BoolSums	
+6	1998	W2070290122	A very simple function that requires exponential size read-once branching programs	Beate Bollig; Ingo Wegener	https://doi.org/10.1016/s0020-0190(98)00042-8	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix; Wegener80 BoolSums	
+6	1980	W2007805020	A new lower bound on the monotone network complexity of Boolean sums	Ingo Wegener	https://doi.org/10.1007/bf00263988	Pippenger80 BoolMatrix; Tarjan78	boolean sum,monotone
+6	2025	W7117166125	Lower Bounds for Additive Complexity of Linear Operators and Bilinear Algorithms for Matrix and Polynomial Multiplication over $$GF(2)$$	I. S. Sergeev	https://doi.org/10.1134/s0001434625605143	JuknaSergeev13; Tarjan78	
+6	2025	W4414655403	Нижние оценки аддитивной сложности линейных операторов и билинейных алгоритмов умножения матриц и многочленов над $GF(2)$	I. S. Sergeev	https://doi.org/10.4213/mzm14541	JuknaSergeev13; Tarjan78	
+6	2014	W1755464633	Learning circuits with few negations	Blais, Eric; Clément L. Canonne; Igor Carboni Oliveira; Rocco A. Servedio	https://doi.org/10.48550/arxiv.1410.8420	AmanoMaruoka05; Morizumi09	monotone,negation
+6	2026	W7171498121	New and Improved Concrete Lower Bounds for Orthogonal Vectors	Tameem Choudhury; Nutan Limaye; Karteek Sreenivasaiah; Srikanth Srinivasan	https://doi.org/10.48550/arxiv.2607.23799	AmanoMaruoka05	monotone,negation
+6	2005	W2024435371	A Superpolynomial Lower Bound for a Circuit Computing the Clique Function with at most (1/6)log log n Negation Gates	Kazuyuki Amano; Akira Maruoka	https://doi.org/10.1137/s0097539701396959	AMT02 merging; Fischer75 survey	monotone,negation
+6	2019	W2934762734	Lower Bounds for DeMorgan Circuits of Bounded Negation Width	Stasys P. Jukna; Andrzej Lingas	https://doi.org/10.4230/lipics.stacs.2019.41	GMO15 crypto	monotone,negation
+6	2018	W2772048929	Alternation, sparsity and sensitivity: Bounds and exponential gaps	Krishnamoorthy Dinesh; Jayalal Sarma	https://doi.org/10.1016/j.tcs.2018.11.015	BCO14 learning; BCO15 learning	
+6	2020	W7143650801	折り紙の変形を起こす軽薄な機構と回路に関する研究	Fuminori Okuya	https://doi.org/10.15083/0002005306	BNT98; MorizumiSuzuki10	
+6	2025	W4411339424	The Exact Circuit Complexity of Boolean Functions in an Infinite Basis	V. V. Kochergin; A. V. Mikhailovich	https://doi.org/10.1134/s0001434625030241	Fischer75 survey	monotone,negation
+5	1996	W2045610966	Extremal bipartite graphs and superpolynomial lower bounds for monotone span programs	László Babai; Anna Gál; Janós Kollár; Lajos Rónyai	https://doi.org/10.1145/237814.238010	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix	monotone
+5	1987	W1980756688	A method for obtaining efficient lower bounds for monotone complexity	Alexander E. Andreev	https://doi.org/10.1007/bf01978380	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix	monotone
+5	2012	W2157358149	A method for deriving lower bounds for the complexity of monotone arithmetic circuits computing real polynomials	Sergey Borisovich Gashkov; I. S. Sergeev	https://doi.org/10.1070/sm2012v203n10abeh004270	Blum09 Negations; Mehlhorn79 BoolSums	monotone
+5	2012	W170530371	Cancellation-free circuits: An approach for proving superlinear lower bounds for linear Boolean operators	Joan Boyar; Find, Magnus	https://doi.org/10.48550/arxiv.1207.5321	Blum09 Negations; Mehlhorn79 BoolSums	monotone
+5	1996	W2025576605	On a small class of Boolean sums	Tatsuie Tsukiji	https://doi.org/10.1016/0304-3975(96)00007-2	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix	boolean sum
+5	2010	W293254470	Algorithms are applied to two main objects: finite and infinite sets. In the first case, the circuit	Valerii Borisovich Kudryavtsev; Alexander E. Andreev	None	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix	monotone
+5	1979	W1501812634	Some remarks on Boolean sums	Kurt Mehlhorn	https://doi.org/10.1007/3-540-09526-8_36	Pippenger80 BoolMatrix; Wegener80 BoolSums	boolean sum
+5	2016	W2548334940	Tropical Complexity, Sidon Sets, and Dynamic Programming	Stasys P. Jukna	https://doi.org/10.1137/16m1064738	Pippenger80 BoolMatrix	monotone
+5	1985	W2045260280	Lower bounds on monotone complexity of the logical permanent	Alexander Alexandrovich Razborov	https://doi.org/10.1007/bf01157687	Wegener80 BoolSums; Wegener82	monotone
+5	2010	W128724489	Limiting Negations in Bounded Treewidth and Upward Planar Circuits	Jing He; Hongyu Liang; Jayalal Sarma	https://doi.org/10.1007/978-3-642-15155-2_37	AmanoMaruoka05; Fischer75 survey	negation
+5	2020	W3021329880	Critique of Boyu Sima's Proof that ${\rm P}\neq{\rm NP}$	Brendon Pon	https://doi.org/10.48550/arxiv.2005.03256	AmanoMaruoka05	monotone
+5	2025	W7126196377	Low-depth circuit size bounds using combinatorial methods	Levente Bodnár	https://doi.org/10.5287/ora-8j0450erz	AmanoMaruoka98	monotone
+5	1994	W2044799855	On the complexity of negation-limited Boolean networks	Keisuke Tanaka; Tetsuro Nishino	https://doi.org/10.1145/195058.195099	Fischer75 survey; Wegener85 slices	negation
+5	1986	W2001924771	More on the complexity of slice functions	Ingo Wegener	https://doi.org/10.1016/0304-3975(86)90176-3	Wegener82; Wegener85 slices	slice
+5	1994	W1967741263	Circuit complexity of slice functions and homogeneous functions	Shoichi Hirose; Shuzo Yajima	https://doi.org/10.1002/scj.4690250603	Wegener85 slices; Wegener86 slices	slice
+5	2012	W567540747	Limiting Negations in Probabilistic Circuits (New Trends in Algorithms and Theory of Computation)	Hiroki Morizumi	None	Morizumi09	inversion,negation,not gate
+5	2019	W2806608284	Flipping Out with Many Flips: Hardness of Testing $k$-Monotonicity	Elena Grigorescu; Akash S. Kumar; Karl Wimmer	https://doi.org/10.1137/18m1217978	GMO15 crypto	monotone
+5	2023	W7223759478	Constant-Depth Circuits vs. Monotone Circuits	Bruno Pasqualotto Cavalar; Igor Carboni Oliveira	https://doi.org/10.4230/lipics.ccc.2023.29	GMO15 crypto	monotone
+5	2022	W4313203239	Properly learning monotone functions via local correction	Jane Lange; Ronitt Rubinfeld; Arsen Vasilyan	https://doi.org/10.1109/focs54457.2022.00015	BCO14 learning	monotone
+5	2023	W4390098022	Agnostic proper learning of monotone functions: beyond the black-box correction barrier	Jane Lange; Arsen Vasilyan	https://doi.org/10.1109/focs57990.2023.00068	BCO14 learning	monotone
+5	2026	W7162314329	On the Approximate Non-Deterministic Degree of Total Boolean Functions	Samruddhi Pednekar; Supartha Podder	https://doi.org/10.48550/arxiv.2605.23336	BCO14 learning	monotone
+5	2023	W4376639593	Testing Distributional Assumptions of Learning Algorithms	Ronitt Rubinfeld; Arsen Vasilyan	https://doi.org/10.1145/3564246.3585117	BCO15 learning	monotone
+5	2019	W7223755019	Top-Down Induction of Decision Trees: Rigorous Guarantees and Inherent Limitations	Guy Blanc; Jane Lange; Li-Yang Tan	https://doi.org/10.4230/lipics.itcs.2020.44	BCO15 learning	monotone
+5	2023	W4387838355	Nearly Optimal Bounds for Sample-Based Testing and Learning of $k$-Monotone Functions	Hadley Black	https://doi.org/10.4230/lipics.approx/random.2024.37	BCO15 learning	monotone
+5	2025	W4410464863	On Exact Learning of d-Monotone Functions	Nader H. Bshouty	https://doi.org/10.1007/978-3-031-92932-8_3	BCO15 learning	monotone
+5	2026	W7225187834		Hadley Black	https://doi.org/10.4086/toc.2026.v022a008	BCO15 learning	monotone
+5	2019	W4229812932	Probabilistic Tensors and Opportunistic Boolean Matrix Multiplication	Matti Karppa; Petteri Kaski	https://doi.org/10.1137/1.9781611975482.31	JuknaSergeev13	partial
+5	2026	W7168508156	Automated Reencoding Meets Graph Theory	Benjamin Przybocki; Subercaseaux, Bernardo; Marijn J. H. Heule	https://doi.org/10.4230/lipics.sat.2026.29	JuknaSergeev13	monotone
+5	2018	W2789517576	Rectifier Circuits of Bounded Depth	I. S. Sergeev	https://doi.org/10.1134/s1990478918010143	JuknaSergeev13	rectifier
+5	2026	W7171429644	Lower bounds for the CNOT-complexity of linear reversible operators	Søren Fuglede Jørgensen	https://doi.org/10.48550/arxiv.2607.22248	JuknaSergeev13	not gate
+5	2026	W7138465248	Improved Depth-2 Linear Circuits for Disjointness via Quenched Lyapunov Exponents	Lixi Ye	https://doi.org/10.48550/arxiv.2603.15565	JuknaSergeev13	partial
+5	2026	W7147261431	Automated Reencoding Meets Graph Theory	Benjamin Przybocki; Bernardo Subercaseaux; Marijn J. H. Heule	https://doi.org/10.48550/arxiv.2603.27774	JuknaSergeev13	monotone
+5	2026	W7221011079	Subset Sum via Partial Match	Baitian Li; Lixi Ye	https://doi.org/10.48550/arxiv.2610.10446	JuknaSergeev13	partial
+5	2026	W7170047649	On the Computational Complexity of Local and Global Covering Numbers	Miriam Goetze; Lucas Schwebler	https://doi.org/10.48550/arxiv.2607.18833	JuknaSergeev13	monotone
+5	2026	W7225390898	Polynomial Lower Bounds for Steiner Shortcuts via Test Functions	Aaron Bernstein; Henry Fleischmann; Bernhard Haeupler; Gary Hoppenworth	https://doi.org/10.48550/arxiv.2611.07043	JuknaSergeev13	monotone
+5	2019	W2946332557	On the monotone complexity of the shift operator	I. S. Sergeev	https://doi.org/10.48550/arxiv.1905.10747	GrinchukSergeev17	monotone
+5	1996	W2018836753	Negation-limited circuit complexity of symmetric functions	Keisuke Tanaka; Tetsuro Nishino; Robert Beals	https://doi.org/10.1016/0020-0190(96)00115-9	Fischer75 survey; TanakaNishino94	negation
+5	2008	W578104443	Analyse de la propriété d'incrémentalité dans le modèle de calcul du programme de branchement	David Pouliot	https://doi.org/10.71781/10150	Fischer75 survey; TanakaNishino94	monotone
+5	1985	W2054417980	On the complexity of slice functions	Ingo Wegener	https://doi.org/10.1016/0304-3975(85)90209-9	Wegener82; Weiss83	slice
+5	2019	W2952128268	On the Complexity of Hazard-free Circuits	Christian Ikenmeyer; Balagopal Komarath; Christoph Lenzen; Vladimir Lysikov	https://doi.org/10.1145/3320123	Wegener82	monotone
+5	2018	W2767780943	On the complexity of hazard-free circuits	Christian Ikenmeyer; Balagopal Komarath; Christoph Lenzen; Vladimir Lysikov	https://doi.org/10.1145/3188745.3188912	Wegener82	monotone
+4	2014	W1987315863	Lower Bounds for Tropical Circuits and Dynamic Programs	Stasys P. Jukna	https://doi.org/10.1007/s00224-014-9574-4	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix	
+4	2013	W4243859952	Cancellation-Free Circuits in Unbounded and Bounded Depth	Joan Boyar; Magnus Gausdal Find	https://doi.org/10.1007/978-3-642-40164-0_17	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix	
+4	1987	W189178233	Effective lower bounds for complexity of some classes of schemes	Alexander E. Andreev	https://doi.org/10.1007/3-540-18740-5_7	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix	
+4	2012	W2331338819	Об одном методе получения нижних оценок сложности монотонных арифметических схем, вычисляющих действительные многочлены	Сергей Борисович Гашков; I. S. Sergeev	https://doi.org/10.4213/sm7904	Blum09 Negations; Mehlhorn79 BoolSums	
+4	2010	W2003058554	On algorithm complexity	Valerii Borisovich Kudryavtsev; Alexander E. Andreev	https://doi.org/10.1007/s10958-010-9977-y	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix	
+4	1996	W101884740	The Complexity of Computing the k-ary Composition of a Binary Associative Operator	Gerth Stølting Brodal; Sven Skyum	https://doi.org/10.7146/brics.v3i42.20024	Mehlhorn79 BoolSums; Wegener82	
+4	2012	W1502244627	The complexity of joint computation	Scott Aaronson; Andrew Drucker	None	Mehlhorn79 BoolSums; Pippenger80 BoolMatrix	
+4	1996	W7114349027	The Complexity of Computing the -ary Composition of a Binary Associative Operator	Gerth Stølting Brodal; Sven Skyum	None	Mehlhorn79 BoolSums; Wegener82	
+4	1982	W2092429268	Circuit-size lower bounds and non-reducibility to sparse sets	Ravi Kannan	https://doi.org/10.1016/s0019-9958(82)90382-5	Pippenger80 BoolMatrix; Tarjan78	
+4	2024	W4403427149	Perspective on complexity measures targeting read-once branching programs	Yaqiao Li; Pierre McKenzie	https://doi.org/10.1016/j.ic.2024.105230	Pippenger80 BoolMatrix	
+4	2025	W4412482059	Parallel Batch Queries on Dynamic Trees: Algorithms and Experiments	Humza Ikram; Andrew C. Brady; Daniel K. Anderson; Guy E. Blelloch	https://doi.org/10.1145/3694906.3743305	Tarjan78	
+4	2018	W2793976475	Descriptional and Computational Complexity of the Circuit Representation of Finite Automata	Māris Valdats	https://doi.org/10.1007/978-3-319-77313-1_8	Tarjan78	
+4	2019	W2924765064	The Average-Case Complexity of Counting Cliques in Erdős-Rényi Hypergraphs	Enric Boix-Adserà; Matthew Brennan; Guy Bresler	https://doi.org/10.1109/focs.2019.00078	AmanoMaruoka05	
+4	2021	W3200992273	The Average-Case Complexity of Counting Cliques in Erdoős–Reényi Hypergraphs	Enric Boix-Adserà; Matthew Brennan; Guy Bresler	https://doi.org/10.1137/20m1316044	AmanoMaruoka05	
+4	2014	W1930343750	Depth Lower Bounds against Circuits with Sparse Orientation	Sajin Koroth; Jayalal Sarma	https://doi.org/10.1007/978-3-319-08783-2_51	AmanoMaruoka05; Fischer75 survey	
+4	2019	W2940152556	A new algebraic approach to the graph isomorphism and clique problems	Roman Galay; Kalistratov, Daniil	https://doi.org/10.48550/arxiv.1905.08033	AmanoMaruoka05	
+4	2026	W7167817615	Complexity Classes Arising from Circuits over Finite Algebraic Structures	Piotr Kawałek; Jacek Krzaczkowski	https://doi.org/10.4230/lipics.lics.2026.61	AmanoMaruoka05	
+4	1988	W2162199822	On the complexity of branching programs and decision trees for clique functions	Ingo Wegener	https://doi.org/10.1145/42282.46161	Wegener85 slices; Wegener86 slices	
+4	2008	W1564702418	A Note on the Inversion Complexity of Boolean Functions in Boolean Formulas	Hiroki Morizumi	https://doi.org/10.48550/arxiv.0811.0699	Morizumi09	inversion,not gate
+4	2021	W3134132121	Constructions for Quantum Indistinguishability Obfuscation	Anne Broadbent; Raza Ali Kazmi	https://doi.org/10.1007/978-3-030-88238-9_2	GMO15 crypto	
+4	2024	W4399522856	Strong Algebras and Radical Sylvester-Gallai Configurations	Rafael Oliveira; Akash Kumar Sengupta	https://doi.org/10.1145/3618260.3649617	GMO15 crypto	
+4	2020	W3090966224	Circular Security Is Complete for KDM Security	Fuyuki Kitagawa; Takahiro Matsuda	https://doi.org/10.1007/978-3-030-64837-4_9	GMO15 crypto	
+4	2022	W4313203173	Radical Sylvester-Gallai Theorem for Cubics	Rafael Oliveira; Akash Kumar Sengupta	https://doi.org/10.1109/focs54457.2022.00027	GMO15 crypto	
+4	2016	W2383476928	Encryption techniques: A theoretical overview and future proposals	Javier Sánchez-Guerrero; Ronny Correa‐Quezada; Hernando Buenaño; Susana Alexandra Arias Tapia	https://doi.org/10.1109/icedeg.2016.7461697	GMO15 crypto	
+4	2026	W4416234993	The Probably Approximately Correct Learning Model in Computational Learning Theory	Rocco A. Servedio	https://doi.org/10.1145/3749740.3749754	BCO15 learning	
+4	2018	W2784077923	Alternation, Sparsity and Sensitivity: Combinatorial Bounds and Exponential Gaps	Krishnamoorthy Dinesh; Jayalal Sarma	https://doi.org/10.1007/978-3-319-74180-2_22	BCO15 learning	
+4	2021	W3193812602	On Alternation, VC-dimension and k-fold Union of Sets	Amit Roy; Jayalal Sarma	https://doi.org/10.1007/978-3-030-83823-2_108	BCO15 learning	
+4	2023	W4385056817	An Interdisciplinary Study on Generative AI: Exploring Its Efficacy in Mental Health Interventions within the Gaming Ecosystem	Giovanni Vindigni	https://doi.org/10.14738/bjhmr.104.15114	JuknaSergeev13	
+4	2025	W7128611992	Kronecker Powers, Orthogonal Vectors, and the Asymptotic Spectrum	Josh Alman; Baitian Li	https://doi.org/10.1109/focs63196.2025.00074	JuknaSergeev13	
+4	2018	W2896709326	Better Circuits for Binary Polynomial Multiplication	Magnus Gausdal Find; René Peralta	https://doi.org/10.1109/tc.2018.2874662	JuknaSergeev13	
+4	2018	W2899891155	Circuit Depth Reductions	Alexander Golovnev; Alexander S. Kulikov; Ryan Williams	https://doi.org/10.4230/lipics.itcs.2021.24	JuknaSergeev13	
+4	2021	W3166441697	Kronecker products, low-depth circuits, and matrix rigidity	Josh Alman	https://doi.org/10.1145/3406325.3451008	JuknaSergeev13	
+4	2022	W3213983356	Applications of Random Algebraic Constructions to Hardness of Approximation	Boris Bukh; C. S. Karthik; Bhargav P. Narayanan	https://doi.org/10.1109/focs52979.2021.00032	JuknaSergeev13	
+4	2023	W4316652257	Smaller Low-Depth Circuits for Kronecker Powers	Josh Alman; Yunfeng Guan; Ashwin Padaki	https://doi.org/10.1137/1.9781611977554.ch160	JuknaSergeev13	
+4	2026	W4416351638	Optimal and Efficient Partite Decompositions of Hypergraphs	Andrew Krapivin; Benjamin Przybocki; Nicolás Sanhueza‐Matamala; Bernardo Subercaseaux	https://doi.org/10.1145/3798129.3800921	JuknaSergeev13	
+4	2019	W2931530670	Lower Bounds for Matrix Factorization	Mrinal Kumar; Ben Lee Volk	https://doi.org/10.4230/lipics.ccc.2020.5	JuknaSergeev13	
+4	2021	W3141479212	Lower Bounds for Matrix Factorization	Ben Lee Volk; Mrinal Kumar	https://doi.org/10.1007/s00037-021-00205-2	JuknaSergeev13	
+4	2018	W2799890067	Lower Bounds for Unrestricted Boolean Circuits: Open Problems	Alexander S. Kulikov	https://doi.org/10.1007/978-3-319-90530-3_2	JuknaSergeev13	
+4	2025	W3132857214	Kronecker Products, Low-Depth Circuits, and Matrix Rigidity	Josh Alman	https://doi.org/10.1137/21m1443339	JuknaSergeev13	
+4	2023	W4386886979	О сложности вычисления систем элементов конечных абелевых групп	V. V. Kochergin	https://doi.org/10.55959/msu0579-9368-1-64-4-4	JuknaSergeev13	
+4	2016	W2509722380	On the additive complexity of GCD and LCM matrices	Sergey Borisovich Gashkov; I. S. Sergeev	https://doi.org/10.1134/s0001434616070166	JuknaSergeev13	
+4	2022	W4293752854	Comparing the Computational Complexity of Monomials and Elements of Finite Abelian Groups	V. V. Kochergin	https://doi.org/10.3103/s0027132222030068	JuknaSergeev13	
+4	2018	W2781496258	Computational complexity lower bounds of certain discrete Radon transform approximations	Timur Khanipov	https://doi.org/10.48550/arxiv.1801.01054	JuknaSergeev13	
+4	2026	W7160303922	New Bounds for Zarankiewicz Numbers via Reinforced LLM Evolutionary Search	Jay Bhan; Nicole Nobili; Patrick Langer	https://doi.org/10.48550/arxiv.2605.01120	JuknaSergeev13	
+4	2020	W7149511102	Methods for optimizing the synthesis of quantum circuits	Timothée Goubault de Brugière	https://doi.org/10.70675/e70b70f9z8381z43a4z806fz68402f3080de	JuknaSergeev13	
+4	2018	W2788025905	Ensemble computation approach to the Hough transform	Timur Khanipov	https://doi.org/10.48550/arxiv.1802.06619	JuknaSergeev13	
+4	2022	W4310825209	Notes on the complexity of coverings for Kronecker powers of symmetric matrices	I. S. Sergeev	https://doi.org/10.48550/arxiv.2212.01776	JuknaSergeev13	
+4	2026	W7143288729	An $Ω((\log n/\log\log n)^2)$ Cell-Probe Lower Bound for Dynamic Boolean Data Structures	Young Kun Ko	https://doi.org/10.48550/arxiv.2603.25914	JuknaSergeev13	
+4	2016	W2622295220	Extremal problems on the hypercube	Trevor Pinto	None	JuknaSergeev13	
+4	2016	W2489646809	Об аддитивной сложности матриц НОД и НОК	Сергей Борисович Гашков; I. S. Sergeev	https://doi.org/10.4213/mzm10626	JuknaSergeev13	
+4	2023	W4388377237	On the Computation Complexity of the Systems of Finite Abelian Group Elements	V. V. Kochergin	https://doi.org/10.3103/s0027132223040034	JuknaSergeev13	
+4	2025	W4407873318	Applications of random algebraic constructions to hardness of approximation	Boris Bukh; C. S. Karthik; Bhargav P. Narayanan	https://doi.org/10.1007/s11856-025-2732-3	JuknaSergeev13	
+4	2026	W7134517130	Biclique Factorisation of Explanations for a Sparser Implication Graph in Lazy Clause Generation	Sulian Le Bozec-Chiffoleau; Charles Prud’Homme	None	JuknaSergeev13	
+4	2026	W7225190929	The Value of Steiner Hubs in Two-Hop Distance Labeling	Sichen Wang	https://doi.org/10.48550/arxiv.2611.01106	JuknaSergeev13	
+4	1996	W1885846	否定数限定反転回路の複雑さ(計算量理論の諸相 : その基礎的研究)	哲朗 西野	None	Fischer75 survey; TanakaNishino94	
+4	1979	W2070269641	Negation can be exponentially powerful	Leslie Gabriel Valiant	https://doi.org/10.1145/800135.804412	Fischer75 survey	monotone,negation
+4	2025	W4408926863	Точное значение схемной сложности булевых функций в одном бесконечном базисе	V. V. Kochergin; Anna Vital'evna Mikhailovich	https://doi.org/10.4213/mzm14465	Fischer75 survey	
+3	1996	W2169672310	Lower bounds for monotone span programs	Amos Beimel; Anna G�l; Mike Paterson	https://doi.org/10.1007/bf01202040	Pippenger80 BoolMatrix	monotone
+3	1995	W2169438870	Lower bounds for monotone span programs	Amos Beimel; Anna Gál; Michael S. Paterson	https://doi.org/10.1109/sfcs.1995.492669	Pippenger80 BoolMatrix	monotone
+3	1994	W2184386552	Lower Bounds for Monotone Span Programs	Amos Beimel	https://doi.org/10.7146/brics.v1i46.21596	Pippenger80 BoolMatrix	monotone
+3	1989	W2057941709	Computing partial sums in multidimensional arrays	Bernard Chazelle; Burton Rosenberg	https://doi.org/10.1145/73833.73848	Tarjan78	partial
+3	2014	W2159233562	The Monotone Complexity of $k$-Clique on Random Graphs	Benjamin Rossman	https://doi.org/10.1137/110839059	AmanoMaruoka05	monotone
+3	2010	W2169644995	Average-case complexity of detecting cliques	Madhu Sudan; Benjamin Rossman	None	AmanoMaruoka05	monotone
+3	2010	W2157569050	The Monotone Complexity of k-clique on Random Graphs	Benjamin Rossman	https://doi.org/10.1109/focs.2010.26	AmanoMaruoka05	monotone
+3	1985	W2014138335	Replaceability and computational equivalence for monotone boolean functions	Meurig Beynon	https://doi.org/10.1007/bf00288777	Wegener85 slices	monotone
+3	1984	W1491743555	Replacement in monotone Boolean networks: An algebraic perspective	Meurig Beynon	https://doi.org/10.1007/3-540-13883-8_71	Wegener85 slices	monotone
+3	2010	W2481323863	Deterministic simulations and hierarchy theorems for randomized algorithms	Dieter van Melkebeek; Jeffrey J. Kinne	None	Wegener85 slices	monotone
+3	2014	W1552613710	On relative OR-complexity of Boolean matrices and their complements	I. S. Sergeev	https://doi.org/10.48550/arxiv.1407.4626	JuknaSergeev13	rectifier
+3	2008	W2155771856	Optimal Cryptographic Hardness of Learning Monotone Functions	Dana Dachman-Soled; Homin K. Lee; Tal Malkin; Rocco A. Servedio	https://doi.org/10.1007/978-3-540-70575-8_4	BNT98	monotone
+3	2009	W1606064697		Dana Dachman-Soled; Homin K. Lee; Tal Malkin; Rocco A. Servedio	https://doi.org/10.4086/toc.2009.v005a013	BNT98	monotone
+3	2010	W2308457303	Learning, cryptography, and the average case	Rocco A. Servedio; Tal Malkin; Andrew Wan	None	BNT98	monotone
+3	2000	W2011469629	Non-cancellative Boolean circuits: A generalization of monotone boolean circuits	Rimli Sengupta; H. Venkateswaran	https://doi.org/10.1016/s0304-3975(98)00170-4	TanakaNishino94	monotone
+3	1996	W1597080238	Non-cancellative Boolean circuits: A generalization of monotone Boolean circuits	Rimli Sengupta; H. Venkateswaran	https://doi.org/10.1007/3-540-62034-6_58	TanakaNishino94	monotone
+3	1980	W1966757974	Negation can be exponentially powerful	Leslie Gabriel Valiant	https://doi.org/10.1016/0304-3975(80)90060-2	Fischer75 survey	negation
+3	1993	W2038272454	Limiting Negations in Constant Depth Circuits	Miklós Sántha; Christopher B. Wilson	https://doi.org/10.1137/0222022	Fischer75 survey	negation
+3	2009	W1987413881	Upper Bounds for Monotone Planar Circuit Value and Variants	Nutan Limaye; Meena Mahajan; Jayalal Sarma	https://doi.org/10.1007/s00037-009-0265-5	Fischer75 survey	monotone
+3	2002	W2053969720	An exponential gap with the removal of one negation gate	Shao-Chin Sung; Keisuke Tanaka	https://doi.org/10.1016/s0020-0190(01)00264-2	Fischer75 survey	one negation
+3	2005	W1545207161	Polynomial size constant depth circuits with a limited number of negations	Miklós Sántha; Christopher B. Wilson	https://doi.org/10.1007/bfb0020801	Fischer75 survey	negation
+3	1998	W1571026820	A superpolynomial lower bound for a circuit computing the clique function with at most (1/6) log log n negation gates	Kazuyuki Amano; Akira Maruoka	https://doi.org/10.1007/bfb0055789	Fischer75 survey	negation
+3	1987	W2012476164	The monotone circuit complexity of boolean functions	Noga Alon; Ravi B. Boppana	https://doi.org/10.1007/bf02579196	Wegener82	monotone
+3	1983	W1994357693	Exponential lower bounds for restricted monotone circuits	Leslie Gabriel Valiant	https://doi.org/10.1145/800061.808739	Wegener82	monotone
+3	1983	W2084070217	Relating monotone formula size and monotone depth of boolean functions	Ingo Wegener	https://doi.org/10.1016/0020-0190(83)90011-x	Wegener82	monotone
+3	1985	W2320924696	A 2.5n lower bound on the monotone network complexity of T3n	Paul E.S. Dunne	https://doi.org/10.1007/bf00264232	Wegener82	monotone
+3	2006	W1492165320	On the complexity of slice functions	Ingo Wegener	https://doi.org/10.1007/bfb0030339	Wegener82	slice
+3	2009	W2157045806	Growth processes on formulas and reversible circuits	Brodsky, Alexander	https://doi.org/10.14288/1.0051610	Wegener82	monotone
+2	2011	W2029596768	On the complexity of linear boolean operators with thin matrices	Sergey Borisovich Gashkov; I. S. Sergeev	https://doi.org/10.1134/s1990478911020074	Mehlhorn79 BoolSums	
+2	1978	W1978080255	The minimum number of edges in graphs with prescribed paths	Nicholas J. Pippenger	https://doi.org/10.1007/bf01776581	Pippenger80 BoolMatrix	
+2	1990	W3021010709	Communication Networks	Nicholas J. Pippenger	https://doi.org/10.1016/b978-0-444-88071-0.50020-5	Pippenger80 BoolMatrix	
+2	2000	W2032841680	A minimum spanning tree algorithm with inverse-Ackermann type complexity	Bernard Chazelle	https://doi.org/10.1145/355541.355562	Tarjan78	
+2	1979	W2023658462	Applications of Path Compression on Balanced Trees	Robert Endre Tarjan	https://doi.org/10.1145/322154.322161	Tarjan78	
+2	1982	W2048500523	Sensitivity analysis of minimum spanning trees and shortest path trees	Robert Endre Tarjan	https://doi.org/10.1016/0020-0190(82)90137-5	Tarjan78	
+2	1982	W1969446695	Space-time tradeoff for answering range queries (Extended Abstract)	Andrew Chi-Chih Yao	https://doi.org/10.1145/800070.802185	Tarjan78	
+2	2001	W1978228527	A faster computation of the most vital edge of a shortest path	Enrico Nardelli; Guido Proietti; Peter Widmayer	https://doi.org/10.1016/s0020-0190(00)00175-7	Tarjan78	
+2	2002	W2007776707	Swapping a Failing Edge of a Single Source Shortest Paths Tree Is Good and Fast	Enrico Nardelli; Guido Proietti; Peter Widmayer	https://doi.org/10.1007/s00453-002-0988-z	Tarjan78	
+2	2011	W1585496880	Path Minima Queries in Dynamic Weighted Trees	Gerth Stølting Brodal; Pooya Davoodi; S. Srinivasa Rao	https://doi.org/10.1007/978-3-642-22300-6_25	Tarjan78	
+2	1977	W2016779000	Reference machines require non-linear time to maintain disjoint sets	Robert Endre Tarjan	https://doi.org/10.1145/800105.803392	Tarjan78	
+2	2006	W2042125957	An Inverse-Ackermann Type Lower Bound For Online Minimum Spanning Tree Verification*	Seth Pettie	https://doi.org/10.1007/s00493-006-0014-1	Tarjan78	
+2	2007	W1576664188	Approximability of Minimum AND-Circuits	Jan Arpe; Bodo Manthey	https://doi.org/10.1007/s00453-007-9039-0	Tarjan78	
+2	2003	W2160495255	On the shortest path and minimum spanning tree problems	Seth Pettie; Vijaya Ramachandran	None	Tarjan78	
+2	2006	W1525116119	Approximability of Minimum AND-Circuits	Jan Arpe; Bodo Manthey	https://doi.org/10.1007/11785293_28	Tarjan78	
+2	2007	W2145330271	Improved algorithms for the multicut and multiflow problems in rooted trees	Arie Tamir	https://doi.org/10.1007/s11750-007-0037-9	Tarjan78	
+2	2007	W2951399886	Sources of Superlinearity in Davenport-Schinzel Sequences	Seth Pettie	https://doi.org/10.4230/dagsemproc.08081.4	Tarjan78	
+2	2008	W1988762827	On the constant-depth complexity of k-clique	Benjamin Rossman	https://doi.org/10.1145/1374376.1374480	AmanoMaruoka05	
+2	2009	W2094189083	Ehrenfeucht-Fraïssé Games on Random Structures	Benjamin Rossman	https://doi.org/10.1007/978-3-642-02261-6_28	AmanoMaruoka05	
+2	2005	W2070450973	Using 2-domain partitioned OBDD data structure in an enhanced symbolic simulator	Tao Feng; Li-C. Wang; Kwang-Ting Tim Cheng; Chih-Chang Lin	https://doi.org/10.1145/1109118.1109122	AMT02 merging	
+2	2004	W2085297107	On using a 2-domain partitioned OBDD data structure in verification	Tao Feng; Li-C. Wang; Kwang-Ting Tim Cheng; A.C.-C. Lin	https://doi.org/10.1109/hldvt.2004.1431234	AMT02 merging	
+2	1986	W4240842367	The NP-completeness column: An ongoing guide	David S. Johnson	https://doi.org/10.1016/0196-6774(86)90011-8	Wegener85 slices	
+2	1991	W2067227060	The conjunctive complexity of quadratic Boolean functions	Katja Lenz; Ingo Wegener	https://doi.org/10.1016/0304-3975(91)90194-7	Wegener85 slices	
+2	1987	W2097859771	On the complexity of branching programs and decision trees for clique functions	Ingo Wegener	https://doi.org/10.1007/3-540-17660-8_43	Wegener85 slices	
+2	1991	W1602695763	Optimal versus stable in Boolean formulae	Stasys P. Jukna	https://doi.org/10.1007/3-540-54458-5_71	Wegener85 slices	
+2	1988	W1577070158	The conjunctive complexity of quadratic boolean functions	Katja Lenz; Ingo Wegener	https://doi.org/10.1007/3-540-50241-6_35	Wegener85 slices	
+2	2014	W2182171633	On Lower Bounds for Multiplicative Circuits and Linear Circuits in Noncommutative Domains	V. Arvind; S. Raja; A. V. Sreejith	https://doi.org/10.1007/978-3-319-06686-8_6	JuknaSergeev13	
+2	2014	W613077347	Graph and Hypergraph Decompositions for Exact Algorithms	Janne H. Korhonen	None	JuknaSergeev13	
+2	2007	W2001645093	How to derive a quantum complexity lower bound	Tetsuro Nishino	https://doi.org/10.1002/ecjc.20298	BNT98	
+2	2002	W223812901	P=NP?問題	西野 哲朗	https://doi.org/10.11429/sugaku1947.54.86	BNT98	
+2	1976	W1587258843	Descriptional complexity (of languages) a short survey	Jozef Gruska	https://doi.org/10.1007/3-540-07854-1_162	Fischer75 survey	
+2	1981	W2025146124	Complexity problems in computational theory	A. O. Slisenko	https://doi.org/10.1070/rm1981v036n06abeh003102	Fischer75 survey	
+2	1988	W1991547553	Entropy of contact circuits and lower bounds on their complexity	Stasys P. Jukna	https://doi.org/10.1016/0304-3975(88)90166-1	Wegener82	
+2	2005	W1492428812	Planar circuits have short specifications	W. F. McColl	https://doi.org/10.1007/bfb0024012	Wegener82	
+2	1987	W1972118539	Constructive universal algebra: an introduction	Edouard G Belaga	https://doi.org/10.1016/0304-3975(87)90057-0	Wegener82	

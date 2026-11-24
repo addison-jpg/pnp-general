@@ -1,0 +1,13 @@
+{
+  "from": "scaffold-thread (found in another chat; re-verified here)",
+  "graph": "Q3 edge function f(x) = OR over edges {i,j} (i xor j has one bit) of x_i AND x_j",
+  "labeling": "vertex = bit index of the input, inputs w0..w7",
+  "gates_monotone": 13,
+  "format": "gate k (wire 8+k) = [op, a, b]",
+  "gates": [["or",2,1],["or",4,8],["or",7,8],["and",0,9],["and",3,10],["or",11,12],["or",7,4],["or",1,14],["or",2,14],["and",5,15],["and",6,16],["or",17,18],["or",13,19]],
+  "output_wire": 20,
+  "verified": "all 256 inputs, 0 mismatches (2026-11-23, independent re-check, plain python)",
+  "supersedes": "14-gate circuit in STATUS.json results.Q3_3cube",
+  "step": "L-meta-969 (open); 970 closed upstream",
+  "lean_status": "Lean file for 969 not yet pushed; blocked on posted statement text and a Lean toolchain in this container"
+}

@@ -1,0 +1,53 @@
+{
+ "id": "L-meta-970",
+ "title": "Every circuit of AND and OR gates for the edge function of the 3-cube has at least 12 gates",
+ "formal_statement": "∀ C : PEqualNP.CircuitLowerBounds.Circuit, PEqualNP.MetaComplexity.Monotone2 C → (∀ x : Fin 8 → Bool, (C.eval (List.ofFn x) = true ↔ ∃ u v : Fin 8, (u.val, v.val) ∈ ([(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)] : List (ℕ × ℕ)) ∧ x u = true ∧ x v = true)) → 12 ≤ C.size",
+ "statement_hash": "sha256:f3b9b1eecf281fa5c34bd858d956cc413c246d79eefad1f56cf8d2385da267a9",
+ "plain_statement": "The graph is the 3-cube: u and v in 0..7 joined when their binary forms differ in exactly one bit; 12 edges, least vertex cover size 4. Every circuit of AND and OR gates only, each reading at most two wires, every gate counted, true on 8 inputs exactly when both ends of some edge are true, has at least 12 gates. Every such circuit has at least 11 gates and one through a cover has 15; this may be false: the opposite statement, a circuit with at most 11 gates, is its own row. A finite statement.",
+ "status": "checked",
+ "barrier": null,
+ "depends_on": [],
+ "program": "meta_complexity",
+ "seat": "seat-intake-1",
+ "proposed_at": "2026-11-23T18:04:54.423Z",
+ "attempts": [
+  {
+   "when": "2026-11-23T19:26:46.577Z",
+   "ended_at": "2026-11-23T19:26:46.577Z",
+   "by": "seat-intake-1",
+   "outcome": "checked",
+   "funded_by": {
+    "kind": "baseline",
+    "name": "Brilliant"
+   }
+  }
+ ],
+ "artifact": {
+  "lean_file": "lean/PEqualNP/Outside/L_meta_970.lean",
+  "checker_version": "outside-runner",
+  "checker_run_id": "run-024433",
+  "content_hash": "sha256:5d3dd86e411f2ee4f6a8aa5f6ef8ea64c1e2fedf233a5ffa68527a77e836febe",
+  "runner_url": "https://github.com/brilliant-hq/pequalnp-proofs/actions/runs/45242214201"
+ },
+ "contributor": {
+  "github": "visez",
+  "pr_url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/1830",
+  "linkedin": "marcovisentiniscarzanella",
+  "merged_at": "2026-11-23T19:26:46.577Z"
+ },
+ "kind": "helper",
+ "result": {
+  "contributor": {
+   "id": "seat-intake-1",
+   "display_name": "seat-intake-1",
+   "kind": "fleet"
+  },
+  "funded_by": {
+   "kind": "baseline",
+   "name": "Brilliant"
+  }
+ },
+ "used_by": [],
+ "status_at": "2026-11-23T19:26:46.577Z",
+ "layer": 0
+}
