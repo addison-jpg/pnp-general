@@ -306,7 +306,7 @@ ProofComplexity, Search, Outside) are here unchanged.
   `no_minCE_of_cert_or_local`: CubeLocal ∨ LW1 ∨ CERT-3c at every Q with positive base ⇒ no MinCE).
   13:35: TUCert: (S) PROVED from the real Theorem U (`certS_of_tu`: pairwise TUPair ⇒ (S); staircase `cert3c_of_stair`:
   h = 0 at z_w = Q ∪ ⋃_{earlier} (S_w' \ v) and (D) ⇒ CERT-3c). Data H3u 184/184 local; remaining: (D) at TU zero points.
-  14:00: ElimStep: what gates < base buys = `MinCE.sub_bound` / `elim_lt` (no restriction eliminates its cost) and
+  13:56: ElimStep: what gates < base buys = `MinCE.sub_bound` / `elim_lt` (no restriction eliminates its cost) and
   `no_minCE_of_elimStep` (ONE elimination step at the top closes 951). GE holds at Q = ∅ on 104/104 local circuits incl. MATCH-C;
   the F2 step never holds without GE. Note 951/board/agents/cTAHG-slack.md.
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
