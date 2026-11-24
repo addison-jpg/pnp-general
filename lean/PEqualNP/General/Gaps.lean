@@ -1,4 +1,5 @@
 import PEqualNP.Defs
+import PEqualNP.General.BoolSum
 
 /-!
 The open gaps of the general program (ids `L-gen-1NN`): lower bounds for circuits of AND, OR and
@@ -34,5 +35,15 @@ def L103 : Prop :=
 def L104 : Prop :=
   ∃ p : Polynomial ℕ, ∀ s : ℕ → ℕ,
     SIZE s ⊆ SIZENot (fun n => p.eval (s n + n)) (fun n => Nat.clog 2 (n + 1))
+
+/-- L-gen-105: the whole NOT gate ladder for (1,1)-disjoint Boolean sums. For every `k`, every
+circuit with at most `k` NOT gates that computes a Boolean sum with `|S w| ≥ 2` and pairwise
+intersections of size at most one has at least `∑ w (|S w| - 1)` gates (`BoolSumNot k`,
+`General/BoolSum.lean`). Rung `0` is proved in `951/lean` (`bound_of_noNot`); rung `1` is
+L-meta-951 (open statement `no_minCE`). By Markov and Fischer, `⌈log₂ (n + 1)⌉` NOT gates
+match unrestricted circuits only up to a polynomial factor, so no rung gives the exact bound for
+unrestricted circuits by itself. -/
+def L105 : Prop :=
+  ∀ k : ℕ, PEqualNP.General.BoolSum.BoolSumNot k
 
 end PEqualNP.General.Gap
