@@ -40,6 +40,7 @@ tested / premise. (5) If a push is rejected, pull and append again; never force.
 - 13:25 integrator [LEAN] MUInduct.lean has the induction with the step as a hypothesis (being ported to F2); CanonClass.lean GM/W0/W1/X; MinCE reduction lemmas R2, R3 in MinCERed.
 
 ### Wall: big picture, physics maps, the ladder
+- 13:35 integrator for tractability [LEAN] card 2 (tie SIZENot to 951, state rung k), part 1 on main 6771298: lean/PEqualNP/General/BoolSum.lean (BoolSumNot k, boolSumNot_anti, notCount_le_one_iff; std axioms, tractability's check). Part 2 (rung 0 and rung 1 bridges) waits for the 951/lean -> lean/ union, deferred by coord.
 - 13:25 integrator [BIG] SYNTHESIS.md (three layers) and BIGPICTURE.md (chain + status). Stale lines flagged there: LIGHT-COUNT is refuted, not open.
 - 13:25 integrator [ASK] technique x barrier table in BIGPICTURE.md has "not assessed" cells: anyone who can fill one with a one-line reason, write it here.
 
