@@ -3,7 +3,7 @@
 # at most t NOT gates. SAT at s < base refutes C4(t); UNSAT at s = base - 1 is 'tested' evidence.
 # Every found circuit is re-verified by brute force on all 2^n inputs, and its general witness count
 # |witness(emptyset)| (D9: g(Z)=0, g(Z+e_u)=g(Z+e_u')=1, Z avoiding S_w, u != u' in S_w) is reported.
-# Run: python3 -I one-not/tools/kill_tests/c4t_sat.py SYSTEM s t [--exact-not] [--no-nn] [--sb] [--wbelow] [--enum K] [--out FILE]
+# Run: python3 -I one-not/tools/kill_tests/c4t_sat.py SYSTEM s t [--exact-not] [--no-nn] [--sb] [--wbelow] [--fclasses F (at most F flip classes; F = base-1 tests S3(b))] [--enum K] [--out FILE]
 import sys, json, itertools, time
 from pysat.solvers import Solver
 from pysat.card import CardEnc, EncType
@@ -19,6 +19,7 @@ SYSTEMS = {
     'fano5':  (7, [(0, 1, 2), (0, 3, 4), (0, 5, 6), (1, 3, 5), (1, 4, 6)]),  # base 10
     'fano4':  (7, [(0, 1, 2), (0, 3, 4), (1, 3, 5), (2, 4, 5)]),  # = Pasch on 6 pts inside Fano (n=7 w/ idle pt)
     'q4':     (6, [(0, 1, 2, 3), (0, 4, 5), (1, 4), (2, 5)]),     # base 7
+    'two3':   (5, [(0, 1, 2), (0, 3, 4)]),                        # two triples, base 4
     'star44': (7, [(0, 1, 2, 3), (0, 4, 5, 6)]),                  # base 6; the system of general_count_below_base_min (t = 4)
     'star333':(7, [(0, 1, 2), (0, 3, 4), (0, 5, 6)]),             # = star3
     'tri44':  (9, [(0, 1, 3, 4), (1, 2, 5, 6), (0, 2, 7, 8)]),    # base 9
@@ -26,7 +27,7 @@ SYSTEMS = {
                    (0, 4, 8), (1, 5, 6), (2, 3, 7), (0, 5, 7), (1, 3, 8), (2, 4, 6)]),  # base 24
 }
 
-def build(n, sets, s, t, exact_not=False, no_nn=False, sb=False, wbelow=False):
+def build(n, sets, s, t, exact_not=False, no_nn=False, sb=False, wbelow=False, fbelow=None):
     N = 1 << n; nodes = n + s
     vid = [0]
     def new():
@@ -150,6 +151,32 @@ def build(n, sets, s, t, exact_not=False, no_nn=False, sb=False, wbelow=False):
         if s - base + 1 > 0:
             enc = CardEnc.atleast(lits=nw, bound=s - base + 1, top_id=vid[0], encoding=EncType.seqcounter)
             vid[0] = max(vid[0], enc.nv); cl += enc.clauses
+    if fbelow is not None:  # S3(b) FlipClasses.count: at most fbelow flip classes (flip: g(Z+e_u) != g(Z) at two atoms u of a set,
+        # Z a zero point; class: function up to complement). A gate is 'free' if it is not a flip gate (nf) or equals / complements an
+        # earlier gate (dup); flip classes = s - #free when free is chosen maximally, so require #free >= s - fbelow.
+        N = 1 << n; free = []
+        for k in range(s):
+            g = n + k; nf = new()
+            for R in sets:
+                m = sum(1 << u for u in R)
+                for Z in range(N):
+                    if Z & m: continue
+                    for u, u2 in itertools.combinations(R, 2):
+                        a, b, c = val[g][Z], val[g][Z | 1 << u], val[g][Z | 1 << u2]
+                        cl.append([-nf, -a, b, c]); cl.append([-nf, a, -b, -c])
+            dups = []
+            for j in range(n + k):  # inputs are never flip gates, so j < n is never needed; keep j >= n
+                if j < n: continue
+                for comp in (0, 1):
+                    x = new(); dups.append(x)
+                    for r in range(N):
+                        A, B = val[g][r], val[j][r]
+                        if comp: cl.append([-x, A, B]); cl.append([-x, -A, -B])
+                        else: cl.append([-x, -A, B]); cl.append([-x, A, -B])
+            fr = new(); cl.append([-fr, nf] + dups); free.append(fr)
+        if s - fbelow > 0:
+            enc = CardEnc.atleast(lits=free, bound=s - fbelow, top_id=vid[0], encoding=EncType.seqcounter)
+            vid[0] = max(vid[0], enc.nv); cl += enc.clauses
     if no_nn:  # no NOT gate reads a NOT gate (removes trivial double negation)
         for k in range(s):
             d, dn = sel[k]
@@ -204,6 +231,20 @@ def witness(n, S, G):
         if hit: out.add(k)
     return out
 
+def flip_classes(n, S, G):  # brute force, same definition as one-not/tools/search/conjectures.py count_flip_classes
+    w = tables(n, G); M = (1 << (1 << n)) - 1; cls = set()
+    for k in range(len(G)):
+        t = w[n + k]; hit = False
+        for R in S:
+            m = sum(1 << u for u in R)
+            for Z in range(1 << n):
+                if Z & m: continue
+                b = t >> Z & 1
+                if sum((t >> (Z | 1 << u) & 1) != b for u in R) >= 2: hit = True; break
+            if hit: break
+        if hit: cls.add(min(t, M ^ t))
+    return len(cls)
+
 def essential_nots(n, S, G, outs):
     # a NOT gate is essential if replacing it by each input / constant breaks correctness is too strong;
     # report simply whether the circuit with every NOT gate replaced by identity is still correct.
@@ -217,7 +258,8 @@ if __name__ == '__main__':
     n, S = SYSTEMS[name]
     base = sum(len(R) - 1 for R in S)
     t0 = time.time()
-    cl, typ, sel, outv, vid = build(n, S, s, t, exact, '--no-nn' in sys.argv, '--sb' in sys.argv, '--wbelow' in sys.argv)
+    cl, typ, sel, outv, vid = build(n, S, s, t, exact, '--no-nn' in sys.argv, '--sb' in sys.argv, '--wbelow' in sys.argv,
+                                     (int(sys.argv[sys.argv.index('--fclasses') + 1]) if '--fclasses' in sys.argv else None))
     sol = Solver(name='cadical153', bootstrap_with=cl)
     found = []
     while len(found) < K:
@@ -227,9 +269,9 @@ if __name__ == '__main__':
         G, outs = decode(model, n, s, typ, sel, outv)
         assert correct(n, S, G, outs), 'decoded circuit incorrect'
         nn = sum(g[0] == 'not' for g in G)
-        wc = len(witness(n, S, G))
-        found.append({'gates': G, 'outs': outs, 'nots': nn, 'witness': wc})
-        print(f"{name} n={n} base={base} s={s} t<={t}: SAT  nots={nn} witness={wc} {'>=base' if wc >= base else '<BASE'}  {G} outs={outs}", flush=True)
+        wc = len(witness(n, S, G)); fc = flip_classes(n, S, G)
+        found.append({'gates': G, 'outs': outs, 'nots': nn, 'witness': wc, 'flip_classes': fc})
+        print(f"{name} n={n} base={base} s={s} t<={t}: SAT  nots={nn} witness={wc} {'>=base' if wc >= base else '<BASE'} flipclasses={fc} {'>=base' if fc >= base else '<BASE'}  {G} outs={outs}", flush=True)
         # block this exact gate list
         msk = set(x for x in model if x > 0)
         blk = []
