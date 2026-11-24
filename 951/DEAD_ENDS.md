@@ -36,7 +36,7 @@ Every rule that picks the class of a set without looking at the other sets fails
 | World 0 for sets with `h(top_w) = 1`, world 1 for the others (no choice of world) | refuted | 7 of 62: cx44_0, cx44_1, cxT2, cxe3, cxP4, cxtw3, cxtw3c | `kill_tests/ext.py` |
 | Choice-free private classes `P(w)` = OR gates with `real g ≤ o_w` and two atoms `e_u` (pairwise disjoint for free) | too small | 69 of 273 sets have fewer than `d_w` such gates; cx1, cx2, cx3 have none | `kill_tests/private.py` |
 | CANON: choice-free selection (I1 at top_w for h(top_w) = 0; for type A the I1 class coinciding with an I0 class); also 'all type-A in I0' / 'all type-A in I1' | refuted | type-A sets can have I1 and I0 classes with no coinciding class: smallest named.jsonl:12 (n = 5, s = 14, h = x0, w0 = {1,2,3,4}: I1 {7,8,9} at Z = ∅, I0 {15,16,17}); fails on 12/12 essential, 28/30 ladder; uniform world rules succeed only 8/12, 7/12. A genuine per-set world choice is needed | scaffold via desktop Coord 11:58 |
-| 'Every set has EXACTLY ONE I1 class' (D-maximal Z, atoms e_u) | refuted | 5,847 of 179,613 sets have 2 (all type-A, never 3+; non-type-A always exactly 1); smallest ess_k4e_clean#2721 (n = 4, set {1,3}, Z = {0} vs {2}); wide-validity I1 up to 4 classes, pure classes up to 4 per set | pnp-subproblem 11:48, `agents/pnp-subproblem-puresdr-check.md` |
+| 'Every set has EXACTLY ONE I1 class' (D-maximal Z, atoms e_u) | refuted | 5,847 of 179,613 sets have 2 (all type-A, never 3+; non-type-A always exactly 1); smallest ess_k4e_clean#2721 (n = 4, set {1,3}, Z = {0} vs {2}); wide-validity I1 up to 4 classes, pure classes up to 4 per set | pnp-subproblem 12:40 (asked by coord 11:46), `agents/pnp-subproblem-puresdr-check.md` |
 | Type-B-only test systems; Rado instead of Hall | refuted / no gain | K4, h = Th_2, s = 41, excess 9; B8(1) | front |
 | Gap-G and Two-World at FUNCTION level (choice depending only on (sets, h)) | refuted | K4, h minterms {02,12,03,13,23}; 9/1162 (graph, h) at n = 4 | front |
 
@@ -78,6 +78,7 @@ For real merge sets M_z(w) the count, the price form and every structural shortc
 | Route | Status | Witness or reason | Source |
 |---|---|---|---|
 | "3rd and later merge gates of different sets of size ≥ 4 are disjoint" | refuted | cxr, gate 14 | BOARD.md, referee B |
+| Charging the 3rd and later merge gates of each set of size ≥ 4 inside that set's OWN merge gates (merge-tree support; fractional, gate capacity 1) | refuted | cxU6, cxU8, cxU_6_4, cxU_8_4, cxP2 (max flow below the demand); feasible on all other 334 of 339 tested; support "own output cone minus every set's first two merges" feasible on all 339 | pnp-subproblem referee B 09:30, cross-checked by research (0 disagreements), `tools/referee_b/README.md` |
 | CU alone gives MergePrice | refuted | `cu_counterexample` (Lean) | BOARD.md, 10:15 |
 | 0/1 (single-gate) prices suffice for the dual | not valid | the dual objective is concave in the price; layer-cake gap | referee angle 1; `research-concave-dual.md` |
 | L-greedy-avoid ('any avoiding choices are pairwise disjoint') | fails without repair | 18,875 circuits; smallest n = 4, s = 9 (gate x2 ∨ (x0 ∧ x3)) | BOARD.md, 10 UTC synthesis |
