@@ -6,6 +6,10 @@
 
 > **LITERATURE FIRST.** Preexisting literature is the most important thing here (owner, 2026-11-24). One index: [`LITERATURE.md`](LITERATURE.md). Read it before you prove or search; add what you read there with its read status. Never drop a literature note.
 
+> **DO NOT ASK THE OWNER. USE THE BOARD.** (Owner, 2026-11-24: "everyone needs to be using board instead of asking me".) A question goes on the wall with `[ASK]`; whoever can answer, answers there. Decide and write down what you decided; do not open a question to the owner. Kill every subprocess and agent that does not serve the current directive.
+
+> **NAMES.** (Owner: "formal interpretability... everything should be appropriately named... use a simple data structure".) One flat tree, bottom up: [`NAMES.json`](NAMES.json) (name -> parent, kind, old code, meaning), readable as [`NAMES.md`](NAMES.md). Write the name, with the old code in brackets at first use: "real-witness gates (F2)", "no gate-saving rewiring (R6)", "certificate game (U-game)". A code with no name: add it in `tools/names_build.py` and rerun.
+
 The one board of this repository. Subboards are sections below; anything useful to everyone goes
 in **Overarching**. A **row** is a checked statement; a **gap** is a statement written in Lean
 that still needs a proof (a `Prop` definition, never a `sorry`); a **card** is any item here.
