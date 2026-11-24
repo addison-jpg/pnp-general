@@ -1,0 +1,17 @@
+ok exit=0 :: ACCEPTED (check): PEqualNP.Outside.L_rt_ok; axioms []; kernel re-checked 1077 constants of [PEqualNP.Defs.Base, PEqualNP.Defs.Classes, PEqualNP.Defs.CircuitLowerBounds, PEqualNP.Defs.Meta
+sorry exit=1 :: REJECTED (sorry): PEqualNP.Outside.L_rt_sorry rests on sorry (read from the compiled proof)
+admit exit=1 :: REJECTED (sorry): PEqualNP.Outside.L_rt_admit rests on sorry (read from the compiled proof)
+helpersorry exit=1 :: REJECTED (sorry): PEqualNP.Outside.L_rt_helpersorry rests on sorry (read from the compiled proof)
+axiom exit=1 :: REJECTED (axiom): PEqualNP.Outside.L_rt_axiom rests on axioms outside the allowlist: [PEqualNP.Outside.L_rt_axiom.cheat]
+weaker exit=0 :: ACCEPTED (check): PEqualNP.Outside.L_rt_weaker; axioms []; kernel re-checked 1077 constants of [PEqualNP.Defs.Base, PEqualNP.Defs.Classes, PEqualNP.Defs.CircuitLowerBounds, PEqualNP.D
+native exit=1 :: REJECTED (axiom): PEqualNP.Outside.L_rt_native rests on axioms outside the allowlist: [PEqualNP.Outside.L_rt_native._native.native_decide.ax_1_1]
+forged exit=1 :: REJECTED (kernel): the kernel refused a declaration under PEqualNP.Outside.L_rt_forged: while replaying declaration 'PEqualNP.Outside.L_rt_forged': (kernel) declaration type mismatch,
+redeclare exit=1 :: REJECTED (does-not-compile): PEqualNP.Outside.L_rt_redeclare does not build in the pinned environment
+instance exit=0 :: ACCEPTED (check): PEqualNP.Outside.L_rt_instance; axioms []; kernel re-checked 1079 constants of [PEqualNP.Defs.Base, PEqualNP.Defs.Classes, PEqualNP.Defs.CircuitLowerBounds, PEqual
+wrongname exit=1 :: REJECTED (no-theorem): the file declares no theorem named PEqualNP.Outside.L_rt_wrongname (one lemma, one file: the theorem carries the module's name)
+DONE
+weaker2 exit=1 :: REJECTED (statement): PEqualNP.Outside.L_rt_weaker2 is not a proof of the recorded statement. It proves: forall (n : Nat), Eq.{1} Nat n n
+instance2 exit=1 :: REJECTED (statement): PEqualNP.Outside.L_rt_instance2 is not a proof of the recorded statement. It proves: forall (n : Nat), Eq.{1} Nat (HAdd.hAdd.{0, 0, 0} Nat Nat Nat (HAdd.mk.{0
+instance3 exit=1 :: REJECTED (statement): PEqualNP.Outside.L_rt_instance3 is not a proof of the recorded statement. It proves: forall (n : Nat), Eq.{1} Nat (HAdd.hAdd.{0, 0, 0} Nat Nat Nat PEqualNP.Ou
+redeclare2 exit=1 :: REJECTED (redeclares): PEqualNP.Outside.L_rt_redeclare2 declares Nat.factorial, a name the pinned library or the definitions root already declares. A project module may not declar
+DONE
