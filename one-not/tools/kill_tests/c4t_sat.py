@@ -3,7 +3,7 @@
 # at most t NOT gates. SAT at s < base refutes C4(t); UNSAT at s = base - 1 is 'tested' evidence.
 # Every found circuit is re-verified by brute force on all 2^n inputs, and its general witness count
 # |witness(emptyset)| (D9: g(Z)=0, g(Z+e_u)=g(Z+e_u')=1, Z avoiding S_w, u != u' in S_w) is reported.
-# Run: python3 -I one-not/tools/kill_tests/c4t_sat.py SYSTEM s t [--exact-not] [--no-nn] [--sb] [--enum K] [--out FILE]
+# Run: python3 -I one-not/tools/kill_tests/c4t_sat.py SYSTEM s t [--exact-not] [--no-nn] [--sb] [--wbelow] [--enum K] [--out FILE]
 import sys, json, itertools, time
 from pysat.solvers import Solver
 from pysat.card import CardEnc, EncType
@@ -18,12 +18,15 @@ SYSTEMS = {
     'fano6':  (7, [(0, 1, 2), (0, 3, 4), (0, 5, 6), (1, 3, 5), (1, 4, 6), (2, 3, 6)]),  # Fano minus a line, base 12
     'fano5':  (7, [(0, 1, 2), (0, 3, 4), (0, 5, 6), (1, 3, 5), (1, 4, 6)]),  # base 10
     'fano4':  (7, [(0, 1, 2), (0, 3, 4), (1, 3, 5), (2, 4, 5)]),  # = Pasch on 6 pts inside Fano (n=7 w/ idle pt)
-    'q4':     (6, [(0, 1, 2, 3), (0, 4, 5), (1, 4), (2, 5)]),     # base 6
+    'q4':     (6, [(0, 1, 2, 3), (0, 4, 5), (1, 4), (2, 5)]),     # base 7
+    'star44': (7, [(0, 1, 2, 3), (0, 4, 5, 6)]),                  # base 6; the system of general_count_below_base_min (t = 4)
+    'star333':(7, [(0, 1, 2), (0, 3, 4), (0, 5, 6)]),             # = star3
+    'tri44':  (9, [(0, 1, 3, 4), (1, 2, 5, 6), (0, 2, 7, 8)]),    # base 9
     'ag23':   (9, [(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8),
                    (0, 4, 8), (1, 5, 6), (2, 3, 7), (0, 5, 7), (1, 3, 8), (2, 4, 6)]),  # base 24
 }
 
-def build(n, sets, s, t, exact_not=False, no_nn=False, sb=False):
+def build(n, sets, s, t, exact_not=False, no_nn=False, sb=False, wbelow=False):
     N = 1 << n; nodes = n + s
     vid = [0]
     def new():
@@ -133,6 +136,20 @@ def build(n, sets, s, t, exact_not=False, no_nn=False, sb=False):
                 if g in kb: continue
                 for ka, xa in A:
                     if kb < ka: cl.append([-xa, -xb])
+    if wbelow:  # D9 witness count <= base - 1: at least s - base + 1 gates are NOT witnesses
+        N = 1 << n; nw = []
+        for k in range(s):
+            x = new(); nw.append(x); g = n + k
+            for R in sets:
+                m = sum(1 << u for u in R)
+                for Z in range(N):
+                    if Z & m: continue
+                    for u, u2 in itertools.combinations(R, 2):
+                        cl.append([-x, val[g][Z], -val[g][Z | 1 << u], -val[g][Z | 1 << u2]])
+        base = sum(len(R) - 1 for R in sets)
+        if s - base + 1 > 0:
+            enc = CardEnc.atleast(lits=nw, bound=s - base + 1, top_id=vid[0], encoding=EncType.seqcounter)
+            vid[0] = max(vid[0], enc.nv); cl += enc.clauses
     if no_nn:  # no NOT gate reads a NOT gate (removes trivial double negation)
         for k in range(s):
             d, dn = sel[k]
@@ -200,7 +217,7 @@ if __name__ == '__main__':
     n, S = SYSTEMS[name]
     base = sum(len(R) - 1 for R in S)
     t0 = time.time()
-    cl, typ, sel, outv, vid = build(n, S, s, t, exact, '--no-nn' in sys.argv, '--sb' in sys.argv)
+    cl, typ, sel, outv, vid = build(n, S, s, t, exact, '--no-nn' in sys.argv, '--sb' in sys.argv, '--wbelow' in sys.argv)
     sol = Solver(name='cadical153', bootstrap_with=cl)
     found = []
     while len(found) < K:
