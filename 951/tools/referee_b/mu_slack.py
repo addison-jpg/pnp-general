@@ -1,4 +1,4 @@
-"""MU slack (coord 11:55; referee 11:53): slack = |U(all)| - base, U(all) = union of all valid pure classes of all sets,
+"""MU slack (WIDE = union of all enumerated Lean-valid classes; NARROW = research menus: D-maximal Z with atoms e_u, I0 at top_w with minterm atoms) (coord 11:55; referee 11:53): slack = |U(all)| - base, U(all) = union of all valid pure classes of all sets,
 base = sum_w (|S_w| - 1). Discovery only; own code (merge run = puresdr_check.run, validated against Lean witnesses).
 
 Options enumerated (all are Lean-valid, PureSDR.lean PureValid):
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     CAP = int(args[args.index("--cap") + 1]) if "--cap" in args else 2000
     out = args[args.index("--out") + 1] if "--out" in args else None
     files = [a for i, a in enumerate(args) if not a.startswith("--") and (i == 0 or args[i - 1] not in ("--nmax", "--cap", "--out"))]
-    H = Counter(); zero = []; neg = []; nc = 0
+    H = Counter(); HN = Counter(); zero = []; zeroN = []; neg = []; diff = Counter(); nc = 0
     for p in files:
         for k, d in P.items(p):
             if not (isinstance(d, dict) and "gates" in d and "sets" in d):
@@ -67,13 +67,20 @@ if __name__ == "__main__":
             nc += 1
             base = sum(len(S) - 1 for S in c.sets)
             sl = len(union_all(c, T, CAP)) - base
-            H[sl] += 1
+            narrow = set().union(*[o[3] for m in P.menus(c, T) for o in m["opts"]])
+            sn = len(narrow) - base
+            H[sl] += 1; HN[sn] += 1; diff[sl - sn] += 1
+            if sn == 0 and len(zeroN) < 200:
+                zeroN.append(f"{p}#{k}")
             if sl == 0 and len(zero) < 200:
                 zero.append(f"{p}#{k}")
             if sl < 0:
                 neg.append(f"{p}#{k}")
-    r = {"circuits": nc, "slack_hist": dict(sorted(H.items())), "min": min(H) if H else None,
-         "slack0_count": H.get(0, 0), "slack0_examples": zero, "negative": neg[:50]}
+    r = {"circuits": nc, "WIDE_slack_hist": dict(sorted(H.items())), "WIDE_min": min(H) if H else None,
+         "WIDE_slack0_count": H.get(0, 0), "WIDE_slack0_examples": zero, "WIDE_negative": neg[:50],
+         "NARROW_slack_hist": dict(sorted(HN.items())), "NARROW_min": min(HN) if HN else None,
+         "NARROW_slack0_count": HN.get(0, 0), "NARROW_slack0_examples": zeroN,
+         "WIDE_minus_NARROW_hist": dict(sorted(diff.items()))}
     s = json.dumps(r, indent=1)
     if out:
         open(out, "w").write(s + "\n")
