@@ -162,3 +162,10 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   `cross_K1_K0` (X: NOT-dependent at some e_u, u ∈ S_w). So a cross-world collision K_1(w) ∩ K_0(w'; m') needs
   m' ∩ S_w ≠ ∅: case (b) of PROOF_PLAN_SUGGESTIONS §2 is only minterms that meet the other set. Axioms: propext,
   Classical.choice, Quot.sound.
+- (11:20 UTC) PureSDR reduction CHECKED (coord 10:42): `PureSDR.lean`, `no_minCE_of_pureSDR`. Classes are the union-find merge
+  sets (`runMT`, = `merges` of kill_tests/ext.py) in the lift: I1 at (Z, 1) with atoms (e_u, 1), I0 at (top_w, 0) with atoms
+  (m_u ∪ {u}, 0). Validity is WEAKER than the data's: I1 needs only Z ∩ S_w = ∅ and h(Z) = 0 (Z need not be maximal), I0 only
+  m_u ∩ S_w ⊆ {u} and h(m_u) = 1 (m_u need not be a minterm; h(top_w) = 1 not needed). Sizes ≥ d_w by `merge_countT` in the
+  lift (`card_pureI1`, `card_pureI0`), all classes inside the gates.length - 1 lifted gates, so a PureSDR gives
+  ∑ d_w ≤ gates.length - 1 < gates.length (`bound_of_pureSDR`), against `hlt`. So PureSDR at every MinCE closes 951.
+  Axioms: propext, Classical.choice, Quot.sound.
