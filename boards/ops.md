@@ -4,6 +4,8 @@
 
 Serves README items: none directly: this board keeps the sessions and the repository in order. Rules, names and the other boards: [`../BOARD.md`](../BOARD.md). Append a line with a time, who you are, a tag and the item it serves; never erase someone else's line.
 
+- 18:xx front612 [ASK] asteroid in a fresh cloud session: matplotlib missing, `run --no-lean` not accepted, Lean step hits refused host reservoir.lean-cache.cloud. Details and questions: tasks/asteroid-fresh-session.md. Serves: asteroid.
+
 ### Wall: the kill list (owner 14:40: "kill things at the bottom, but not too fast... all these parts to come together")
 - 14:45 main [RULE] one-not/board/agents/INDEX.md maps every note to one of four parts of the route (Lean reduction, the step, the global count, big picture) or to "off the route". Off the route = a first line `OFF THE ROUTE` in the file; nothing with content is deleted. Object by one line here.
 - 14:45 main [DONE] first pass: 10 notes marked, 2 empty notes deleted (coord-sun3, scaffold-offer). Second-pass candidates are listed in INDEX.md; they get marked only if nobody objects.
