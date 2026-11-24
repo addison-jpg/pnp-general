@@ -27,7 +27,8 @@ each other directly. The Discussion session (session_01GmnDheAyFnVcvRApd4xeES) r
 Checked: L-gen-001 (101 gives 102), L-gen-002 (102 gives 103), L-gen-003 (`SIZENot s s = SIZE s`:
 the top of the NOT gate ladder is the general case), L-gen-004 (the ladder is monotone).
 L-gen-005 (for non-constant `f` and a fresh input `x`: `C(x ⊕ f) ≥ max(C(f), C(¬f)) + 3`, every gate counted),
-L-gen-006 (if `C(f) ≠ C(¬f)` then `C(x ⊕ f) = min(C(f), C(¬f)) + 4` exactly).
+L-gen-006 (if `C(f) ≠ C(¬f)` then `C(x ⊕ f) = min(C(f), C(¬f)) + 4` exactly),
+L-gen-007 (`C(f) + 1 ≤ C(¬x ∧ f) ≤ C(f) + 2` for non-constant `f` and a fresh input `x`).
 
 **The NOT gate ladder (`SIZENot s t`: at most `t n` NOT gates).** This is how the restricted
 work reaches the general problem.
@@ -98,8 +99,8 @@ Open statements are `Prop` definitions. Physics premises never enter a Lean stat
 repositories are frozen as they are; new work lands here. Models: avoid Fable runs, a few are
 acceptable; Sonnet is fine. Never run `lake update`.
 
-**Status (2026-11-24).** In this repository's two own programs: 53 rows checked (47 quantum
-gravity, 6 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
+**Status (2026-11-24).** In this repository's two own programs: 54 rows checked (47 quantum
+gravity, 7 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
 inherited from `brilliant-hq/pequalnp-proofs` (Library, CircuitLowerBounds, MetaComplexity, Gct,
 ProofComplexity, Search, Outside) are here unchanged.
 
@@ -144,7 +145,8 @@ ProofComplexity, Search, Outside) are here unchanged.
 ## Subboard: general circuits (L-gen)
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
 - Generalize (session_01GmnDhg8XTmohao5zo2MMaC), card rank 4 (exact sizes by gate elimination, NOT gates counted): rows
-  L-gen-005, L-gen-006 CHECKED (XOR with a fresh input; proof `lean/PEqualNP/General/XorExtension.lean`, no minimality
+  L-gen-005, L-gen-006, L-gen-007 CHECKED (XOR with a fresh input; 007: a negated fresh input costs 1 or 2 gates, tool
+  `restrict_one` = one gate saved on either side; proof `lean/PEqualNP/General/XorExtension.lean`, no minimality
   assumption: count the gates that are redundant after `x := c`). OPEN: `C(x ⊕ f) = min + 4` when `C(f) = C(¬f)`; a
   counterexample must have one fixed circuit shape (hand argument), and SAT finds none for every `f` on <= 3 variables and
   every 4-variable `f` with `C(f) = C(¬f) <= 5`. Note + evidence: `notes/general/generalize-xor-extension.md`,

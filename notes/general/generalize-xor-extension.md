@@ -23,6 +23,19 @@ Check it:
 
     cd lean && lake exe cache get && lake build PEqualNP.General.L005 PEqualNP.General.L006
 
+## A second row: a negated fresh input (L-gen-007)
+
+For a non-constant `f` and a fresh input `x`: `C(f) + 1 ≤ C(¬x ∧ f) ≤ C(f) + 2` (checked row,
+`lean/PEqualNP/General/L007.lean`, proof in `NegLiteral.lean`). The positive input costs exactly
+one gate (`L_meta_174`). Both values occur: exact sizes of all 3-variable functions
+(`tools/xor-extension/sizes3.txt`) give `+1` for 7 and `+2` for 7 of the 14 non-constant
+2-variable `f` (`+2` for `f = y0 ∧ y1`: sizes 1 and 3; `+1` for `f = ¬(y0 ∨ y1)`: sizes 2 and 3,
+the NOT gate is shared). Which `f` get `+1` is not characterized.
+
+The tool is `restrict_one`: if `F` depends on its last input and is not constant once that input
+is set to `c`, setting it to `c` saves one gate, for either `c` (`L_meta_174.gate_elim` is the
+case `c = true`).
+
 ## The exact Lean statements
 
     theorem xor_lower (n s : ℕ) (f : (Fin n → Bool) → Bool)
