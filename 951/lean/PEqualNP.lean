@@ -175,3 +175,4 @@ import PEqualNP.W951.RunTransfer
 import PEqualNP.W951.PureRestrict
 import PEqualNP.W951.MUInduct
 import PEqualNP.W951.LiftSDRWitness
+import PEqualNP.W951.GraphHeavy
