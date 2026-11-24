@@ -1,0 +1,3 @@
+# The kernel must REJECT this: the circuit has 5 witness gates, not 6. Expected result: Lean FAILED.
+let c = load one-not/data/witnesses/nonlocal/general_count_below_base_min.json
+claim! witness(c) = 6 by lean

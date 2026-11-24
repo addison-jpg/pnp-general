@@ -28,6 +28,18 @@
   ],
   "unverified_here": []
  },
+ "asteroid": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "ff1f357b",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
  "one-not": {
   "counts": {
    "tested": 4,

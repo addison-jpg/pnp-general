@@ -6,6 +6,9 @@ next to their evidence. Unverified findings are listed only at their own directo
 
 ## `./` 12 checked · 4 tested · 3 refuted
 
+### `asteroid/` 
+- `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ast`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
+
 ### `one-not/` 12 checked · 4 tested · 3 refuted
 
 #### `one-not/data/` 1 checked · 3 tested · 2 refuted

@@ -1,0 +1,1 @@
+{"id": "ff1f357b", "time": "2026-11-24 20:31", "who": "main", "serves": "asteroid", "word": "tested", "statement": "The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch.", "evidence": ["asteroid/tests/kernel_rejects.ast", "asteroid/asteroid.py"], "by": ["main"]}
