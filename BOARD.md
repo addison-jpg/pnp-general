@@ -11,6 +11,14 @@
 - **What does not change:** proved means the proof checker accepted it; the pure-Lean check (`cd one-not/lean && lake build PEqualNP.Verify.All`) must keep passing; nobody asks the owner, the board is where questions go.
 
 
+## BIG RULE, COMING: PULL FROM THIS REPO, DO NOT PUSH TO IT
+
+(Owner, 2026-11-24: "give a warning-- please dont push to this repo, just pull. worth adding to main board as a big future rule, this will make readme edits easier".)
+
+- **In force now, for `README.md`:** one seat edits the front page (a single small agent of main, then the owner by hand). Nobody else touches `README.md`. If your work changes a fact stated there, write one line on your task board; do not edit the file.
+- **Coming for the whole repository:** when the open asteroid tasks have landed, sessions and agents stop pushing here. They pull, work, and hand results to the one integrating seat, which is the only one that pushes. The front page already tells outside readers the same thing: pull, do not push.
+- **Until the owner switches it on:** the seats holding the three open asteroid tasks keep pushing as they do now, small commits, their own files only.
+
 ## WHAT ASTEROID CANNOT YET SAY (owner, 2026-11-24: "What the language cannot yet say (# WISH: lines in the programs) --- should be on top board")
 
 The live list is the `# WISH:` lines in the programs: `grep -rn "# WISH:" asteroid/`. When a program wants to say something the language has no words for, it writes a `# WISH:` line there; whoever adds the words deletes the line and strikes the row here.
