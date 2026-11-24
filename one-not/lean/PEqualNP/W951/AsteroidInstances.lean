@@ -3,6 +3,7 @@ import PEqualNP.W951.Asteroid_first
 import PEqualNP.W951.AsteroidSound
 import PEqualNP.W951.AsteroidSound2
 import PEqualNP.W951.AsteroidCheap
+import PEqualNP.W951.ChainTelescope
 
 /-! # Example instances of the asteroid soundness theorems
 
@@ -12,7 +13,7 @@ that no library file (`AsteroidSound`, `AsteroidSound2`, `AsteroidCheap`) depend
 namespace SearchCheck
 
 open PEqualNP.CircuitLowerBounds (Circuit GateOp)
-open PEqualNP.Outside.L_meta_951_aux (val F2 F2Wit mem_F2 aliveSets mem_aliveSets baseDQ baseDQ_empty)
+open PEqualNP.Outside.L_meta_951_aux (val F2 F2Wit mem_F2 aliveSets mem_aliveSets baseDQ baseDQ_empty slack)
 
 /-! ## The instance: `asteroid/examples/first.ast` -/
 
@@ -61,8 +62,22 @@ theorem first_ast_tiny_slack (Q : Finset (Fin Asteroid_first.tiny.n)) :
 
 theorem first_ast_fano_hypsB : hypsB Asteroid_first.fano = true := by decide +kernel
 
+/-- **The unbounded step for a checked literal.** `forall cubes slack(tiny) >= 0` (`tiny_claim4`) gives, by
+`ChainTelescope.kstep_of_slack_nonneg`, a step from any cube `Q` to any cube `E` of smaller base with slack `0`. -/
+theorem first_ast_tiny_kstep (Q E : Finset (Fin Asteroid_first.tiny.n))
+    (hE : slack Asteroid_first.tiny.toGates Asteroid_first.tiny.setFin E = 0)
+    (hb : baseDQ Asteroid_first.tiny.setFin ∅ E < baseDQ Asteroid_first.tiny.setFin ∅ Q) :
+    ∃ Q', baseDQ Asteroid_first.tiny.setFin ∅ Q' < baseDQ Asteroid_first.tiny.setFin ∅ Q ∧
+      slack Asteroid_first.tiny.toGates Asteroid_first.tiny.setFin Q'
+        ≤ slack Asteroid_first.tiny.toGates Asteroid_first.tiny.setFin Q :=
+  PEqualNP.Outside.L_meta_951_aux.ChainTelescope.kstep_of_slack_nonneg
+    (fun Q => baseDQ Asteroid_first.tiny.setFin ∅ Q)
+    (fun Q => slack Asteroid_first.tiny.toGates Asteroid_first.tiny.setFin Q) Q E
+    (slack_nonneg_of_slackNonnegAll _ first_ast_tiny_setsOk Asteroid_first.tiny_claim4 Q) hE hb
+
 end SearchCheck
 
 #print axioms SearchCheck.first_ast_tiny_concrete
 #print axioms SearchCheck.first_ast_tiny_slack
 #print axioms SearchCheck.first_ast_fano_hypsB
+#print axioms SearchCheck.first_ast_tiny_kstep
