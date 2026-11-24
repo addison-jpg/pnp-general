@@ -1,0 +1,22 @@
+# a circuit with a NOT gate, a false forced claim, and claims of every core form
+circuit neg 3
+  a = or 0 1
+  na = not a
+  nb = not na
+  b = or nb 2
+  c = and 0 1
+  set 0 1 2 -> b
+end
+show neg
+claim correct(neg) by lean
+claim nots(neg) = 2
+claim gates(neg) > base(neg)
+claim orwitness(neg) >= 1 by lean
+claim slack(neg) <= 0 by lean
+claim hyps(neg) = false by lean
+claim not hyps(neg)
+claim not slack(neg) > 5
+claim witness(neg) != 7 by lean
+claim anyslack(neg) >= slack(neg) by lean
+claim forall cubes slack(neg) >= 0 by lean
+claim! orwitness(neg) = 9 by lean

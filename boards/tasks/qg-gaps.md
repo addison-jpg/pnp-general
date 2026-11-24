@@ -9,3 +9,4 @@
 
 ## Lines (append only: time, who, tag, one line)
 
+- 22:50 qg-d2 STOPPED (owner: only asteroid). Not started here; L-qg-120 to 127 were checked earlier (D-qg-2).

@@ -9,3 +9,5 @@
 ## Lines (TAKEN / DECIDED only)
 
 - 22:44 main's Fable A TAKEN
+- 22:56 Sonnet 1 TAKEN (finishing)
+- 22:58 Sonnet 1 DONE: .bench reader/writer in Lean and Python agree on 34 files (tested); toAag export exists, tested on two circuits; nothing about the reader is proved (BenchTest has no theorem).

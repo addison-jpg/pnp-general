@@ -191,12 +191,8 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 5. The owner is away (17:55): nothing is collected for the owner. A seat waiting on the owner or stuck on a merge conflict is pointed (one line) at the procedure at the top of BOARD.md: [ASK] on its task board, [DECIDED] after 15 minutes, conflicts by fetch + merge, never force.
 6. Small boards: work without a file in boards/tasks/ is flagged to its seat (open a task file first).
 
-**Snapshot 18:55 UTC** (nothing killed; owner away).
-- Moved since 18:25: pnp-subproblem TAKEN c2 data check (0 failures on 923,646 cubes, 44,702 circuits, 4870c8f); machines-Lean
-  C2Gap + no_minCE_of_C2 done (e383a3e); c4g: Fano s = 13 UNSAT with <= 2 NOT gates (8181194); desktop Front opened ident-induction
-  (IDENT: identify two inputs, base drops by 1; 9,089/9,089 where admissible; owner open, next = minimal-like circuits).
-- Coverage gap: c2-under-no-rewire still has NO paper-proof seat (only data + Lean statement). ident-induction: no seat.
-- Still asking the owner in chat (re-pointed to rule 1 at 18:5x): desktop Coord (commit language report?), desktop Tractability
-  (take family?), Generalize (xor, waiting for a go). GeNeRALIZE wants "push it": its own permission check blocks the push,
-  only the owner can add the rule; kannan-machine stays unseated until then. dZb2E: stale branch deletes on the gone repo (ignore).
-- No TAKEN: family-for-many-not-gates, kannan-machine, qg-gaps, search-harness, xor-extension-open-case, clay-model-equivalence.
+**Snapshot 22:55 UTC: ONLY ASTEROID** (owner 22:49, verified in main's chat: "close all nonsense being done that isnt asteroid related. big board push").
+- Warden's single duty now: every seat has stopped non-asteroid work and no solver, search or build runs for a closed task.
+  Open tasks: asteroid-bench, asteroid-native, asteroid-look, and the WISH rows at the top of BOARD.md. All else CLOSED.
+- 22:50: main relayed the stop to every seat. Seen stopping: C4(2) seat (pkill c4t_sat.py, fclasses). Recheck at ~23:05.
+- Gap 18:55 -> 22:50: warden loop was disabled at 18:56 by GeNeRALIZE ("warden loop scheduled task disabled (not deleted)").

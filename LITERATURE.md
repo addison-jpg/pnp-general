@@ -231,6 +231,24 @@ Notation: slack(Q) as in `one-not/tools/search/core.py`; F = multilinear extensi
 | Forman, "Morse theory for cell complexes", Adv. Math. 134 (1998); Chari (2000) acyclic matchings | discrete gradient vector field = acyclic matching on the face poset; paths follow matched pairs, critical cells remain | search result, NOT read | USE as the substitute for a monotone path: slack(Q ∪ v) vs slack(Q) on matched pairs (Q, Q ∪ v) of an acyclic matching of the Boolean lattice; the one-point step fails at SOME pairs, but a matching could choose the pairs where it holds and leave the rest as critical cells. Test: does an acyclic matching with step <= 0 on every matched pair exist, with all critical cells at nonnegative slack? (a small ILP) |
 | de Bruijn, Tengbergen, Kruyswijk (1951) symmetric chain decomposition; Tomon, "Decompositions of the Boolean lattice into rank-symmetric chains", arXiv 1509.07346 | 2^[n] partitions into C(n, ⌊n/2⌋) symmetric chains; many such partitions exist | search result, NOT read | USE: Σ_Q slack(Q) = Σ over chains of the chain sums, and every chain has the project's L5 telescoping sum; a chain decomposition turns the average of slack over all of 2^[n] into a sum of chain integrals. It bounds the AVERAGE, not the corner |
 
+## K. Circuit file formats
+
+Serves the asteroid language (task asteroid-bench). The format in use is ISCAS `.bench`
+(`asteroid/BENCH.md`); AIGER is an export only (`notes/aiger.md`). Status **SR** = seen in a web
+search result only, the source itself was not opened (the hosts were not reachable from the
+container on 2026-11-24).
+
+| Source | What it gives | Status | Note |
+|---|---|---|---|
+| F. Brglez, H. Fujiwara, "A neutral netlist of 10 combinational benchmark circuits and a target translator in Fortran", Proc. IEEE ISCAS, 1985 | the ISCAS-85 circuits; distributed as a numeric node list with a Fortran translator; no formal grammar | CITED; SR (title, authors, year, "never formally documented" from a search summary of ddd.fit.cvut.cz/www/prj/Benchmarks/iscas85.pdf and s2.smu.edu iscas85_format.pdf); page numbers not confirmed | `asteroid/BENCH.md` |
+| F. Brglez, D. Bryan, K. Kozminski, "Combinational profiles of sequential benchmark circuits", Proc. IEEE ISCAS, May 1989, pp. 1929-1934, doi:10.1109/ISCAS.1989.100747 | the ISCAS-89 circuits | CITED; SR (pages and DOI from a search summary of ddd.fit.cvut.cz ISCAS89.bib and scilit.com) | `asteroid/BENCH.md` |
+| `.bench` syntax in practice: ABC `read_bench` / `write_bench` (`src/base/io/ioReadBench.c`, `ioWriteBench.c`); the parser library lorina ("BENCH parser", lorina.readthedocs.io); a description page with the c17 example (sportlab.usc.edu, benchmark-project/bench.html); Atalanta | `INPUT(x)`, `OUTPUT(x)`, `name = GATE(a, b)`, `#` comments; no grammar in the sources cited | SR for ABC, lorina and the description page (none opened); Atalanta: cited, not opened | the grammar in `asteroid/BENCH.md` is asteroid's own statement of the format |
+| A. Biere, "The AIGER And-Inverter Graph (AIG) Format Version 20071012", FMV Reports 07/1, Johannes Kepler University Linz, 2007; specification text fmv.jku.at/aiger/FORMAT.aiger | header `aag M I L O A`, literals 2v / 2v+1, binary `aig` | SR (title and report number); cited, not opened (fmv.jku.at unreachable) | `notes/aiger.md` |
+| A. Biere, K. Heljanko, S. Wieringa, "AIGER 1.9 And Beyond", FMV Reports 11/2, Johannes Kepler University Linz, 2011 | bad-state, constraint, justice and fairness sections | SR (title and report number); cited, not opened | `notes/aiger.md` |
+| AIGER in competitions: the hardware model checking competition (HWMCC, from 2007); SYNTCOMP: S. Jacobs et al., "The First Reactive Synthesis Competition (SYNTCOMP 2014)", arXiv:1506.08726; S. Jacobs, "Extended AIGER Format for Synthesis", arXiv:1405.5793 | AIGER is the input format of both | SR (titles and arXiv numbers); not opened | `notes/aiger.md` |
+| Lean's verified AIG: `Std.Sat.AIG` (Lean core, from LeanSAT; used by `bv_decide`) | AND nodes with an inversion flag on each input: the AIGER data model, with proofs | cited, not opened; the module was not opened in this session | `notes/aiger.md`; target of a future proof that `toAag` keeps the function |
+| University of California, Berkeley, "Berkeley Logic Interchange Format (BLIF)", 1992 (distributed with SIS) | gates are `.names` truth-table covers | cited, not opened | `asteroid/BENCH.md`, Differences |
+
 ## J. Searched and not found (so nobody searches again)
 
 - A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`).

@@ -4,11 +4,12 @@ A program is a text file `NAME.ast`. Lines are read top to bottom. `#` starts a 
 
 ```
 program   := line*
-line      := circuit | let | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record
+line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record
 circuit   := "circuit" NAME N NEWLINE (gate | out)* "end"
 gate      := NAME "=" ("or" | "and") WIRE WIRE  |  NAME "=" "not" WIRE
 out       := "set" POINT+ "->" WIRE
-let       := "let" NAME "=" "load" PATH
+let       := "let" NAME "=" "load" PATH            (PATH ends in .bench: the format of BENCH.md, asteroid/ext_bench.py; or in .json)
+save      := "save" NAME "->" PATH                (PATH ends in .bench; asteroid/ext_bench.py)
 show      := "show" NAME
 claim     := ("claim" | "claim!") expr ["by lean"]   ("claim!": forced to Lean even if Python says false, to watch the kernel reject it)
 expr      := "correct(" NAME ")"
@@ -44,6 +45,7 @@ WORD      := checked | paper | tested | refuted | open | premise
 
 ## Meaning
 
+- A **circuit file** is an ISCAS `.bench` netlist with `#@ or OUT = IN IN …` directives for the sets; the grammar and the mapping to (n, sets, gates, outs) are in [`BENCH.md`](BENCH.md). `save` writes inputs as `x0 x1 …` and gates as `g0 g1 …`.
 - A **circuit** has N inputs (points). `set I J K -> W` says: the wire W must compute the OR of the inputs I, J, K.
 - `base(c)` = sum over the sets of (size − 1). `witness(c)` = gates of any type that are 0 at a zero point of a set and 1 at two of its atoms; `orwitness(c)` = the same for OR gates only. `slack(c)` = `orwitness(c)` − `base(c)`; `anyslack` uses `witness`. A **cube** is a set of points fixed to 1; `slack` at a cube counts only the sets that avoid it.
 - `corpus W = GLOB` loads every circuit of every matching `.json` (one circuit) or `.jsonl` (one per line, bare or under the key `circuit`) file; files that are not circuits, are incorrect, or break the `where` limits are skipped and counted in the printed line. `claim forall c in W: EXPR` evaluates EXPR with `c` replaced by each circuit, in Python, and prints one summary line (TRUE on all, or FALSE with the first failing files); it is true only if it holds on all. With `by lean` each circuit is registered under a generated name `W_<i>` and one Lean claim per circuit goes into the one module; refused above 40 circuits, or above n = 8 for `forall cubes`. `count c in W: EXPR` prints how many satisfy EXPR. `plot hist FUNC W -> F.png` histograms FUNC(c).

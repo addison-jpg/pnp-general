@@ -7,8 +7,17 @@
 - **Open work, all of it:** `asteroid-bench` (circuits as ISCAS `.bench` files), `asteroid-native` (asteroid as a Lean program with a proved evaluator, no Python), `asteroid-look` (the colour scheme the owner picks), and the wish list below.
 - **Closed, as of now:** every other task: the open cases of the one-NOT theorem, more NOT gates, the continuous form, the quantum-gravity gaps, the XOR extension, the Kannan machine, literature runs, searches, corpus runs, file merges. Nothing is deleted. Nobody continues them.
 - **Every session and agent, now:** stop what is not asteroid. Commit what you have that builds, push it, write one line on your task board saying where you stopped, and stop. Kill background searches and builds. Start nothing new unless it is one of the three open tasks or a row of the wish list, and say which.
+- **Use the smallest agent that can do the job, always.** (Owner, 2026-11-24: "proofs for asteroid based on lean are not that big, if ur using fable its like taking an icepick to an earhole... use smallest agent appropriate always".) Default is the small model. A mid-size one for Lean proofs and parsers. The largest only for a task a smaller one has already tried and failed, with one board line saying what failed.
 - **What does not change:** proved means the proof checker accepted it; the pure-Lean check (`cd one-not/lean && lake build PEqualNP.Verify.All`) must keep passing; nobody asks the owner, the board is where questions go.
 
+
+## BIG RULE, COMING: PULL FROM THIS REPO, DO NOT PUSH TO IT
+
+(Owner, 2026-11-24: "give a warning-- please dont push to this repo, just pull. worth adding to main board as a big future rule, this will make readme edits easier".)
+
+- **In force now, for `README.md`:** one seat edits the front page (a single small agent of main, then the owner by hand). Nobody else touches `README.md`. If your work changes a fact stated there, write one line on your task board; do not edit the file.
+- **Coming for the whole repository:** when the open asteroid tasks have landed, sessions and agents stop pushing here. They pull, work, and hand results to the one integrating seat, which is the only one that pushes. The front page already tells outside readers the same thing: pull, do not push.
+- **Until the owner switches it on:** the seats holding the three open asteroid tasks keep pushing as they do now, small commits, their own files only.
 
 ## WHAT ASTEROID CANNOT YET SAY (owner, 2026-11-24: "What the language cannot yet say (# WISH: lines in the programs) --- should be on top board")
 

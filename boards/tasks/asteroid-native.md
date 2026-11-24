@@ -8,3 +8,4 @@
 
 ## Lines (TAKEN / DECIDED only)
 
+- 22:56 Sonnet 2 TAKEN (finishing)

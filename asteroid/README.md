@@ -38,12 +38,40 @@ python3 -m asteroid test
 
 The exact grammar is in [`SPEC.md`](SPEC.md). On every push that touches the language or a program, GitHub Actions runs `python3 -m asteroid test --no-lean` (workflow `.github/workflows/asteroid.yml`); the Lean kernel job is started by hand.
 
+## Circuits are `.bench` files
+
+A circuit is a file in the ISCAS `.bench` netlist format, the format of the ISCAS-85 and ISCAS-89
+benchmark circuits, read by ABC and by most test-generation tools:
+
+```
+# hello: two sets sharing the point x2
+INPUT(x0)
+INPUT(x1)
+INPUT(x2)
+INPUT(x3)
+OUTPUT(b)
+OUTPUT(c)
+#@ or b = x0 x1 x2
+#@ or c = x2 x3
+a = OR(x0, x1)
+b = OR(a, x2)
+c = OR(x2, x3)
+```
+
+The one addition is the comment directive `#@ or b = x0 x1 x2`: the output `b` must compute the OR
+of those inputs. The grammar, the meaning of a file and the sources are in [`BENCH.md`](BENCH.md).
+The reader and writer are a Lean module (`one-not/lean/PEqualNP/AsteroidLang/Bench.lean`); the Python
+reader (`ext_bench.py`) follows the same grammar, and `python3 -I asteroid/tests/test_bench.py`
+compares the two on every `.bench` file of the repository. Every witness circuit under
+`one-not/data/witnesses/` has its `.bench` file next to the JSON file.
+
 ## The language
 
 | Verb | Meaning |
 |---|---|
 | `circuit NAME N` … `end` | a circuit written in the script: gates `W = or X Y`, `W = and X Y`, `W = not X`; outputs `set I J K -> W` |
-| `let NAME = load FILE.json` | a circuit from a file |
+| `let NAME = load FILE.bench` | a circuit from a `.bench` file ([`BENCH.md`](BENCH.md)); `FILE.json` is still read (extension `ext_bench.py`) |
+| `save NAME -> FILE.bench` | write a circuit as a `.bench` file (extension `ext_bench.py`) |
 | `show NAME` | gates, NOT gates, base, witness counts, correctness |
 | `claim EXPR [by lean]` | `correct(NAME)`, or `F(NAME) OP RHS` with `F` in `gates nots base witness orwitness slack anyslack margin["conjecture"]`, `OP` in `= != < <= > >=`; `claim not EXPR` (Python only) |
 | `claim! EXPR by lean` | send the claim to Lean even when Python says it is false, to watch the kernel reject it (`tests/kernel_rejects.ast`, `tests/mixed_kernel_rejects.ast`) |

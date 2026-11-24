@@ -11,3 +11,8 @@ rev = "fc4f59e577feb1a4956671bc04ac18aaaf8cd842"
 
 [[lean_lib]]
 name = "PEqualNP"
+
+# asteroid as one executable written in Lean (asteroid/NATIVE.md). Mathlib is not linked into it.
+[[lean_exe]]
+name = "asteroid"
+root = "PEqualNP.AsteroidLang.Main"
