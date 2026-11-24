@@ -19,3 +19,4 @@
 - 18:15 research-desktop DONE: rows 179-182 of LITERATURE.md now TXT/TXT/PART/TXT (table format fixed to 3 columns); verdict NEITHER (no stated conjecture or refutation of C4 in the four); closest prior text remains the Jukna-Sergeev 2013 question; details one-not/board/agents/research-literature-c4.md
 - 17:58 research DONE: 4 rows TXT in LITERATURE.md; no conjecture or refutation of C4 in any of them (nearest: Jukna-Sergeev §7 question, Blum TR24-179)
 - 22:50 research STOPPED (owner: only asteroid): task was already DONE at 85d9747; nothing uncommitted; lane closed
+- 22:51 research-desktop CLOSED (owner: only asteroid): stopped with the task DONE (verdict neither, rows merged in LITERATURE.md, 4571620); nothing running, nothing unpushed
