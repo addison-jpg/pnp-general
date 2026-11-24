@@ -92,14 +92,14 @@ A proof by a canonical world rule cannot work; each rule dies to a gadget of 3 g
   g in M_{top_A}(A) ∩ M_{top_B}(B). Incomparable worlds, monotone gate, the lemma is silent.
 - G(chain), N-dependent: g = ((x_u1 & N) | x_v1) | ((x_u2 & N) | x_v2) with u1, u2 light (h(e_u) = 0):
   g in M_0(A) ∩ M_z'(B) for every zero point z' of B with h(z') = 1. This is exactly the exception in b3.
-ADV3 (correct, clean, read, NOT essential; n = 12, s = 43, base = 9; three disjoint 4-sets):
+ADV3 (correct, clean, read, essential [corrected 09:25: C0 and C1 both wrong, w951 is_essential() = True]; n = 12, s = 43, base = 9; three disjoint 4-sets):
   M_0 = {18,21,27}, {14,19,21}, {15,20,21}; M_top = {25,32,47}, {25,39,50}, {32,39,53}. Every pair conflicts in
   (0,0) (h = g21) and in (top,top). No disjoint choice in the menu {0, top_w}; fractionally, with p_w = mass on 0:
   load(21) = sum p_w <= L and the three junk loads sum to 2(3 - sum p_w) <= 3L, so L >= 6/5 > 1.  [FALSE: two-world
   MergeFrac/MergeSDR.] Full MergeFrac L* = 0.75 (K = {21,47,50,53}, uniform), 2506 disjoint all-world choices,
   e.g. A at 0, B at e_11, C at e_7. FracMatch (lp.fraclp) L = 0.28125.
   {"n":12,"sets":[[0,1,2,3],[4,5,6,7],[8,9,10,11]],"gates":[["or",1,4],["or",12,8],["or",13,5],["or",14,9],["or",2,6],["or",16,10],["or",17,3],["or",18,7],["or",19,11],["or",15,20],["not",21],["and",0,4],["and",1,5],["or",23,24],["or",25,0],["or",26,1],["or",25,4],["or",28,5],["and",2,8],["and",3,9],["or",30,31],["or",32,2],["or",33,3],["or",32,8],["or",35,9],["and",6,10],["and",7,11],["or",37,38],["or",39,6],["or",40,7],["or",39,10],["or",42,11],["or",21,0],["and",27,21],["or",45,22],["or",46,34],["and",44,47],["or",29,22],["or",49,41],["and",21,50],["or",36,22],["or",52,43],["and",21,53]],"outs":[48,51,54]}
-ADV4 (correct, clean, read, NOT essential; n = 8, s = 22, base = 6; A = {0,1,2,3}, B = {4,5,6,7}):
+ADV4 (correct, clean, read, essential [corrected 09:25: C0 and C1 both wrong, w951 is_essential() = True]; n = 8, s = 22, base = 6; A = {0,1,2,3}, B = {4,5,6,7}):
   g16 is N-dependent and g16 in M_0(A) ∩ M_{top_B}(B) = a mixed conflict and a staircase conflict.  [FALSE as general
   laws: "shared merges are never downstream of the NOT" (fact 3), "no mixed conflicts", "staircase is disjoint".]
   MergeFrac L* = 1 (forced by g8), a disjoint all-world choice exists.

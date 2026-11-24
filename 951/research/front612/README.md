@@ -13,4 +13,6 @@ W951 tools: harness.py imports tools/w951 from a coord-951 checkout (env W951_TO
   dual certificates. Its `merges` is its own definition (differs from W951 mergeSet on gates seeing >= 3 blocks):
   research evidence, not a 951 row.
 - fable_worlds.md: proof attempt (MergeSDR conjecture, cut sandwich, chain-pair, pair theorem / O2, ADV3, ADV4,
-  O2-PAIR, tests F1-F5). ERRATUM: line 5 says the adversaries are essential; they are NOT (their entries are right).
+  O2-PAIR, tests F1-F5). CORRECTION (09:25, verified with w951 is_correct(0/1) and is_essential()): ADV3 and ADV4 ARE
+  essential (C0 and C1 both wrong). The entries in (b5) that said 'NOT essential' were wrong; the header was right.
+  An earlier front612 message called them not essential: that was wrong too.
