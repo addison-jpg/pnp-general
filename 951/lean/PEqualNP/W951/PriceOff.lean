@@ -103,6 +103,13 @@ section Single
 
 variable {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate)
 
+/-- Merge wires are gate wires. -/
+theorem mergeSet_subset_Ico (R : Finset (Fin n)) (z : Fin n → Bool) :
+    mergeSet gates R z ⊆ Finset.Ico n (n + gates.length) := by
+  intro i hi
+  unfold mergeSet at hi
+  obtain ⟨j, hj, rfl, -⟩ := (runMT_mem z (upPt z) R gates _ _).mp hi
+  exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
 /-- Merge wires are gate wires (alias of MergeFrac's `mergeSet_subset`). -/
 theorem mergeSet_subset_Ico (R : Finset (Fin n)) (z : Fin n → Bool) :
     mergeSet gates R z ⊆ Finset.Ico n (n + gates.length) :=
