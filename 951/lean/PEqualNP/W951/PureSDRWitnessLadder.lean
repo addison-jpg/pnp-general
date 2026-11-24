@@ -19,6 +19,13 @@ PureSDR and the 951 set conditions are kernel-checked; correctness is checked in
   reports this pure SDR as the only one (Python). Kernel-checked here: the PureSDR, the correctness of
   the circuit (each output is `OR (S w)`, all `2^6` inputs), the 951 set conditions, and that point
   `4` is heavy.
+* triAll5593 (front B 12:20, landed by coord; `n = 6`, `s = 15`, `h = x4 ∨ x5`): the circuit that refutes
+  the LOOSENESS lemma (front A4 part 1; the class `{g6, g8}` of `{0,3,4}` meets all three classes of
+  `{1,3,5}`). It still has a pure SDR (all four sets in world 1). Kernel-checked here: the PureSDR, the
+  correctness (all `2^6` inputs), the 951 set conditions, the NOT gate and `h`.
+
+The barrier suite in `951/data/witnesses` (`cxMU_dd`, `cxMU_clean2`, `cxMU_clean2_DD`, `cx44_1_junk`,
+coord 64776ce) has NO pure SDR on purpose; `pure_export.py --group witness` skips it (`BARRIER`).
 -/
 
 namespace PEqualNP.Outside.L_meta_951_aux
@@ -61,6 +68,38 @@ theorem pPaschS14HeavyAtmostone_correct :
     (4 : Fin 6) ∈ pPaschS14HeavyAtmostoneS 1 ∧ (4 : Fin 6) ∈ pPaschS14HeavyAtmostoneS 3 :=
   ⟨by decide, by decide, by decide, pPaschS14HeavyAtmostone, rfl, by decide, by decide,
     by decide⟩
+
+/-! ### triAll5593: n = 6, 15 gates (NOT gate 2), 4 sets; worlds I1, I1, I1, I1 -/
+
+def pTriAll5593Gates : List Gate := [⟨GateOp.or, [0, 1]⟩, ⟨GateOp.or, [4, 5]⟩, ⟨GateOp.not, [7]⟩, ⟨GateOp.and, [6, 8]⟩, ⟨GateOp.or, [2, 6]⟩, ⟨GateOp.or, [5, 9]⟩, ⟨GateOp.or, [3, 11]⟩, ⟨GateOp.or, [1, 12]⟩, ⟨GateOp.or, [3, 7]⟩, ⟨GateOp.and, [1, 8]⟩, ⟨GateOp.or, [0, 4]⟩, ⟨GateOp.or, [14, 15]⟩, ⟨GateOp.and, [13, 17]⟩, ⟨GateOp.or, [3, 16]⟩, ⟨GateOp.or, [2, 7]⟩]
+def pTriAll5593S : Fin 4 → Finset (Fin 6) := ![{0, 1, 2}, {0, 3, 4}, {1, 3, 5}, {2, 4, 5}]
+def pTriAll5593C : Fin 4 → PureOpt 6 := ![PureOpt.one (canonPt {}), PureOpt.one (canonPt {1}), PureOpt.one (canonPt {}), PureOpt.one (canonPt {})]
+def pTriAll5593M : Fin 4 → Finset ℕ := ![{7, 10}, {14, 16}, {11, 12}, {8, 20}]
+
+set_option maxRecDepth 100000 in
+theorem pTriAll5593_valid : ∀ w, PureValid pTriAll5593Gates 2 (pTriAll5593S w) (pTriAll5593C w) := by decide
+
+set_option maxRecDepth 100000 in
+theorem pTriAll5593_cls : ∀ w, pureCls pTriAll5593Gates 2 (pTriAll5593S w) (pTriAll5593C w) = pTriAll5593M w := by decide
+
+theorem pTriAll5593 : PureSDR pTriAll5593S pTriAll5593Gates 2 :=
+  pureSDR_of_cert _ _ _ pTriAll5593C pTriAll5593M pTriAll5593_valid pTriAll5593_cls (by decide)
+
+def pTriAll5593Out : Fin 4 → ℕ := ![10, 19, 18, 20]
+
+set_option maxHeartbeats 4000000 in
+set_option maxRecDepth 100000 in
+/-- Pasch, `s = 15`: correct, (1,1)-disjoint sets of size at least 2, PureSDR (all four sets in
+world 1), and the NOT gate (gate 2) reads `h = x4 ∨ x5` (wire 7). -/
+theorem pTriAll5593_correct :
+    (∀ (w : Fin 4) (x : Fin 6 → Bool),
+      val pTriAll5593Gates x (pTriAll5593Out w) = decide (∃ v ∈ pTriAll5593S w, x v = true)) ∧
+    (∀ w, 2 ≤ (pTriAll5593S w).card) ∧
+    (∀ a b : Fin 4, a ≠ b → (pTriAll5593S a ∩ pTriAll5593S b).card ≤ 1) ∧
+    PureSDR pTriAll5593S pTriAll5593Gates 2 ∧
+    pTriAll5593Gates[2]? = some ⟨GateOp.not, [7]⟩ ∧
+    pTriAll5593Gates[1]? = some ⟨GateOp.or, [4, 5]⟩ :=
+  ⟨by decide, by decide, by decide, pTriAll5593, rfl, rfl⟩
 
 /-! ## Scaffold's v-ladder: PG(2,3) (`n = 13`, 13 lines) and AG(2,4) (`n = 16`, 20 lines) -/
 
