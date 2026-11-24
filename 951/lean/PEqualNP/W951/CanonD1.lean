@@ -66,7 +66,7 @@ theorem K0of_const (gates : List Gate) (p : ℕ) (R m : Finset (Fin n)) :
 
 /-! ## Points -/
 
-theorem ext_le_ext {x z : Fin n → Bool} {b b' : Bool} (hxz : x ≤ z) (hb : b ≤ b') :
+theorem d1_ext_le_ext {x z : Fin n → Bool} {b b' : Bool} (hxz : x ≤ z) (hb : b ≤ b') :
     ext x b ≤ ext z b' := by
   intro c
   induction c using Fin.lastCases with
@@ -87,7 +87,7 @@ theorem canonPt_mono {A B : Finset (Fin n)} (h : A ⊆ B) : canonPt A ≤ canonP
 theorem atom0_le_top (R' M : Finset (Fin n)) (u : Fin n) (hu : u ∉ R') (hM : Disjoint M R') :
     canonPt (insert (Fin.castSucc u) (liftSet M)) ≤ ext (Zof R') true := by
   rw [atom0_eq]
-  refine ext_le_ext (fun c => Bool.le_iff_imp.mpr fun hc => ?_) (by decide)
+  refine d1_ext_le_ext (fun c => Bool.le_iff_imp.mpr fun hc => ?_) (by decide)
   have hc' := canonPt_eq_true.mp hc
   simp only [Zof, decide_eq_true_eq]
   rcases Finset.mem_insert.mp hc' with rfl | hc'
@@ -115,8 +115,8 @@ theorem disjoint_K0of_K1Z_of_le (R R' : Finset (Fin n)) (m : Fin n → Finset (F
     fun s t hst => ?_
   have hne : enumF R s ≠ enumF R t := fun h => hst (enumF_injective R h)
   rcases hle _ (enumF_mem R s) _ (enumF_mem R t) hne with h | h
-  · left; rw [atom0_eq]; exact ext_le_ext h (by decide)
-  · right; rw [atom0_eq]; exact ext_le_ext h (by decide)
+  · left; rw [atom0_eq]; exact d1_ext_le_ext h (by decide)
+  · right; rw [atom0_eq]; exact d1_ext_le_ext h (by decide)
 
 include hg hU hN in
 /-- **D at `top_w`, per-atom I0 choices.** `K_0(v; (m_u')) ∩ K_1(w) = ∅` for `|S_v ∩ S_w| ≤ 1`
