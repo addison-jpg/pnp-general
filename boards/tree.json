@@ -128,6 +128,18 @@
    }
   ]
  },
+ "one-not/data/scaffold": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "ae7767ec",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
  "one-not/data/witnesses": {
   "counts": {
    "refuted": 2,
@@ -138,7 +150,14 @@
    "f4704cc4",
    "0736a8e5"
   ],
-  "unverified_here": []
+  "unverified_here": [
+   {
+    "id": "4825af69",
+    "why": [
+     "SearchCheck.Asteroid_corpus.W_0_claim0 not in one-not/lean/PEqualNP/W951/Asteroid_corpus.lean"
+    ]
+   }
+  ]
  },
  "one-not/data/witnesses/nonlocal": {
   "counts": {
