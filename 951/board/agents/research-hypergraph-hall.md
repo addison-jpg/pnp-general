@@ -50,3 +50,17 @@ of 3.4 for Santa Claus: a topology-based analysis', arXiv 2611.15392 (TXT, §1-2
 Suggested next checks (scaffold, cheap): (i) on the 15,300-circuit corpus, the fraction of outputs with a single world-1 member;
 (ii) build the 2-SAT implication graph restricted to world representatives and confirm no contradictory SCC; (iii) record
 the longest forced implication chain (the object a proof must rule out).
+
+## 5. Follow-up (09:55): scaffold's 2-SAT data + a 'free candidate' test (CHECKED)
+- scaffold (75,619 one-NOT circuits, f15/twosat.py): |F^1| = 1 for 87.25% of (circuit, set) pairs (never 0: z = 0 is world 1);
+  on the 47,674 circuits where every family has <= 1 member per world the 2-SAT is exact: 0 contradictory SCCs, and the
+  longest implication path is ONE forced step (e.g. cx44_0: c(0) = 0 => c(1) = 1). Conflicts never chain.
+- A 2-step chain needs an output whose candidates in BOTH worlds conflict with others. Stronger candidate lemma tested here
+  (freecand.py): FREE CANDIDATE: every output has a merge set disjoint from every merge set of every other output (then
+  MergeSDR is immediate). Holds for 80 of 84 outputs, 24 of 26 instances; FAILS on cxT2 and cxT4 (outputs 0 and 2, whose
+  world-0 families have 15-189 members): there the SDR needs a coordinated choice. Restricting families to canonical points
+  (z = 0 and minimal world-0 points; freecand2.py) is worse: 78/84 outputs, 23/26 instances (v1 also fails).
+- So the free-candidate lemma is false in general; the true pattern is scaffold's: conflicts exist but forced implications have
+  length <= 1. Suggested lemma shape for a proof: 'if a candidate of w is blocked by a candidate of v, then v has a candidate
+  that blocks nothing' (no chains), which is exactly the length-1 implication structure; worth testing on the corpus in this
+  form (per blocked pair, does the blocker's output have an unblocking alternative?).
