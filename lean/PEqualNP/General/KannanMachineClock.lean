@@ -546,34 +546,41 @@ namespace PEqualNP.General.Kannan
 
 open Turing PEqualNP.Library PEqualNP.Library.Machines Clk
 
+/-- A machine computing `f`, with a bound `B a` on the length of the run on each input. -/
+structure PRun {α β αΓ βΓ : Type} (ea : α → List αΓ) (eb : β → List βΓ) (f : α → β)
+    (B : α → ℕ) where
+  tm : FinTM2
+  ia : tm.Γ tm.k₀ ≃ αΓ
+  oa : tm.Γ tm.k₁ ≃ βΓ
+  run : ∀ a, ∃ n, n ≤ B a ∧ (flip bind (TM2.step tm.m))^[n]
+    (some (initList tm ((ea a).map ia.invFun))) = some (haltList tm ((eb (f a)).map oa.invFun))
+
 /-- A machine computing `g`, cut off after `c` steps per input symbol: some `f` is computed in
 linear time and agrees with `g` wherever the machine halts within `c` steps per symbol. -/
-theorem clocked {α αΓ : Type} [Inhabited αΓ] (ea : α → List αΓ) (g : α → Bool)
-    (cm : TM2ComputableInTime ea Computability.encodeBool g) (c : ℕ) :
+theorem clocked {α αΓ : Type} [Inhabited αΓ] (ea : α → List αΓ) (g : α → Bool) (B : α → ℕ)
+    (cm : PRun ea Computability.encodeBool g B) (c : ℕ) :
     ∃ (f : α → Bool) (K : ℕ),
-      (∀ a, (∃ n, n ≤ c * (ea a).length ∧
-        (flip bind (TM2.step cm.tm.m))^[n]
-            (some (initList cm.tm ((ea a).map cm.inputAlphabet.invFun))) =
-          some (haltList cm.tm ((Computability.encodeBool (g a)).map cm.outputAlphabet.invFun)))
-        → f a = g a) ∧
+      (∀ a, B a ≤ c * (ea a).length → f a = g a) ∧
       ComputableInTime ea Computability.encodeBool f (fun l => K * l + K) := by
   classical
   set M := cm.tm
-  let d : M.Γ M.k₀ := cm.inputAlphabet.invFun default
-  let z : M.Γ M.k₁ := cm.outputAlphabet.invFun false
+  let d : M.Γ M.k₀ := cm.ia.invFun default
+  let z : M.Γ M.k₁ := cm.oa.invFun false
   let P : α → Prop := fun a => ∃ n, n ≤ c * (ea a).length ∧
         (flip bind (TM2.step M.m))^[n]
-            (some (initList M ((ea a).map cm.inputAlphabet.invFun))) =
-          some (haltList M ((Computability.encodeBool (g a)).map cm.outputAlphabet.invFun))
+            (some (initList M ((ea a).map cm.ia.invFun))) =
+          some (haltList M ((Computability.encodeBool (g a)).map cm.oa.invFun))
   let f : α → Bool := fun a => if P a then g a else false
   let K : ℕ := c + 2 + mK M * (1 + maxPush M * c) + mK M + 4
-  refine ⟨f, K, fun a ha => by simp only [f]; exact if_pos ha, ?_⟩
+  refine ⟨f, K, fun a ha => by
+    obtain ⟨n, hn, hr⟩ := cm.run a
+    simp only [f]; exact if_pos ⟨n, by omega, hr⟩, ?_⟩
   have key : ∀ a, ∃ n, n ≤ K * (ea a).length + K ∧
       (flip bind (TM2.step (xprog M c d z)))^[n]
-          (some (startC ((ea a).map cm.inputAlphabet.invFun))) =
-        some (stopC ((Computability.encodeBool (f a)).map cm.outputAlphabet.invFun)) := by
+          (some (startC ((ea a).map cm.ia.invFun))) =
+        some (stopC ((Computability.encodeBool (f a)).map cm.oa.invFun)) := by
     intro a
-    set l := (ea a).map cm.inputAlphabet.invFun with hl
+    set l := (ea a).map cm.ia.invFun with hl
     have hll : l.length = (ea a).length := by simp [hl]
     by_cases hP : P a
     · obtain ⟨n, hn, hrun⟩ := hP
@@ -587,12 +594,11 @@ theorem clocked {α αΓ : Type} [Inhabited αΓ] (ea : α → List αΓ) (g : �
       omega
     · have hf : f a = false := by simp only [f, if_neg hP]
       rw [hf]
-      have r := cm.outputsFun a
-      have hs0 : c * l.length < r.steps := by
+      obtain ⟨s0, -, hr0⟩ := cm.run a
+      have hs0 : c * l.length < s0 := by
         by_contra hc
-        exact hP ⟨r.steps, by rw [hll] at hc; omega, r.evals_in_steps⟩
-      obtain ⟨x, hx, hxs⟩ := running_before (TM2.step M.m) _ _ r.steps (c * l.length) hs0
-        r.evals_in_steps
+        exact hP ⟨s0, by rw [hll] at hc; omega, hr0⟩
+      obtain ⟨x, hx, hxs⟩ := running_before (TM2.step M.m) _ _ s0 (c * l.length) hs0 hr0
       have hxl : x.l ≠ none := by
         intro h0
         apply hxs
@@ -619,16 +625,16 @@ theorem clocked {α αΓ : Type} [Inhabited αΓ] (ea : α → List αΓ) (g : �
       linarith
   exact ⟨{
     tm := CM M c d z
-    inputAlphabet := cm.inputAlphabet
-    outputAlphabet := cm.outputAlphabet
+    inputAlphabet := cm.ia
+    outputAlphabet := cm.oa
     time := fun l => K * l + K
     outputsFun := fun a =>
       ⟨⟨Classical.choose (key a), by
-          have h1 : initList (CM M c d z) ((ea a).map cm.inputAlphabet.invFun) =
-              startC ((ea a).map cm.inputAlphabet.invFun) := init_CM c d z _
+          have h1 : initList (CM M c d z) ((ea a).map cm.ia.invFun) =
+              startC ((ea a).map cm.ia.invFun) := init_CM c d z _
           have h2 : haltList (CM M c d z)
-              ((Computability.encodeBool (f a)).map cm.outputAlphabet.invFun) =
-              stopC ((Computability.encodeBool (f a)).map cm.outputAlphabet.invFun) :=
+              ((Computability.encodeBool (f a)).map cm.oa.invFun) =
+              stopC ((Computability.encodeBool (f a)).map cm.oa.invFun) :=
             halt_CM c d z _
           rw [Option.map_some, h1, h2]
           exact (Classical.choose_spec (key a)).2⟩,
