@@ -114,6 +114,27 @@ It restates each claim that has a soundness theorem (`AsteroidSound.lean`, `Aste
 The well-formed-sets condition is proved for each circuit by `decide`. Claims about `witness` (gates of any
 type) and about mixed slack have no soundness theorem yet and stay statements about asteroid's evaluator.
 
+## Cheap theorems on top (AsteroidCheap.lean)
+
+Short theorems (`one-not/lean/PEqualNP/W951/AsteroidCheap.lean`, `AsteroidCheapMixed.lean`), each connecting two
+things already proved. Axioms of every one: `propext`, `Classical.choice`, `Quot.sound`. None uses the open
+statement `no_minCE`; where it appears it is a hypothesis.
+
+| Theorem | What it says |
+|---|---|
+| `not_isCE_of_slackGe`, `not_minCE_of_slackGe` | a literal with well-formed sets and `slack(c) >= 0` is not a counterexample to the Theorem, and not a minimal one, for any output wires |
+| `slack_eq_asteroid` | the Lean `slack` (ContinuousAttach) at the cube `Q` is asteroid's `orWitnessAt − baseAt` at the mask of `Q` |
+| `slack_nonneg_of_slackNonnegAll`, `Phi_nonneg_of_slackNonnegAll` | `forall cubes slack(c) >= 0` gives `0 ≤ slack` at every cube and `0 ≤ Φ(p)` for every `p` in `[0, 1]` |
+| `F2_chain_sum`, `orWitnessAt_chain_sum` | along an increasing chain of cubes: count at the start = count at step `N` + gates lost at each step |
+| `hypsB`, `hypsB_sound` | a Bool checker for the other hypotheses of `L_meta_951` (well-formed sets, an output per set, at least one gate, sets of ≥ 2 points, two sets share ≤ 1 point, at most one NOT gate) and its soundness for `C.setFin`, `C.toGates` |
+| `isCE_of_checks`, `exists_minCE_of_hunt_hit`, `not_LMeta951Stmt_of_hunt_hit` | a literal passing `correctB` and `hypsB` with gates < base is a counterexample (`IsCE`), yields a minimal counterexample, and refutes the statement of `L_meta_951` (`LMeta951Stmt`, copied verbatim): a `hunt` hit is a formal counterexample |
+| `base_le_gates_of_no_minCE`, `base_le_gates_of_LMeta951Stmt` | if there is no minimal counterexample (hypothesis), or the statement of `L_meta_951` holds, every literal passing `correctB` and `hypsB` has base ≤ gates, with no further work |
+| `first_ast_fano_hypsB` | `hypsB fano = true` for the Fano circuit of `examples/first.ast`, by `decide +kernel` |
+| `baseMixed_zero`, `hasWitnessMixedNaive_zero`, `mslackVal_zero`, `mslackGe_zero` (AsteroidCheapMixed) | at `r = 0` the mixed base is the base, the naive mixed witness test is `hasWitnessAt`, and, given the kernel check `naiveAgrees C`, `mslack` at `(q, 0)` is `slack` at `q` |
+
+Not done: `asteroid.py` does not yet emit `hypsB c` as a claim; the bit-parallel mixed witness test is tied to
+the naive one only per circuit (`naiveAgrees`). Notes: `one-not/board/agents/fable-cheap-proofs.md`.
+
 ## What is not there yet
 
 - The soundness theorems are applied by hand: `asteroid.py` still writes only the statements about its own
