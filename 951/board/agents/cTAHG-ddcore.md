@@ -31,3 +31,17 @@ satisfies R1–R5′ and R+, and loses the U-game. Excluding (X) from a MinCE th
     in Lean as `twoGate_lift`), which proves LiftSDR / MergeSDR on cxT2-type cores; or
 (ii) `gates < base` itself (ElimStep: every closing step at the top is 951-strength).
 cxMU_dd and cx44_1 need neither: R+ / R2 already exclude them.
+
+## 4. Desktop Coord's R7 forms (14:06 / 14:10) tested (CHECKED, tools/kill_tests/rewire_r6.py)
+- **R7 (C_b-equality, private or shared cone) and R7-ODC** are instances of R+ with u = N. cxT2 (fc) has 0 R+ violations over
+  every wire and every reader set, so no constant on any set of N's edges keeps it correct.
+- **R7-REWIRE, generalised to every edge (R6):** rewire input `pos` of gate r to an existing wire f outside desc(r); a rewire
+  that keeps every output correct and leaves a gate unread saves a gate without a new NOT, contradicting minimality.
+  - cxT2 (fc): 1,679 candidates, 4 correct, 0 gate-saving. It is locally irreducible.
+  - cxMU_dd: 633 gate-saving rewires. cx44_1: 40.
+  - **MATCH-C (k = 7): 3 gate-saving rewires.** The NOT may read wire 64 = x_{u_0} ∨ x_{a_0} (the output of P_0) instead of
+    h = U ∨ V, and every output stays correct (o_A = (X_A ∧ ¬(x_{u_0} ∨ x_{a_0})) ∨ f_A = x_y ∨ U, checked), so the h tree is spare.
+- **Consequence for 6217a97 (F2 step at non-local cubes refuted under R1–R5′, R+):** MATCH-C is NOT rewire-irreducible.
+  A greedy R6 reduction (55 → 45 gates) keeps one NOT and a non-local h for 10 rewires. The F2 step still fails at Q = ∅ at
+  55..50 gates, holds at 49..46 gates, and at 45 the NOT is dead (monotone circuit). So MATCH-C is not a witness against the
+  step in the R6-irreducible class; whether one exists is OPEN.
