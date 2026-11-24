@@ -139,3 +139,8 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
 - (11:50) LAugmentLoose landed (coord 10:13): the weakest form, (i) + (iv) + "every new merge set misses the current pick
   of every set outside the chain"; `lAugmentLoose_of_lAugment`, `no_minCE_of_augmentLoose`. OFFICIAL OPEN TARGET:
   LAvoid ∧ LAugmentLoose at every MinCE. The referee's LAugment and its theorems are kept (statements unchanged) as instances.
+- (12:05) REFEREE'S CATCH, now a Lean theorem: `mergeSDR_iff_avoid_augmentLoose` — the unbounded loose form IS MergeSDR (SDR
+  points are avoiding options, `avoidOpt_of_sdr`; re-pick all sets at once, `lAugmentLoose_of_mergeSDR`). OFFICIAL OPEN TARGET:
+  `LAvoid ∧ LAugmentK K` at every MinCE (re-picked groups of at most K sets), `no_minCE_of_augmentK`, chain
+  LAugmentK K → LAugmentLoose → MergeSDR → no_minCE; `lAugmentK_mono`. Data (scaffold via coord, not checked here): K = 2
+  suffices on all 75,619 circuits; K = 1 in 100,116 of 100,174 collision states.

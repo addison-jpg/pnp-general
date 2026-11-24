@@ -4,9 +4,11 @@ import PEqualNP.W951.MergeSDR
 # Augment: `LAvoid ∧ LAugment ⇒ MergeSDR` by descent on the number of colliding pairs
 
 The referee's proof plan for `no_minCE`, with the two open lemmas kept as HYPOTHESES (`Prop`
-definitions; nothing here proves them). The official open target is the weakest form,
-`LAvoid ∧ LAugmentLoose` (`no_minCE_of_augmentLoose`); the referee's `LAugment` implies it
-(`lAugmentLoose_of_lAugment`).
+definitions; nothing here proves them). Without a size bound the loose form is MergeSDR itself
+(`mergeSDR_iff_avoid_augmentLoose`, the referee's catch), so the OFFICIAL open target is
+`LAvoid ∧ LAugmentK K` with re-picked groups of at most `K` sets (`no_minCE_of_augmentK`; data:
+`K = 2` suffices). The chain: `LAugmentK K → LAugmentLoose → (with LAvoid) MergeSDR → no_minCE`; the
+referee's `LAugment` implies `LAugmentLoose` (`lAugmentLoose_of_lAugment`).
 
 ## Statements
 
@@ -264,6 +266,86 @@ theorem mergeSDR_of_avoid_augmentLoose (hV : LAvoid S gates) (hA : LAugmentLoose
   choose z hz using hV
   exact key _ z hz rfl
 
+/-! ### The size bound is the content (referee's catch, coord 10:14) -/
+
+/-- The points of a MergeSDR are avoiding options: another set's universal merges lie inside its
+own SDR merge set, which is disjoint from this one. -/
+theorem avoidOpt_of_sdr (z : Fin m → (Fin n → Bool)) (hz : ∀ w, ∀ v ∈ S w, z w v = false)
+    (hd : ∀ a b : Fin m, a ≠ b →
+      Disjoint (mergeSet gates (S a) (z a)) (mergeSet gates (S b) (z b))) (w : Fin m) :
+    AvoidOpt S gates w (z w) := by
+  refine ⟨mem_zeroPts.mpr (hz w), fun w' hw' => (hd w w' (Ne.symm hw')).mono_right ?_⟩
+  intro g hg
+  exact (mem_univMergeSet S gates).mp hg (z w') (mem_zeroPts.mpr (hz w'))
+
+theorem lAvoid_of_mergeSDR (h : MergeSDR S gates) : LAvoid S gates := by
+  obtain ⟨z, hz, hd⟩ := h
+  exact fun w => ⟨z w, avoidOpt_of_sdr S gates z hz hd w⟩
+
+/-- **Without a size bound the loose hypothesis is MergeSDR itself**: from a MergeSDR, re-pick ALL
+sets (listed starting with a colliding one) at their SDR points. -/
+theorem lAugmentLoose_of_mergeSDR (h : MergeSDR S gates) : LAugmentLoose S gates := by
+  obtain ⟨zs, hzs, hds⟩ := h
+  rintro z - ⟨a, b, hab, hnd⟩
+  have hm : m - 1 + 1 = m := by have := a.2; omega
+  let σ : Equiv.Perm (Fin m) := Equiv.swap (Fin.cast hm 0) a
+  let ws : Fin (m - 1 + 1) → Fin m := fun i => σ (Fin.cast hm i)
+  have hws_inj : Function.Injective ws := fun i j hij =>
+    Fin.cast_injective hm (σ.injective hij)
+  have hws_surj : ∀ v, ∃ j, ws j = v := fun v =>
+    ⟨Fin.cast hm.symm (σ.symm v), by simp [ws]⟩
+  refine ⟨m - 1, ws, fun i => zs (ws i), hws_inj,
+    fun i => avoidOpt_of_sdr S gates zs hzs hds (ws i), ⟨b, ?_, ?_⟩, fun i v hv => ?_,
+    fun i j hij => hds _ _ (fun h => hij (hws_inj h))⟩
+  · have h0 : ws 0 = a := by simp [ws, σ]
+    rw [h0]
+    exact Ne.symm hab
+  · have h0 : ws 0 = a := by simp [ws, σ]
+    rw [h0]
+    exact hnd
+  · obtain ⟨j, hj⟩ := hws_surj v
+    exact absurd hj.symm (hv j)
+
+/-- **MergeSDR ⇔ LAvoid ∧ LAugmentLoose** (referee): the unbounded loose form adds nothing. -/
+theorem mergeSDR_iff_avoid_augmentLoose :
+    MergeSDR S gates ↔ LAvoid S gates ∧ LAugmentLoose S gates :=
+  ⟨fun h => ⟨lAvoid_of_mergeSDR S gates h, lAugmentLoose_of_mergeSDR S gates h⟩,
+    fun h => mergeSDR_of_avoid_augmentLoose S gates h.1 h.2⟩
+
+/-- **LAugmentK K** (open; the OFFICIAL target, with the size bound that carries the content):
+`LAugmentLoose` with re-picked groups of at most `K` sets. Data (scaffold, via coord 10:14; not
+checked here): `K = 2` suffices on all 75,619 circuits of the corpus, and `K = 1` in 100,116 of the
+100,174 collision states. -/
+def LAugmentK (K : ℕ) : Prop :=
+  ∀ z : Fin m → (Fin n → Bool), (∀ w, AvoidOpt S gates w (z w)) →
+    (∃ a b : Fin m, a ≠ b ∧
+      ¬ Disjoint (mergeSet gates (S a) (z a)) (mergeSet gates (S b) (z b))) →
+    ∃ (k : ℕ) (ws : Fin (k + 1) → Fin m) (o : Fin (k + 1) → (Fin n → Bool)), k + 1 ≤ K ∧
+      Function.Injective ws ∧ (∀ i, AvoidOpt S gates (ws i) (o i)) ∧
+      (∃ b, b ≠ ws 0 ∧
+        ¬ Disjoint (mergeSet gates (S (ws 0)) (z (ws 0))) (mergeSet gates (S b) (z b))) ∧
+      (∀ i v, (∀ j, v ≠ ws j) →
+        Disjoint (mergeSet gates (S (ws i)) (o i)) (mergeSet gates (S v) (z v))) ∧
+      (∀ i j, i ≠ j →
+        Disjoint (mergeSet gates (S (ws i)) (o i)) (mergeSet gates (S (ws j)) (o j)))
+
+theorem lAugmentLoose_of_lAugmentK (K : ℕ) (h : LAugmentK S gates K) : LAugmentLoose S gates := by
+  intro z hz hc
+  obtain ⟨k, ws, o, -, rest⟩ := h z hz hc
+  exact ⟨k, ws, o, rest⟩
+
+/-- A larger bound is weaker. -/
+theorem lAugmentK_mono {K K' : ℕ} (hKK : K ≤ K') (h : LAugmentK S gates K) :
+    LAugmentK S gates K' := by
+  intro z hz hc
+  obtain ⟨k, ws, o, hk, rest⟩ := h z hz hc
+  exact ⟨k, ws, o, hk.trans hKK, rest⟩
+
+/-- **LAvoid ∧ LAugmentK K ⇒ MergeSDR.** -/
+theorem mergeSDR_of_avoid_augmentK (K : ℕ) (hV : LAvoid S gates) (hA : LAugmentK S gates K) :
+    MergeSDR S gates :=
+  mergeSDR_of_avoid_augmentLoose S gates hV (lAugmentLoose_of_lAugmentK S gates K hA)
+
 /-- **LAvoid ∧ LAugment ⇒ MergeSDR** (the referee's form, through `lAugmentLoose_of_lAugment`). -/
 theorem mergeSDR_of_avoid_augment (hV : LAvoid S gates) (hA : LAugment S gates) :
     MergeSDR S gates :=
@@ -290,5 +372,15 @@ theorem no_minCE_of_augmentLoose
       ¬ MinCE S gates out :=
   no_minCE_of_mergeSDR fun n m S gates out M =>
     mergeSDR_of_avoid_augmentLoose S gates (H n m S gates out M).1 (H n m S gates out M).2
+
+/-- **951 from LAvoid and LAugmentK K** (the OFFICIAL open target, for a fixed bound `K`; data:
+`K = 2`). -/
+theorem no_minCE_of_augmentK (K : ℕ)
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out → LAvoid S gates ∧ LAugmentK S gates K) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out :=
+  no_minCE_of_mergeSDR fun n m S gates out M =>
+    mergeSDR_of_avoid_augmentK S gates K (H n m S gates out M).1 (H n m S gates out M).2
 
 end PEqualNP.Outside.L_meta_951_aux
