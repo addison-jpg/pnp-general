@@ -226,6 +226,7 @@ Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the t
   `tools/xor-extension/`.
 
 ## Subboard: the NOT gate ladder, rung 1 (L-meta-951)
+- OWNER (13:11, typed to checker-checker): "no_minCE is robust." Checker audit of the 951 Lean tree (every sorry site; axioms of PEqualNP.Outside.L_meta_951 and of every no_minCE_of_* / L_meta_951_of_* route) is running; results go on this line.
 Before starting a route: [`951/DEAD_ENDS.md`](951/DEAD_ENDS.md) (refuted routes, one line each).
 Suggestions for the open step, with kill tests: [`951/PROOF_PLAN_SUGGESTIONS.md`](951/PROOF_PLAN_SUGGESTIONS.md).
 How search code and Lean divide the work: [`951/PIPELINE.md`](951/PIPELINE.md) (the owner's framework:
