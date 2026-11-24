@@ -44,6 +44,7 @@ for the exact statement. Add a line whenever a kill test fails. coord and resear
 | World-pure PLAIN zero points (`z`, `z + e_u`) for sets through a heavy point | refuted | cxe3: every plain SDR uses mixed points for at least two of the three sets through the heavy point. NOT a dead end for interval classes: pure classes I0 / I1 give an SDR on all 62 (`kill_tests/ext.py`) | `kill_tests/probe.py` |
 | One-set induction: a fixed order of the sets in which every partial disjoint choice extends | refuted | fixh16 family; best order (latest output first) fails on 9 of 62 | `kill_tests/order.py` |
 | Proving L-avoid through zero points `z ⊇ S_w' \ S_w` | unnecessary and harder | gates in U(w') need not be monotone there; the zero point `0` works for every set (Lean `lAvoid`) | scaffold 10:35; `Augment.lean` |
+| Heavy-star rule 'EXACTLY one set through each heavy point in world 0' (PureSDR) | refuted | cxT2 (sets {0234},{0156},{1278}, heavy {0,1,2}): both pure SDRs leave one heavy point with no world-0 set; 'exactly one' unsatisfiable on 2 of 20 heavy circuits. Data supports AT MOST ONE (some pure SDR satisfies it on 20/20; every pure SDR on 15/20) | scaffold 10:44 |
 
 ## NOT dead ends (open or supported; do not list as refuted)
 Heavy-point exclusion is OPEN (no lemma excludes it; 842/842 essential clean circuits at s - base = 4 have a heavy unit); heavy split v2;
