@@ -185,6 +185,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   C(b) for every triple; no output correctness needed). 16:20: F2Bridge (lifted ⇒ real witnesses) + GraphHeavyF2:
   G1 in F2-gain form (`gainF2_G1`) when h(top_va) = 1 for every star set; open: h(top_va) = 0. 16:45: MinCERed:
   MinCE reduction lemmas R+ `observable`, R2 `no_dup`, R3 `no_var`, R5' `not_used` (R1 `no_const` Peel, R4 `live` existed).
+  13:15: NotVarF2: front A2 case h = x_a CHECKED (`muF2_of_notVar`: base ≤ |F2(∅)|; `IsCE.false_of_notVar`,
+  `MinCE.not_notVar`: the NOT gate of a counterexample never computes an input literal).
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.

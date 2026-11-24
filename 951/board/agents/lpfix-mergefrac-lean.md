@@ -245,3 +245,7 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   out-edges (`subGates`, value congruence), `shrink_of_const`, `shrink_of_copy`. Note: in our gate model a NOT gate may read two
   wires (only the first counts), so R+ is stated for readers that are AND/OR gates or NOT gates reading the wire first; for an
   ignored second NOT input the substitution is a no-op and R+ would be false.
+- (13:15 UTC) NotVarF2.lean: front A2's case h = x_a (the NOT gate reads an input) CHECKED: `muF2_of_notVar` (base ≤ |F2(∅)|,
+  lifted SDR with zero (top, 1), atoms (e_u, [u ≠ a]); no minimality), `IsCE.false_of_notVar`, `MinCE.not_notVar`. Disjointness
+  needs only |S_w ∩ S_w'| ≤ 1: if a ∈ S_w' the atoms of S_w meet S_w' in ≤ 1 point, else the atoms of S_w' meet S_w ∪ {a} in ≤ 1.
+  (Clock note: the 16:20 / 16:45 labels above are off; commit e408ec8 is 13:05 UTC.)
