@@ -346,6 +346,79 @@ theorem mergeSDR_of_avoid_augmentK (K : ℕ) (hV : LAvoid S gates) (hA : LAugmen
     MergeSDR S gates :=
   mergeSDR_of_avoid_augmentLoose S gates hV (lAugmentLoose_of_lAugmentK S gates K hA)
 
+/-! ### Moves only along reachable states (951/PROOF_PLAN_SUGGESTIONS.md, rule 4) -/
+
+open Classical in
+/-- An **improving move** of at most `K` sets: `z'` is a choice of avoiding options that differs from
+`z` on at most `K` sets and has strictly fewer colliding pairs. -/
+def ImprovingMove (K : ℕ) (z z' : Fin m → (Fin n → Bool)) : Prop :=
+  (∀ w, AvoidOpt S gates w (z' w)) ∧ (Finset.univ.filter fun w => z' w ≠ z w).card ≤ K ∧
+    (collPairs fun w => mergeSet gates (S w) (z' w)).card <
+      (collPairs fun w => mergeSet gates (S w) (z w)).card
+
+/-- The states reachable from `z0` by improving moves of at most `K` sets. -/
+inductive Reach (K : ℕ) (z0 : Fin m → (Fin n → Bool)) : (Fin m → (Fin n → Bool)) → Prop
+  | refl : Reach K z0 z0
+  | step {z z' : Fin m → (Fin n → Bool)} : Reach K z0 z → ImprovingMove S gates K z z' →
+      Reach K z0 z'
+
+/-- **LAugmentReach K** (open; weaker than `LAvoid ∧ LAugmentK K`): there is a start `z0` of
+avoiding options such that every state reachable from it by improving moves of at most `K` sets
+that still has a colliding pair admits a further such move. Only the visited states matter, so a
+proof may use a canonical start (PROOF_PLAN_SUGGESTIONS.md §3). -/
+def LAugmentReach (K : ℕ) : Prop :=
+  ∃ z0 : Fin m → (Fin n → Bool), (∀ w, AvoidOpt S gates w (z0 w)) ∧
+    ∀ z, Reach S gates K z0 z →
+      (∃ a b : Fin m, a ≠ b ∧
+        ¬ Disjoint (mergeSet gates (S a) (z a)) (mergeSet gates (S b) (z b))) →
+      ∃ z', ImprovingMove S gates K z z'
+
+theorem reach_avoid {K : ℕ} {z0 z : Fin m → (Fin n → Bool)} (h0 : ∀ w, AvoidOpt S gates w (z0 w))
+    (h : Reach S gates K z0 z) : ∀ w, AvoidOpt S gates w (z w) := by
+  induction h with
+  | refl => exact h0
+  | step _ hm _ => exact hm.1
+
+/-- **LAugmentReach K ⇒ MergeSDR**, by descent on the number of colliding pairs along reachable
+states. -/
+theorem mergeSDR_of_augmentReach (K : ℕ) (h : LAugmentReach S gates K) : MergeSDR S gates := by
+  obtain ⟨z0, h0, hstep⟩ := h
+  have key : ∀ N : ℕ, ∀ z, Reach S gates K z0 z →
+      (collPairs fun w => mergeSet gates (S w) (z w)).card = N → MergeSDR S gates := by
+    intro N
+    induction N using Nat.strong_induction_on with
+    | _ N ih =>
+      intro z hz hN
+      by_cases hc : ∃ a b : Fin m, a ≠ b ∧
+          ¬ Disjoint (mergeSet gates (S a) (z a)) (mergeSet gates (S b) (z b))
+      · obtain ⟨z', hm⟩ := hstep z hz hc
+        exact ih _ (hN ▸ hm.2.2) z' (Reach.step hz hm) rfl
+      · refine ⟨z, fun w => mem_zeroPts.mp (reach_avoid S gates h0 hz w).1, fun a b hab => ?_⟩
+        by_contra hnd
+        exact hc ⟨a, b, hab, hnd⟩
+  exact key _ z0 Reach.refl rfl
+
+/-- `LAvoid ∧ LAugmentK K ⇒ LAugmentReach K`: the reachable form is the weaker target. -/
+theorem lAugmentReach_of_avoid_augmentK (K : ℕ) (hV : LAvoid S gates)
+    (hA : LAugmentK S gates K) : LAugmentReach S gates K := by
+  classical
+  choose z0 hz0 using hV
+  refine ⟨z0, hz0, fun z hz hc => ?_⟩
+  have hav := reach_avoid S gates hz0 hz
+  obtain ⟨k, ws, o, hk, hinj, ho, h1, hout, h4⟩ := hA z hav hc
+  obtain ⟨z', hz', -, hsame, hlt⟩ := repick_step S gates z hav ws o hinj ho h1 hout h4
+  refine ⟨z', hz', ?_, hlt⟩
+  have hsub : (Finset.univ.filter fun w => z' w ≠ z w) ⊆ Finset.univ.image ws := by
+    intro w hw
+    rw [Finset.mem_filter] at hw
+    by_contra hni
+    exact hw.2 (hsame w fun j hj => hni (Finset.mem_image.mpr ⟨j, Finset.mem_univ _, hj.symm⟩))
+  calc (Finset.univ.filter fun w => z' w ≠ z w).card ≤ (Finset.univ.image ws).card :=
+        Finset.card_le_card hsub
+    _ ≤ (Finset.univ : Finset (Fin (k + 1))).card := Finset.card_image_le
+    _ = k + 1 := by simp
+    _ ≤ K := hk
+
 /-- **LAvoid ∧ LAugment ⇒ MergeSDR** (the referee's form, through `lAugmentLoose_of_lAugment`). -/
 theorem mergeSDR_of_avoid_augment (hV : LAvoid S gates) (hA : LAugment S gates) :
     MergeSDR S gates :=
@@ -382,5 +455,14 @@ theorem no_minCE_of_augmentK (K : ℕ)
       ¬ MinCE S gates out :=
   no_minCE_of_mergeSDR fun n m S gates out M =>
     mergeSDR_of_avoid_augmentK S gates K (H n m S gates out M).1 (H n m S gates out M).2
+
+/-- **951 from LAugmentReach K** (PROOF_PLAN rule 4: improving moves only along reachable states). -/
+theorem no_minCE_of_augmentReach (K : ℕ)
+    (H : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      MinCE S gates out → LAugmentReach S gates K) :
+    ∀ {n m : ℕ} (S : Fin m → Finset (Fin n)) (gates : List Gate) (out : Fin m → ℕ),
+      ¬ MinCE S gates out :=
+  no_minCE_of_mergeSDR fun n m S gates out M =>
+    mergeSDR_of_augmentReach S gates K (H n m S gates out M)
 
 end PEqualNP.Outside.L_meta_951_aux

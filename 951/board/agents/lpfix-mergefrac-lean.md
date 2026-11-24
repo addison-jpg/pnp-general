@@ -144,3 +144,7 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   `LAvoid ∧ LAugmentK K` at every MinCE (re-picked groups of at most K sets), `no_minCE_of_augmentK`, chain
   LAugmentK K → LAugmentLoose → MergeSDR → no_minCE; `lAugmentK_mono`. Data (scaffold via coord, not checked here): K = 2
   suffices on all 75,619 circuits; K = 1 in 100,116 of 100,174 collision states.
+- (12:20) PROOF_PLAN rule 4 in Lean: `LAugmentReach K` = some avoiding start z0 such that every state reachable from z0 by
+  improving moves (≤ K sets re-picked, strictly fewer colliding pairs) that still collides has a further such move.
+  `mergeSDR_of_augmentReach`, `no_minCE_of_augmentReach`, and `lAugmentReach_of_avoid_augmentK` (LAvoid ∧ LAugmentK K ⇒
+  LAugmentReach K): the reachable form is a WEAKER sufficient target, so a canonical start (PROOF_PLAN §3) can be used.
