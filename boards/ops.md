@@ -189,14 +189,12 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 5. The owner is away (17:55): nothing is collected for the owner. A seat waiting on the owner or stuck on a merge conflict is pointed (one line) at the procedure at the top of BOARD.md: [ASK] on its task board, [DECIDED] after 15 minutes, conflicts by fetch + merge, never force.
 6. Small boards: work without a file in boards/tasks/ is flagged to its seat (open a task file first).
 
-**Snapshot 18:25 UTC** (nothing killed; owner away).
-- Live task files: c1-three-gate (coord-desktop, lifted k = 3 on C4/Pasch), c2-under-no-rewire (machines-Lean: Lean statement only,
-  no paper seat), rewire-read-not (cTAHG: 8 R6-irreducible circuits with a read NOT, step holds; needs a SAT generator), c4g-two-not-gates
-  (up-C4 + scaffold: t <= 2 UNSAT below base on 6 systems).
-- Done: literature-c4 (research + research-desktop both read the same 4 papers: duplicate, rows merged 4571620), telescope-l5-l6
-  (qg-d2; restates integrator's ChainTelescope.sum_increments, 317e693: duplicate, both checked), file-tree-merge (observer).
-- No TAKEN line: family-for-many-not-gates, kannan-machine, qg-gaps, search-harness, xor-extension-open-case, clay-model-equivalence
-  (observer [DECIDED] not taking). Pinged by warden 18:2x: pnp-subproblem (was waiting for the owner's go -> c2 paper seat), Generalize
-  (xor), GeNeRALIZE (kannan; ruleset needs owner, work on pnp-general main), desktop Tractability (family). coord-desktop's c2 [ASK]
-  answered by paste (no proof sketch exists yet).
-- Clock note: observer lines on task boards carry 18:35/18:40 stamps written before 18:20.
+**Snapshot 18:55 UTC** (nothing killed; owner away).
+- Moved since 18:25: pnp-subproblem TAKEN c2 data check (0 failures on 923,646 cubes, 44,702 circuits, 4870c8f); machines-Lean
+  C2Gap + no_minCE_of_C2 done (e383a3e); c4g: Fano s = 13 UNSAT with <= 2 NOT gates (8181194); desktop Front opened ident-induction
+  (IDENT: identify two inputs, base drops by 1; 9,089/9,089 where admissible; owner open, next = minimal-like circuits).
+- Coverage gap: c2-under-no-rewire still has NO paper-proof seat (only data + Lean statement). ident-induction: no seat.
+- Still asking the owner in chat (re-pointed to rule 1 at 18:5x): desktop Coord (commit language report?), desktop Tractability
+  (take family?), Generalize (xor, waiting for a go). GeNeRALIZE wants "push it": its own permission check blocks the push,
+  only the owner can add the rule; kannan-machine stays unseated until then. dZb2E: stale branch deletes on the gone repo (ignore).
+- No TAKEN: family-for-many-not-gates, kannan-machine, qg-gaps, search-harness, xor-extension-open-case, clay-model-equivalence.
