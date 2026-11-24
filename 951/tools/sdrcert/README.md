@@ -42,8 +42,11 @@ between the header and `end`. Current: cxT2, cxe3, ce3, hard4s, cxr, cfgI, adv3,
 24 fixh16 circuits: 36 PureSDRs, all kernel-checked (about 40 s). Pure menus are small (1-10 distinct classes per set).
 
 Group `witness` (`python3 pure_export.py OUT --group witness`): every `*.json` in `951/data/witnesses` (one circuit per file,
-dict with name, n, sets, gates, outs). Output in `lean/PEqualNP/W951/PureSDRWitnessLadder.lean`, with a correctness bundle per
-circuit for small n. Current: pasch_s14_heavy_atmostone (n = 6, 14 gates, NOT gate 1, menus 1/2/1/2; worlds I1, I0, I1, I0).
+dict with name, n, sets, gates, outs) except the barrier suite (`BARRIER` in pure_export.py: cxMU_dd, cxMU_clean2,
+cxMU_clean2_DD, cx44_1_junk; coord 64776ce; no pure SDR on purpose). Output in `lean/PEqualNP/W951/PureSDRWitnessLadder.lean`,
+with a correctness bundle per circuit for small n. Current: pasch_s14_heavy_atmostone (n = 6, 14 gates, NOT gate 1, menus
+1/2/1/2; worlds I1, I0, I1, I0), tri_all_5593 (n = 6, 15 gates, NOT gate 2, menus 1/3/3/1; all world I1; the LOOSENESS
+counterexample).
 
 Group `ladder` (`python3 pure_export.py OUT --group ladder`): scaffold's v-ladder, `ladder_instances.json` (sent 11:38 by
 message, sha256 of the minified list 8f73fe7c…2ff6 verified; correctness, one NOT and the line structure re-checked here in

@@ -12,7 +12,7 @@ i + 1, real wire i > n + p keeps its number). Lean recomputes every class (`deci
 `tables` and `merges` are those of kill_tests/canon.py.
 
 Usage (from 951/tools/sdrcert): python3 pure_export.py OUT.lean [name ...]  |  python3 pure_export.py OUT.lean --group fixh16
-       python3 pure_export.py OUT.lean --group witness   (every *.json in 951/data/witnesses)
+       python3 pure_export.py OUT.lean --group witness   (every *.json in 951/data/witnesses but the BARRIER suite)
        python3 pure_export.py OUT.lean --group ladder    (scaffold's v-ladder, ladder_instances.json)
 """
 import itertools, json, os, sys
@@ -36,6 +36,9 @@ INSTANCES = [  # (Lean name, source, loader)
     ('uniq2', 'tools/sdrcert/scaffold_certs.json', 'scaffold:unique_sdr_2'),
     ('cxT4', 'tools/w951/tests/instances/front-match__fc__cxT4.json', 'json'),
 ]
+# Barrier suite (coord 64776ce): correct one-NOT circuits with NO pure SDR on purpose (MU over pure classes fails or
+# no Lean PureSDR exists); `--group witness` skips them. Any other circuit without a pure SDR still fails the assert.
+BARRIER = {'cx44_1_junk', 'cxMU_clean2', 'cxMU_clean2_DD', 'cxMU_dd'}
 GROUPS = {'fixh16': 'tools/sdrcert/fixh16_forced.json',  # as export.py: `--group fixh16`
           'witness': 'data/witnesses',  # a directory: one circuit per *.json (dict with name, n, sets, gates, outs)
           'ladder': 'tools/sdrcert/ladder_instances.json'}  # scaffold's v-ladder (PG(2,3), AG(2,4)), a JSON list
@@ -163,8 +166,10 @@ if __name__ == '__main__':
         src = GROUPS[sys.argv[3]]
         path = os.path.join(ROOT, src)
         if os.path.isdir(path):
-            INSTANCES[:] = [(camel(json.load(open(os.path.join(path, f)))['name']), os.path.join(src, f), 'json')
-                            for f in sorted(os.listdir(path)) if f.endswith('.json')]
+            ds = [(json.load(open(os.path.join(path, f)))['name'], f) for f in sorted(os.listdir(path))
+                  if f.endswith('.json')]
+            print('skipped (barrier suite, no pure SDR):', sorted(nm for nm, _ in ds if nm in BARRIER))
+            INSTANCES[:] = [(camel(nm), os.path.join(src, f), 'json') for nm, f in ds if nm not in BARRIER]
         else:
             pre = (lambda d: 'fixh' + d['name'].split('_')[1]) if sys.argv[3] == 'fixh16' else (lambda d: camel(d['name']))
             INSTANCES[:] = [(pre(d), src, 'scaffold:' + d['name']) for d in json.load(open(path))]
