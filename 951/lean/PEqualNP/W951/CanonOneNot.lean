@@ -2,6 +2,7 @@ import Mathlib
 import PEqualNP.Defs
 import PEqualNP.W951.CanonClass
 import PEqualNP.W951.Lift
+import PEqualNP.W951.LiftHelpers
 import PEqualNP.W951.Count
 
 /-!
@@ -74,12 +75,6 @@ theorem mem_liftSet {R : Finset (Fin n)} {c : Fin n} : Fin.castSucc c ∈ liftSe
 
 theorem last_not_mem_liftSet (R : Finset (Fin n)) : Fin.last n ∉ liftSet R := by
   simp [liftSet, Fin.castSucc_ne_last]
-
-theorem ext_castSucc (x : Fin n → Bool) (y : Bool) (c : Fin n) : ext x y (Fin.castSucc c) = x c := by
-  simp [ext]
-
-theorem ext_last (x : Fin n → Bool) (y : Bool) : ext x y (Fin.last n) = y := by
-  simp [ext]
 
 theorem ext_canonPt_false (A : Finset (Fin n)) : ext (canonPt A) false = canonPt (liftSet A) := by
   funext c

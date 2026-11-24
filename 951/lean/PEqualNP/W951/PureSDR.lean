@@ -30,6 +30,10 @@ to the real wire).
 * `card_pureI1`, `card_pureI0` (GM in the lift, `merge_countT`): every valid class has at least
   `d_w = |S_w| - 1` merges. Uses correctness of the output through `val_lift` / `lift_exact`.
 * `pureCls_subset`: every class lies in the `gates.length - 1` gate wires of the lift.
+* Disjointness of the merge sets themselves (`runMT_disjoint_of_le`, D for any monotone list):
+  `disjoint_pureI1_pureI1` (W1), `disjoint_pureI0_pureI0` (W0), `disjoint_pureI0_pureI1` (D across
+  worlds), with explicit pair conditions, and `disjoint_pureI1_top`, `disjoint_pureI0_avoid`, `disjoint_pureI0_top` for
+  `|S_w ∩ S_w'| ≤ 1`.
 * `bound_of_pureSDR`: PureSDR ⇒ `∑ (|S_w| - 1) ≤ gates.length - 1`.
 * `no_minCE_of_pureSDR`: PureSDR at every minimal counterexample closes `no_minCE`;
   `no_minCE_of_pureSDR'`: the same with PureSDR for the (unique) NOT gate.
@@ -222,6 +226,157 @@ theorem pureCls_subset (R : Finset (Fin n)) (c : PureOpt n) :
   cases c with
   | one Z => exact hsub hi
   | zero m => exact hsub hi
+
+/-! ## Disjointness of pure classes (W0, W1, D across worlds, for the merge sets themselves) -/
+
+/-- **D for merge sets** (any monotone list): if of any two atoms of the first system one lies
+below the zero point of the second, the two merge sets are disjoint. A wire in both is false at
+`z'`, true at two atoms of the first system, and monotone. -/
+theorem runMT_disjoint_of_le {N : ℕ} (gs : List Gate) (hm : MonoList gs) (z z' : Fin N → Bool)
+    (q q' : Fin N → Fin N → Bool) (R R' : Finset (Fin N))
+    (h : ∀ u ∈ R, ∀ v ∈ R, u ≠ v → q u ≤ z' ∨ q v ≤ z') :
+    Disjoint (runMT z q R gs gs.length) (runMT z' q' R' gs gs.length) := by
+  classical
+  rw [Finset.disjoint_left]
+  intro i hi hi'
+  have h1 := run_sub_DT z q R gs _ hi
+  have h2 := run_sub_DT z' q' R' gs _ hi'
+  rw [DT, Finset.mem_filter] at h1 h2
+  obtain ⟨-, -, u, v, huv, hu, hv, hui, hvi⟩ := h1
+  have hz' := h2.2.1
+  rcases h u hu v hv huv with hle | hle
+  · have := val_le_of_le gs hm.andOr hle i
+    rw [hui, hz'] at this
+    exact absurd this (by decide)
+  · have := val_le_of_le gs hm.andOr hle i
+    rw [hvi, hz'] at this
+    exact absurd this (by decide)
+
+theorem ext_le_of_le {x x' : Fin n → Bool} {b b' : Bool} (hx : x ≤ x') (hb : b ≤ b') :
+    ext x b ≤ ext x' b' := by
+  intro c
+  induction c using Fin.lastCases with
+  | last => rw [ext_last, ext_last]; exact hb
+  | cast c => rw [ext_castSucc, ext_castSucc]; exact hx c
+
+theorem canonPt_le {A : Finset (Fin n)} {x : Fin n → Bool} (h : ∀ c ∈ A, x c = true) :
+    canonPt A ≤ x := by
+  intro c
+  refine Bool.le_iff_imp.mpr fun hc => h c (canonPt_eq_true.mp hc)
+
+theorem canonPt_le_Zof {A R' : Finset (Fin n)} (h : Disjoint A R') : canonPt A ≤ Zof R' :=
+  canonPt_le fun c hc => by simpa [Zof] using Finset.disjoint_left.mp h hc
+
+/-- Pairs of distinct lifted coordinates of `liftSet R` come from pairs of distinct points of `R`. -/
+theorem liftSet_pairs {R : Finset (Fin n)} {P : Fin (n + 1) → Prop}
+    (h : ∀ u ∈ R, ∀ v ∈ R, u ≠ v → P (Fin.castSucc u) ∨ P (Fin.castSucc v)) :
+    ∀ c ∈ liftSet R, ∀ c' ∈ liftSet R, c ≠ c' → P c ∨ P c' := by
+  intro c hc c' hc' hcc
+  obtain ⟨u, hu, rfl⟩ := mem_liftSet_iff.mp hc
+  obtain ⟨v, hv, rfl⟩ := mem_liftSet_iff.mp hc'
+  exact h u hu v hv fun huv => hcc (huv ▸ rfl)
+
+include hg hU hN in
+/-- **W1 for pure classes.** `I1(R, Z) ∩ I1(R', Z') = ∅` when `Z'` is true at one of any two
+points of `R`. -/
+theorem disjoint_pureI1_pureI1 (R R' : Finset (Fin n)) (Z Z' : Fin n → Bool)
+    (h : ∀ u ∈ R, ∀ v ∈ R, u ≠ v → Z' u = true ∨ Z' v = true) :
+    Disjoint (pureI1 gates p R Z) (pureI1 gates p R' Z') := by
+  refine runMT_disjoint_of_le _ (monoList_lift (n := n) gates p hp hg hU hN) _ _ _ _ _ _
+    (liftSet_pairs fun u hu v hv huv => ?_)
+  rw [atom1_castSucc, atom1_castSucc]
+  rcases h u hu v hv huv with h1 | h1
+  · exact Or.inl (ext_le_of_le (canonPt_le fun c hc => by rw [Finset.mem_singleton.mp hc]; exact h1)
+      le_rfl)
+  · exact Or.inr (ext_le_of_le (canonPt_le fun c hc => by rw [Finset.mem_singleton.mp hc]; exact h1)
+      le_rfl)
+
+include hg hU hN in
+/-- **D across worlds for pure classes.** `I0(R, m) ∩ I1(R', Z') = ∅` when `Z'` is true on one of
+`m_u ∪ {u}`, `m_v ∪ {v}` for any two points `u ≠ v` of `R`. -/
+theorem disjoint_pureI0_pureI1 (R R' : Finset (Fin n)) (m : Fin n → Finset (Fin n))
+    (Z' : Fin n → Bool)
+    (h : ∀ u ∈ R, ∀ v ∈ R, u ≠ v →
+      (∀ c ∈ insert u (m u), Z' c = true) ∨ ∀ c ∈ insert v (m v), Z' c = true) :
+    Disjoint (pureI0 gates p R m) (pureI1 gates p R' Z') := by
+  refine runMT_disjoint_of_le _ (monoList_lift (n := n) gates p hp hg hU hN) _ _ _ _ _ _
+    (liftSet_pairs fun u hu v hv huv => ?_)
+  rw [atom0_castSucc, atom0_castSucc]
+  rcases h u hu v hv huv with h1 | h1
+  · exact Or.inl (ext_le_of_le (canonPt_le h1) (by decide))
+  · exact Or.inr (ext_le_of_le (canonPt_le h1) (by decide))
+
+include hg hU hN in
+/-- **W0 for pure classes.** `I0(R, m) ∩ I0(R', m') = ∅` when one of `m_u ∪ {u}`, `m_v ∪ {v}`
+avoids `R'` for any two points `u ≠ v` of `R`. -/
+theorem disjoint_pureI0_pureI0 (R R' : Finset (Fin n)) (m m' : Fin n → Finset (Fin n))
+    (h : ∀ u ∈ R, ∀ v ∈ R, u ≠ v → Disjoint (insert u (m u)) R' ∨ Disjoint (insert v (m v)) R') :
+    Disjoint (pureI0 gates p R m) (pureI0 gates p R' m') := by
+  refine runMT_disjoint_of_le _ (monoList_lift (n := n) gates p hp hg hU hN) _ _ _ _ _ _
+    (liftSet_pairs fun u hu v hv huv => ?_)
+  rw [atom0_castSucc, atom0_castSucc]
+  rcases h u hu v hv huv with h1 | h1
+  · exact Or.inl (ext_le_of_le (canonPt_le_Zof h1) le_rfl)
+  · exact Or.inr (ext_le_of_le (canonPt_le_Zof h1) le_rfl)
+
+/-- With `|R ∩ R'| ≤ 1`, a point false only on `R'` is true at one of any two points of `R`. -/
+theorem pair_true_of_inter (R R' : Finset (Fin n)) (hRR : (R ∩ R').card ≤ 1)
+    (P : Fin n → Prop) (hP : ∀ u, u ∉ R' → P u) :
+    ∀ u ∈ R, ∀ v ∈ R, u ≠ v → P u ∨ P v := by
+  intro u hu v hv huv
+  by_cases hu' : u ∈ R'
+  · by_cases hv' : v ∈ R'
+    · have hsub : ({u, v} : Finset (Fin n)) ⊆ R ∩ R' := by
+        intro c hc
+        rcases Finset.mem_insert.mp hc with rfl | hc
+        · exact Finset.mem_inter.mpr ⟨hu, hu'⟩
+        · rw [Finset.mem_singleton.mp hc]; exact Finset.mem_inter.mpr ⟨hv, hv'⟩
+      have h2 := Finset.card_le_card hsub
+      rw [Finset.card_pair huv] at h2
+      omega
+    · exact Or.inr (hP v hv')
+  · exact Or.inl (hP u hu')
+
+include hg hU hN in
+/-- **W1 at `top`-type zero points.** `|S_w ∩ S_w'| ≤ 1` and `Z'` false only on `R'` (e.g.
+`Z' = top_w'`) ⇒ `I1(R, Z) ∩ I1(R', Z') = ∅`. -/
+theorem disjoint_pureI1_top (R R' : Finset (Fin n)) (hRR : (R ∩ R').card ≤ 1) (Z Z' : Fin n → Bool)
+    (hZ' : ∀ c, Z' c = false → c ∈ R') : Disjoint (pureI1 gates p R Z) (pureI1 gates p R' Z') :=
+  disjoint_pureI1_pureI1 gates p hp hg hU hN R R' Z Z'
+    (pair_true_of_inter R R' hRR _ fun u hu => by
+      by_contra h
+      exact hu (hZ' u (by simpa using h)))
+
+include hg hU hN in
+/-- **W0 with avoiding points.** `|S_w ∩ S_w'| ≤ 1` and every `m_u` (`u ∈ R`) avoiding `R'` ⇒
+`I0(R, m) ∩ I0(R', m') = ∅`. -/
+theorem disjoint_pureI0_avoid (R R' : Finset (Fin n)) (hRR : (R ∩ R').card ≤ 1)
+    (m m' : Fin n → Finset (Fin n)) (hm : ∀ u ∈ R, Disjoint (m u) R') :
+    Disjoint (pureI0 gates p R m) (pureI0 gates p R' m') := by
+  refine disjoint_pureI0_pureI0 gates p hp hg hU hN R R' m m' fun u hu v hv huv => ?_
+  rcases pair_true_of_inter R R' hRR (fun u => u ∈ R → Disjoint (insert u (m u)) R')
+      (fun u hu' hu => Finset.disjoint_insert_left.mpr ⟨hu', hm u hu⟩) u hu v hv huv with h | h
+  · exact Or.inl (h hu)
+  · exact Or.inr (h hv)
+
+include hg hU hN in
+/-- **D across worlds at `top`-type zero points.** `|S_w ∩ S_w'| ≤ 1`, `Z'` false only on `R'`
+and every `m_u` (`u ∈ R`) avoiding `R'` ⇒ `I0(R, m) ∩ I1(R', Z') = ∅`. -/
+theorem disjoint_pureI0_top (R R' : Finset (Fin n)) (hRR : (R ∩ R').card ≤ 1)
+    (m : Fin n → Finset (Fin n)) (hm : ∀ u ∈ R, Disjoint (m u) R') (Z' : Fin n → Bool)
+    (hZ' : ∀ c, Z' c = false → c ∈ R') : Disjoint (pureI0 gates p R m) (pureI1 gates p R' Z') := by
+  have hT : ∀ u ∈ R, u ∉ R' → ∀ c ∈ insert u (m u), Z' c = true := by
+    intro u hu hu' c hc
+    by_contra h
+    have hcR' := hZ' c (by simpa using h)
+    rcases Finset.mem_insert.mp hc with rfl | hc
+    · exact hu' hcR'
+    · exact Finset.disjoint_left.mp (hm u hu) hc hcR'
+  refine disjoint_pureI0_pureI1 gates p hp hg hU hN R R' m Z' fun u hu v hv huv => ?_
+  rcases pair_true_of_inter R R' hRR (fun u => u ∈ R → ∀ c ∈ insert u (m u), Z' c = true)
+      (fun u hu' hu => hT u hu hu') u hu v hv huv with h | h
+  · exact Or.inl (h hu)
+  · exact Or.inr (h hv)
 
 /-! ## The bound and the reduction -/
 

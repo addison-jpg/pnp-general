@@ -169,3 +169,9 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   lift (`card_pureI1`, `card_pureI0`), all classes inside the gates.length - 1 lifted gates, so a PureSDR gives
   ∑ d_w ≤ gates.length - 1 < gates.length (`bound_of_pureSDR`), against `hlt`. So PureSDR at every MinCE closes 951.
   Axioms: propext, Classical.choice, Quot.sound.
+- (11:30 UTC) Disjointness for the PureSDR merge sets themselves (not via orClz, which needs OR gates): `runMT_disjoint_of_le`
+  (D for any monotone list), `disjoint_pureI1_pureI1` (W1: Z' true at one of any two points of S_w), `disjoint_pureI0_pureI0`
+  (W0: one of m_u ∪ {u}, m_v ∪ {v} avoids S_w'), `disjoint_pureI0_pureI1` (D across worlds: Z' true on one of them), with
+  |S_w ∩ S_w'| ≤ 1 corollaries `disjoint_pureI1_top`, `disjoint_pureI0_avoid`, `disjoint_pureI0_top`. What is left of PureSDR
+  after these: I1 pairs whose Z' vanishes off S_w' at two points of S_w; I0 pairs whose points m_u meet S_w'; I1 ∩ I0 pairs
+  (world-1 class vs world-0 class: never D-disjoint from the world-1 side, since its atoms have y = 1).
