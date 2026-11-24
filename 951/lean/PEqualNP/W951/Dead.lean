@@ -91,28 +91,22 @@ theorem deadQ_of_andor (v : Fin n) (c : Bool) (gates : List Gate) (k : ℕ) (hk 
   have key : (∃ b', ∀ x : Fin n → Bool, x v = c → val gates x (n + k) = b') ∨
       ∃ cc, ∀ x : Fin n → Bool, x v = c → val gates x (n + k) = val (gates.take k) x cc := by
     generalize gates[k]'hk = g at hop hlen ha hv
-    obtain ⟨op, ins⟩ := g
-    simp only at hop hlen ha hv
-    match ins, hlen with
-    | [], _ => simp at ha
-    | [d], _ =>
-      simp only [List.mem_singleton] at ha
+    rcases PEqualNP.Kernel.GateShape.inputs_cases g hlen with hin | ⟨d, hin⟩ | ⟨d, e, hin⟩ <;>
+      rw [hin] at ha hv
+    · simp at ha
+    · rw [List.mem_singleton] at ha
       subst ha
-      left
-      refine ⟨b, fun x hx => ?_⟩
-      rcases hop with rfl | rfl <;> simp [hv, GateOp.eval, hb x hx]
-    | [d, e], _ =>
-      simp only [List.mem_cons, List.not_mem_nil, or_false] at ha
-      rcases ha with rfl | rfl <;> rcases hop with rfl | rfl <;> cases b
-      · exact Or.inl ⟨false, fun x hx => by simp [hv, GateOp.eval, hb x hx]⟩
-      · exact Or.inr ⟨e, fun x hx => by simp [hv, GateOp.eval, hb x hx]⟩
-      · exact Or.inr ⟨e, fun x hx => by simp [hv, GateOp.eval, hb x hx]⟩
-      · exact Or.inl ⟨true, fun x hx => by simp [hv, GateOp.eval, hb x hx]⟩
-      · exact Or.inl ⟨false, fun x hx => by simp [hv, GateOp.eval, hb x hx]⟩
-      · exact Or.inr ⟨d, fun x hx => by simp [hv, GateOp.eval, hb x hx]⟩
-      · exact Or.inr ⟨d, fun x hx => by simp [hv, GateOp.eval, hb x hx]⟩
-      · exact Or.inl ⟨true, fun x hx => by simp [hv, GateOp.eval, hb x hx]⟩
-    | _ :: _ :: _ :: _, h => simp at h
+      exact Or.inl ⟨b, fun x hx => by rcases hop with h | h <;> simp [hv, h, GateOp.eval, hb x hx]⟩
+    · simp only [List.mem_cons, List.not_mem_nil, or_false] at ha
+      rcases ha with rfl | rfl <;> rcases hop with h | h <;> cases b
+      · exact Or.inl ⟨false, fun x hx => by simp [hv, h, GateOp.eval, hb x hx]⟩
+      · exact Or.inr ⟨e, fun x hx => by simp [hv, h, GateOp.eval, hb x hx]⟩
+      · exact Or.inr ⟨e, fun x hx => by simp [hv, h, GateOp.eval, hb x hx]⟩
+      · exact Or.inl ⟨true, fun x hx => by simp [hv, h, GateOp.eval, hb x hx]⟩
+      · exact Or.inl ⟨false, fun x hx => by simp [hv, h, GateOp.eval, hb x hx]⟩
+      · exact Or.inr ⟨d, fun x hx => by simp [hv, h, GateOp.eval, hb x hx]⟩
+      · exact Or.inr ⟨d, fun x hx => by simp [hv, h, GateOp.eval, hb x hx]⟩
+      · exact Or.inl ⟨true, fun x hx => by simp [hv, h, GateOp.eval, hb x hx]⟩
   rcases key with ⟨b', h⟩ | ⟨cc, h⟩
   · exact deadQ_of_const v c gates k b' h
   · exact deadQ_of_seen v c gates k hk cc h
