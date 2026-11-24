@@ -102,4 +102,4 @@ def main():
             else: stall += 1
     b = best_all
     print(f"{name} | max NOT {max_not} | seed {seed} | {tried} mutations, {kept} kept | counterexamples {found} | least margin {b[0] if b else None}" + (f" (n = {b[1]['n']}, {len(b[1]['gates'])} gates, {nots(b[1])} NOT)" if b else ""))
-main()
+if __name__ == "__main__": main()
