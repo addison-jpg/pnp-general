@@ -147,7 +147,7 @@ fractional induction.
 - FABLE ALLOCATION (owner 09:01, verified: "each opus should have two fables. maybe like 8 fables we can dole out here"; ~8 total):
   | # | Owner | Task |
   |---|---|---|
-  | 1-2 | P=NP 'Front' (session_01GmnDhc6FBZAseL8bDQaYsu) | CfgI world-0 / MergeFrac certificates (Lean); world-choice / K-Rado paper attempt (already running) |
+  | 1-2 | P=NP 'Front' (session_01GmnDhc6FBZAseL8bDQaYsu) | DONE 09:20 (951/research/front612): CfgI certificates kernel-checked; MergeSDR / O2-PAIR paper attempt. NOW (CPU, no Fable): F1 MergeSDR on the full ~41k corpus + F2 O2-PAIR hill-climb attack |
   | 3-4 | front A1 (session_01GmnDheKL3UENhJCL6pD1hS) | MergePrice dual for general pi (concavity!): 2 Fables under the A1 Opus at the 11:32 resume |
   | 5 | front B | merge-tree double counting with split shared gates (referee_b/check_charge.py as gate) |
   | 6 | front C | lifted fractional induction |
