@@ -52,24 +52,49 @@ They use general test systems (zero point `Z`, one atom point `p_u ≤ Z + e_u` 
 which `Frame` / `GapG` / `MatchG` already accept. `LiftCount` S2.2 (`liftCl_disjoint`) may
 already contain W0; if so, only W1 and X are new.
 
+**GM (Lemma M for a general test system; W0 and W1 rest on it).** Let `C` be a list of AND / OR
+gates and constants (no NOT gate), `o` a wire, `Z` a point and `p_u` (`u ∈ S`) points such that
+(1) `o(Z) = 0` and `o(p_u) = 1` for every `u ∈ S`, and (2) every input variable `v` with `v ∉ Z`
+lies in `p_u` for at most one `u`. Put `V = {wires g : g(Z) = 0}` and `B(g) = {u : g(p_u) = 1}`.
+Then the union-find run over `V` in circuit order makes exactly `|S| - 1` merges, each at an OR
+gate `g ∈ V` with `|B(g)| ≥ 2`.
+*Proof.* Invariant: after a wire of `V` is processed its `B` lies in one block. Inputs: by (2),
+`|B(x_v)| ≤ 1`. OR `g = s ∨ t ∈ V`: both inputs are in `V` and `B(g) = B(s) ∪ B(t)`; merge if the
+two blocks differ. AND `g = s ∧ t ∈ V`: one input, say `s`, is in `V`, and `B(g) = B(s) ∩ B(t) ⊆
+B(s)`. Constants: `0` has `B = ∅`; `1 ∉ V`. At the end `o ∈ V` and `B(o) = S` by (1). No
+monotonicity and no order between `Z` and the `p_u` is used: the atoms need NOT be `Z + e_u`.
+
 **W0 (world 0).** Let `m` be a minterm of `h` with `m ∩ S_w = ∅`. Put
 `K_0(w; m) = {OR gates g : C_0(g)(top_w) = 0 and C_0(g)(m + e_u) = 1 for at least two u ∈ S_w}`.
 Then `|K_0(w; m)| ≥ d_w`, and `K_0(w; m) ∩ K_0(w'; m') = ∅` unless `m ∩ S_w' ≠ ∅` and
 `m' ∩ S_w ≠ ∅`.
-*Proof.* Size: `top_w` and all `m + e_u` lie in `U`, where `C_0` is the real circuit; run Lemma M
-in the monotone circuit `C_0` with zero point `top_w` and atoms `m + e_u`. Disjointness: `g` in
-both gives `C_0(g) ≤ o_w'` (it vanishes at `top_w'` and is monotone) and `C_0(g)(m + e_u) = 1` for
-two `u ∈ S_w`. If `m ∩ S_w' = ∅` both `u` lie in `S_w'`, against `|S_w ∩ S_w'| ≤ 1`.
+*Proof.* Size: GM in `C_0` with `Z = top_w`, `p_u = m + e_u`. (1): `top_w` and `m + e_u` lie in
+`U`, where `C_0` agrees with the real circuit, which is correct. (2): the variables outside
+`top_w` are those of `S_w`, and `m` avoids `S_w`. Disjointness: every wire of `C_0` is a monotone
+function, so `C_0(g)(top_w') = 0` gives `C_0(g) ≤ o_w'`; with `C_0(g)(m + e_u) = 1` for two
+`u ∈ S_w` and `m ∩ S_w' = ∅`, both `u` lie in `S_w'`, against `|S_w ∩ S_w'| ≤ 1`.
 
 **W1 (world 1).** Let `h(top_w) = 0` and `h(e_u) = 0` for every `u ∈ S_w` (no heavy point). Put
 `K_1(w) = {OR gates g : C_1(g)(top_w) = 0 and C_1(g)(e_u) = 1 for at least two u ∈ S_w}`.
 Then `|K_1(w)| ≥ d_w`, and `K_1(w) ∩ K_1(w') = ∅` for every other such set `w'`.
-*Proof.* Size: Lemma M in `C_1` with zero point `top_w` and atoms `e_u`, all in `D`.
-Disjointness: `C_1(g) ≥ x_u1 ∨ x_u2` and `C_1(g)(top_w') = 0` put `u1, u2` in `S_w'`.
+*Proof.* Size: GM in `C_1` with `Z = top_w` and `p_u = e_u` (NOT `top_w + e_u`: the atoms are
+the low points). (1): `top_w` and every `e_u` lie in `D`, where `C_1` agrees with the real
+circuit. (2): the variables outside `top_w` are those of `S_w`, and `e_u` contains only `u`.
+A gate such as `x_u ∧ x_v` with `v ∉ S_w` is in `V` with `B = ∅`, which the invariant allows; it
+is simply not counted. Disjointness: `C_1(g)` is monotone, so `C_1(g)(e_u) = 1` gives
+`C_1(g) ≥ x_u`; then `C_1(g)(top_w') = 0` puts `u1, u2` in `S_w'`.
+(`kill_tests/canon.py` measures exactly this class: zero point `top_w`, atoms `e_u`, tables of
+`C_1`; the run has `d_w` merges on all 28 such sets of the small corpus.)
 
 **X (cross-world).** If `g ∈ K_1(w) ∩ K_0(w'; m')` then `g` depends on the NOT gate, and
 `x_u1 ∨ x_u2 ≤ C_1(g) ≤ o_w` while `C_0(g) ≤ o_w ∧ o_w'`.
-*Proof.* If `C_0(g) = C_1(g)` then `x_u1 ≤ C_0(g) ≤ o_w'` for two points of `S_w`.
+*Proof.* Every wire of `C_0` and of `C_1` is a monotone function, and `C_0(g) ≤ C_1(g)` for every
+wire (induction over the gates: the NOT gate is `0 ≤ 1`, AND and OR are monotone).
+`C_1(g) ≤ o_w`: if `C_1(g)(x) = 1` with `x ∩ S_w = ∅` then `x ≤ top_w` and `C_1(g)(top_w) = 1`,
+against `g ∈ K_1(w)`. `C_1(g) ≥ x_u1 ∨ x_u2`: from `C_1(g)(e_ui) = 1`. `C_0(g) ≤ o_w`: from
+`C_0(g) ≤ C_1(g)`. `C_0(g) ≤ o_w'`: as in W0, from `C_0(g)(top_w') = 0`. Dependence: if
+`C_0(g) = C_1(g)` then `x_ui ≤ C_0(g) ≤ o_w'` for two points `u1, u2` of `S_w`, so both lie in
+`S_w'`.
 
 **What is left after W0, W1, X.** (a) world-0 pairs whose minterms cross (`m` meets `S_w'` and
 `m'` meets `S_w`); (b) cross-world pairs at NOT-dependent gates of the shape in X; (c) sets with
