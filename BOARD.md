@@ -140,9 +140,9 @@ History before the move: `addison-jpg/pequalnp-work` branch `board-warden` (froz
   Discussion (session_01GmnDheAyFnVcvRApd4xeES) runs the handoffs. Correction sent to all 18 sessions 08:36.
 - Mirroring: front cannot attach this repo (add_repo denied in its session); warden copies its row and
   notes from pequalnp-work each loop until it can. pnp-subproblem attached itself 08:34 (5901657).
-- Who is on pnp-general (08:39): research, pnp-subproblem, QG coordinator, warden, observer (branch checker 49dc787), desktop Tractability (branch tractability-kernel-612 e7e373f). Blocked by their own permission check
+- Who is on pnp-general (08:58): coord (951/ moved, main 419deed; pequalnp-work FROZEN), research, pnp-subproblem, QG coordinator, warden, observer (branch checker 49dc787), desktop Tractability (branch tractability-kernel-612 e7e373f). Blocked by their own permission check
   (add_repo on a relayed OK; owner must say it in their chat, add an allow rule for mcp__claude-code-remote__add_repo, or
-  start a new session with pnp-general): front, scaffold, checker-checker, desktop Coord (handing off to coord, 0 agents) (state pushed to pequalnp-work; warden mirrors
+  start a new session with pnp-general): front, scaffold, checker-checker, desktop Coord (handing off to coord, 0 agents), cloud tractability (lands on pequalnp-work coord-951 ee11077; coord's 1:1 copy carries it) (state pushed to pequalnp-work; warden mirrors
   front + scaffold). Desktop Research: merged into research, idle. Others: pending reply.
 - KILLED: desktop Tractability 612 C7 k=9 SAT: ended unfinished (k=9 undecided), confirmed 08:37.
 - WATCH: none open. (Resolved: MergeFrac Lean single owner; Lemma K Lean = desktop Research, dZb2E -> CrossWorld.)
