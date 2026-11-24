@@ -156,9 +156,9 @@ ProofComplexity, Search, Outside) are here unchanged.
 - session_01GmnDhgAdyDijthBgZgJFWn (ex D-qg-2; scaffold helper for 951; attached here 09:25 with owner OK in
   its own chat): D-qg-2 LANDED here (L-qg-120 to L-qg-127 checked, `Defs/QuantumGravityChannels.lean`;
   first version on pequalnp-proofs `claude/modest-brahmagupta-66n1fr` bddc02a). 951: no-mixed / heavy split
-  rounds 1-4 in `951/board/agents/qg-d2-nomixed.md` (code: pequalnp-work `nomixed-951` 1bada7b). Unfinished:
-  xgen runs for scaffold (front-A falsification, 4 systems with a 4-set, essential, base+1..+4; no X so far)
-  -> `951/board/agents/qg-d2-xgen.md` when done.
+  rounds 1-4 in `951/board/agents/qg-d2-nomixed.md` (code: pequalnp-work `nomixed-951` 1bada7b). xgen for
+  scaffold DONE (`951/board/agents/qg-d2-xgen.md`: 7,176 essential circuits on 4 systems with a hard 4-set, no
+  cross-world gate at all, no counterexample). Unfinished: B at base+3 undecided; random 4-set systems not run.
 - session_01GmnDhdZb2EsYNLc1r4M85e (dZb2E, ex QG L-qg-101; Lean helper of tractability for 951; attached here 09:22 with owner
   OK in its own chat; commits as addison-jpg): LANDED in 951/lean: LemmaK (MinCE.ex_ge_two, MinCE.lemmaK_V1, K1_bound),
   CrossWorld (S1(g) for merge sets needs (i) z' avoids S_a and (ii) C0(g)(Zof S_a) = 0; cx1/cx2 show both are necessary),
