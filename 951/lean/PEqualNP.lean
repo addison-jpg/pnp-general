@@ -179,3 +179,4 @@ import PEqualNP.W951.MUInduct
 import PEqualNP.W951.LiftSDRWitness
 import PEqualNP.W951.GraphHeavy
 import PEqualNP.W951.F2Induct
+import PEqualNP.W951.F2Desc
