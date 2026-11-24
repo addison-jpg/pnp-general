@@ -136,6 +136,9 @@ the tracks and references). 39 rows; gaps L-qg-115, 116, 119 (quantum counting) 
 Kill only what serves no card on this board; duplicates and dead loops are flagged here and pinged to the owning
 session (desktop team via its Coord). Sessions are never interrupted by the warden. Models: avoid Fable, a few ok.
 History before the move: `addison-jpg/pequalnp-work` branch `board-warden` (frozen).
+- FABLE BUDGET (owner 09:01, typed to desktop Front, verified): "each opus should have two fables. maybe like 8 fables we can
+  dole out here". ~8 Fables total, 2 per Opus agent, handed out by coord. In use (09:03): desktop Front 2 (CfgI Lean landing;
+  world-choice / K-Rado paper). Remaining ~6: coord assigns; warden counts and flags overruns.
 - 1to1 = owner 08:28 (Discussion session): "1to1 squish, research-> research xyz-> xyz": same-role sessions become one seat;
   Discussion (session_01GmnDheAyFnVcvRApd4xeES) runs the handoffs. Correction sent to all 18 sessions 08:36.
 - Mirroring: coord's 1:1 import (951/, from pequalnp-work coord-951 + board + front-match) now carries the blocked seats'
