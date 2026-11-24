@@ -12,6 +12,7 @@ counted, NOT included, inputs free). `C(g)` is the least circuit size of `g`.
 | L-gen-005 (`xor_lower`): for non-constant `f`, `C(x ⊕ f) ≥ max(C(f), C(¬f)) + 3` | checked row |
 | L-gen-006 (`xor_exact`): if `C(f) ≠ C(¬f)`, then `C(x ⊕ f) = min(C(f), C(¬f)) + 4` | checked row |
 | `C(x ⊕ f) = min(C(f), C(¬f)) + 4` for every non-constant `f` | OPEN when `C(f) = C(¬f)` |
+| `k` fresh variables: `max + 3k ≤ C(x₁ ⊕ ... ⊕ x_k ⊕ f) ≤ min + 4k` (`XorIterate.lean`) | checked row; see `generalize-parametrize.md` |
 
 "Checked row" means: the files build with the pinned toolchain (Lean 4.36.0) and the pinned
 Mathlib, have no `sorry`, and `#print axioms` lists only `propext`, `Classical.choice`,
