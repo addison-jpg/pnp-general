@@ -32,6 +32,10 @@ In Lean, `L_meta_951` rests on one unproved declaration, `no_minCE` (no minimal 
 | 951 when the NOT gate reads an input (h = x_p), no minimality | `NotVarF2` (`muF2_of_notVar`) |
 | 951 when all sets have size ≤ 3; Two-World reduction; partial bound; union-find merge count (Lemma M) | `small3_bound`, `TwoWorld.lean`, `PartialBound.lean`, `MergeRun.lean`, `CanonClass.lean` |
 | Structural facts of a minimal counterexample: R2, R3, R4, R5', R+ | `MinCERed` |
+| (machines-Lean) The count over real-witness gates (F2) closes 951 with no NOT gate (\|F2\| ≤ s); F2 ⊆ one-face witness gates (UC); real merge sets ⊆ F2(Q); disjoint representatives over real merge sets (MergeSDR) ⇒ the count over F2 | `F2Induct` (`no_minCE_of_MUF2`, `no_minCE_of_gainF2`, `card_F2_le_UC`), `F2Desc` (`sep_descend`, `mergeSet_subset_F2`, `muF2_of_mergeSDR`, `F1_real_zero`) |
+| (machines-Lean) The point step (GainF2) from each of: seen gates and the three-case rule (SEE+K3), the light-star rule (LIGHT-STAR), absorb (ABSORB), the deficit-0 first-join case; with F1*, B, K0-K2, first-joining gates f(u) ∈ F2(Q) ∩ SEE(v), joint union-find ≥ cost(v). The rules are hypotheses (false for all correct circuits) | `F2SeeK3`, `F2Light`, `F2FirstJoin` |
+| (machines-Lean) One-face witness gates (UC): pure classes ⊆ UC, MU ⇒ MUC, heredity, Lemma C0, the induction with the step as hypothesis; front A2's G1 | `MUInduct`, `GraphHeavy` |
+| (machines-Lean) Certificates: disjoint representatives over pure classes (PureSDR) on Pasch, 12 ladder circuits, tri_all_5593, FANO-FORMULA, JUNK, PAPPUS-JUNK; disjoint representatives over lifted classes (LiftSDR) on all four barrier circuits cxMU_dd, cxMU_clean2, cxMU_clean2_DD, cx44_1_junk | `PureSDRWitnessLadder`, `LiftSDRWitness` |
 
 ### 1.2 Proved (paper), refereed, not in Lean
 
@@ -56,7 +60,7 @@ In Lean, `L_meta_951` rests on one unproved declaration, `no_minCE` (no minimal 
 ### 1.4 Open
 
 1. **The circuits that lose the certificate game.** On the barrier suite: `cxMU_dd` and `cx44_1_junk` (19 of 21
-   win). Smallest lost instance: sets {0,1,2}, {0,3,4}, h = x1 ∨ x3, where a violation is a
+   win). (machines-Lean: both still have a kernel-checked LiftSDR, `LiftSDRWitness`; only the game is lost.) Smallest lost instance: sets {0,1,2}, {0,3,4}, h = x1 ∨ x3, where a violation is a
    3-gate configuration. At n = 5, 10,095 of 113,685 pairs (sets, h) lose. cTAHG names three 4-sets in a triangle (`cxT2`) as
    the hard case: no gate-saving rewiring in 1,679 tries, certificate game lost, disjoint representatives over real merge sets (MergeSDR) hold.
 2. **The point step for real-witness gates (F2 step) among circuits with no gate-saving rewiring (R6).** R6 (cTAHG): a minimal counterexample admits no
