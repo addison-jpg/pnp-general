@@ -17,7 +17,7 @@ rerun them there.
 
 | Item | Result |
 |---|---|
-| Lemmas W0, W1, X (section 2) | 0 violations on 62 circuits (sizes, both disjointness claims, NOT-dependence of cross-world gates). Still need the referee. |
+| Lemmas GM, W0, W1, X (section 2) | 0 violations on 62 circuits. Referee: correct (GM checked step by step). **Checked in Lean:** `951/lean/PEqualNP/W951/CanonClass.lean` (`canon_size`, `orClz_disjoint`, `orClz_cross`, `canon_disjoint`, `canon_cross`), for any monotone gate list; standard axioms only. |
 | Canonical start (section 3) | **DEAD.** Its options admit no SDR on 13 of 62 circuits. |
 | Interval classes at extreme points only | **DEAD**, also in the matching form: fail on cxT2 and cxe3 even when split sets get every plain zero point. |
 | Plain zero points (MergeSDR) | holds on 62 of 62, as scaffold found on the full corpus. |
