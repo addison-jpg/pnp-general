@@ -216,3 +216,6 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
 - (13:55 UTC) STAR-SEP HEAVY CASE checked (front A2's paper proof): `starSep_heavy` (h(Q ∪ {v}) = 1, h(D ∪ {u}) = 1 for star points
   u ≠ v ⇒ StarSep at Q with I0 star classes at top_w), `starSep_of_hQ` (h(Q) = 1 ⇒ StarSep). Open: light v, and heavy v with
   non-heavy star points (front's GAP).
+- (14:10 UTC) PureFrac.lean (coord item 3; front A1's target): `PureFrac` ⇔ `PurePrice` (LP duality, items = gates of the menu
+  union), `mu_of_purePrice` (constant price 1), `pureFrac_of_pureSDR`, `no_minCE_of_purePrice`, `no_minCE_of_pureFrac`.
+  Lean chain now: StarSep ⇒ PureSDR ⇒ PureFrac ⇔ PurePrice ⇒ MU ⇒ MUL ⇒ no_minCE (and PureSDR ⇒ LiftSDR ⇒ MUL).
