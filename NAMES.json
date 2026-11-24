@@ -207,7 +207,7 @@
   "parent": "objects",
   "kind": "object",
   "code": "type A",
-  "means": "meaning not re-derived here: see CanonClass.lean and research-typeA-increment.md"
+  "means": "a set w with h(top_w) = 1, where h is the input of the NOT gate and top_w is the point that is 1 exactly off S_w; equivalently some minterm of h avoids S_w. The other sets (h(top_w) = 0) are the FREE sets, whose world-1 classes K_1(w) at top_w are pairwise disjoint (W1). Source: research-typeA-menus.md, research-typeA-increment.md"
  },
  "set of type B": {
   "parent": "objects",

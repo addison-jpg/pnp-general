@@ -50,7 +50,7 @@ for name, code, means in [
  ("pure class in world 1", "I1", "a class of a set read at a zero point in world 1"),
  ("lifted circuit", "lift, y", "the NOT gate replaced by a fresh input y; a monotone circuit for a partial function"),
  ("lifted class", "", "a class of a set read in the lifted circuit; need not sit above the zero point"),
- ("set of type A", "type A", "meaning not re-derived here: see CanonClass.lean and research-typeA-increment.md"),
+ ("set of type A", "type A", "a set w with h(top_w) = 1, where h is the input of the NOT gate and top_w is the point that is 1 exactly off S_w; equivalently some minterm of h avoids S_w. The other sets (h(top_w) = 0) are the FREE sets, whose world-1 classes K_1(w) at top_w are pairwise disjoint (W1). Source: research-typeA-menus.md, research-typeA-increment.md"),
  ("set of type B", "type B", "the NOT input is 0 at the point with every input outside the set equal to 1 (h(top_w) = 0)"),
  ("output in two-world normal form", "DD, DD-normal", "the output equals (set OR) AND h on one face and (set OR) OR h on the other"),
 ]: add(name, O, "object", code, means)

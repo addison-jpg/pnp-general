@@ -44,7 +44,7 @@ its parent is the concept it serves, up to the root statement. `code` is the old
       - **CanonOneNot.lean** (`CanonOneNot`) · lean module
     - **lifted circuit** (`lift, y`) · object: the NOT gate replaced by a fresh input y; a monotone circuit for a partial function
     - **lifted class** · object: a class of a set read in the lifted circuit; need not sit above the zero point
-    - **set of type A** (`type A`) · object: meaning not re-derived here: see CanonClass.lean and research-typeA-increment.md
+    - **set of type A** (`type A`) · object: a set w with h(top_w) = 1, where h is the input of the NOT gate and top_w is the point that is 1 exactly off S_w; equivalently some minterm of h avoids S_w. The other sets (h(top_w) = 0) are the FREE sets, whose world-1 classes K_1(w) at top_w are pairwise disjoint (W1). Source: research-typeA-menus.md, research-typeA-increment.md
       - **TypeA.lean** (`TypeA`) · lean module
     - **set of type B** (`type B`) · object: the NOT input is 0 at the point with every input outside the set equal to 1 (h(top_w) = 0)
     - **output in two-world normal form** (`DD, DD-normal`) · object: the output equals (set OR) AND h on one face and (set OR) OR h on the other
@@ -126,7 +126,7 @@ its parent is the concept it serves, up to the root statement. `code` is the old
       - **five-input circuit where only a light point works** (`ess_rand_clean_744.json`) · witness: n = 5, 9 gates; violates no fact of a minimal counterexample that scaffold tested
       - **adversary against the general world laws** (`ADV4`) · witness
       - **three counterexamples to gate dependence on the NOT gate** (`cx3_counterexample, CrossWorld, CrossWorldCex`) · route: Lean files CrossWorld.lean, CrossWorldCex.lean
-      - **cross-world disjointness at every world-1 point** (`D1`) · route: refuted, 4 collisions in 31,587 circuits; refuted in Lean (`not_D1Stmt`, CanonD1.lean, decide-checked n = 5 circuit); the repair D1' (add Z ∩ S_v = ∅) also fails once dead gates are added, so any fix must use s < base
+      - **cross-world disjointness at every world-1 point** (`D1`) · route: refuted, 4 collisions in 31,587 circuits
       - **heavy-first step** (`F6`) · route: 'a heavy point exists => some heavy point satisfies the step'; refuted
       - **no mixed zero points** (`NoMixedPrice`) · route: refuted in the plain form
       - **merge-set law without its two conditions** (`S1`) · route: false
