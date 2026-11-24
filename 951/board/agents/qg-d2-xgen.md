@@ -19,3 +19,12 @@ base+1..+3, 5400 s for base+4. Logs: 951/tools/xgen951/logs.tgz.
   NOT costs >= base+4.
 - Random systems with a 4-set plus pairs (n <= 7): not run (CPU went to rounds 2-4 of agents/qg-d2-nomixed.md and to
   landing D-qg-2).
+
+## base+5 (11:45-13:03 UTC; stopped at 13:03 by the owner's 12:05 line "refutes can be highly minimized"). Logs: 951/tools/xgen951/logs5.tgz
+| System | s = base+5 | circuits | with X | result |
+|---|---|---|---|---|
+| D {0123},{04},{05},{14},{15} | 12 | 3,000 (limit) | 16, all with L* = 1.0 (tight) | front-A HOLDS on all 16: min pi(X) on the optimal face = 0, half_viol = 0 |
+| A | 13 | ~1,000 in 77 min (stopped) | 0 | - |
+| B | 14 | ~150 in 70 min (stopped) | 0 | - |
+| C | 13 | ~2,100 in 77 min (stopped) | 0 | - |
+First real instances of the claim on these systems (X appears at base+5, as on scaffold's B_tri): 16 tight circuits, no counterexample.
