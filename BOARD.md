@@ -123,7 +123,9 @@ ProofComplexity, Search, Outside) are here unchanged.
   on W6 and max-deg-3 W4), constants made variable (SatRatio: SAT not in SIZE((a/b)n+c) for a/b<5/4; FunPHPUpper with
   L027: PC degree of functional PHP in ((N+1)/2, N+1]; PermIsotropicGeneral; WitnessFamily; CrossGeneral; LinearFourLB
   (n<=15); LinearSetsLB; GraphPHPGeneral; ...), notes/note-2, note-3 (density barrier for the NOT basis). Unfinished: path
-  gadget L-meta-574 for h=1,2 (CLAIMED again: SAT at h=2, then Lean, MetaComplexity/Helpers/PathSmall*.lean); 4-set count past n=15. DONE: width 2 for the a x b cross formula (CrossWidth2.lean,
+  gadget L-meta-574 for h=1,2: REFUTED at h = 1 in Lean (`PathSmall.path_lb_all_false : ¬ PathLbAll`, PathSmallRefute.lean,
+  std axioms; PathLbAll = 574 verbatim with 1 ≤ h): g = x0 XOR x1, N = 2, 8-gate circuit vs claimed 9. So 3 ≤ h (k ≥ 7) is needed
+  at least down to h = 1; h = 2 open (SAT undecided at 9 gates for g = AND; 574's DeepHyp 'win' fails for k ≤ 5); 4-set count past n=15. DONE: width 2 for the a x b cross formula (CrossWidth2.lean,
   cross_refutation2, <= 2ab+b+2 lines, plain resolution: every term one equation, so width 1 suffices too). Not closed; merge with Generalize pending.
   NOT ladder (card 4): w6_not_free + w4_not_free (EdgeFnWindow4.lean) = the ladder collapses to rung 0 for the edge function
   on W6 and on max-deg-3 W4 (strictly larger than L113's girth/hub 9 class): every circuit has a NOT-free one no larger.
