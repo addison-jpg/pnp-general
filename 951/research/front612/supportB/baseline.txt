@@ -1,0 +1,9 @@
+corpora: 3659 circuits loaded, 3 skipped (n > 20), 3656 correct with one NOT
+profile: {'sets4': 85, 'good': 85, 'err': 0, 'hard': 71, 'third': 132}
+[B1 3rd+ merges disjoint across sets] tested 37 circuits with a |S|>=4 set: 14 failures
+    (24, 8, 32, 'inst:front-match__w8b__cxr.json:0', {'gate': 14, 'sets': (0, 1)})
+    (29, 9, 38, 'w9:fc__cxT2.json:0', {'gate': 19, 'sets': (0, 1)})
+    (29, 9, 38, 'inst:front-match__fc__cxT2.json:0', {'gate': 19, 'sets': (0, 1)})
+    (30, 7, 37, 'w9:fc__cx44_0.json:0', {'gate': 22, 'sets': (0, 1)})
+    (30, 7, 37, 'inst:front-match__fc__cx44_0.json:0', {'gate': 22, 'sets': (0, 1)})
+[B2 3rd+ merges inside own cone (Good systems)] tested 37 circuits with a |S|>=4 set: 0 failures

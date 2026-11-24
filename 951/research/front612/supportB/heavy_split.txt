@@ -1,0 +1,16 @@
+w9:chist__cxU6.json:0                            n=14 s=41 L*=0.5882 heavy=[] split_v2 max=None R4 max=None  per v: 
+w9:chist__cxU8.json:0                            n=18 s=53 L*=0.6087 heavy=[] split_v2 max=None R4 max=None  per v: 
+w9:fb__cfgI.json:0                               n= 9 s=25 L*=0.6667 heavy=[1, 2, 3, 4, 5, 6] split_v2 max=1.0 R4 max=1.0  per v: v1:1.000/1.000 v2:1.000/1.000 v3:1.000/1.000 v4:1.000/1.000 v5:1.000/1.000 v6:1.000/1.000
+w9:fc__cx44_0.json:0                             n= 7 s=30 L*=0.6667 heavy=[] split_v2 max=None R4 max=None  per v: 
+w9:fc__cx44_1.json:0                             n= 7 s=32 L*=0.6667 heavy=[] split_v2 max=None R4 max=None  per v: 
+w9:p__cxP2.json:0                                n=16 s=73 L*=0.6667 heavy=[] split_v2 max=None R4 max=None  per v: 
+inst:front-match__w8__cx1.json:0                 n= 9 s=22 L*=0.6667 heavy=[1, 2, 3, 4, 5, 6] split_v2 max=1.0 R4 max=1.0  per v: v1:1.000/1.000 v2:1.000/1.000 v3:1.000/1.000 v4:1.000/1.000 v5:1.000/1.000 v6:1.000/1.000
+inst:front-match__w8__cx3.json:0                 n=10 s=24 L*=0.7500 heavy=[1, 2, 3, 4, 5, 6] split_v2 max=1.0 R4 max=1.0  per v: v1:1.000/1.000 v2:1.000/1.000 v3:1.000/1.000 v4:1.000/1.000 v5:1.000/1.000 v6:1.000/1.000
+inst:front-match__w8b__cxr.json:0                n= 8 s=24 L*=0.5455 heavy=[] split_v2 max=None R4 max=None  per v: 
+inst:scaffold-951__fable_attack__j_cx1.json:0    n= 9 s=37 L*=0.6667 heavy=[1, 2, 3, 4, 5, 6, 8] split_v2 max=1.0 R4 max=1.0  per v: v1:1.000/1.000 v2:1.000/1.000 v3:1.000/1.000 v4:1.000/1.000 v5:1.000/1.000 v6:1.000/1.000 v8:1.000/1.000
+inst:scaffold-951__fable_attack__r_cx1.json:0    n= 9 s=23 L*=0.6667 heavy=[1, 2, 3, 4, 5, 6] split_v2 max=1.0 R4 max=1.0  per v: v1:1.000/1.000 v2:1.000/1.000 v3:1.000/1.000 v4:1.000/1.000 v5:1.000/1.000 v6:1.000/1.000
+inst:scaffold-951__fable_attack__v1.json:0       n= 8 s=26 L*=0.6667 heavy=[0, 1, 4, 5] split_v2 max=1.0 R4 max=1.0  per v: v0:1.000/1.000 v1:1.000/1.000 v4:1.000/1.000 v5:1.000/1.000
+inst:tractability__inst__relworst_a.json:0       n= 9 s=25 L*=0.6667 heavy=[1, 2, 3, 4, 5, 6] split_v2 max=1.0 R4 max=1.0  per v: v1:1.000/1.000 v2:1.000/1.000 v3:1.000/1.000 v4:1.000/1.000 v5:1.000/1.000 v6:1.000/1.000
+inst:tractability__inst__xfail1.json:0           n= 9 s=23 L*=0.6667 heavy=[1, 2, 3, 4, 5, 6] split_v2 max=1.0 R4 max=1.0  per v: v1:1.000/1.000 v2:1.000/1.000 v3:1.000/1.000 v4:1.000/1.000 v5:1.000/1.000 v6:1.000/1.000
+
+14 circuits; with heavy points: 8; max split_v2 = 1.0000 (#>1: 0); max R4 = 1.0000 (#>1: 0)

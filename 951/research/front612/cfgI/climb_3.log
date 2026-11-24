@@ -1,0 +1,4 @@
+      0s it=64 NEW BEST L*=1.000000 bad_worlds=2 s=25
+    453s it=45737 NEW BEST L*=1.000000 bad_worlds=3 s=40
+   1695s it=170224 NEW BEST L*=1.000000 bad_worlds=4 s=40
+done it=263889 accepted=134386 best=(1.0, 4)

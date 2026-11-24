@@ -1,0 +1,9 @@
+corpora: 41082 circuits loaded, 3 skipped (n > 20), 41079 correct with one NOT
+profile: {'sets4': 512, 'good': 512, 'err': 0, 'hard': 262, 'third': 559}
+[B1 3rd+ merges disjoint across sets] tested 333 circuits with a |S|>=4 set: 16 failures
+    (24, 8, 32, 'inst:front-match__w8b__cxr.json:0', {'gate': 14, 'sets': (0, 1)})
+    (24, 8, 32, 'dc:climb/climb_seeds.jsonl:3', {'gate': 14, 'sets': (0, 1)})
+    (24, 8, 32, 'dc:climb/relseeds.jsonl:7', {'gate': 14, 'sets': (0, 1)})
+    (29, 9, 38, 'w9:fc__cxT2.json:0', {'gate': 19, 'sets': (0, 1)})
+    (29, 9, 38, 'inst:front-match__fc__cxT2.json:0', {'gate': 19, 'sets': (0, 1)})
+[B2 3rd+ merges inside own cone (Good systems)] tested 333 circuits with a |S|>=4 set: 0 failures
