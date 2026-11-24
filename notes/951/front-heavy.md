@@ -32,3 +32,15 @@ Consequence (proposal for lanes A/C): MergeFrac at a MinCE splits into
 Caveat: "B pinned" includes the claim that C0 merge sets at different bases z_{S_b} are disjoint. That is FALSE for junk-padded monotone
 circuits (g = (x_u & x_a) | (x_u' & x_a'), u,u' in S_b \ S_b', a,a' in S_b' \ S_b, is a merge for both); data has none. A proof
 must either use MinCE cleanliness/minimality there or let B float too (the full LP, still <= 1).
+
+## 3. CORRECTION 08:40 (gAdyD Round 3, board agents/qg-d2-nomixed.md): pinned rule REFUTED; v2 (B floats in the half-cube) CHECKED
+- Pinned rule (B at own z_{S_b}) FAILS on 320 essential circuits (313 clean; 316 B-B collisions), L = 2. Smallest: dc:ess/ess_k4e_clean.jsonl:248
+  (n = 4, K4-e, v = 2, h = x2): gate g10 = x3 | (x0 & x1) is a C0 merge of {0,3} at z_{03} and of {1,3} at z_{13}. So the junk caveat
+  happens in CLEAN essential circuits (it is the x0&x1 = (x0|x2)&x1&(x0|~x2) resolution gadget), not only in padded ones.
+  No failure on any circuit with a 4+-set (141 circuits, 293 pairs).
+- HEAVY SPLIT v2 (w9/heavy/split3.py): sets b ∌ v float over their zero points INSIDE the half-cube {x_v = 1} (all world 0, pure C0 merge sets);
+  the star of v floats over all its zero points.  v2 is weaker than v1 (z_{S_b} lies in the half-cube), so it holds wherever v1 held.
+  CHECKED: LP <= 1 on all 320 failing circuits (504 heavy pairs, max 1.0) => v2 LP <= 1 on ALL 39,168 + 4,764 (circuit, heavy v) pairs.
+  On k4e248, {0,3} and {1,3} move to z = e2 (x0 = x1 = 0 except the unit), where g10 = x3 is no merge.
+- Case II now reads: B uses only C0 merge sets at zero points with x_v = 1 (a monotone fractional sub-problem on the half-cube,
+  NOT pinned; common base e_v also fails: c.jsonl#264), plus one fractional sunflower (the star of v).

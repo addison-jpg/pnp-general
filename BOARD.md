@@ -97,7 +97,7 @@ Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the t
 Arrives one-to-one from `addison-jpg/pequalnp-work` branch `coord-951` (code) and `board` (notes).
 Open statement: `no_minCE`. Candidates: price form, double counting over the merge tree, lifted
 fractional induction.
-- front (session_01GmnDheKL3UENhJCL6pD1hS, copied 1:1 by warden 08:30 from pequalnp-work board a7939da, front cannot attach this repo yet): THE LEMMA (hload/MergeFrac): lanes A1/A2/B/C (4 Opus HALTED by the Opus limit until 11:30, auto-resume 11:32). 08:30 HEAVY POINTS (agents/front-heavy.md): NOT excluded by current lemmas (special case of G1 per-point x_v:=0; delta_v >= 0 for every point on 2559 circuits); NEW heavy SPLIT rule CHECKED on 4764 (circuit, heavy v) pairs: pin sets avoiding v at z_S (pure C0), only the star of v (a sunflower) floats => LP <= 1 Notes: `notes/951/front-heavy.md`.
+- front (session_01GmnDheKL3UENhJCL6pD1hS; copied 1:1 by warden 08:33 from pequalnp-work board + front-match, front cannot attach this repo): THE LEMMA (hload/MergeFrac): lanes A1/A2/B/C (4 Opus HALTED by the Opus limit until 11:30, auto-resume 11:32). HEAVY POINTS (agents/front-heavy.md): not excluded by current lemmas. 08:40 CORRECTION: pinned heavy split REFUTED by gAdyD R3 (320 ess circuits, B-B collisions); v2 CHECKED on all 39,168+4,764 pairs: sets avoiding v float over zero points in the half-cube x_v=1 (pure C0), star of v (sunflower) floats => LP <= 1 Notes: `notes/951/front-heavy.md`, `notes/951/front/RESUME_LANES.md`, `notes/951/front/s_fable.md`.
 
 ## Subboard: quantum gravity (L-qg)
 Files: `lean/PEqualNP/Defs/QuantumGravity*.lean`, `lean/PEqualNP/QuantumGravity/` (its README has
