@@ -1,11 +1,11 @@
 # A conjecture about informal prompting and boards
 
-This file is a conjecture about a way of prompting. It was written from one long working
-session in this repository on 2026-11-24. It is an opinion with some evidence from that day.
-Nothing in it was measured, and nothing in it is proved.
+This file is a conjecture about a way of prompting. It was written from one long working session in
+this repository on 2026-11-24. It is an opinion with some evidence from that day. Nothing in it was
+measured, and nothing in it is proved.
 
-It is also not a claim about P versus NP. The method produced the tools in this repository,
-asteroid among them. That is all it is claimed to have done.
+It is also not a claim about P versus NP. The method produced the tools in this repository, asteroid
+among them. That is all it is claimed to have done.
 
 ## The owner's idea
 
@@ -19,9 +19,9 @@ In the owner's words:
 > whos in between and coordinates. and the really special part-- they all have boards, which
 > can be properly allocated to make communication easier."
 
-The owner asked for this to be written down as "a qualitative conjecture about my prompting
-methods, including informality and scene speak. it adds taste", and as "a qual framework that
-assists asteroid without any actual formality".
+The owner asked for this to be written down as "a qualitative conjecture about my prompting methods,
+including informality and scene speak. it adds taste", and as "a qual framework that assists
+asteroid without any actual formality".
 
 ## The conjecture
 
@@ -36,11 +36,10 @@ assists asteroid without any actual formality".
 
 ## Informality and scene speak
 
-The owner writes to agents the way one writes to a friend: lower case, slang, jokes, sometimes
-a full scene register. Some of the lines that shaped this repository are in that voice. "no
-more graffiti" turned the boards into a data structure. "its like taking an icepick to an
-earhole" became the rule about agent size. "smaller tasks smaller boards" became the layout of
-`boards/tasks/`.
+The owner writes to agents the way one writes to a friend: lower case, slang, jokes, sometimes a
+full scene register. Some of the lines that shaped this repository are in that voice. "no more
+graffiti" turned the boards into a data structure. "its like taking an icepick to an earhole" became
+the rule about agent size. "smaller tasks smaller boards" became the layout of `boards/tasks/`.
 
 Four reasons this may help on small tasks:
 
@@ -53,34 +52,31 @@ Four reasons this may help on small tasks:
 - It sets the tone for both sides. The answer that fits a short blunt ask is a short blunt
   answer, and that is usually the useful one.
 
-The phrase "it adds taste" is part of the claim. A voice carries preferences that a
-specification leaves out: what counts as too much, what counts as boring, when to stop.
+The phrase "it adds taste" is part of the claim. A voice carries preferences that a specification
+leaves out: what counts as too much, what counts as boring, when to stop.
 
-None of this assumes the agent is conscious, or that it enjoys anything. The owner says so in
-the quote above. The effect, if it is real, is on how tasks get stated and handed over. A
-person who is having fun writes more asks, smaller asks, and more honest corrections.
-
-There is a limit. A playful ask is small, and it is easy to misread when it stands alone. That
-is why the second half of the idea is needed.
+None of this assumes the agent is conscious, or that it enjoys anything. The owner says so in the
+quote above. The effect, if it is real, is on how tasks get stated and handed over. A person who is
+having fun writes more asks, smaller asks, and more honest corrections.
 
 ## From informality to structure
 
-The owner built the frame by hand. On that day there were about a dozen parallel sessions with
-named roles: coord, front, scaffold, research, warden, tractability, machines-Lean, cTAHG and
-others. Several came in pairs across two machines, a desktop coord and a cloud coord, a front
-with a front. One main session sat in the middle. It relayed the owner's words, split the work
-and merged the results. Under it were subagents of different sizes.
+The owner built the frame by hand. On that day there were about a dozen parallel sessions with named
+roles: coord, front, scaffold, research, warden, tractability, machines-Lean, cTAHG and others.
+Several came in pairs across two machines, a desktop coord and a cloud coord, a front with a front.
+One main session sat in the middle. It relayed the owner's words, split the work and merged the
+results. Under it were subagents of different sizes.
 
 Every seat had somewhere to write. There was one main board (`BOARD.md`), area boards
-(`boards/*.md`), and one small board per task (`boards/tasks/`, 29 files when this was
-written, each about ten lines with one statement and one "done when"). Later the boards became
-a tree: small findings kept in `findings.jsonl` next to their evidence, and a script
-(`boards.py`) that carries the verified ones up the directory tree into `boards/TREE.md`.
+(`boards/*.md`), and one small board per task (`boards/tasks/`, 29 files when this was written, each
+about ten lines with one statement and one "done when"). Later the boards became a tree: small
+findings kept in `findings.jsonl` next to their evidence, and a script (`boards.py`) that carries
+the verified ones up the directory tree into `boards/TREE.md`.
 
 The mirrored pairs give each seat a partner who has the same job and reads the same board. The
 coordinator gives the owner one place to speak. The boards mean that an instruction can stay
-informal and still not be lost, because the board holds the exact statement, who has it, and
-what would count as done.
+informal and still not be lost, because the board holds the exact statement, who has it, and what
+would count as done.
 
 ## What the boards did, and what broke
 
@@ -100,24 +96,23 @@ The rules in `BOARD.md` were not designed in advance. Each one is a repair.
   boards, and this produced the finding records, where each statement carries a word such as
   checked, tested, refuted or open, and names its evidence.
 
-So the day gives evidence in both directions. The frame did not prevent these failures. It did
-make each one visible quickly, and each repair is a line that the next reader can find.
+So the day gives evidence in both directions. The frame did not prevent these failures. It did make
+each one visible quickly, and each repair is a line that the next reader can find.
 
 ## How it connects to asteroid
 
-asteroid (`asteroid/README.md`) is the main thing this way of working produced. It has the
-same habit at a smaller scale.
+asteroid (`asteroid/README.md`) is the main thing this way of working produced. It has the same
+habit at a smaller scale.
 
 - A claim is one plain line in a `.ath` program, for example `claim slack(tiny) = 0 by lean`.
 - The writer does not decide whether it holds. Python evaluates it, and Lean decides it in the
   kernel.
 - Failures are kept. A refuted claim stays in the repository with its counterexample.
 
-The boards are the same habit at the large scale: one board per task, one statement per
-finding, a checker or a second reader who decides, and results carried upward as small
-verified records. In both places the speaker can be loose, because the speaker is not the
-judge. That is the sense in which this is a framework that helps asteroid without being
-formal itself.
+The boards are the same habit at the large scale: one board per task, one statement per finding, a
+checker or a second reader who decides, and results carried upward as small verified records. In
+both places the speaker can be loose, because the speaker is not the judge. That is the sense in
+which this is a framework that helps asteroid without being formal itself.
 
 ## What would make this more than a conjecture
 
@@ -128,8 +123,6 @@ None of the following has been done.
   and whether the result was right.
 - Run the same project with and without per-task boards, and count duplicated work, merge
   conflicts and questions sent to the owner.
-- Run it with and without the coordinator in the middle, and see whether the pairs still stay
-  in step by reading boards alone.
 
 One day in one repository with one owner cannot separate the method from the person using it.
 
