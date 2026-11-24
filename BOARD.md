@@ -1,5 +1,27 @@
 # Board: P versus NP through general circuits
 
+## WHAT ASTEROID CANNOT YET SAY (owner, 2026-11-24: "What the language cannot yet say (# WISH: lines in the programs) --- should be on top board")
+
+The live list is the `# WISH:` lines in the programs: `grep -rn "# WISH:" asteroid/`. When a program wants to say something the language has no words for, it writes a `# WISH:` line there; whoever adds the words deletes the line and strikes the row here.
+
+**Open, most wanted first**
+
+| # | What a program wants to write | Why | Where it is asked |
+|---|---|---|---|
+| 1 | `flipclasses(c)` and the per-set form `forall sets forall zeros localflip(c) >= 0`, WITH a proof-checker form | the count that still works with many NOT gates is Python only | `beyond_one_not.ast` |
+| 2 | `hyps(c)` with the NOT-gate limit as a number t, and a proof-checker form for `gates(c) >= base(c)` at that t | today the side conditions fix "at most one NOT gate", so a search hit with two NOT gates would formally refute nothing | `beyond_one_not.ast`, `ladder.ast` |
+| 3 | quantifiers over single points: `exists v: mslack(c, {}, {v}) < 0`, `forall v: gain0(c, Q, v) < cost0(c, Q, v)` | two refuted statements (the Pappus and Fano rows) cannot be shown on their own circuits | `refuted.ast` |
+| 4 | arithmetic in terms: `gates(c) - nots(c) = base(c)` | counting AND and OR gates with NOT gates free | `beyond_one_not.ast` |
+| 5 | `faces(c)` (which constants on the NOT gates leave a correct circuit), `worlds(c)`, `forall worlds mslack(c, world)` | the 2^t faces of a circuit with t NOT gates | `beyond_one_not.ast` |
+| 6 | merge sets, pure classes, `sdr(pure_classes(c))`, `price(c)` | two refuted statements (the two-world-sets and star rows) can only be shown indirectly | `refuted.ast` |
+| 7 | `corpus … where nots = T` (exactly T), and `savings(W, t)` | the savings function: how many gates t NOT gates can save (0 on everything seen) | `beyond_one_not.ast` |
+| 8 | `design(q)`: a projective plane as a built-in set system, and search above 8 inputs | the dense systems where the bound would matter | `beyond_one_not.ast` |
+| 9 | claims on circuits with 14 to 24 inputs that the proof checker can finish | the twin trees and matched twin trees time out; the k-point refutation is not shown | `refuted.ast` |
+| 10 | a statement about ALL circuits on a set system: `forall circuits on {…} {…}: gates >= k` | asteroid checks one circuit at a time | board task `all-not-gates` (stopped) |
+
+**Said since the list began:** ~~implication (`if … then …`)~~, ~~the Theorem's side conditions (`hyps(c)`)~~, ~~a negated claim (`claim not …`)~~, ~~a proof-checker form for `gates >= base` at one NOT gate (`theorem(c)`)~~, ~~`flip(c)`, `flipclasses(c)`, `flipslack(c)` as terms (Python only: see row 1)~~.
+
+
 > # STATE RESULTS AT FULL STRENGTH. NO HEDGING BEFORE REVIEW.
 > (Owner, 2026-11-24: "we can be much stronger about the one not question... no point in hedging before review even starts".)
 >
