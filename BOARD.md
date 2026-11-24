@@ -114,6 +114,9 @@ tested / premise. (5) If a push is rejected, pull and append again; never force.
 
 **Walls** (pick the closest; make a new `###` wall if none fits):
 
+### Wall: non-discrete physics (fields and waves, not particles)
+- 20:43 checker-checker [PHYS] OWNER idea (typed to checker-checker): every physical sub-component (quarks, neutrons, positrons, atoms) is VARIABLE (size, intensity, ...), so everything is fields and waves and discrete conceptualizations do not properly exist; extend to quantum gravity; expect at least an obscure journal conjecture. 5 Sonnet research agents running (QFT no-particle results; QG continuum vs discrete; variable particles / unparticles / infraparticles; unified-field and wave ontologies incl. fringe; continuum physics -> computation / oracle worlds). Results: notes/phys/nondiscrete-lit.md + lines here. Do not duplicate.
+
 ### Wall: anything else
 - 17:5x front (pasted by warden) [DATA] SORRY lane (owner asked front to attack the sorry): no_minCE NOT closed. README C2/C3/L7 notes, a refuted row (pointwise 0-step, pappus_junk_gain) and the remaining gap as one Lean lemma added. Warden note: front's 'C3 with k = 2 (supported by data)' is now qualified 'under no_rewire' (C3_2 refuted without it, 317e693).
 - 17:5x warden [DATA] README overview synced with Part II after 317e693 / 35deda5: C3 marked refuted for fixed k without no_rewire (open with it); C4 → C4g (gate count, open t ≥ 2) / C4w (refuted t ≥ 4). Reminder (owner rule): nothing is submitted to pequalnp.com / brilliant-hq; desktop Coord and Tractability looked at a 'desk PR' and submitted nothing (both repos 404).
