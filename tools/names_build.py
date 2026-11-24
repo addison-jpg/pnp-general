@@ -50,8 +50,8 @@ for name, code, means in [
  ("pure class in world 1", "I1", "a class of a set read at a zero point in world 1"),
  ("lifted circuit", "lift, y", "the NOT gate replaced by a fresh input y; a monotone circuit for a partial function"),
  ("lifted class", "", "a class of a set read in the lifted circuit; need not sit above the zero point"),
- ("set of type A", "type A", "meaning not re-derived here: see CanonClass.lean and research-typeA-increment.md"),
- ("set of type B", "type B", "meaning not re-derived here: see fable-global-price.md"),
+ ("set of type A", "type A", "a set w with h(top_w) = 1, where h is the input of the NOT gate and top_w is the point that is 1 exactly off S_w; equivalently some minterm of h avoids S_w. The other sets (h(top_w) = 0) are the FREE sets, whose world-1 classes K_1(w) at top_w are pairwise disjoint (W1). Source: research-typeA-menus.md, research-typeA-increment.md"),
+ ("set of type B", "type B", "the NOT input is 0 at the point with every input outside the set equal to 1 (h(top_w) = 0)"),
  ("output in two-world normal form", "DD, DD-normal", "the output equals (set OR) AND h on one face and (set OR) OR h on the other"),
 ]: add(name, O, "object", code, means)
 
@@ -64,8 +64,8 @@ for name, code, means, st in [
  ("every gate is read", "R4, live", "", "checked"),
  ("the NOT gate is essential", "R5', not_used", "both faces are incorrect", "checked"),
  ("observability", "R+, observable", "a constant put on any nonempty set of readers of a wire makes the circuit incorrect", "checked"),
- ("no gate-saving rewiring", "R6, no_rewire", "no gate input can be moved to another wire so that the circuit stays correct and a gate goes unread", "paper; Lean local to another session"),
- ("private NOT cone", "R7", "meaning not re-derived here: see 951/FINDINGS_2026-11-24.md", "reported"),
+ ("no gate-saving rewiring", "R6, no_rewire", "no gate input can be moved to another wire so that the circuit stays correct and a gate goes unread", "checked"),
+ ("private NOT cone", "R7", "a gate that depends on the NOT gate, whose NOT-dependent feeding gates are read only inside its cone, differs from both faces C_0 and C_1; an instance of observability with the NOT gate as the wire", "paper"),
 ]: add(name, F, "fact", code, (means+" " if means else "")+"["+st+"]")
 
 # ---- the count: families and targets
@@ -182,7 +182,7 @@ for name, code, parent, means in [
  ("light-star rule", "LIGHT-STAR, LightStar, F2Light", S, "the point step at a light point from the star of the point; false for all correct circuits"),
  ("absorb and reroute", "ABSORB, REROUTE, INTERNAL", S, "ABSORB is the point step at v rewritten with the first-joining gates (bookkeeping, equivalent to the step); REROUTE and INTERNAL are stronger sufficient forms (INTERNAL also fails on star4 at Q = empty); all three fail with the step on the twin trees"),
  ("cone certificate", "CERT-1c, CERT-3c, CertStair, (D)+(S)", S, "death (D) and disjointness (S) of cone merge sets"),
- ("local closure by weight one", "LW1", "local cube", "a second closure of a cube used in CubeF2.lean; meaning not re-derived here"),
+ ("local closure by weight one", "LW1", "local cube", "every alive set has a zero point inside the cube, off the set, where the NOT input is 0, light points stay light there, and any two alive sets have one set with at most one point outside the other set's zero point; then base(Q) <= |F2(Q)| (baseDQ_le_F2_of_LW1)"),
  ("full charging without the cone", "ChargeOK", D_, "refuted, 3 counterexamples"),
  ("acyclic forcing in gate order", "P2", D_, "refuted"),
  ("merge-set law without its two conditions", "S1", B_, "false"),
