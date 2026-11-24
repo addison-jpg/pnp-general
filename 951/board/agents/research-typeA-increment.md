@@ -70,3 +70,25 @@ avoid enough of w*'s gates. The latest-output rule fails on 3 corpus circuits, s
   {0,2}, {1,2}, {0,3}, {1,3}, {2,3}; outputs 4, 18, 19, 14, 15, 7) the latest output o = 19 of [0,3] is an AND (19 = 6 ∧ 17)
   and both classes of [0,3], {6} and {17}, are classes of [1,3] and [0,2]; the peel starts instead with [0,2] (private
   world-0 class {18}). So a rule must look at the menus, not only at the output order (an AND output carries no merge).
+
+## 4. Restated over UC (coord 12:19; barrier suite run FIRST)
+UC (board integrator, kill_tests/mu_induct.py): OR gates g such that for some set w and zero point Z (Z ∩ S_w = ∅) in one face
+(world 1: h(Z) = 0, tables C_1; world 0: h(Z + e_u) = 1 for all u ∈ S_w, tables C_0) g(Z) = 0 and g(Z + e_u) = 1 for >= 2
+points u of S_w. UC contains every pure class (GM count sets), and |UC| >= base gives s >= base.
+- PROVED: K_free ⊆ UC (a gate of K_1(v) is 0 at top_v and 1 at e_a <= top_v + e_a for two a ∈ S_v).
+- P2 (PROVED, D): for ANY set w and zero point Z of either face with Z ∩ S_v = ∅, the count set UC_w(Z) is disjoint from
+  K_1(v) for every free v ≠ w: of the two atoms Z + e_a, Z + e_b one has its point outside S_v, and that atom (with y = 0 or 1)
+  lies below (top_v, y = 1). (Sanity: 0 violations.) No hypothesis on the world: P2 covers world-0 systems too.
+- Hence MU over UC ⇐  INC_N:  |UC_N(A)| >= Σ_{w type A} d_w,  UC_N(A) = the count sets of the type-A sets at zero points Z
+  avoiding S_w ∪ F, F = every point of every free set (Z = ∅ is always available in world 1, h(0) = 0). So the free sets
+  drop out entirely: INC_N lives on the face x_F = 0 (atoms e_u with u ∈ S_w ∩ F still allowed).
+CHECKED (typeA_inc.py): barrier suite 6 / 6 holds, slack |UC_N(A)| − Σ_A d: Pasch s14 0 (tight), tri_all_5593 3,
+cxMU_clean2 5, cxMU_clean2_DD 6, cxMU_dd 8, cx44_1_junk 14 (all sets type A in the cxMU witnesses, so INC_N = MU over UC there;
+|UC| = 14 on cxMU_dd as coord reports); repo 67 / 67 (tight on 6). BUT corpus 19,828: INC_N FAILS on 68 (deficit 1; K4 − e
+graph systems with one free set, e.g. front-archive chk/k.jsonl:3074, sets [0,1],[0,2],[0,3],[1,2],[1,3], type A = 4 of 5): zero
+points that meet free points are needed. What survives EVERYTHING is the unrestricted form
+  INC_UC_A:  |UC(A) \ K_free| >= Σ_{w type A} d_w   (type-A count sets at ANY zero point, both faces, minus the free K_1's):
+holds on 19,828 / 19,828 corpus (tight on 8,442), 67 / 67 repo, 6 / 6 barrier (tight on Pasch s14); with W1 it gives MU over
+UC. P2 says exactly where it can lose: only count sets at zero points meeting S_v can hit K_1(v).
+OPEN: a proof of INC_UC_A. Its shape: only type-A sets, both faces of the NOT allowed per zero point, and zero points that
+meet free sets are needed on some graph systems (INC_N fails). The two single-world restrictions of the E2 version fail (§2), so a proof has to combine the faces.
