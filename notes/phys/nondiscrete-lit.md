@@ -175,3 +175,36 @@ of one bit sequence lies in PPoly, via L004, L073, L019 and the hardwire helper)
 GAPS (Prop definitions): `PrefixSup` (PPoly inside the prefix worlds), `DigitsSurj` (binary
 expansions of reals in [0,1) are onto), the converse of the uniform corollary, and the tally-oracle
 forms `TallySub`, `TallySup`.
+
+## 9. Verified from the primary source: Beggs, Costa, Tucker, arXiv:0911.3836
+
+Read directly ("Limits to measurement in experiments governed by algorithms", 2009). Its
+references give the full data of the earlier papers: [5] Beggs, Costa, Loff, Tucker,
+"Computational complexity with experiments as oracles", Proc. R. Soc. A 464(2098):2777-2801
+(2008); [8] "... II. Upper bounds", Proc. R. Soc. A 465(2105):1453-1465 (2009). Those two were not
+read (royalsocietypublishing.org is not an allowed host).
+
+- [THEOREM, lower bound] Theorem 1.1 (collider machine experiment, exponential analogue-digital
+  protocol): Turing machines with this experiment as oracle compute in polynomial time at least
+  P/log* (mass settable with infinite precision), P/log* (finite unbounded precision),
+  BPP//log* (finite fixed precision, uniform distribution of the mass). The reason (Prop. 6.2):
+  one experiment takes time exponential in the precision, so only O(log n) bits of the unknown
+  mass can be read in polynomial time. The upper bound is left open there (section 6.2).
+- The earlier scatter machine experiment: "P/poly and BPP//log*, depending upon assumptions about
+  precision of data" (the paper's own summary of [5], [8]); exact class per protocol not read.
+- [THEOREM] Theorem 1.2: uncountably many masses of which every experimental procedure can
+  determine only finitely many digits.
+
+**Consequence (standard argument, not in the paper; to check).** P/log* is inside P/log, and
+NP ⊆ P/log implies P = NP (Karp and Lipton 1980: SAT is self-reducible, so try each of the
+polynomially many advice strings and verify the witness it leads to). So in a world whose
+polynomial-time power is at most P/log* (this needs the upper bound), "NP is efficient there" is
+equivalent to P = NP itself. The same witness search should give NP ⊆ BPP//log* => NP = RP.
+
+**The ladder of worlds, under the premise "a physical model is an oracle world".**
+| Access rule for a real constant | Polynomial-time class | "NP efficient there" means |
+|---|---|---|
+| random access to bits | every language (L-lib-067; `random_access_trivial`) | always true, trivially |
+| precision-bounded, polynomial protocol | inside P/poly (`prefixSub`; Siegelmann-Sontag: equal) | NP ⊆ P/poly = not L-gen-101 |
+| measurement with exponential protocol | at least P/log*; upper bound open (Beggs-Costa-Tucker) | with the upper bound: P = NP |
+| fixed precision (noise) | at least BPP//log* | with an upper bound: NP = RP (to check) |
