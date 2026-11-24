@@ -16,11 +16,18 @@ INSTANCES = [  # (Lean name, source, loader)
     ('ce3', 'tools/w951/tests/instances/scaffold-951__payment__ce3.json', 'json'),
     ('hard4', 'front/work/notes951/w9/A2s/hard4.json', 'json'),
     ('cxr', 'tools/w951/tests/instances/front-match__w8b__cxr.json', 'json'),
+    # scaffold (session_01GmnDhdt8ydm1adQLjCP9we, 09:43): its HARD4 (10 gates, not front's A2s/hard4.json) and the two
+    # smallest unique-SDR circuits
+    ('hard4s', 'tools/sdrcert/scaffold_certs.json', 'scaffold:HARD4'),
+    ('uniq0', 'tools/sdrcert/scaffold_certs.json', 'scaffold:unique_sdr_0'),
+    ('uniq2', 'tools/sdrcert/scaffold_certs.json', 'scaffold:unique_sdr_2'),
 ]
 
 
 def load(src, how):
     p = os.path.join(ROOT, src)
+    if how.startswith('scaffold:'):
+        return next(d for d in json.load(open(p)) if d['name'] == how.split(':', 1)[1])
     if how == 'json':
         d = json.load(open(p))
         if isinstance(d, list):

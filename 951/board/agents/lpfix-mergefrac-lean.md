@@ -119,3 +119,5 @@ cert, ADV3 two-world menu, ADV4 mixed/staircase conflict, ce3 two-world menu). `
 correctness (all inputs) + the (1,1)-disjoint set conditions for all but ADV3 (2^12 inputs ~ 20 min; Python-checked).
 Build cost: ~20 s (witnesses) + ~2 min (correctness). Axioms: propext, Classical.choice, Quot.sound.
 Add a circuit: one line in export.py INSTANCES, re-run, paste.
+- (10:55) + scaffold's inline certificates (09:43): its HARD4 variant (10 gates) and the two smallest unique-SDR circuits added
+  (`sdrHard4s`, `sdrUniq0`, `sdrUniq2`, with `_correct`); 9 circuits certified in all, 8 with kernel-checked correctness.

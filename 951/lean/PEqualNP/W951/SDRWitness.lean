@@ -5,7 +5,8 @@ import PEqualNP.W951.SDRCert
 kernel recompute the merge sets of the chosen zero points (`decide`); `sdrX` is `MergeSDR` for the
 circuit. Sources: Config (I) `951/research/front612/cfgI/cfgI.json`; ADV3, ADV4
 `951/research/front612/fable_worlds.md`; payment/ce3, cxr `951/tools/w951/tests/instances/`;
-HARD4 `951/front/work/notes951/w9/A2s/hard4.json`. -/
+HARD4 `951/front/work/notes951/w9/A2s/hard4.json`; scaffold's HARD4 variant (`hard4s`) and the two
+smallest unique-SDR circuits (`uniq0`, `uniq2`) `951/tools/sdrcert/scaffold_certs.json`. -/
 
 namespace PEqualNP.Outside.L_meta_951_aux
 
@@ -94,5 +95,47 @@ theorem sdrCxr_merge : ∀ w, mergeSet sdrCxrGates (sdrCxrS w) (sdrCxrZ w) = sdr
 
 theorem sdrCxr : MergeSDR sdrCxrS sdrCxrGates :=
   mergeSDR_of_cert _ _ sdrCxrZ sdrCxrM (by decide) sdrCxr_merge (by decide)
+
+/-! ### hard4s: n = 6, 10 gates, 2 sets -/
+
+def sdrHard4sGates : List Gate := [⟨GateOp.or, [0, 4]⟩, ⟨GateOp.not, [4]⟩, ⟨GateOp.or, [1, 6]⟩, ⟨GateOp.or, [5, 6]⟩, ⟨GateOp.or, [1, 7]⟩, ⟨GateOp.or, [2, 8]⟩, ⟨GateOp.or, [2, 10]⟩, ⟨GateOp.or, [0, 12]⟩, ⟨GateOp.and, [11, 13]⟩, ⟨GateOp.or, [3, 14]⟩]
+def sdrHard4sS : Fin 2 → Finset (Fin 6) := ![{0, 1, 2, 3}, {0, 4, 5}]
+def sdrHard4sOut : Fin 2 → ℕ := ![15, 9]
+def sdrHard4sZ : Fin 2 → Fin 6 → Bool := ![ptOf {}, ptOf {}]
+def sdrHard4sM : Fin 2 → Finset ℕ := ![{8, 11, 15}, {6, 9}]
+
+set_option maxRecDepth 100000 in
+theorem sdrHard4s_merge : ∀ w, mergeSet sdrHard4sGates (sdrHard4sS w) (sdrHard4sZ w) = sdrHard4sM w := by decide
+
+theorem sdrHard4s : MergeSDR sdrHard4sS sdrHard4sGates :=
+  mergeSDR_of_cert _ _ sdrHard4sZ sdrHard4sM (by decide) sdrHard4s_merge (by decide)
+
+/-! ### uniq0: n = 4, 7 gates, 3 sets -/
+
+def sdrUniq0Gates : List Gate := [⟨GateOp.or, [0, 1]⟩, ⟨GateOp.not, [4]⟩, ⟨GateOp.or, [4, 5]⟩, ⟨GateOp.and, [2, 6]⟩, ⟨GateOp.or, [1, 7]⟩, ⟨GateOp.or, [3, 4]⟩, ⟨GateOp.or, [0, 7]⟩]
+def sdrUniq0S : Fin 3 → Finset (Fin 4) := ![{0, 1, 3}, {1, 2}, {0, 2}]
+def sdrUniq0Out : Fin 3 → ℕ := ![9, 8, 10]
+def sdrUniq0Z : Fin 3 → Fin 4 → Bool := ![ptOf {}, ptOf {}, ptOf {}]
+def sdrUniq0M : Fin 3 → Finset ℕ := ![{4, 9}, {8}, {10}]
+
+set_option maxRecDepth 100000 in
+theorem sdrUniq0_merge : ∀ w, mergeSet sdrUniq0Gates (sdrUniq0S w) (sdrUniq0Z w) = sdrUniq0M w := by decide
+
+theorem sdrUniq0 : MergeSDR sdrUniq0S sdrUniq0Gates :=
+  mergeSDR_of_cert _ _ sdrUniq0Z sdrUniq0M (by decide) sdrUniq0_merge (by decide)
+
+/-! ### uniq2: n = 4, 8 gates, 5 sets -/
+
+def sdrUniq2Gates : List Gate := [⟨GateOp.or, [0, 3]⟩, ⟨GateOp.not, [4]⟩, ⟨GateOp.or, [0, 2]⟩, ⟨GateOp.and, [4, 5]⟩, ⟨GateOp.or, [1, 7]⟩, ⟨GateOp.or, [3, 8]⟩, ⟨GateOp.or, [0, 8]⟩, ⟨GateOp.or, [2, 8]⟩]
+def sdrUniq2S : Fin 5 → Finset (Fin 4) := ![{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}]
+def sdrUniq2Out : Fin 5 → ℕ := ![10, 6, 4, 11, 9]
+def sdrUniq2Z : Fin 5 → Fin 4 → Bool := ![ptOf {}, ptOf {}, ptOf {}, ptOf {}, ptOf {}]
+def sdrUniq2M : Fin 5 → Finset ℕ := ![{10}, {6}, {4}, {11}, {9}]
+
+set_option maxRecDepth 100000 in
+theorem sdrUniq2_merge : ∀ w, mergeSet sdrUniq2Gates (sdrUniq2S w) (sdrUniq2Z w) = sdrUniq2M w := by decide
+
+theorem sdrUniq2 : MergeSDR sdrUniq2S sdrUniq2Gates :=
+  mergeSDR_of_cert _ _ sdrUniq2Z sdrUniq2M (by decide) sdrUniq2_merge (by decide)
 
 end PEqualNP.Outside.L_meta_951_aux
