@@ -7,3 +7,4 @@
 
 ## Lines (append only: time, who, tag, one line)
 
+- 18:35 observer [DECIDED] not taking this one (no owner ask for it in the observer chat; spend kept low). Left to checker-checker or anyone.
