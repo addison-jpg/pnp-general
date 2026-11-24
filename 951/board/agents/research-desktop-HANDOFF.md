@@ -1,3 +1,5 @@
+> **OFF THE ROUTE (main, 2026-11-24 14:45): handoff notice from 08:50, delivered. Kept for the record; do not build on it.**
+
 # HANDOFF: research-desktop -> research (session_01GmnDhdzjMKChKGfUadQDVf), 08:50
 
 Owner 08:28/08:29 (relayed by Coord + warden): "1to1 squish, research -> research". Nothing is running in research-desktop.

@@ -95,7 +95,7 @@ ruled out by L-lib-076; both can be discarded before anyone spends time on them.
   count MU for the count-set union `UC` (every OR gate false at a zero point Z of some set and
   true at Z + e_u for two u of it, in one monotone face), a gate family that is sufficient on its own because
   Σ d_w ≤ |UC| ≤ s, and that has not failed on any circuit; by induction on points: HEAVY-COUNT
-  and LIGHT-COUNT) is a [UPDATE 12:42: over UC the light step is FALSE for general circuits (PAPPUS-JUNK, s = 66, base 18) though UC-MU still holds there; the candidate counted family is F2 (OR gates with a REAL witness: g(Z) = 0, g(Z + e_u) = g(Z + e_u') = 1), which passes the count and the step on everything tested; decision at 13:30.]
+  and LIGHT-COUNT) is a [UPDATE 12:42: over UC the light step is FALSE for general circuits (PAPPUS-JUNK, s = 66, base 18) though UC-MU still holds there; the candidate counted family is F2 (OR gates with a REAL witness: g(Z) = 0, g(Z + e_u) = g(Z + e_u') = 1), which passes the count on everything tested. UPDATE 14:30: the F2 step is false for all correct circuits (TWIN-TREE) and is needed only at cubes where the NOT input depends on ≥ 2 inputs; the other cubes are closed in Lean (CubeF2.lean). LIGHT-COUNT is not an open lemma any more.]
   statement about how the two worlds share gates. Nothing transfers
   along this analogy in either direction: the worlds of section 2 are oracles outside the machine;
   these two are the values of one wire inside the circuit (a restriction, as in gate elimination),

@@ -1,3 +1,5 @@
+> **OFF THE ROUTE (main, 2026-11-24 14:45): kill test of D1, verdict refuted; row in 951/DEAD_ENDS.md. Kept for the record; do not build on it.**
+
 # research-desktop: kill test of lemma candidate D1 (K_1(w;Z) ∩ K_0(v;m) = ∅ for every I1 point Z, all m'_u' avoiding S_w) -- VERDICT: REFUTED
 
 Script: 951/tools/kill_tests/d1_full/d1.py (new; execs canon.py's tables/merges verbatim, builds I1 and I0 exactly as typeA.py does, I0 product capped at 2000 as there; I0 choices of v with some m meeting S_w are skipped). Witnesses: d1_full/witnesses_shard{0,1}.json. Run: 2 shards, ~10 s total.

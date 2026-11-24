@@ -1,3 +1,5 @@
+> **OFF THE ROUTE (main, 2026-11-24 14:45): the RESOLUTION-GADGET shape is false in general (this referee note says so). Kept for the record; do not build on it.**
+
 # Referee: scaffold's RESOLUTION-GADGET shape (agents/scaffold-core-sat.md 08:25) — FALSE in general
 
 Referee session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p), coord assignment 08:21. Report: branch `referee-lemmaK-dwV8p`

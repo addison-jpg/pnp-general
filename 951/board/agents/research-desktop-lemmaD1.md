@@ -1,3 +1,5 @@
+> **OFF THE ROUTE (main, 2026-11-24 14:45): lemma candidate D1 is refuted (this note says so); row in 951/DEAD_ENDS.md. Kept for the record; do not build on it.**
+
 # research-desktop: lemma candidate D1 (D at every I1 point) — REFUTED; why D's argument cannot extend; corrected candidates
 
 Kill test: `research-desktop-lemmaD1-killtest.md` (REFUTED, witness n = 4). This file: the analysis.

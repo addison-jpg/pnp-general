@@ -1,3 +1,5 @@
+> **OFF THE ROUTE (main, 2026-11-24 14:45): independent check of PureSDR; PureSDR over pure classes is false for general correct circuits (cxMU_dd). Kept for the record; do not build on it.**
+
 # pnp-subproblem: independent PureSDR check (coord assignment 11:35)
 
 Checker: `951/tools/referee_b/puresdr_check.py` (own code; no tools/w951, no kill_tests). Definitions = Lean `PureValid`,

@@ -1,3 +1,5 @@
+> **OFF THE ROUTE (main, 2026-11-24 14:45): LIGHT-COUNT over UC is false for general circuits (PAPPUS-JUNK); row in 951/DEAD_ENDS.md. Kept for the record; do not build on it.**
+
 # LIGHT-COUNT (opus lane, 2026-11-24)
 
 **Verdict: LIGHT-COUNT is FALSE.** So is the hypothesis of `muc_of_gainOne_pts` / `base_le_UC_one`

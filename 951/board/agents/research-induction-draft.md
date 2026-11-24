@@ -1,3 +1,5 @@
+> **OFF THE ROUTE (main, 2026-11-24 14:45): Hall / deficiency induction for PureSDR; PureSDR over pure classes is false for general correct circuits (cxMU_dd). Kept for the record; do not build on it.**
+
 # research: DRAFT of the Hall / deficiency induction for PureSDR on the SAME circuit (no heredity), with tight test cases
 (desktop Coord's ask via scaffold, 11:44. Status: DRAFT for front lanes A2/B and the referee; nothing here is proved
 beyond what is marked. Templates: Halmos-Vaughan, Ore (research-heredity-lit.md §1); route: §6 there.)

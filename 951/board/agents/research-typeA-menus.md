@@ -1,3 +1,5 @@
+> **OFF THE ROUTE (main, 2026-11-24 14:45): written for the target PureSDR, which is false for general correct circuits (cxMU_dd); TypeA.lean stays. Kept for the record; do not build on it.**
+
 # research: circuit-free type-A menus and the three open collision types (coord task 11 UTC; official target PureSDR)
 
 Notation: h = the NOT's input (monotone), Min(h) = its minterms; for a set w: S_w, top_w = all-ones off S_w (h(top_w) = 1 is
