@@ -56,3 +56,7 @@ OPEN, the type-A increment in peeling form: in the family reached (free sets pee
 classes outside the classes of the others. With 'merges precede the output', it suffices that the set w* with the latest
 output has d_{w*} class gates AFTER the previous output among F (they are then private), or that the earlier sets' classes
 avoid enough of w*'s gates. The latest-output rule fails on 3 corpus circuits, so the choice of w needs more than the order.
+  Failures of the latest-output rule: fixh16_clean.jsonl:1003, :1763, :1764 (K4 graph systems, s = 16). In :1003 (h minterms
+  {0,2}, {1,2}, {0,3}, {1,3}, {2,3}; outputs 4, 18, 19, 14, 15, 7) the latest output o = 19 of [0,3] is an AND (19 = 6 ∧ 17)
+  and both classes of [0,3], {6} and {17}, are classes of [1,3] and [0,2]; the peel starts instead with [0,2] (private
+  world-0 class {18}). So a rule must look at the menus, not only at the output order (an AND output carries no merge).
