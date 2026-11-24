@@ -30,3 +30,14 @@ exact list. The 30,906 missing circuits are scaffold's additional corpora; rerun
 - 'other' = 0 confirms on data the Lean disjointness lemmas (disjoint_pureI1_pureI1 / _pureI0_pureI0 / _pureI0_pureI1 with
   their pair conditions): every collision is of an open kind.
 Per-file numbers: `951/tools/referee_b/data/puresdr_merged.json`.
+
+## Addendum 12:20: like-for-like with scaffold's 75,619 (scaffold's list, 11:44)
+- Scaffold's corpus = A data-corpora (40,533 records, its file list; fixh16_raw NOT included) + B scaffold-951 f15/named.jsonl (14)
+  + C tools/w951/tests/instances (25) + D xgen dumps / adv (35,047, scaffold scratchpad only, in no repo); filter one NOT, n <= 12.
+- My count on A (minus the 4 hard4 .log lines) + C with n <= 12: 40,554 records = 40,529 + 25, matching scaffold's per-file counts.
+  All have a pure SDR (subset of the 44,713 above). Not independently checked: B (14, pequalnp-work unreachable here) and D (35,047).
+- MERGE RULE: scaffold counts only OR gates as merges ("an OR gate whose two children carry atom sets from different
+  components"); Lean's runMT (and this checker) counts ANY gate whose trace meets >= 2 labels. On these 40,554 circuits,
+  0 of 753,321 valid classes contain an AND-gate merge, so the two rules agree on all data. (Not a proof that AND merges never
+  occur; a referee point if the PureSDR proof uses 'merges are OR gates'.)
+- Scaffold builds I0 only for type-A sets and caps I0 menus at 3000; this checker allows every valid I0 (a superset). Both: 0 failures.
