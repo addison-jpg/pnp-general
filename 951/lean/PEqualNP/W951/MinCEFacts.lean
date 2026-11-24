@@ -36,11 +36,6 @@ theorem dropGate_getElem_ge (gates : List Gate) (k j n i : ℕ) (hk : k < gates.
   congr 2
   rw [hl]; omega
 
-theorem insens_of_not_mem {p : ℕ} {g : Gate} (h : p ∉ g.inputs) : Insens p g := by
-  intro f f' hf
-  congr 1
-  exact List.map_congr_left fun i hi => hf i (fun e => h (e ▸ hi))
-
 /-- Pruning: all gates outside `K` can be deleted. -/
 theorem prune (n : ℕ) : ∀ (d : ℕ) (gates : List Gate) (K : Finset ℕ),
     K ⊆ Finset.range gates.length → gates.length = K.card + d →

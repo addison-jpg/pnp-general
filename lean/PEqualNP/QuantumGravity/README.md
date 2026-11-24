@@ -42,7 +42,7 @@ There are two routes, and neither can settle P versus NP.
 | A. Complexity growth | complexity = volume, complexity = action, second law of complexity | products of gates from a gate set (`ReachableIn`) | L-qg-001 to L-qg-007, gap L-qg-101 |
 | B. Decoding Hawking radiation | Harlow and Hayden; Aaronson; Brakerski; the Python's lunch | one-way functions and P ≠ NP (`InvertibleInPolyTime`) | gap L-qg-103 |
 | C. The AdS/CFT dictionary | Bouland, Fefferman and Vazirani | needs quantum definitions | none yet |
-| D. Closed timelike curves | Deutsch; Brun; Aaronson and Watrous | Deutsch consistency (`DeutschConsistent`, `ctcSearchMap`) | L-qg-008, L-qg-009, L-qg-102 |
+| D. Closed timelike curves | Deutsch; Brun; Aaronson and Watrous | Deutsch consistency (`DeutschConsistent`, `ctcSearchMap`); density matrices and channels in Kraus form (`IsDensityMatrix`, `IsKrausFamily`, `krausMap`) | L-qg-008, L-qg-009, L-qg-102, L-qg-120 to L-qg-127 |
 | E. Bounds on states and speed | Bekenstein; the holographic bound; Lloyd; Margolus and Levitin | finite-state systems | L-qg-010 |
 | F. Holographic codes | Pastawski, Yoshida, Harlow and Preskill | needs stabilizer code definitions | none yet |
 | G. Geometry of circuits | Nielsen; Haferkamp et al. | needs Riemannian metrics on unitary groups; bridge to the GCT program | none yet |
@@ -58,7 +58,7 @@ file `L1NN.lean` in this directory that declares
 
 | Path | What it is |
 |---|---|
-| `lean/PEqualNP/Defs/QuantumGravity.lean`, `QuantumGravityCodes.lean`, `QuantumGravityCtc.lean` | the definitions every statement of the program is read against |
+| `lean/PEqualNP/Defs/QuantumGravity.lean`, `QuantumGravityCodes.lean`, `QuantumGravityCtc.lean`, `QuantumGravityChannels.lean` | the definitions every statement of the program is read against (`QuantumGravityChannels.lean`: density matrices on `Fin d`, channels in Kraus form) |
 | `lean/PEqualNP/QuantumGravity/LNNN.lean` | one checked row per file, one theorem named after its module |
 | `lean/PEqualNP/QuantumGravity/Helpers/` | the proofs the rows import |
 | `lean/PEqualNP/QuantumGravity/Gaps.lean` | the open gaps, as `Prop` definitions |
@@ -69,6 +69,7 @@ Build one row: `cd lean && lake build PEqualNP.QuantumGravity.L001`.
 
 - J. D. Bekenstein, Universal upper bound on the entropy-to-energy ratio for bounded systems,
   Phys. Rev. D 23 (1981) 287.
+- K. Kraus, States, Effects, and Operations, Lecture Notes in Physics 190, Springer (1983).
 - D. Deutsch, Quantum mechanics near closed timelike lines, Phys. Rev. D 44 (1991) 3197.
 - N. Margolus, L. B. Levitin, The maximum speed of dynamical evolution, Physica D 120 (1998) 188.
 - S. Lloyd, Ultimate physical limits to computation, Nature 406 (2000) 1047.

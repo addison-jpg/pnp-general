@@ -110,6 +110,10 @@ theorem mergeSet_subset_Ico (R : Finset (Fin n)) (z : Fin n → Bool) :
   unfold mergeSet at hi
   obtain ⟨j, hj, rfl, -⟩ := (runMT_mem z (upPt z) R gates _ _).mp hi
   exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
+/-- Merge wires are gate wires (alias of MergeFrac's `mergeSet_subset`). -/
+theorem mergeSet_subset_Ico (R : Finset (Fin n)) (z : Fin n → Bool) :
+    mergeSet gates R z ⊆ Finset.Ico n (n + gates.length) :=
+  mergeSet_subset gates R z
 
 /-- Every wire of `Y` lies in merge sets of at most one set (possibly of none). -/
 def SingleOwner (Y : Set ℕ) : Prop :=

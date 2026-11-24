@@ -1,0 +1,15 @@
+27996 distinct circuits
+{'tested': 2000, 'sdr_fail': 0, 'sdr2_fail': 0, 'err': 0}
+{'tested': 4000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 6000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 8000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 10000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 12000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 14000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 16000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 18000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 20000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 22000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 24000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+{'tested': 26000, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}
+FINAL {'tested': 27991, 'sdr_fail': 0, 'sdr2_fail': 1, 'err': 0}

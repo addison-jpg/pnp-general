@@ -16,3 +16,25 @@ So on cxr no charge supported on the 3rd+ merge gates alone works: a B rule must
 
 Referee use: front's B rules (when they land) are run here on the hand-built family (cxr, cx44_*, cxT*, cxU*, cxP2)
 and the 41k data corpora before any paper verdict.
+
+## support_survey.py (09:30): where can a B charge go? [computed, discovery only]
+Demand(w) = #3rd+ merge gates of each |S| >= 4 set (canonical z_S). A charge is feasible iff a max flow with gate
+capacity 1 meets the total demand when each set may charge only its support:
+A = its own 3rd+ merges; B = all its own merge gates; C = gates of cone(out_w); D = cone(out_w) minus the first two
+merges of EVERY set.
+
+| corpus | circuits with a 4+-set | A | B | C | D |
+|---|---|---|---|---|---|
+| hand-built + instances in 951/ (some duplicated across folders) | 43 | 28 | 38 | 43 | 43 |
+| scaffold data-corpora (ess, tri, q, climb, hard4; pequalnp-work data-corpora 2aa9856) | 296 | 294 | 296 | 296 | 296 |
+
+Reading for sub-lane B (referee note, not a verdict on any claim):
+- Charging inside the merge tree is NOT enough: support B (all own merge gates) fails on the cxU family
+  (cxU6, cxU8, cxU_6_4, cxU_8_4) and cxP2. A "double counting over the merge tree" proof must charge some 3rd+ merges
+  to gates that are not merge gates of that set.
+- Support D (own output cone, excluding every set's first two merges) is feasible on all 339 circuits. Candidate
+  statement for front's B lane: "the 3rd+ merge demand of the |S| >= 4 sets has a fractional matching into
+  cone(out_w) \ (first two merges of all sets) with gate capacity 1". Data only; and it ignores how those cone gates are
+  already used by the rest of the MergeFrac load, so it is a necessary-condition check, not the B inequality.
+- Random/SAT corpora almost never stress this (A fails on 2/296; B never fails): the hand-built family is the test set.
+Files: data/survey_handbuilt.txt, data/survey_corpora.txt, data/summary_*.json.

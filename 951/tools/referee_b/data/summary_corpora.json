@@ -1,0 +1,1 @@
+{"circuits": 296, "with_demand": 296, "A": 294, "B": 296, "C": 296, "D": 296, "fail_examples": {"A": ["corpora/climb/relseeds.jsonl#7", "corpora/climb/climb_seeds.jsonl#3"], "B": [], "C": [], "D": []}}

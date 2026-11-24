@@ -145,3 +145,9 @@ import PEqualNP.W951.RuleS
 import PEqualNP.W951.Small3
 import PEqualNP.W951.TwoWorld
 import PEqualNP.W951.CrossWorldCex
+import PEqualNP.W951.PriceOff
+import PEqualNP.W951.ChainPick
+import PEqualNP.W951.MergeSDR
+import PEqualNP.W951.SDRCert
+import PEqualNP.W951.SDRWitness
+import PEqualNP.W951.SDRWitnessCorrect

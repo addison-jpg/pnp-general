@@ -173,4 +173,25 @@ def L119 : Prop :=
     [μ.IsMulLeftInvariant],
     9 * k + 3 * n + 1 < 4 ^ n → μ (ReachableIn (twoQubitGates n) k) = 0
 
+/-- L-qg-120: Deutsch's consistency condition for a quantum register. Every quantum channel on
+`Fin d`, `d > 0`, given in Kraus form, has a fixed density matrix. This is the condition Deutsch
+puts on the state of a register on a closed timelike curve; L-qg-008 is the classical,
+deterministic case. Rows L-qg-122 (a channel maps density matrices to density matrices) and
+L-qg-123 (unital channels fix the maximally mixed state) are the first steps; row L-qg-126
+derives L-qg-121 from this gap. -/
+def L120 : Prop :=
+  ∀ (d : ℕ) (ι : Type) [Fintype ι] (K : ι → Matrix (Fin d) (Fin d) ℂ),
+    0 < d → IsKrausFamily K → ∃ ρ, IsDensityMatrix ρ ∧ krausMap K ρ = ρ
+
+/-- L-qg-121: Deutsch's quantum consistency for the classical case embedded. Every quantum
+channel on `Fin d`, `d > 0`, that maps matrices diagonal in the computational basis to
+diagonal matrices has a fixed density matrix that is diagonal. On diagonal density matrices
+such a channel acts as a stochastic matrix. Row L-qg-125 proves the deterministic case (the
+channel of a map of the basis); rows L-qg-126 and L-qg-127 derive this gap from L-qg-120 and
+from L-qg-102. -/
+def L121 : Prop :=
+  ∀ (d : ℕ) (ι : Type) [Fintype ι] (K : ι → Matrix (Fin d) (Fin d) ℂ),
+    0 < d → IsKrausFamily K → MapsDiagonalToDiagonal K →
+      ∃ ρ, IsDensityMatrix ρ ∧ ρ.IsDiag ∧ krausMap K ρ = ρ
+
 end PEqualNP.QuantumGravity.Gap
