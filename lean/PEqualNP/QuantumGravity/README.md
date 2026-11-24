@@ -19,28 +19,13 @@ bounds on the number of states of a region. Each argument rests on a classical, 
 counting bound, a fixed point, a reduction. This program states those cores in Lean, against the
 definitions in [`Defs/QuantumGravity.lean`](../Defs/QuantumGravity.lean), and checks them.
 
+
 ## What it does not claim
 
 A row of this program is "checked": the checker accepted a proof of the Lean statement. No row
 says that P versus NP is settled. No row is a statement about quantum gravity: the physics
 premises (the holographic bound, complexity = volume, the existence of closed timelike curves)
 are named as premises in the plain-language text and appear in no Lean statement.
-
-## How P versus NP enters
-
-There are two routes, and neither can settle P versus NP.
-
-1. **Assumption route.** A quantum gravity argument that a task is hard assumes a cryptographic
-   primitive. When the primitive is a classical one-way function, P ≠ NP follows from it (gap
-   L-qg-103). So if P = NP, every hardness argument that rests on classical one-way functions
-   fails. Arguments that rest only on quantum primitives (pseudorandom quantum states, EFI pairs)
-   are not known to imply P ≠ NP: Kretschmer gives an oracle relative to which pseudorandom
-   quantum states exist and BQP = QMA.
-2. **Model route.** The physics fixes the model of computation. If closed timelike curves exist,
-   one pass of a polynomial-size circuit decides satisfiability (core: L-qg-009). If the
-   holographic bound holds, a computer confined to a region is a finite-state system (core:
-   L-qg-010). "NP-complete problems are intractable in the physical world" (Aaronson) is a
-   statement about which models physics allows, not a statement about P versus NP.
 
 ## Tracks
 
@@ -74,41 +59,4 @@ Build one row: `cd lean && lake build PEqualNP.QuantumGravity.L001`.
 
 ## References
 
-- J. D. Bekenstein, Universal upper bound on the entropy-to-energy ratio for bounded systems,
-  Phys. Rev. D 23 (1981) 287.
-- K. Kraus, States, Effects, and Operations, Lecture Notes in Physics 190, Springer (1983).
-- D. Deutsch, Quantum mechanics near closed timelike lines, Phys. Rev. D 44 (1991) 3197.
-- N. Margolus, L. B. Levitin, The maximum speed of dynamical evolution, Physica D 120 (1998) 188.
-- S. Lloyd, Ultimate physical limits to computation, Nature 406 (2000) 1047.
-- R. Bousso, The holographic principle, Rev. Mod. Phys. 74 (2002) 825, arXiv:hep-th/0203101.
-- T. A. Brun, Computers with closed timelike curves can solve hard problems efficiently, Found.
-  Phys. Lett. 16 (2003) 245, arXiv:gr-qc/0209061.
-- S. Aaronson, NP-complete problems and physical reality, SIGACT News 36 (2005),
-  arXiv:quant-ph/0502072.
-- M. A. Nielsen, A geometric approach to quantum circuit lower bounds, Quantum Inf. Comput. 6
-  (2006) 213, arXiv:quant-ph/0502070.
-- S. Aaronson, J. Watrous, Closed timelike curves make quantum and classical computing
-  equivalent, Proc. R. Soc. A 465 (2009) 631, arXiv:0808.2669.
-- D. Harlow, P. Hayden, Quantum computation vs. firewalls, JHEP 06 (2013) 085, arXiv:1301.4504.
-- D. Stanford, L. Susskind, Complexity and shock wave geometries, Phys. Rev. D 90 (2014) 126007,
-  arXiv:1406.2678.
-- L. Susskind, Computational complexity and black hole horizons, Fortsch. Phys. 64 (2016) 24,
-  arXiv:1402.5674.
-- F. Pastawski, B. Yoshida, D. Harlow, J. Preskill, Holographic quantum error-correcting codes:
-  toy models for the bulk/boundary correspondence, JHEP 06 (2015) 149, arXiv:1503.06237.
-- A. R. Brown, D. A. Roberts, L. Susskind, B. Swingle, Y. Zhao, Holographic complexity equals
-  bulk action?, Phys. Rev. Lett. 116 (2016) 191301, arXiv:1509.07876.
-- S. Aaronson, The complexity of quantum states and transformations: from quantum money to black
-  holes, lecture notes (2016), arXiv:1607.05256.
-- A. R. Brown, L. Susskind, Second law of quantum complexity, Phys. Rev. D 97 (2018) 086015,
-  arXiv:1701.01107.
-- Z. Ji, Y.-K. Liu, F. Song, Pseudorandom quantum states, CRYPTO 2018, arXiv:1711.00385.
-- A. R. Brown, H. Gharibyan, G. Penington, L. Susskind, The Python's lunch: geometric obstructions
-  to decoding Hawking radiation, JHEP 08 (2020) 121, arXiv:1912.00228.
-- A. Bouland, B. Fefferman, U. Vazirani, Computational pseudorandomness, the wormhole growth
-  paradox, and constraints on the AdS/CFT duality, ITCS 2020, arXiv:1910.14646.
-- W. Kretschmer, Quantum pseudorandomness and classical complexity, TQC 2021, arXiv:2103.09320.
-- J. Haferkamp, P. Faist, N. B. T. Kothakonda, J. Eisert, N. Yunger Halpern, Linear growth of
-  quantum circuit complexity, Nature Physics 18 (2022) 528, arXiv:2106.05305.
-- Z. Brakerski, Black-hole radiation decoding is quantum cryptography, CRYPTO 2023,
-  arXiv:2211.05491.
+Kept in full in [`LITERATURE.md`](../../../LITERATURE.md) section I.
