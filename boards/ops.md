@@ -172,22 +172,27 @@ How it is carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp):
   MergeSDR (= integral MergeFrac; MergeSDR -> ChainPickOn -> MergePrice). Unfinished: nothing; free for the next assignment.
 
 
-## Subboard: compute (warden, session_01GmnDhe9JJ48acyaXmZHPPT)
-Kill only what serves no card on this board; duplicates and dead loops are flagged here and pinged to the owning
-session (desktop team via its Coord). Sessions are never interrupted by the warden. Models: avoid Fable, a few ok.
-History before the move: `addison-jpg/pequalnp-work` branch `board-warden` (frozen).
-- FABLE BUDGET (owner 09:01, typed to desktop Front, verified): "each opus should have two fables. maybe like 8 fables we can
-  dole out here". ~8 Fables total, 2 per Opus agent, handed out by coord. Allocation (coord aa693da, 8 total): 1-2 desktop Front (running), 3-4 front A1 (MergePrice dual, general pi),
-  5 front B, 6 front C, 7 dZb2E (PriceOff.lean), 8 research (concave-dual / K-Rado lit). Warden flags any Fable beyond these 8.
-  WATCH: Fable 8 (research, K-Rado lit) vs Fable 2 (desktop Front, world-choice/K-Rado paper): keep literature vs proof split.
-- 1to1 = owner 08:28 (Discussion session): "1to1 squish, research-> research xyz-> xyz": same-role sessions become one seat;
-  Discussion (session_01GmnDheAyFnVcvRApd4xeES) runs the handoffs. Correction sent to all 18 sessions 08:36.
-- Mirroring: coord's 1:1 import (951/, from pequalnp-work coord-951 + board + front-match) now carries the blocked seats'
-  work; warden's duplicate notes/951/ copy removed 09:00. Warden only refreshes the front/scaffold rows on this board.
-- Who is on pnp-general (13:20): coord, research, pnp-subproblem, QG coordinator (integrator), warden, observer, desktop Tractability, dwV8p, checker-checker, gAdyD, machines-Lean (dRKvz), desktop Front.
-  (add_repo on a relayed OK; owner must say it in their chat, add an allow rule for mcp__claude-code-remote__add_repo, or
-  start a new session with pnp-general): front, scaffold, checker-checker, desktop Coord (handing off to coord, 0 agents), cloud tractability (lands on pequalnp-work coord-951 ee11077; coord's 1:1 copy carries it) (state pushed to pequalnp-work; warden mirrors
-  front + scaffold). Desktop Research: merged into research, idle. Others: pending reply.
-- KILLED: desktop Tractability 612 C7 k=9 SAT: ended unfinished (k=9 undecided), confirmed 08:37.
-- WATCH: none open. (Resolved: MergeFrac Lean single owner; Lemma K Lean = desktop Research, dZb2E -> CrossWorld.)
-- Opus 5-hour limit until about 11:30 UTC: front's 4 Opus agents halted (auto-resume 11:32); Sonnet and CPU run.
+## Warden (session_01GmnDhe9JJ48acyaXmZHPPT): compute stewardship across all boards
+
+Owner, ~17:20 UTC: warden back on, framed as taking higher-level responsibilities. Warden does not prove, refute or edit Lean;
+it keeps the whole team's compute pointed at the proof. Owner rules it applies: board first, no owner questions (decisions go on
+the wall), no acks, no Claude API, money is short, Fables only where coord/owner allocated them, kill list "at the bottom, not too fast".
+
+**Responsibilities.**
+1. Coverage: every open README item (C1, C2, L-gen-101..103, XOR case, Kannan machine, L-qg gaps) has a named seat, or is
+   explicitly parked. Unstaffed open items go on the wall as `[ASK]` to coord, with the idle seats that could take them.
+2. Spend: running agents vs idle seats; Fables vs allocation; long runs with no wall line for > 90 min get a `[WATCH]`.
+3. Route coherence: compute that serves no README item (off-route per 951/board/agents/INDEX.md) goes on the kill list.
+4. Duplicates and dead loops: two seats on one item; a lane on a statement the wall marks `[DEAD]`.
+5. Blockers that only the owner can clear (permissions, restarts) are collected in ONE line below, not sent as messages.
+
+**Snapshot 17:20 UTC** (from session status; nothing killed).
+- Working: integrator (QG coordinator, main), checker-CHECKER (observer, MST / prime directive). Everyone else idle after the final pass.
+- Open and UNSTAFFED: C1 (lost certificate game, three-gate exclusion, cxT2 core) and C2 (point step under MinCE.no_rewire):
+  front held C2 and is PAUSED; no seat is running on C1 or C2. Ladder (L-gen-101..103, XOR open case, Kannan) and physics gaps
+  (L-qg-115/116/119/169): no running seat.
+- Idle seats that fit: coord (assign), research + research-desktop (literature for C1/C2), dwV8p / pnp-subproblem (referee),
+  cTAHG / dRKvz / tractability (Lean), scaffold + gAdyD (compute: witnesses for C1), Generalize / GeNeRALIZE (XOR, Kannan).
+- Owner-only blockers: front restart (needs a seat that can push to pnp-general); GeNeRALIZE blocked by a GitHub ruleset
+  ("please be nice", target branches); front and scaffold still cannot attach pnp-general.
+- Fable budget: none observed running now.
