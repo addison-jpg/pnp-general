@@ -155,3 +155,31 @@ U below is the union of NARROW pure classes (I1 at maximal h-zero Z, I0 at top_w
 Referee (desktop Coord, 12:31): 2G-LIFT (A1 §8 Theorem 2G-b, §9 2G-lift) CORRECT; open: cxT2-type
 triples; cTAHG to state it in Lean.
 
+## 7. Rung 2 and the MUL hunt (scaffold, 12:49; landed by coord)
+
+All numbers use EXACT lifted menus (PureGP semantics, full enumeration). With k NOTs every NOT
+output is its own free coordinate: lifted cube {0,1}^(n+k).
+
+**MUL hunt (1 NOT).** Random walk over CORRECT one-NOT circuits (moves: rewire an input slot, insert
+a junk gate, a → (a ∧ N) ∨ (a ∧ h), prune dangling gates; objective: minimise |⋃ liftMenu| − base;
+starts cxMU_dd, cxMU_clean2, selector50, ~8 min each). Best: margin 0 (TIGHT, not violated) at
+s = 90, base 6, slack 84 (cxMU_clean2 lineage; LiftSDR exists), but there the NOT had become
+INESSENTIAL; best with an essential NOT: margin +1 at slack 74. No negative margin. Reading: junk
+gates that never merge cost nothing in MUL, so MUL can be tight at any slack; breaking it needs
+classes to COLLAPSE below base, which random junk did not achieve.
+
+**Rung 2 (2 NOTs).**
+- (b) Selector path with 2 selectors: sets = the 6 edges of K4 (cyclic), selectors y1 = x4, y2 = x5 in
+  no set, NOTs on both, 4 worlds with shifts t ∈ {0,1,2,3}; trap g_j = ⋁_world (lit ∧ OR(e_{j+t})),
+  o_j = ⋁_world (lit ∧ g_{j−t}). Correct, BOTH NOTs essential, n = 6, s = 138, base 6: MUL margin
+  +54, menus 36-52 per set, LiftSDR exists (1-selector version, s = 61: +18).
+- (a) Two hub points on a plane (Fano; PG(2,3) with 2 NOTs is 2^15 lifted points, infeasible
+  exactly): hubs 0 and 1 as selectors, NOTs on x0 and x1, each world a random permutation of the 7
+  lines. Correct, both NOTs essential, s = 216, base 14: MUL margin +51 / +49, LiftSDR exists (1-hub
+  analogue, s = 99: +19 / +21).
+- Reading: 4 worlds make the lifted menus BIGGER (each world adds its own test systems), so these
+  world-switching constructions move MUL AWAY from failure; a rung-2 threat would have to collapse
+  classes across worlds. Next, if wanted: a mutation hunt from the 2-selector path with both NOTs
+  essential (~10 min, exact menus ~2 s each). Scaffold's scripts: liftk.py, hubs.py, hunt.py (its
+  scratchpad).
+
