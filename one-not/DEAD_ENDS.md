@@ -1,6 +1,6 @@
 # Dead ends for `no_minCE`: check here before starting a route
 
-Names of codes: `NAMES.json` / `NAMES.md` at the repo root. Combined 2026-11-24 (owner: "dead ends can be combined"). Seven families; every original row is kept, word for word, under its family. The wording of a row is its source's, so read the source for the exact statement. Add a row to the family it belongs to whenever a kill test fails. coord and research own this file.
+Names of codes: `names.py` (readable tree: `NAMES.md`) at the repo root. Combined 2026-11-24 (owner: "dead ends can be combined"). Seven families; every original row is kept, word for word, under its family. The wording of a row is its source's, so read the source for the exact statement. Add a row to the family it belongs to whenever a kill test fails. coord and research own this file.
 
 ## The seven dead ends in one table
 

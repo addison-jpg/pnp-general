@@ -1,6 +1,6 @@
 # Names
 
-Generated from `NAMES.json` by `tools/names_build.py`; edit the script, not this file.
+GENERATED from `names.py`, do not edit; run `python3 -I names.py` from the repo root.
 
 ## Conventions (formal proof style, Lean 4 / Mathlib)
 

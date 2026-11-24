@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
-"""Builds NAMES.json (one flat tree: name -> {parent, kind, code, means}) and NAMES.md from it.
+"""THE single source of names: one flat tree, name -> {parent, kind, code, means, role, formal}.
 Bottom up: a leaf (witness, Lean theorem, dead route) points to its parent concept, up to the root.
-Run from the repo root: python3 -I tools/names_build.py"""
+Edit the add(...) calls below; never edit NAMES.md by hand.
+Run from the repo root:
+  python3 -I names.py          regenerate NAMES.md (the readable tree) and print coverage
+  python3 -I names.py --json   also write NAMES.json (not kept in the repo; nothing reads it)
+From Python: import names; names.N is the dict."""
 import json, re, sys
 ROOT = "one NOT gate saves nothing on Boolean sums"
 N = {}
@@ -256,36 +260,42 @@ for k, v in N.items():
     elif v["kind"] in ("part", "neighbour"): v["formal"] = "section " + camel(k, True)
     else: v["formal"] = camel(k, v["kind"] == "target")
 assert len({v["formal"] for v in N.values()}) == len(N), "formal names must be unique"
-json.dump(N, open("NAMES.json", "w"), indent=1, ensure_ascii=False)
+if __name__ == "__main__" and "--json" in sys.argv:
+    json.dump(N, open("NAMES.json", "w"), indent=1, ensure_ascii=False)
 
-kids = {}
-for k, v in N.items(): kids.setdefault(v["parent"], []).append(k)
-out = ["# Names", "", "Generated from `NAMES.json` by `tools/names_build.py`; edit the script, not this file.", "",
- "## Conventions (formal proof style, Lean 4 / Mathlib)", "",
- "1. Every item has ONE formal name and ONE role: Definition, Lemma, Proposition, Theorem, Conjecture, Open, Refuted, Counterexample.",
- "2. A property or structure is `UpperCamelCase` (`MinCE`, `CubeLocal`, `UGameWon`). A function or object is `lowerCamelCase` (`notInput`, `mergeSet`, `realWitness`).",
- "3. A theorem is `snake_case` and states its conclusion, then `_of_`, then its hypotheses: `no_minCE_of_ugame`, `liftSDR_of_ugame`, `muF2_of_notVar`.",
- "4. A fact of a minimal counterexample lives in its namespace: `MinCE.no_dup`, `MinCE.observable`, `MinCE.no_rewire`.",
- "5. A counterexample is `Cex.<name>` and says what it refutes; a refuted statement is `Refuted.<name>` and names its counterexample.",
- "6. No bare letters or numbers as names in prose: write `realWitness` (F2), `MinCE.no_rewire` (R6); the old code goes in brackets once.",
- "7. A statement keeps the word of its layer: checked (Lean), paper, tested n/N, premise. A Conjecture is never written as a Lemma.",
- "8. Existing Lean identifiers are not renamed (a rename costs a full rebuild); new Lean follows 2 to 5.", "",
- "## The tree", "",
- "Every name has one parent. Read bottom up: a counterexample or a theorem is a leaf, its parent is the concept it serves.", ""]
-def walk(k, d):
-    v = N[k]
-    out.append("  " * d + f"- `{v['formal']}` · {v['role']} · **{k}**" + (f" (old: {v['code']})" if v["code"] and v["code"] != v["formal"] and v["code"] != k else "") + (f": {v['means']}" if v["means"] else ""))
-    for c in kids.get(k, []): walk(c, d + 1)
-walk(ROOT, 0)
-open("NAMES.md", "w").write("\n".join(out) + "\n")
+def build():
+    kids = {}
+    for k, v in N.items(): kids.setdefault(v["parent"], []).append(k)
+    out = ["# Names", "", "GENERATED from `names.py`, do not edit; run `python3 -I names.py` from the repo root.", "",
+     "## Conventions (formal proof style, Lean 4 / Mathlib)", "",
+     "1. Every item has ONE formal name and ONE role: Definition, Lemma, Proposition, Theorem, Conjecture, Open, Refuted, Counterexample.",
+     "2. A property or structure is `UpperCamelCase` (`MinCE`, `CubeLocal`, `UGameWon`). A function or object is `lowerCamelCase` (`notInput`, `mergeSet`, `realWitness`).",
+     "3. A theorem is `snake_case` and states its conclusion, then `_of_`, then its hypotheses: `no_minCE_of_ugame`, `liftSDR_of_ugame`, `muF2_of_notVar`.",
+     "4. A fact of a minimal counterexample lives in its namespace: `MinCE.no_dup`, `MinCE.observable`, `MinCE.no_rewire`.",
+     "5. A counterexample is `Cex.<name>` and says what it refutes; a refuted statement is `Refuted.<name>` and names its counterexample.",
+     "6. No bare letters or numbers as names in prose: write `realWitness` (F2), `MinCE.no_rewire` (R6); the old code goes in brackets once.",
+     "7. A statement keeps the word of its layer: checked (Lean), paper, tested n/N, premise. A Conjecture is never written as a Lemma.",
+     "8. Existing Lean identifiers are not renamed (a rename costs a full rebuild); new Lean follows 2 to 5.", "",
+     "## The tree", "",
+     "Every name has one parent. Read bottom up: a counterexample or a theorem is a leaf, its parent is the concept it serves.", ""]
+    def walk(k, d):
+        v = N[k]
+        out.append("  " * d + f"- `{v['formal']}` · {v['role']} · **{k}**" + (f" (old: {v['code']})" if v["code"] and v["code"] != v["formal"] and v["code"] != k else "") + (f": {v['means']}" if v["means"] else ""))
+        for c in kids.get(k, []): walk(c, d + 1)
+    walk(ROOT, 0)
+    open("NAMES.md", "w").write("\n".join(out) + "\n")
 
-# coverage: which code-like tokens of the key documents have no name yet
-codes = " ".join(v["code"] + " " + k for k, v in N.items())
-docs = ["one-not/DEAD_ENDS.md", "notes/synthesis/collation-2026-11-24.md", "one-not/FINDINGS_2026-11-24.md"]
-tok = {}
-for d in docs:
-    for t in re.findall(r"\b(?:cx[A-Za-z0-9_]+|[A-Z][A-Za-z]*[0-9][A-Za-z0-9']*|[A-Z]{2,}(?:-[A-Z0-9]+)+|[A-Z][a-z]+[A-Z][A-Za-z0-9]*)\b", open(d).read()):
-        tok[t] = tok.get(t, 0) + 1
-miss = sorted(((c, t) for t, c in tok.items() if t not in codes), reverse=True)
-print(len(N), "names;", len(tok) - len(miss), "of", len(tok), "code tokens of", len(docs), "documents named")
-print("unnamed, most used:", " ".join(f"{t}({c})" for c, t in miss[:40]))
+    # coverage: which code-like tokens of the key documents have no name yet
+    codes = " ".join(v["code"] + " " + k for k, v in N.items())
+    docs = ["one-not/DEAD_ENDS.md", "notes/synthesis/collation-2026-11-24.md", "one-not/FINDINGS_2026-11-24.md"]
+    tok = {}
+    for d in docs:
+        for t in re.findall(r"\b(?:cx[A-Za-z0-9_]+|[A-Z][A-Za-z]*[0-9][A-Za-z0-9']*|[A-Z]{2,}(?:-[A-Z0-9]+)+|[A-Z][a-z]+[A-Z][A-Za-z0-9]*)\b", open(d).read()):
+            tok[t] = tok.get(t, 0) + 1
+    miss = sorted(((c, t) for t, c in tok.items() if t not in codes), reverse=True)
+    print(len(N), "names;", len(tok) - len(miss), "of", len(tok), "code tokens of", len(docs), "documents named")
+    print("unnamed, most used:", " ".join(f"{t}({c})" for c, t in miss[:40]))
+
+
+if __name__ == "__main__":
+    build()

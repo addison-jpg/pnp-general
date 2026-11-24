@@ -5,7 +5,7 @@ This file collates what is on `BOARD.md` (THE WALL) and in `one-not/board/agents
 plus cTAHG's `0c92c69`. The 951 coordinator has its own collation, `one-not/FINDINGS_2026-11-24.md`,
 local to its session.
 
-Names: every term below is in `NAMES.json` / `NAMES.md` (one flat tree, name -> parent); the old code is in brackets.
+Names: every term below is in `names.py` (readable tree: `NAMES.md`) (one flat tree, name -> parent); the old code is in brackets.
 
 Words: **checked** = the Lean checker accepted a proof (axioms `propext`, `Classical.choice`,
 `Quot.sound`). **proved (paper)** = a complete written argument, not in Lean. **tested n/N** = a

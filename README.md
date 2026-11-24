@@ -95,7 +95,7 @@ How the proof extends itself: the step is a derivative, the count is its integra
 |---|---|
 | `lean/` | the Lean project; `PEqualNP/General/` (L-gen), `PEqualNP/QuantumGravity/` (L-qg), barriers under `PEqualNP/Library/` |
 | `one-not/` | the Theorem above: `lean/PEqualNP/W951/`, counterexamples in `data/witnesses/`, tests in `tools/kill_tests/`, [`one-not/README.md`](one-not/README.md) |
-| `notes/`, `tools/`, `MST.json`, `NAMES.json` | write-ups; build queue, checker, name generator; the file tree and the name tree as data |
+| `notes/`, `tools/`, `MST.json`, `names.py` | write-ups; build queue, checker; the file tree as data; the name tree (single source, generates `NAMES.md`) |
 
 The Lean project started from `brilliant-hq/pequalnp-proofs` (Apache License 2.0); see [License](#license).
 
