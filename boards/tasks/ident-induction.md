@@ -9,7 +9,8 @@
 - **Data (tested, not checked):** one-not/research/front612-lateral/. Plain IDENT 9,089 / 9,089 where an admissible
   pair exists; 18,899 circuits have none (dense systems: K4, fixh16, triples). IDENT+ 18,899 / 18,899, but 16,894 of
   those are plain output deletion (excluded for MinCE); identification is needed on 2,005.
-- **Next:** (1) test on minimal-like circuits (R1-R6 reduced; SAT Fano 66; c3_norewire_corpus); (2) paper: (kill)
+- **Minimal-like test (done):** only 8 corpus circuits are rewire-irreducible with the NOT read; IDENT+ holds on all 8, genuinely (identification needed) on 3; the other 5 violate MinCE.outDel, so they are uninformative. No counterexample among outDel-respecting circuits; evidence thin (3).
+- **Next:** (1) SAT-generate rewire-irreducible, outDel-respecting, NOT-read circuits and rerun; (2) paper: (kill)
   from the first merge gate joining u, v; (adm) from MinCE facts or a choice of (u, v); (3) Lean: input substitution.
 - **Done when:** a paper proof of IDENT (or IDENT+) for MinCE, or a minimal-like counterexample.
 - **Owner:** open (proposed by front612, 2026-11-24).
