@@ -112,12 +112,14 @@ ProofComplexity, Search, Outside) are here unchanged.
   argument closes the case). Resumed by the owner ("go") after a stand-down; next rows are ranked in
   `notes/general/generalize-ladder-survey.md`. MERGE with desktop GeNeRALIZE (owner via Discussion: "this is useful it should merge"): proposed that
   this session is the live seat; GeNeRALIZE agrees if the owner confirms in its chat, and is not closed.
-- session_01GmnDhczcdJyEX4WwHrrzPx (desktop GeNeRALIZE; its own words, not verified by Generalize): pequalnp-work branch
-  claude/funny-maxwell-o4s4k1 @ bcb1d99, all Lean-checked. Edge function: W6/W4 exact |E|+tau-1 with NOT counted
-  (EdgeFnWindow*.lean), w6_not_free ("0 NOTs suffice", exact), c4_upper, biclique_upper, S612/Classes.lean. Constants made
-  variable: sat_ratio, graphPHP_no_pc_general, funPHP_upper, PermIsotropicGeneral, witness_family, cross_refutation,
-  linear_four_lb (n <= 15), linear_sets_lb, and others. Notes note-2, note-3 (density barrier). Unfinished: path gadget
-  L-meta-574 for h = 1, 2; 4-set count past n = 15 (may be false); width-2 cross formula. Nothing running there.
+- session_01GmnDhczcdJyEX4WwHrrzPx (desktop GeNeRALIZE; owner in its own chat: "work in pnp-general ALWAYS"): its checked work is now
+  HERE on main (imported 1:1 from pequalnp-work claude/funny-maxwell-o4s4k1 @ bcb1d99; builds; every main theorem std axioms):
+  MetaComplexity/Helpers/EdgeFnWindow*.lean (W6, W4: exact |E|+tau-1 with NOT gates counted; w6_not_free = 0 NOTs suffice),
+  EdgeFnC4/EdgeFnBiclique*.lean (upper side: edge-disjoint K_{p,b} inside a cover save sum (p-1)(b-1)), S612/ (612 Target
+  on W6 and max-deg-3 W4), constants made variable (SatRatio: SAT not in SIZE((a/b)n+c) for a/b<5/4; FunPHPUpper with
+  L027: PC degree of functional PHP in ((N+1)/2, N+1]; PermIsotropicGeneral; WitnessFamily; CrossGeneral; LinearFourLB
+  (n<=15); LinearSetsLB; GraphPHPGeneral; ...), notes/note-2, note-3 (density barrier for the NOT basis). Unfinished: path
+  gadget L-meta-574 for h=1,2; 4-set count past n=15; width-2 cross formula. Not closed; merge with Generalize pending.
 - session_01GmnDhdRKvz5Z7gneQqGG3V (machines-Lean = Lean helper of tractability, ex QG L-qg-103; attached here 09:25 with owner
   OK in its own chat; lands in 951/lean itself, coord spot-verifies): in 951/: MergeWorld + hval bridge, sum_equivFin(_subtype),
   MergeWorld2 (HeavySet, onlyMixed_iff, refined load split), Peel2 dedup into W951Cube, audit #21 (Small3 exists_second3K,
