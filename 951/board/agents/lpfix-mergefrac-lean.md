@@ -97,3 +97,14 @@ Coord 09:24: (1) state CU, (2) CU => MergePrice, (3) refined variant. File: 951/
   (Case II v2); circuit CU `ChainWorldOn` (worlds World0 / not World0) + `WorldUniformOn` => `mergePriceOn_of_chainWorldOn`;
   `no_minCE_of_chainPick`, `no_minCE_of_chainWorld`. Axioms: propext, Classical.choice, Quot.sound (13 theorems).
 - Suggested data check (scaffold / research): ChainPick and WorldUniform on the corpus (chains of level sets of optimal duals).
+- (10:10) Answers to coord's CU spec items not covered above:
+  WORLDS: ChainWorldOn uses world false = World0 (h z = 1), world true = not World0 (h z = 0): a PARTITION of all allowed points,
+  mixed points included (referee's requirement). MergeWorld's World1 (h(z + e_u) = 0 for all u) is narrower; using it for world 1
+  would drop the mixed points and give the NoMixed form, which is false on data. So h(z) = 0 is the right world 1 here.
+  REPAIR TERM (item 3), exact: fix the chain U_t, weights c_t >= 0 (layer cake of π) and the CU world choice b. With
+  F_w^b(A) = min over world-b points of |M_z(w) ∩ A| and m_w^b(π) = min over world-b points of π(M_z(w)), MergePrice follows iff
+      Σ_w [ m_w^{b(w)}(π) − Σ_t c_t F_w^{b(w)}(U_t) ]   <=   Σ_t c_t ( |U_t| − Σ_w F_w^{b(w)}(U_t) ),
+  i.e. the within-world layer-cake gap (left, >= 0, zero under WorldUniform) must be paid by the CU slack (right, >= 0). In
+  cu_counterexample the gap is 1 (set 0) and the slack is 0. ChainPick / ChainSDR makes the gap zero for the picked bundles.
+  MergeSDR (dZb2E) => ChainPickOn on all zero points directly (disjoint merge sets pass every level), so it lands through
+  mergePrice_of_chainPick as well.
