@@ -35,7 +35,7 @@ def cone(c, o):
 
 def correct(c):
     n = c["n"]
-    if n > 14: return None
+    if n > 18: return None  # n <= 18 checked exhaustively (was 14; Research 09:43 found 6 circuits with n = 15..18)
     return all(evaluate(c, x)[c["outs"][w]] == int(any(x[u] for u in S))
                for x in itertools.product([0, 1], repeat=n) for w, S in enumerate(c["sets"]))
 

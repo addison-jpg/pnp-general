@@ -57,6 +57,7 @@ import PEqualNP.Defs.QuantumGravity
 import PEqualNP.Defs.QuantumGravityCodes
 import PEqualNP.Defs.QuantumGravityCtc
 import PEqualNP.Defs.QuantumGravityCircuits
+import PEqualNP.Defs.QuantumGravityChannels
 import PEqualNP.Defs.General
 
 /-!

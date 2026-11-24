@@ -1,4 +1,5 @@
 import PEqualNP.W951.PriceOff
+import PEqualNP.W951.ChainPick
 
 /-!
 # MergeSDR: one zero point per set, pairwise disjoint merge sets
@@ -10,6 +11,9 @@ This is the integral form of `MergeFrac`:
   `mergePrice_of_mergeSDR`, `bound_of_mergeSDR` (the 951 bound) and `no_minCE_of_mergeSDR`;
 * `mergeSDR_of_integral`: conversely, a `MergeFrac` family with values in `{0, 1}` is a `MergeSDR`.
 So `MergeSDR` is exactly `MergeFrac` with an integral `μ`.
+* `chainPickOn_of_mergeSDR` (cTAHG's bridge): a MergeSDR is a `ChainPickOn` on all zero points with
+  the same pick for every chain, so MergeSDR is the strongest of the three targets
+  (MergeSDR ⇒ ChainPick ⇒ MergePrice, `mergePrice_of_chainPick`).
 -/
 
 namespace PEqualNP.Outside.L_meta_951_aux
@@ -120,6 +124,26 @@ theorem mergeSDR_of_integral (μ : Fin m → (Fin n → Bool) → ℝ)
     have hb1 := hfw b hb
     change ∑ w, f w ≤ 1 at this
     linarith
+
+/-- **MergeSDR ⇒ ChainPickOn** (all zero points): the chosen merge sets are pairwise disjoint, so
+they meet every gate set `U` in at most `|U|` gates in total; one pick serves every chain. -/
+theorem chainPickOn_of_mergeSDR (h : MergeSDR S gates) :
+    ChainPickOn S gates (fun w => zeroPts (S w)) := by
+  classical
+  obtain ⟨z, hz, hdisj⟩ := h
+  intro U _
+  refine ⟨fun w => mergeIdx gates (S w) (z w), fun w => ?_, fun i => ?_⟩
+  · exact Finset.mem_image_of_mem _ (mem_zeroPts.mpr (hz w))
+  · have hd : ∀ a ∈ (Finset.univ : Finset (Fin m)), ∀ b ∈ (Finset.univ : Finset (Fin m)), a ≠ b →
+        Disjoint (mergeIdx gates (S a) (z a) ∩ U i) (mergeIdx gates (S b) (z b) ∩ U i) := by
+      intro a _ b _ hab
+      rw [Finset.disjoint_left]
+      intro x hxa hxb
+      have ha := mem_mergeIdx.mp (Finset.mem_inter.mp hxa).1
+      have hb := mem_mergeIdx.mp (Finset.mem_inter.mp hxb).1
+      exact Finset.disjoint_left.mp (hdisj a b hab) ha hb
+    rw [← Finset.card_biUnion hd]
+    exact Finset.card_le_card (Finset.biUnion_subset.mpr fun w _ => Finset.inter_subset_right)
 
 end SDR
 

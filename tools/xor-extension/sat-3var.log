@@ -1,0 +1,28 @@
+m 3 classes [2, 14, 143, 191]
+f 2 r 6 shape False UNSAT 0.1 None
+f 14 r 6 shape False UNSAT 0.1 None
+f 143 r 6 shape False UNSAT 0.1 None
+f 191 r 6 shape False UNSAT 0.0 None
+m 4 classes [46, 60, 139, 153]
+f 46 r 7 shape False UNSAT 0.5 None
+f 60 r 7 shape False UNSAT 0.5 None
+f 139 r 7 shape False UNSAT 0.4 None
+f 153 r 7 shape False UNSAT 0.5 None
+m 5 classes [6, 26, 30, 62, 131, 135, 155, 159]
+f 6 r 8 shape False UNSAT 5.2 None
+f 26 r 8 shape False UNSAT 6.2 None
+f 30 r 8 shape False UNSAT 5.0 None
+f 62 r 8 shape False UNSAT 4.3 None
+f 131 r 8 shape False UNSAT 4.4 None
+f 135 r 8 shape False UNSAT 4.2 None
+f 155 r 8 shape False UNSAT 4.8 None
+f 159 r 8 shape False UNSAT 4.4 None
+m 6 classes [24, 45, 126, 129, 189]
+f 24 r 9 shape False UNSAT 74.1 None
+f 45 r 9 shape False UNSAT 36.8 None
+f 126 r 9 shape False UNSAT 80.5 None
+f 129 r 9 shape False UNSAT 49.7 None
+f 189 r 9 shape False UNSAT 53.3 None
+m 7 classes [22, 151]
+f 22 r 10 shape False UNSAT 1359.9 None
+f 151 r 10 shape False UNSAT 1077.2 None
