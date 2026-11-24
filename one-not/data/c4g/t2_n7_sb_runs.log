@@ -1,0 +1,2 @@
+k4tri n=7 base=12 s=11 t<=2: UNSAT  (1932.7s, 501186 clauses)
+fano6 n=7 base=12 s=11 t<=2: UNSAT  (1492.0s, 501186 clauses)
