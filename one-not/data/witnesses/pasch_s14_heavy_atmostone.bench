@@ -1,0 +1,29 @@
+# pasch_s14_heavy_atmostone: 6 inputs, 4 sets, 14 gates, 1 NOT gate
+INPUT(x0)
+INPUT(x1)
+INPUT(x2)
+INPUT(x3)
+INPUT(x4)
+INPUT(x5)
+OUTPUT(g10)
+OUTPUT(g11)
+OUTPUT(g12)
+OUTPUT(g13)
+#@ or g10 = x0 x1 x2
+#@ or g11 = x0 x3 x4
+#@ or g12 = x1 x3 x5
+#@ or g13 = x2 x4 x5
+g0 = OR(x1, x4)
+g1 = NOT(g0)
+g2 = OR(x1, g1)
+g3 = AND(g0, g2)
+g4 = OR(x3, g3)
+g5 = OR(x0, x3)
+g6 = OR(x4, g2)
+g7 = OR(x2, g3)
+g8 = OR(x2, x5)
+g9 = OR(x0, g7)
+g10 = AND(g6, g9)
+g11 = OR(x4, g5)
+g12 = OR(x5, g4)
+g13 = OR(x4, g8)

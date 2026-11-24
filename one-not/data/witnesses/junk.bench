@@ -1,0 +1,21 @@
+# junk: 5 inputs, 3 sets, 9 gates, 1 NOT gate
+INPUT(x0)
+INPUT(x1)
+INPUT(x2)
+INPUT(x3)
+INPUT(x4)
+OUTPUT(g6)
+OUTPUT(g7)
+OUTPUT(g8)
+#@ or g6 = x0 x1 x2
+#@ or g7 = x1 x3
+#@ or g8 = x2 x4
+g0 = AND(x0, x3)
+g1 = AND(x0, x4)
+g2 = NOT(g0)
+g3 = OR(x1, g0)
+g4 = OR(x2, g1)
+g5 = OR(g3, g4)
+g6 = OR(g5, x0)
+g7 = OR(x1, x3)
+g8 = OR(x2, x4)

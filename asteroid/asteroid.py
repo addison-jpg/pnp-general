@@ -5,7 +5,8 @@
   matplotlib  pictures                                       (asteroid/out/*.png)
 A script is a list of lines; `#` starts a comment. The verbs:
 
-  let NAME = load FILE.json                  a circuit {"n","sets","gates","outs"}
+  let NAME = load FILE.bench                 a circuit in the ISCAS .bench format (asteroid/BENCH.md); also FILE.json
+  save NAME -> FILE.bench                    write a circuit as a .bench file
   circuit NAME N                             a circuit written in the script, N inputs named 0 .. N-1, until `end`:
     W = or X Y | W = and X Y | W = not X       a gate; X, Y are inputs or earlier gate names
     set I J K -> W                             the output for the set {I, J, K} is the wire W
@@ -235,7 +236,7 @@ def run(script):
             else: raise SystemExit(f"{script}:{ln}: cannot parse inside circuit: {line}")
             continue
         if m := re.fullmatch(r"circuit (\w+) (\d+)", line): check_name(m.group(1), f"{script}:{ln}"); block = (m.group(1), int(m.group(2)), {}, [], [], []); continue
-        if m := re.fullmatch(r"let (\w+) = load (\S+)", line):
+        if m := re.fullmatch(r"let (\w+) = load (\S+\.json)", line):
             check_name(m.group(1), f"{script}:{ln}")
             d = json.load(open(m.group(2))); env[m.group(1)] = {k: d[k] for k in ("n", "sets", "gates", "outs")}; src[m.group(1)] = m.group(2)
             print(f"{ln}: {m.group(1)} loaded ({d['n']} inputs, {len(d['gates'])} gates)")

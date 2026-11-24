@@ -1,0 +1,23 @@
+# see_gap_n5: 5 inputs, 3 sets, 11 gates, 1 NOT gate
+INPUT(x0)
+INPUT(x1)
+INPUT(x2)
+INPUT(x3)
+INPUT(x4)
+OUTPUT(g6)
+OUTPUT(g5)
+OUTPUT(g8)
+#@ or g6 = x0 x1
+#@ or g5 = x1 x2 x3 x4
+#@ or g8 = x0 x2
+g0 = OR(x4, x1)
+g1 = OR(x3, x2)
+g2 = AND(g0, g0)
+g3 = NOT(g2)
+g4 = OR(x0, x0)
+g5 = OR(g1, g2)
+g6 = OR(g4, x1)
+g7 = AND(x1, x1)
+g8 = OR(x2, x0)
+g9 = OR(g2, g4)
+g10 = AND(g8, g3)

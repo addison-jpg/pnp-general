@@ -1,0 +1,23 @@
+# ess_rand_clean_744: 5 inputs, 4 sets, 9 gates, 1 NOT gate
+INPUT(x0)
+INPUT(x1)
+INPUT(x2)
+INPUT(x3)
+INPUT(x4)
+OUTPUT(g8)
+OUTPUT(g4)
+OUTPUT(g2)
+OUTPUT(g7)
+#@ or g8 = x0 x3
+#@ or g4 = x1 x2 x4
+#@ or g2 = x2 x3
+#@ or g7 = x1 x3
+g0 = AND(x2, x3)
+g1 = OR(x1, g0)
+g2 = OR(x2, x3)
+g3 = OR(x4, g1)
+g4 = OR(x2, g3)
+g5 = NOT(x2)
+g6 = AND(g2, g5)
+g7 = OR(g1, g6)
+g8 = OR(x0, x3)
