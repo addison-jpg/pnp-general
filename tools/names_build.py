@@ -50,8 +50,8 @@ for name, code, means in [
  ("pure class in world 1", "I1", "a class of a set read at a zero point in world 1"),
  ("lifted circuit", "lift, y", "the NOT gate replaced by a fresh input y; a monotone circuit for a partial function"),
  ("lifted class", "", "a class of a set read in the lifted circuit; need not sit above the zero point"),
- ("set of type A", "type A", "a set w with h(top_w) = 1, where h is the input of the NOT gate and top_w is the point that is 1 exactly off S_w; equivalently some minterm of h avoids S_w. The other sets (h(top_w) = 0) are the FREE sets, whose world-1 classes K_1(w) at top_w are pairwise disjoint (W1). Source: research-typeA-menus.md, research-typeA-increment.md"),
- ("set of type B", "type B", "the NOT input is 0 at the point with every input outside the set equal to 1 (h(top_w) = 0)"),
+ ("set of type A", "type A", "meaning not re-derived here: see CanonClass.lean and research-typeA-increment.md"),
+ ("set of type B", "type B", "meaning not re-derived here: see fable-global-price.md"),
  ("output in two-world normal form", "DD, DD-normal", "the output equals (set OR) AND h on one face and (set OR) OR h on the other"),
 ]: add(name, O, "object", code, means)
 
@@ -64,8 +64,8 @@ for name, code, means, st in [
  ("every gate is read", "R4, live", "", "checked"),
  ("the NOT gate is essential", "R5', not_used", "both faces are incorrect", "checked"),
  ("observability", "R+, observable", "a constant put on any nonempty set of readers of a wire makes the circuit incorrect", "checked"),
- ("no gate-saving rewiring", "R6, no_rewire", "no gate input can be moved to another wire so that the circuit stays correct and a gate goes unread", "checked"),
- ("private NOT cone", "R7", "a gate that depends on the NOT gate, whose NOT-dependent feeding gates are read only inside its cone, differs from both faces C_0 and C_1; an instance of observability with the NOT gate as the wire", "paper"),
+ ("no gate-saving rewiring", "R6, no_rewire", "no gate input can be moved to another wire so that the circuit stays correct and a gate goes unread", "paper; Lean local to another session"),
+ ("private NOT cone", "R7", "meaning not re-derived here: see 951/FINDINGS_2026-11-24.md", "reported"),
 ]: add(name, F, "fact", code, (means+" " if means else "")+"["+st+"]")
 
 # ---- the count: families and targets
@@ -151,7 +151,7 @@ for name, code, parent, means in [
  ("adversary against the two-point menu", "ADV3", fam[0][0], "load 1.2"),
  ("adversary against the general world laws", "ADV4", fam[1][0], ""),
  ("junk circuit where a light point fails", "JUNK, junk.json", fam[4][0], ""),
- ("five-input gap for seen gates", "see_gap_n5.json", fam[4][0], "meaning not re-derived here"),
+ ("five-input gap for seen gates", "see_gap_n5.json", fam[4][0], "n = 5, sets {0,1}, {1,2,3,4}, {0,2}, h = x1 or x4, cube Q = {0}: at v = 1 only 2 of the 3 gates of F2(Q) are 1 at Q + e_v (cost 3) while the step holds; the third gate x2 or x3 dies because all its witnesses come from the one set through v (K3). Why the count needs the K3 term (dwV8p)"),
 ]: add(name, parent, "witness", code, means)
 
 # ---- second pass (bottom up): every remaining code of the key documents
@@ -178,11 +178,11 @@ for name, code, parent, means in [
  ("cross-world disjointness at every world-1 point", "D1", B_, "refuted, 4 collisions in 31,587 circuits"),
  ("heavy-first step", "F6", B_, "'a heavy point exists => some heavy point satisfies the step'; refuted"),
  ("no mixed zero points", "NoMixedPrice", B_, "refuted in the plain form"),
- ("seen gates and the three-case rule", "SEE+K3, SEE0, K0, K3, F2SeeK3", S, "a sufficient rule for the point step read from gates that see the point; false for all correct circuits"),
+ ("seen gates and star-only gates", "SEE+K3, SEE0, K0, K3, F2SeeK3", S, "SEE+K3: some point v has at least cost(v) gates of F2(Q) that leave it, counting the gates that are 1 at Q + e_v (SEE, minus survivors; K0 / K1 / F1* say which survive) and the gates whose witnesses all come from sets through v (K3). The reduction GainF2 <= SEE+K3 is checked in Lean (F2SeeK3.lean); the count itself fails on the twin trees, so it is not true for all correct circuits"),
  ("light-star rule", "LIGHT-STAR, LightStar, F2Light", S, "the point step at a light point from the star of the point; false for all correct circuits"),
- ("absorb and reroute", "ABSORB, REROUTE, INTERNAL", S, "bookkeeping forms of the point step; false for all correct circuits"),
+ ("absorb and reroute", "ABSORB, REROUTE, INTERNAL", S, "ABSORB is the point step at v rewritten with the first-joining gates (bookkeeping, equivalent to the step); REROUTE and INTERNAL are stronger sufficient forms (INTERNAL also fails on star4 at Q = empty); all three fail with the step on the twin trees"),
  ("cone certificate", "CERT-1c, CERT-3c, CertStair, (D)+(S)", S, "death (D) and disjointness (S) of cone merge sets"),
- ("local closure by weight one", "LW1", "local cube", "every alive set has a zero point inside the cube, off the set, where the NOT input is 0, light points stay light there, and any two alive sets have one set with at most one point outside the other set's zero point; then base(Q) <= |F2(Q)| (baseDQ_le_F2_of_LW1)"),
+ ("local closure by weight one", "LW1", "local cube", "a second closure of a cube used in CubeF2.lean; meaning not re-derived here"),
  ("full charging without the cone", "ChargeOK", D_, "refuted, 3 counterexamples"),
  ("acyclic forcing in gate order", "P2", D_, "refuted"),
  ("merge-set law without its two conditions", "S1", B_, "false"),
