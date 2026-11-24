@@ -1,3 +1,5 @@
+<picture><source media="(prefers-color-scheme: dark)" srcset="../site/logo-dark.svg"><img alt="4ST3RO1D (asteroid)" src="../site/logo-light.svg" height="56"></picture>
+
 # asteroid
 
 A small language over three engines (owner, 2026-11-24: "lean for brute force, python for speed/background,

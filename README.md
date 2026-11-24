@@ -1,3 +1,5 @@
+<picture><source media="(prefers-color-scheme: dark)" srcset="site/logo-dark.svg"><img alt="4ST3RO1D (asteroid)" src="site/logo-light.svg" height="56"></picture>
+
 # pnp-general (by addison-jpg)
 
 The higher level gist is: quantum/gravity relativity maps onto the relativity barrier to P/NP, and can help bypass it.
