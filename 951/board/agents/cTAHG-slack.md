@@ -31,5 +31,9 @@ Lex-minimality makes every proper subfamily, computed by a correct circuit with 
 - `MinCE.sub_bound` / `MinCE.elim_lt` (new) are the full x := 1 form for any correct circuit of the subfamily, with constants, copies and duplicates counted too.
 - Earlier notes (work/notes951/hard_induction.md, 'variable-fixing induction: fan-out < degree') counted dead gates only; the GE above counts the whole trivial simplification.
 
-## 5. Open
-GE for all correct one-NOT circuits with R1–R5′ (the variable-fixing step with full simplification). It is not refuted by MATCH-C or the twin trees; it needs the 46k SAT corpus near base (asked of qg-d2). A paper proof of GE at the top, or a witness against it, decides this route.
+## 5. Outcome on the 46k corpus (qg-d2, board qg-d2-elim.md, 13:58): GE is 951 in disguise
+- GE holds on 46,097 / 46,097 circuits, and the F2 step never holds without GE.
+- But by the identity elim1(v) − cost(v) = (s − base) − (s1(v) − base({v})), GE ⟺ ∃ v: slack(C_v) ≤ slack(C), where slack = s − base.
+- On the 2,112 tight circuits (s ≤ base + 3), best = s − base EXACTLY. So the best restriction is TIGHT: s1(v) = base({v}), slack 0. (Not "keeps the slack": it removes all of it.) In total, min_v slack(C_v) ≤ slack(C) on 46,029; the 68 exceptions have restrictions with more slack than C.
+- So on the corpus GE ⟺ slack(C) ≥ 0 ⟺ 951 for C itself; the data give no independent evidence for GE at a MinCE. Slack monotonicity ("some x_v := 1 does not increase s − base") is the exact content of the elimination step, and it is FALSE for 68 correct circuits.
+- Conclusion for (b): what gates < base buys is exactly lex-minimality on subfamilies (`MinCE.sub_bound`, `elim_lt`). Every closing step at the top (elimination, or F2 via |F2| ≤ s) is 951-strength there. A route needs an intermediate quantity that can exceed s − base under restriction (the F2 count can: on MATCH-C |F2(∅)| − base = 15 < s − base = 32, yet the F2 count holds at every cube).
