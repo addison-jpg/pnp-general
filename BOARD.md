@@ -84,6 +84,12 @@ the Generalize sessions: literature and generalization. warden: compute and mode
 quantum gravity sessions: the right-hand column of the track pairs, as helpers of the roles
 coord paired them with. Integration of this board: session_01GmnDhfo8QCanitMDqFa2x1.
 
+**Watch (2026-11-24, raised by tractability).** There are two different `PEqualNP.Kernel` circuit
+kernels: `lean/PEqualNP/Kernel/Circuit.lean` (root project) and `951/lean/PEqualNP/Kernel/Circuit.lean`
+(the 951 kernel, which the 951 modules depend on). Tractability proposed to coord: drop the root
+one and merge `951/lean` into `lean/`. Until coord decides, do not build new work on the root
+`Kernel`.
+
 **Rules.** A row is "checked": no `sorry`, only `propext`, `Classical.choice`, `Quot.sound`.
 Open statements are `Prop` definitions. Physics premises never enter a Lean statement. Old
 repositories are frozen as they are; new work lands here. Models: avoid Fable runs, a few are
