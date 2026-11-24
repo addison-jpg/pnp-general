@@ -47,3 +47,13 @@ K4-e graph circuits, restrict to ∪F for every F and compare restricted pure cl
     gate), so gates' must come from substitution + simplification, which renames/removes gates; nothing in Lean tracks that
     gate map. The heredity route therefore needs a restriction lemma that tracks the gate map (cTAHG's assigned 'heredity
     restriction lemma'), or a formulation that keeps the original gates and restricts only the evaluation points.
+## 6. Referee refinements (desktop Coord 11:39, accepted points (a)/(b) above)
+- Generalized pureI0 is NOT free: the GM (Lemma M) count needs 'every variable outside Z0 lies in <= 1 atom m_u ∪ {u}'.
+  At Z0 = top_w only S_w is outside, so it is automatic; at a smaller Z0 a variable v ∉ S_w ∪ Z0 may lie in several m_u and
+  break the union-find count. Proposed statement: pureI0 at (Z0, atoms) with h(Z0) = 1, h(atom_u) = 1, atom_u ∩ S_w = {u}
+  and 'every v ∉ Z0 lies in <= 1 atom'. For an EMBEDDED restricted class this holds (atoms ⊆ ∪F; variables off ∪F lie in no
+  atom; inside ∪F the variables off the restricted top are exactly S_w), so restricted I0 classes embed.
+- Better route (referee): no circuit heredity at all. Run the Hall / deficiency induction (Halmos-Vaughan, Ore; §1) on the
+  SAME circuit with RESTRICTED MENUS: for a subfamily F, the pure classes at embedded points (coordinates off ∪F equal 0).
+  Menus shrink monotonically by construction, the counting uses one gate list, and no gate map is needed. MinCE.heredity is
+  only needed when passing to a smaller COUNTEREXAMPLE, which a PureSDR induction does not do.
