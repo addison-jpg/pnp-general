@@ -91,6 +91,22 @@ ruled out by L-lib-076; both can be discarded before anyone spends time on them.
   along this analogy in either direction: the worlds of section 2 are oracles outside the machine;
   these two are the values of one wire inside the circuit (a restriction, as in gate elimination),
   which is why an argument that uses them does not relativize.
+- **A second decomposition of the same count (research, `951/board/agents/research-typeA-increment.md`).** Split the
+  sets by the NOT's input h at their top point top_w (1 off S_w): a set is FREE if h(top_w) = 0 and TYPE A if
+  h(top_w) = 1. Free sets cost nothing: their world-1 classes K_1(w) at top_w are pairwise disjoint and have d_w gates each
+  (W1, `disjoint_K1`, `card_K1`, checked), they lie in UC, and every count set of another set at a zero point Z that misses
+  S_v avoids K_1(v), in either world (P1/P2: one-line instances of Lemma D, `orClz_disjoint`; paper proofs, not yet Lean
+  statements). So MU over UC reduces to the TYPE-A INCREMENT INC_UC_A: the count sets of the type-A sets add
+  Σ_{type A} d_w gates outside the free classes. This fits the heavy / light split of the point induction: a heavy point u
+  (h(e_u) = 1) lies in EVERY free set (otherwise e_u ≤ top_w forces h(top_w) = 1), so the free sets are exactly the part
+  that one world settles, and they sit inside the star of every heavy point; the cross-world work that HEAVY-COUNT (front
+  A2, every heavy point) and LIGHT-COUNT (no heavy alive point) pay point by point is, summed over the induction, the
+  type-A increment. Proved: the reduction (W1 + P1/P2), and that every class gate of w lies at or before its output
+  wire. Open: INC_UC_A itself (tested, 0 failures on 19,828 corpus circuits, 67 repository circuits and the 6-circuit
+  barrier suite; tight on 8,442 and on Pasch s = 14). Refuted, so a proof must combine both worlds and may need zero points
+  that meet free sets: world 1 alone (848 corpus failures), world 0 alone (7 hand-built circuits), the heavy-point world
+  rules, the version over pure classes (cxMU_*), and the version restricted to zero points avoiding every free point
+  (68 corpus failures, K4 − e).
 - The ladder is the path from 951 to the general targets L-gen-101 to L-gen-103. Each rung adds
   NOT gates, i.e. more worlds per wire (k NOT gates: up to 2^k). The ladder is short: every
   function of n inputs is computed with ceil(log2(n+1)) NOT gates (Markov 1958), and a circuit of
