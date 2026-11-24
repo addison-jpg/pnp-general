@@ -10,7 +10,6 @@ State as of 2026-11-23 ~22:50 UTC. Credited steps for addison-jpg: 0.
 | 4 | Fano 13 gates, <=1 NOT | SAT search (refutes 951 if SAT) | tools/l951_charging/fano_cells_scaffold.py | all 13 cells decided | scaffold |
 | 5 | Q3 at 12 gates | SAT search | `python3 tools/stat_search/nb_search.py graph q3 --sat 12 --timeout 3000` | SAT => opt 12, UNSAT => 13-gate circuit optimal | free (coord's run died with its session) |
 | 6 | L-meta-1342 shard 21 | desk SEARCH step | lease held by front | witness file or `exhausted` release with program sha256 | front |
-| 7 | Small desk steps (arithmetic, ~50-90 min rows) | proof | `curl "https://pequalnp.com/desk/next?handle=addison-jpg&another=1"` | check.sh accepts, branch pushed, owner opens PR at once | free, one worker per step |
 | 8 | L-meta-1045 (C4-free weighted count) | proof (open, no argument held) | work/statements/L-meta-1045.json; notes below | proof or counterexample | free |
 | 9 | L-meta-612 (C4-free >= E + tau - 1) | proof (open) | work/statements/L-meta-612.json | proof | free |
 
