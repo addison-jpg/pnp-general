@@ -3,7 +3,7 @@
 # at most t NOT gates. SAT at s < base refutes C4(t); UNSAT at s = base - 1 is 'tested' evidence.
 # Every found circuit is re-verified by brute force on all 2^n inputs, and its general witness count
 # |witness(emptyset)| (D9: g(Z)=0, g(Z+e_u)=g(Z+e_u')=1, Z avoiding S_w, u != u' in S_w) is reported.
-# Run: python3 -I one-not/tools/kill_tests/c4t_sat.py SYSTEM s t [--exact-not] [--no-nn] [--enum K] [--out FILE]
+# Run: python3 -I one-not/tools/kill_tests/c4t_sat.py SYSTEM s t [--exact-not] [--no-nn] [--sb] [--enum K] [--out FILE]
 import sys, json, itertools, time
 from pysat.solvers import Solver
 from pysat.card import CardEnc, EncType
@@ -23,7 +23,7 @@ SYSTEMS = {
                    (0, 4, 8), (1, 5, 6), (2, 3, 7), (0, 5, 7), (1, 3, 8), (2, 4, 6)]),  # base 24
 }
 
-def build(n, sets, s, t, exact_not=False, no_nn=False):
+def build(n, sets, s, t, exact_not=False, no_nn=False, sb=False):
     N = 1 << n; nodes = n + s
     vid = [0]
     def new():
@@ -123,6 +123,16 @@ def build(n, sets, s, t, exact_not=False, no_nn=False):
             if g in dn: users.append(dn[g])
         users += [outv[w][k] for w in range(len(sets))]
         cl.append(users)
+    if sb:  # co-lexicographic gate order: if gate k+1 does not read gate k, its input key is not below gate k's
+        def keys(k):
+            d, dn = sel[k]
+            return [((j, i), x) for (i, j), x in d.items()] + [((i, i), x) for i, x in dn.items()]
+        for k in range(s - 1):
+            g = n + k; A = keys(k); B = keys(k + 1)
+            for kb, xb in B:
+                if g in kb: continue
+                for ka, xa in A:
+                    if kb < ka: cl.append([-xa, -xb])
     if no_nn:  # no NOT gate reads a NOT gate (removes trivial double negation)
         for k in range(s):
             d, dn = sel[k]
@@ -190,7 +200,7 @@ if __name__ == '__main__':
     n, S = SYSTEMS[name]
     base = sum(len(R) - 1 for R in S)
     t0 = time.time()
-    cl, typ, sel, outv, vid = build(n, S, s, t, exact, '--no-nn' in sys.argv)
+    cl, typ, sel, outv, vid = build(n, S, s, t, exact, '--no-nn' in sys.argv, '--sb' in sys.argv)
     sol = Solver(name='cadical153', bootstrap_with=cl)
     found = []
     while len(found) < K:
