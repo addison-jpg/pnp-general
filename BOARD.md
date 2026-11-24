@@ -10,7 +10,9 @@ Nothing on this board says that P versus NP is settled.
 **Goal.** Lower bounds for circuits of AND, OR and NOT gates with any number of NOT gates
 (`SIZE`, `PPoly` in `lean/PEqualNP/Defs/CircuitLowerBounds.lean`), with every method that fits:
 circuit complexity, quantum gravity, pure mathematics. Owner, 2026-11-24: one place, everyone
-merged, the merge is one-to-one, no refactoring of old material.
+merged, no refactoring of old material. The merge of sessions is one-to-one by role ("research->
+research xyz-> xyz"): two sessions that hold the same role become one seat, and agents talk to
+each other directly. The Discussion session (session_01GmnDheAyFnVcvRApd4xeES) runs the handoffs.
 
 **Targets (Lean statements in `lean/PEqualNP/General/Gaps.lean`).**
 
@@ -34,7 +36,7 @@ work reaches the general problem.
 | k | fixed `k`, then `k` growing | Amano, Maruoka 2005: clique with `(1/6) log log n` NOT gates |
 | top | `⌈log₂ (n + 1)⌉` | equal to unrestricted circuits up to a polynomial factor (gap L-gen-104) |
 
-**The one-to-one table: each P versus NP track beside its counterpart.**
+**Track pairs: each P versus NP track beside its counterpart.**
 
 | # | P versus NP side | Quantum gravity or pure-mathematics side | What the pair says |
 |---|---|---|---|
@@ -77,7 +79,7 @@ Nishino, Tanaka; Amano, Maruoka; Jukna.
 **Roles (they stay; coord assigns sessions).** coord: owns targets and assignments. front:
 proofs. scaffold: compute (SAT, LP, small exact sizes). tractability: Lean landing. research and
 the Generalize sessions: literature and generalization. warden: compute and model budget. The
-quantum gravity sessions: the right-hand column of the one-to-one table, as helpers of the roles
+quantum gravity sessions: the right-hand column of the track pairs, as helpers of the roles
 coord paired them with. Integration of this board: session_01GmnDhfo8QCanitMDqFa2x1.
 
 **Rules.** A row is "checked": no `sorry`, only `propext`, `Classical.choice`, `Quot.sound`.
@@ -89,6 +91,12 @@ acceptable; Sonnet is fine. Never run `lake update`.
 gravity, 4 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
 inherited from `brilliant-hq/pequalnp-proofs` (Library, CircuitLowerBounds, MetaComplexity, Gct,
 ProofComplexity, Search, Outside) are here unchanged.
+
+## Handoff lines (one per session: branch, commit, what is unfinished)
+- session_01GmnDhfo8QCanitMDqFa2x1 (quantum gravity coordinator; integrates this board): `pnp-general`
+  main; the same tree is on `pequalnp-work` `mirror/trusting-newton-2lz5jy` (342bed1). Unfinished:
+  gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the D-qg-2 card (density matrices) is on its
+  own session's branch, state not reported; the referee seat for angle C has received no claim.
 
 ## Subboard: general circuits (L-gen)
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.

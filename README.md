@@ -5,7 +5,7 @@ any number of NOT gates, attacked with circuit complexity, quantum gravity and p
 Every claim is a Lean 4 statement that the checker accepted against a pinned Mathlib; the word
 for that is "checked". **Nothing here says that P versus NP is settled.**
 
-- **The board:** [`BOARD.md`](BOARD.md): targets, the NOT gate ladder, the one-to-one table
+- **The board:** [`BOARD.md`](BOARD.md): targets, the NOT gate ladder, the track pairs
   between the P versus NP tracks and their quantum gravity counterparts, roles, next steps.
 - **The targets in Lean:** [`lean/PEqualNP/General/Gaps.lean`](lean/PEqualNP/General/Gaps.lean).
 - **Where the problem stands:** the best lower bounds for explicit functions on unrestricted
