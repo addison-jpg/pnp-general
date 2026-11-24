@@ -64,10 +64,40 @@ Python proposes, Lean decides: a `by lean` claim counts only when the generated 
 
 Axioms of the generated theorems: `propext` only.
 
+## What the Lean theorems mean
+
+A `by lean` theorem is a statement about asteroid's bit tables. These theorems, proved once for every circuit
+(axioms `propext`, `Classical.choice`, `Quot.sound`), turn it into a statement about the project's circuits
+(`Defs/CircuitLowerBounds.lean`: `Circuit.eval`). Files `one-not/lean/PEqualNP/W951/AsteroidSound.lean` and
+`AsteroidSound2.lean`. `C.toGates` is the circuit as a gate list of the project, `C.setFin w` is set number `w`
+as a `Finset (Fin n)`, `maskOf Q` is the cube `Q` as a bit mask.
+
+| Theorem | Says |
+|---|---|
+| `tables_testBit` | for every input vector `r < 2^n`, bit `r` of the table of a wire is the value of that wire at `r` (`Circ.wiresAt`) |
+| `correctB_sound` | `correctB C = true` ⇒ at every `r < 2^n` every output wire is the OR of the bits of `r` over its set |
+| `wiresAt_eq_wires` | that pointwise evaluation is the project's `Circuit.wires` on `C.toGates` |
+| `toGates_wf` | `C.toGates` has only AND, OR, NOT gates with at most two inputs |
+| **`correctB_sound_project`** | `correctB C = true` and one output per set ⇒ `Circuit.eval ⟨C.toGates, C.outs.getD w 0⟩ (List.ofFn x) = decide (∃ v ∈ C.setFin w, x v = true)` for every set `w` and input `x`: the correctness hypothesis of `L_meta_951` |
+| `hasWitnessAt_iff_F2Wit` | a table has an asteroid witness above the cube `Q` ⇔ the wire has a real witness (`F2Wit`) for a set alive at `Q` |
+| **`card_F2_eq_orWitnessAt`** | `orwitness` at the cube `Q` is `(F2 C.toGates C.setFin Q).card` (`F2Induct.lean`) |
+| `baseAt_eq_baseDQ` | `base` at the cube `Q` is the project's `baseDQ C.setFin ∅ Q` |
+| **`slackNonnegAll_sound`** | `forall cubes slack(c) >= 0` ⇒ `baseDQ … Q ≤ (F2 … Q).card` at every `Q` |
+| `MUF2_of_slackGe`, `base_le_gates_of_slackGe` | `slack(c) >= 0` ⇒ `MUF2`, and so Σ (\|S\| − 1) ≤ number of gates of `c` |
+
+The last five need `SetsOk`: every set is written without a repeated point and with points below N (asteroid
+counts list positions and reads table bits; with a repeated point or a point ≥ N the two counts can differ).
+For `examples/first.ast`: `first_ast_tiny_concrete` (the three OR gates of `tiny` compute `x0 ∨ x1 ∨ x2` and
+`x2 ∨ x3` under `Circuit.eval`) and `first_ast_tiny_slack`.
+
 ## What is not there yet
 
-- The Lean statements are about asteroid's own bit-parallel evaluator. The theorem tying it to the project's
-  `Circuit.eval` (and so to `no_minCE`) is not proved.
+- The soundness theorems are applied by hand: `asteroid.py` still writes only the statements about its own
+  evaluator (`correctB c = true`, …). It does not yet write the corollary in the project's terms next to each
+  claim, nor the proof of `SetsOk`. One hand-written instance exists (`first_ast_tiny_concrete`, `first_ast_tiny_slack`).
+- `witness` (gates of any type, `witnessCount`) is tied to nothing: the project's `F2` counts OR gates only.
+- `correct(c)` gives only the correctness hypothesis of `L_meta_951`. Its other hypotheses (every set has at
+  least 2 points, two sets share at most one point, at most one NOT gate) are not asteroid claims.
 - Python evaluates first and a false claim never reaches Lean, so Lean has not yet been seen to reject a claim
   Python accepted.
 - `forall cubes … by lean` is brute force: fine at 7 inputs, not at 14 (the twin trees have 16,384 cubes).

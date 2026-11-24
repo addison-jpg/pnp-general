@@ -41,6 +41,8 @@ WORD      := checked | paper | tested | refuted | open | premise
 
 Lean forms: `correct`, `witness`, `orwitness`, `slack` against an integer (or `base` for the two counts), and `forall cubes slack ≥ 0`.
 
+What a Lean form says about the project's circuits (`Circuit.eval`, `F2`, `baseDQ`): `one-not/lean/PEqualNP/W951/AsteroidSound.lean` (`correctB_sound_project`) and `AsteroidSound2.lean` (`card_F2_eq_orWitnessAt`, `slackNonnegAll_sound`); table in `README.md`, section "What the Lean theorems mean". Not covered: `witness`.
+
 ## Result of a run
 
 Exit code 0 when every claim is true and (unless `--no-lean`) the Lean module builds; 1 otherwise. A `record` writes a finding to `findings.jsonl` in DIR, citing the program and the Lean theorem, only on exit code 0.
