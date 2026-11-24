@@ -20,6 +20,7 @@ is a set of at least `d_w` lifted gates. Here it is stated for an arbitrary MENU
   (`realLTS`, PureLLift: zero point `(z, ν z)`, atoms `(z + e_u, ν(z + e_u))`) with `Q ⊆ z`,
   `z ∩ S_w = ∅`. `menu2_mono`, `menu2_sound`, `no_minCE_of_starSep2`, `no_minCE_of_starCount2`.
   (`starSep_heavy` stays a Menu1 lemma.)
+* L-U_v (front A2): `ltsCls_zero`, `menu2_U_zero` (every gate of `U(Q)` is `0` at `(Q, 0)`).
 -/
 
 namespace PEqualNP.Outside.L_meta_951_aux
@@ -220,6 +221,49 @@ theorem menu2_sound (gates : List Gate) (p : ℕ) (hp : p < gates.length)
       pureCls_subset gates p (S w) c⟩
   · exact ⟨card_ltsCls gates p hp hg hU hN (S w) (out w) _
       (realLTS_valid gates p hp hg hU hN (S w) (out w) (hev w) z hzS), ltsCls_subset gates p (S w) _⟩
+
+/-! ## L-U_v (front A2, 12:21): every gate of `U(Q)` is `0` at `(Q, 0)` -/
+
+/-- A gate of a lifted class is `0` at the class's zero point. -/
+theorem ltsCls_zero {gates : List Gate} {p : ℕ} {R : Finset (Fin n)} {t : LTS n} {i : ℕ}
+    (hi : i ∈ ltsCls gates p R t) : val (lift n p gates) t.zero i = false := by
+  classical
+  have h := run_sub_DT _ _ _ _ _ hi
+  rw [DT, Finset.mem_filter] at h
+  exact h.2.1
+
+/-- **L-U_v for Menu2**: every gate of `U(Q)` (the Menu2 classes of the sets alive at `Q`) is `0` in
+`C_0` at the point `Q` (`(Q, 0)` in the lift). Every Menu2 zero point lies above `(Q, 0)`: `(Z, 1)`
+with `Q ⊆ R' ⊆ Z`; `(top_w, 0)` with `Q ∩ S_w = ∅`; `(z, ν z)` with `Q ⊆ z`. Apply it at
+`insert v Q` for front's statement about `U(Q ∪ {v})`. -/
+theorem menu2_U_zero (gates : List Gate) (p : ℕ) (hp : p < gates.length)
+    (hg : ∀ g ∈ gates, (g.op = GateOp.and ∨ g.op = GateOp.or ∨ g.op = GateOp.not) ∧
+      g.inputs.length ≤ 2)
+    (hU : AtMostOneNot gates) (hN : (gates[p]'hp).op = GateOp.not) (S : Fin m → Finset (Fin n))
+    (Q : Finset (Fin n)) :
+    ∀ g ∈ UQG S (menu2 gates p S) Q, val (lift n p gates) (ext (canonPt Q) false) g = false := by
+  classical
+  have hm := monoList_lift (n := n) gates p hp hg hU hN
+  intro g hg'
+  simp only [UQG, Finset.mem_biUnion, id] at hg'
+  obtain ⟨w, hw, C, hC, hgC⟩ := hg'
+  have hQw := mem_aliveSets.mp hw
+  -- it suffices that the class's zero point lies above `(Q, 0)`
+  have key : ∀ t : LTS n, ext (canonPt Q) false ≤ t.zero → g ∈ ltsCls gates p (S w) t →
+      val (lift n p gates) (ext (canonPt Q) false) g = false := fun t hle hgt =>
+    val_false_of_le _ hm.andOr hle (ltsCls_zero hgt)
+  rcases mem_menu2.mp hC with ⟨c, hc, rfl⟩ | ⟨z, ⟨hzQ, -⟩, rfl⟩
+  · rw [pureCls_eq_ltsCls] at hgC
+    refine key _ ?_ hgC
+    cases c with
+    | oneAt Z A =>
+      obtain ⟨-, R', -, hQR, hRZ⟩ := hc
+      exact ext_le_of_le (canonPt_le fun x hx => hRZ x (hQR hx)) (by decide)
+    | zero m' =>
+      exact ext_le_of_le (canonPt_le_Zof hQw.symm) le_rfl
+    | one Z => exact hc.elim
+    | zeroAt z m' => exact hc.elim
+  · exact key _ (ext_le_of_le (canonPt_le hzQ) (Bool.false_le _)) hgC
 
 end PureMenu
 

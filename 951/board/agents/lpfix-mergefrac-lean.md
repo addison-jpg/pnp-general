@@ -228,3 +228,4 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
 - (15:00 UTC) PureMenu.lean (front A2): the STAR induction for ANY monotone sound menu system (`no_minCE_of_starSepG`,
   `no_minCE_of_starCountG`), and Menu2 = Menu1 ∪ lifted real merge sets (`menu2_mono`, `menu2_sound` via L-LIFT):
   `no_minCE_of_starSep2`, `no_minCE_of_starCount2`. Menu2 survives cxMU_dd (A2's rerun pending).
+- (15:10 UTC) L-U_v (front A2): `menu2_U_zero` — every gate of U(Q) over Menu2 is 0 in C_0 at (Q, 0).
