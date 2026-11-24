@@ -200,3 +200,10 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   x_O := 1 (where plain I1 fails, 1,160 of 18,210): `restrictedMenu1_subset_pureMenu`, `restricted1_deficient`. So with
   zeroAt (x := 0) and oneAt (x := 1) both restrictions keep restricted menus inside the original menus, and a Hall-deficient
   F stays deficient after either restriction. All PureSDR / PureHall theorems cover the four option kinds.
+- (13:15 UTC) PureGP.lean (front A1-a's GP request): `no_minCE_of_liftSDR` for LIFTED TEST SYSTEMS (any zero point and any
+  atoms in the lift with o_w(ζ) = 0, o_w(atom) = 1, atoms pairwise separated outside ζ) — contains GP and all four pure
+  kinds (`liftSDR_of_pureSDR`). Key Lean step: `merge_countT'`, the union-find count with PAIRWISE-separated atoms.
+  GP validity `gpLTS_valid` is front's exactly (u ∈ A_u not needed); Theorem U = `disjoint_gp`. Front's notes taken:
+  no_graph_minCE_of_hall is vacuous (MinCE.has4); the cross-world D hypotheses (disjoint_pureI0_pureI1, CanonOneNot's
+  disjoint_K0_K1) can never hold for valid options (h monotone) — true statements, but vacuous; Theorem U (world b ≤ b')
+  is the usable cross-world criterion.
