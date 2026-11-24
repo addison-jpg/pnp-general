@@ -29,6 +29,8 @@ round. Type B (10 ∈ S): w0 {18,23,24}, w7 {13,41,42}, w8 {43,44,45}, w9 {15,17
 coincides with I0 (all minterms {10}): w1 {25,26,27}, w2 {28,29,30}, w3 {31,32,33}, w4 {22,34,35}, w5 {36,37,38}, w6 {19,39,40},
 w10 {47,48,49}, w11 {50,51,52}, w12 {53,54,55}. So EVERY subfamily is tight (|∪ classes(G)| = base(G)): case (T) everywhere,
 and any deficiency argument must be exact here (no slack to spend).
-Second case pg13_slack5_I0min1_k0_4 (minterms {1}, {4}; one forcing step: w3's single class {20,22,33} meets w6's I1 class
-{20,38,40} in gate 20, so w6 takes its I0 class {38,39,40}): NOT re-checked: the gate list as transmitted is not a correct
-circuit (output of [2,6,7,11] missing; an index is off by one around gates 37-39). Awaiting the corpus path from scaffold.
+Second case pg13_slack5_I0min1_k0_4 (s = 44, base 39, minterms {1}, {4}; gate list corrected by scaffold 11:44: gates 39, 40 =
+or(51,7), or(52,11)) CHECKED by research (induct/pg2.json): unique pure SDR. w0 type B {13,23,24}; every other set type A with a single
+class (I1 = I0), except w6 [1,5,8,11]: I1 {20,38,40}, I0 {38,39,40} (the two classes differ in ONE gate). w3's single class
+{20,22,33} meets w6's I1 class in gate 20, so w6 is forced to I0: unit propagation fixes all 13 in 2 rounds. Note for (M): a
+set's alternative classes can overlap in d_w - 1 gates, so deleting one class may delete all but one gate of another.
