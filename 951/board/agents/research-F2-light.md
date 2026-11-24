@@ -44,3 +44,14 @@ K3. A gate whose only witnesses come from sets through v dies (the sets are dead
   picks a good point): v of least h-influence on the cube, i.e. the point whose star meets the fewest minterms of h above
   Q, so that few type-A world-0 witnesses above Q + v exist (K1).
 - Not claimed: anything about minimal counterexamples; everything above is about all correct one-NOT circuits.
+
+## 5. LIGHT-STAR TEST RESULT (coord 12:49; 951/tools/kill_tests/f2_lightstar.py, D = 0, real witnesses as in F2)
+Tested statement: LIGHT-STAR(v): |(∪_{alive w ∋ v} M_Q(w) ∪ K0(v)) \ F2(Q + v)| ≥ cost(v), K0(v) = {g ∈ F2(Q) : C_0(g)(Q + e_v) = 1};
+LIGHT-STAR(v) ⇒ gain(v) ≥ cost(v). RESULT: 0 failures.
+- repo 951/ (74 circuits with n ≤ 9, incl. every witness file): 672 light instances; LIGHT-STAR at SOME v 672 / 672, at the
+  LEAST h-INFLUENCE v 672 / 672; per point 2,348 / 2,353 (F2 step gain ≥ cost: 2,352 / 2,353 points; some v: 672 / 672).
+- pappus_junk_gain.json (n = 9, s = 66): 1 light instance, LIGHT-STAR at all 9 points. fano_formula.json (n = 7, s = 17):
+  43 light instances, LIGHT-STAR at all 190 points.
+- Sanity: B (bottom merges ⊆ F2(Q) in light instances) 0 violations.
+So the Opus can build on: in a light instance, take v of least h-influence; the gates that die are the bottom merges of
+star(v) plus the K0 gates. (Corpus run, 19,828 circuits from the pequalnp-work branches, n ≤ 9: appended when done.)
