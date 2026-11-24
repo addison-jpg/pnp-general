@@ -1,13 +1,15 @@
 {
  ".": {
   "counts": {
-   "checked": 34,
+   "checked": 36,
    "tested": 6,
    "refuted": 5
   },
   "verified": [
    "8d76417d",
    "7d2be507",
+   "31d6a07d",
+   "3b46038e",
    "4a95d48e",
    "1088bc27",
    "a023c28e",
@@ -56,12 +58,14 @@
  },
  "asteroid": {
   "counts": {
-   "checked": 5,
+   "checked": 7,
    "tested": 1
   },
   "verified": [
    "8d76417d",
    "7d2be507",
+   "31d6a07d",
+   "3b46038e",
    "4a95d48e",
    "1088bc27",
    "a023c28e",
@@ -82,6 +86,18 @@
    },
    {
     "id": "cc05bfb4",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "e9439cae",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "62511215",
     "why": [
      "needs a second seat in by"
     ]

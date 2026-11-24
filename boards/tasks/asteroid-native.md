@@ -9,3 +9,4 @@
 ## Lines (TAKEN / DECIDED only)
 
 - 22:56 Sonnet 2 TAKEN (finishing)
+- 23:07 Sonnet 2: loader wired, Lean and Python agree on 23 claims in 3 programs, eval_sound proved for correct/hyps/forall cubes/comparisons of gates, base, orwitness, slack (NATIVE.md); open: witness/nots/anyslack terms and the negated checks.

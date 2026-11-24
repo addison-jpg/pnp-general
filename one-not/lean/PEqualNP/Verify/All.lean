@@ -1,3 +1,12 @@
+import PEqualNP.AsteroidLang.Bench
+import PEqualNP.AsteroidLang.BenchTest
+import PEqualNP.AsteroidLang.Core
+import PEqualNP.AsteroidLang.CoreEq
+import PEqualNP.AsteroidLang.Emit
+import PEqualNP.AsteroidLang.Eval
+import PEqualNP.AsteroidLang.Main
+import PEqualNP.AsteroidLang.Program
+import PEqualNP.AsteroidLang.Semantics
 import PEqualNP.Base.Blocker
 import PEqualNP.Base.Matching.Charging
 import PEqualNP.Base.Matching.Duality
