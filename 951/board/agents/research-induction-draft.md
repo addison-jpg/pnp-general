@@ -14,13 +14,15 @@ blocked subfamily; exists since singletons have SDRs). Then for every w ∈ F an
 ∪P_w. Two cases as in Halmos-Vaughan:
  (T) some proper G ⊂ F is TIGHT: |∪ of all classes of G| = base(G) (the menus of G live in exactly base(G) gates, so every SDR of
      G uses ALL of them). Remove those gates from the menus of F - G and recurse on F - G (restricted menus shrink).
+     [12:00: for d_w >= 2 this step needs its own lemma (T'), see Referee answers 3.]
  (S) no proper subfamily is tight (surplus >= 1 everywhere): pick any class of some w, delete its gates from the others' menus;
      need: every other set keeps a class. For d_w = 1 (graph systems) surplus >= 1 gives this (classical); for d_w >= 2 it does
      NOT follow from cardinalities alone (one class deletes d_w gates). THIS IS THE MISSING LEMMA for general systems:
      (M) in a MinCE, if no proper subfamily of F is tight, there is a class C of some w ∈ F whose deletion leaves every
          v ∈ F - w with a class disjoint from C.
- The contradiction with s < base must enter through (M) (data: PureSDR holds on all corpus circuits, which all have s >= base,
- so a proof using only menu combinatorics would prove too much unless it uses minimality).
+ [CORRECTED 12:00, see Referee answers: s < base enters only as |U(all)| <= s < base(all); (M) and (T') follow from PureSDR
+ on the same circuit, so the corpus cannot falsify them; a menu proof of PureSDR for ALL correct circuits does not prove too
+ much, but a proof from menu CARDINALITIES alone does (cardinality Hall gives no SDR of d-sets).]
 
 ## Tight test case (CHECKED by research, tools/research951/induct/menus.py, from scaffold's message)
 pg13_slack4_I0min0_k1_1 (PG(2,3): 13 lines of size 4 on 13 points; s = 43, base = 39, h = x10, heavy point 10):
@@ -34,3 +36,38 @@ or(51,7), or(52,11)) CHECKED by research (induct/pg2.json): unique pure SDR. w0 
 class (I1 = I0), except w6 [1,5,8,11]: I1 {20,38,40}, I0 {38,39,40} (the two classes differ in ONE gate). w3's single class
 {20,22,33} meets w6's I1 class in gate 20, so w6 is forced to I0: unit propagation fixes all 13 in 2 rounds. Note for (M): a
 set's alternative classes can overlap in d_w - 1 gates, so deleting one class may delete all but one gate of another.
+
+## Referee answers (desktop Coord, 11:50) [research 12:00; CHECKED = computed, scripts tools/research951/induct/]
+1. (M) CANNOT FAIL ON THE CORPUS, in either form. The unconditional form (M'): "for every family F with no tight proper subfamily,
+   some class C of some w ∈ F leaves every v ∈ F − w a class disjoint from C" FOLLOWS from a pure SDR of F (any w, C = its class in
+   the SDR). PureSDR has 0 failures on 75,619 corpus circuits (pnp-subproblem-puresdr-check.md; DEAD_ENDS), so (M') holds
+   wherever it is tested. CHECKED anyway (mtest.py; 26 instances + pg1 + pg2, n <= 13, |F| <= 6): 8,350 families, 170 with no
+   tight proper subfamily, (M') holds on 170 / 170. The same goes for (T') (item 3) and for MU (item 3): every lemma of this
+   skeleton is a consequence of PureSDR on the same circuit. Cardinalities alone do not suffice for d_w >= 2:
+   P(1) = {{a,b}}, P(2) = {{a,c},{b,d}} has |U(G)| >= base(G) for every subfamily G and no SDR.
+   A NON-VACUOUS test is a CHOICE RULE: which class does (M) delete first? (E) "is every class of kind K in some pure SDR of the
+   whole system?" (extend.py; only sets with >= 2 distinct classes, a single class is forced): I0 81 / 82, I1 77 / 78. Failures:
+   cxT2 set 1 [0,1,5,6], I0 class {9,22,24}; pg2 w6 [1,5,8,11], I1 class {20,38,40}. So no WORLD rule picks the first class
+   (agrees with DEAD_ENDS 'World 1 only' and 'World 0 for type A' refuted); a rule for (M) has to look at the other sets.
+   Ask to scaffold: run extend.py on the full corpus, list the non-extendable classes; then test rules that use the other
+   sets, e.g. "the class of w meeting the fewest classes of other sets" [proposed, untested].
+2. GRAPH CASE: vacuous, already in DEAD_ENDS (front 11:38): m distinct output gates + the NOT give s >= m + 1 > base, and Lean
+   MinCE.has4 (small3_bound) already excludes every MinCE whose sets all have size <= 3. So the graph case closes by OUTPUT
+   COUNTING, not by Hall, and shows nothing about how a deficiency meets s < base; for the menu lane it is a model problem only.
+   Output counting does not lift through the menus (CHECKED, outpeel.py): the output wire o_w lies in EVERY pure class of w for
+   43 of 107 sets and in SOME class for 50 of 107 (cfgI set [7,8]: menu {25}, {22}, output wire 26), and in a class of another
+   set for 0 of 107. So "peel the output gate, induct on d_w" fails on the data.
+3. WHERE s < base ENTERS: exactly once, at the top. Every pure class is a set of gates, so |U(all)| <= s < base(all): in a MinCE
+   the FULL family is Hall-deficient. Case (T) does not use it and cannot be the contradiction: tight families occur at any slack
+   (pg1: every subfamily tight, s − base = 4). CHECKED (mu.py, 27 circuits): the slack lives OUTSIDE the menus,
+   |U(all)| − base ∈ [0, 6] while s − base ∈ [4, 46]; |U(all)| = base exactly on pg1, pg2 and cxr (their 4, 5, 18 extra gates lie
+   in no pure class). Consequences:
+   - The weakest menu statement that gives the bound is choice-free: MU: |U(all)| >= base, U(all) = all gates in some pure class
+     of some set (PureSDR ⇒ MU ⇒ s >= base; MU is strictly weaker for d_w >= 2, example in item 1). It is TIGHT on real circuits,
+     so a proof of MU has no surplus to spend.
+   - An induction on deficient families uses minimality only for a minimal deficient PROPER family F (|U(F)| < base(F), every
+     proper subfamily fine): that is heredity step (a3), "a deficient F forces a smaller counterexample", 'not as stated' in
+     DEAD_ENDS (restricted circuits keep live gates outside the restricted menus).
+   - (T') for d_w >= 2: Hall for F plus tightness of G give |U(F) \ U(G)| >= base(F − G), but a class of v ∈ F − G that meets U(G)
+     in part is lost WHOLE while its other gates still count on the left; so Hall for the restricted menus of F − G does not
+     follow (same gap as (M)); (T') is again a consequence of PureSDR, so untestable on the corpus.
