@@ -7,7 +7,8 @@ from the private repository addison-jpg/pequalnp-work:
 |---|---|
 | `lean/PEqualNP/{W951,Kernel,Base,Defs}` | branch `coord-951`, head `ee11077`, the import closure of the 951 development (146 modules) |
 | `work/`, `tools/`, `notes/`, `research/` | branch `coord-951`, same paths |
-| `board/` | branch `board` (the 951 board: BOARD.md, PROTOCOL.md, paper951.md, agents/, research/, data/) |
+| `board/` | branch `board` (the 951 board: BOARD.md, PROTOCOL.md, paper951.md, agents/, research/, data/), frozen state |
+| `front/` | branch `front-match` 169cec0, `work/notes951` (front's math notes: SORRY_DISSECTION.md, w9/ incl. RESUME_LANES.md, heavy/) |
 
 `lean/` is a separate Lake project with the same Lean and Mathlib pins as `../lean`. It is kept apart
 because its `Kernel/Circuit.lean` and `Defs` differ from `../lean/PEqualNP`, and mixing the two
