@@ -1,0 +1,3 @@
+k 5 r 7 ABCDEF allread UNSAT 3
+k 5 r 8 ABCDEF allread UNSAT 74
+k 6 r 8 ABCDEF allread UNSAT 110

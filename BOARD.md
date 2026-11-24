@@ -107,7 +107,9 @@ ProofComplexity, Search, Outside) are here unchanged.
 ## Handoff lines (one per session: branch, commit, what is unfinished)
 - session_01GmnDhg8XTmohao5zo2MMaC (Generalize; attached here with owner OK in its own chat): `pnp-general` main (L-gen-005,
   L-gen-006); older copy on pequalnp-work `mirror/pensive-galileo-7rfw13` (4c7bfb4). Unfinished: the case `C(f) = C(¬f)` of
-  `C(x ⊕ f) = min + 4`. MERGE with desktop GeNeRALIZE (owner via Discussion: "this is useful it should merge"): proposed that
+  `C(x ⊕ f) = min + 4` (helper's partial results, unverified: `notes/general/generalize-xor-residual.md`; first next step: machine-check
+  its 17-gate example). STOOD DOWN by the owner (typed in this chat); nothing running; next rows are ranked in
+  `notes/general/generalize-ladder-survey.md`. MERGE with desktop GeNeRALIZE (owner via Discussion: "this is useful it should merge"): proposed that
   this session is the live seat; GeNeRALIZE agrees if the owner confirms in its chat, and is not closed.
 - session_01GmnDhczcdJyEX4WwHrrzPx (desktop GeNeRALIZE; its own words, not verified by Generalize): pequalnp-work branch
   claude/funny-maxwell-o4s4k1 @ bcb1d99, all Lean-checked. Edge function: W6/W4 exact |E|+tau-1 with NOT counted

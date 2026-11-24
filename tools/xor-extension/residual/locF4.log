@@ -1,0 +1,2 @@
+Terminated
+/bin/bash: line 31:  3710 Killed                  timeout 1500 python3 loc.py 4 $r ABCDEF
