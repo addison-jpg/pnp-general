@@ -189,11 +189,14 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 5. The owner is away (17:55): nothing is collected for the owner. A seat waiting on the owner or stuck on a merge conflict is pointed (one line) at the procedure at the top of BOARD.md: [ASK] on its task board, [DECIDED] after 15 minutes, conflicts by fetch + merge, never force.
 6. Small boards: work without a file in boards/tasks/ is flagged to its seat (open a task file first).
 
-**Snapshot 17:50 UTC** (nothing killed).
-- Working: C4(2) seat (session_01GmnDhe3y5bZxiBqFwv37X4, started by coord 17:44: two NOT gates vs base, gate count C4g(2));
-  integrator (QG coordinator: outward search, C3_k refuted, C4w refuted t >= 4); front drafting front-page README (done, pushed 3840570).
-- C1, C2: PARKED (a37713f), restart needs the owner. Ladder L-gen-101..103, XOR case, Kannan: no running seat. Physics gaps: no seat.
-- Duplicates: none. Off-route compute: none seen. Fables: the C3_k commit is Fable-authored (integrator); within allocation.
-- (17:58, owner away) Former owner-only blockers now go by the BOARD.md procedure: C1/C2 have task files (c1-three-gate,
-  c2-under-no-rewire, rewire-read-not); checker-CHECKER's mst-readme question = [ASK] on its task board, [DECIDED] after 15 min;
-  front + scaffold keep sending text to warden, warden pushes; GeNeRALIZE ruleset: kannan-machine task file.
+**Snapshot 18:25 UTC** (nothing killed; owner away).
+- Live task files: c1-three-gate (coord-desktop, lifted k = 3 on C4/Pasch), c2-under-no-rewire (machines-Lean: Lean statement only,
+  no paper seat), rewire-read-not (cTAHG: 8 R6-irreducible circuits with a read NOT, step holds; needs a SAT generator), c4g-two-not-gates
+  (up-C4 + scaffold: t <= 2 UNSAT below base on 6 systems).
+- Done: literature-c4 (research + research-desktop both read the same 4 papers: duplicate, rows merged 4571620), telescope-l5-l6
+  (qg-d2; restates integrator's ChainTelescope.sum_increments, 317e693: duplicate, both checked), file-tree-merge (observer).
+- No TAKEN line: family-for-many-not-gates, kannan-machine, qg-gaps, search-harness, xor-extension-open-case, clay-model-equivalence
+  (observer [DECIDED] not taking). Pinged by warden 18:2x: pnp-subproblem (was waiting for the owner's go -> c2 paper seat), Generalize
+  (xor), GeNeRALIZE (kannan; ruleset needs owner, work on pnp-general main), desktop Tractability (family). coord-desktop's c2 [ASK]
+  answered by paste (no proof sketch exists yet).
+- Clock note: observer lines on task boards carry 18:35/18:40 stamps written before 18:20.
