@@ -1,39 +1,74 @@
 #!/usr/bin/env python3
-"""Regenerate site/logo.svg, site/logo-light.svg, site/logo-dark.svg from the
-`logo` role in site/palette.json. Usage: python3 asteroid/tools/make_logo.py"""
+"""Regenerate the asteroid logo SVGs.
+
+The letters are drawn as outlines from the fan-made fonts credited in site/LOGO.md, so no font has to be
+installed to see the logo and no font file is shipped in this repository. Colours come from the `logo`
+role (Terezi wordmark) and the `logo_alt` role (Vriska wordmark) in site/palette.json.
+
+Usage: python3 asteroid/tools/make_logo.py --terezi PATH.ttf [--vriska PATH.otf]   (needs: pip install fonttools)
+"""
+import argparse
 import json
-import math
 import pathlib
+
+from fontTools.pens.boundsPen import BoundsPen
+from fontTools.pens.svgPathPen import SVGPathPen
+from fontTools.pens.transformPen import TransformPen
+from fontTools.ttLib import TTFont
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
-WORD = "4ST3RO1D"  # Terezi quirk: capitals, A->4, E->3, I->1
-FONT = '"Courier New", Courier, "Liberation Mono", "Nimbus Mono PS", monospace'
-SIZE, SPACING, PAD = 40, 0.02, 8
+HEIGHT = 48  # rendered height in px of the cap height, plus padding
 
 
-def build(style: str) -> str:
-    adv = SIZE * (0.6 + SPACING)  # monospace advance plus letter-spacing
-    w = math.ceil(len(WORD) * adv) + 2 * PAD
-    h = math.ceil(SIZE * 0.8) + 2 * PAD
-    y = PAD + round(SIZE * 0.7)
-    return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" '
-        f'role="img" aria-label="{WORD}">\n'
-        f"<title>{WORD}</title>\n<style>\n{style}\n</style>\n"
-        f'<text x="{PAD}" y="{y}" font-family=\'{FONT}\' font-size="{SIZE}" '
-        f'font-weight="700" letter-spacing="{SPACING}em">{WORD}</text>\n</svg>\n'
-    )
+def outline(font_path: str, word: str) -> tuple[str, tuple[float, float, float, float]]:
+    """Path data for `word` set in the font, y pointing down, and its bounding box."""
+    f = TTFont(font_path)
+    gs, cmap, hmtx = f.getGlyphSet(), f.getBestCmap(), f["hmtx"]
+    missing = [c for c in word if ord(c) not in cmap]
+    if missing:
+        raise SystemExit(f"{font_path} has no glyph for {missing}")
+    svg, bounds, x = SVGPathPen(gs), BoundsPen(gs), 0
+    for ch in word:
+        g = cmap[ord(ch)]
+        t = (1, 0, 0, -1, x, 0)  # flip y: font units point up, SVG points down
+        gs[g].draw(TransformPen(svg, t))
+        gs[g].draw(TransformPen(bounds, t))
+        x += hmtx[g][0]
+    return svg.getCommands(), bounds.bounds
+
+
+def build(d: str, box, word: str, style: str) -> str:
+    x0, y0, x1, y1 = box
+    pad = 0.08 * (y1 - y0)
+    vb = (x0 - pad, y0 - pad, x1 - x0 + 2 * pad, y1 - y0 + 2 * pad)
+    w = round(HEIGHT * vb[2] / vb[3])
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb[0]:.0f} {vb[1]:.0f} {vb[2]:.0f} {vb[3]:.0f}" '
+            f'width="{w}" height="{HEIGHT}" role="img" aria-label="{word}">\n<title>{word}</title>\n'
+            f"<style>\n{style}\n</style>\n<path d=\"{d}\"/>\n</svg>\n")
+
+
+def write(stem: str, d: str, box, word: str, light: str, dark: str) -> None:
+    (SITE / f"{stem}.svg").write_text(build(d, box, word,
+        f"path {{ fill: {light}; }}\n@media (prefers-color-scheme: dark) {{ path {{ fill: {dark}; }} }}"))
+    (SITE / f"{stem}-light.svg").write_text(build(d, box, word, f"path {{ fill: {light}; }}"))
+    (SITE / f"{stem}-dark.svg").write_text(build(d, box, word, f"path {{ fill: {dark}; }}"))
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--terezi", required=True)
+    ap.add_argument("--vriska")
+    a = ap.parse_args()
     pal = json.loads((SITE / "palette.json").read_text())
-    light, dark = pal["light"]["logo"], pal["dark"]["logo"]
-    (SITE / "logo.svg").write_text(build(
-        f"text {{ fill: {light}; }}\n@media (prefers-color-scheme: dark) {{ text {{ fill: {dark}; }} }}"))
-    (SITE / "logo-light.svg").write_text(build(f"text {{ fill: {light}; }}"))
-    (SITE / "logo-dark.svg").write_text(build(f"text {{ fill: {dark}; }}"))
-    print(f"logo: light {light}, dark {dark}")
+    d, box = outline(a.terezi, "4ST3RO1D")  # Terezi's quirk: capitals, A->4, E->3, I->1
+    write("logo", d, box, "4ST3RO1D", pal["light"]["logo"], pal["dark"]["logo"])
+    print("logo: 4ST3RO1D,", pal["light"]["logo"], pal["dark"]["logo"])
+    if a.vriska:
+        d, box = outline(a.vriska, "asteroid")  # the Vriska font has letters only, no digits
+        lt, dk = pal["light"].get("logo_alt", "#005682"), pal["dark"].get("logo_alt", "#3D9BD6")
+        write("logo-vriska", d, box, "asteroid", lt, dk)
+        print("logo-vriska: asteroid,", lt, dk)
 
 
 if __name__ == "__main__":

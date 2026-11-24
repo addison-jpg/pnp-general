@@ -96,6 +96,8 @@ This uses Lean only. It goes through every theorem of the one-NOT part and fails
 - `asteroid/` holds the language.
 - `LITERATURE.md` lists the sources read.
 - `BOARD.md` holds the working notes.
+- [`ath_prompt_method.md`](ath_prompt_method.md) describes the way this project was prompted and coordinated: informal small asks, mirrored sessions, one board per task. It is a conjecture, not a result.
+- [`site/LOGO.md`](site/LOGO.md) credits the logo lettering: fan-made fonts in the style of Terezi Pyrope and Vriska Serket, characters of *Homestuck* by Andrew Hussie.
 
 ## License
 MIT; see [`LICENSE.md`](LICENSE.md). Exception: files taken or derived from [`brilliant-hq/pequalnp-proofs`](https://github.com/brilliant-hq/pequalnp-proofs) remain under the Apache License 2.0; see [`LICENSE-APACHE`](LICENSE-APACHE). These are the upstream Lean library under `lean/PEqualNP/` (`CircuitLowerBounds`, `Defs`, `Gct`, `Library`, `MetaComplexity`, `Outside`, `ProofComplexity`, `Search`), the copy of `Defs` in `one-not/lean/PEqualNP/Defs/`, upstream files modified here (e.g. `lean/PEqualNP.lean`, `lean/PEqualNP/Defs.lean`, `lean/CheckLemma.lean`, `one-not/lean/PEqualNP.lean`, `one-not/lean/PEqualNP/Defs.lean`), `tools/build.sh`, `one-not/tools/build.sh` and `notes/note-1-edge-function-exact-size.md` (with its copy in `one-not/notes/`). New work in this repository is by addison-jpg and contributors.

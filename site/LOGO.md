@@ -1,9 +1,17 @@
-The logo colour is the `logo` role in site/palette.json; replace it with the owner's chosen value when they send it.
+# The asteroid logo
 
-The asteroid logo is the wordmark `4ST3RO1D`, in the typing quirk of Terezi Pyrope (Homestuck): all capitals, 4/3/1 for A/E/I, in teal.
-Font stack: "Courier New", Courier, "Liberation Mono", "Nimbus Mono PS", monospace; bold (700), letter-spacing 0.02em. No other decoration.
-Colour: `logo` in site/palette.json (light `#008282`, dark `#19B3B3`); nothing else holds it.
-Files: site/logo.svg (follows the colour scheme), site/logo-light.svg, site/logo-dark.svg (fixed fill).
-Regenerate after editing the value: `python3 asteroid/tools/make_logo.py`
-The README files use the light/dark `<picture>` switch of GitHub.
-The logo is the only place this style is used; body text, docs and terminal output stay as they are.
+The logo is the word `4ST3RO1D`: capitals with A, E and I written as 4, 3 and 1, the typing style of Terezi Pyrope. An alternate mark, `asteroid` in Vriska Serket's hand, is in `logo-vriska*.svg`. This is the only place these styles are used; text, documentation and terminal output keep their ordinary fonts.
+
+The letters are drawn as outlines (`<path>`), so nobody needs a font installed to see them, and no font file is shipped in this repository.
+
+Colours: the `logo` role (main mark) and the `logo_alt` role (Vriska mark) in `palette.json`, light and dark. To change them, edit those values and run:
+
+    python3 asteroid/tools/make_logo.py --terezi PATH/terezzzzzzz.ttf --vriska PATH/Arachnidsgrip1.otf
+
+## Credit
+
+- Lettering of the main mark: the font **terezzzzzzz**, a fan-made handwriting font in the style of Terezi Pyrope, made with MyScriptFont.com (FontForge, 20 August 2013). Designer not named in the font.
+- Lettering of the alternate mark: the font **Arachnidsgrip1**, a fan-made handwriting font in the style of Vriska Serket, made with Calligraphr (2 September 2021). Designer not named in the font.
+- Terezi Pyrope and Vriska Serket are characters of *Homestuck* by Andrew Hussie.
+
+If you made either font and want a different credit, a link, or the logo removed, open an issue.
