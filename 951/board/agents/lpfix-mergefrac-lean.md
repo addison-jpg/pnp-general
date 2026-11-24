@@ -126,3 +126,13 @@ Add a circuit: one line in export.py INSTANCES, re-run, paste.
   Scaffold's 24 forced-h fixh16 circuits: requested from scaffold, next batch.
 - (11:20) + scaffold's 24 forced-h K4 circuits (fixh16, s = 16, L-flip fails): MergeSDR + correctness + set conditions,
   kernel-checked (SDRWitnessFixh16.lean, 33 s). 35 circuits certified in all (33 with correctness).
+
+## Augment (11:35): LAvoid + LAugment => MergeSDR (PROVED IN LEAN, hypotheses open; 1 Fable helper)
+File 951/lean/PEqualNP/W951/Augment.lean. `LAvoid`: every set has an avoiding option (zero point whose merge set misses all
+other sets' universal merges). `LAugment`: the referee's chain (i)-(iv) verbatim (w_1..w_k = ws 0..ws k on Fin (k+1)).
+`mergeSDR_of_avoid_augment` (well-founded descent on Φ = #colliding pairs), `no_minCE_of_augment`.
+PRECISE READING: the referee's statement DOES give the strict decrease as stated. Only (i), (iv) and "every new merge set
+misses the current pick of every set OUTSIDE {w_1..w_k}" are used (`repick_step`); the chain shape of (ii) (meeting only
+w_{i+1}'s pick) is never needed, because all of W is re-picked. So LAugment may be WEAKENED to (i) + (iv) + outside-
+disjointness with the same conclusion — a looser target for front. Avoidance is only the invariant that lets LAugment
+re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates). Axioms: propext, Classical.choice, Quot.sound.

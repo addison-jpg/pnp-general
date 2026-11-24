@@ -153,3 +153,4 @@ import PEqualNP.W951.SDRCert
 import PEqualNP.W951.SDRWitness
 import PEqualNP.W951.SDRWitnessCorrect
 import PEqualNP.W951.SDRWitnessFixh16
+import PEqualNP.W951.Augment
