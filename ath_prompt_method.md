@@ -94,9 +94,6 @@ The rules in `BOARD.md` were not designed in advance. Each one is a repair.
   this produced the finding records, where each statement carries a word such as checked, tested,
   refuted or open, and names its evidence.
 
-So the day gives evidence in both directions. The frame did not prevent these failures. It did make
-each one visible quickly, and each repair is a line that the next reader can find.
-
 ## How it connects to asteroid
 
 asteroid (`asteroid/README.md`) is the main thing this way of working produced. It has the same
@@ -114,7 +111,7 @@ which this is a framework that helps asteroid without being formal itself.
 
 ## What would make this more than a conjecture
 
-None of the following has been done.
+None of this has been done.
 
 - Give the same small task to the same agent twice, once in a formal register and once in an
   informal one, many times over, and compare the length of the ask, the number of corrections and
@@ -132,5 +129,3 @@ From memory, not checked.
   shared store. The boards here are close to that, split into many small stores.
 - Conway's law: a system tends to take the shape of the communication between the people who build
   it. Here the board tree was laid over the directory tree on purpose.
-- Plain-language writing guides: short sentences and common words make instructions easier to
-  follow. Scene speak is not plain language, but it shares the shortness.
