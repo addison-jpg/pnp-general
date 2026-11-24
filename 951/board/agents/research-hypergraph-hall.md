@@ -64,3 +64,9 @@ the longest forced implication chain (the object a proof must rule out).
   length <= 1. Suggested lemma shape for a proof: 'if a candidate of w is blocked by a candidate of v, then v has a candidate
   that blocks nothing' (no chains), which is exactly the length-1 implication structure; worth testing on the corpus in this
   form (per blocked pair, does the blocker's output have an unblocking alternative?).
+- scaffold corpus result (75,619 circuits, 09:51): FREE CANDIDATE holds in 73,165 circuits (96.75%); the NO-CHAIN lemma
+  ('w blocked by v => v has a candidate blocking nothing') is VIOLATED in 2,454 circuits (4,702 ordered pairs), e.g. cxT2. So
+  both one-line lemmas fail on the same ~3% (cxT2-type: large world-0 families, coordinated choice needed); MergeSDR itself
+  still holds everywhere tested. A proof must handle coordinated choices: Haxell's alternating-tree induction (§4) is the
+  matching template; a classification of the cxT2-type circuits (what makes world-0 families large) would say where.
+  Referee's L-flip: single-flip repair fails on 24 K4 circuits (fixh16, s = 16), otherwise <= 4 flips suffice.
