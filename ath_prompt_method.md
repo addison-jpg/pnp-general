@@ -110,6 +110,12 @@ checker or a second reader who decides, and results carried upward as small veri
 both places the speaker can be loose, because the speaker is not the judge. That is the sense in
 which this is a framework that helps asteroid without being formal itself.
 
+## Auto mode and tokens
+
+The same setup makes it easy to let the agents run on their own. When Addison stepped away, the work kept going because the rules an agent needs were written where it looks first: the top of the board says not to ask Addison, to write a question as a board line, and to decide and record the decision if nobody answers. An agent in auto mode does not need a person to unblock it if the board already holds the answer or the rule for making one. Small task boards help most here, because a task with one statement and one "done when" line is easy to finish without asking.
+
+A cheap conjecture about tokens follows from the same picture. Most of an agent's cost is reading: code, files, earlier context. A task board lets a small agent read one page instead of the whole history, and the "smallest agent that can do the job" rule spends large models only where a small one has failed. In this session, as reported by the tools, the largest agents used roughly 150,000 to 260,000 tokens each, the mid-size ones roughly 70,000 to 160,000, and the one small agent used for a README rewrite about 85,000. Those totals were mostly spent reading and running tools, not on the prompts, so they say little about informality itself. What they suggest is that the size of the agent and the size of what it must read matter more than the length of the request. The informal ask stays short; the coordinator turns it into one reusable brief.
+
 ## What would make this more than a conjecture
 
 None of this has been done.
@@ -119,6 +125,8 @@ None of this has been done.
   whether the result was right.
 - Run the same project with and without per-task boards, and count duplicated work, merge conflicts
   and questions sent to Addison.
+- Token cost per finished task, with and without task boards, and with the smallest agent against the largest, for the same kind of task.
+
 
 ## Related ideas
 
