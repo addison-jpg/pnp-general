@@ -163,6 +163,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   PureFrac.lean: `pureFrac_iff_purePrice` (LP duality), `no_minCE_of_purePrice` (front A1's target), PureFrac ⇒ MU.
   14:25: STAR-COUNT in Lean (`no_minCE_of_starCount`, `starCount_of_starSep`); open: HEAVY-COUNT, LIGHT-COUNT (front).
   14:45: L-LIFT in Lean (PureLLift: `mergeSet_eq_lift`, `liftSDR_of_mergeSDR`, `muL_of_mergeSDR`): MergeSDR ⇒ LiftSDR ⇒ MUL.
+  15:00: PureMenu.lean: STAR-SEP / STAR-COUNT for any monotone sound menu system; Menu2 (Menu1 ∪ lifted real merge sets):
+  `no_minCE_of_starSep2`, `no_minCE_of_starCount2`.
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.

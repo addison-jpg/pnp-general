@@ -225,3 +225,6 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   system ((z, ν z), atoms (z + e_u, ν(z + e_u))) (`realLTS_valid`), via `run_lift` (gate-for-gate transfer of the union-find
   run from the real circuit to its lift). Corollaries `liftSDR_of_mergeSDR`, `muL_of_mergeSDR`: the lifted targets (LiftSDR,
   MUL) are WEAKER than MergeSDR, so they survive front A1's cxMU_dd (where the pure lists fail).
+- (15:00 UTC) PureMenu.lean (front A2): the STAR induction for ANY monotone sound menu system (`no_minCE_of_starSepG`,
+  `no_minCE_of_starCountG`), and Menu2 = Menu1 ∪ lifted real merge sets (`menu2_mono`, `menu2_sound` via L-LIFT):
+  `no_minCE_of_starSep2`, `no_minCE_of_starCount2`. Menu2 survives cxMU_dd (A2's rerun pending).
