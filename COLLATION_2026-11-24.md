@@ -62,7 +62,7 @@ In Lean, `L_meta_951` rests on one unproved declaration, `no_minCE` (no minimal 
 2. **The point step for real-witness gates (F2 step) among circuits with no gate-saving rewiring (R6).** R6 (cTAHG): a minimal counterexample admits no
    rewiring of a gate input that leaves a gate unread. MATCH-C is reducible by R6 (the NOT gate can
    read x_{u0} ∨ x_{a0}; main reran this: correct, 55 → 54 read gates). cTAHG reports the step
-   holding at 46 to 49 gates. R6 is not in Lean and cTAHG's script is local.
+   holding at 46 to 49 gates. R6 is in Lean (`MinCE.no_dead`, `MinCE.no_rewire`, `W951/MinCERewire.lean`, cTAHG 20e06fa); script `951/tools/kill_tests/rewire_r6.py` and note `951/board/agents/cTAHG-ddcore.md` on main.
 3. A mixed induction (x_v := 0 at some points, x_v := 1 at others) is not refuted; evidence: two
    circuits, one cube each.
 
