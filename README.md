@@ -67,11 +67,13 @@ claim forall cubes slack(hello) >= 0 by lean  # the count behind the theorem, at
 plot phi hello -> asteroid/out/hello.png
 ```
 
-```bash
-pip install -e .
-asteroid hello.ath
-asteroid test
 ```
+bin/setup              # once: a private Python environment inside this folder (.venv); on Windows: bin\setup
+bin/asteroid hello.ath # run one program;                                                  on Windows: bin\asteroid hello.ath
+bin/asteroid test      # run all of them
+```
+
+Nothing is installed outside this folder. Delete `.venv` to undo the setup.
 
 Without Lean installed, asteroid says so and only evaluates. In that case nothing is proved. The manual is `asteroid/README.md`, and the format of `.bench` files is described in `asteroid/BENCH.md`.
 

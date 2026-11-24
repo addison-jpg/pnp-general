@@ -18,3 +18,4 @@ __pycache__/
 boards/tree.json
 asteroid/out/*.log
 *.egg-info/
+.venv/

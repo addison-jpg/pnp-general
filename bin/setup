@@ -1,0 +1,5 @@
+#!/bin/sh
+# One-time: make a private Python environment INSIDE this folder (.venv) with numpy and matplotlib.
+# Nothing goes to your user or system Python. Delete the .venv folder to undo it.
+HERE="$(cd "$(dirname "$0")/.." && pwd)"
+python3 -m venv "$HERE/.venv" && "$HERE/.venv/bin/python" -m pip install --quiet numpy matplotlib && echo "ready: $HERE/.venv"

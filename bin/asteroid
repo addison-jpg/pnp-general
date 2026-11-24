@@ -1,0 +1,7 @@
+#!/bin/sh
+# Run asteroid straight from this folder: nothing is installed anywhere else.
+# Uses the repository's own .venv if bin/setup made one, otherwise the system python3.
+HERE="$(cd "$(dirname "$0")/.." && pwd)"
+PY="$HERE/.venv/bin/python"
+[ -x "$PY" ] || PY="python3"
+PYTHONPATH="$HERE${PYTHONPATH:+:$PYTHONPATH}" exec "$PY" -m asteroid "$@"
