@@ -55,6 +55,8 @@ import PEqualNP.W951.AsteroidSound
 import PEqualNP.W951.AsteroidSound2
 import PEqualNP.W951.Asteroid_conjecture
 import PEqualNP.W951.Asteroid_conjecture_sound
+import PEqualNP.W951.Asteroid_continuous
+import PEqualNP.W951.Asteroid_continuous_sound
 import PEqualNP.W951.Asteroid_corpus
 import PEqualNP.W951.Asteroid_corpus_sound
 import PEqualNP.W951.Asteroid_first

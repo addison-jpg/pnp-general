@@ -1,0 +1,33 @@
+# The continuous form, in asteroid. Phi(p) = expected slack when each point is set to 1 with probability p.
+# The remaining sorry is exactly: 0 <= Phi(0) for a minimal counterexample (ContinuousAttach.lean).
+let fano = load one-not/data/witnesses/fano_formula.json
+let e = load one-not/data/witnesses/ess_rand_clean_744.json
+let twin = load one-not/data/witnesses/twin_tree_f2step.json
+let x = load one-not/data/witnesses/nonlocal/general_count_below_base_min.json
+
+# 1. The attachment: Phi(0) is the slack of the empty cube, Phi(1) is 0.
+claim phi(e, 0) = 1
+claim slack(e) = 1 by lean
+claim phi(e, 1) = 0
+claim phi(twin, 0) = 6
+
+# 2. All cubes => Phi >= 0 on the whole interval. The kernel checks every cube; the second module then states
+#    `0 <= Phi ... p` for every real p in [0, 1], and `0 <= Phi ... 0`, in the project's own `Phi`.
+claim forall p phi(fano) >= 0 by lean
+claim forall p phi(e) >= 0 by lean
+claim forall p phi(twin) >= 0                 # 16,384 cubes: Python only, too large for the kernel
+
+# 3. What the continuous form refuted: Phi is NOT monotone on the twin trees (it rises first), so no argument
+#    that only goes downhill in p, or one point at a time, can prove the count for all correct circuits.
+levelmeans twin
+claim monotone phi(fano)
+claim monotone phi(e)
+claim not monotone phi(twin)
+claim phi(twin, 1/10) > 6
+
+# 4. What survives: the mixed step (points set to 0 as well as 1), decided by the kernel on a small circuit.
+claim forall states mixedstep(e) by lean
+
+# 5. With four NOT gates and gates of any type the picture breaks: the any-gate count is below base.
+claim witness(x) < base(x) by lean
+plot phi fano e twin -> asteroid/out/continuous.png

@@ -135,6 +135,21 @@ statement `no_minCE`; where it appears it is a hypothesis.
 Not done: `asteroid.py` does not yet emit `hypsB c` as a claim; the bit-parallel mixed witness test is tied to
 the naive one only per circuit (`naiveAgrees`). Notes: `one-not/board/agents/fable-cheap-proofs.md`.
 
+## The continuous form in asteroid
+
+Φ(p) is the expected slack when each point is set to 1 with probability p. Φ(0) is the slack of the empty cube,
+and the one remaining `sorry` is `0 ≤ Φ(0)` for a minimal counterexample. `programs/continuous.ast` maps the
+findings that matter onto claims:
+
+| Claim | What it shows | Decided by |
+|---|---|---|
+| `phi(c, 0) = slack(c)`, `phi(c, 1) = 0` | the attachment of the continuous form to the count | Python (exact fractions) |
+| `forall p phi(c) >= 0 by lean` | Φ ≥ 0 on the whole interval: the kernel checks every cube, and the second module states `0 ≤ Phi … p` for every real p in [0, 1], and `0 ≤ Phi … 0`, in the project's `Phi` | Lean |
+| `monotone phi(c)` / `not monotone phi(twin)` | Φ rises first on the twin trees (level means 6.00 → 8.29): no downhill-only or one-point argument works for all circuits | Python |
+| `forall states mixedstep(c) by lean` | the step that survives, with points set to 0 as well as 1 | Lean (asteroid's evaluator) |
+
+Verbs: `phi(NAME, P)` as a term, `claim forall p phi(NAME) >= 0`, `claim monotone phi(NAME)`, `claim not EXPR`, `levelmeans NAME`.
+
 ## The base verifier is pure Lean
 
 asteroid drives the proofs; it is not what vouches for them. The verdict comes from one Lean file per project,
