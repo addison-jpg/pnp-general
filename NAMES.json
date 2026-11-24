@@ -58,7 +58,7 @@
  "witness circuits": {
   "parent": "one NOT gate saves nothing on Boolean sums",
   "kind": "part",
-  "code": "951/data/witnesses",
+  "code": "one-not/data/witnesses",
   "means": "correct circuits that refute a route; none refutes the statement",
   "role": "Section",
   "formal": "section WitnessCircuits"
@@ -66,7 +66,7 @@
  "checked in Lean": {
   "parent": "one NOT gate saves nothing on Boolean sums",
   "kind": "part",
-  "code": "951/lean/PEqualNP/W951",
+  "code": "one-not/lean/PEqualNP/W951",
   "means": "statements the Lean checker accepted",
   "role": "Section",
   "formal": "section CheckedInLean"
@@ -651,7 +651,7 @@
   "parent": "dead ends",
   "kind": "dead family",
   "code": "family A",
-  "means": "kills: disjoint representatives over pure classes; rows in 951/DEAD_ENDS.md section A",
+  "means": "kills: disjoint representatives over pure classes; rows in one-not/DEAD_ENDS.md section A",
   "role": "Refuted",
   "formal": "Refuted.classChosenWithoutLookingAtTheOtherSets"
  },
@@ -659,7 +659,7 @@
   "parent": "dead ends",
   "kind": "dead family",
   "code": "family B",
-  "means": "kills: world 0; rows in 951/DEAD_ENDS.md section B",
+  "means": "kills: world 0; rows in one-not/DEAD_ENDS.md section B",
   "role": "Refuted",
   "formal": "Refuted.ruleFixingTheWorldOfASet"
  },
@@ -667,7 +667,7 @@
   "parent": "dead ends",
   "kind": "dead family",
   "code": "family C",
-  "means": "kills: disjoint representatives over pure classes; rows in 951/DEAD_ENDS.md section C",
+  "means": "kills: disjoint representatives over pure classes; rows in one-not/DEAD_ENDS.md section C",
   "role": "Refuted",
   "formal": "Refuted.countingOverPureClassesForAllCorrectCircuits"
  },
@@ -675,7 +675,7 @@
   "parent": "dead ends",
   "kind": "dead family",
   "code": "family D",
-  "means": "kills: disjoint representatives over real merge sets; rows in 951/DEAD_ENDS.md section D",
+  "means": "kills: disjoint representatives over real merge sets; rows in one-not/DEAD_ENDS.md section D",
   "role": "Refuted",
   "formal": "Refuted.countingOverRealMergeSetsWithoutMinimality"
  },
@@ -683,7 +683,7 @@
   "parent": "dead ends",
   "kind": "dead family",
   "code": "family E",
-  "means": "kills: the point step; rows in 951/DEAD_ENDS.md section E",
+  "means": "kills: the point step; rows in one-not/DEAD_ENDS.md section E",
   "role": "Refuted",
   "formal": "Refuted.inductionOneInputAtATimeForAllCorrectCircuits"
  },
@@ -691,7 +691,7 @@
   "parent": "dead ends",
   "kind": "dead family",
   "code": "family F",
-  "means": "kills: gate elimination step; rows in 951/DEAD_ENDS.md section F",
+  "means": "kills: gate elimination step; rows in one-not/DEAD_ENDS.md section F",
   "role": "Refuted",
   "formal": "Refuted.localOrMemorylessArgument"
  },
@@ -699,7 +699,7 @@
   "parent": "dead ends",
   "kind": "dead family",
   "code": "family G",
-  "means": "kills: one NOT gate saves nothing on Boolean sums; rows in 951/DEAD_ENDS.md section G",
+  "means": "kills: one NOT gate saves nothing on Boolean sums; rows in one-not/DEAD_ENDS.md section G",
   "role": "Refuted",
   "formal": "Refuted.methodFromOutsideCircuits"
  },

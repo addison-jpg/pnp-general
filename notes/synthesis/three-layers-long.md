@@ -9,43 +9,43 @@ statements, not a derivation of one from the other.
 
 | Layer | What lives there | Status word | Where |
 |---|---|---|---|
-| A. Theorems | Lean statements the checker accepted | "checked" | `lean/`, `951/lean/` |
-| B. Certificates and data | per-circuit witnesses the kernel checks; corpus tests that can kill a lemma | "kernel-checked on N circuits", "tested, 0 failures on N" | `951/lean/.../*Witness*.lean`, `951/tools/kill_tests/`, `951/DEAD_ENDS.md` |
+| A. Theorems | Lean statements the checker accepted | "checked" | `lean/`, `one-not/lean/` |
+| B. Certificates and data | per-circuit witnesses the kernel checks; corpus tests that can kill a lemma | "kernel-checked on N circuits", "tested, 0 failures on N" | `one-not/lean/.../*Witness*.lean`, `one-not/tools/kill_tests/`, `one-not/DEAD_ENDS.md` |
 | C. Premises and maps | assumptions about physics; correspondences between a complexity statement and a physics statement | "premise", "map" | `BOARD.md` track pairs, `lean/PEqualNP/QuantumGravity/README.md` |
 
 **Going beyond pure theorems** means using B and C on purpose, with a fixed direction of flow:
 data proposes a lemma → a kill test tries to break it → a paper proof → the referee → a checked
 row. A certificate is the bridge: a search program finds a small witness, Lean only checks it
-(`951/PIPELINE.md`). Layer C never enters a Lean statement; it decides WHICH statements are worth
+(`one-not/PIPELINE.md`). Layer C never enters a Lean statement; it decides WHICH statements are worth
 stating. A claim may move up a layer, never be quoted above the layer it is in.
 
 ### Layer B for 951, concretely (certificates and data; pnp-subproblem, 12:50)
 
 | Checker | Code | What it establishes | Scale |
 |---|---|---|---|
-| Lean certificates | `951/lean/.../PureSDRWitness.lean`, `SDRWitness*.lean` (`decide`) | the statement is a THEOREM for that one circuit (kernel-checked) | PureSDR on 36 circuits, MergeSDR on 35 |
-| kill tests (board integrator) | `951/tools/kill_tests/` (on `tools/w951`) | candidate lemmas tested on the corpus; one failure kills a lemma (`951/DEAD_ENDS.md`) | corpus, per test |
+| Lean certificates | `one-not/lean/.../PureSDRWitness.lean`, `SDRWitness*.lean` (`decide`) | the statement is a THEOREM for that one circuit (kernel-checked) | PureSDR on 36 circuits, MergeSDR on 35 |
+| kill tests (board integrator) | `one-not/tools/kill_tests/` (on `tools/w951`) | candidate lemmas tested on the corpus; one failure kills a lemma (`one-not/DEAD_ENDS.md`) | corpus, per test |
 | scaffold | scaffold-951 branch (`f15/`), OR-only merge rule | PureSDR / MergeSDR with 0 failures | 75,619 records, 62,463 distinct circuits |
-| independent re-implementation | `951/tools/referee_b/` (no `w951`, no `kill_tests`) | the same claims with separate code: guards against implementation bugs, NOT against wrong definitions. Classes match Lean's certificates 181/181 | 44,713 circuits |
-| cross-check of the cross-check | `951/tools/referee_b_xcheck/` (research, on `w951`) | referee_b's survey re-derived with `w951`: 0 disagreements | 339 circuits |
+| independent re-implementation | `one-not/tools/referee_b/` (no `w951`, no `kill_tests`) | the same claims with separate code: guards against implementation bugs, NOT against wrong definitions. Classes match Lean's certificates 181/181 | 44,713 circuits |
+| cross-check of the cross-check | `one-not/tools/referee_b_xcheck/` (research, on `w951`) | referee_b's survey re-derived with `w951`: 0 disagreements | 339 circuits |
 
-**Corpus.** Reproducible from the repos: `data-corpora` (pequalnp-work, 2aa9856) plus every circuit file in `951/`:
+**Corpus.** Reproducible from the repos: `data-corpora` (pequalnp-work, 2aa9856) plus every circuit file in `one-not/`:
 44,713 circuits after the filters (one NOT, correct, n ≤ 16). Scaffold's 75,619 records = data-corpora 40,533 +
 named 14 + instances 25 + **35,047 that exist only in scaffold's scratchpad** (xgen dumps, adv). Those are not
 reproducible, and pequalnp-work is frozen and not reachable from every session. **Action:** copy data-corpora and
-scaffold's dumps into `951/data/` so every "0 failures on N" can be rerun.
+scaffold's dumps into `one-not/data/` so every "0 failures on N" can be rerun.
 
 **Results that stand on two independent checkers** (referee_b and scaffold / kill_tests):
 - PureSDR exists: 44,713 / 44,713; every class has exactly d_w merges.
 - Type-A collisions: kinds (i), (ii), (iii) all occur (5,019 / 1,331 / 228 circuits), no other kind.
 - Dichotomy (CSP after fixing free classes and arc consistency): holds on 44,707; only cxT2 is not globally
   consistent, and with ALL I0 atom tuples cxT2 is consistent too (its 2-class core was a cap artefact).
-- MU slack ≥ 0 on all 44,710 (WIDE and NARROW). It FAILS off-corpus: `951/data/witnesses/cxMU_dd.json` has pure
+- MU slack ≥ 0 on all 44,710 (WIDE and NARROW). It FAILS off-corpus: `one-not/data/witnesses/cxMU_dd.json` has pure
   |U| = 5 < base 6, while lifted |U| ≥ 14. Corpus data never produced this, so data alone cannot certify a lemma.
 
 **Barrier suite.** The small fixed set every candidate lemma runs on first (PROOF_PLAN rule 1): CfgI, ADV3, ADV4,
 cxT4, cxU_8_4, cxr, HARD4, the 24 forced-h fixh16 circuits, plus the kernel-certified cxT2, cxe3, ce3 and the
-witnesses in `951/data/witnesses/` (cxMU_dd, Pasch s14). Hand-built circuits break lemmas that random and SAT corpora
+witnesses in `one-not/data/witnesses/` (cxMU_dd, Pasch s14). Hand-built circuits break lemmas that random and SAT corpora
 never do (B1 disjointness, merge-tree support, MU over pure classes), so the suite carries more weight than the 44k.
 
 ## 2. "Relativity" on the complexity side and on the physics side
@@ -84,7 +84,7 @@ ruled out by L-lib-076; both can be discarded before anyone spends time on them.
   (superpolynomial bounds against all circuits): gate-level counting of this kind is not blocked by
   the barriers, which concern superpolynomial lower bounds for unrestricted circuits. It does not
   pass a barrier; it does not need to. The whole 951 chain in the three layers, with a barrier
-  check per technique: [`951/SYNTHESIS_951.md`](951/SYNTHESIS_951.md).
+  check per technique: [`one-not/SYNTHESIS-one-not.md`](one-not/SYNTHESIS-one-not.md).
 - Its internal structure has the same shape as section 2, as an ANALOGY only: the single NOT gate
   splits every wire into two monotone "worlds" (NOT := 0, NOT := 1). Everything that stays inside
   one world is settled by monotone arguments (`CanonClass.lean`); the whole difficulty is the
@@ -100,7 +100,7 @@ ruled out by L-lib-076; both can be discarded before anyone spends time on them.
   along this analogy in either direction: the worlds of section 2 are oracles outside the machine;
   these two are the values of one wire inside the circuit (a restriction, as in gate elimination),
   which is why an argument that uses them does not relativize.
-- **A second decomposition of the same count (research, `951/board/agents/research-typeA-increment.md`).** Split the
+- **A second decomposition of the same count (research, `one-not/board/agents/research-typeA-increment.md`).** Split the
   sets by the NOT's input h at their top point top_w (1 off S_w): a set is FREE if h(top_w) = 0 and TYPE A if
   h(top_w) = 1. Free sets cost nothing: their world-1 classes K_1(w) at top_w are pairwise disjoint and have d_w gates each
   (W1, `disjoint_K1`, `card_K1`, checked), they lie in UC, and every count set of another set at a zero point Z that misses

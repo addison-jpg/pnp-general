@@ -1,0 +1,2375 @@
+{
+"tools/w951/tests/instances/front-match__w8__cx1.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/scaffold-951__fable_attack__v1.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/tractability__inst__xfail1.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/front-match__fc__cxT2.json#0": {
+"demand": 3,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/tractability__inst__relworst_a.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/scaffold-951__fable_attack__r_cx1.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/front-match__fc__cx44_1.json#0": {
+"demand": 2,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/scaffold-951__fable_attack__r_v1.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/scaffold-951__fable_attack__j_cx1.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/front-match__w8__cx3.json#0": {
+"demand": 3,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/front-match__w8b__cxr.json#0": {
+"demand": 2,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/front-match__fc__cfgI.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/front-match__fc__cx44_0.json#0": {
+"demand": 2,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/tractability__inst__relfail1.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/front-match__fc__cxT4.json#0": {
+"demand": 9,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/front-match__fb__cfgI.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"tools/w951/tests/instances/tractability__inst__reltight1.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/scripts/w8b/cxr.json#0": {
+"demand": 2,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/scripts/w8/cx1.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/scripts/w8/cx3.json#0": {
+"demand": 3,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/fb/cfgI.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/A2s/hard4.json#0": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/chist/cxU_8_4.json#0": {
+"demand": 11,
+"A": false,
+"B": false,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/chist/cxU_6_4.json#0": {
+"demand": 7,
+"A": false,
+"B": false,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/chist/cxU8.json#0": {
+"demand": 10,
+"A": false,
+"B": false,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/chist/cxU6.json#0": {
+"demand": 6,
+"A": false,
+"B": false,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/rf/pg3_ess43.json#0": {
+"demand": 13,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/g3/cxstar5.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/g3/cxstar44.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/rcl/cx_use_A.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/p/cxP2.json#0": {
+"demand": 10,
+"A": false,
+"B": false,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/p/cxP1.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/p/cxP5.json#0": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/p/cxP6.json#0": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/p/cxP3.json#0": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/fc/cx44_0.json#0": {
+"demand": 2,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/fc/cfgI.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/fc/cx44_1.json#0": {
+"demand": 2,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/fc/cxT2.json#0": {
+"demand": 3,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"front/work/notes951/w9/fc/cxT4.json#0": {
+"demand": 9,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"research/support-b/cfgI/cfgI.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"research/support-b/cfgI/cfgI_fc.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"research/support-b/cfgI/cfgI_witness.json#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#0": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#1": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#2": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#3": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#4": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#5": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#6": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#7": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#8": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#9": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#10": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#11": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#12": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#13": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#14": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#15": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#16": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#17": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#18": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#19": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#20": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#21": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#22": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#23": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#24": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#25": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#26": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#27": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#28": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#29": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#30": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#31": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#32": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#33": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#34": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#35": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#36": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#37": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#38": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#39": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#40": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#41": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#42": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#43": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#44": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#45": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#46": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#47": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#48": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#49": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#50": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#51": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#52": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#53": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#54": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#55": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#56": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#57": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#58": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#59": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#60": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#61": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#62": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#63": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#64": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#65": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#66": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#67": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#68": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#69": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#70": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#71": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#72": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#73": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#74": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#75": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#76": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#77": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#78": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#79": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#80": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#81": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#82": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#83": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#84": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#85": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#86": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#87": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#88": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#89": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#90": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#91": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#92": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#93": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#94": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#95": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#96": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#97": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#98": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#99": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#100": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#101": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#102": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#103": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#104": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#105": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#106": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#107": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#108": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#109": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#110": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#111": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#112": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#113": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#114": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#115": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#116": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#117": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#118": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_all.jsonl#119": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#0": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#1": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#2": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#3": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#4": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#5": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#6": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#7": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#8": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#9": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#10": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#11": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#12": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#13": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#14": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#15": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#16": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#17": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#18": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#19": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#20": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#21": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#22": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#23": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#24": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#25": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#26": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#27": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#28": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#29": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#30": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#31": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#32": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#33": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#34": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#35": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#36": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#37": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#38": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#39": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#40": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#41": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#42": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#43": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#44": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#45": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#46": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#47": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#48": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#49": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#50": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#51": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#52": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#53": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#54": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#55": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#56": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#57": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#58": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#59": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#60": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#61": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#62": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_and_q2t.jsonl#63": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#1": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#2": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#3": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#4": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#5": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#6": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#7": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#8": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#9": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#10": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#11": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#12": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#13": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#14": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#15": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#16": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#17": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#18": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#19": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#20": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#21": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#22": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#23": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#24": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#25": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#26": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#27": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#28": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#29": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#30": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#31": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#32": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#33": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#34": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#35": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#36": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#37": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#38": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#39": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#40": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#41": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2.jsonl#42": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#0": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#1": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#2": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#3": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#4": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#5": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#6": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#7": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#8": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#9": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#10": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#11": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#12": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#13": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#14": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#15": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#16": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#17": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#18": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#19": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#20": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#21": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#22": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#23": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#24": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#25": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/q/q_q2t.jsonl#26": {
+"demand": 1,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/climb2_seeds.jsonl#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/climb2_seeds.jsonl#2": {
+"demand": 3,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/climb_seeds.jsonl#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/climb_seeds.jsonl#2": {
+"demand": 3,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/climb_seeds.jsonl#3": {
+"demand": 2,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#0": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#1": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#2": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#3": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#4": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#6": {
+"demand": 3,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#7": {
+"demand": 2,
+"A": false,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#8": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#9": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#10": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#11": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#12": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#13": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#14": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#15": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#16": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#17": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#18": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#19": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#20": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#21": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#22": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#23": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#24": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#25": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#26": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#27": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#28": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#29": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#30": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#31": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#32": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#33": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#34": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#35": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#36": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+},
+"corpora/climb/relseeds.jsonl#37": {
+"demand": 2,
+"A": true,
+"B": true,
+"C": true,
+"D": true
+}
+}

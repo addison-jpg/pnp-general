@@ -1,8 +1,8 @@
 # Collation of findings, 2026-11-24 (main session)
 
 Owner, 14:20 UTC: "can we collate current findings please, and pause." Everything is paused.
-This file collates what is on `BOARD.md` (THE WALL) and in `951/board/agents/` as of main `6217a97`
-plus cTAHG's `0c92c69`. The 951 coordinator has its own collation, `951/FINDINGS_2026-11-24.md`,
+This file collates what is on `BOARD.md` (THE WALL) and in `one-not/board/agents/` as of main `6217a97`
+plus cTAHG's `0c92c69`. The 951 coordinator has its own collation, `one-not/FINDINGS_2026-11-24.md`,
 local to its session.
 
 Names: every term below is in `NAMES.json` / `NAMES.md` (one flat tree, name -> parent); the old code is in brackets.
@@ -46,7 +46,7 @@ In Lean, `L_meta_951` rests on one unproved declaration, `no_minCE` (no minimal 
   odd cycles of 2-point traces and nothing else.
 - Lemma K (constant-h cube classes); the staircases of Theorem G's corollaries.
 
-### 1.3 Refuted (witness in `951/data/witnesses/`, row in `951/DEAD_ENDS.md`)
+### 1.3 Refuted (witness in `one-not/data/witnesses/`, row in `one-not/DEAD_ENDS.md`)
 
 | Statement | Witness |
 |---|---|
@@ -66,7 +66,7 @@ In Lean, `L_meta_951` rests on one unproved declaration, `no_minCE` (no minimal 
 2. **The point step for real-witness gates (F2 step) among circuits with no gate-saving rewiring (R6).** R6 (cTAHG): a minimal counterexample admits no
    rewiring of a gate input that leaves a gate unread. MATCH-C is reducible by R6 (the NOT gate can
    read x_{u0} ∨ x_{a0}; main reran this: correct, 55 → 54 read gates). cTAHG reports the step
-   holding at 46 to 49 gates. R6 is in Lean (`MinCE.no_dead`, `MinCE.no_rewire`, `W951/MinCERewire.lean`, cTAHG 20e06fa); script `951/tools/kill_tests/rewire_r6.py` and note `951/board/agents/cTAHG-ddcore.md` on main.
+   holding at 46 to 49 gates. R6 is in Lean (`MinCE.no_dead`, `MinCE.no_rewire`, `W951/MinCERewire.lean`, cTAHG 20e06fa); script `one-not/tools/kill_tests/rewire_r6.py` and note `one-not/board/agents/cTAHG-ddcore.md` on main.
 3. A mixed induction (x_v := 0 at some points, x_v := 1 at others) is not refuted; evidence: two
    circuits, one cube each.
 
@@ -119,7 +119,7 @@ timelike curves) appear in no Lean statement.
   requests, signed commits, linear history and status checks on every branch; no session can push.
   Local, unpushed: main's wall correction and this file; cTAHG's `rewire_r6.py` and
   `cTAHG-ddcore.md`; coord's `FINDINGS_2026-11-24.md`.
-- Notes are indexed by part of the route in `951/board/agents/INDEX.md`; 10 notes are marked
+- Notes are indexed by part of the route in `one-not/board/agents/INDEX.md`; 10 notes are marked
   `OFF THE ROUTE`, 38 are candidates for a second pass.
 - Not checked by main: the proofs of Theorem G's paper items, cTAHG's reduction of MATCH-C to 45
   gates, scaffold's k = 3 test, the L-gen and L-qg rows of other sessions.

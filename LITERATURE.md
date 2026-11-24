@@ -83,7 +83,7 @@ A proof of 951 must use inputs of weight ≥ 2.
 
 | Source | What it gives | Status | Note |
 |---|---|---|---|
-| Li and Yang, STOC 2022 (ECCC TR21-023) | 3.1n − o(n) for affine dispersers, all binary gates | TXT | `research-lit-unrestricted`, `951/tools/research951/charging/gate_elim_extract.md` |
+| Li and Yang, STOC 2022 (ECCC TR21-023) | 3.1n − o(n) for affine dispersers, all binary gates | TXT | `research-lit-unrestricted`, `one-not/tools/research951/charging/gate_elim_extract.md` |
 | Find, Golovnev, Hirsch, Kulikov, FOCS 2016 | (3 + 1/86)n − o(n) | TXT | `research-lit-unrestricted` |
 | Iwama and Morizumi, MFCS 2002; Lachish and Raz, STOC 2001; Zwick 1991 | 5n − o(n), 4.5n, 4n in the De Morgan basis (NOT gates free) | TLDR / MEM | `research-lit-unrestricted`, `research-charging` |
 | Schnorr 1974; Red'kin 1973; Kombarov 2011 | XOR_n: 3(n − 1) with NOT free; 4(n − 1) with NOT counted; optimal circuits are trees of XOR_2 blocks | secondhand; primary sources unverified | `notes/general/generalize-ladder-survey` |
@@ -169,6 +169,15 @@ The full reference list of the quantum gravity program, kept here so that no cut
 - Z. Brakerski, Black-hole radiation decoding is quantum cryptography, CRYPTO 2023,
   arXiv:2211.05491.
 
+### Sums over paths (for README §6)
+
+| Source | What it gives | Status |
+|---|---|---|
+| Adleman, DeMarrais, Huang, "Quantum computability", SIAM J. Comput. 26 (1997) | the acceptance probability of a quantum computation is a sum over computation paths; BQP ⊆ PP | MEM |
+| Feynman 1948; Feynman and Hibbs 1965 | the path integral as a limit of sums over discretized histories | MEM |
+| Markov-Kakutani fixed point theorem | fixed points of commuting affine maps by averaging; the Cesàro proof in `Helpers/FixedPoint.lean` is the one-map case | MEM; the one-map case is checked |
+| Lutz, resource-bounded measure (1992) | martingales on Cantor space; "NP is not p-measure zero" is a hypothesis stronger than P ≠ NP | MEM |
+
 ## J. Searched and not found (so nobody searches again)
 
 - A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`).
@@ -182,7 +191,7 @@ The full reference list of the quantum gravity program, kept here so that no cut
 
 ## Where the notes are
 
-`951/board/agents/`: research-lit, research-crawl (+ `research-crawl-citers.tsv` if present),
+`one-not/board/agents/`: research-lit, research-crawl (+ `research-crawl-citers.tsv` if present),
 research-nominCE-lit, research-hall-charging-lit, research-charging, research-hypergraph-hall,
 research-heredity-lit, research-and-replacement, research-negation-influence, research-partial,
 research-relax, research-fable-weight, research-fable-sokolov, research-pnp-defs, tractability-lit,

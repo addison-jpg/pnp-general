@@ -4,7 +4,7 @@ import PEqualNP.Defs
 # Boolean sums on the NOT gate ladder (rung `k`)
 
 Card 2 of the board: state rung `k` of the NOT gate ladder in the form that L-meta-951 proves for
-`k = 1`. The setting is that of `951/lean` (`bound_of_forall_not_minCE`), written with the
+`k = 1`. The setting is that of `one-not/lean` (`bound_of_forall_not_minCE`), written with the
 circuits of `Defs/CircuitLowerBounds.lean`:
 
 * sets `S w ⊆ [n]` with `|S w| ≥ 2` and `|S a ∩ S b| ≤ 1` for `a ≠ b` (a (1,1)-disjoint Boolean
@@ -18,13 +18,13 @@ circuits of `Defs/CircuitLowerBounds.lean`:
 * `boolSumNot_anti`: allowing more NOT gates gives a stronger statement, so rung `k + 1` gives
   rung `k`.
 * `notCount_le_one_iff`: at most one NOT gate in the count of `SIZENot` is the same as "two NOT
-  gates are the same gate", the hypothesis `AtMostOneNot` of `951/lean`.
+  gates are the same gate", the hypothesis `AtMostOneNot` of `one-not/lean`.
 
-State of knowledge (not claimed here): `k = 0` is the monotone case, proved in `951/lean` as
+State of knowledge (not claimed here): `k = 0` is the monotone case, proved in `one-not/lean` as
 `W951/LiftBound.bound_of_noNot` (same hypotheses, no NOT gate). `k = 1` is L-meta-951
-(`951/lean`, `bound_of_forall_not_minCE`; open statement `no_minCE`). For larger `k` nothing is
+(`one-not/lean`, `bound_of_forall_not_minCE`; open statement `no_minCE`). For larger `k` nothing is
 claimed.
-The wire values agree with `951/lean`: `(Circuit.mk gates o).eval (List.ofFn x)` is, by
+The wire values agree with `one-not/lean`: `(Circuit.mk gates o).eval (List.ofFn x)` is, by
 definition, `val gates x o` there.
 -/
 
@@ -94,7 +94,7 @@ theorem length_filter_le_one_iff {α : Type*} (p : α → Prop) (l : List α) :
         have := H (i + 1) (j + 1) (by simpa using hi) (by simpa using hj) hpi hpj
         omega
 
-/-- `notCount gates ≤ 1` is `951/lean`'s `AtMostOneNot gates`: two NOT gates are the same gate. -/
+/-- `notCount gates ≤ 1` is `one-not/lean`'s `AtMostOneNot gates`: two NOT gates are the same gate. -/
 theorem notCount_le_one_iff (gates : List Gate) :
     notCount gates ≤ 1 ↔
       ∀ (i1 i2 : ℕ) (h1 : i1 < gates.length) (h2 : i2 < gates.length),

@@ -122,7 +122,7 @@ Every name has one parent. Read bottom up: a counterexample or a theorem is a le
     - `staircaseLemmas` · Definition · **staircase lemmas** (old: L1, L3, L4, STAIRCASE): Berge-acyclic families have a winning order
     - `liftOfTwoGateConfigurations` · Definition · **lift of two-gate configurations** (old: 2G-LIFT, 2G-b): no two gates serve as all classes of two sets in the lifted form
   - `section DeadEnds` · Section · **dead ends** (old: DEAD_ENDS.md): refuted or exhausted routes, in seven families
-    - `Refuted.classChosenWithoutLookingAtTheOtherSets` · Refuted · **class chosen without looking at the other sets** (old: family A): kills: disjoint representatives over pure classes; rows in 951/DEAD_ENDS.md section A
+    - `Refuted.classChosenWithoutLookingAtTheOtherSets` · Refuted · **class chosen without looking at the other sets** (old: family A): kills: disjoint representatives over pure classes; rows in one-not/DEAD_ENDS.md section A
       - `Cex.three4SetsInATriangle` · Counterexample · **three 4-sets in a triangle** (old: cxT2): n = 9; no gate-saving rewiring found in 1,679 tries; loses the certificate game; the hard core named by cTAHG
       - `Cex.adversaryAgainstTheTwoPointMenu` · Counterexample · **adversary against the two-point menu** (old: ADV3): load 1.2
       - `Refuted.threeCircuitsAgainstCanonicalMatching` · Refuted · **three circuits against canonical matching** (old: cx1, cx2, cx3): cx2: sunflower {0,1,4},{0,2,5},{0,3,6}, 18 gates, counted union 5 < demand 6
@@ -134,7 +134,7 @@ Every name has one parent. Read bottom up: a counterexample or a theorem is a le
       - `Refuted.circuitAgainstWorldPurePlainZeroPoints` · Refuted · **circuit against world-pure plain zero points** (old: cxe3): every plain choice uses mixed points for two of the three sets through the heavy point
       - `Refuted.circuitAgainstTheWorld0CanonicalStart` · Refuted · **circuit against the world-0 canonical start** (old: cx44_0)
       - `Refuted.unconfirmedWitness` · Refuted · **unconfirmed witness** (old: cxE): named as a witness once; not confirmed
-    - `Refuted.ruleFixingTheWorldOfASet` · Refuted · **rule fixing the world of a set** (old: family B): kills: world 0; rows in 951/DEAD_ENDS.md section B
+    - `Refuted.ruleFixingTheWorldOfASet` · Refuted · **rule fixing the world of a set** (old: family B): kills: world 0; rows in one-not/DEAD_ENDS.md section B
       - `Cex.paschConfiguration14GatesHeavyPoint` · Counterexample · **Pasch configuration, 14 gates, heavy point** (old: pasch_s14_heavy_atmostone.json): kills 'at most one world-0 set through a heavy point'
       - `Cex.fiveInputCircuitWhereOnlyALightPointWorks` · Counterexample · **five-input circuit where only a light point works** (old: ess_rand_clean_744.json): n = 5, 9 gates; violates no fact of a minimal counterexample that scaffold tested
       - `Cex.adversaryAgainstTheGeneralWorldLaws` · Counterexample · **adversary against the general world laws** (old: ADV4)
@@ -143,7 +143,7 @@ Every name has one parent. Read bottom up: a counterexample or a theorem is a le
       - `Refuted.heavyFirstStep` · Refuted · **heavy-first step** (old: F6): 'a heavy point exists => some heavy point satisfies the step'; refuted
       - `Refuted.noMixedZeroPoints` · Refuted · **no mixed zero points** (old: NoMixedPrice): refuted in the plain form
       - `Refuted.mergeSetLawWithoutItsTwoConditions` · Refuted · **merge-set law without its two conditions** (old: S1): false
-    - `Refuted.countingOverPureClassesForAllCorrectCircuits` · Refuted · **counting over pure classes for all correct circuits** (old: family C): kills: disjoint representatives over pure classes; rows in 951/DEAD_ENDS.md section C
+    - `Refuted.countingOverPureClassesForAllCorrectCircuits` · Refuted · **counting over pure classes for all correct circuits** (old: family C): kills: disjoint representatives over pure classes; rows in one-not/DEAD_ENDS.md section C
       - `Cex.twoTwoWorldSetsSharingOneMergeGate` · Counterexample · **two two-world sets sharing one merge gate** (old: cxMU_dd, cxMU_clean2, cxMU_clean2_DD): n = 7, 36 gates; pure classes cover 5 < 6; loses the certificate game
       - `Cex.paschConfigurationWithADoublyServedClass` · Counterexample · **Pasch configuration with a doubly served class** (old: tri_all_5593.json): kills the looseness lemma
       - `Cex.two4SetsWithJunk` · Counterexample · **two 4-sets with junk** (old: cx44_1_junk.json): loses the certificate game
@@ -151,13 +151,13 @@ Every name has one parent. Read bottom up: a counterexample or a theorem is a le
       - `Refuted.peeling` · Refuted · **peeling** (old: PEEL, E2): remove one set at a time keeping a free class; refuted over every menu tried
       - `Refuted.incrementAvoidingAllFreePoints` · Refuted · **increment avoiding all free points** (old: INC_N): refuted, deficit 1
       - `Refuted.loosenessLemma` · Refuted · **looseness lemma** (old: LOOSENESS, A4): after fixing the free classes every arc-consistent class extends; refuted
-    - `Refuted.countingOverRealMergeSetsWithoutMinimality` · Refuted · **counting over real merge sets without minimality** (old: family D): kills: disjoint representatives over real merge sets; rows in 951/DEAD_ENDS.md section D
+    - `Refuted.countingOverRealMergeSetsWithoutMinimality` · Refuted · **counting over real merge sets without minimality** (old: family D): kills: disjoint representatives over real merge sets; rows in one-not/DEAD_ENDS.md section D
       - `Cex.starOfFourPairsWithAThresholdNOTInput` · Counterexample · **star of four pairs with a threshold NOT input** (old: STAR4, star4.json; STAR4b, star4b_threshold.json): real merge sets cover 2 < 3 (threshold crossing)
       - `Cex.selectorPath` · Counterexample · **selector path**: kills bounded augmenting for all correct circuits
       - `Cex.innerProductJunkDesign` · Counterexample · **inner-product junk design** (old: cxr): kills 'later merge gates of different sets are disjoint'
       - `Refuted.fullChargingWithoutTheCone` · Refuted · **full charging without the cone** (old: ChargeOK): refuted, 3 counterexamples
       - `Refuted.acyclicForcingInGateOrder` · Refuted · **acyclic forcing in gate order** (old: P2): refuted
-    - `Refuted.inductionOneInputAtATimeForAllCorrectCircuits` · Refuted · **induction one input at a time for all correct circuits** (old: family E): kills: the point step; rows in 951/DEAD_ENDS.md section E
+    - `Refuted.inductionOneInputAtATimeForAllCorrectCircuits` · Refuted · **induction one input at a time for all correct circuits** (old: family E): kills: the point step; rows in one-not/DEAD_ENDS.md section E
       - `Cex.fanoFormulaWithAnUnusedNOTGate` · Counterexample · **Fano formula with an unused NOT gate** (old: FANO-FORMULA, fano_formula.json): 17 gates; kills point deletion
       - `Cex.pappusConfigurationWithJunkGates` · Counterexample · **Pappus configuration with junk gates** (old: PAPPUS-JUNK, pappus_junk_gain.json): n = 9, 66 gates; kills the point step for one-face witness gates
       - `Cex.twinBalancedORTreesWithLeafJunk` · Counterexample · **twin balanced OR trees with leaf junk** (old: TWIN-TREE, twin_tree_f2step.json): n = 14, 28 gates; kills the point step for real-witness gates; every cube is local
@@ -167,12 +167,12 @@ Every name has one parent. Read bottom up: a counterexample or a theorem is a le
       - `Cex.fiveInputGapForSeenGates` · Counterexample · **five-input gap for seen gates** (old: see_gap_n5.json): n = 5, sets {0,1}, {1,2,3,4}, {0,2}, h = x1 or x4, cube Q = {0}: at v = 1 only 2 of the 3 gates of F2(Q) are 1 at Q + e_v (cost 3) while the step holds; the third gate x2 or x3 dies because all its witnesses come from the one set through v (K3). Why the count needs the K3 term (dwV8p)
       - `Refuted.variantsOfTheTwinTreesWithATwoOrThreeInputNOTInput` · Refuted · **variants of the twin trees with a two- or three-input NOT input** (old: OR2, AND2, MAJ3): nonlocal/twin_tree_{or2,and2,maj3}.json; the step fails for one-face and real-witness gates only
       - `Refuted.junkCircuitAgainstTheLeastInfluenceRule` · Refuted · **junk circuit against the least-influence rule** (old: JUNK2)
-    - `Refuted.localOrMemorylessArgument` · Refuted · **local or memoryless argument** (old: family F): kills: gate elimination step; rows in 951/DEAD_ENDS.md section F
+    - `Refuted.localOrMemorylessArgument` · Refuted · **local or memoryless argument** (old: family F): kills: gate elimination step; rows in one-not/DEAD_ENDS.md section F
       - `Refuted.memorylessPotential` · Refuted · **memoryless potential** (old: S4): increments above 1
-    - `Refuted.methodFromOutsideCircuits` · Refuted · **method from outside circuits** (old: family G): kills: one NOT gate saves nothing on Boolean sums; rows in 951/DEAD_ENDS.md section G
+    - `Refuted.methodFromOutsideCircuits` · Refuted · **method from outside circuits** (old: family G): kills: one NOT gate saves nothing on Boolean sums; rows in one-not/DEAD_ENDS.md section G
     - `frontLanes` · Definition · **front lanes** (old: A1, A2, B8, C3, N2): labels of work lanes and of items inside other sessions' notes, not mathematical objects
-  - `section WitnessCircuits` · Section · **witness circuits** (old: 951/data/witnesses): correct circuits that refute a route; none refutes the statement
-  - `section CheckedInLean` · Section · **checked in Lean** (old: 951/lean/PEqualNP/W951): statements the Lean checker accepted
+  - `section WitnessCircuits` · Section · **witness circuits** (old: one-not/data/witnesses): correct circuits that refute a route; none refutes the statement
+  - `section CheckedInLean` · Section · **checked in Lean** (old: one-not/lean/PEqualNP/W951): statements the Lean checker accepted
     - `small3_bound` · Theorem · **small3_bound**: the statement when every set has at most 3 points
     - `bound_of_noDD` · Theorem · **bound_of_noDD**: TwoWorld.lean: the bound when no output is in two-world normal form
     - `partial_bound` · Theorem · **partial_bound**: PartialBound.lean

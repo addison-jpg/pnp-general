@@ -46,7 +46,7 @@ general circuits (Markov and Fischer, checked: `Fischer.L104`).
 | Lemma (paper) | `MinCE.no_rewire`; reach of value arguments, no mixing of worlds, one colouring per merge gate |
 | Open | circuits that lose the certificate game (smallest: sets {0,1,2}, {0,3,4}, `notInput` = x1 ∨ x3; hard core `Cex.threeFourSetsInATriangle`, old cxT2) |
 | Open | `GainF2` under `MinCE.no_rewire` |
-| Refuted | seven families, each with its counterexample: [`951/DEAD_ENDS.md`](951/DEAD_ENDS.md) |
+| Refuted | seven families, each with its counterexample: [`one-not/DEAD_ENDS.md`](one-not/DEAD_ENDS.md) |
 | Tested | `realWitness` count ≥ `base` at every cube of every suite: no failure |
 
 Every open item concerns a `notInput` that depends on at least two inputs. The technique reads the

@@ -3,7 +3,7 @@
 Serves README items: none directly: this board keeps the sessions and the repository in order. Rules, names and the other boards: [`../BOARD.md`](../BOARD.md). Append a line with a time, who you are, a tag and the item it serves; never erase someone else's line.
 
 ### Wall: the kill list (owner 14:40: "kill things at the bottom, but not too fast... all these parts to come together")
-- 14:45 main [RULE] 951/board/agents/INDEX.md maps every note to one of four parts of the route (Lean reduction, the step, the global count, big picture) or to "off the route". Off the route = a first line `OFF THE ROUTE` in the file; nothing with content is deleted. Object by one line here.
+- 14:45 main [RULE] one-not/board/agents/INDEX.md maps every note to one of four parts of the route (Lean reduction, the step, the global count, big picture) or to "off the route". Off the route = a first line `OFF THE ROUTE` in the file; nothing with content is deleted. Object by one line here.
 - 14:45 main [DONE] first pass: 10 notes marked, 2 empty notes deleted (coord-sun3, scaffold-offer). Second-pass candidates are listed in INDEX.md; they get marked only if nobody objects.
 - 14:45 main [RULE] new notes: say in the first line which of the four parts it feeds. A note that feeds none is not written.
 
@@ -37,8 +37,8 @@ Serves README items: none directly: this board keeps the sessions and the reposi
 > the order here is 1: then 2: then 3:
 
 How it is carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp):
-- The tree as data: `MST.json` at the root (every leaf -> its parent; lean, then py, then md). Counts: lean/ 1632 files, 689 leaves; 951/lean 194 files, 75 leaves; py 446 files, 57 leaves; md 215 files, 55 leaves, 17 READMEs.
-- Lean, merged for real: only `951/lean` (75 leaf files, about 12,000 lines), on branch `mst-lean`, kept only if the whole project still builds with the same single sorry. The 689 leaves of `lean/` are too expensive to merge and re-build (about 295,000 lines): they stay as files and are mapped in `MST.json`.
+- The tree as data: `MST.json` at the root (every leaf -> its parent; lean, then py, then md). Counts: lean/ 1632 files, 689 leaves; one-not/lean 194 files, 75 leaves; py 446 files, 57 leaves; md 215 files, 55 leaves, 17 READMEs.
+- Lean, merged for real: only `one-not/lean` (75 leaf files, about 12,000 lines), on branch `mst-lean`, kept only if the whole project still builds with the same single sorry. The 689 leaves of `lean/` are too expensive to merge and re-build (about 295,000 lines): they stay as files and are mapped in `MST.json`.
 - py: mapped in `MST.json`, not merged (each script is run by name from notes and by sessions).
 - READMEs: 17 files merged upward and cut down on branch `mst-readme`, in the owner's wording, same typography.
 - Nothing lands on main from these branches without coord. Sessions: keep working; if your file is a 951 leaf, say so here before a big edit.
@@ -66,7 +66,7 @@ How it is carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp):
   NOT ladder (card 4): w6_not_free + w4_not_free (EdgeFnWindow4.lean) = the ladder collapses to rung 0 for the edge function
   on W6 and on max-deg-3 W4 (strictly larger than L113's girth/hub 9 class): every circuit has a NOT-free one no larger.
 - session_01GmnDhdRKvz5Z7gneQqGG3V (machines-Lean = Lean helper of tractability; attached here 09:25 with owner OK; lands in
-  951/lean itself, coord verifies). Done in 951/: MergeWorld(+bridge), sum_equivFin, MergeWorld2, Peel2 dedup, audits #21/#10/#2,
+  one-not/lean itself, coord verifies). Done in one-not/: MergeWorld(+bridge), sum_equivFin, MergeWorld2, Peel2 dedup, audits #21/#10/#2,
   PureSDR certificates (Pasch witness + scaffold's 12 v-ladder circuits, ca16c38). LANDED 2413122 (coord 11:59, cTAHG's
   heredity gap): RunTransfer (no merge at constants/copies; run_transfer), Kernel/W951CubeKeep (gate-level cube restriction),
   PureRestrict: exists_restrictedLift (restricted classes = runs on an actual restricted lifted list L, y free) and
@@ -93,7 +93,7 @@ How it is carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp):
 
 - session_01GmnDheoRytFdZ9LUQXmuGK (pnp-subproblem; attached here 08:55 with owner OK in its own chat): role REFEREE B (merge-tree
   charging) for no_minCE. Unfinished: waits for front's B claims (~11:30). Older work on pequalnp-work: board-unified 5136256 (paused),
-  board f865a6d (referee file, copied to 951/board/agents/pnp-subproblem-referee-angle2.md).
+  board f865a6d (referee file, copied to one-not/board/agents/pnp-subproblem-referee-angle2.md).
 - session_01GmnDhgoeSPwoi25gcFxUPJ (checker-checker; attached here 09:28 with owner OK in its own chat; 1to1 seat = checker, with observer session_01GmnDhegXGF8MJNAhiA1AHp): Done: note-2, physics models vs the three barriers (unified gravity / CTCs / BBBV / holographic complexity -> relativization L-lib-061/062, algebrization L-lib-065/076, natural proofs L-lib-086; verdict: exact as a map, no barrier passed; L-lib-035 is vacuous per L-lib-093) at notes/checker/note-2-physics-models-and-the-three-barriers.md, with 3 Lean corollaries notes/checker/BarrierMap.lean (compiled on the pinned toolchain + Mathlib, std axioms only; not run through the checker). Same files on pequalnp-work mirror/serene-davinci-l1jdj2 5684af9. Unfinished: nothing; 0 agents.
 
 - session_01GmnDhcTAHGf6Zx99zs3cPd (cTAHG, LP / price-form Lean for 951; attached here 09:45 with owner OK in its own chat): LANDED on main:
@@ -133,40 +133,40 @@ How it is carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp):
   h = 0 at z_w = Q ∪ ⋃_{earlier} (S_w' \ v) and (D) ⇒ CERT-3c). Data H3u 184/184 local; remaining: (D) at TU zero points.
   13:56: ElimStep: what gates < base buys = `MinCE.sub_bound` / `elim_lt` (no restriction eliminates its cost) and
   `no_minCE_of_elimStep` (ONE elimination step at the top closes 951). GE holds at Q = ∅ on 104/104 local circuits incl. MATCH-C;
-  the F2 step never holds without GE. Note 951/board/agents/cTAHG-slack.md.
+  the F2 step never holds without GE. Note one-not/board/agents/cTAHG-slack.md.
   14:04: Theorem G (Fable, global price) REFEREED CORRECT and PROVED in Lean (UGame.lean `liftSDR_of_ugame`, `no_minCE_of_ugame`,
   G0/G1, corollaries (a)/(c)). U-game won on 19/21 barrier witnesses incl. MATCH-C and the twin trees; lost only on the DD core
-  (cxMU_dd, cx44_1_junk). Verdict 951/board/agents/cTAHG-referee-thmG.md.
-  Results: 951/board/agents/lpfix-mergefrac-lean.md.
+  (cxMU_dd, cx44_1_junk). Verdict one-not/board/agents/cTAHG-referee-thmG.md.
+  Results: one-not/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.
   Done: Lemma K CORRECT (Lean: coord-951 19601c9); gAdyD's split-set item 3 CORRECT; scaffold's strict resolution gadget
   (A|y)&(A|~y) FALSE in general (cfgI, cxstar5/44, cxP1-3/5/6; it fits every circuit with s - base <= 7). Report + checkers:
-  `951/work/notes951/lemmaK_referee/` (from pequalnp-work referee-lemmaK-dwV8p e0c113a); verdicts
-  `951/board/agents/dwV8p-referee-*.md`. Earlier: D-qg-1 quantum circuits (L-qg-110 to 119, on main). DONE: REFEREE of research's
-  F2 LIGHT case (951/board/agents/dwV8p-referee-F2-light.md): B, K0-K3 CORRECT; LIGHT-STAR has a WORDING GAP ("no world-0
+  `one-not/work/notes951/lemmaK_referee/` (from pequalnp-work referee-lemmaK-dwV8p e0c113a); verdicts
+  `one-not/board/agents/dwV8p-referee-*.md`. Earlier: D-qg-1 quantum circuits (L-qg-110 to 119, on main). DONE: REFEREE of research's
+  F2 LIGHT case (one-not/board/agents/dwV8p-referee-F2-light.md): B, K0-K3 CORRECT; LIGHT-STAR has a WORDING GAP ("no world-0
   witness at Q + v" does not imply leaving F2; fix: "no witness", applied by research a02727d), repaired form + the step hold
-  on 58,795 light instances. DONE (coord 12:54): front A2's F1 and F2-desc both CORRECT (951/board/agents/
+  on 58,795 light instances. DONE (coord 12:54): front A2's F1 and F2-desc both CORRECT (one-not/board/agents/
   dwV8p-referee-F2-heavy.md; F1 false for light v as front says). SYNTHESIS (owner's request,
-  951/board/agents/dwV8p-synth-F1-F2.md): F1* (one lemma for heavy + light: survivors seeing v are type-A world-0 servants)
+  one-not/board/agents/dwV8p-synth-F1-F2.md): F1* (one lemma for heavy + light: survivors seeing v are type-A world-0 servants)
   PROVED; the F2 step reduces to ONE count SEE+K3 (some v: |(SEE \ SURV) ∪ K3| >= cost(v)), holds on 197,689 random + all
   witness restrictions incl. FANO-FORMULA, PAPPUS-JUNK, where SEE alone fails. PROOF PLAN for the F2 step:
-  951/PROOF_PLAN_SUGGESTIONS.md §6 (for machines-Lean GainF2 + the integrator's F2 Opus): Step 1 GainF2 <= SEE+K3 PROVED;
+  one-not/PROOF_PLAN_SUGGESTIONS.md §6 (for machines-Lean GainF2 + the integrator's F2 Opus): Step 1 GainF2 <= SEE+K3 PROVED;
   Step 2 joint union-find over the star gives >= cost(v) distinct merges PROVED; OPEN: REROUTE of the thin layer of cross /
   surviving merges (holds on 14,898/14,905 without it). DONE (coord 13:10): front A2's h = x_p theorem CORRECT
-  (951/board/agents/dwV8p-referee-hxp.md; 149,445 plain + 68,234 relative instances). Free for the next assignment.
+  (one-not/board/agents/dwV8p-referee-hxp.md; 149,445 plain + 68,234 relative instances). Free for the next assignment.
 
 - session_01GmnDhgAdyDijthBgZgJFWn (ex D-qg-2; scaffold helper for 951; attached here 09:25 with owner OK in
   its own chat): D-qg-2 LANDED here (L-qg-120 to L-qg-127 checked, `Defs/QuantumGravityChannels.lean`;
   first version on pequalnp-proofs `claude/modest-brahmagupta-66n1fr` bddc02a). 951: no-mixed / heavy split
-  rounds 1-4 in `951/board/agents/qg-d2-nomixed.md` (code: pequalnp-work `nomixed-951` 1bada7b). xgen for
-  scaffold DONE (`951/board/agents/qg-d2-xgen.md`: 7,176 essential circuits on 4 systems with a hard 4-set, no
+  rounds 1-4 in `one-not/board/agents/qg-d2-nomixed.md` (code: pequalnp-work `nomixed-951` 1bada7b). xgen for
+  scaffold DONE (`one-not/board/agents/qg-d2-xgen.md`: 7,176 essential circuits on 4 systems with a hard 4-set, no
   cross-world gate at all, no counterexample). Unfinished: B at base+3 undecided; random 4-set systems not run.
-  13:11 CERT-1c (`951/board/agents/qg-d2-ucert.md`): an explicit certificate for the F2 step, the cone merge sets at Z = Q of the
+  13:11 CERT-1c (`one-not/board/agents/qg-d2-ucert.md`): an explicit certificate for the F2 step, the cone merge sets at Z = Q of the
   sets through v, holds at some v on all 31,503 all-read instances (102,136 / 102,137 overall); proof plan = lemmas (D) death and
   (S) disjointness for a well-chosen v. Base+5 xgen stopped 13:03 (owner 12:05: minimal refutes).
 - session_01GmnDhdZb2EsYNLc1r4M85e (dZb2E, ex QG L-qg-101; Lean helper of tractability for 951; attached here 09:22 with owner
-  OK in its own chat; commits as addison-jpg): LANDED in 951/lean: LemmaK (MinCE.ex_ge_two, MinCE.lemmaK_V1, K1_bound),
+  OK in its own chat; commits as addison-jpg): LANDED in one-not/lean: LemmaK (MinCE.ex_ge_two, MinCE.lemmaK_V1, K1_bound),
   CrossWorld (S1(g) for merge sets needs (i) z' avoids S_a and (ii) C0(g)(Zof S_a) = 0; cx1/cx2 show both are necessary),
   PriceOff (MergePriceOff + ShiftOff -> MergePrice; single-owner gates shift for free; for crossSet that part is empty),
   MergeSDR (= integral MergeFrac; MergeSDR -> ChainPickOn -> MergePrice). Unfinished: nothing; free for the next assignment.
@@ -182,13 +182,13 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 1. Coverage: every open README item (C1, C2, L-gen-101..103, XOR case, Kannan machine, L-qg gaps) has a named seat, or is
    explicitly parked. Unstaffed open items go on the wall as `[ASK]` to coord, with the idle seats that could take them.
 2. Spend: running agents vs idle seats; Fables vs allocation; long runs with no wall line for > 90 min get a `[WATCH]`.
-3. Route coherence: compute that serves no README item (off-route per 951/board/agents/INDEX.md) goes on the kill list.
+3. Route coherence: compute that serves no README item (off-route per one-not/board/agents/INDEX.md) goes on the kill list.
 4. Duplicates and dead loops: two seats on one item; a lane on a statement the wall marks `[DEAD]`.
 5. Blockers that only the owner can clear (permissions, restarts) are collected in ONE line below, not sent as messages.
 
 **Snapshot 17:20 UTC** (from session status; nothing killed).
 - Working: integrator (QG coordinator, main), checker-CHECKER (observer, MST / prime directive). Everyone else idle after the final pass.
-- C1 and C2: PARKED by coord (boards/951.md, a37713f), each with a restart point. Coord is paused by the owner and staffs no
+- C1 and C2: PARKED by coord (boards/one-not.md, a37713f), each with a restart point. Coord is paused by the owner and staffs no
   seats; a restart needs the owner. Ladder (L-gen-101..103, XOR open case, Kannan) and physics gaps
   (L-qg-115/116/119/169): no running seat.
 - Idle seats that fit: coord (assign), research + research-desktop (literature for C1/C2), dwV8p / pnp-subproblem (referee),

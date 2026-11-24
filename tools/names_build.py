@@ -20,8 +20,8 @@ add(C, ROOT, "part", "MU", "some named family of gates has at least monotone-opt
 add(S, ROOT, "part", "STEP, GainF2, GainOne", "prove the count one input at a time: setting some input to 1 removes at least cost-of-the-point gates from the family")
 add(G, ROOT, "part", "U-game, Theorem G", "a pairwise test on the lifted outputs; when it is won the statement is checked in Lean")
 add(D, ROOT, "part", "DEAD_ENDS.md", "refuted or exhausted routes, in seven families")
-add(W, ROOT, "part", "951/data/witnesses", "correct circuits that refute a route; none refutes the statement")
-add(L, ROOT, "part", "951/lean/PEqualNP/W951", "statements the Lean checker accepted")
+add(W, ROOT, "part", "one-not/data/witnesses", "correct circuits that refute a route; none refutes the statement")
+add(L, ROOT, "part", "one-not/lean/PEqualNP/W951", "statements the Lean checker accepted")
 
 # ---- objects
 for name, code, means in [
@@ -119,7 +119,7 @@ for name, parent, means in [
  ("lAvoid", "disjoint representatives over real merge sets", "Augment.lean"),
 ]: add(name, parent, "lean", name, means)
 
-# ---- dead-end families (rows stay in 951/DEAD_ENDS.md)
+# ---- dead-end families (rows stay in one-not/DEAD_ENDS.md)
 fam = [
  ("class chosen without looking at the other sets", "A", "disjoint representatives over pure classes"),
  ("rule fixing the world of a set", "B", "world 0"),
@@ -130,7 +130,7 @@ fam = [
  ("method from outside circuits", "G", ROOT),
 ]
 for name, code, hits in fam:
-    add(name, D, "dead family", "family "+code, "kills: "+hits+"; rows in 951/DEAD_ENDS.md section "+code)
+    add(name, D, "dead family", "family "+code, "kills: "+hits+"; rows in one-not/DEAD_ENDS.md section "+code)
 
 # ---- witnesses (leaf -> the dead family it feeds)
 for name, code, parent, means in [
@@ -281,7 +281,7 @@ open("NAMES.md", "w").write("\n".join(out) + "\n")
 
 # coverage: which code-like tokens of the key documents have no name yet
 codes = " ".join(v["code"] + " " + k for k, v in N.items())
-docs = ["951/DEAD_ENDS.md", "notes/synthesis/collation-2026-11-24.md", "951/FINDINGS_2026-11-24.md"]
+docs = ["one-not/DEAD_ENDS.md", "notes/synthesis/collation-2026-11-24.md", "one-not/FINDINGS_2026-11-24.md"]
 tok = {}
 for d in docs:
     for t in re.findall(r"\b(?:cx[A-Za-z0-9_]+|[A-Z][A-Za-z]*[0-9][A-Za-z0-9']*|[A-Z]{2,}(?:-[A-Z0-9]+)+|[A-Z][a-z]+[A-Z][A-Za-z0-9]*)\b", open(d).read()):

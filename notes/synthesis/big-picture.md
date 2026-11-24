@@ -5,7 +5,7 @@ NOT gate saves nothing on Boolean sums (circuits of AND, OR and one NOT; (1,1)-d
 sets S_w needs at least base = sum of d_w = |S_w| - 1 gates). Status words: "checked" = Lean accepted;
 "kernel-checked on N" = a `decide` certificate per circuit; "tested on N, 0 failures" = corpus data that
 could have killed the lemma, which is not a proof; "refuted" = a witness exists. Sources: SYNTHESIS.md,
-BOARD.md, 951/DEAD_ENDS.md, 951/SYNTHESIS_951.md, the two agent notes named in section 1.
+BOARD.md, one-not/DEAD_ENDS.md, one-not/SYNTHESIS-one-not.md, the two agent notes named in section 1.
 
 ## 1. The chain, top to bottom
 
@@ -63,7 +63,7 @@ BOARD.md, 951/DEAD_ENDS.md, 951/SYNTHESIS_951.md, the two agent notes named in s
 ## 3. Barrier table (DRAFT for the referee; SYNTHESIS.md section 4 item 4)
 
 Scope: 951 is a linear bound in a restricted model, so no barrier blocks it; the question is only whether
-the technique would survive the test. Reasons are from `951/SYNTHESIS_951.md` section 4 and SYNTHESIS.md
+the technique would survive the test. Reasons are from `one-not/SYNTHESIS-one-not.md` section 4 and SYNTHESIS.md
 section 3; "not assessed" means no file gives a reason.
 
 | Technique | (a) oracle | (b) low-degree extension | (c) natural proofs |
@@ -72,7 +72,7 @@ section 3; "not assessed" means no file gives a reason.
 | Monotone faces C_0 <= real <= C_1 | does not relativize: uses the inside of the circuit (same reason as the row above) | same as the row above (Boolean points, monotone h) | not natural, not ruled out: the faces are read off one circuit's single NOT, and the bound is about one explicit family (Boolean sums of a set system), a sparse set of truth tables, so the property is not large (GeNeRALIZE draft 13:17) |
 | Restriction x_v := 1 / heredity (Lemma R) | does not relativize: a restriction of one wire's value inside the circuit (SYNTHESIS.md section 3) | substitution x_v := 1 survives a field extension, but the counting after it uses AND / OR on Boolean values (merge classes, monotone h), so as in row 1: not algebrizing, not ruled out (GeNeRALIZE draft 13:17) | not natural, not ruled out: the induction runs over sub-instances of the same explicit family; no largeness (GeNeRALIZE draft 13:17) |
 | Hall / SDR (disjoint choice) | does not relativize: the sets to choose from are merge classes of the circuit's own wires (GeNeRALIZE draft 13:17) | Hall is pure combinatorics on classes defined at Boolean points: same as row 1, not algebrizing, not ruled out (GeNeRALIZE draft 13:17) | not natural, not ruled out: a disjoint choice is a certificate for one circuit of one explicit family; nothing about a large fraction of functions (GeNeRALIZE draft 13:17) |
-| LP duality (PurePrice, 2G-LIFT) | "same assessment" as union-find (951/SYNTHESIS_951.md) | same | same; the parity step is a design fact, not a random-function property |
+| LP duality (PurePrice, 2G-LIFT) | "same assessment" as union-find (one-not/SYNTHESIS-one-not.md) | same | same; the parity step is a design fact, not a random-function property |
 
 Scaling (not a barrier test): k NOT gates give up to 2^k worlds; with ceil(log2(n+1)) NOT gates circuits
 are general up to polynomial blow-up (Markov, Fischer; L-gen-104 checked), where the three barriers apply
@@ -95,13 +95,13 @@ The one analogy, "two oracle worlds" versus "two values of one wire", transfers 
 1. Change the counted family so that face-1 witnesses whose atoms leave {h = 0} through a NOT-dependent
    AND term are not counted, without losing MU (opus-light-count.md section 4; the strict version fails on hard4).
 2. Prove the lifted price form for k-gate prices: an odd-cycle / 2-colouring statement on the hypergraph of
-   pairwise intersection points, starting from the open cxT2-type triples (SYNTHESIS_951.md section 3, A1).
+   pairwise intersection points, starting from the open cxT2-type triples (SYNTHESIS-one-not.md section 3, A1).
 3. The next rung: MUL with 4-world lifted classes on a 2-NOT PG(2,3) circuit with two hubs, and a
-   2-selector selector path (SYNTHESIS_951.md section 5 point 5; BOARD.md 12:35; speculative).
+   2-selector selector path (SYNTHESIS-one-not.md section 5 point 5; BOARD.md 12:35; speculative).
 
 ## 6. Where the sources disagree
 
-- LIGHT-COUNT: "open, likely the easier half" (SYNTHESIS_951.md section 3; SYNTHESIS.md section 3) versus
+- LIGHT-COUNT: "open, likely the easier half" (SYNTHESIS-one-not.md section 3; SYNTHESIS.md section 3) versus
   "false" (opus-light-count.md, later; DEAD_ENDS row 71). This file follows the later refutation.
 - DEAD_ENDS.md "NOT dead ends" line still calls PureSDR the official target; BOARD.md says the lifted
   forms superseded it at about 12:27.
