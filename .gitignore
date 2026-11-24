@@ -11,3 +11,6 @@
 # the agent helper keeps its leases here
 .pnp/
 __pycache__/
+
+# heavy generated search output (see 951/PIPELINE.md)
+artifacts/

@@ -109,8 +109,7 @@ ProofComplexity, Search, Outside) are here unchanged.
   from 11:32 bottleneck Lean (two-owner ShiftOff, CU) has priority over audits.
 - session_01GmnDhfo8QCanitMDqFa2x1 (quantum gravity coordinator; integrates this board): `pnp-general`
   main; the same tree is on `pequalnp-work` `mirror/trusting-newton-2lz5jy` (342bed1). Unfinished:
-  gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the D-qg-2 card (density matrices) is on its
-  own session's branch, state not reported; the referee seat for angle C has received no claim.
+  gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the referee seat for angle C has received no claim.
 
 - session_01GmnDheoRytFdZ9LUQXmuGK (pnp-subproblem; attached here 08:55 with owner OK in its own chat): role REFEREE B (merge-tree
   charging) for no_minCE. Unfinished: waits for front's B claims (~11:30). Older work on pequalnp-work: board-unified 5136256 (paused),
@@ -140,6 +139,8 @@ ProofComplexity, Search, Outside) are here unchanged.
 Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
 
 ## Subboard: the NOT gate ladder, rung 1 (L-meta-951)
+How search code and Lean divide the work: [`951/PIPELINE.md`](951/PIPELINE.md) (the owner's framework:
+Python/C++ searches and exports compact witnesses, Lean only checks).
 Arrives one-to-one from `addison-jpg/pequalnp-work` branch `coord-951` (code) and `board` (notes).
 Open statement: `no_minCE`. Candidates: price form, double counting over the merge tree, lifted
 fractional induction.
