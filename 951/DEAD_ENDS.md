@@ -39,11 +39,11 @@ for the exact statement. Add a line whenever a kill test fails. coord and resear
 | As general laws: 'shared 3rd+ merges never downstream of the NOT', 'no mixed conflicts', 'staircase disjointness' | refuted | ADV4 | `951/research/front612/fable_worlds.md` (b3, C3) |
 | Free-candidate lemma; research's no-chain lemma; single-flip repair L-flip | fail | cxT2 / cxT4; 2,454 circuits; 24 fixh16 K4 circuits | scaffold / research, 09:50 |
 | Unbounded loose LAugment as an easier target | not easier | equivalent to MergeSDR (Lean mergeSDR_iff_avoid_augmentLoose) | Augment.lean |
-
-## NOT dead ends (open or supported; do not list as refuted)
-Heavy-point exclusion is OPEN (no lemma excludes it; 842/842 essential clean circuits at s - base = 4 have a heavy unit); heavy split v2;
-refined no-mixed form; StrongCU / ChainPick; MergeSDR (0 failures on 75,619; kernel-checked on 35); L-avoid; L-augment_2 (= LAugmentK 2).
 | Canonical start: world-0 interval classes (zero point `top_w`, minterm atoms) for sets with `h(top_w) = 1` | refuted | 13 of 62 circuits, e.g. cx44_0, cxT2, cxe3, cxtw3 | `951/tools/kill_tests/canon.py` |
 | Interval classes at extreme points only (world 0 and world 1), merge sets or matching form | refuted | cxT2, cxe3 (also hard4, cxstar5, cxP3 without plain points for split sets) | `kill_tests/fam.py`, `match.py` |
 | World-pure zero points for sets through a heavy point | refuted | cxe3: every SDR uses mixed points for at least two of the three sets through the heavy point | `kill_tests/probe.py` |
 | One-set induction: a fixed order of the sets in which every partial disjoint choice extends | refuted | fixh16 family; best order (latest output first) fails on 9 of 62 | `kill_tests/order.py` |
+
+## NOT dead ends (open or supported; do not list as refuted)
+Heavy-point exclusion is OPEN (no lemma excludes it; 842/842 essential clean circuits at s - base = 4 have a heavy unit); heavy split v2;
+refined no-mixed form; StrongCU / ChainPick; MergeSDR (0 failures on 75,619; kernel-checked on 35); L-avoid; L-augment_2 (= LAugmentK 2).
