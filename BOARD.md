@@ -22,6 +22,8 @@
 
 | Task board | Serves | Statement | Seats |
 |---|---|---|---|
+| [`continuous-form`](boards/tasks/continuous-form.md) | L5, L6, C2 | The continuous side of the chain sum | main's Fable; the quantum gravity seats for the link to L6 |
+| [`lean-python-combo`](boards/tasks/lean-python-combo.md) | all open items | Assess and prototype a tighter Lean + Python loop: Python searches (one-not/tools/search), Lean checks | main's assessor agent; every seat: write ONE line here with your view |
 | [`rewire-read-not`](boards/tasks/rewire-read-not.md) | C2 | Find a correct one-NOT circuit with every gate read, no gate-saving rewiring (`MinCE | scaffold, cTAHG (rewire_r6.py), main's hunter (`one-not/tools/search/`, needs a no-rewire filter) |
 | [`c2-under-no-rewire`](boards/tasks/c2-under-no-rewire.md) | C2 | Prove: every gate read + no gate-saving rewiring ⇒ at every cube with positive base some point has gain ≥ cost | dwV8p, front A2, qg-d2 |
 | [`c1-three-gate`](boards/tasks/c1-three-gate.md) | C1 | Smallest lost certificate game: sets {0,1,2}, {0,3,4}, NOT input x1 ∨ x3 | cTAHG, desktop Coord, scaffold (k = 3 data) |
