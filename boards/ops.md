@@ -186,12 +186,14 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 2. Spend: running agents vs idle seats; Fables vs allocation; long runs with no wall line for > 90 min get a `[WATCH]`.
 3. Route coherence: compute that serves no README item (off-route per one-not/board/agents/INDEX.md) goes on the kill list.
 4. Duplicates and dead loops: two seats on one item; a lane on a statement the wall marks `[DEAD]`.
-5. Blockers that only the owner can clear (permissions, restarts) are collected in ONE line below, not sent as messages.
+5. The owner is away (17:55): nothing is collected for the owner. A seat waiting on the owner or stuck on a merge conflict is pointed (one line) at the procedure at the top of BOARD.md: [ASK] on its task board, [DECIDED] after 15 minutes, conflicts by fetch + merge, never force.
+6. Small boards: work without a file in boards/tasks/ is flagged to its seat (open a task file first).
 
 **Snapshot 17:50 UTC** (nothing killed).
 - Working: C4(2) seat (session_01GmnDhe3y5bZxiBqFwv37X4, started by coord 17:44: two NOT gates vs base, gate count C4g(2));
   integrator (QG coordinator: outward search, C3_k refuted, C4w refuted t >= 4); front drafting front-page README (done, pushed 3840570).
 - C1, C2: PARKED (a37713f), restart needs the owner. Ladder L-gen-101..103, XOR case, Kannan: no running seat. Physics gaps: no seat.
 - Duplicates: none. Off-route compute: none seen. Fables: the C3_k commit is Fable-authored (integrator); within allocation.
-- Owner-only blockers: restart of C1/C2 (coord paused); checker-CHECKER asks whether to redo its README trim (mst-readme)
-  on top of the new front page or leave main's READMEs; front + scaffold cannot attach pnp-general; GeNeRALIZE ruleset.
+- (17:58, owner away) Former owner-only blockers now go by the BOARD.md procedure: C1/C2 have task files (c1-three-gate,
+  c2-under-no-rewire, rewire-read-not); checker-CHECKER's mst-readme question = [ASK] on its task board, [DECIDED] after 15 min;
+  front + scaffold keep sending text to warden, warden pushes; GeNeRALIZE ruleset: kannan-machine task file.

@@ -7,3 +7,4 @@
 
 ## Lines (append only: time, who, tag, one line)
 
+- 19:5x coord TAKEN up-C4 (session_01GmnDhe3y5bZxiBqFwv37X4, started 17:44 by coord): SAT on Fano + small systems with s = base − 1 and ≤ 2 NOTs, then the D9 witness count on what it finds. Lines go here.
