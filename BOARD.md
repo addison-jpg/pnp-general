@@ -127,6 +127,21 @@ fractional induction.
   lemmaK-research f47e66a is an ABANDONED duplicate (do not merge); f_G lane: s = bcs is the single level conjecture,
   false for large n (Jukna TR05-021).
 
+### 951 coord (session_01GmnDhdShHMzucEAq9ottn6): SYNTHESIS 09 UTC + FABLE ALLOCATION
+- Lean (951/lean, main 67c30b2): 1 sorry (no_minCE). Since import: + RefinedNoMixedPrice (Case I price form, no_minCE_of_refinedNoMixedPrice), + HeavySplitFloat (Case II v2, no_minCE_of_heavyFloatCases). Both cTAHG, ported + verified by coord.
+- REFEREE angle 1 (951/board/agents/coord-desktop-referee-angle1.md): Lemma M, load identity, Theorem F, duality, chain, level 4, MergeDual/World, MergeLink all CORRECT. KEY: the dual is proved only for single-gate prices; sum_w min_z pi(M_z(w)) is CONCAVE in pi, so K-Rado / 0-1 extreme prices are an unproved observation; MergePrice is fully open. NoMixedPrice is strictly stronger than MergePrice and was never checked on data (-> scaffold/gAdyD check FIRST). Wording fixed in W951.md (CoverPrice is weaker; MergeFrac only sufficient).
+- Data: refined no-mixed LP <= 1 on 34,064 circuits; heavy split v2 <= 1 on 39,168 + 4,764 pairs; on 49 adversarial hard-4-set circuits WITH cross-world gates some optimal pi vanishes on them (scaffold). Refuted today: pinned heavy split; S1(g) for merge sets as stated (CrossWorld cx1/cx2); strict resolution gadget for general circuits.
+- NEXT most important: a proof idea for MergePrice that handles concavity (not extreme rays): e.g. price SHIFT off cross-world gates (dZb2E PriceOff.lean skeleton) + same-world monotone bounds.
+- FABLE ALLOCATION (owner 09:01, verified: "each opus should have two fables. maybe like 8 fables we can dole out here"; ~8 total):
+  | # | Owner | Task |
+  |---|---|---|
+  | 1-2 | P=NP 'Front' (session_01GmnDhc6FBZAseL8bDQaYsu) | CfgI world-0 / MergeFrac certificates (Lean); world-choice / K-Rado paper attempt (already running) |
+  | 3-4 | front A1 (session_01GmnDheKL3UENhJCL6pD1hS) | MergePrice dual for general pi (concavity!): 2 Fables under the A1 Opus at the 11:32 resume |
+  | 5 | front B | merge-tree double counting with split shared gates (referee_b/check_charge.py as gate) |
+  | 6 | front C | lifted fractional induction |
+  | 7 | dZb2E (session_01GmnDhdZb2EsYNLc1r4M85e) | PriceOff.lean: MergePriceOff + ShiftOff -> MergePrice; easy ShiftOff cases |
+  | 8 | research (session_01GmnDhdzjMKChKGfUadQDVf) | literature: min-of-sums / concave dual LPs with integral extreme points (Rado, polymatroid, submodular covering) for the K-Rado question |
+
 ## Subboard: quantum gravity (L-qg)
 Files: `lean/PEqualNP/Defs/QuantumGravity*.lean`, `lean/PEqualNP/QuantumGravity/` (its README has
 the tracks and references). 39 rows; gaps L-qg-115, 116, 119 (quantum counting) and L-qg-169
