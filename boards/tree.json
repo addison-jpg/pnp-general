@@ -2,7 +2,6 @@
  ".": {
   "counts": {
    "refuted": 3,
-   "refuted": 2,
    "tested": 1,
    "checked": 11
   },
@@ -28,7 +27,6 @@
  "one-not": {
   "counts": {
    "refuted": 3,
-   "refuted": 2,
    "tested": 1,
    "checked": 11
   },
@@ -168,9 +166,6 @@
   },
   "verified": [
    "98a42596",
-   "tested": 1
-  },
-  "verified": [
    "c7512878"
   ],
   "unverified_here": []
@@ -248,6 +243,12 @@
    },
    {
     "id": "f2dd6892",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "32b2d9b4",
     "why": [
      "needs a second seat in by"
     ]
