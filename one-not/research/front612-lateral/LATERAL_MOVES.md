@@ -19,7 +19,13 @@ base drops by EXACTLY 1. If the identified circuit also loses one gate, s < base
   exception: the first merge gate of S_w that joins u and v is an obvious candidate.
 - The gap is (adm): on 18,899 circuits (K4, fixh16, triple-heavy systems) EVERY identification makes two other sets
   equal or share 2 points. Fix tried: IDENT+ = identify, then delete the outputs of colliding sets D; needs
-  (gates freed) >= 1 + sum_{t in D} d_t. Result: see the IDENT+ line below.
+  (gates freed) >= 1 + sum_{t in D} d_t.
+- tested (identplus.py, all 18,899 circuits without an admissible plain pair): IDENT+ holds on 18,899 / 18,899, D
+  never empty. CAVEAT: on 16,894 of them deleting the same outputs WITHOUT identifying already frees enough gates
+  (plain output deletion, which a MinCE excludes: MinCE.outDel), so they are evidence only for the corpus being far
+  from minimal. Identification is needed in the best move on the other 2,005. Honest evidence for M1: plain IDENT
+  9,089 / 9,089 plus those 2,005. The next test must be on minimal-like circuits (R1-R6 reduced, no output deletion
+  saving): front's greedy reductions (c3_norewire_corpus.py) and the 66 SAT Fano circuits.
 - Why it may beat family E: identification moves along the diagonal x_u = x_v, which is NOT a subcube, so the
   TWIN-TREE / MATCH-C mechanisms (junk x_y AND x_a at OR-tree leaves; gain < cost at every point of Q = ∅) are not
   automatically inherited; and the base drop is exactly 1, independent of degrees (constant restrictions drop
