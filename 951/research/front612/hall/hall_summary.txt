@@ -5,3 +5,11 @@ by |F|: [(2, 107612), (3, 55661), (4, 8559), (5, 3)]
 essential circuits: tight |F|>=2 families 170739 slack dist [(0, 149365), (1, 49), (2, 14929), (3, 1335), (4, 2062), (5, 1335), (6, 591), (7, 534), (8, 188), (9, 157), (10, 87), (11, 76), (12, 23), (13, 8)]
 slack-0 tight |F|>=2 examples: [('fixh16:32', {'F': [0, 1], 'union': 2, 's_restr': 2, 'slack': 0}), ('fixh16:32', {'F': [0, 3], 'union': 2, 's_restr': 2, 'slack': 0}), ('fixh16:32', {'F': [0, 4], 'union': 2, 's_restr': 2, 'slack': 0})]
 tight family = ALL sets: 15 slack dist [(5, 4), (6, 11)]
+
+## Extract for front lane A2 (11:40): slack1_tight.json (51 families), whole_tight.json (15 circuits); extract.py
+- All 51 slack-1 tight families come from data-corpora ess/ (49 essential; |F| = 2/3/4: 8/35/8). In EVERY one the
+  restriction is MONOTONE (the NOT is eliminated by x_v := 0) and contains exactly ONE redundant gate (its table equals
+  an input, a constant or an earlier gate; e.g. x1 & (x1 | x2) = x1) left by w951 restrict. Removing it gives slack 0.
+  So 'slack 1' is a restrict artefact: every Hall-tight family with |F| >= 2 restricts to slack 0 or >= 2.
+- 15 whole-system-tight circuits (ess/, 12 essential; slack 5: 4, slack 6: 11). F = all sets, so the 'restriction'
+  is the circuit itself and 'new pure options' is trivially empty.
