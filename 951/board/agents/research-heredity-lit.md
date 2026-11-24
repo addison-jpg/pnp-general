@@ -34,3 +34,16 @@ classes ⊆ ORIGINAL merge sets at some zero point dominated by a pure one with 
 refereed shift lemma L2), or the induction must use the plain (MergeSDR) menus, for which monotonicity is immediate
 (the restricted zero point is an original zero point). Suggested kill test (board integrator / cTAHG): on the fixh16 K4 and
 K4-e graph circuits, restrict to ∪F for every F and compare restricted pure classes with the original pure menus.
+
+## 5. Referee follow-up (desktop Coord 11:38), checked against the Lean (pnp-general 951/lean, W951/PureSDR.lean, Heredity.lean)
+(a) I1: DISSOLVED, as the referee said. PureValid (.one Z) = (∀ v ∈ R, Z v = false) ∧ (NOT gate is 1 at Z); no maximality.
+    An embedded restricted point (zeros off ∪F) is valid, and with the gate list unchanged the run at it is the same class.
+    I0: NOT dissolved. pureI0 is pinned to the zero point `ext (Zof R) false` = the ORIGINAL top_w (1 off R); the restricted
+    top (1 on ∪F \ S_w, 0 off ∪F) is a different point, so a restricted I0 class is not an original pureI0 class.
+    Fix options: (1) generalize pureI0 to a zero point Z0 with Z0 vanishing on R (check that card_pureI0 / merge_countT and the
+    disjointness lemmas do not use Z0 = Zof R); (2) use MergeSDR (plain) menus for the heredity step.
+(b) Heredity.lean's heredity_multi takes an ARBITRARY one-NOT circuit gates' with val gates' x (out' i) = OR(S_i \ Z) for ALL x.
+    The MinCE gate list does not satisfy this (inputs in Z are not constants and the basis {and, or, not} has no constant
+    gate), so gates' must come from substitution + simplification, which renames/removes gates; nothing in Lean tracks that
+    gate map. The heredity route therefore needs a restriction lemma that tracks the gate map (cTAHG's assigned 'heredity
+    restriction lemma'), or a formulation that keeps the original gates and restricts only the evaluation points.
