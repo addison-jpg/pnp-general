@@ -2,8 +2,8 @@
  ".": {
   "counts": {
    "checked": 34,
-   "tested": 5,
-   "refuted": 3
+   "tested": 6,
+   "refuted": 5
   },
   "verified": [
    "8d76417d",
@@ -13,6 +13,7 @@
    "a023c28e",
    "37dcef35",
    "1b00e1bc",
+   "64233838",
    "04a575bf",
    "255631be",
    "7dbb073c",
@@ -21,6 +22,8 @@
    "0736a8e5",
    "98a42596",
    "c7512878",
+   "4a5ffb32",
+   "922f2826",
    "5fe90015",
    "30cf54bf",
    "0f8afdc1",
@@ -100,12 +103,13 @@
  },
  "one-not": {
   "counts": {
-   "tested": 4,
-   "refuted": 3,
+   "tested": 5,
+   "refuted": 5,
    "checked": 29
   },
   "verified": [
    "1b00e1bc",
+   "64233838",
    "04a575bf",
    "255631be",
    "7dbb073c",
@@ -114,6 +118,8 @@
    "0736a8e5",
    "98a42596",
    "c7512878",
+   "4a5ffb32",
+   "922f2826",
    "5fe90015",
    "30cf54bf",
    "0f8afdc1",
@@ -146,12 +152,13 @@
  },
  "one-not/data": {
   "counts": {
-   "tested": 3,
+   "tested": 4,
    "refuted": 2,
    "checked": 2
   },
   "verified": [
    "1b00e1bc",
+   "64233838",
    "04a575bf",
    "255631be",
    "7dbb073c",
@@ -163,20 +170,15 @@
  },
  "one-not/data/c4g": {
   "counts": {
-   "tested": 3
+   "tested": 4
   },
   "verified": [
    "1b00e1bc",
+   "64233838",
    "04a575bf",
    "255631be"
   ],
   "unverified_here": [
-   {
-    "id": "64233838",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
    {
     "id": "4b9ae585",
     "why": [
@@ -386,12 +388,14 @@
  },
  "one-not/tools": {
   "counts": {
-   "refuted": 1,
+   "refuted": 3,
    "tested": 1
   },
   "verified": [
    "98a42596",
-   "c7512878"
+   "c7512878",
+   "4a5ffb32",
+   "922f2826"
   ],
   "unverified_here": []
  },
@@ -406,10 +410,13 @@
  },
  "one-not/tools/search": {
   "counts": {
-   "tested": 1
+   "tested": 1,
+   "refuted": 2
   },
   "verified": [
-   "c7512878"
+   "c7512878",
+   "4a5ffb32",
+   "922f2826"
   ],
   "unverified_here": [
    {
@@ -432,18 +439,6 @@
    },
    {
     "id": "0e6e9c48",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "4a5ffb32",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "922f2826",
     "why": [
      "needs a second seat in by"
     ]

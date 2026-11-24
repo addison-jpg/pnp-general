@@ -4,22 +4,27 @@ A program is a text file `NAME.ast`. Lines are read top to bottom. `#` starts a 
 
 ```
 program   := line*
-line      := circuit | let | show | claim | plot | hunt | record
+line      := circuit | let | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record
 circuit   := "circuit" NAME N NEWLINE (gate | out)* "end"
 gate      := NAME "=" ("or" | "and") WIRE WIRE  |  NAME "=" "not" WIRE
 out       := "set" POINT+ "->" WIRE
 let       := "let" NAME "=" "load" PATH
 show      := "show" NAME
-claim     := "claim" expr ["by lean"]   (also "claim!": forced to Lean even if Python says false)
+claim     := ("claim" | "claim!") expr ["by lean"]   ("claim!": forced to Lean even if Python says false, to watch the kernel reject it)
 expr      := "correct(" NAME ")"
            | term OP term
+           | "not" expr                                                      (Python only)
+           | "if" expr "then" expr | expr "and" expr                         (Python only; extension ext_edges)
+           | "hyps(" NAME ")" ["=" ("true" | "false")]                       (extension ext_edges; Lean: hypsB)
+           | "theorem(" NAME ")"                                             (extension ext_edges; hyps and correct imply gates >= base)
+           | "forall p phi(" NAME ") >= 0"  |  "monotone phi(" NAME ")"      (extension ext_continuous)
            | "forall cubes slack(" NAME ") >= 0"
            | "mslack(" NAME "," SET "," SET ")" OP INTEGER                 (extension ext_mixed)
            | "forall states mslack(" NAME ") >= 0"                          (extension ext_mixed)
            | "forall states mixedstep(" NAME ")"                            (extension ext_mixed)
 SET       := "{" POINT* "}"            (first SET = Q, points fixed to 1; second = R, points fixed to 0; disjoint)
-term      := INTEGER | FUNC "(" NAME ")" | "margin[" STRING "](" NAME ")"
-FUNC      := gates | nots | base | witness | orwitness | slack | anyslack
+term      := INTEGER | FUNC "(" NAME ")" | "margin[" STRING "](" NAME ")" | "phi(" NAME "," RATIONAL ")" | CONJECTURE "(" NAME ")"
+FUNC      := gates | nots | base | witness | orwitness | slack | anyslack | flip | flipclasses | flipslack   (last three: ext_edges, Python only)
 OP        := = | != | < | <= | > | >=
 plot      := "plot phi" NAME+ "->" PATH
 corpus    := "corpus" NAME "=" GLOB ["where n <=" K] ["where nots <=" T]          (asteroid/ext_corpus.py)
@@ -27,7 +32,11 @@ forall    := "claim forall c in" NAME ":" expr ["by lean"]                      
 count     := "count c in" NAME ":" expr
 hist      := "plot hist" FUNC NAME "->" PATH
 prove     := "prove" STRING "by" TACTIC                                              (asteroid/ext_eureka.py; STRING is a Lean proposition)
-hunt      := "hunt" STRING SECONDS MAXNOT [SEED] ["&"]
+conjecture := "conjecture" NAME ":" expr                                           (expr written with the variable c; NAME(X) is then a term)
+hunt      := "hunt" (STRING | NAME) SECONDS MAXNOT [SEED] ["&"]                    (NAME: a conjecture of the script, a hit is bound to NAME_cex)
+verify    := "verify lean" DIR ["within" SECONDS]                                   (asteroid/ext_verify.py)
+theorem   := "theorem" FULL_NAME "from" MODULE "in" DIR                              (asteroid/ext_verify.py)
+levelmeans := "levelmeans" NAME                                                      (asteroid/ext_continuous.py)
 record    := "record" DIR ITEM WORD STRING
 WIRE      := POINT | NAME            (a point 0 .. N-1, or an earlier gate name)
 WORD      := checked | paper | tested | refuted | open | premise

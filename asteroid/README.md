@@ -45,7 +45,11 @@ The exact grammar is in [`SPEC.md`](SPEC.md). On every push that touches the lan
 | `circuit NAME N` … `end` | a circuit written in the script: gates `W = or X Y`, `W = and X Y`, `W = not X`; outputs `set I J K -> W` |
 | `let NAME = load FILE.json` | a circuit from a file |
 | `show NAME` | gates, NOT gates, base, witness counts, correctness |
-| `claim EXPR [by lean]` | `correct(NAME)`, or `F(NAME) OP RHS` with `F` in `gates nots base witness orwitness slack anyslack margin["conjecture"]`, `OP` in `= != < <= > >=` |
+| `claim EXPR [by lean]` | `correct(NAME)`, or `F(NAME) OP RHS` with `F` in `gates nots base witness orwitness slack anyslack margin["conjecture"]`, `OP` in `= != < <= > >=`; `claim not EXPR` (Python only) |
+| `claim! EXPR by lean` | send the claim to Lean even when Python says it is false, to watch the kernel reject it (`tests/kernel_rejects.ast`, `tests/mixed_kernel_rejects.ast`) |
+| `claim hyps(NAME) [= false]`, `claim theorem(NAME)`, `claim if E1 then E2`, `claim E1 and E2`, terms `flip flipclasses flipslack` | the Theorem's other hypotheses (Lean `hypsB`), the Theorem as one claim (hyps and correct imply gates ≥ base), implication and conjunction (Python only), the flip counts (Python only) (extension `ext_edges.py`) |
+| `claim forall p phi(NAME) >= 0 [by lean]`, `claim monotone phi(NAME)`, term `phi(NAME, P)`, `levelmeans NAME` | the continuous form Φ (extension `ext_continuous.py`; see the section below) |
+| `verify lean DIR [within SECONDS]`, `theorem FULL.NAME from MODULE in DIR` | run the pure-Lean verifier; cite one theorem (extension `ext_verify.py`; see "The base verifier is pure Lean") |
 | `claim forall cubes slack(NAME) >= 0 [by lean]` | slack at every cube; with `by lean` the kernel checks all 2^n cubes |
 | `corpus NAME = GLOB [where n <= K] [where nots <= T]` | load every correct circuit of the matching `.json` / `.jsonl` files (extension `ext_corpus.py`) |
 | `claim forall c in NAME: EXPR [by lean]` | EXPR with the variable `c` on every circuit of the corpus; one summary line; `by lean` adds one theorem per circuit (at most 40 circuits) |
@@ -54,14 +58,13 @@ The exact grammar is in [`SPEC.md`](SPEC.md). On every push that touches the lan
 | `claim mslack(NAME, {Q}, {R}) OP k`, `claim forall states mslack(NAME) >= 0`, `claim forall states mixedstep(NAME)` | mixed states: points of Q fixed to 1, points of R fixed to 0; MixedStep = at every state with positive base some paying 0-step or 1-step has mslack no larger (extension `ext_mixed.py`; definitions in `SPEC.md`) |
 | `prove "STATEMENT" by TACTIC` | stand-in for "Lean Eureka" (see `EUREKA.md`): a Lean proposition proved with one of decide, omega, simp, aesop, norm_num, rfl; the kernel accepts or rejects; skipped under `--no-lean` (extension `ext_eureka.py`) |
 | `conjecture NAME: EXPR` | a statement with the circuit variable `c`, written once; then `NAME(X)` is a claim, `forall c in W: NAME(c)` runs it over a corpus, and `hunt NAME …` searches against it |
-| `hunt NAME SECONDS MAXNOT [SEED]` | mutation search for a circuit where the conjecture fails; a hit is bound to `NAME_cex` and saved in `asteroid/out/` |
 | `plot phi NAME … -> FILE.png` | expected slack Φ(p) and the level means |
-| `hunt "CONJECTURE" SECONDS MAXNOT [SEED] [&]` | mutation search; `&` puts it in the background |
+| `hunt NAME-or-"CONJECTURE" SECONDS MAXNOT [SEED] [&]` | mutation search for a circuit where a conjecture fails; a hit is bound to `NAME_cex` and saved in `asteroid/out/`; `&` puts it in the background |
 | `record DIR ITEM WORD "STATEMENT"` | a finding in the board tree; skipped if a claim is false or Lean did not build |
 
 Python proposes, Lean decides: a `by lean` claim counts only when the generated module
 `one-not/lean/PEqualNP/W951/Asteroid_<script>.lean` builds. Lean forms exist for `correct`, `witness`,
-`orwitness`, `slack` (at the empty cube) and `forall cubes slack ≥ 0`.
+`orwitness`, `slack` (at the empty cube), `forall cubes slack ≥ 0`, `hyps`, `theorem`, and the mixed forms.
 
 ## Runs so far
 
@@ -70,7 +73,13 @@ Python proposes, Lean decides: a `by lean` claim counts only when the generated 
 | `examples/first.ast` | 7 claims true | 8 theorems, incl. slack ≥ 0 at all 16 cubes of `tiny` and all 128 cubes of the Fano formula | 14 s |
 | `examples/many_not.ast` | 8 claims true | 5 theorems (the 4-NOT-gate circuit is correct and has 5 witness gates, below base 6) | 11 s |
 | `examples/corpus.ast` | 3 claims true over 15 witness circuits (n ≤ 9); counts: 2 of 15 tight, 0 of 4 nonlocal files at or above base | 30 theorems (correct and slack ≥ 0 on each of 15 circuits) | 21 s |
+| `examples/conjecture.ast` | 6 claims true | 4 theorems | |
 | `examples/mixed.ast` | 11 claims true; mslack ≥ 0 and MixedStep at all 243 states of the n = 5 circuit `ess_rand_clean_744` (1 NOT gate) and all 81 states of a 4-input circuit written in the script; Python cross-checked against a direct implementation (`tests/test_mixed.py`) | 11 theorems, incl. `mixedStepAll` at 243 and 81 states | 7 s |
+
+| `examples/prove.ast` | 0 claims (`prove` statements only) | kernel-checked by `prove` | |
+| `programs/*.ast` | see "The proof as programs" below | | |
+
+Totals, 2026-11-24, 15 programs (`examples/` 6, `programs/` 9 incl. `edges.ast`): `python3 -m asteroid test --no-lean`: all ok, 68 s; `python3 -m asteroid test` with Lean: all ok, 3 min 44 s. Claims true / Lean theorems per program, from the second run: conjecture 6 / 4, corpus 3 / 30, first 7 / 8, many_not 8 / 5, mixed 11 / 11, prove 0 / –, big_check 11 / –, continuous 13 / 6, edges 26 / 15, ladder 10 / 6, open 4 / 0, pictures 1 / 0, refuted 28 / 2, theorem 10 / 33.
 
 Axioms of the generated theorems: `propext` only.
 
@@ -132,7 +141,7 @@ statement `no_minCE`; where it appears it is a hypothesis.
 | `first_ast_fano_hypsB` | `hypsB fano = true` for the Fano circuit of `examples/first.ast`, by `decide +kernel` |
 | `baseMixed_zero`, `hasWitnessMixedNaive_zero`, `mslackVal_zero`, `mslackGe_zero` (AsteroidCheapMixed) | at `r = 0` the mixed base is the base, the naive mixed witness test is `hasWitnessAt`, and, given the kernel check `naiveAgrees C`, `mslack` at `(q, 0)` is `slack` at `q` |
 
-Not done: `asteroid.py` does not yet emit `hypsB c` as a claim; the bit-parallel mixed witness test is tied to
+Not done: the bit-parallel mixed witness test is tied to
 the naive one only per circuit (`naiveAgrees`). Notes: `one-not/board/agents/fable-cheap-proofs.md`.
 
 ## The continuous form in asteroid
@@ -147,8 +156,6 @@ findings that matter onto claims:
 | `forall p phi(c) >= 0 by lean` | Φ ≥ 0 on the whole interval: the kernel checks every cube, and the second module states `0 ≤ Phi … p` for every real p in [0, 1], and `0 ≤ Phi … 0`, in the project's `Phi` | Lean |
 | `monotone phi(c)` / `not monotone phi(twin)` | Φ rises first on the twin trees (level means 6.00 → 8.29): no downhill-only or one-point argument works for all circuits | Python |
 | `forall states mixedstep(c) by lean` | the step that survives, with points set to 0 as well as 1 | Lean (asteroid's evaluator) |
-
-Verbs: `phi(NAME, P)` as a term, `claim forall p phi(NAME) >= 0`, `claim monotone phi(NAME)`, `claim not EXPR`, `levelmeans NAME`.
 
 ## The base verifier is pure Lean
 
@@ -169,18 +176,11 @@ python3 -m asteroid run asteroid/programs/big_check.ast  # the same, started fro
 | `one-not/lean` | 154 | 4,777 | 4,756 | 21 (the open `no_minCE`, 7 theorems derived from it, 13 of a parked draft) | 0 |
 | `lean` (main project, 1,631 modules) | `PEqualNP/Verify/All.lean` is written; the full build has not been run to the end here | | | none allowed | |
 
-Verbs: `verify lean DIR [within SECONDS]`, `theorem FULL.NAME from MODULE in DIR`.
-
 ## What is not there yet
 
-- The soundness theorems are applied by hand: `asteroid.py` still writes only the statements about its own
-  evaluator (`correctB c = true`, …). It does not yet write the corollary in the project's terms next to each
-  claim, nor the proof of `SetsOk`. One hand-written instance exists (`first_ast_tiny_concrete`, `first_ast_tiny_slack`).
-- `witness` (gates of any type, `witnessCount`) is tied to nothing: the project's `F2` counts OR gates only.
-- `correct(c)` gives only the correctness hypothesis of `L_meta_951`. Its other hypotheses (every set has at
-  least 2 points, two sets share at most one point, at most one NOT gate) are not asteroid claims.
-- Python evaluates first and a false claim never reaches Lean, so Lean has not yet been seen to reject a claim
-  Python accepted.
+- `witness` (gates of any type, `witnessCount`) is tied to nothing: the project's `F2` counts OR gates only; mixed slack has no soundness theorem either (no mixed `F2(Q, R)` is defined).
+- The second module restates `correct`, `forall cubes slack ≥ 0`, `slack ≥ 0` and Φ in the project's definitions (with the `SetsOk` proof); it does not restate `hyps`, `theorem`, `orwitness` at a cube or the mixed claims.
+- The Lean rejection of a false claim is shown only for forced claims (`claim!`), never for a claim that Python let through.
 - `forall cubes … by lean` is brute force: fine at 7 inputs, not at 14 (the twin trees have 16,384 cubes).
 - No functions defined in a script.
 - Mixed slack (`ext_mixed.py`, `AsteroidMixed.lean`) is brute force over all 3^n states: the kernel decides `forall states mslack ≥ 0` and `forall states mixedstep` up to n = 7 (2,187 states; 33 s and 49 s, about 5 and 7 GB of memory, Fano formula). n = 8 (6,561 states) would need roughly 3 times the states and the memory: not tried.
@@ -197,14 +197,14 @@ Programs in [`programs/`](programs/README.md), one per group of numbered items; 
 | `programs/ladder.ast` | T6, C4, C4w, Theorem | rung 0 (circuits with no NOT gate: count >= 0 and `gates >= base`, kernel) against the four many-NOT files (all have `witness < base`, all have `gates >= base`, flip classes >= 0) | 10 / 6 | 15 s / 1 s |
 | `programs/pictures.ast` | D8, L5 | plot phi for the twin tree, MATCH-C, Pappus, Fano; histograms of slack and gates over the corpus | 1 / 0 (6 PNGs in `asteroid/out/`) | 2 s / 2 s |
 
-`python3 -m asteroid test` runs them (with Lean 2 min 44 s for examples and programs together; `--no-lean` 68 s).
+`python3 -m asteroid test` runs them (with Lean 3 min 44 s for examples and programs together; `--no-lean` 68 s).
 
 ### What the language cannot yet say (`# WISH:` lines in the programs)
 
-1. Implication / hypothesis in a corpus claim: `forall c in W: nots(c) <= 1 -> gates(c) >= base(c)`, and the Theorem's other hypotheses (`sets_ok(c)`: every set has at least 2 points, two sets share at most one point).
+1. (Done by `ext_edges.py`: `claim forall c in W: if hyps(c) and correct(c) then ...`, `claim hyps(c)`, `claim theorem(c)`.) Still missing: hypotheses as separate named predicates (`sets_ok(c)`, `nots(c) <= 1` are only inside `hyps`).
 2. Mixed-state quantifiers over single points: `exists v: mslack(c, {}, {v}) < 0`; pointwise gain and cost of a 0-step and 1-step (`gain0`, `cost0`, `gain1`, `cost1`), needed for the Pappus row and the induction-on-0 row.
 3. Merge sets, pure classes and a system-of-distinct-representatives test (`sdr(pure_classes(c))`), and the fractional price of a gate (cxMU and star4b rows).
 4. A negated claim over a corpus (`forall c in N: not (...)`) instead of two counts.
-5. A Lean form for `gates(c) >= base(c)` (the Theorem has no kernel statement; only the OR-only count does) and for `witness` soundness.
+5. A Lean form for `witness` soundness. (`gates(c) >= base(c)` has one: `claim theorem(c) by lean` states the sum of (|S| − 1) ≤ the gate count.)
 6. `C3 two-point step` at k = 2 on the matched twin trees at n >= 16 is too slow in the registry (minutes), so the C3_k refutation is not shown.
 7. Kernel claims for n = 14 to 16 (twin trees): tables of 16,384 inputs time out (a `correct` claim on the twin tree took more than 2 minutes).
