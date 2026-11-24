@@ -16,14 +16,14 @@ would mean refactoring.
 
 ## State
 
+Mini board of this directory (final pass, 2026-11-24). Up: [`../README.md`](../README.md), [`../BOARD.md`](../BOARD.md). Names: [`../NAMES.md`](../NAMES.md).
+
 - The only `sorry` is `no_minCE` in `lean/PEqualNP/W951/MinCE.lean`: there is no minimal counterexample.
-- The open target in its sharpest Lean form is `MergePrice` for a minimal counterexample.
-  This is the dual load inequality: for all prices pi >= 0, sum_w min_z pi(M_z(w)) <= pi(gates).
-  `no_minCE_of_mergePrice` is proved in `MergeFrac.lean`.
-- Other proved routes to `no_minCE`:
-  - `no_minCE_of_liftClassFrac` (LiftFrac)
-  - `no_minCE_of_liftedBound` (LiftBound, equivalent to 951)
-  - `no_minCE_of_FJ` (LiftFJ)
+- Checked: the statement holds when the certificate game (U-game) on the lifted outputs is won (`W951/UGame.lean`, `no_minCE_of_ugame`); when the NOT gate reads an input (`NotVarF2`); when every cube is local or has a point step (`CubeF2.lean`).
+- Open: circuits that lose the certificate game (smallest: sets {0,1,2}, {0,3,4}, NOT input x1 ∨ x3; hard core: three 4-sets in a triangle, `cxT2`); the point step for real-witness gates (F2) among circuits with no gate-saving rewiring (R6).
+- Dead: [`DEAD_ENDS.md`](DEAD_ENDS.md), seven families. The price inequality over REAL merge sets (`MergePrice`) is false without minimality (STAR4); the lifted forms are the target.
+- Other proved routes to `no_minCE`: `no_minCE_of_liftClassFrac` (LiftFrac), `no_minCE_of_liftedBound` (LiftBound, equivalent to 951), `no_minCE_of_FJ` (LiftFJ), `no_minCE_of_mergePrice` (MergeFrac).
+- Findings: [`FINDINGS_2026-11-24.md`](FINDINGS_2026-11-24.md). Notes by part of the route: [`board/agents/INDEX.md`](board/agents/INDEX.md). Witness circuits: `data/witnesses/`.
 - Module map: `work/W951.md`. Guide for writing new Lean here: `work/TRACTABILITY.md`.
 
 ## Build and check

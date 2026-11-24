@@ -3,6 +3,13 @@
 The quantum gravity program (gap ids `L-qg-NNN`). Its board is [`BOARD.md`](../../../BOARD.md) at
 the root of the repository.
 
+## Mini board (final pass, 2026-11-24)
+
+- State: 47 rows checked. Open gaps: L-qg-115, 116, 119, 169 (P_CTC inside EXP).
+- The physics premises appear in no Lean statement. No row says that P versus NP is settled.
+- References: kept in full in [`LITERATURE.md`](../../../LITERATURE.md) section I.
+- Up: [`BOARD.md`](../../../BOARD.md), subboard "quantum gravity".
+
 ## What the program is for
 
 Several arguments in quantum gravity are arguments about computational complexity: the
