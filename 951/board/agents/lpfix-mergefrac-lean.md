@@ -154,3 +154,11 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   `avoidOpt_of_hit`: a zero point z of S_w is an avoiding option once M_z(w) misses U(w') for every other set S_w' that z
   HITS; sets z vanishes on are free. Use: any LAugment step that re-picks at a point z only has to check the sets z hits.
   OFFICIAL OPEN TARGET: `LAugmentK K` alone. Axioms: propext, Classical.choice, Quot.sound.
+- (11:05 UTC) CanonOneNot.lean (coord 10:41): one-NOT wrapper for CanonClass. K_1(w) = `K1 gates p (S w)`, K_0(w; m) =
+  `K0 gates p (S w) m`, Finsets of real wires (`realWire`). `card_K1`: NOT gate 1 at top_w (h(top_w) = 0) ⇒ d_w ≤ |K_1(w)|
+  (no heavy-point condition, referee 10:39). `card_K0`: m ∩ S_w = ∅ and NOT gate 0 at m (h(m) = 1) ⇒ d_w ≤ |K_0(w; m)|.
+  `disjoint_K1` (W1), `disjoint_K0` (W0, one side of the minterm condition suffices), `disjoint_K0_K1` (NEW, D across
+  worlds: K_0(w; m) ∩ K_1(w') = ∅ once m ∩ S_w' = ∅, since the world-0 atoms (m + e_u, 0) lie below (top_w', 1)),
+  `cross_K1_K0` (X: NOT-dependent at some e_u, u ∈ S_w). So a cross-world collision K_1(w) ∩ K_0(w'; m') needs
+  m' ∩ S_w ≠ ∅: case (b) of PROOF_PLAN_SUGGESTIONS §2 is only minterms that meet the other set. Axioms: propext,
+  Classical.choice, Quot.sound.

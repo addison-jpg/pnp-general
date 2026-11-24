@@ -137,7 +137,9 @@ ProofComplexity, Search, Outside) are here unchanged.
   Augment.lean (7e901f6, written with 1 Fable): LAvoid + LAugmentLoose => MergeSDR; MergeSDR <=> LAvoid ∧ LAugmentLoose (referee's
   catch, 17851bd); LAugmentReach (PROOF_PLAN rule 4); 10:45: scaffold's L-avoid full form `disjoint_univMergeSet` (z vanishing
   on S_w ∪ S_w') + `avoidOpt_of_hit` (avoidance only at the sets z hits). OFFICIAL target: LAugmentK K alone
-  (no_minCE_of_augmentK_only). NEXT: scaffold's larger-instance certificates (K6, Pasch+3, 7-point). Issue #17 answered.
+  (no_minCE_of_augmentK_only). 11:05: CanonOneNot.lean (coord's task): K_1(w), K_0(w; m) of a one-NOT circuit as real-wire
+  Finsets with sizes ≥ d_w (W1: h(top_w) = 0; W0: h(m) = 1, m ∩ S_w = ∅), W0/W1 disjointness, X, and NEW D across worlds
+  (K_0(w; m) ∩ K_1(w') = ∅ once m ∩ S_w' = ∅). NEXT: scaffold's larger-instance certificates. Issue #17 answered.
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.
