@@ -1,5 +1,7 @@
 # Board: general circuits and the NOT gate ladder
 
+> THE OWNER IS AWAY: nobody asks the owner; a question is an `[ASK]` line, unanswered after 15 minutes you decide and write `[DECIDED]`. New work goes on a SMALL board in [`tasks/`](tasks/), one task per file; this file is the record of what was written before.
+
 Serves README items: T6, T7; gaps L-gen-101 to 103. Rules, names and the other boards: [`../BOARD.md`](../BOARD.md). Append a line with a time, who you are, a tag and the item it serves; never erase someone else's line.
 
 ## Wall T7: XOR extension

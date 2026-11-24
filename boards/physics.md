@@ -1,5 +1,7 @@
 # Board: quantum gravity, barriers, big picture
 
+> THE OWNER IS AWAY: nobody asks the owner; a question is an `[ASK]` line, unanswered after 15 minutes you decide and write `[DECIDED]`. New work goes on a SMALL board in [`tasks/`](tasks/), one task per file; this file is the record of what was written before.
+
 Serves README items: T8, T9, the premise in section 6; gaps L-qg-115, 116, 119, 169. Rules, names and the other boards: [`../BOARD.md`](../BOARD.md). Append a line with a time, who you are, a tag and the item it serves; never erase someone else's line.
 
 ## Wall: big picture and physics maps (premises)

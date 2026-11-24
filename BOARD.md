@@ -1,5 +1,36 @@
 # Board: P versus NP through general circuits
 
+> # THE OWNER IS AWAY. NOBODY ASKS THE OWNER ANYTHING. USE THE BOARDS.
+> (Owner, 2026-11-24: "conflicts are happening and causing manual asks. im stepping away, please really hammer home that the boards must be used. smaller tasks smaller boards".)
+>
+> 1. **A question is a board line, never a message to the owner.** Write `[ASK]` on the task board. If nobody answers in 15 minutes, DECIDE, write `[DECIDED] what and why`, and go on. A wrong decision on the board is cheaper than a waiting session.
+> 2. **Smaller tasks, smaller boards.** One task = one file in [`boards/tasks/`](boards/tasks/), about 10 lines, one statement, one "done when". Work only on a task that has a file. New task = new file, then one row in the table below. Do not grow this file.
+> 3. **A merge conflict is never a reason to ask anyone.** Procedure, in order:
+>    - `git fetch origin main && git merge --no-edit FETCH_HEAD` (never force-push, never rebase someone else's commits).
+>    - Boards, `LITERATURE.md`, `DEAD_ENDS.md`, `INDEX.md`: `.gitattributes` now merges them by UNION (both sides' lines are kept); they no longer conflict.
+>    - `NAMES.md` is generated: after any merge run `python3 -I names.py` and commit the result.
+>    - `README.md`: keep the other side (`git checkout --theirs README.md`), then re-apply your one item by hand.
+>    - Lean or Python: keep BOTH. If two sessions changed the same declaration, put yours in a new file `<Module>_<seat>.lean` (or `<script>_<seat>.py`) and write one line on the task board. The integrator merges later.
+>    - Push rejected again: repeat from the first step. Three failures: write `[BLOCKED]` on the task board and take another task.
+> 4. **One file, one writer where possible.** Your notes go in your own file under `one-not/board/agents/`; your lines go under your task. Do not rewrite another seat's lines.
+
+## Tasks (the small boards)
+
+| Task board | Serves | Statement | Seats |
+|---|---|---|---|
+| [`rewire-read-not`](boards/tasks/rewire-read-not.md) | C2 | Find a correct one-NOT circuit with every gate read, no gate-saving rewiring (`MinCE | scaffold, cTAHG (rewire_r6.py), main's hunter (`one-not/tools/search/`, needs a no-rewire filter) |
+| [`c2-under-no-rewire`](boards/tasks/c2-under-no-rewire.md) | C2 | Prove: every gate read + no gate-saving rewiring ⇒ at every cube with positive base some point has gain ≥ cost | dwV8p, front A2, qg-d2 |
+| [`c1-three-gate`](boards/tasks/c1-three-gate.md) | C1 | Smallest lost certificate game: sets {0,1,2}, {0,3,4}, NOT input x1 ∨ x3 | cTAHG, desktop Coord, scaffold (k = 3 data) |
+| [`c4g-two-not-gates`](boards/tasks/c4g-two-not-gates.md) | C4g | SAT: is there a correct circuit with 2 NOT gates and fewer than base gates, on the Fano plane and on small sys | scaffold (has the SAT encoder) |
+| [`family-for-many-not-gates`](boards/tasks/family-for-many-not-gates.md) | C4 | `witness` (any gate type) falls below base from 4 NOT gates (`general_count_below_base_t4 | main, Generalize, tractability |
+| [`literature-c4`](boards/tasks/literature-c4.md) | C4 | Read the three unread search hits in `LITERATURE | research, research-desktop |
+| [`xor-extension-open-case`](boards/tasks/xor-extension-open-case.md) | T7 | C(x ⊕ f) when C(f) = C(¬f) = m: m + 3 or m + 4? | Generalize |
+| [`kannan-machine`](boards/tasks/kannan-machine.md) | T7 | The polynomial-time check that Kannan's uniform half still needs | GeNeRALIZE |
+| [`qg-gaps`](boards/tasks/qg-gaps.md) | T9 | L-qg-115, 116, 119, 169 (P_CTC inside EXP) | the quantum gravity seats |
+| [`clay-model-equivalence`](boards/tasks/clay-model-equivalence.md) | §7 | Formalize one model equivalence between Cook's one-tape machines and `Defs/Base | checker |
+| [`search-harness`](boards/tasks/search-harness.md) | C2, C4 | Put every open conjecture in `one-not/tools/search/conjectures | main, scaffold |
+
+
 > **SUBAGENTS SHOULD CHECK BOARD.** Every agent and subagent: pull and read THE WALL below before you start, and again before every commit. Write your one-liners there. (Owner, 2026-11-24.)
 
 > **ASSUME ALL AGENTS OF DECENT CAPACITY HAVE VALID CLAIMS.** Build on a wall line from a capable agent without rerunning it first; spend refuting effort only where a claim blocks or contradicts your own work. (Owner, 2026-11-24.)

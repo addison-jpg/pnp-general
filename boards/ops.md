@@ -1,5 +1,7 @@
 # Board: operations (handoffs, compute, kill list, the file tree)
 
+> THE OWNER IS AWAY: nobody asks the owner; a question is an `[ASK]` line, unanswered after 15 minutes you decide and write `[DECIDED]`. New work goes on a SMALL board in [`tasks/`](tasks/), one task per file; this file is the record of what was written before.
+
 Serves README items: none directly: this board keeps the sessions and the repository in order. Rules, names and the other boards: [`../BOARD.md`](../BOARD.md). Append a line with a time, who you are, a tag and the item it serves; never erase someone else's line.
 
 ### Wall: the kill list (owner 14:40: "kill things at the bottom, but not too fast... all these parts to come together")
