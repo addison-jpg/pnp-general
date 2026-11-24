@@ -1,0 +1,6 @@
+k 5 r 9 ABCDEF allread UNSAT 920
+EXIT 0
+k 6 r 9 ABCDEF allread UNSAT 3165
+EXIT 0
+k 7 r 9 ABCDEF allread UNSAT 4467
+EXIT 0

@@ -113,7 +113,7 @@ ProofComplexity, Search, Outside) are here unchanged.
   L-gen-006); older copy on pequalnp-work `mirror/pensive-galileo-7rfw13` (4c7bfb4). Unfinished: the case `C(f) = C(¬f)` of
   `C(x ⊕ f) = min + 4` (helper's partial results, unverified: `notes/general/generalize-xor-residual.md`; its 17-gate example is now
   CHECKED: a circuit of the counterexample shape with no constant or duplicate wire on either side, so no local redundancy
-  argument closes the case). Resumed by the owner ("go") after a stand-down; next rows are ranked in
+  argument closes the case; SAT, conditional on the encoding: no counterexample with `m ≤ 6` for any number of variables). Resumed by the owner ("go") after a stand-down; next rows are ranked in
   `notes/general/generalize-ladder-survey.md`. MERGE with desktop GeNeRALIZE (owner via Discussion: "this is useful it should merge"): proposed that
   this session is the live seat; GeNeRALIZE agrees if the owner confirms in its chat, and is not closed.
 - session_01GmnDhczcdJyEX4WwHrrzPx (desktop GeNeRALIZE; owner in its own chat: "work in pnp-general ALWAYS"): its checked work is now

@@ -134,12 +134,18 @@ of `y`-variables and `t = r` gates, for any `f`, without needing the exact sizes
 | 5 | 7, 8 | UNSAT | `loc2.py` |
 | 6 | 8 | UNSAT | `loc2.py` |
 | 4 | 10, 11 | NO RESULT (timeout 1500 s each) | `loc.py` |
-| 5, 6, 7 | 9 | NOT RUN TO COMPLETION (stopped) | `loc2.py` |
+| 5, 6, 7 | 9 | UNSAT (920 s, 3165 s, 4467 s; `loc567r9.log`) | `loc2.py` |
 
-New over the parent note: `k = 4, m = 6`; `k = 5, m ≤ 5`; `k = 6, m = 5`. Had the `r = 9`
-runs for `k = 5, 6, 7` finished UNSAT, the statement would be "no counterexample with
-`m ≤ 6`, any number of variables" (an `f` depending on `k` variables has `m ≥ k - 1`). They
-did not finish. The encoding was sanity-checked only in one direction: without the local
+New over the parent note: `k = 4, m = 6`; `k = 5, m ≤ 6`; `k = 6, m ≤ 6`; `k = 7, m = 6`.
+
+Consequence (CHECKED by SAT, conditional on the encoding and on the hand argument that a
+counterexample has the residual shape): there is no counterexample with `m ≤ 6`, for any
+number of variables. Reason: an `f` that depends on `k` variables has `m ≥ k - 1`, so `m ≤ 6`
+forces `k ≤ 7`; `k ≤ 3` is the exact synthesis of the parent note; `k = 4` is `sat-4var.log`
+(`m ≤ 5`) plus the row `k = 4, r = 9`; `k = 5, 6, 7` are the `loc2.py` rows (`k = 6` needs
+only `r ≥ 8`, `k = 7` only `r = 9`). The first size not covered is `m = 7` (`r = 10`), where
+`k = 4` already timed out.
+The encoding was sanity-checked only in one direction: without the local
 flags it finds the known shape circuits (`k = 3, r = 8`, 44 functions, all with smaller
 circuits). I did not cross-check it against an independent implementation.
 

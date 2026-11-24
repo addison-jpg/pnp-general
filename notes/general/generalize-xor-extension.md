@@ -96,6 +96,7 @@ Finite evidence for `m + 4` (exhaustive, NOT a proof; scripts and logs in `tools
 | all 3-variable `f` with `C(f) = C(¬f) = m`, `m = 3, 4, 5, 6, 7` | `synth.py` (SAT exact synthesis), `run3.py` | no circuit with `m + 3` gates |
 | all `f` depending on 4 variables with `C(f) = C(¬f) = m`, `m = 4, 5` (30 classes) | `run4.py` | no circuit with `m + 3` gates |
 | residual shape, 7 sample `f` on 3 variables | `shape_min.py` | least size of a circuit of the residual shape is `min + 5` or `min + 6`, never `min + 4` |
+| residual shape with `f` free, `k ≤ 7` variables, `r ≤ 9` gates | `residual/cegar.py`, `residual/loc2.py` | UNSAT in every case needed for `m ≤ 6`: no counterexample with `C(f) = C(¬f) ≤ 6`, any number of variables (conditional on the encoding and on the hand argument for the residual shape; see `generalize-xor-residual.md` §3) |
 
 Classes are taken up to permuting the variables of `f` and replacing `f(y)` by `f(¬y)` (the
 dual circuit, AND and OR swapped, shows that this keeps `C(x ⊕ f)`). `XOR_3` and its
