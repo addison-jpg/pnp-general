@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 18,
+   "checked": 25,
    "tested": 4,
    "refuted": 3
   },
@@ -30,7 +30,14 @@
    "c011de04",
    "e793c0f4",
    "c324f5f5",
-   "0d85fe20"
+   "0d85fe20",
+   "3bdca250",
+   "5ac59d84",
+   "34f4f915",
+   "620c867b",
+   "cd97a6ec",
+   "8ab74f39",
+   "9421c6de"
   ],
   "unverified_here": []
  },
@@ -66,7 +73,7 @@
   "counts": {
    "tested": 4,
    "refuted": 3,
-   "checked": 17
+   "checked": 24
   },
   "verified": [
    "1b00e1bc",
@@ -92,7 +99,14 @@
    "c011de04",
    "e793c0f4",
    "c324f5f5",
-   "0d85fe20"
+   "0d85fe20",
+   "3bdca250",
+   "5ac59d84",
+   "34f4f915",
+   "620c867b",
+   "cd97a6ec",
+   "8ab74f39",
+   "9421c6de"
   ],
   "unverified_here": []
  },
@@ -180,7 +194,7 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 16
+   "checked": 23
   },
   "verified": [
    "30cf54bf",
@@ -198,13 +212,20 @@
    "c011de04",
    "e793c0f4",
    "c324f5f5",
-   "0d85fe20"
+   "0d85fe20",
+   "3bdca250",
+   "5ac59d84",
+   "34f4f915",
+   "620c867b",
+   "cd97a6ec",
+   "8ab74f39",
+   "9421c6de"
   ],
   "unverified_here": []
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 16
+   "checked": 23
   },
   "verified": [
    "30cf54bf",
@@ -222,13 +243,20 @@
    "c011de04",
    "e793c0f4",
    "c324f5f5",
-   "0d85fe20"
+   "0d85fe20",
+   "3bdca250",
+   "5ac59d84",
+   "34f4f915",
+   "620c867b",
+   "cd97a6ec",
+   "8ab74f39",
+   "9421c6de"
   ],
   "unverified_here": []
  },
  "one-not/lean/PEqualNP/W951": {
   "counts": {
-   "checked": 16
+   "checked": 23
   },
   "verified": [
    "30cf54bf",
@@ -246,7 +274,14 @@
    "c011de04",
    "e793c0f4",
    "c324f5f5",
-   "0d85fe20"
+   "0d85fe20",
+   "3bdca250",
+   "5ac59d84",
+   "34f4f915",
+   "620c867b",
+   "cd97a6ec",
+   "8ab74f39",
+   "9421c6de"
   ],
   "unverified_here": [
    {
