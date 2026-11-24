@@ -7,3 +7,4 @@
 
 ## Lines (append only: time, who, tag, one line)
 
+- 17:57 cTAHG TAKEN (with scaffold / main's hunter): run rewire_r6 + the one-point F2 step on cxT2 (fc) and every R4-clean repo circuit, then on the hunter's output
