@@ -140,7 +140,10 @@ ProofComplexity, Search, Outside) are here unchanged.
   unfixed points, free points allowed), Lemma C0. OPEN for Lean: the gain lemma itself (HEAVY-COUNT / LIGHT-COUNT for UC).
   LANDED 9a626c1 + 423b9d1: barrier suite skipped by pure_export --group witness; PureSDR for tri_all_5593 (LOOSENESS
   counterexample); LiftSDRWitness.lean: kernel-checked LiftSDR (GP systems, tools/sdrcert/lift_export.py) + correctness for
-  all 4 barrier circuits, so they are no barrier to LiftSDR / MUL.
+  all 4 barrier circuits, so they are no barrier to LiftSDR / MUL. LANDED 6315b12 GraphHeavy (front A2's G1 in UC-gain form:
+  gainOne_graphStar, gainOne_G1, gainOne_G1_of_heavy); ebc4670 F2Induct (DECISION 12:46: F2, GainF2, base_le_F2_pts,
+  no_minCE_of_MUF2 / no_minCE_of_gainF2 with no NOT gate, F2 ⊆ UC, Lemma C0 for F2); e794294 PureSDR for FANO-FORMULA, JUNK,
+  PAPPUS-JUNK (witness group keyed by file stem).
 - session_01GmnDhfo8QCanitMDqFa2x1 (quantum gravity coordinator; integrates this board): `pnp-general`
   main; the same tree is on `pequalnp-work` `mirror/trusting-newton-2lz5jy` (342bed1). Unfinished:
   gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the referee seat for angle C has received no claim.
