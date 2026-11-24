@@ -94,6 +94,19 @@ cxT2).
 So an induction that deletes a WELL-CHOSEN point is alive: prove the gain lemma for a rule that
 picks the point. One Fable agent is on this route (`951/board/agents/fable-mu-induction.md`).
 
+### Fifth run: STAR-SEP as defined in `PureStar.lean` (`kill_tests/starsep.py`)
+
+Front A2's closing statement (`no_minCE_of_starSep` in Lean), tested exactly as defined, with
+menus listed in full and `Q` ranging over ALL subsets of the variables.
+
+| Corpus | (circuit, Q) pairs with an alive set | STAR-SEP holds | Every candidate `v` works |
+|---|---|---|---|
+| 44 circuits, `n ≤ 7` | 558 | 558 | 555 |
+| 56 circuits, `n ≤ 9` (10 more skipped: world-0 menu too large to list exactly) | 2,057 | 2,057 | 2,050 |
+
+No failure, so no sign that STAR-SEP needs `s < base`: it holds on correct circuits with slack,
+and the choice of `v` is almost free (in 4 pairs only a quarter to a half of the points work).
+
 **What this changes.** Sections 3 and P1 below are withdrawn as stated. The sets that carry the
 difficulty are the sets through a heavy point (`h ≥ x_u`), at mixed zero points; for the other
 sets W0, W1 and X give provable disjointness. The existence argument has to be about the star of
