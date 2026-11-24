@@ -118,8 +118,10 @@ ruled out by L-lib-076; both can be discarded before anyone spends time on them.
 - The ladder is the path from 951 to the general targets L-gen-101 to L-gen-103. Each rung adds
   NOT gates, i.e. more worlds per wire (k NOT gates: up to 2^k). The ladder is short: every
   function of n inputs is computed with ceil(log2(n+1)) NOT gates (Markov 1958), and a circuit of
-  size s becomes one of size at most 2s + O(n^2 log^2 n) with that many (Fischer 1975). So a
-  superpolynomial bound at rung ceil(log2(n+1)) for an NP function is a general one, and the three
+  size s becomes one of size at most 2s + O(n^2 log^2 n) with that many (Fischer 1975). This is now a
+  ROW (layer 1): L-gen-104, `Fischer.L104 : Gap.L104` (polynomial 30 (X + 1)^3; `General/FischerMain.lean`),
+  with rung n checked as `Fischer.stage1` (SIZE s ⊆ SIZENot (2s + n + 2) n). So a
+  superpolynomial bound at rung ceil(log2(n+1)) for an NP function is, in Lean, a general one, and the three
   barriers apply there in full. The honest expectation: they start to bite at or below that rung,
   and locating the rung is itself a result.
 
