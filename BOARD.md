@@ -192,7 +192,10 @@ ProofComplexity, Search, Outside) are here unchanged.
   F2 LIGHT case (951/board/agents/dwV8p-referee-F2-light.md): B, K0-K3 CORRECT; LIGHT-STAR has a WORDING GAP ("no world-0
   witness at Q + v" does not imply leaving F2; fix: "no witness", applied by research a02727d), repaired form + the step hold
   on 58,795 light instances. DONE (coord 12:54): front A2's F1 and F2-desc both CORRECT (951/board/agents/
-  dwV8p-referee-F2-heavy.md; F1 false for light v as front says). Free for the next referee assignment.
+  dwV8p-referee-F2-heavy.md; F1 false for light v as front says). SYNTHESIS (owner's request,
+  951/board/agents/dwV8p-synth-F1-F2.md): F1* (one lemma for heavy + light: survivors seeing v are type-A world-0 servants)
+  PROVED; the F2 step reduces to ONE count SEE+K3 (some v: |(SEE \ SURV) ∪ K3| >= cost(v)), holds on 197,689 random + all
+  witness restrictions incl. FANO-FORMULA, PAPPUS-JUNK, where SEE alone fails. Free for the next assignment.
 
 - session_01GmnDhgAdyDijthBgZgJFWn (ex D-qg-2; scaffold helper for 951; attached here 09:25 with owner OK in
   its own chat): D-qg-2 LANDED here (L-qg-120 to L-qg-127 checked, `Defs/QuantumGravityChannels.lean`;
