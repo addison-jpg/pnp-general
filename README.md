@@ -23,7 +23,7 @@ Let S_1, …, S_m ⊆ {1, …, n} with |S_w| ≥ 2 and |S_v ∩ S_w| ≤ 1 for v
 
     #gates(C) ≥ base := Σ_w (|S_w| − 1).
 
-Without the NOT gate this is the theorem of Wegener and Mehlhorn. Proof so far, counterexamples, ladder, barriers: [`one-not/README.md`](one-not/README.md), [`one-not/DEAD_ENDS.md`](one-not/DEAD_ENDS.md), [`boards/`](boards/).
+Without the NOT gate this is the theorem of Wegener and Mehlhorn. The long front page (definitions, lemmas, refuted table, chain sum, ladder, barriers) is kept whole in [`notes/front-page-2026-11-24.md`](notes/front-page-2026-11-24.md). Proof so far, counterexamples, ladder, barriers: [`one-not/README.md`](one-not/README.md), [`one-not/DEAD_ENDS.md`](one-not/DEAD_ENDS.md), [`boards/`](boards/).
 
 ## Where things are
 
