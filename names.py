@@ -158,6 +158,7 @@ for name, code, parent, means in [
  ("inner-product junk design", "cxr", fam[3][0], "kills 'later merge gates of different sets are disjoint'"),
  ("adversary against the two-point menu", "ADV3", fam[0][0], "load 1.2"),
  ("adversary against the general world laws", "ADV4", fam[1][0], ""),
+ ("general witness count below base", "general_count_below_base_t4.json, t5, t6", fam[4][0], "sets {0,1,2,3}, {0,4,5,6}; 4 NOT gates, 67 gates, 5 witness gates < base 6; refutes C4w(t) for t >= 4; found by the search"),
  ("junk circuit where a light point fails", "JUNK, junk.json", fam[4][0], ""),
  ("five-input gap for seen gates", "see_gap_n5.json", fam[4][0], "n = 5, sets {0,1}, {1,2,3,4}, {0,2}, h = x1 or x4, cube Q = {0}: at v = 1 only 2 of the 3 gates of F2(Q) are 1 at Q + e_v (cost 3) while the step holds; the third gate x2 or x3 dies because all its witnesses come from the one set through v (K3). Why the count needs the K3 term (dwV8p)"),
 ]: add(name, parent, "witness", code, means)

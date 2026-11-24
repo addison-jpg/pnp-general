@@ -14,3 +14,4 @@ __pycache__/
 
 # heavy generated search output (see one-not/PIPELINE.md)
 artifacts/
+__pycache__/
