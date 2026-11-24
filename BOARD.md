@@ -123,8 +123,8 @@ session (desktop team via its Coord). Sessions are never interrupted by the ward
 History before the move: `addison-jpg/pequalnp-work` branch `board-warden` (frozen).
 - 1to1 = owner 08:28 (Discussion session): "1to1 squish, research-> research xyz-> xyz": same-role sessions become one seat;
   Discussion (session_01GmnDheAyFnVcvRApd4xeES) runs the handoffs. Correction sent to all 18 sessions 08:36.
-- Mirroring: front and pnp-subproblem cannot attach this repo (add_repo denied in their sessions); warden copies their rows and
-  notes from pequalnp-work each loop until they can.
+- Mirroring: front cannot attach this repo (add_repo denied in its session); warden copies its row and
+  notes from pequalnp-work each loop until it can. pnp-subproblem attached itself 08:34 (5901657).
 - KILL: desktop Tractability (session_01GmnDhen7s1dyuiXAXQ8gjB) 612 C7 k=9 SAT, serves no card (s(C7) = 10 is
   Lean row L-meta-106); requested 08:17 via desktop Coord, relayed 08:15; awaiting stop.
 - WATCH: none open. (Resolved: MergeFrac Lean single owner; Lemma K Lean = desktop Research, dZb2E -> CrossWorld.)
