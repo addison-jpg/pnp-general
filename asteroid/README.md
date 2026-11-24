@@ -32,8 +32,11 @@ record one-not/data/witnesses C2 checked "…"
 ```
 
 ```bash
-python3 -I asteroid/asteroid.py asteroid/examples/first.ast
+python3 -m asteroid run asteroid/examples/first.ast
+python3 -m asteroid test
 ```
+
+The exact grammar is in [`SPEC.md`](SPEC.md). On every push that touches the language or a program, GitHub Actions runs `python3 -m asteroid test --no-lean` (workflow `.github/workflows/asteroid.yml`); the Lean kernel job is started by hand.
 
 ## The language
 

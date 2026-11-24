@@ -21,7 +21,10 @@ A script is a list of lines; `#` starts a comment. The verbs:
   hunt "CONJECTURE" SECONDS MAXNOT [SEED] [&]   mutation search; `&` runs it in the background, log in asteroid/out/
   record DIR ITEM WORD "STATEMENT"           a finding (boards.py) citing this script and, if built, its Lean module
 
-Run from the repository root:  python3 -I asteroid/asteroid.py SCRIPT.ast
+Run from the repository root:
+  python3 -m asteroid run SCRIPT.ast [--no-lean]     run one program
+  python3 -m asteroid test [--no-lean]               run every program under asteroid/examples
+  python3 -m asteroid version
 Python proposes, Lean decides: a `by lean` claim counts only if the generated module builds."""
 import sys, os, re, json, subprocess, shlex, operator, time
 ROOT = os.getcwd(); S = os.path.join(ROOT, "one-not/tools/search"); sys.path.insert(0, S); sys.path.insert(0, ROOT)
@@ -89,7 +92,8 @@ def build_lean(script):
         t = f"{c}_claim{i}"; names.append(t); out.append(f"/-- asteroid: `claim {text}` -/\ntheorem {t} : {stmt} := by decide +kernel")
     out.append(f"end SearchCheck.{mod}")
     open(path, "w").write("\n".join(out) + "\n")
-    envp = dict(os.environ, PATH="/home/user/pequalnp-proofs/tools/bin:" + os.environ["PATH"]); t0 = time.time()
+    local = "/home/user/pequalnp-proofs/tools/bin"
+    envp = dict(os.environ, PATH=(local + ":" if os.path.isdir(local) else "") + os.environ["PATH"]); t0 = time.time()
     r = subprocess.run(["lake", "build", f"PEqualNP.W951.{mod}"], cwd="one-not/lean", env=envp, capture_output=True, text=True)
     ok = r.returncode == 0
     ax = ""
@@ -111,8 +115,9 @@ def plot_phi(names, out):
     ax[0].set_xlabel("p"); ax[0].set_ylabel("Phi(p) = expected slack"); ax[1].set_xlabel("points set to 1"); ax[1].set_ylabel("mean slack")
     ax[0].legend(fontsize=7); fig.tight_layout(); fig.savefig(out, dpi=150)
 
-def main():
-    script = sys.argv[1]; records = []
+NO_LEAN = False
+def run(script):
+    records = []
     block = None
     for ln, raw in enumerate(open(script), 1):
         line = raw.split("#", 1)[0].strip()
@@ -147,7 +152,8 @@ def main():
             else: print(f"{ln}: " + subprocess.run(cmd, capture_output=True, text=True).stdout.strip().splitlines()[-1])
         elif m := re.fullmatch(r'record (\S+) (\S+) (\w+) "(.+)"', line): records.append(m.groups())
         else: raise SystemExit(f"{script}:{ln}: cannot parse: {line}")
-    L = build_lean(script)
+    L = None if NO_LEAN else build_lean(script)
+    if NO_LEAN and lean_claims: print(f"lean: skipped (--no-lean); {len(lean_claims)} claims wait for the kernel")
     if L: print(f"lean: {L['module']} {'BUILT' if L['ok'] else 'FAILED'} in {L['seconds']} s; {len(L['theorems'])} theorems; axioms: {L['axioms']}")
     bad = [r for r in results if not r[2]]
     for d, item, word, stmt in records:
@@ -156,5 +162,21 @@ def main():
         ev = [script] + ([f"{L['module']}::{L['theorems'][-1]}"] if L and L["ok"] else []) + list(dict.fromkeys(src.values()))
         boards.add(d, "asteroid", item, word, stmt, ev); boards.build()
     print(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; Lean decided {len(L['theorems'])}" if L and L["ok"] else ""))
-    sys.exit(1 if bad or (L and not L["ok"]) else 0)
-main()
+    return 1 if bad or (L and not L["ok"]) else 0
+
+VERSION = "asteroid 0.3 (Python + Lean kernel + matplotlib)"
+def main(argv):
+    global NO_LEAN
+    NO_LEAN = "--no-lean" in argv; argv = [a for a in argv if a != "--no-lean"]
+    if argv[:1] == ["version"]: print(VERSION); return 0
+    if argv[:1] == ["run"] and len(argv) == 2: return run(argv[1])
+    if argv[:1] == ["test"]:
+        import glob; bad = 0
+        for f in sorted(glob.glob("asteroid/examples/*.ast")):
+            r = subprocess.run([sys.executable, "-m", "asteroid", "run", f] + (["--no-lean"] if NO_LEAN else []), capture_output=True, text=True)
+            print(("ok   " if r.returncode == 0 else "FAIL ") + f + "  |  " + (r.stdout.strip().splitlines() or ["(no output)"])[-1]); bad += r.returncode != 0
+        return 1 if bad else 0
+    if len(argv) == 1 and argv[0].endswith(".ast"): return run(argv[0])
+    print(__doc__); return 2
+
+if __name__ == "__main__": sys.exit(main(sys.argv[1:]))

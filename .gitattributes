@@ -7,3 +7,4 @@ one-not/board/agents/INDEX.md merge=union
 NAMES.md merge=union
 **/findings.jsonl merge=union
 boards/TREE.md merge=union
+*.ast linguist-language=Ruby linguist-detectable

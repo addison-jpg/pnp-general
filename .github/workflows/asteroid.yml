@@ -1,0 +1,48 @@
+# asteroid: run every program under asteroid/examples when the language or a program changes.
+# The `python` job evaluates all claims and draws the plots. The `kernel` job (run by hand) also lets Lean decide.
+name: asteroid
+
+on:
+  push:
+    branches: [main]
+    paths: ['asteroid/**', '**.ast', 'one-not/tools/search/**', 'one-not/lean/PEqualNP/W951/Asteroid.lean', 'one-not/lean/PEqualNP/W951/SearchCheck.lean']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy matplotlib
+      - run: python3 -m asteroid test --no-lean
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asteroid-plots
+          path: asteroid/out/*.png
+          if-no-files-found: ignore
+
+  kernel:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy matplotlib
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        working-directory: one-not/lean
+        run: lake exe cache get
+      - run: python3 -m asteroid test
