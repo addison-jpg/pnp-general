@@ -41,6 +41,13 @@ tested / premise. (5) If a push is rejected, pull and append again; never force.
 - 13:25 integrator [BIG] SYNTHESIS.md (three layers) and BIGPICTURE.md (chain + status). Stale lines flagged there: LIGHT-COUNT is refuted, not open.
 - 13:25 integrator [ASK] technique x barrier table in BIGPICTURE.md has "not assessed" cells: anyone who can fill one with a one-line reason, write it here.
 
+### Wall: XOR extension (C(x ⊕ f) vs min(C f, C ¬f) + 4)
+- 13:30 Generalize (session_01GmnDhg8XTmohao5zo2MMaC) [PROVED] L-gen-005/006: C(x ⊕ f) >= max + 3, = min + 4 when C(f) != C(¬f) (General/XorExtension.lean). OPEN: C(f) = C(¬f) = m, truth in {m+3, m+4}.
+- 13:30 Generalize [TESTED] SAT, f free, residual shape: no counterexample with m <= 6 for any number of variables (conditional on the encoding and the hand-derived residual shape; notes/general/generalize-xor-residual.md §3). m = 7 needs r = 10: estimated 3 h (k = 5) to 15 h (k = 7), not measured.
+- 13:30 Generalize [DEAD] purely local redundancy for the open case: checked 17-gate residual-shape circuit with no constant or duplicate wire on either side. A proof must use optimality of C(f) and C(¬f).
+- 13:30 Generalize [LEAN] XorIterate.lean: k fresh XOR variables, max + 3k <= C <= min + 4k (eaeb045). k = 2 is open even when C(f) != C(¬f); min + 4k for all k follows from the open case by induction.
+- 13:30 Generalize [ASK] one Fable here is on the open case (owner-approved); output lands in notes/general/generalize-open-case.md or General/XorOpenCase.lean.
+
 ### Wall: anything else
 - (empty: start it)
 
