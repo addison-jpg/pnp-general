@@ -240,3 +240,8 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
 - (16:20 UTC) GraphHeavyF2.lean: G1 in F2-gain form (`gainF2_graphStar`, `gainF2_G1`) under h(top_va) = 1 for every star set
   (front A2's (F5)), on machines-Lean's F2 (F2Induct: F2Wit / F2 / GainF2). Stated for a chosen v (front: 'heavy v exists ⇒
   works' is refuted for F2). Open: h(top_va) = 0 star sets.
+- (16:45 UTC) MinCERed.lean: the refereed MinCE reduction lemmas. R+ `MinCE.observable` CHECKED, plus R2 `no_dup`, R3 `no_var`,
+  R5' `not_used`; R1 (`MinCE.no_const`, Peel) and R4 (`MinCE.live`) were already there. Machinery: constant substitution on
+  out-edges (`subGates`, value congruence), `shrink_of_const`, `shrink_of_copy`. Note: in our gate model a NOT gate may read two
+  wires (only the first counts), so R+ is stated for readers that are AND/OR gates or NOT gates reading the wire first; for an
+  ignored second NOT input the substitution is a no-op and R+ would be false.
