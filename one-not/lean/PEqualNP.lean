@@ -131,3 +131,4 @@ import PEqualNP.W951.F2Induct
 import PEqualNP.W951.F2Desc
 import PEqualNP.W951.F2SeeK3
 import PEqualNP.W951.F2Light
+import PEqualNP.W951.C2Gap
