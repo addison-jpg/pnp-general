@@ -176,6 +176,7 @@ import PEqualNP.W951.NotVarF2
 import PEqualNP.W951.CubeF2
 import PEqualNP.W951.ConeCert
 import PEqualNP.W951.TUCert
+import PEqualNP.W951.CertDHeavy
 import PEqualNP.W951.CanonD1
 import PEqualNP.Kernel.W951CubeKeep
 import PEqualNP.W951.RunTransfer

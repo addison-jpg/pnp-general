@@ -22,3 +22,15 @@ PROOF PLAN this suggests (OPEN): two size-independent lemmas about cone merge se
   The v choice must avoid the two failure kinds above; the data says almost any v works, none of the simple rules always does.
 - LEAN (cTAHG, 13:24 UTC): the reduction (D) ∧ (S) at v ⇒ GainF2 at v is CHECKED, ConeCert.lean `gainF2_of_cert` / `gainF2_of_cert1c`
   (`CertD`, `CertS` as hypotheses; `coneMerge` = Lemma M over the masked cone), plugged into `no_minCE_of_cert_or_local`.
+
+## Lemma (D) (qg-d2 took (D); cTAHG has (S); 13:44 UTC). Code: 951/tools/kill_tests/certd.py. Lean: 951/lean/PEqualNP/W951/CertDHeavy.lean
+Instances: every gate read and the NOT gate not a literal or constant on the cube x_Q = 1 (not CubeLocal): 17,045 instances, 70,299 (instance, v).
+- (D) at z = Q holds at 69,842 / 70,299 v (99.35%) and at some v in EVERY instance; with a per-set zero point (CERT-3c) at 70,112 v.
+- Survivors (470 cone merge gates at z = Q that stay in F2 under x_v := 1): 447 are NOT 1 at Q + e_v, i.e. merges between two points of S_w
+  other than v; the 23 that are 1 at Q + e_v all have a light v (F1* survivors: world-0 witness, NOT-dependent). At a heavy v: 0 survivors 1 at Q + e_v.
+- LEAN (PROVED, propext / Classical.choice / Quot.sound): certD_of_heavy_see — at a HEAVY v (NOT gate 0 at Q + e_v), if every cone merge of
+  every set through v is 1 at Q + e_v (SEE; automatic for 2-sets), then (D) holds, for any zero points. Proof: F1 (F1_real_zero).
+  Checks per 951/README.md: full build 1 sorry outside PayDraft (no_minCE), one-file 0 errors / 1 sorry, L_meta_951 axioms as required.
+- DATA for that route: heavy v with SEE exists in 12,620 / 12,853 instances that have a heavy point; (D) then holds 25,081 / 25,081.
+  OPEN for (D): (a) the 233 instances with heavy points but no heavy SEE point (smallest ess_rand_clean.jsonl:1378, n = 5); (b) the 4,192
+  instances with no heavy point (the light case; F1* bounds the survivors that see v). The v must also satisfy (S).
