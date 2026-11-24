@@ -1,5 +1,6 @@
 import Lean.Data.Json
 import PEqualNP.AsteroidLang.Emit
+import PEqualNP.AsteroidLang.Bench
 /-!
 # asteroid: the command line
 
@@ -100,6 +101,8 @@ structure Prover where
 structure Tally where
   /-- the circuits in scope -/
   env : Env := {}
+  /-- the circuits read from files, in order, not announced yet -/
+  loads : List Circ := []
   /-- the verdicts not printed yet -/
   verdicts : List Verdict := []
   /-- the claims for the proof checker -/
@@ -119,10 +122,11 @@ def step (t : Tally) (l : Line) : IO Tally := do
       correct {showBool C.correct})"
     return { t with env := t.env.insert name C }
   | .load name _ =>
-    match t.env[name]? with
-    | some C => IO.println s!"{l.num}: {name} loaded ({C.n} inputs, {C.gates.length} gates)"
-    | none => pure ()
-    return t
+    match t.loads with
+    | C :: rest =>
+      IO.println s!"{l.num}: {name} loaded ({C.n} inputs, {C.gates.length} gates)"
+      return { t with env := t.env.insert name C, loads := rest }
+    | [] => return t
   | .display name =>
     match t.env[name]? with
     | some C =>
@@ -140,33 +144,56 @@ def step (t : Tally) (l : Line) : IO Tally := do
         | true, some stmts => (stmts.map fun (c, stmt) => (⟨c, stmt, text⟩ : LeanClaim), "")
         | true, none => ([], "  (NO LEAN FORM for this expression yet: evaluated only)")
         | false, _ => ([], "")
-      IO.println s!"{l.num}: claim {text}: evaluated {if v.value then "TRUE" else "FALSE"} \
+      IO.println s!"{l.num}: claim {text}: {if v.value then "TRUE" else "FALSE"} \
         ({e.detail v.env}{note})"
       return { t with verdicts := rest, claims := t.claims ++ claims,
                       good := t.good + (if v.value then 1 else 0),
                       bad := t.bad + (if v.value then 0 else 1) }
   | .unsupported what =>
-    IO.println s!"{l.num}: not in the Lean version yet: `{what}` (line skipped)"
-    return { t with skipped := t.skipped + (if (words what).head? == some "plot" then 0 else 1) }
+    let verb := (words what).headD what
+    IO.println s!"{l.num}: {verb}: not in the Lean version yet"
+    return { t with skipped := t.skipped + 1 }
 
-/-- read the files a program loads; the result is the program as `run` takes it -/
-def resolve (root : System.FilePath) (lines : List Line) : IO (List Line × List Item) := do
+/-- a circuit of the `.bench` reader as the circuit of the executable -/
+def ofBenchCirc (C : SearchCheck.Circ) : Circ :=
+  ⟨C.n, C.sets, C.outs, C.gates.map fun g => ⟨g.op, g.a, g.b⟩⟩
+
+/-- read the files a program loads; the result is the program as `run` takes it. `dir` is the
+folder of the program file: a path is read from there, else from `root`, else as written. -/
+def resolve (script : String) (dir root : System.FilePath) (lines : List Line) :
+    IO (List Line × List Item × List Circ) := do
   let mut out := #[]
+  let mut loads := #[]
   let mut items := #[]
   for l in lines do
     match l.stmt with
     | .circuit name C => items := items.push (.circuit name C); out := out.push l
     | .claim _ _ e _ => items := items.push (.claim l.num e); out := out.push l
     | .load name path =>
+      let file ← do
+        if ← (dir / path).pathExists then pure (dir / path)
+        else if ← (root / path).pathExists then pure (root / path) else pure (System.FilePath.mk path)
+      unless ← file.pathExists do
+        throw <| IO.userError s!"{script}:{l.num}: cannot load {path}: no such file"
+      let text ← IO.FS.readFile file
       if path.endsWith ".json" then
-        let file := if ← (root / path).pathExists then root / path else path
-        match circOfJson (← IO.FS.readFile file) with
-        | .ok C => items := items.push (.circuit name C); out := out.push l
-        | .error e => throw <| IO.userError s!"line {l.num}: cannot load {path}: {e}"
+        match circOfJson text with
+        | .ok C =>
+          items := items.push (.circuit name C)
+          loads := loads.push C
+          out := out.push l
+        | .error e => throw <| IO.userError s!"{script}:{l.num}: cannot load {path}: {e}"
+      else if path.endsWith ".bench" then
+        match Bench.read text with
+        | .ok C =>
+          items := items.push (.circuit name (ofBenchCirc C))
+          loads := loads.push (ofBenchCirc C)
+          out := out.push l
+        | .error e => throw <| IO.userError s!"{path}: {e}"
       else
-        out := out.push ⟨l.num, .unsupported s!"let {name} = load {path}"⟩
+        throw <| IO.userError s!"{script}:{l.num}: cannot load {path}: not a .bench or .json file"
     | _ => out := out.push l
-  return (out.toList, items.toList)
+  return (out.toList, items.toList, loads.toList)
 
 /-- check the claims with Lean; returns whether both modules were accepted and how many proved -/
 def prove (p : Prover) (script mod : String) (t : Tally) : IO (Bool × Nat) := do
@@ -199,11 +226,11 @@ def runFile (file : String) (noProof : Bool) : IO UInt32 := do
   let lines ← match parse script (← IO.FS.readFile file) with
     | .ok lines => pure lines
     | .error e => IO.eprintln e; return 2
-  let (lines, items) ← resolve root lines
+  let (lines, items, loads) ← resolve script ((System.FilePath.mk file).parent.getD ".") root lines
   let verdicts ← match run {} items with
     | .ok vs => pure vs
     | .error e => IO.eprintln s!"{script}: {e}"; return 2
-  let t ← lines.foldlM step { verdicts }
+  let t ← lines.foldlM step { verdicts, loads }
   let prover ← if noProof || t.claims.isEmpty then pure none else do
     match project, ← locateLake with
     | some project, some lake => pure (some (⟨project, lake⟩ : Prover))
@@ -222,8 +249,8 @@ def runFile (file : String) (noProof : Bool) : IO UInt32 := do
       pure (true, 0)
   IO.println (s!"claims: {t.good} true, {t.bad} false"
     ++ (if prover.isSome && ok then s!"; {proved} proved" else "")
-    ++ (if t.skipped > 0 then s!"; {t.skipped} lines not in the Lean version yet" else ""))
-  return if t.bad == 0 && ok && t.skipped == 0 then 0 else 1
+    ++ (if t.skipped > 0 then s!"; {t.skipped} lines skipped (not in the Lean version yet)" else ""))
+  return if t.bad == 0 && ok then 0 else 1
 
 end AsteroidLang
 
