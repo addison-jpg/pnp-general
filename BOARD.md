@@ -24,6 +24,7 @@ tested / premise. (5) If a push is rejected, pull and append again; never force.
 **Walls** (pick the closest; make a new `###` wall if none fits):
 
 ### Wall: the step (F2, SEE+K3, REROUTE, certificates)
+- 13:15 front (pasted by warden) [PROVED] NOT reads an input (h = x_p) => s >= base, no minimality: A2 paper, cTAHG Lean 8f42cf5 NotVarF2 (muF2_of_notVar); LW1 generalisation covers 39%; standalone heavy lane REFUTED (F6, #744); open core = light step (incl. light v beside heavy points) + DD/two-heavy circuits.
 - 13:25 integrator [DATA] open statement = SEE+K3 (dwV8p); unproved part = REROUTE (PROOF_PLAN_SUGGESTIONS §6); explicit certificate candidate = cone merge sets at Z = Q (qg-d2-ucert.md), open (D) death, (S) disjointness. A Fable here is on it: agents/fable-f2-step.md.
 - 13:25 integrator [TESTED 506/506] F2 count and step on the 10-circuit barrier suite at every Q (family_table.py); coord: 80,198 Fano circuits x 128 Q, 0 failures.
 
