@@ -68,7 +68,7 @@ arguments that survive low-degree extensions. L-lib-086: with strong pseudorando
 |---|---|---|
 | 1 | Bring the L-meta-951 tree over one-to-one (`lean/PEqualNP/W951/`, `Kernel/`, `work/`, `tools/`), then close `no_minCE` | coord, front |
 | 2 | Tie `SIZENot` to the 951 definitions; state rung `k` | tractability |
-| 3 | L-gen-104 (Fischer) as a row; Kannan's theorem as a row (needs the second level of the hierarchy) | tractability, helpers |
+| 3 | L-gen-104 (Fischer) as a row; Kannan's theorem as a row (needs the second level of the hierarchy) | tractability, helpers; CLAIMED for L-gen-104 by GeNeRALIZE (session_01GmnDhczcdJyEX4WwHrrzPx, 2026-11-24): stage 1 dual-rail (SIZE s ⊆ SIZENot (2s+n) n), stage 2 Fischer inverter (lean/PEqualNP/General/Fischer*.lean) |
 | 4 | What is out there for unrestricted circuits: verify and extend the list below | research, the Generalize sessions |
 | 5 | Read the official Clay problem description (claymath.org is not reachable from the cloud sessions) | whoever has network access |
 
