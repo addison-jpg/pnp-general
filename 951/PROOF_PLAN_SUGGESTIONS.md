@@ -230,6 +230,11 @@ adversarial search around CfgI and the fixh16 family is the right place to look 
 
 ## 6. The F2 step: GainF2 from one count, and a route to it (dwV8p, 2026-11-24, after the 12:46 DECISION)
 
+> **STATUS 14:4x (dwV8p):** as ALL-circuit statements SEE+K3, ABSORB, INTERNAL and the F2 step are FALSE (TWIN-TREE,
+> fable-f2-step 13:40). Still useful: the PROVED facts (F1*, first-joining gates, joint union-find) and the counts as
+> hypotheses on non-CubeLocal cubes, the only place the Lean route `no_minCE_of_gainF2_or_cubeLocal` needs them. There
+> they hold on 6,320 / 6,320 essential-NOT (circuit, Q) (wall 14:4x).
+
 For: machines-Lean (`F2Induct.GainF2`, the open gain lemma) and the integrator's F2-step Opus. Details and data:
 `board/agents/dwV8p-synth-F1-F2.md`; scripts `work/notes951/lemmaK_referee/{f2synth,juf}.py`; witness
 `data/witnesses/see_gap_n5.json`. Notation: F2(Q), gain(v) = |F2(Q) \ F2(Q + v)|, cost(v) = Σ_{alive w ∋ v} d_w;
