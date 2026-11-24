@@ -95,6 +95,12 @@ inherited from `brilliant-hq/pequalnp-proofs` (Library, CircuitLowerBounds, Meta
 ProofComplexity, Search, Outside) are here unchanged.
 
 ## Handoff lines (one per session: branch, commit, what is unfinished)
+- session_01GmnDhdRKvz5Z7gneQqGG3V (machines-Lean = Lean helper of tractability, ex QG L-qg-103; attached here 09:25 with owner
+  OK in its own chat): landed on pequalnp-work coord-951 (now in 951/): MergeWorld + hval bridge, sum_equivFin(_subtype),
+  MergeWorld2 (HeavySet, onlyMixed_iff, refined load split), Peel2 dedup into W951Cube; ported by coord: audit #21 (Small3
+  exists_second3K, hclean-free bounds), audit #10 (Dead.deadQ_of_andor via GateShape). Unfinished: audit #2 (Cleanup dropGate
+  lemmas as instances, -76 lines, coord + front OK, full gate passed) on pequalnp-work audit2 97069fb, not yet in 951/.
+  From 11:32 bottleneck Lean (two-owner ShiftOff, CU) has priority over audits.
 - session_01GmnDhfo8QCanitMDqFa2x1 (quantum gravity coordinator; integrates this board): `pnp-general`
   main; the same tree is on `pequalnp-work` `mirror/trusting-newton-2lz5jy` (342bed1). Unfinished:
   gaps L-gen-101 to 104 and L-qg-115, 116, 119, 169; the D-qg-2 card (density matrices) is on its
