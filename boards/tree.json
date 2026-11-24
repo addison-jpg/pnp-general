@@ -3,12 +3,13 @@
   "counts": {
    "tested": 2,
    "refuted": 3,
-   "checked": 11
+   "checked": 12
   },
   "verified": [
    "1b00e1bc",
    "7dbb073c",
    "f4704cc4",
+   "0736a8e5",
    "98a42596",
    "c7512878",
    "30cf54bf",
@@ -29,12 +30,13 @@
   "counts": {
    "tested": 2,
    "refuted": 3,
-   "checked": 11
+   "checked": 12
   },
   "verified": [
    "1b00e1bc",
    "7dbb073c",
    "f4704cc4",
+   "0736a8e5",
    "98a42596",
    "c7512878",
    "30cf54bf",
@@ -54,12 +56,14 @@
  "one-not/data": {
   "counts": {
    "tested": 1,
-   "refuted": 2
+   "refuted": 2,
+   "checked": 1
   },
   "verified": [
    "1b00e1bc",
    "7dbb073c",
-   "f4704cc4"
+   "f4704cc4",
+   "0736a8e5"
   ],
   "unverified_here": []
  },
@@ -87,20 +91,24 @@
  },
  "one-not/data/witnesses": {
   "counts": {
-   "refuted": 2
+   "refuted": 2,
+   "checked": 1
   },
   "verified": [
    "7dbb073c",
-   "f4704cc4"
+   "f4704cc4",
+   "0736a8e5"
   ],
   "unverified_here": []
  },
  "one-not/data/witnesses/nonlocal": {
   "counts": {
-   "refuted": 1
+   "refuted": 1,
+   "checked": 1
   },
   "verified": [
-   "f4704cc4"
+   "f4704cc4",
+   "0736a8e5"
   ],
   "unverified_here": []
  },
