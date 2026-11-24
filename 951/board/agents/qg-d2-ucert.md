@@ -34,3 +34,14 @@ Instances: every gate read and the NOT gate not a literal or constant on the cub
 - DATA for that route: heavy v with SEE exists in 12,620 / 12,853 instances that have a heavy point; (D) then holds 25,081 / 25,081.
   OPEN for (D): (a) the 233 instances with heavy points but no heavy SEE point (smallest ess_rand_clean.jsonl:1378, n = 5); (b) the 4,192
   instances with no heavy point (the light case; F1* bounds the survivors that see v). The v must also satisfy (S).
+
+## PROVED COVERAGE (13:46 UTC; cTAHG's (S) = certS_of_tu, TUCert.lean d63060f + qg-d2's (D) = certD_of_heavy_see). Code: 951/tools/kill_tests/proved_cover.py
+Same 17,045 non-local, every-gate-read instances (circuit, Q). An instance is COVERED when some alive v is heavy and the sets through v
+have zero points z_w ⊇ Q off S_w that are pairwise TU in one direction (so (S) by certS_of_tu) and whose cone merges are all 1 at
+Q + e_v (so (D) by certD_of_heavy_see, no data). Then CERT-3c, hence the F2 step at that instance, follows from proved lemmas only.
+- COVERED: 12,604 / 17,045 (73.9%); among instances with a heavy point 12,604 / 12,853 (98.1%).
+- cTAHG's checker (tu_cert.instance, unchanged) on the same set: CERT-1c observed 17,045 / 17,045; H3u (TU + (D) observed) 17,035 /
+  17,045 (the 10 misses are fixh16, h = (x0|x1)(x2|x3)); at points of degree >= 2, TU never holds with all z_w = Q, so (D) is always
+  needed at higher zero points there (H3u at 50,851 / 57,209 such (instance, v)).
+- OPEN, exactly: (H') 249 heavy instances not covered (smallest w7/bad.jsonl:137, n = 5, s = 9, Q = 16); (L) the 4,192 instances with
+  no heavy point, where (D) needs F1* (survivors that see v are world-0, NOT-dependent) instead of F1.
