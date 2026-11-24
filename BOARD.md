@@ -141,7 +141,8 @@ ProofComplexity, Search, Outside) are here unchanged.
   Finsets with sizes ≥ d_w (W1: h(top_w) = 0; W0: h(m) = 1, m ∩ S_w = ∅), W0/W1 disjointness, X, and NEW D across worlds
   (K_0(w; m) ∩ K_1(w') = ∅ once m ∩ S_w' = ∅). 11:20: PureSDR REDUCTION CHECKED: `no_minCE_of_pureSDR` (PureSDR.lean;
   classes = runMT merge sets in the lift, validity weaker than the data's) + pure-class W0/W1/D lemmas; 11:45: 36 kernel-checked
-  PureSDRs (PureSDRWitness: cxT2, cxe3, ADV3, cxT4, fixh16, …). NEXT: ladder certificates (Fano, AG(2,3), …) as they arrive.
+  PureSDRs (PureSDRWitness: cxT2, cxe3, ADV3, cxT4, fixh16, …); 12:00: PureHall.lean: graph systems PureSDR ⇔ Hall on pure
+  menus (`pureSDR_iff_hall`), `no_graph_minCE_of_hall` = Lean target of front's heredity lane. NEXT: ladder certificates.
   Results: 951/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.

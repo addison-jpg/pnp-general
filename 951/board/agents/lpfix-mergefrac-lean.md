@@ -179,3 +179,8 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   incl. cxT2, cxe3, ADV3, cxT4, plus the 24 fixh16), by `tools/sdrcert/pure_export.py` (Python finds, Lean checks; ~40 s).
   The Lean `pureCls` (runMT in the lift) equals kill_tests' `merges` on every chosen class: the Lean definitions match the
   data. Pure menus are small: 1-10 distinct classes per set (cxT4: 2/2/2 against 190/82/81 plain merge sets).
+- (12:00 UTC) PureHall.lean: the board's TRANSFER line is a Lean theorem. `pureSDR_iff_hall`: on GRAPH systems (all
+  |S_w| = 2) every valid pure class is exactly one gate (`card_pureCls_graph`) and PureSDR ⇔ Hall's condition on the pure
+  menus (`pureMenu` = union of all valid classes of a set). `no_graph_minCE_of_hall`: Hall on the pure menus of every
+  graph-system MinCE ⇒ no MinCE is a graph system — the exact Lean target of front's heredity lane. For any system,
+  `hall_of_pureSDR` (necessary: ∑_{w∈F} d_w ≤ |⋃ menus|) and `card_pureCls_le` (classes have EXACTLY d_w merges).
