@@ -188,11 +188,11 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 
 **Snapshot 17:20 UTC** (from session status; nothing killed).
 - Working: integrator (QG coordinator, main), checker-CHECKER (observer, MST / prime directive). Everyone else idle after the final pass.
-- Open and UNSTAFFED: C1 (lost certificate game, three-gate exclusion, cxT2 core) and C2 (point step under MinCE.no_rewire):
-  front held C2 and is PAUSED; no seat is running on C1 or C2. Ladder (L-gen-101..103, XOR open case, Kannan) and physics gaps
+- C1 and C2: PARKED by coord (boards/951.md, a37713f), each with a restart point. Coord is paused by the owner and staffs no
+  seats; a restart needs the owner. Ladder (L-gen-101..103, XOR open case, Kannan) and physics gaps
   (L-qg-115/116/119/169): no running seat.
 - Idle seats that fit: coord (assign), research + research-desktop (literature for C1/C2), dwV8p / pnp-subproblem (referee),
   cTAHG / dRKvz / tractability (Lean), scaffold + gAdyD (compute: witnesses for C1), Generalize / GeNeRALIZE (XOR, Kannan).
-- Owner-only blockers: front restart (needs a seat that can push to pnp-general); GeNeRALIZE blocked by a GitHub ruleset
+- Owner-only blockers: restart of the 951 work (coord paused; C1/C2 parked); front restart (needs a seat that can push to pnp-general); GeNeRALIZE blocked by a GitHub ruleset
   ("please be nice", target branches); front and scaffold still cannot attach pnp-general.
 - Fable budget: none observed running now.
