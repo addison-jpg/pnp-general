@@ -234,3 +234,6 @@ re-apply. No CE / evaluation hypothesis anywhere (holds for arbitrary S, gates).
   are never low at other ceilings), triangle, and the odd cycle with ONE cover of the merge gate valid for all three runs
   (mr_coverT over univ, so it does not depend on the set). Weaker hypotheses than the paper: correctness of the outputs and
   |S_w| ≥ 2 are not used.
+- (16:00 UTC) F2Bridge.lean: lifted ⇒ real witnesses (`real_zero_of_lift`, `real_one_of_lift`) and the F2 exclusion
+  (`real_one_of_C0`). G1 in F2 form follows for star edges {v, a} with h(top_va) = 1 (the I0 class at (top_va, 0) is then
+  consistent); h(top_va) = 0 star edges = front's open bridge. F2 definition: coordinating with machines-Lean.

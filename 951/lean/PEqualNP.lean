@@ -169,6 +169,7 @@ import PEqualNP.W951.PureFrac
 import PEqualNP.W951.PureLLift
 import PEqualNP.W951.PureMenu
 import PEqualNP.W951.TwoGateLift
+import PEqualNP.W951.F2Bridge
 import PEqualNP.W951.CanonD1
 import PEqualNP.Kernel.W951CubeKeep
 import PEqualNP.W951.RunTransfer
