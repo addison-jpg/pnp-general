@@ -1,12 +1,15 @@
 {
  ".": {
   "counts": {
-   "refuted": 2,
+   "refuted": 3,
+   "tested": 1,
    "checked": 11
   },
   "verified": [
    "7dbb073c",
    "f4704cc4",
+   "98a42596",
+   "c7512878",
    "30cf54bf",
    "0f8afdc1",
    "dcd62f26",
@@ -23,12 +26,15 @@
  },
  "one-not": {
   "counts": {
-   "refuted": 2,
+   "refuted": 3,
+   "tested": 1,
    "checked": 11
   },
   "verified": [
    "7dbb073c",
    "f4704cc4",
+   "98a42596",
+   "c7512878",
    "30cf54bf",
    "0f8afdc1",
    "dcd62f26",
@@ -52,6 +58,30 @@
    "f4704cc4"
   ],
   "unverified_here": []
+ },
+ "one-not/data/c4g": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "1b00e1bc",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "64233838",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "04a575bf",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
  },
  "one-not/data/witnesses": {
   "counts": {
@@ -129,30 +159,36 @@
   ],
   "unverified_here": []
  },
+ "one-not/tools": {
+  "counts": {
+   "refuted": 1,
+   "tested": 1
+  },
+  "verified": [
+   "98a42596",
+   "c7512878"
+  ],
+  "unverified_here": []
+ },
  "one-not/tools/kill_tests": {
-  "counts": {},
-  "verified": [],
-  "unverified_here": [
-   {
-    "id": "98a42596",
-    "why": [
-     "needs a second seat in by"
-    ]
-   }
-  ]
+  "counts": {
+   "refuted": 1
+  },
+  "verified": [
+   "98a42596"
+  ],
+  "unverified_here": []
  },
  "one-not/tools/search": {
-  "counts": {},
-  "verified": [],
+  "counts": {
+   "tested": 1
+  },
+  "verified": [
+   "c7512878"
+  ],
   "unverified_here": [
    {
     "id": "ed5f9c48",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "c7512878",
     "why": [
      "needs a second seat in by"
     ]
