@@ -164,7 +164,8 @@ output is its own free coordinate: lifted cube {0,1}^(n+k).
 a junk gate, a → (a ∧ N) ∨ (a ∧ h), prune dangling gates; objective: minimise |⋃ liftMenu| − base;
 starts cxMU_dd, cxMU_clean2, selector50, ~8 min each). Best: margin 0 (TIGHT, not violated) at
 s = 90, base 6, slack 84 (cxMU_clean2 lineage; LiftSDR exists), but there the NOT had become
-INESSENTIAL; best with an essential NOT: margin +1 at slack 74. No negative margin. Reading: junk
+INESSENTIAL. CORRECTION (scaffold 12:50): every record with margin 0-3 has an INESSENTIAL NOT; best
+with an ESSENTIAL NOT: +4 at slack 80 (selector50 lineage), +5 at slack 54 (cxMU_dd lineage). No negative margin. Reading: junk
 gates that never merge cost nothing in MUL, so MUL can be tight at any slack; breaking it needs
 classes to COLLAPSE below base, which random junk did not achieve.
 
