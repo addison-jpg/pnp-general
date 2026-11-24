@@ -89,17 +89,21 @@ Every name has one parent. Read bottom up: a counterexample or a theorem is a le
     - `LiftCount` · Theorem when UGameWon; Open otherwise · **lifted count** (old: MUL): the union of lifted classes has at least monotone-optimum gates
     - `MergeFrac` · Refuted for all circuits; Open under MinCE · **fractional merge matching** (old: MergeFrac, FracMatch): weights on zero points with load at most 1 on every gate
     - `MergePrice` · Refuted for all circuits; Open under MinCE · **price inequality**: for every price on gates, the cheapest classes together cost at most all gates
+    - `chainSum_eq_telescope / avg_orderings_telescope / sum_shapley` · Theorem · **chainSum_eq_telescope / avg_orderings_telescope / sum_shapley**: ChainSum_qgd2.lean: the chain sum (L5) is the telescoping identity shared with the Cesaro displacement (L6, lean/.../Helpers/Telescope.lean); averaged over all orderings of the points the count is the sum of each point's chain-averaged step (Shapley value)
     - `separationOfTheStarOfAPoint` · Definition · **separation of the star of a point** (old: STAR-SEP, STAR-COUNT, StarCount2): the sets through one point get pairwise disjoint classes (counting form: STAR-COUNT)
     - `strongCommonUniversalPropertyAndChainPick` · Definition · **strong common-universal property and chain pick** (old: StrongCU, ChainPick, CU): supported, not refuted; CU alone does not give the price inequality
     - `pairHillClimb` · Definition · **pair hill-climb** (old: O2, O2-PAIR): search for a counterexample to disjoint representatives; none found
     - `priceFormOverPureClasses` · Definition · **price form over pure classes** (old: PureFrac, PurePrice): pureFrac_iff_purePrice: LP duality, checked
     - `dualAndLinkOfTheFractionalMergeMatching` · Definition · **dual and link of the fractional merge matching** (old: MergeDual, MergeLink): Lean modules of the MergeFrac <=> MergePrice chain
+    - `ChainSum_qgd2` · Module · **ChainSum_qgd2.lean**
   - `section ThePointStep` · Section · **the point step** (old: STEP, GainF2, GainOne): prove the count one input at a time: setting some input to 1 removes at least cost-of-the-point gates from the family
     - `GainF2` · Refuted for all circuits; Open under MinCE.no_rewire · **point step for real-witness gates** (old: F2 STEP, GainF2): some point has gain >= cost; false for all correct circuits, open among circuits with no gate-saving rewiring
       - `no_minCE_of_gainF2_or_cubeLocal` · Theorem · **no_minCE_of_gainF2_or_cubeLocal**: CubeF2.lean:353: local cube or point step at every cube => the statement
+      - `certD_of_heavy_see / certD_of_see0` · Theorem · **certD_of_heavy_see / certD_of_see0**: CertDHeavy.lean: death of the cone merge sets under x_v := 1 (lemma (D) of the cone certificate), from F1 / F1*
       - `F2Induct` · Module · **F2Induct.lean**
       - `F2Desc` · Module · **F2Desc.lean**
       - `F2FirstJoin` · Module · **F2FirstJoin.lean**
+      - `CertDHeavy` · Module · **CertDHeavy.lean**
     - `GainOne` · Refuted · **point step for one-face witness gates** (old: GainOne, LIGHT-COUNT, HEAVY-COUNT): the same for one-face witness gates; refuted
     - `DeleteStep` · Refuted · **point deletion** (old: x_v := 0): induction that sets a point to 0; refuted
     - `MixedStep` · Open · **mixed induction**: set a point to 0 at some cubes and to 1 at others; not refuted, two circuits tested

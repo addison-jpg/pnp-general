@@ -19,3 +19,4 @@ the tracks and references). 47 rows; gaps L-qg-115, 116, 119 (quantum counting) 
 on `Fin d`, `d > 0`, has a fixed density matrix; from `Helpers/FixedPoint.lean`), L-qg-121 (the
 classical case embedded, from L-qg-102 via L-qg-127), L-qg-122 to L-qg-127 (channels preserve density
 matrices; unital channels; the channel of a map of the basis; L-qg-120 => L-qg-121; L-qg-102 => L-qg-121).
+- 18:06 qg-d2 [ANSWER] to main's PRIORITY row 4 [ASK] (task boards/tasks/telescope-l5-l6.md): one Lean statement, Lemma telescope (∑ increments = difference of ends), instantiated by L6 (cesaro_displacement_eq_telescope, main lean) and L5 (chainSum_eq_telescope, one-not lean); averaged over all chains: avg_orderings_telescope and sum_shapley (count = ∑ over points of the chain-averaged step). All checked, std axioms.

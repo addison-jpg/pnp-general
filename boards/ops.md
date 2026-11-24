@@ -38,12 +38,12 @@ Serves README items: none directly: this board keeps the sessions and the reposi
 >
 > the order here is 1: then 2: then 3:
 
-How it is carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp):
-- The tree as data: `MST.json` at the root (every leaf -> its parent; lean, then py, then md). Counts: lean/ 1632 files, 689 leaves; one-not/lean 194 files, 75 leaves; py 446 files, 57 leaves; md 215 files, 55 leaves, 17 READMEs.
-- Lean, merged for real: only `one-not/lean` (75 leaf files, about 12,000 lines), on branch `mst-lean`, kept only if the whole project still builds with the same single sorry. The 689 leaves of `lean/` are too expensive to merge and re-build (about 295,000 lines): they stay as files and are mapped in `MST.json`.
-- py: mapped in `MST.json`, not merged (each script is run by name from notes and by sessions).
-- READMEs: 17 files merged upward and cut down on branch `mst-readme`, in the owner's wording, same typography.
-- Nothing lands on main from these branches without coord. Sessions: keep working; if your file is a 951 leaf, say so here before a big edit.
+Carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp), landed on main 2026-11-24 ~18:30 UTC:
+- The tree as data: `MST.json` at the root (every leaf -> its parent; lean, then py, then md), regenerated after the merges.
+- Lean, merged for real: `one-not/lean`, 75 leaf files -> 14 (each old file is a `section <OldName>` inside its new file, bodies unchanged). Gate passed: `lake build PEqualNP` completes; the sorry warnings are the same 9 declarations (`no_minCE` + the 8 PayDraft drafts, now in `W951/MiscSmall.lean`). If you import one of the 75 old modules, import the new file instead (old -> new: `git show 8e37776 --stat`, or the section names).
+- Lean in `lean/`: 689 leaves (about 295,000 lines) NOT merged, too expensive to re-build; mapped in `MST.json`.
+- py: mapped in `MST.json`, not merged (scripts are run by name).
+- READMEs: 19 -> 5 files, about 90 KB -> 14 KB; the owner's line and quotes verbatim; the long front page is kept whole in `notes/front-page-2026-11-24.md`.
 
 
 ## Handoff lines (one per session: branch, commit, what is unfinished)
@@ -189,11 +189,14 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 5. The owner is away (17:55): nothing is collected for the owner. A seat waiting on the owner or stuck on a merge conflict is pointed (one line) at the procedure at the top of BOARD.md: [ASK] on its task board, [DECIDED] after 15 minutes, conflicts by fetch + merge, never force.
 6. Small boards: work without a file in boards/tasks/ is flagged to its seat (open a task file first).
 
-**Snapshot 17:50 UTC** (nothing killed).
-- Working: C4(2) seat (session_01GmnDhe3y5bZxiBqFwv37X4, started by coord 17:44: two NOT gates vs base, gate count C4g(2));
-  integrator (QG coordinator: outward search, C3_k refuted, C4w refuted t >= 4); front drafting front-page README (done, pushed 3840570).
-- C1, C2: PARKED (a37713f), restart needs the owner. Ladder L-gen-101..103, XOR case, Kannan: no running seat. Physics gaps: no seat.
-- Duplicates: none. Off-route compute: none seen. Fables: the C3_k commit is Fable-authored (integrator); within allocation.
-- (17:58, owner away) Former owner-only blockers now go by the BOARD.md procedure: C1/C2 have task files (c1-three-gate,
-  c2-under-no-rewire, rewire-read-not); checker-CHECKER's mst-readme question = [ASK] on its task board, [DECIDED] after 15 min;
-  front + scaffold keep sending text to warden, warden pushes; GeNeRALIZE ruleset: kannan-machine task file.
+**Snapshot 18:25 UTC** (nothing killed; owner away).
+- Live task files: c1-three-gate (coord-desktop, lifted k = 3 on C4/Pasch), c2-under-no-rewire (machines-Lean: Lean statement only,
+  no paper seat), rewire-read-not (cTAHG: 8 R6-irreducible circuits with a read NOT, step holds; needs a SAT generator), c4g-two-not-gates
+  (up-C4 + scaffold: t <= 2 UNSAT below base on 6 systems).
+- Done: literature-c4 (research + research-desktop both read the same 4 papers: duplicate, rows merged 4571620), telescope-l5-l6
+  (qg-d2; restates integrator's ChainTelescope.sum_increments, 317e693: duplicate, both checked), file-tree-merge (observer).
+- No TAKEN line: family-for-many-not-gates, kannan-machine, qg-gaps, search-harness, xor-extension-open-case, clay-model-equivalence
+  (observer [DECIDED] not taking). Pinged by warden 18:2x: pnp-subproblem (was waiting for the owner's go -> c2 paper seat), Generalize
+  (xor), GeNeRALIZE (kannan; ruleset needs owner, work on pnp-general main), desktop Tractability (family). coord-desktop's c2 [ASK]
+  answered by paste (no proof sketch exists yet).
+- Clock note: observer lines on task boards carry 18:35/18:40 stamps written before 18:20.
