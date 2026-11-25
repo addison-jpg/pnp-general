@@ -74,6 +74,20 @@ Several natural ways to prove the general case were tried. Each one was refuted 
 
 Extending an open subclass to a proven, larger field can solve it, when the reduction is explicit and the barrier results do not block the method. The general claim, that any large literature can be extended to solve the problem, is false: relativization, natural proofs and algebrization rule out the broad versions. The precise lemma and the checked case are in `core/ontology/TRANSFER.md`.
 
+## The model layer: Qwen tensors
+
+The open-weight Qwen2.5 models are the large tensors this repository can read. Counted from their safetensors headers by `math/qwen/tensors.py` (exact integers; no weights are loaded or stored here):
+
+| model | layers | hidden | tensors | parameters | size |
+|---|---|---|---|---|---|
+| Qwen2.5 0.5B Instruct | 24 | 896 | 290 | 494,032,768 | 0.99 GB |
+| Qwen2.5 1.5B Instruct | 28 | 1536 | 338 | 1,543,714,304 | 3.09 GB |
+| Qwen2.5 3B Instruct | 36 | 2048 | 434 | 3,085,938,688 | 6.17 GB (2 files) |
+
+All three are BF16. The 3B model's tensors are split over two files. The largest single tensor here is the embedding, 151,936 tokens by the hidden size.
+
+**How it propagates up.** A model is a memory record like any other: its tensor count, parameter count and file hashes are exact facts that the centre store can hold, and a claim about the model cites those facts. What a model *does* (its answers, its semantic vectors) is a reading, labelled analogy, until a check is written for it. The language model can propose queries (`ask --model`), but its proposals are labelled proposed and never write a record.
+
 ## Philosophy (formal)
 
 `lean/PEqualNP/Philosophy/Deleuze.lean` models one cited reading of Deleuze: distinct problems can share actual solutions, and nondegenerate singular points are isolated. `lean/PEqualNP/Philosophy/Fisher.lean` models one cited reading of Fisher's hauntology as branching time. `one-not/lean/PEqualNP/Philosophy/Bridge.lean` sets this project beside the first as a formal analogy. Φ is a function of the slack table (`Phi_eq_PhiT`, by definition), but different tables can give the same Φ (`PhiT_not_injective`, shown for small arbitrary tables, not yet for tables of real circuits), and the corner values do not determine Φ. Further files (`Unify`, `Hegel`, `Camus`, `Beauvoir`) and an independent review of all of them, `philosophy/REVIEW.md`, are in `philosophy/`. The review finds that most of the checked theorems are general facts about orders and sets, and that the link to each philosopher is interpretation. These are models of cited readings. They claim nothing about what the authors meant, and they are not proofs about the texts.
