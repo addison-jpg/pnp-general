@@ -67,7 +67,7 @@ findings (verified): none · mean radius None
 cells: none
 
 ## other
-findings (verified): 2 checked-finite · mean radius 0.0
+findings (verified): 3 checked-finite · mean radius 0.0
 cells: 13 DECIDED, 5 OPEN, 2 STOPPED, 2 TAKEN
 - OPEN [Fable] (Fable): Lean, a parameter-dimension potential for products of two-qubit gates that is `Unify.Lip 15` (or 9), so that L119's count is literally `Unify.lip_count → `lean/PEqualNP/QuantumGravity/Open/`  (BOARD:33)
 - OPEN [Fable] (Fable): matroid union for hypergraphic ranks (converse of `Unify.unsplit_of_partition`): split condition ⟹ disjoint spanning forests; Mathlib has no matroid un → `one-not/lean/PEqualNP/W951/Open/`  (BOARD:34)

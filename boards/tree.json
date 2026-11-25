@@ -3,7 +3,7 @@
   "counts": {
    "checked": 91,
    "tested": 12,
-   "checked-finite": 17,
+   "checked-finite": 18,
    "refuted": 6
   },
   "verified": [
@@ -95,6 +95,7 @@
    "95f52829",
    "d85c69c0",
    "6feb4aef",
+   "1178a112",
    "5b49d0e3",
    "3cef3bcc",
    "8f8708a6",
@@ -1354,16 +1355,13 @@
   "unverified_here": []
  },
  "transit": {
-  "counts": {},
-  "verified": [],
-  "unverified_here": [
-   {
-    "id": "1178a112",
-    "why": [
-     "needs a second seat in by"
-    ]
-   }
-  ]
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "1178a112"
+  ],
+  "unverified_here": []
  },
  "worlds": {
   "counts": {

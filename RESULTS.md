@@ -11,13 +11,13 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | brain | 0 | 9 | 0 | 0 |
 | circuits | 48 | 0 | 6 | 6 |
 | lateral | 1 | 0 | 0 | 0 |
-| other | 0 | 1 | 0 | 0 |
+| other | 0 | 3 | 0 | 0 |
 | philosophy | 13 | 4 | 0 | 0 |
 | privacy | 0 | 2 | 0 | 0 |
 | prompt-method | 0 | 0 | 3 | 0 |
 | quantum-gravity | 13 | 0 | 0 | 0 |
 | worlds | 9 | 0 | 0 | 0 |
-| **all** | **91** | **16** | **12** | **6** |
+| **all** | **91** | **18** | **12** | **6** |
 
 ## asteroid
 
@@ -124,6 +124,8 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | label | statement | evidence | recheck |
 |---|---|---|---|
 | checked-finite | Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A model of combination, not the comic's recipe. | `homestuck/alchemy.py::reachable_counts` | `python3 -I homestuck/alchemy.py 3 3` |
+| checked-finite | cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; cosmos/check.py passes. | `cosmos.ath`, `cosmos/check.py`, `cosmos/fingerprints.json` | `python3 -I cosmos/check.py` |
+| checked-finite | frames.ath: transit/social.py passes. Every sink-free chain on 1..4 states has a closed class, absorbs with probability 1, and 77260 single edges out of a closed class to a state reaching back all break it. Two cliques K_k (k=2..5): one bridge makes cover time finite; hitting time from the bridge... | `frames.ath`, `philosophy/rhizome.py`, `brain/cortex/check.py` | `python3 -I philosophy/rhizome.py && python3 -I brain/cortex/check.py && python3 -I transit/check.py && python3 -I transit/social.py` |
 
 ## philosophy
 
