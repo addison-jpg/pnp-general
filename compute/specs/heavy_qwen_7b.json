@@ -1,0 +1,4 @@
+{"name": "heavy-qwen-7b-q4", "entry": "ath_prompts/measure/heavy/compute_entry.py",
+ "args": ["--label", "7B-q4", "--gguf-repo", "Qwen/Qwen2.5-7B-Instruct-GGUF", "--gguf-pattern", "qwen2.5-7b-instruct-q4_k_m*", "--threads", "4"],
+ "shards": 8, "output": "heavy_7b.jsonl",
+ "requirements": ["--extra-index-url", "https://abetlen.github.io/llama-cpp-python/whl/cpu", "llama-cpp-python", "huggingface_hub", "numpy"]}
