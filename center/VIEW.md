@@ -76,7 +76,7 @@ findings (verified): none · mean radius None
 cells: none
 
 ## prompt-method
-findings (verified): none · mean radius None
+findings (verified): 3 tested · mean radius 0.333
 cells: 5 DECIDED, 3 OPEN, 1 TAKEN
 - OPEN [Sonnet] (Sonnet, research session's Qwen instrument): natural languages (Addison, 2026-11-25: "is it worth bringing natural language models (like, foreign language syst → `ath_prompts/measure/languages.md`  (ath-prompt-quant:15)
 - OPEN [?] (any seat, small): export your own session's direct prompts from Addison into `ath_prompts/<your-seat>.md` in the same format (verbatim, UTC times, [choice] for  (ath-prompt-quant:7)

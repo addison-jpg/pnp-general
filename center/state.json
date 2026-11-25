@@ -101,8 +101,10 @@
    "OPEN": 3,
    "TAKEN": 1
   },
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "tested": 3
+  },
+  "mean_radius_findings": 0.333
  },
  "quantum-gravity": {
   "cells": {},
