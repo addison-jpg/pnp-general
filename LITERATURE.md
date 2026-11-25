@@ -439,6 +439,41 @@ Added 2026-11-25. Map and restatement only: `worlds/LANGUAGE.md`, `lean/PEqualNP
 | Mikolov, Le, Sutskever, "Exploiting similarities among languages for machine translation" (2013); Conneau et al., "Word translation without parallel data" (2017); Schönemann, Psychometrika 31 (1966) | linear, then orthogonal (Procrustes) maps between word-vector spaces of two languages | search summary of secondary sources; arXiv numbers 1309.4168 and 1710.04087 from memory, unverified | `worlds/LANGUAGE.md` |
 | Howard, "The formulae-as-types notion of construction" (1969, printed 1980); Curry (1934) | proofs as programs | MEM | `worlds/LANGUAGE.md` |
 
+## P. The framing of P vs NP, and continuous formulations (task question-the-framing, seat FR1)
+
+Added 2026-11-25. Note: `worlds/FRAMING.md`. Only arXiv resolved among author pages; scottaaronson.com, scottaaronson.blog and users.cs.duke.edu did not resolve. One text read (Aaronson 1108.1791). Earlier rows already cover Aaronson 2003 (§N), Impagliazzo (§N), Fagin (§O), Hatami–Norine and Razborov 2007 (§L).
+
+| Source | What it gives | Status | Note |
+|---|---|---|---|
+| Aaronson, "Why philosophers should care about computational complexity", arXiv 1108.1791 (2011); in *Computability: Turing, Gödel, Church, and Beyond*, MIT Press 2013 | §3: the n^10000 vs 1.00000001^n objection stated; §5.1 Cobham axioms; §5.2 asymptotics have "explanatory force until proven otherwise"; §12.1 four criticisms (asymptotic, unproved, serial TM, worst case) and the burden-of-proof reply; fn. 73: arithmetic statements vs CH | TXT (§3, §5.2, §12.1, fn. 73 read) | `worlds/FRAMING.md` §1b, §2c, §2d, §2f |
+| Aaronson, "Is P versus NP formally independent?", BEATCS 81 (Oct 2003) | independence discussed; ends with reflections on when questions have definite answers | search summary only (PDF hosts unreachable); also row in §N | §1d |
+| Ben-David and Halevi, "On the independence of P versus NP", Technion TR (1991/92) | independence by standard growth-rate techniques would give near-polynomial algorithms for NP | search summary (FOM post) | §1d |
+| Razborov, "Unprovability of lower bounds on circuit size in certain fragments of bounded arithmetic", Izvestiya Math. 59 (1995) | circuit lower bounds unprovable in S^1_2-type fragments, under crypto assumptions | MEM | §1d |
+| Cobham, "The intrinsic computational difficulty of functions" (1965); Edmonds, "Paths, trees, and flowers", Canad. J. Math. 17 (1965) | polynomial time = feasible | MEM | §1a |
+| Spielman and Teng, "Smoothed analysis of algorithms", JACM 51 (2004) | simplex polynomial under perturbation | MEM | §1c |
+| Parikh, "Existence and feasibility in arithmetic", JSL 36 (1971); Sazonov, "On feasible numbers" (LCC 1994, LNCS 960, 1995) | feasible numbers; ultrafinitist critique of "for all n" | MEM | §1f |
+| Siegelmann, "Computation beyond the Turing limit", Science 268 (1995) | analog networks with real weights exceed Turing machines | MEM | §1g |
+| Dean, "Computational complexity theory", Stanford Encyclopedia of Philosophy (2016) | Cobham–Edmonds thesis as a philosophical claim | MEM (not opened) | §1g |
+| Hartmanis and Simon, "On the power of multiplication in random access machines", SWAT (FOCS) 1974, 13-23 | unit-cost RAMs with multiplication: polynomial time = PSPACE | TLDR | §2a |
+| Blum, Shub, Smale, Bull. AMS 21 (1989); Blum, Cucker, Shub, Smale, *Complexity and Real Computation*, Springer 1998 | P_ℝ, NP_ℝ, P_ℂ, NP_ℂ; Nullstellensatz NP_ℂ-complete; transfer over algebraically closed fields of char 0; P_ℂ = NP_ℂ ⇒ NP ⊆ BPP | MEM; transfer and BPP statements: search summary (Koiran, Koiran–Perifel arXiv 0706.1477) | §3a |
+| Koiran, "Hilbert's Nullstellensatz is in the polynomial hierarchy", J. Complexity 12 (1996) 273-286; DIMACS TR 96-27 | under GRH, HN for integer systems in AM ⊆ Π₂; Rojas (arXiv math/0301111) weakens the hypothesis | ABS (DIMACS page via search) | §3a |
+| Allender, Bürgisser, Kjeldgaard-Pedersen, Miltersen, "On the complexity of numerical analysis", CCC 2006; SICOMP 38 (2009); ECCC TR05-037 | PosSLP in the counting hierarchy; BSS P over ℝ (algebraic constants) ≡ P^PosSLP | ABS (search); a later KIT thesis questions one lemma (search summary) | §3a |
+| Bürgisser, "Intractability of Hilbert's Nullstellensatz implies algebraic hardness of permanent", arXiv 2606.25121 (2026) | P_ℂ ≠ NP_ℂ ⇒ VP⁰(u) ≠ VNP⁰(u); nonuniform analogue; converse conjectured | ABS (fetched) | §3a |
+| Cucker, Shub, Smale, "Separation of complexity classes in Koiran's weak model", TCS 133 (1994) | P ≠ NP in the weak BSS model | MEM | §3a |
+| Valiant, "Completeness classes in algebra", STOC 1979 | VP, VNP; permanent VNP-complete | MEM | §3b |
+| Bürgisser, "Cook's versus Valiant's hypothesis", TCS 235 (2000) 71-88 | VP = VNP (finite field, or char 0 under GRH) ⇒ nonuniform NC = P = NP = PH | search summary | §3b |
+| Kabanets and Impagliazzo, "Derandomizing polynomial identity tests means proving circuit lower bounds", Comput. Complexity 13 (2004) | PIT derandomization ⇒ NEXP ⊄ P/poly or permanent hard | MEM | §3b |
+| Mignon and Ressayre, IMRN 2004 | dc(perm_n) ≥ n²/2 | MEM | §3b |
+| Mulmuley and Sohoni, "Geometric complexity theory I, II", SICOMP 31 (2001), 38 (2008); Mulmuley, "Lower bounds in a parallel model without bit operations", SICOMP 28 (1999) | GCT program; P ≠ NC in an algebraic PRAM model | MEM | §3c |
+| Ikenmeyer and Panova, "Rectangular Kronecker coefficients and plethysms in GCT", FOCS 2016; Adv. Math. 2017; arXiv 1512.03798 | no-go for rectangular Kronecker coefficient obstructions | search summary | §3c |
+| Bürgisser, Ikenmeyer, Panova, "No occurrence obstructions in geometric complexity theory", FOCS 2016; JAMS 2019; arXiv 1604.06431 | occurrence obstructions cannot separate det from padded perm; multiplicity obstructions not ruled out | ABS (fetched) | §3c |
+| Smale, "Mathematical problems for the next century", Math. Intelligencer 20 (1998) | problem 17 | MEM | §3d |
+| Beltrán and Pardo, JAMS 22 (2009); Bürgisser and Cucker, "On a problem posed by Steve Smale", Annals 174 (2011) | randomized average polynomial; deterministic N^{O(log log N)} and smoothed polynomial | MEM; summarized in Lairez's abstract (search) | §3d |
+| Lairez, "A deterministic algorithm to compute approximate roots of polynomial systems in polynomial average time", FoCM 17 (2017); arXiv 1507.05485 | deterministic solution of Smale's 17th | ABS (search summary) | §3d |
+| Ko, *Complexity Theory of Real Functions*, Birkhäuser 1991; Ko and Friedman, JCSS 24 (1982); Friedman, Adv. Math. 53 (1984) | smooth poly-time f with max poly-time iff P = NP; integration ↔ #P | search summary (via Konečný–Neumann, arXiv 1710.03702) | §3e |
+| Braverman and Cook, "Computing over the reals: foundations for scientific computing", Notices AMS 53(3) (2006) 318-329; arXiv cs/0509042 | bit model defended against BSS | ABS (search) | §3e |
+| Kawamura, "Lipschitz continuous ordinary differential equations are polynomial-space complete", CCC 2009 / Comput. Complexity 2010 | ODE solving PSPACE-complete | MEM | §3e |
+
 ## J. Searched and not found (so nobody searches again)
 
 - A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`).
