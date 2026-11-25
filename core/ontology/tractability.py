@@ -5,11 +5,11 @@ Definitions (cited from memory: Cobham 1965, Edmonds 1965, the polynomial-time t
 a problem is tractable when some algorithm solves it in time bounded by a polynomial in the input size.
   1. The priority heap (workshop/notes/heap.py's structure, rebuilt here with a comparison counter): on EVERY
      sequence of up to 7 push and pop operations over priorities {0, 1, 2}, each operation uses at most
-     2 * ceil(log2(n + 1)) comparisons, where n is the size at that moment. Logarithmic per operation, exactly.
+     2 * ceil(log2(n + 1)) comparisons, where n is the size at that moment. Checked on these small cases only; this does not prove the bound for all sizes.
   2. Polynomial beats exponential: for each degree k in 1..10 there is a crossover N_k such that 2^n > n^k for every
      n >= N_k (checked to n = 400 on exact integers), and N_k grows with k.
-  3. Closure: a polynomial of degree a composed with one of degree b is a polynomial of degree a*b (the degrees
-     multiply), checked on all pairs a, b in 1..6 by evaluating the composed exponent.
+  3. Closure, for monomials only: x^b composed with x^a is x^(ab), checked exactly on all pairs a, b in 1..6.
+     This does not cover general polynomials with lower-order terms.
 Reading (analogy): a heap that pushes and pops in logarithmic time is a tractable structure; a search that
 tries every subset is not. The exact claims are 1 to 3; the reading is not a result.
 Run: python3 -I core/ontology/tractability.py   (last line is JSON)
@@ -42,7 +42,7 @@ def heap_ops(ops):
                 h[i], h[s] = h[s], h[i]; i = s
         n = len(h)
         bound = 2 * math.ceil(math.log2(n + 1)) if n >= 0 else 0
-        assert cmp <= max(bound, 2), f"operation used {cmp} comparisons at size {n}"
+        assert cmp <= bound, f"operation used {cmp} comparisons at size {n}"
         worst = max(worst, cmp)
     return worst
 

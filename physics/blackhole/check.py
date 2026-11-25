@@ -9,7 +9,8 @@ and that is exact for a ratio of monomials.
   2. Hawking temperature T = hbar c^3 / (8 pi G M k) scales as M^-1: T(2M)/T(M) = 1/2.
   3. Bekenstein-Hawking entropy S = k A c^3 / (4 G hbar), with A = 4 pi r^2, scales as M^2: S(2M)/S(M) = 4.
   4. Evaporation time t ~ G^2 M^3 / (hbar c^4) scales as M^3: t(2M)/t(M) = 8.
-  5. Each exponent is recovered from the ratio, so the exponents are exact, not fitted.
+  5. The exponents are typed in from the cited formulas and the ratio check only confirms them. The check is a
+     consistency test of the stated scaling, not a derivation of the formulas.
 Open (not checked here): whether information survives evaporation (the information paradox).
 Run: python3 -I physics/blackhole/check.py   (last line is JSON)
 """
@@ -38,10 +39,9 @@ def main():
     for M in (Fr(1), Fr(3), Fr(11, 2)):
         assert r(2 * M) / r(M) == 2 and T(2 * M) / T(M) == Fr(1, 2) and S(2 * M) / S(M) == 4 and t(2 * M) / t(M) == 8
     print("exponents recovered exactly from the ratios:", results)
-    print("the Bekenstein-Hawking entropy is a quarter of the horizon area in these units (cited form)")
     print("open: whether information survives evaporation (not checked here)")
     print("PASS")
-    print(json.dumps({"states": 4 * 4, "seconds": round(time.time() - t0, 4), "exponents": results}))
+    print(json.dumps({"checks": 4, "seconds": round(time.time() - t0, 4), "exponents": results}))
 
 if __name__ == "__main__":
     main()

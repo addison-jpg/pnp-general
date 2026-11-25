@@ -10,8 +10,8 @@ Checked on every relation on 1..3 worlds (2^9 = 512 at n = 3), by two encodings 
   2. the matrix form: R equals its transpose, and every row has a 1 (a reached world can go on).
 Counts are printed: how many relations are mirrors. The empty relation counts (vacuously: nothing is reached).
 Note (found by the attack subagent): for a reciprocal relation the second condition always holds, since x R y gives
-y R x, so y reaches x and can go on. So the mirror count equals the symmetric count; the serial clause adds nothing. Reading (analogy): a mirror is the only kind of
-relation in which being reached and being able to go on are the same condition.
+y R x, so y reaches x and can go on. So the mirror count equals the symmetric count; the serial clause adds nothing. The reciprocal relations are the symmetric ones; the cycle 0->1->2->0 is serial but not reciprocal, so
+serial is weaker than mirror. No claim that they are the same condition is made here.
 Run: python3 -I core/ontology/mirror.py   (last line is JSON)
 """
 import itertools, json, time
