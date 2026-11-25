@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 51,
+   "checked": 52,
    "tested": 6,
    "refuted": 5
   },
@@ -63,6 +63,7 @@
    "4cea3d21",
    "d99349da",
    "0b7b8fdd",
+   "c70b8e8f",
    "57b5bd42",
    "89fa09ba",
    "182f7509",
@@ -205,13 +206,20 @@
    "98886641",
    "769c3ae0"
   ],
-  "unverified_here": []
+  "unverified_here": [
+   {
+    "id": "ad6e91ac",
+    "why": [
+     "PEqualNP.QuantumGravity.Open.CtcReset.reset_support_on_start_cycle not in lean/PEqualNP/QuantumGravity/Open/CtcReset.lean"
+    ]
+   }
+  ]
  },
  "one-not": {
   "counts": {
    "tested": 5,
    "refuted": 5,
-   "checked": 37
+   "checked": 38
   },
   "verified": [
    "1b00e1bc",
@@ -260,7 +268,8 @@
    "ba956ff0",
    "4cea3d21",
    "d99349da",
-   "0b7b8fdd"
+   "0b7b8fdd",
+   "c70b8e8f"
   ],
   "unverified_here": []
  },
@@ -436,7 +445,7 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 35
+   "checked": 36
   },
   "verified": [
    "0992c96e",
@@ -473,7 +482,8 @@
    "ba956ff0",
    "4cea3d21",
    "d99349da",
-   "0b7b8fdd"
+   "0b7b8fdd",
+   "c70b8e8f"
   ],
   "unverified_here": [
    {
@@ -486,7 +496,7 @@
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 34
+   "checked": 35
   },
   "verified": [
    "5fe90015",
@@ -522,7 +532,17 @@
    "ba956ff0",
    "4cea3d21",
    "d99349da",
-   "0b7b8fdd"
+   "0b7b8fdd",
+   "c70b8e8f"
+  ],
+  "unverified_here": []
+ },
+ "one-not/lean/PEqualNP/Philosophy": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "c70b8e8f"
   ],
   "unverified_here": []
  },
