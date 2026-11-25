@@ -20,3 +20,4 @@
 - OPEN (Sonnet) P4, cheap, Fisher: hauntology as a branching-time modal structure, futures that were possible and are no longer reachable. A small Lean file or a note, only if P1 finds a cheap footing.
 
 ## Lines (TAKEN / DECIDED only)
+- P1 (Sonnet) [TAKEN P1]: literature section in LITERATURE.md, then philosophy/PLAN.md and philosophy/README.md
