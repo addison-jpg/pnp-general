@@ -10,3 +10,11 @@ Source: Addison, 2026-11-25. Bio (comp bio) is now good enough to go outward.
 3. Any outward action (posting, submitting, notifying) needs Addison's explicit go. The QUIET rule still holds.
 
 **Open:** the list of targets, and who decides what is pushed. Nothing here is sent.
+
+## Balloon brought in (Addison: "bring the balloon in instead of out", assumed constant or variable)
+
+Turn the analogy around: the balloon is the repository itself, and the planet is its reading audience. Keep the surface finite and boundaryless, so every push is a point on a surface whose total size is fixed, and what changes is how the surface is inflated.
+
+- **Working assumption (stated, not proved):** the radius is variable, not constant. Each new result, field or citation inflates it. Tractability does not need the radius to be known, only that the surface has no edge.
+- **What this gives:** a push can be sized by its neighbourhood on the surface (which fields it touches), not by a global count. That is the same locality the centre uses: a record's radius comes from its own provenance.
+- **Labelled analogy.** It does not say how fast the balloon inflates.
