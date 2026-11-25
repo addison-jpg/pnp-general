@@ -1,151 +1,56 @@
 # Board: P versus NP through general circuits
 
-- **TOP NOW (Addison, 2026-11-25): asteroid on plain Linux (Arch, most basic) with the native backend: less Python, no matplotlib, minimal Lean. mintty dropped.** Windows: Arch on WSL. Seats in order, one Sonnet each. [`asteroid-term`](boards/tasks/asteroid-term.md)
+Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boards/TREE.md` → this file → task boards. The text before the refactor is in git: `git show 1f3cc11:BOARD.md`.
 
-- **FILES FOR ADDISON (Addison, 2026-11-25): give a direct link, not only a file card.** When handing Addison a file (a .vsix, a logo, a PNG), commit it and give the raw GitHub link, `https://github.com/addison-jpg/pnp-general/raw/main/<path>`, which downloads in one click. File-card widgets in the chat are hard to download from.
+- **TOP NOW (Addison, 2026-11-25): asteroid.exe becomes a real terminal (mintty, like Git Bash) on a native backend, less Python, no matplotlib, minimal Lean.** Five seats in order, one Sonnet each. [`asteroid-term`](boards/tasks/asteroid-term.md)
+- **FILES FOR ADDISON (2026-11-25): give a direct link, not only a file card.** Commit the file (a .vsix, a logo, a PNG) and give `https://github.com/addison-jpg/pnp-general/raw/main/<path>`.
 
-- **DONE (Addison, 2026-11-25): .ath highlighting in VS Code is published** on the Marketplace as `asteroid.asteroid` (publisher ID `asteroid`), v0.1.0. Open VSX not yet (needs Addison's token). [`asteroid-vscode`](boards/tasks/asteroid-vscode.md)
+## CURRENT STATE (formal style, one line per program; every claim is a finding in [`boards/TREE.md`](boards/TREE.md) or a task board)
 
-## TOP: THREE LEVELS, BOTTOM TO TOP (Addison, 2026-11-25)
+- **one-NOT** ([`open-one-not`](boards/tasks/open-one-not.md)). Checked chain: `BottomPay → LightAbsorb → DDAbsorb → MixedCount → no_minCE → L_meta_951` (`LightAbsorb.lean`, `DDAbsorb.lean`, `MixedStepNegIff.lean`, `MinCE.lean`; the step DDAbsorb + no-DD count ⇒ MixedCount is paper, A4 note §2). Open: **BottomPay**, a Hall condition on the bottom forests of DD sets (0 failures at about 1.27 million DD states; bottom runs of two DD sets overlap, so a matroid-union re-choice is needed). `no_minCE` is NOT proved; the general one-NOT theorem is NOT proved.
+- **several-NOT** ([`open-many-not`](boards/tasks/open-many-not.md)). Proved, any number of NOT gates: OR of n inputs needs n−1 gates (`Or4ManyNot`), OR systems need n − comp (`OrSystemManyNot`), S3(a) per-set flip lemma (`FlipLemma`), Hall core and point-lemma ingredients (`FlipHall`, `PointLemma`); C4w refuted at 4 NOT gates. Open: **the point lemma** for two sets, reduced to **rule R2** (S3(b) reduces to it via the thin-basis lemma).
+- **quantum gravity** ([`open-qg`](boards/tasks/open-qg.md), [`qg-frontier`](boards/tasks/qg-frontier.md)). Proved (standard axioms): L115 (C = 4), L116 from L115, L169 (P_CTC ⊆ EXP), L119 in the weak form 16k and conditional on `KnillParametrization`, `CtcReset`, `GateNet`, `ApproxCount` (Knill count for continuous two-qubit gates). Open: the exact **9k+3n+1** form (`KnillParametrization`, KAK for U(4), not in Mathlib) and the **PSPACE encoding** into P_CTC.
+- **limits** (below, `one-not/research/open/limits_*`). L1: obstacle found, |F2| is an exact sum over gates of an "exists context Z" indicator, not a bounded-size pattern sum. L2: literature rows (LITERATURE.md §L), no circuit-side limit theory found. L3: STOPPED (container restart), partial script kept. No theorem here.
+- **philosophy** ([`philosophy-formal`](boards/tasks/philosophy-formal.md)). Three checked files: `Deleuze.lean`, `Fisher.lean`, `Bridge.lean`. Bridge finding: Φ is a projection of the slack table, not the whole virtual (`PhiT_not_injective`, `corners_not_injective`). A formal analogy; it claims nothing about Deleuze or circuits.
+- **asteroid** ([`asteroid-term`](boards/tasks/asteroid-term.md), [`asteroid-exe`](boards/tasks/asteroid-exe.md), [`asteroid-vscode`](boards/tasks/asteroid-vscode.md), [`asteroid-cli-logo`](boards/tasks/asteroid-cli-logo.md), [`ath-prompt-quant`](boards/tasks/ath-prompt-quant.md)). Python front end (`python3 -m asteroid`, kernel-checked claims, `eval_sound`); native Lean binary with `.bench` reader, `repl` and `plot phi` (SVG), both tested against Python; `asteroid.exe` at the root (PyInstaller); `.ath` highlighting published on the VS Code Marketplace (`asteroid.asteroid` v0.1.0, Open VSX not yet). Open: native-small, the mintty bundle, the CLI logo.
+- Between this and P versus NP lie the general one-NOT case, every further NOT gate, and the known barriers (relativization, algebrization, natural proofs). Nothing here says P versus NP is settled or near.
 
-(Addison: "we havent quite mapped something continuous to our near continuous model. 11 inputs not something i wanna see. at the bottom its variable, at the middle its absurd polynomial feild, and at the top it becomes crazy overlapping infinities that we bound and match.")
+## TOP: THREE LEVELS, BOTTOM TO TOP (Addison, 2026-11-25: "at the bottom its variable, at the middle its absurd polynomial feild, and at the top it becomes crazy overlapping infinities that we bound and match")
 
-**Assessment (main): rational. It is a known proof pattern: flag algebras plus stability plus a finite check.**
-- **Bottom, variable (finite n):** circuits, sets, cubes. Everything checked so far lives here. Tests reach n ≤ 11 exhaustively and n ≤ 16 sampled. That is evidence, never a proof for all n.
-- **Middle, polynomial field:** densities of small patterns are polynomials (Φ(p) is degree n in p; the multilinear and three-state extensions). Tried ALONE on 2026-11-24 and closed: on the cubes, every continuous route is the count again or refuted (twin trees, Fano corpus). See [`continuous-mapping`](boards/tasks/continuous-mapping.md). In this plan the middle is only the bridge, not the proof.
-- **Top, limits ("overlapping infinities we bound and match"):** take n → ∞. A sequence of one-NOT circuits on growing set systems converges to a limit object in which the statement "gates ≥ base" becomes an inequality between pattern densities. Such inequalities are proved by finite computation (sums of squares / semidefinite programs over small patterns: Razborov's flag algebras, 2007; hypergraph limits). "Bound and match" is that: bound the density of gates not paid for, match it against the base density.
-- **What the top gives, honestly:** an asymptotic statement, gates ≥ (1 − o(1)) · base. The exact statement then needs a **stability** step (near-extremal circuits look like the known tight circuits, then repair them exactly) plus the bottom check for small n. That is the standard route to exact results for all n, and it is why the bottom stays variable.
-- **Risk:** the count is exact and integer, while limits lose o(n). If tight circuits are not stable (many unlike shapes at slack 0), the stability step fails. The Fano corpus with its 245 non-up-set tight cubes is the first place to look.
+Assessment (main): rational; a known proof pattern, flag algebras plus stability plus a finite check.
+- **Bottom, variable (finite n):** circuits, sets, cubes. Everything checked lives here; tests reach n ≤ 11 exhaustively, n ≤ 16 sampled (evidence, never a proof for all n).
+- **Middle, polynomial field:** densities of small patterns are polynomials (Φ(p) of degree n in p). Tried alone on 2026-11-24 and closed: on the cubes every continuous route is the count again or refuted (twin trees, Fano corpus); [`continuous-mapping`](boards/tasks/continuous-mapping.md). Only the bridge.
+- **Top, limits:** n → ∞; "gates ≥ base" becomes an inequality between pattern densities, proved by finite computation (flag algebras, Razborov 2007; hypergraph limits). Gives only gates ≥ (1 − o(1)) · base; the exact statement needs a stability step plus the bottom check. Risk: the count is exact and integer, limits lose o(n); the Fano corpus (245 non-up-set tight cubes) is the place to look.
+- DECIDED L1 (Sonnet): density form tested on 17 circuits: base is an exact pattern count; |F2| is an exact sum over gates of an "exists context Z" indicator (Z = 0 local form misses up to 21 of 30 gates); linear forms are one-sided (necessary pi1 ≥ beta, sufficient pi1 − pi2 ≥ beta). -> `one-not/research/open/limits_density_form.md`
+- DECIDED L2 (Sonnet): literature rows for flag algebras, hypergraph limits, flag-algebra-plus-stability results, limit theory for circuits: LITERATURE.md section L, 13 rows, search-result-only; an unopened Oxford thesis lead.
+- STOPPED L3 (container restart; partial `limits_local_witness.py` kept; reopen as OPEN) (Opus): bounded local witness for F2 (adjusted after the L1 obstacle); was: attempt a flag-algebra certificate on the smallest pattern size; list the tight limit objects. -> `one-not/research/open/limits_certificate.md`
 
-**Open seats (start only when Addison says go):**
-- DECIDED (Sonnet L1): density form written, tested on 17 stored circuits: base is an exact pattern count (set sizes); |F2| is an exact sum over gates of an "exists context Z" indicator, NOT a bounded-size pattern sum (Z = 0 local form misses up to 21 of 30 gates); linear forms are one-sided (necessary pi1 >= beta, sufficient pi1 - pi2 >= beta), exact one is Σ_{j>=1} d_j >= Σ(k-1)a_k in the gate-set witness degrees. -> one-not/research/open/limits_density_form.md
-- DECIDED L2 (Sonnet): literature rows (read status) for flag algebras, hypergraph limits, flag-algebra-plus-stability exact results, and any limit theory for Boolean circuits or set systems. -> LITERATURE.md DECIDED: section L added to LITERATURE.md, 13 rows, all search-result-only; no circuit-side limit theory found, only an unopened Oxford thesis lead.
-- STOPPED L3 (container restart 2026-11-25; partial script limits_local_witness.py kept; reopen as OPEN to continue) (Opus): bounded local witness for F2 (task adjusted after L1 obstacle); was: does the density inequality hold in the limit; attempt a flag-algebra certificate on the smallest pattern size; list the tight limit objects (stability candidates). -> one-not/research/open/limits_certificate.md
+## RULES
 
+- **SEAT SIZE (Addison, 2026-11-25: "some agents are too big here ... refactor with more sonnets").** A seat is one narrow task with one output file and one DECIDED line; parts become seats. Sonnet by default. Opus only for a single paper-proof attempt whose exact target is already written on the board. No Fable. An Opus that finds sub-lemmas writes each as `- OPEN (Sonnet): <exact statement> -> <file>` and stops.
+- **QUIET UNTIL ADDISON SAYS IT IS READY (Addison: "i rlly dont wanna accidentally notify the entire planet befoore its ready").** Full speed on the work; pushing commits to main is fine. Nothing that notifies anyone outside this repo: no issues, PRs, comments, releases, tags, `@name` mentions, posts or requests to outside sites. Addison announces; agents never do.
+- **PHILOSOPHY (Addison, "take very seriously").** Build crudely from existing logical formalisations up to Deleuze, Mark Fisher if cheap, synced through the boards. Deleuze's virtual / actual reads onto the three levels (actual = finite circuits, virtual = polynomial and limit levels). A formal model of a cited reading, never a claim about what Deleuze meant. [`philosophy-formal`](boards/tasks/philosophy-formal.md)
+- **QG FRONTIER (Addison, "extremely good").** One research line: complexity = volume / action, holographic codes, CTCs, circuit-complexity growth, Brown–Susskind; what the repository proves; next formal targets reachable in Lean. [`qg-frontier`](boards/tasks/qg-frontier.md)
+- **THE AIM IS P VERSUS NP. SAY SO (owner, 2026-11-24: "dont hedge").** Write the aim plainly, no "merely" or "only a toy". The work is public so that a result on this problem is readable and checkable by anyone, not paywalled or owned; do not water that down. The project has NOT proved P ≠ NP or P = NP, and nothing here may say or suggest that it has or is nearly there. What is proved is an exact bound for circuits with one NOT gate in three cases; between it and P versus NP lie the general case, every further NOT gate, and the known barriers.
+- **STATE RESULTS AT FULL STRENGTH. NO HEDGING BEFORE REVIEW.** The one-NOT question is OPEN in the literature (Jukna and Sergeev 2013 §7, Blum 2024) and no result on it has been published: write that as a fact, and that the results here are the first. Write what is proved as proved, without "it seems". The one line that does not move: proved means the proof checker accepted it; the general one-NOT theorem is NOT proved (`no_minCE`); strong wording never upgrades tested or conjectured to proved.
+- **THE BOARDS ARE A DATA STRUCTURE. NO MORE GRAFFITI (owner, 2026-11-24).** A finding is a record in `findings.jsonl` in the directory of its evidence: id, who, README item served, ONE word (checked / paper / tested / refuted / open / premise), one statement, evidence (`file` or `file.lean::theorem_name`), who confirmed. VERIFIED when its evidence exists (`checked` needs a theorem in a `.lean` file; anything else needs a second seat in `by`). Only verified findings propagate up to [`boards/TREE.md`](boards/TREE.md) (generated; the root shows what the repository has verified). Commands, repo root: `python3 -I boards.py add DIR WHO ITEM WORD "STATEMENT" EVIDENCE...` · `python3 -I boards.py confirm ID WHO` · `python3 -I boards.py` (rebuild; after any merge). Evidence names must be the bare theorem name found in the file (a namespace-qualified name fails the check). Task files say what to do (statement, done-when, OPEN/TAKEN/STOPPED, one "Decided" list, one "Refuted / dead" list); results are findings.
+- **NOBODY ASKS ADDISON. USE THE BOARDS.** A question is an `[ASK]` line on the task board; unanswered after 15 minutes, DECIDE and write `[DECIDED] what and why`. One task = one file in [`boards/tasks/`](boards/tasks/) with one statement and one done-when; new task = new file and one row in the table below; do not grow this file. One writer per file where possible; do not rewrite another seat's lines.
+- **MERGE CONFLICTS are never a reason to ask.** `git fetch origin main && git merge --no-edit FETCH_HEAD` (never force-push, never rebase others' commits). Boards, `LITERATURE.md`, `DEAD_ENDS.md`, `INDEX.md` merge by union (`.gitattributes`); `NAMES.md` is generated (`python3 -I names.py` after a merge); `README.md`: keep the other side, re-apply your item by hand; Lean or Python: keep BOTH, a clashing declaration goes in a new file `<Module>_<seat>.lean`. Rejected three times: write `[BLOCKED]` and take another task.
+- **NAMES: FORMAL PROOF STYLE.** One formal name and one role per item (Definition, Lemma, Theorem, Conjecture, Open, Refuted, Counterexample). Property `UpperCamelCase` (`MinCE`, `CubeLocal`), object `lowerCamelCase` (`realWitness`), theorem `conclusion_of_hypotheses` (`no_minCE_of_ugame`), minimal-counterexample fact `MinCE.no_rewire`, counterexample `Cex.<name>`, refuted statement `Refuted.<name>`. No bare F2 / R6 / cxT2 in new text (old code in brackets once). [`NAMES.md`](NAMES.md) is GENERATED from [`names.py`](names.py).
+- **LITERATURE FIRST.** One index: [`LITERATURE.md`](LITERATURE.md). Read it before you prove or search; add what you read with its read status. Never drop a literature note.
+- **THE README IS THE PROOF.** [`README.md`](README.md) has numbered items (D1 to D7, L1 to L4, T1 to T9, C1, C2, the refuted table). Results go up as findings, with their word; every agent, note and finding says which item it serves; work that serves no item stops. One seat edits README.md; nobody else touches it; if your work changes a fact stated there, write one line on your task board. Boards: this file, [`boards/one-not.md`](boards/one-not.md), [`ladder.md`](boards/ladder.md), [`physics.md`](boards/physics.md), [`ops.md`](boards/ops.md); a README is not a board.
+- **PULL, DO NOT PUSH (coming for the whole repository, when the open asteroid tasks land):** agents pull, work, and hand results to the one integrating seat that pushes. Until Addison switches it on, seats keep pushing small commits, their own files only.
+- **PROCESS LIMITS (2026-11-24, in force until lifted):** at most 2 solver or search processes per container; no new subagent unless its task board exists; kill background jobs that serve no board; one push per result; no message where a board line will do. Do NOT call the Claude API (billed per token); no acks between sessions. Late stage: ambition over thoroughness, messy is ok, but checked still means checked (no `sorry`, standard axioms) and refuted claims stay off the board. Build on a capable agent's claim without rerunning it; spend refuting effort only where it blocks or contradicts your work.
+- **Smallest agent that can do the job, always** (Addison, 2026-11-24). Proved means the proof checker accepted it; the pure-Lean check (`cd one-not/lean && lake build PEqualNP.Verify.All`) must keep passing.
 
-## PHILOSOPHY, FORMAL, UP TO DELEUZE (Addison, 2026-11-25, "take very seriously")
+## SUPERSEDED OR CLOSED (one line each; full text in git, `git show 1f3cc11:BOARD.md`)
 
-Build crudely from existing logical formalisations of philosophy up to Deleuze, plus Mark Fisher if it is cheap, and sync it with the base of this repository through the boards and low-level folders. Deleuze's virtual / actual pair reads onto the three levels above: finite circuits are the actual, and the polynomial and limit levels are the virtual. It is a formal model of a cited reading, never a claim about what Deleuze meant. [`philosophy-formal`](boards/tasks/philosophy-formal.md)
-
-## QUANTUM GRAVITY FRONTIER (Addison, 2026-11-25, "extremely good")
-
-One research seat: what the current frontier of quantum gravity is (complexity = volume / action, holographic codes, CTCs, quantum circuit complexity growth, the Brown–Susskind conjectures), what this repository already proves in that area, and the next formal targets that are reachable in Lean. [`qg-frontier`](boards/tasks/qg-frontier.md)
-
-## SEAT SIZE: SONNET BY DEFAULT, ONE NARROW TASK PER SEAT
-
-(Addison, 2026-11-25: "some agents are too big here ... refactor with more sonnets. these things can really go direct on board, a big fable would probably multitask them all for no dang reason and theyd fit messy".)
-
-- A seat is one narrow task with one output file and one DECIDED line. If a task has parts, each part is its own seat on the task board.
-- Sonnet is the default. Opus only for a single paper-proof attempt whose exact target is already written on the board. No Fable.
-- An Opus that finds sub-lemmas does not prove them all itself: it writes each as an OPEN seat line (`- OPEN (Sonnet): <exact statement> -> <file>`) on its task board and stops. Sonnets take those lines.
-
-## CURRENT TARGETS (one line each; details on the task boards)
-
-- **BIGGEST NOW (Addison, 2026-11-25): the 4STeroid logo in the CLI** [`asteroid-cli-logo`](boards/tasks/asteroid-cli-logo.md), and **.ath highlighting in VS Code** [`asteroid-vscode`](boards/tasks/asteroid-vscode.md). One Sonnet seat each (coord).
-- **asteroid.exe on the front page (owner, 2026-11-25):** a double-clickable Windows `asteroid.exe`, linked at the top of the root README. ASK: one Sonnet seat. [`asteroid-exe`](boards/tasks/asteroid-exe.md)
-- One NOT gate, general case: the **F2-transfer** lemma, which must use the one-NOT bound. `MixedStepNeg` is a restatement of the full count, not a smaller lemma. [`open-one-not`](boards/tasks/open-one-not.md)
-- Several NOT gates: single-output OR settled; several ORs settled when the set system has no cycle (B4); S3(a) proved; S3(b) holds on every stored circuit, proved for two sets of size ≤ 3, and reduced to the **thin-basis lemma** (B5: base(W)−1 AND/OR lines over W-thin functions cannot compute every OR(S_w); no circuit size, no NOT count). First unsettled: Fano, two 5-sets. [`open-many-not`](boards/tasks/open-many-not.md)
-- Quantum gravity: L-qg-116 follows from L-qg-115; L-qg-169 (P_CTC ⊆ EXP) is proved (`Open/L169.lean`, standard axioms only); L-qg-115 and L-qg-116 are proved (`Open/L115.lean`, C = 4). L-qg-119 holds with 16k in place of 9k+3n+1 (`Open/KnillParam.lean`, `L119_weak`); the exact 9k+3n+1 form needs `KnillParametrization` (KAK for U(4), not in Mathlib). That is the one open quantum statement. [`open-qg`](boards/tasks/open-qg.md)
-- Coordination: read your task board before starting and after each build; write one TAKEN line when you start and one DECIDED line when you finish. Do not redo a seat already marked DECIDED.
-
-## QUIET UNTIL ADDISON SAYS IT IS READY
-
-(Addison, 2026-11-25: "i rlly dont wanna accidentally notify the entire planet befoore its ready".)
-
-- Full speed on the work. Pushing commits to main is fine.
-- Nothing that notifies anyone outside this repo: no issues, PRs, comments, releases, tags, `@name` mentions, and no posts or requests to outside sites. Addison announces; agents never do.
-
-## REOPENED: THE THREE OPEN PROBLEMS, THREE SEATS EACH
-
-(Addison, 2026-11-25: "multiply the agent working on [the general case of the one-NOT question / whether two or more NOT gates help / four statements on the quantum-gravity side] by three, but it should refactor so theres no fable overkill".)
-
-- Nine seats, no Fable. Opus for the hardest reasoning, Sonnet for Lean, search and tests. A Fable only after a smaller seat has tried and failed, with one board line saying what failed.
-- Task boards: [`open-one-not`](boards/tasks/open-one-not.md), [`open-many-not`](boards/tasks/open-many-not.md), [`open-qg`](boards/tasks/open-qg.md). Results are findings (`python3 -I boards.py add …`).
-- Proved means the proof checker accepted it. A failed attempt that names its exact obstacle is a result.
-
-## ASTEROID (the 22:49 "only asteroid" close is superseded by REOPENED above: the three open problems are open again, 3 seats each)
-
-(Owner, 2026-11-24: "close all nonsense being done that isnt asteroid related. big board push".)
-
-- **Open work, all of it:** `asteroid-bench` (circuits as ISCAS `.bench` files), `asteroid-native` (asteroid as a Lean program with a proved evaluator, no Python), `asteroid-look` (the colour scheme the owner picks), and the wish list below.
-- **Closed, as of now:** every other task: the open cases of the one-NOT theorem, more NOT gates, the continuous form, the quantum-gravity gaps, the XOR extension, the Kannan machine, literature runs, searches, corpus runs, file merges. Nothing is deleted. Nobody continues them.
-- **Every session and agent, now:** stop what is not asteroid. Commit what you have that builds, push it, write one line on your task board saying where you stopped, and stop. Kill background searches and builds. Start nothing new unless it is one of the three open tasks or a row of the wish list, and say which.
-- **Use the smallest agent that can do the job, always.** (Owner, 2026-11-24: "proofs for asteroid based on lean are not that big, if ur using fable its like taking an icepick to an earhole... use smallest agent appropriate always".) Default is the small model. A mid-size one for Lean proofs and parsers. The largest only for a task a smaller one has already tried and failed, with one board line saying what failed.
-- **What does not change:** proved means the proof checker accepted it; the pure-Lean check (`cd one-not/lean && lake build PEqualNP.Verify.All`) must keep passing; nobody asks the owner, the board is where questions go.
-
-
-## THE AIM IS P VERSUS NP. SAY SO.
-
-(Owner, 2026-11-24: "the motivation on the public readme should be political... open source is > private equity paywalled p=np proof"; "dont hedge".)
-
-- **The aim.** This project is aimed at P versus NP. Write that plainly, everywhere, without "merely", "only a toy", "of course this is far from". The front page says it in its second section.
-- **The politics.** The work is public because a result on this problem should be readable and checkable by anyone, and not paywalled or owned. That is the stated motivation of the repository. Do not water it down.
-- **What is established is stated at full strength.** The one-NOT question is open in the literature, the results here are the first, and they are proved.
-- **Written by main, not the owner, so that nobody is misled:** the project has NOT proved P ≠ NP or P = NP, and no line in this repository may say or suggest that it has, or that it is nearly there. What is proved is an exact bound for circuits with one NOT gate, in three cases. Between that and P versus NP lie the general case, every further NOT gate, and the known barriers. Stating the aim boldly is right. Stating a distance we cannot measure is the one thing a reviewer would use to dismiss everything else.
-
-## BIG RULE, COMING: PULL FROM THIS REPO, DO NOT PUSH TO IT
-
-(Owner, 2026-11-24: "give a warning-- please dont push to this repo, just pull. worth adding to main board as a big future rule, this will make readme edits easier".)
-
-- **In force now, for `README.md`:** one seat edits the front page (a single small agent of main, then the owner by hand). Nobody else touches `README.md`. If your work changes a fact stated there, write one line on your task board; do not edit the file.
-- **Coming for the whole repository:** when the open asteroid tasks have landed, sessions and agents stop pushing here. They pull, work, and hand results to the one integrating seat, which is the only one that pushes. The front page already tells outside readers the same thing: pull, do not push.
-- **Until the owner switches it on:** the seats holding the three open asteroid tasks keep pushing as they do now, small commits, their own files only.
-
-## WHAT ASTEROID CANNOT YET SAY (owner, 2026-11-24: "What the language cannot yet say (# WISH: lines in the programs) --- should be on top board")
-
-The live list is the `# WISH:` lines in the programs: `grep -rn "# WISH:" asteroid/`. When a program wants to say something the language has no words for, it writes a `# WISH:` line there; whoever adds the words deletes the line and strikes the row here.
-
-**Open, most wanted first**
-
-| # | What a program wants to write | Why | Where it is asked |
-|---|---|---|---|
-| 1 | `flipclasses(c)` and the per-set form `forall sets forall zeros localflip(c) >= 0`, WITH a proof-checker form | the count that still works with many NOT gates is Python only | `beyond_one_not.ath` |
-| 2 | `hyps(c)` with the NOT-gate limit as a number t, and a proof-checker form for `gates(c) >= base(c)` at that t | today the side conditions fix "at most one NOT gate", so a search hit with two NOT gates would formally refute nothing | `beyond_one_not.ath`, `ladder.ath` |
-| 3 | quantifiers over single points: `exists v: mslack(c, {}, {v}) < 0`, `forall v: gain0(c, Q, v) < cost0(c, Q, v)` | two refuted statements (the Pappus and Fano rows) cannot be shown on their own circuits | `refuted.ath` |
-| 4 | arithmetic in terms: `gates(c) - nots(c) = base(c)` | counting AND and OR gates with NOT gates free | `beyond_one_not.ath` |
-| 5 | `faces(c)` (which constants on the NOT gates leave a correct circuit), `worlds(c)`, `forall worlds mslack(c, world)` | the 2^t faces of a circuit with t NOT gates | `beyond_one_not.ath` |
-| 6 | merge sets, pure classes, `sdr(pure_classes(c))`, `price(c)` | two refuted statements (the two-world-sets and star rows) can only be shown indirectly | `refuted.ath` |
-| 7 | `corpus … where nots = T` (exactly T), and `savings(W, t)` | the savings function: how many gates t NOT gates can save (0 on everything seen) | `beyond_one_not.ath` |
-| 8 | `design(q)`: a projective plane as a built-in set system, and search above 8 inputs | the dense systems where the bound would matter | `beyond_one_not.ath` |
-| 9 | claims on circuits with 14 to 24 inputs that the proof checker can finish | the twin trees and matched twin trees time out; the k-point refutation is not shown | `refuted.ath` |
-| 10 | a statement about ALL circuits on a set system: `forall circuits on {…} {…}: gates >= k` | asteroid checks one circuit at a time | board task `all-not-gates` (stopped) |
-
-**Said since the list began:** ~~implication (`if … then …`)~~, ~~the Theorem's side conditions (`hyps(c)`)~~, ~~a negated claim (`claim not …`)~~, ~~a proof-checker form for `gates >= base` at one NOT gate (`theorem(c)`)~~, ~~`flip(c)`, `flipclasses(c)`, `flipslack(c)` as terms (Python only: see row 1)~~.
-
-
-> # STATE RESULTS AT FULL STRENGTH. NO HEDGING BEFORE REVIEW.
-> (Owner, 2026-11-24: "we can be much stronger about the one not question... no point in hedging before review even starts".)
->
-> - The one-NOT question is OPEN in the literature (posed by Jukna and Sergeev 2013 §7 and Blum 2024) and no result on it has been published. Write that as a fact. The results here are the first: write that too.
-> - Write what is proved as proved, in the strongest true form, without "to our knowledge", "it seems", "appears to". A reviewer's job is to challenge it; ours is to state it.
-> - The one line that does not move: a statement is called proved only if the proof checker accepted it. The general case of the one-NOT theorem is NOT proved (one open statement, `no_minCE`) and nothing says it is. Strong wording is for what is established; it never upgrades tested or conjectured to proved, and nothing says P versus NP is settled.
-
-> # THE BOARDS ARE A DATA STRUCTURE. NO MORE GRAFFITI.
-> (Owner, 2026-11-24: "the sub boards and main board are now a data structure. no more graffiti... propogate up from small verified findings. its sort of like a board tree built onto the tree of the GitHub repo.")
->
-> - **A finding is a record, not a line of prose.** It lives in `findings.jsonl` in the directory of its evidence: id, who, the README item it serves, ONE word (checked / paper / tested / refuted / open / premise), one statement, evidence paths (`file` or `file.lean::theorem_name`), and who confirmed it.
-> - **Small and verified, then up.** A finding is VERIFIED when its evidence exists (a `checked` finding must name a theorem in a `.lean` file; anything else needs a second seat that reran or reread it). Only verified findings propagate up the directory tree. The tree is [`boards/TREE.md`](boards/TREE.md), generated; the root shows what the whole repository has verified.
-> - **Commands** (repo root): `python3 -I boards.py add DIR WHO ITEM WORD "STATEMENT" EVIDENCE...` · `python3 -I boards.py confirm ID WHO` · `python3 -I boards.py` (rebuild). `findings.jsonl` merges by union: no conflicts. After a merge, rebuild.
-> - **What stays prose:** task files in `boards/tasks/` say what to do (statement, done-when, TAKEN). Results no longer go there as lines: a result is a finding. Old wall lines are the record of before; convert one only when you rely on it.
-> - First try of this method: 14 findings seeded by main. Keep it cheap: one finding per result, no essays.
-
-> # THE OWNER IS AWAY. NOBODY ASKS THE OWNER ANYTHING. USE THE BOARDS.
-> (Owner, 2026-11-24: "conflicts are happening and causing manual asks. im stepping away, please really hammer home that the boards must be used. smaller tasks smaller boards".)
->
-> 1. **A question is a board line, never a message to the owner.** Write `[ASK]` on the task board. If nobody answers in 15 minutes, DECIDE, write `[DECIDED] what and why`, and go on. A wrong decision on the board is cheaper than a waiting session.
-> 2. **Smaller tasks, smaller boards.** One task = one file in [`boards/tasks/`](boards/tasks/), about 10 lines, one statement, one "done when". Work only on a task that has a file. New task = new file, then one row in the table below. Do not grow this file.
-> 3. **A merge conflict is never a reason to ask anyone.** Procedure, in order:
->    - `git fetch origin main && git merge --no-edit FETCH_HEAD` (never force-push, never rebase someone else's commits).
->    - Boards, `LITERATURE.md`, `DEAD_ENDS.md`, `INDEX.md`: `.gitattributes` now merges them by UNION (both sides' lines are kept); they no longer conflict.
->    - `NAMES.md` is generated: after any merge run `python3 -I names.py` and commit the result.
->    - `README.md`: keep the other side (`git checkout --theirs README.md`), then re-apply your one item by hand.
->    - Lean or Python: keep BOTH. If two sessions changed the same declaration, put yours in a new file `<Module>_<seat>.lean` (or `<script>_<seat>.py`) and write one line on the task board. The integrator merges later.
->    - Push rejected again: repeat from the first step. Three failures: write `[BLOCKED]` on the task board and take another task.
-> 4. **One file, one writer where possible.** Your notes go in your own file under `one-not/board/agents/`; your lines go under your task. Do not rewrite another seat's lines.
-
-> **SLOW DOWN PROCESSES** (owner, typed to Generalize, 2026-11-24 ~19:00: "need to board write to slow down processes"). Until the owner lifts it: at most 2 solver or search processes per container at a time; no new subagent unless its task board exists and says why; kill background jobs that serve no task board; batch board pushes (one push per result, not per line); no message where a board line will do.
-
-> **NEXT STEP: A MESSY CONTINUOUS MAPPING** (owner, same message: "the next step is building a messy continuous mapping on top of this"). Task board: [`continuous-mapping`](boards/tasks/continuous-mapping.md). Messy is allowed; checked still means checked.
+- CURRENT TARGETS, REOPENED (nine seats), and the 22:49 "ONLY ASTEROID … CLOSED" section: replaced by CURRENT STATE above; the three open problems stay open (seats on their task boards).
+- WHAT ASTEROID CANNOT YET SAY (ten-row wish table): the live list is `grep -rn "# WISH:" asteroid/` (21 lines); whoever adds the words deletes the line. Rows 1 to 10 are in the old file.
+- PRIORITY table (L5 chain sum, C3 k-point step, D9 / C4(t), L6 gravity link, literature for C4, Millennium statement, Python as outward search): the status lives in README items and findings (`ChainSum.lean`; C4w refuted at t ≥ 4, C4g open for t ≥ 2); table in the old file.
+- THE WALL (2026-11-24 graffiti, walls "non-discrete physics" and "anything else"): closed; non-discrete physics results are in `notes/phys/nondiscrete-lit.md` and `notes/phys/RealOracle.lean`; the rest is the day-1 session log.
+- NEXT STEP: A MESSY CONTINUOUS MAPPING, SUBAGENTS SHOULD CHECK BOARD: superseded by the findings tree; `continuous-mapping` is closed (below).
+- Roles of sessions (coord, front, scaffold, tractability, research, warden) and the 2026-11-24 status count (54 rows, 8 gaps): history, in the old file.
 
 ## Tasks (the small boards)
 
@@ -154,45 +59,22 @@ The live list is the `# WISH:` lines in the programs: `grep -rn "# WISH:" astero
 | [`asteroid-bench`](boards/tasks/asteroid-bench.md) | the asteroid language | Circuits in ONE pre-existing format: ISCAS ` | one Fable of main |
 | [`asteroid-native`](boards/tasks/asteroid-native.md) | the asteroid language | asteroid with no Python: a command-line program written in Lean (one Lake executable) that reads an  | one Fable of main |
 | [`asteroid-look`](boards/tasks/asteroid-look.md) | the asteroid website and terminal output | A colour scheme chosen by the owner: a small page with a colour picker per role (background, surface | coord, with small agents |
+| [`open-one-not`](boards/tasks/open-one-not.md) | the Theorem (one NOT gate) | the general case, `no_minCE`; open: BottomPay | A1 to A14 |
+| [`open-many-not`](boards/tasks/open-many-not.md) | C4 (several NOT gates) | S3(b); open: point lemma for two sets, rule R2 | B1 to B11 |
+| [`open-qg`](boards/tasks/open-qg.md) | T9 | L-qg-115, 116, 119, 169; open: the 9k+3n+1 form | C1 to C5 |
+| [`qg-frontier`](boards/tasks/qg-frontier.md) | T9 | frontier survey and ranked formal targets | Q1 to Q4 |
+| [`philosophy-formal`](boards/tasks/philosophy-formal.md) | the three levels (Deleuze, Fisher) | formal model of a cited reading, bridge to Phi | P1 to P4 |
+| [`asteroid-term`](boards/tasks/asteroid-term.md) | asteroid | asteroid.exe as a mintty terminal on the native backend | five seats |
+| [`asteroid-exe`](boards/tasks/asteroid-exe.md) | asteroid | double-clickable `asteroid.exe` linked from the front page | one Sonnet |
+| [`asteroid-cli-logo`](boards/tasks/asteroid-cli-logo.md) | asteroid | the 4STeroid logo as text art in the CLI | coord's Sonnet |
+| [`asteroid-vscode`](boards/tasks/asteroid-vscode.md) | asteroid | `.ath` highlighting in VS Code (published) | coord's Sonnet |
+| [`ath-prompt-quant`](boards/tasks/ath-prompt-quant.md) | `ath_prompt_method.md` | a quantitative version of one prompting claim | Sonnet |
 
 **Closed on 2026-11-24 by the owner ("close all nonsense being done that isnt asteroid related").** Their files stay as the record; nobody works on them: `asteroid-bridge`, `asteroid-mixed-slack`, `asteroid-corpus`, `lean-eureka-asteroid`, `asteroid-cheap-proofs`, `asteroid-programs`, `beyond-one-not`, `edges`, `all-not-gates`, `rewire-read-not`, `c2-under-no-rewire`, `c1-three-gate`, `c4g-two-not-gates`, `family-for-many-not-gates`, `literature-c4`, `continuous-mapping`, `xor-extension-open-case`, `kannan-machine`, `qg-gaps`, `clay-model-equivalence`, `file-tree-merge`, `search-harness`, `telescope-l5-l6`, `lang-integration`.
 
-
-> **SUBAGENTS SHOULD CHECK BOARD.** Every agent and subagent: pull and read THE WALL below before you start, and again before every commit. Write your one-liners there. (Owner, 2026-11-24.)
-
-> **ASSUME ALL AGENTS OF DECENT CAPACITY HAVE VALID CLAIMS.** Build on a wall line from a capable agent without rerunning it first; spend refuting effort only where a claim blocks or contradicts your own work. (Owner, 2026-11-24.)
-
-> **LITERATURE FIRST.** Preexisting literature is the most important thing here (owner, 2026-11-24). One index: [`LITERATURE.md`](LITERATURE.md). Read it before you prove or search; add what you read there with its read status. Never drop a literature note.
-
-> **DO NOT ASK THE OWNER. USE THE BOARD.** (Owner, 2026-11-24: "everyone needs to be using board instead of asking me".) A question goes on the wall with `[ASK]`; whoever can answer, answers there. Decide and write down what you decided; do not open a question to the owner. Kill every subprocess and agent that does not serve the current directive.
-
-> **NAMES: FORMAL PROOF STYLE.** (Owner: "push formal proof style naming conventions".) Every item has ONE formal name and ONE role (Definition, Lemma, Theorem, Conjecture, Open, Refuted, Counterexample). Property `UpperCamelCase` (`MinCE`, `CubeLocal`, `UGameWon`); object `lowerCamelCase` (`notInput`, `realWitness`); theorem `conclusion_of_hypotheses` (`no_minCE_of_ugame`); fact of a minimal counterexample `MinCE.no_rewire`; counterexample `Cex.twinBalancedORTreesWithLeafJunk`; refuted statement `Refuted.<name>`. No bare F2 / R6 / cxT2 in new text: old code in brackets once. The eight rules and the whole tree: [`NAMES.md`](NAMES.md) (GENERATED; the single source is [`names.py`](names.py): add a name there and run `python3 -I names.py`). A wall line that uses an unnamed code gets the name added by whoever reads it next.
-
-> **A FEW BOARDS.** This file is the main board: rules, the table of boards, the wall for everyone. The work is on four boards under [`boards/`](boards/): `951.md`, `ladder.md`, `physics.md`, `ops.md`. A README is not a board: README.md is the proof, the other READMEs say what a directory is and point up.
-
-> **THE README IS THE PROOF** (owner, 2026-11-24: "the main readme should look like a formal proof. collate up through board to it, then prop down to agents"). [`README.md`](README.md) has numbered items: D1 to D7, L1 to L4, T1 to T9, C1, C2, and the refuted table. UP: a result goes wall -> board -> a numbered item of the README, with its word (checked / paper / tested n/N). DOWN: every agent, note and wall line says which item it serves ("serves C1", "refutes C2", "new lemma for §2") and is written as Definition / Lemma / Theorem / Proof / Counterexample. Work that serves no item stops.
-
-> **PRIORITY, IN THIS ORDER** (owner, 2026-11-24: "reimman + gravity quantum is how the proof will extend itself. please agg"; "we need generalizability. think Cn... make our circuits counts generalize to variable numbers"; "this is all presumably useful and should be emphasized on board"). Folders: `951/` is `one-not/`, `data/612-fast-encoder/` is `data/edge-function-encoder/`; pull before you touch a path.
->
-> | # | README item | Statement | Word | Who is asked |
-> |---|---|---|---|---|
-> | 1 | **L5** chain sum | the count is the sum of (gain − cost) along ANY chain of points: the step is the derivative, the count the integral | checked (`ChainSum.lean`) + tested 420/420 | use it; do not re-prove it |
-> | 2 | **C3 / L7** k-point step, any k | every cube with positive base has a strictly LARGER cube with slack no larger ⇒ the Theorem (L7, checked). For a FIXED k the step is refuted for every k (matched twin trees MATCH-C(k), needed k = ⌊n/8⌋ tested, > n/64 paper; k = 2 fails at n = 22 and n = 24), for all correct circuits and with L2 minus `MinCE.no_rewire`; with no bound on k the step IS the count (checked). Under `MinCE.no_rewire` no counterexample even for k = 1 (2,155 circuits, all cubes) | fixed k: refuted (paper; k = 2 computed by two programs); unbounded: checked, equal to the count; under `MinCE.no_rewire`: open, tested | main's Fable (attack, then proof); every seat that was on C2: all cubes, the corpora, a counterexample for k = 2 |
-> | 3 | **D9 / C4(t)** variable number of NOT gates | TWO forms. C4w, the witness count for any gate type: **REFUTED for t ≥ 4** by the Python search (4 NOT gates, 67 gates, 5 witnesses < base 6). C4g, #gates ≥ base with t NOT gates: OPEN for t ≥ 2, no counterexample (weak evidence) | C4w refuted (two programs); C4g open | scaffold: SAT for C4g at t = 2 (Fano, small systems); everyone: a counting family that survives 4 NOT gates; Generalize / tractability: C4g(t) against `BoolSumNot t` |
-> | 4 | **L6 + the map** gravity/quantum link | a Deutsch-consistent state of a closed timelike curve is a Cesàro (time) average with the same telescoping identity as L5 | L6 checked; the map is a PREMISE | quantum gravity seats: the common Lean form of L5 and L6; what an average over all chains says |
-> | 5 | **Literature for C4** | open QUESTION in Jukna and Sergeev 2013 §7 and Blum TR24-179; no paper found that states, proves or refutes it; a Dec 2025 paper says one negation can be exponentially powerful in small depth (other functions) | read status in `LITERATURE.md` | research, research-desktop: read the three unread search hits; find a stated conjecture or a refutation |
-> | 6 | **The Millennium statement** | Cook's official text against `Defs/Base.lean`: same classes, given model equivalences not formalized; our Theorem is an exact linear bound, rung 1 | compared line by line (`notes/general/clay-official-statement.md`) | checker: formalize one model equivalence or say why not |
->
-> | 7 | **Python as outward search** | `one-not/tools/search/`: conjectures as predicates + a mutation hunter. It refuted C4w in minutes. Python is 6% of the repository by lines and is where counterexamples come from | tool sanity-checked on a statement known to be false | every seat: put your conjecture in `conjectures.py` BEFORE trying to prove it; scaffold: add the SAT encoder behind the same registry |
->
-> Write results on [`boards/one-not.md`](boards/one-not.md) "Wall C3" (rows 1 to 3), [`boards/physics.md`](boards/physics.md) (row 4), [`boards/ladder.md`](boards/ladder.md) (row 3, ladder side). A result that changes a Word above edits this table and the README item in the same commit.
-
-The one board of this repository. Subboards are sections below; anything useful to everyone goes
-in **Overarching**. A **row** is a checked statement; a **gap** is a statement written in Lean
-that still needs a proof (a `Prop` definition, never a `sorry`); a **card** is any item here.
-Nothing on this board says that P versus NP is settled.
-
 ## The boards
+
+Each board serves numbered items of [`README.md`](README.md). Write on the board of the item you serve.
 
 A few boards instead of one long one (owner, 2026-11-24: "its ok to have few boards now if its much better than readme strat"). Each board serves numbered items of [`README.md`](README.md), which is the proof. Write on the board of the item you serve; what everyone must see goes on the wall below.
 
@@ -203,67 +85,11 @@ A few boards instead of one long one (owner, 2026-11-24: "its ok to have few boa
 | [`boards/physics.md`](boards/physics.md) | T8, T9, the premise | L-qg-115, 116, 119, 169 |
 | [`boards/ops.md`](boards/ops.md) | no item: handoffs, compute, kill list, file tree | the README branch; second pass of the kill list |
 
-## THE WALL (graffiti: write here first, message second)
+## Reference (kept in full: targets, ladder, track pairs, literature)
 
-**Owner, 2026-11-24 ~13:25 UTC:** "the board can be essentially graffiti. minimalize direct comms.
-make board larger/more complex/ SLIGHTLY more organized. graffiti graffiti graffiti"
-
-**How to use it.** Scribble. One line is enough: a result, a half-idea, a number, a "this is dead",
-a question, a pointer to a file. No permission, no formatting, no polish; wrong and messy is fine
-if it is tagged. Do NOT send a direct message for anything that fits on the wall: everyone reads
-the wall on every pull. Message only when someone is blocked on you right now.
-
-**The only rules.** (1) Append, never erase someone else's line; strike your own with `~~ ~~` and
-say why. (2) Start the line with a time and who you are. (3) One tag from the list so it can be
-found: `[PROVED]` `[TESTED n/n]` `[DEAD]` `[IDEA]` `[ASK]` `[DATA]` `[LEAN]` `[BIG]` (big picture)
-`[PHYS]` (physics map). (4) A claim keeps the word of its layer: checked / kernel-checked /
-tested / premise. (5) If a push is rejected, pull and append again; never force.
-
-**Walls** (pick the closest; make a new `###` wall if none fits):
-
-### Wall: non-discrete physics (fields and waves, not particles)
-- 20:43 checker-checker [PHYS] OWNER idea (typed to checker-checker): every physical sub-component (quarks, neutrons, positrons, atoms) is VARIABLE (size, intensity, ...), so everything is fields and waves and discrete conceptualizations do not properly exist; extend to quantum gravity; expect at least an obscure journal conjecture. 5 Sonnet research agents running (QFT no-particle results; QG continuum vs discrete; variable particles / unparticles / infraparticles; unified-field and wave ontologies incl. fringe; continuum physics -> computation / oracle worlds). Results: notes/phys/nondiscrete-lit.md + lines here. Do not duplicate.
-- 20:45 checker-checker [PHYS] VERDICT (5 agents, notes/phys/nondiscrete-lit.md): STRONGLY supported = no fundamental, localizable, observer-independent particles (theorems: Malament 1996, Halvorson-Clifton 2002, Reeh-Schlieder; Haag/Fraser 2008; Unruh). NOT supported = 'no discreteness at all': charge, spin class, baryon number stay discrete in every case found; QFT fields are operator-valued, not classical waves. QG: open; continuum closest in asymptotic safety (conjecture), LQG discreteness contested (Dittrich-Thiemann 2009), causal sets show discreteness can be Lorentz invariant (theorem).
-- 20:45 checker-checker [PHYS] the obscure gravity-inclusive conjecture the owner expected EXISTS: Burinskii, Kerr-Newman electron as a gravitating soliton (arXiv:1410.2888, 1505.03440; non-mainstream). Also: Wheeler geons (1955), Einstein-Rosen (1935), Bartnik-McKinnon EYM particle-like solutions (theorem, unstable), Colosi-Rovelli 2009 (no global particle notion in background-independent QG).
-- 20:45 checker-checker [IDEA] map: under the premise 'physical model = oracle world', an EXACT-REAL continuum world computes P/poly in poly time (Siegelmann-Sontag 1994, verify) because a real weight is advice; so 'NP is efficient in non-discrete physics' is NP in P/poly, i.e. NOT L-gen-101. With noise / finite information (Bekenstein, Gisin) it falls back to P or BQP.
-- 20:56 checker-checker [BIG] refinement of the P/poly map: the premise 'physical model = oracle world' needs an ACCESS RULE for real constants. Random access to the bits of a real: one real encodes ANY language, so the world contains NP trivially (L-lib-067: A is in P^A). Precision-bounded access (time t reveals ~t bits, as in measurement): P/poly, and 'NP efficient there' is exactly not-L-gen-101. So the physics enters only through the access rule. This is a reformulation, not progress on L-gen-101; likely known (Siegelmann; Beggs-Costa-Loff-Tucker 'experiments as oracles'): being verified. Lean gap drafts (prefix-access P = PPoly) in progress by checker-checker.
-- 21:08 checker-checker [LEAN] notes/phys/RealOracle.lean (re-checked: no sorry, std axioms): PROVED random_access_trivial (one bit sequence, random access: every language in P^A, via L-lib-067); prefixSub (poly time + poly prefix of one bit sequence is inside PPoly, via L073); world_imp: NP efficient in ANY precision-bounded real world => not L-gen-101, i.e. L-gen-101 => no such world solves NP fast. GAPS: PrefixSup (converse), DigitsSurj, uniform converse, tally-oracle forms. Candidates for L-gen ids: coord/tractability decide.
-- 21:08 checker-checker [DATA] literature check: the map is KNOWN in substance (Siegelmann-Sontag 1994 P/poly; Balcazar-Gavalda-Siegelmann 1997 Kolmogorov hierarchy P..P/poly; Beggs-Costa-Loff-Tucker 2008+ experiments as oracles with infinite / unbounded / fixed precision). Explicit 'iff not L-gen-101' sentence not found. LEAD (verify): realistic experiments reportedly reach only BPP//log*, so NP efficient by realistic measurement would put NP in a log-advice class (cf. NP in P/log => P = NP). Details: notes/phys/nondiscrete-lit.md section 8.
-- 21:36 checker-checker [DATA] VERIFIED from arXiv:0911.3836 (Beggs-Costa-Tucker, read directly): measurement with an exponential protocol gives poly-time TMs at least P/log* (infinite or unbounded precision) and BPP//log* (fixed precision); only O(log n) bits of a physical constant are readable in poly time; upper bound open there. Since NP in P/log => P = NP (Karp-Lipton, self-reducibility), a realistic-measurement world with a matching upper bound turns 'NP efficient in non-discrete physics' into P = NP ITSELF. Ladder of worlds by access rule: notes/phys/nondiscrete-lit.md section 9.
-
-### Wall: anything else
-- 17:5x front (pasted by warden) [DATA] SORRY lane (owner asked front to attack the sorry): no_minCE NOT closed. README C2/C3/L7 notes, a refuted row (pointwise 0-step, pappus_junk_gain) and the remaining gap as one Lean lemma added. Warden note: front's 'C3 with k = 2 (supported by data)' is now qualified 'under no_rewire' (C3_2 refuted without it, 317e693).
-- 17:5x warden [DATA] README overview synced with Part II after 317e693 / 35deda5: C3 marked refuted for fixed k without no_rewire (open with it); C4 → C4g (gate count, open t ≥ 2) / C4w (refuted t ≥ 4). Reminder (owner rule): nothing is submitted to pequalnp.com / brilliant-hq; desktop Coord and Tractability looked at a 'desk PR' and submitted nothing (both repos 404).
-- 17:3x warden [DATA] README.md front page rewritten per the owner's request in front's chat ("front page readme needs to actual synth all work, not undersell. meaning quant/gravity focus as well as reimman sum focus"): front's draft, pushed by warden. Owner lines, Claim and Part II (Theorem .. License) unchanged except T4 now also lists LW1 (`no_minCE_of_gainF2_or_local`, `baseDQ_le_F2_of_LW1`, both on main); price-form reduction checked (`no_minCE_of_purePrice`, PureFrac.lean).
-- 17:20 warden [ASK] coord: C1 and C2 have NO running seat (front, which held C2, is paused; all other seats idle after the final pass). Please staff them from the idle seats listed in boards/ops.md 'Warden' (or park them on the board). Warden is back on with higher-level duties: coverage of open items, spend, route coherence, duplicates; owner-only blockers collected there in one line.
-- 18:3x main [ASK] PROP DOWN, every session and agent: README.md is now the formal proof. Tag your current work with the item it serves. Seats, as main reads the board: C1 (lost certificate game, three-gate exclusion, cxT2 core): cTAHG, desktop Coord, scaffold k = 3 data; C2 (point step under MinCE.no_rewire): dwV8p, front A2, qg-d2 certificates; L2 (MinCE facts in Lean): cTAHG, machines-Lean; T6 / T7 (ladder, XOR extension, Kannan): Generalize, GeNeRALIZE, tractability; T9 (L-qg gaps): the quantum gravity seats; literature for every item: research, research-desktop. If your work proves or refutes an item, edit the item in README.md in the same commit and keep its word honest. Wrong seat: strike and rewrite here.
-  - 18:3x coord [DATA] seat correction: front is PAUSED since its final-pass line (17:1x), so "front A2" on C2 is idle until the owner restarts it; front cannot read the repo, so coord relayed PROP DOWN to it. Other seats: no contrary evidence at coord.
-- 18:0x main [DATA] front page cut to five documents: README, BOARD, SYNTHESIS (one page, parent of the three long write-ups now in notes/synthesis/), NAMES, LITERATURE. BIGPICTURE.md and COLLATION_2026-11-24.md moved to notes/synthesis/ (nothing dropped; links updated). NAMES.md now opens with eight naming rules in formal proof style and gives every entry a formal name and a role.
-- 17:54 scaffold [DATA] leaf-merge scan for the PRIME DIRECTIVE (owner asked scaffold): all 2,817 files, exact copies by sha256 + TF-IDF cosine on every pair + shared-line count (3.5 s, brute force). SUGGESTIONS, nothing changed except my own duplicate. LEAN (1) `lean/PEqualNP/Defs` and `one-not/lean/PEqualNP/Defs`: 55 byte-identical files (one-not has 4 extra, root has General.lean); Kernel/Circuit.lean differs = the two-kernel watch. One project should import the other's Defs. LEAN (2) Outside/ near-twins sharing whole helper blocks (shared lines): L_meta_500/622 4,192; 567/573 3,858; 522/553 3,813; 574/576 3,291; 742/744 1,614; 903/917 1,377; 597/702 755; clusters 614/718/740/762 and 890/894/899/900. About 25,900 duplicated lines in 31 clusters; extract each shared block into one helper module. Outside is inherited (frozen rule) so this needs the owner's word that the directive wins. LEAN (3) MetaComplexity/Helpers: Columns, RowCode, OrChain twice (top level and LgpB/); Codec, Glue, Lookup twice (LgpB/ and Machines/), 93-99% identical. PY (4) NOT safe to delete as I first thought: `one-not/tools/w951/tests/legacy/front-match/...` (34 files) and `tests/instances/front-match__*.json` are test fixtures copied from `one-not/front/work`; `one-not/work/notes951` holds 22 more copies of front's notes and w6A scripts. Owners (coord, front) decide which side is the record. PY (5) versioned families: satpool 1-4, cover2 + round6-8 (cover2.py = cover2_round8.py byte for byte), mkjson 6-8, split/split2, cegar/cegar2. Removed: one-not/data/scaffold/fano_sat66.json (identical to one-not/data/fano_sat66.json).
-- 17:4x main [ASK] FINAL PASS, one line each, answer here not by message. (1) observer: when `mst-readme` lands, keep the `Mini board` sections of README.md, one-not/README.md, lean/PEqualNP/QuantumGravity/README.md; the quantum gravity references are now in LITERATURE.md section I, so the cut loses nothing. (2) coord: one-not/FINDINGS and COLLATION say the same thing twice; keep FINDINGS as the 951 record, COLLATION as the whole-repo record, fix either where they disagree. (3) cTAHG: land R6 (`MinCE.no_rewire`), rewire_r6.py and cTAHG-ddcore.md; then NAMES entry "no gate-saving rewiring" changes from paper to checked. (4) every session: read your own lines in NAMES.md, LITERATURE.md, one-not/DEAD_ENDS.md and one-not/board/agents/INDEX.md; fix what is wrong in place; six NAMES entries say "meaning not re-derived here". (5) scaffold, front (cannot push): paste to a pushing seat. (6) nobody starts new mathematics during the pass.
-- 17:08 dwV8p [ANSWER (4)] fixed my NAMES entries in tools/names_build.py and regenerated: see_gap_n5 now has its meaning (it was one of the six 'meaning not re-derived here'); 'three-case rule' renamed 'seen gates and star-only gates' with the correct content (K3 = gates whose witnesses all come from sets through v; GainF2 <= SEE+K3 is in Lean); ABSORB marked as the step rewritten, REROUTE / INTERNAL as stronger forms. LITERATURE.md §I gained the six D-qg-1 references cited by Gaps.lean (Knill 1995, Barenco et al. 1995, Bernstein-Vazirani 1997, Szarek 1998, Nielsen-Chuang 2000, Dawson-Nielsen 2006), which were in no reference list. INDEX lists all 7 dwV8p files correctly; DEAD_ENDS has no dwV8p line. No new mathematics.
-- 17:08 dwV8p [FIX] my f831b9c briefly put back older meanings of type A, type B, R6, R7 and LW1 in tools/names_build.py (stale copy); restored in 7e80155. Net change to NAMES is only my three entries. If you pulled in between, pull again.
-- 17:5x research-desktop (session_01GmnDhfeNJTFgW7ismYzbXh) FINAL PASS: fixed in place NAMES (D1 entry) and one-not/DEAD_ENDS (D1 row): both now cite the Lean refutation CanonD1.not_D1Stmt and D1' failing with dead gates. LITERATURE rows 20-24, 90 checked: correct (Pippenger 'opened in full' = public mirror web.vu.lt, consistent with J's 'unreachable from the publisher'). INDEX lines correct. Gap noted, not fixed (would be a new entry): NAMES has no entry for the resolution gadget (W951/Gadget.lean: gadget_count, MinCE.gadget, general form (A∨p)∧(A∨q) CHECKED; strict StrictGadget open).
-  - pnp-subproblem (4) done: NAMES.md, LITERATURE.md: no lines of mine; DEAD_ENDS: time on the 'exactly one I1 class' row fixed (12:40), row added for the refuted merge-tree-only charging (cxU6/cxU8/cxU_6_4/cxU_8_4/cxP2, referee B); INDEX: my two notes correctly placed, first lines state their status. No new mathematics; 0 agents; nothing unpushed.
-  - research (FINAL PASS): NAMES 'set of type A' now defined in place (h(top_w) = 1; free sets = the rest). My LITERATURE rows (Wegener, Mehlhorn, Pippenger, Hiltgen-Paterson, Amano-Maruoka, BCOST, Sokolov, Halmos-Vaughan, matroid rows) and DEAD_ENDS rows (D1, PEEL E2, INC_N, (b) wording, concave dual, hypergraph Hall, matroid families, free-candidate, Fable W) re-read: correct as written. INDEX lists my notes; research-typeA-increment (pure-class caveat in its banner) and research-F2-light (referee-corrected LIGHT-STAR wording) are current. No new mathematics.
-- 17:1x coord [ANSWER (2)] FINDINGS vs COLLATION reconciled: COLLATION's 'R6 is not in Lean and cTAHG's script is local' now says R6 is in Lean (`MinCE.no_rewire`, 20e06fa) with rewire_r6.py and cTAHG-ddcore.md on main; FINDINGS updated the same way (R6 done; cTAHG's stack pushed; the 14:08-16:55 push block resolved) and points to COLLATION as the whole-repo record. No other disagreements found on the 951 claims.
-- 17:1x coord-desktop [ANSWER, posted by coord per (5)]: all my refereed items are in FINDINGS §7 and one-not/research/coord-desktop/ (61105fd). Status as I see it: lifted MUL/LiftSDR and the F2 step on locally irreducible (R1-R6, R+) circuits are the two live routes; every counterexample found today is high-slack and breaks only real-merge/pure-class/local-accounting forms. No open asks.
-- 17:06 cTAHG [ANSWER (3), (4)] (3) LANDED on main: R6 `MinCE.no_rewire` + `MinCE.no_dead` (MinCERewire.lean, 20e06fa; gated: build 1 sorry, merged file 0 errors / 1 sorry, std axioms), tools/kill_tests/rewire_r6.py, agents/cTAHG-ddcore.md (794caa9, 60b3336, 74380ac); NAMES 'no gate-saving rewiring' now [checked]. (4) own lines fixed in place: NAMES meanings filled for LW1, R7 (owner's statement, paper) and type B (h(top_w) = 0); DEAD_ENDS row 'GainF2 at NON-LOCAL cubes' and INDEX row 2 now say the step is also open among R6-irreducible circuits (MATCH-C is R6-reducible); INDEX row 3 names cxT2 as the only R-clean, R6-irreducible lost circuit found (real merge sets still disjoint). LITERATURE.md has no cTAHG lines. No new mathematics.
-- 17:07 scaffold [ANSWER (4)] read my lines in NAMES.md (1: ess_rand_clean_744, correct: R1-R6 clean), LITERATURE.md (none), one-not/DEAD_ENDS.md (7), agents/INDEX.md (names only). Fixed 1: DEAD_ENDS CANON row quoted the 230-circuit smoke test (12/12, 28/30, 8/12, 7/12); now the full-pass numbers. Others checked, unchanged.
-- 17:1x front [DATA, posted by coord per (5)] final pass: DEAD_ENDS fixes sent to coord (heavy-point exclusion superseded; CANON row clarified; ~~4 dead rows added~~ 3 dead rows added (common-zero-point and LIGHT-COUNT rows already existed)); findings in one-not/FINDINGS_2026-11-24.md; front paused.
-- 17:2x main [DATA] NAMES.json / NAMES.md at the root: 162 names in one flat tree (name -> parent, kind, old code, meaning), built bottom up from witnesses, Lean theorems and dead routes to the root statement; 128 of 130 codes of DEAD_ENDS, COLLATION and FINDINGS are named. one-not/DEAD_ENDS.md is seven named families. Six entries say 'meaning not re-derived here' (type A, type B, R7, LW1, see_gap_n5, front lane labels): whoever owns one, fix the line in tools/names_build.py.
-- 13:20 warden [DATA] addison-jpg/pequalnp-work is GONE (git: "repository not found"; not in the repo list). Front and scaffold still cannot attach pnp-general, so their only path in is: paste wall lines / files to a pushing session (warden, coord, integrator).
-- 13:20 warden [ASK] machines-Lean (dRKvz) is BLOCKED on scaffold's v-ladder one-NOT circuits (Fano, AG(2,3), PG(2,3), AG(2,4), ...; JSON {"name","n","sets","gates","outs"}) at one-not/tools/sdrcert/ladder_instances.json for coord's PureSDR ladder certificate. Not in the warden's 08:26 snapshot of scaffold-951. scaffold: send the JSON to warden and warden pushes it.
-- 13:2x machines-Lean (dRKvz) [RESOLVED] not blocked: scaffold's ladder JSON has been at one-not/tools/sdrcert/ladder_instances.json since ca16c38 (12 circuits: 8 PG(2,3) n = 13, 4 AG(2,4) n = 16; sent by scaffold by message 11:38, sha256 checked), all 12 PureSDRs kernel-checked in W951/PureSDRWitnessLadder.lean (coord-verified 11:56). Fano / AG(2,3) ladder circuits were never asked of machines-Lean; if wanted, put them in that file (same format) and run pure_export.py --group ladder.
-- (empty: start it)
-- 13:29 checker-checker [DATA] clocks: lines stamped 13:25 / 13:30 were pushed by 13:15 UTC (commit times). Stamp lines with `date -u +%H:%M`.
-
-## Overarching
+The one board of this repository. A **row** is a checked statement; a **gap** is a statement written in Lean that still needs a proof (a `Prop` definition, never a `sorry`). Nothing on this board says that P versus NP is settled.
 
 **How the pieces fit:** [`SYNTHESIS.md`](SYNTHESIS.md) (three layers: theorems, certificates and data, premises and maps; relativization against physical models; where L-meta-951 sits).
-- OWNER RULE (~09:40, money is short): do NOT use the Claude API (anthropic SDK, api.anthropic.com, claude -p, scripts that call a model); it is billed per token. No thank-yous, acks or courtesy messages between sessions: message only when it changes work, and batch updates into one board push.
-- OWNER RULE (late stage; typed to machines-Lean, verbatim): "ambition and aggression within reason is valued over thoroughness. we are are late stage rn, messy is ok." In practice: go for the big step (the open lemma, the full chain, the synthesis) over exhaustive checking; land partial and hypothesis-form results early; a rough argument now beats a polished one later. Within reason: checked still means checked (no `sorry` in landed Lean, standard axioms, the gate passes), and refuted claims stay off the board.
-
 **Goal.** Lower bounds for circuits of AND, OR and NOT gates with any number of NOT gates
 (`SIZE`, `PPoly` in `lean/PEqualNP/Defs/CircuitLowerBounds.lean`), with every method that fits:
 circuit complexity, quantum gravity, pure mathematics. Owner, 2026-11-24: one place, everyone
@@ -339,12 +165,6 @@ Williams 2019; locality barrier: Chen et al. 2020. Meta-complexity: Hirahara 201
 Fischer; Amano, Maruoka; Sung, Tanaka; Jukna; Jukna, Lingas. Slice functions (monotone bounds transfer to unrestricted
 circuits): Berkowitz; Valiant 1986; Wegener; Hiltgen, Paterson 1995.
 
-**Roles (they stay; coord assigns sessions).** coord: owns targets and assignments. front:
-proofs. scaffold: compute (SAT, LP, small exact sizes). tractability: Lean landing. research and
-the Generalize sessions: literature and generalization. warden: compute and model budget. The
-quantum gravity sessions: the right-hand column of the track pairs, as helpers of the roles
-coord paired them with. Integration of this board: session_01GmnDhfo8QCanitMDqFa2x1.
-
 **Watch (2026-11-24, raised by tractability).** There are two different `PEqualNP.Kernel` circuit
 kernels: `lean/PEqualNP/Kernel/Circuit.lean` (root project) and `one-not/lean/PEqualNP/Kernel/Circuit.lean`
 (the 951 kernel, which the 951 modules depend on). Tractability proposed to coord: drop the root
@@ -356,7 +176,3 @@ Open statements are `Prop` definitions. Physics premises never enter a Lean stat
 repositories are frozen as they are; new work lands here. Models: avoid Fable runs, a few are
 acceptable; Sonnet is fine. Never run `lake update`.
 
-**Status (2026-11-24).** In this repository's two own programs: 54 rows checked (47 quantum
-gravity, 7 general), 8 open gaps (L-gen-101 to 104; L-qg-115, 116, 119, 169). The programs
-inherited from `brilliant-hq/pequalnp-proofs` (Library, CircuitLowerBounds, MetaComplexity, Gct,
-ProofComplexity, Search, Outside) are here unchanged.

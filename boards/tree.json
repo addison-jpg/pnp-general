@@ -1,8 +1,8 @@
 {
  ".": {
   "counts": {
-   "checked": 52,
-   "tested": 6,
+   "checked": 63,
+   "tested": 8,
    "refuted": 5
   },
   "verified": [
@@ -10,6 +10,8 @@
    "7d2be507",
    "31d6a07d",
    "3b46038e",
+   "fb772b9e",
+   "0898a92f",
    "4a95d48e",
    "1088bc27",
    "a023c28e",
@@ -56,6 +58,8 @@
    "86ffd5a1",
    "015ef337",
    "4290878b",
+   "91f83519",
+   "5e4b9d8d",
    "66d4cb88",
    "7f3971c7",
    "b233fdbd",
@@ -63,25 +67,36 @@
    "4cea3d21",
    "d99349da",
    "0b7b8fdd",
+   "f6f61745",
+   "19d706b0",
+   "9d6ade3f",
+   "ad91d530",
+   "e0ea3129",
    "c70b8e8f",
    "57b5bd42",
    "89fa09ba",
    "182f7509",
    "98886641",
-   "769c3ae0"
+   "769c3ae0",
+   "02f7d0db",
+   "9c7d09e2",
+   "2ee8c618",
+   "66145862"
   ],
   "unverified_here": []
  },
  "asteroid": {
   "counts": {
    "checked": 7,
-   "tested": 1
+   "tested": 3
   },
   "verified": [
    "8d76417d",
    "7d2be507",
    "31d6a07d",
    "3b46038e",
+   "fb772b9e",
+   "0898a92f",
    "4a95d48e",
    "1088bc27",
    "a023c28e",
@@ -153,40 +168,60 @@
  },
  "lean": {
   "counts": {
-   "checked": 5
+   "checked": 9
   },
   "verified": [
    "57b5bd42",
    "89fa09ba",
    "182f7509",
    "98886641",
-   "769c3ae0"
+   "769c3ae0",
+   "02f7d0db",
+   "9c7d09e2",
+   "2ee8c618",
+   "66145862"
   ],
   "unverified_here": []
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 5
+   "checked": 9
   },
   "verified": [
    "57b5bd42",
    "89fa09ba",
    "182f7509",
    "98886641",
-   "769c3ae0"
+   "769c3ae0",
+   "02f7d0db",
+   "9c7d09e2",
+   "2ee8c618",
+   "66145862"
+  ],
+  "unverified_here": []
+ },
+ "lean/PEqualNP/Philosophy": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "66145862"
   ],
   "unverified_here": []
  },
  "lean/PEqualNP/QuantumGravity": {
   "counts": {
-   "checked": 5
+   "checked": 8
   },
   "verified": [
    "57b5bd42",
    "89fa09ba",
    "182f7509",
    "98886641",
-   "769c3ae0"
+   "769c3ae0",
+   "02f7d0db",
+   "9c7d09e2",
+   "2ee8c618"
   ],
   "unverified_here": [
    {
@@ -199,12 +234,15 @@
  },
  "lean/PEqualNP/QuantumGravity/Open": {
   "counts": {
-   "checked": 3
+   "checked": 6
   },
   "verified": [
    "182f7509",
    "98886641",
-   "769c3ae0"
+   "769c3ae0",
+   "02f7d0db",
+   "9c7d09e2",
+   "2ee8c618"
   ],
   "unverified_here": [
    {
@@ -219,7 +257,7 @@
   "counts": {
    "tested": 5,
    "refuted": 5,
-   "checked": 38
+   "checked": 45
   },
   "verified": [
    "1b00e1bc",
@@ -262,6 +300,8 @@
    "86ffd5a1",
    "015ef337",
    "4290878b",
+   "91f83519",
+   "5e4b9d8d",
    "66d4cb88",
    "7f3971c7",
    "b233fdbd",
@@ -269,6 +309,11 @@
    "4cea3d21",
    "d99349da",
    "0b7b8fdd",
+   "f6f61745",
+   "19d706b0",
+   "9d6ade3f",
+   "ad91d530",
+   "e0ea3129",
    "c70b8e8f"
   ],
   "unverified_here": []
@@ -445,7 +490,7 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 36
+   "checked": 43
   },
   "verified": [
    "0992c96e",
@@ -476,6 +521,8 @@
    "86ffd5a1",
    "015ef337",
    "4290878b",
+   "91f83519",
+   "5e4b9d8d",
    "66d4cb88",
    "7f3971c7",
    "b233fdbd",
@@ -483,6 +530,11 @@
    "4cea3d21",
    "d99349da",
    "0b7b8fdd",
+   "f6f61745",
+   "19d706b0",
+   "9d6ade3f",
+   "ad91d530",
+   "e0ea3129",
    "c70b8e8f"
   ],
   "unverified_here": [
@@ -496,7 +548,7 @@
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 35
+   "checked": 42
   },
   "verified": [
    "5fe90015",
@@ -526,6 +578,8 @@
    "86ffd5a1",
    "015ef337",
    "4290878b",
+   "91f83519",
+   "5e4b9d8d",
    "66d4cb88",
    "7f3971c7",
    "b233fdbd",
@@ -533,6 +587,11 @@
    "4cea3d21",
    "d99349da",
    "0b7b8fdd",
+   "f6f61745",
+   "19d706b0",
+   "9d6ade3f",
+   "ad91d530",
+   "e0ea3129",
    "c70b8e8f"
   ],
   "unverified_here": []
@@ -557,7 +616,7 @@
  },
  "one-not/lean/PEqualNP/W951": {
   "counts": {
-   "checked": 33
+   "checked": 40
   },
   "verified": [
    "30cf54bf",
@@ -586,13 +645,20 @@
    "86ffd5a1",
    "015ef337",
    "4290878b",
+   "91f83519",
+   "5e4b9d8d",
    "66d4cb88",
    "7f3971c7",
    "b233fdbd",
    "ba956ff0",
    "4cea3d21",
    "d99349da",
-   "0b7b8fdd"
+   "0b7b8fdd",
+   "f6f61745",
+   "19d706b0",
+   "9d6ade3f",
+   "ad91d530",
+   "e0ea3129"
   ],
   "unverified_here": [
    {
@@ -629,7 +695,7 @@
  },
  "one-not/lean/PEqualNP/W951/Open": {
   "counts": {
-   "checked": 7
+   "checked": 12
   },
   "verified": [
    "66d4cb88",
@@ -638,7 +704,12 @@
    "ba956ff0",
    "4cea3d21",
    "d99349da",
-   "0b7b8fdd"
+   "0b7b8fdd",
+   "f6f61745",
+   "19d706b0",
+   "9d6ade3f",
+   "ad91d530",
+   "e0ea3129"
   ],
   "unverified_here": [
    {

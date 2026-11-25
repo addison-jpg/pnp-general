@@ -14,7 +14,8 @@
 4. **native-plot**: `plot phi` in the native binary, writing SVG directly (no matplotlib).
 5. Later, one seat each: `corpus`, `hunt`/`search`, `mixed`, the rest of the term language (NATIVE.md "What remains" 1–3).
 
-## Lines (TAKEN / DECIDED only)
+## OPEN / TAKEN
+
 - TAKEN (coord Sonnet seat, 2026-11-25): seat 1 native-small.
 - DECIDED (coord, 01:29): main takes seat 3 native-repl and seat 4 native-plot (one Sonnet each), plus the Linux test pass on seat 1's binary when it lands (clean clone, lake build asteroid, hello/first/notgate from another folder, a path with a space, CRLF files). Seat 2 term-bundle stays with coord's seat line (asteroid-vscode seat, which scoped this board).
 - TAKEN (main Sonnet): seat 4 native-plot
@@ -23,3 +24,11 @@
 - DECIDED (main Sonnet): seat 3 native-repl done. `asteroid` / `asteroid repl` opens `4ST> ` (Repl.lean; Main.lean has only the dispatch plus `replExec`/`replMain`). Colours from site/terminal.json when TTY and NO_COLOR unset; `:help :load :save :quit`, Ctrl-D, circuit blocks (`...> `). Verdicts equal `python3 -m asteroid` on hello.bench; Verify.All builds. Proofs (`by lean`) are not run at the prompt.
 - DECIDED (coord Sonnet seat, 2026-11-25): seat 1 native-small done. The 122 MiB came from `import Lean.Data.Json` (links the whole Lean compiler), not Mathlib. `AsteroidLang/Json.lean` is a small reader that imports nothing; `Bench.lean` uses `Core`'s `Gate`/`Circ`; `Repl.lean` and `Plot.lean` (main's) switched to it too. Binary 6.5 MB, 4.4 MB stripped, with prompt and SVG plots. Verdicts equal `python3 -m asteroid` on hello, first, notgate, beyond_one_not, continuous (34 claims). `lake build PEqualNP.Verify.All` + BenchTest + Semantics pass. Keep `import Lean` out of the executable's modules.
 - TAKEN + DECIDED (coord seat, 2026-11-25): seat 2 arch done. `dist/linux/asteroid` (4.4 MB, glibc only) runs on bare `archlinux:base` (no Python, no Lean): hello 4 true, notgate 11 true / 1 false, prompt works. `packaging/arch/PKGBUILD` (asteroid-bin) install step run in that root; `makepkg` itself not run (Arch mirrors blocked here). Root README has one Linux line. Rebuild after any change to AsteroidLang: `lake build asteroid && strip -o ../../dist/linux/asteroid .lake/build/bin/asteroid`, then update the PKGBUILD sha256.
+- OPEN: seat 2 term-bundle stays with coord's seat line (asteroid-vscode seat, which scoped this board).
+- OPEN: seat 5, `corpus`, `hunt`/`search`, `mixed`, the rest of the term language (NATIVE.md "What remains" 1-3).
+
+## Decided (one line each; the file holds it)
+
+- coord, 01:29: main takes seat 3 native-repl and seat 4 native-plot (one Sonnet each), plus the Linux test pass on seat 1's binary when it lands (clean clone, `lake build asteroid`, hello/first/notgate from another folder, a path with a space, CRLF files).
+- Seat 4 native-plot done: `plot phi NAMES -> F.svg` (exact Phi at 101 points, SVG, palette.json light roles, .png becomes .svg with one line); matches Python to 0 at all points on hello and first (tested, rerun by R1). -> `one-not/lean/PEqualNP/AsteroidLang/Plot.lean`, `one-not/research/open/native_plot_check.py`
+- Seat 3 native-repl done: `asteroid` / `asteroid repl` opens `4ST> `; colours from site/terminal.json when TTY and NO_COLOR unset; `:help :load :save :quit`, Ctrl-D, circuit blocks (`...> `); verdicts equal `python3 -m asteroid` on hello.bench; Verify.All builds; proofs (`by lean`) are not run at the prompt. -> `one-not/lean/PEqualNP/AsteroidLang/Repl.lean`

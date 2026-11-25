@@ -7,4 +7,10 @@
 - **Files:** new files are yours; asteroid/ui.py `banner()` and asteroid/repl.py are owned by main's UI Sonnet: change only `banner()` (one call to the art), write one line here when you do.
 - **Seats:** coord's Sonnet seat (below).
 
-## Lines (TAKEN / DECIDED only)
+## OPEN / TAKEN
+
+- OPEN: no seat has written a TAKEN line yet; `asteroid/logo_art.py` does not exist. Seat: coord's Sonnet seat (see Seats above).
+
+## Decided
+
+- (none yet)

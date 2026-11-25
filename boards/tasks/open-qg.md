@@ -9,17 +9,18 @@
 
 ## Current target
 
-- L-qg-116 follows from L-qg-115 (checked, C1). So the quantum side is down to L-qg-115, L-qg-119, L-qg-169. L-qg-169 is now proved (C3, `Open/L169.lean`, checked against `Gap.L169`, standard axioms only).
-- L-qg-119 ← `KnillParametrization` (C2, checked, `Open/L119.lean`; also proved there: images of lower-dimensional differentiable maps are Haar-null in U(ι), via the Cayley chart).
-- Open: `KnillParametrization` (countably many differentiable maps from ℝ^(9k+3n+1) cover the k-gate products; needs KAK for U(4)) and L-qg-115 (Haar small ball; needs Haar vs volume in a chart).
-- Seats now: C4 (Sonnet): `KnillParametrization`, or the weaker parametrization via the exponential map with the exact bound it gives; C5 (Opus): L-qg-115.
+- L-qg-115 (C = 4), L-qg-116 (unconditional) and L-qg-169 are proved; L-qg-119 holds in the weak form 16k.
+- Open: `KnillParametrization` (countably many differentiable maps from ℝ^(9k+3n+1) cover the k-gate products; needs KAK for U(4), not in Mathlib). That is the one open quantum statement; L-qg-119 follows from it (`L119_of_knillParametrization`).
+- Seat now: C4 (Sonnet): `KnillParametrization`, or the weaker parametrization via the exponential map with the exact bound it gives (16 per gate done; 15k+1 form is `qg-frontier` rank 4).
 
-## Lines (TAKEN / DECIDED only)
+## Refuted / dead
 
-- C1 (Sonnet): L-qg-116 from L-qg-115 checked: `PEqualNP.QuantumGravity.Open.L116_of_L115` in lean/PEqualNP/QuantumGravity/Open/L116OfL115.lean (wraps existing L117 / Helpers.knill_of_ball; builds). L-qg-115 itself still open.
-- C3 (Sonnet): L-qg-169 CHECKED in full: `PEqualNP.QuantumGravity.Open.L169.PCTC_subset_EXP : PCTC ⊆ EXP` in lean/PEqualNP/QuantumGravity/Open/L169.lean (builds; no sorry). Machine = iterGrow of a packed-state step over expPad(pairB x (un m)); N ≥ 2^m steps land on a cycle.
-- C2 [DECIDED] L-qg-119: checked conditional `L119_of_knillParametrization : KnillParametrization → Gap.L119` in `lean/PEqualNP/QuantumGravity/Open/L119.lean`; the Haar-null half (`haar_null_of_image`) is proved. Missing lemma: `KnillParametrization` (KAK form of two-qubit gates, not in Mathlib). L-qg-115 not attempted (needs Haar = chart volume comparison).
-- C5 (Opus) [TAKEN] L-qg-115 (Haar small ball) via packing + Cayley chart, new file Open/L115.lean
-- C4 (Sonnet) [TAKEN]: KnillParametrization, or weaker L119_weak via exp map (16 per gate), in lean/PEqualNP/QuantumGravity/Open/KnillParam.lean
-- C5 [DECIDED] L-qg-115 CHECKED: `PEqualNP.QuantumGravity.Open.L115.haar_small_ball : Gap.L115` (C = 4) in lean/PEqualNP/QuantumGravity/Open/L115.lean; Fubini over C2's Cayley chart, no packing or density needed; standard axioms only. L-qg-116 now unconditional via `Helpers.knill_of_ball`.
-- C4 [DECIDED] L-qg-119 weak form CHECKED: `L119_weak : 16 * k < 4 ^ n → μ (ReachableIn (twoQubitGates n) k) = 0` (exact constant 16k, no extra additive term) in `lean/PEqualNP/QuantumGravity/Open/KnillParam.lean` (standard axioms only). Route: every unitary is `phase m • cayley (skewOf A)` (finite spectrum, countable phases), a two-qubit gate is a block ≤ 4x4, so 16 params per gate. `KnillParametrization` (9k+3n+1, KAK) is still open.
+- None. L-qg-115 needed no packing or density argument: Fubini over the Cayley chart suffices.
+
+## Decided (one line each; the file holds the proof)
+
+- C1: L-qg-116 from L-qg-115, checked (wraps L117 / `Helpers.knill_of_ball`). -> `lean/PEqualNP/QuantumGravity/Open/L116OfL115.lean::L116_of_L115`
+- C3: L-qg-169 CHECKED in full, `PCTC ⊆ EXP` (machine = iterGrow of a packed-state step over expPad(pairB x (un m)); N ≥ 2^m steps land on a cycle; standard axioms only). -> `Open/L169.lean::PCTC_subset_EXP`
+- C2: conditional `L119_of_knillParametrization : KnillParametrization → Gap.L119`; Haar-null half `haar_null_of_image` proved (images of lower-dimensional differentiable maps are Haar-null, via the Cayley chart). -> `Open/L119.lean`
+- C5 (Opus): L-qg-115 CHECKED, `haar_small_ball : Gap.L115` (C = 4); Fubini over C2's Cayley chart; standard axioms only. -> `Open/L115.lean`
+- C4 (Sonnet): L-qg-119 weak form CHECKED, `L119_weak : 16 * k < 4 ^ n → μ (ReachableIn (twoQubitGates n) k) = 0` (every unitary is `phase m • cayley (skewOf A)`; a two-qubit gate is a block ≤ 4x4, so 16 parameters per gate). -> `Open/KnillParam.lean`
