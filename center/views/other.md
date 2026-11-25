@@ -6,6 +6,8 @@
 - [checked-finite, r=0.0] cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; cosmos/check.py passes.
 - [checked-finite, r=0.667] alchemy.ath: the b = 3 alchemy circuit computes all seven nonempty unions on all 8 inputs, with 4 gates against a base of 5 (sharing, possible because the sets overlap in 2 points).
 - [checked-finite, r=0.667] gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth.
+- [checked-finite, r=1.0] Modal correspondence checked exactly on all 512 relations on 3 worlds and all 65536 on 4: T, 4, B, 5 are valid exactly on the reflexive, transitive, symmetric, euclidean frames; T and 5 together exact
+- [checked-finite, r=1.0] Toy 7-world branching history (reflexive, transitive): []c holds exactly on the alpha branch {1,4}, ~<>[]c exactly on the doomed branches {2,3,5,6}, and the branch point is the only world where <>[]c 
 
 ## Cells
 - [DECIDED, r=0.0] O2 (Opus): three-qubit CKW checked in full: C(ρ_AB)² + C(ρ_AC)² + 4|Det ψ| = 4 det ρ_A for every pure ψ (Wootters concurrence from the eigenvalues of ρρ̃), so τ_AB + τ_AC ≤ τ_{A|BC}, equality iff Det 

@@ -25,4 +25,4 @@
 - [STOPPED, r=1.0] (usage; reopen later; nothing pushed) Fable: the layer and its checked maps. -> lean/PEqualNP/Worlds/Hypercomplex.lean, worlds/HYPERCOMPLEX.md
 
 ## Frames
-- [checked-finite, r=0.0] Lewis, On the Plurality of Worlds (1986), indexical actuality (metaphysics/BASE.md): no privileged world: an S5 frame, every world sees every world; axiom 5 valid on all S5 frames
+- [checked-finite, r=0.0] Lewis, On the Plurality of Worlds (1986), indexical actuality (metaphysics/BASE.md); the Lewis link is analogy (reading), not checked: Kripke fact only: axiom 5 is valid on every S5 frame on 3 worlds

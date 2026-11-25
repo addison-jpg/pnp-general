@@ -413,6 +413,12 @@
     "why": [
      "checked-finite needs a runner (the exhaustive check, re-runnable)"
     ]
+   },
+   {
+    "id": "749fdc6d",
+    "why": [
+     "needs a second seat in by"
+    ]
    }
   ]
  },
@@ -593,6 +599,18 @@
   "unverified_here": [
    {
     "id": "d4ed1a42",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "metaphysics": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "3b1ee0ad",
     "why": [
      "needs a second seat in by"
     ]

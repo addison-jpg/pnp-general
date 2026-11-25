@@ -94,6 +94,7 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 ### `homestuck/` 1 checked-finite
 - `2befeb37` **checked-finite** [homestuck] Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A model of combination, not the comic's recipe. · evidence: `homestuck/alchemy.py::reachable_counts` · haiku, confirmed by fable · VERIFIED
 - `8a00ca4e` **checked-finite** [homestuck] alchemy.ath: the b = 3 alchemy circuit computes all seven nonempty unions on all 8 inputs, with 4 gates against a base of 5 (sharing, possible because the sets overlap in 2 points). · evidence: `alchemy.ath`, `/home/user/pnp-general/alchemy_b3.bench` · asteroid, confirmed by frame-review · unverified (checked-finite needs a runner (the exhaustive check, re-runnable))
+- `749fdc6d` **checked-finite** [homestuck] Toy 7-world branching history (reflexive, transitive): []c holds exactly on the alpha branch {1,4}, ~<>[]c exactly on the doomed branches {2,3,5,6}, and the branch point is the only world where <>[]c & ~[]c holds. A model chosen to illustrate the reading, not data from the comic. Independently recomputed by the reviewer. · evidence: `homestuck/timelines.ath` · main · unverified (needs a second seat in by)
 
 ### `lean/` 25 checked
 
@@ -139,6 +140,9 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `408f74ba` **checked** [P vs NP formal statement] For a body positive in the bound relation variable the lfp constructor denotes the least fixed point · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::lfp_isLeast` · language-unification · VERIFIED
 - `d4ed1a42` **open** [P vs NP formal statement] FOModelCheckingInP and the two capture theorems Fagin, ImmermanVardi are Props, unproved here; prior art: Senellart's Lean 4 descriptive-complexity library, not imported (needs lake update) · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::FOModelCheckingInP` · language-unification · unverified (needs a second seat in by)
 - `231d94b5` **checked** [SPHERE OF FIELDS: hairy ball] Milnor's two elementary steps: a same-length tangent w at x gives ‖x + t•w‖ = ‖x‖√(1+t²); for n odd, (√(1+t²))^n agrees with no real polynomial on any interval (-ε, ε) (n = 3 is S²). The annulus bijection and volume step are not formalized, so the hairy ball theorem itself is not proved · evidence: `lean/PEqualNP/Worlds/HairyBall.lean::not_polynomial_sqrt_pow_of_odd`, `lean/PEqualNP/Worlds/HairyBall.lean::norm_add_smul_of_tangent` · S2-opus · VERIFIED
+
+### `metaphysics/` 
+- `3b1ee0ad` **checked-finite** [metaphysics] Modal correspondence checked exactly on all 512 relations on 3 worlds and all 65536 on 4: T, 4, B, 5 are valid exactly on the reflexive, transitive, symmetric, euclidean frames; T and 5 together exactly on the equivalence relations (S5: 5 and 15). Axiom 5 holds on every S5 frame and fails on an S4 frame (countermodel printed). Independently recomputed by the reviewer. · evidence: `metaphysics/metaphysics.ath`, `asteroid/ext_modal.py` · main · unverified (needs a second seat in by)
 
 ### `one-not/` 49 checked · 6 tested · 6 refuted
 
