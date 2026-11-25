@@ -1,0 +1,8 @@
+# Black holes: exact scaling laws, linked down the map. See physics/blackhole/check.py and BASE notes in this folder.
+check "python3 -I physics/blackhole/check.py"
+check "python3 -I philosophy/numbers.py"
+check "python3 -I philosophy/cone.py"
+frame "Schwarzschild, Hawking, Bekenstein, Page (cited from memory): radius, temperature, entropy and evaporation time scale with exact powers of M" reading "exact fact only: the exponents 1, -1, 2, 3 are recovered from the ratios at 2M and M, for constants set to 1; the constants themselves are cited, not derived" -> 2 label checked-finite reach 1 cost 40
+frame "Bounded information in a finite region (philosophy/NUMBERS.md): a finite region holds finitely much information, the same premise as the Bekenstein entropy bound" reading "ANALOGY (a reading): the entropy of a horizon is a finite count of bits; the link to numbers.py is shared premise, not a shared computation" -> 3 label open reach 2 cost 80
+frame "The horizon as a hub: entering it is a one-way relation (cone.py: a hub over disconnected parts is critical)" reading "ANALOGY (a reading): what falls through the horizon cannot reach the outside, so the horizon behaves like a critical hub; exact only for the graph facts in cone.py" -> 3 label open reach 2 cost 80
+frame "The information paradox: whether information survives evaporation (Hawking 1976; the debate since, cited from memory)" reading "OPEN: no check in this repository decides it; the scaling checks above are silent on it" -> none label open reach 1 cost 160
