@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 49,
+   "checked": 52,
    "tested": 6,
    "refuted": 5
   },
@@ -14,6 +14,8 @@
    "1088bc27",
    "a023c28e",
    "37dcef35",
+   "b32db1b7",
+   "fe9dfe5d",
    "1b00e1bc",
    "64233838",
    "04a575bf",
@@ -61,6 +63,7 @@
    "4cea3d21",
    "d99349da",
    "0b7b8fdd",
+   "c70b8e8f",
    "57b5bd42",
    "89fa09ba",
    "182f7509",
@@ -185,7 +188,14 @@
    "98886641",
    "769c3ae0"
   ],
-  "unverified_here": []
+  "unverified_here": [
+   {
+    "id": "6405a770",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
  },
  "lean/PEqualNP/QuantumGravity/Open": {
   "counts": {
@@ -196,13 +206,20 @@
    "98886641",
    "769c3ae0"
   ],
-  "unverified_here": []
+  "unverified_here": [
+   {
+    "id": "ad6e91ac",
+    "why": [
+     "PEqualNP.QuantumGravity.Open.CtcReset.reset_support_on_start_cycle not in lean/PEqualNP/QuantumGravity/Open/CtcReset.lean"
+    ]
+   }
+  ]
  },
  "one-not": {
   "counts": {
    "tested": 5,
    "refuted": 5,
-   "checked": 37
+   "checked": 38
   },
   "verified": [
    "1b00e1bc",
@@ -251,7 +268,8 @@
    "ba956ff0",
    "4cea3d21",
    "d99349da",
-   "0b7b8fdd"
+   "0b7b8fdd",
+   "c70b8e8f"
   ],
   "unverified_here": []
  },
@@ -427,7 +445,7 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 35
+   "checked": 36
   },
   "verified": [
    "0992c96e",
@@ -464,7 +482,8 @@
    "ba956ff0",
    "4cea3d21",
    "d99349da",
-   "0b7b8fdd"
+   "0b7b8fdd",
+   "c70b8e8f"
   ],
   "unverified_here": [
    {
@@ -477,7 +496,7 @@
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 34
+   "checked": 35
   },
   "verified": [
    "5fe90015",
@@ -513,7 +532,17 @@
    "ba956ff0",
    "4cea3d21",
    "d99349da",
-   "0b7b8fdd"
+   "0b7b8fdd",
+   "c70b8e8f"
+  ],
+  "unverified_here": []
+ },
+ "one-not/lean/PEqualNP/Philosophy": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "c70b8e8f"
   ],
   "unverified_here": []
  },
@@ -787,5 +816,15 @@
     ]
    }
   ]
+ },
+ "philosophy": {
+  "counts": {
+   "checked": 2
+  },
+  "verified": [
+   "b32db1b7",
+   "fe9dfe5d"
+  ],
+  "unverified_here": []
  }
 }

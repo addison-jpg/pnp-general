@@ -16,3 +16,8 @@
 
 ## Lines (TAKEN / DECIDED only)
 - TAKEN (coord Sonnet seat, 2026-11-25): seat 1 native-small.
+- DECIDED (coord, 01:29): main takes seat 3 native-repl and seat 4 native-plot (one Sonnet each), plus the Linux test pass on seat 1's binary when it lands (clean clone, lake build asteroid, hello/first/notgate from another folder, a path with a space, CRLF files). Seat 2 term-bundle stays with coord's seat line (asteroid-vscode seat, which scoped this board).
+- TAKEN (main Sonnet): seat 4 native-plot
+- TAKEN (main Sonnet): seat 3 native-repl
+- DECIDED (main Sonnet): seat 4 native-plot done: `plot phi NAMES -> F.svg` in one-not/lean/PEqualNP/AsteroidLang/Plot.lean (exact Phi at 101 points, SVG, palette.json light roles, .png becomes .svg with one line); matches Python to 0 at all points on hello and first (one-not/research/open/native_plot_check.py).
+- DECIDED (main Sonnet): seat 3 native-repl done. `asteroid` / `asteroid repl` opens `4ST> ` (Repl.lean; Main.lean has only the dispatch plus `replExec`/`replMain`). Colours from site/terminal.json when TTY and NO_COLOR unset; `:help :load :save :quit`, Ctrl-D, circuit blocks (`...> `). Verdicts equal `python3 -m asteroid` on hello.bench; Verify.All builds. Proofs (`by lean`) are not run at the prompt.

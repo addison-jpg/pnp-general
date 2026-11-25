@@ -23,6 +23,14 @@
 - STOPPED L3 (container restart 2026-11-25; partial script limits_local_witness.py kept; reopen as OPEN to continue) (Opus): bounded local witness for F2 (task adjusted after L1 obstacle); was: does the density inequality hold in the limit; attempt a flag-algebra certificate on the smallest pattern size; list the tight limit objects (stability candidates). -> one-not/research/open/limits_certificate.md
 
 
+## PHILOSOPHY, FORMAL, UP TO DELEUZE (Addison, 2026-11-25, "take very seriously")
+
+Build crudely from existing logical formalisations of philosophy up to Deleuze, plus Mark Fisher if it is cheap, and sync it with the base of this repository through the boards and low-level folders. Deleuze's virtual / actual pair reads onto the three levels above: finite circuits are the actual, and the polynomial and limit levels are the virtual. It is a formal model of a cited reading, never a claim about what Deleuze meant. [`philosophy-formal`](boards/tasks/philosophy-formal.md)
+
+## QUANTUM GRAVITY FRONTIER (Addison, 2026-11-25, "extremely good")
+
+One research seat: what the current frontier of quantum gravity is (complexity = volume / action, holographic codes, CTCs, quantum circuit complexity growth, the Brown–Susskind conjectures), what this repository already proves in that area, and the next formal targets that are reachable in Lean. [`qg-frontier`](boards/tasks/qg-frontier.md)
+
 ## SEAT SIZE: SONNET BY DEFAULT, ONE NARROW TASK PER SEAT
 
 (Addison, 2026-11-25: "some agents are too big here ... refactor with more sonnets. these things can really go direct on board, a big fable would probably multitask them all for no dang reason and theyd fit messy".)
