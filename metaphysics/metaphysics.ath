@@ -1,0 +1,22 @@
+# Metaphysics level: frame correspondences, checked exactly on every relation on 3 and on 4 worlds.
+# Kripke 1963; Blackburn, de Rijke, Venema 2001, ch. 3 (correspondence). See metaphysics/BASE.md.
+kripke A3 = all 3 any
+kripke A4 = all 4 any
+claim defines A3 "[]p -> p" reflexive
+claim defines A4 "[]p -> p" reflexive
+claim defines A4 "[]p -> [][]p" transitive
+claim defines A4 "p -> []<>p" symmetric
+claim defines A4 "<>p -> []<>p" euclidean
+# S5: reflexive + euclidean frames are exactly the equivalence relations.
+claim defines A4 "([]p -> p) & (<>p -> []<>p)" reflexive+symmetric+transitive
+claim defines A4 "([]p -> p) & ([]p -> [][]p) & (p -> []<>p)" reflexive+euclidean
+# The one difference between a flat picture (S5) and a directed history (S4): axiom 5.
+kripke S5_3 = all 3 reflexive+euclidean
+kripke S4_3 = all 3 reflexive+transitive
+claim valid S5_3 "<>p -> []<>p"
+claim invalid S4_3 "<>p -> []<>p"
+claim valid S4_3 "[]p -> [][]p"
+# A history with a direction: a two-step tree, reflexive and transitive. 5 fails at the root.
+kripke tree = worlds 3 rel [(0,0), (1,1), (2,2), (0,1), (0,2)]
+claim invalid tree "<>p -> []<>p"
+claim valid tree "[]p -> [][]p"

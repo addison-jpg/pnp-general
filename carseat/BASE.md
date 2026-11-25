@@ -24,7 +24,7 @@ Checked-finite (`carseat/check.py`): the dated records, in release order, form a
 | *How to Leave Town* | a manual for exiting; the exit is never clean | leaving town as escape velocity: E < 0 is bound (cosmos bound-orbit) | analogy |
 | "I Want You to Know That I'm Awake / I Hope That You're Asleep", *How to Leave Town* | wanting to be known and hoping not to be seen at once | two opposite maps held at once | analogy |
 | heaven full of people (essay section) | every way out falls back to others | every escape route computes OR(people, ground): `gravity.ath` | checked-finite (the argument's shape, not the essay's truth) |
-| "tybee island horse ghosts", *1*, 2010 | a drone played forward and reversed at once | a check run both ways: the verdict over all inputs is the same forward and reversed, and the refuter agrees with the prover (`carseat/check.py`) | checked-finite about the verdict; the drone as this is analogy |
+| "tybee island horse ghosts", *1*, 2010 | a drone played forward and reversed at once | a check run both ways: the verdict over all inputs is the same forward and reversed, and the refuter agrees with the prover (`carseat/check.py`) | open: the check holds by construction (route and spec are one function), so it tests no real prover/refuter pair; the drone as this is analogy |
 | "Kid War" (Addison places it with *1*) | brought by Addison | none yet | open |
 | *1*, *2*, *Disjecta Membra*, *Please Pass the Milk Please* | brought as part of the lineage | lineage as a tree; where versions rejoin (re-recordings), a DAG (DAG.lean) | analogy |
 

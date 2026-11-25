@@ -4,7 +4,7 @@ A program is a text file `NAME.ath`. Lines are read top to bottom. `#` starts a 
 
 ```
 program   := line*
-line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check | frame | dist
+line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check | frame | dist | kripke
 circuit   := "circuit" NAME N NEWLINE (gate | out)* "end"
 gate      := NAME "=" ("or" | "and") WIRE WIRE  |  NAME "=" "not" WIRE
 out       := "set" POINT+ "->" WIRE
@@ -45,6 +45,8 @@ claim     := "claim" NAME "=" LIST | "claim" NAME "matches" NAME [FORM] | "claim
 FORM      := as-is | diff | partial | plus1
 frame     := "frame" STRING "reading" STRING "->" CLAIMREF "label" WORD ["reach" INTEGER] ["cost" NUMBER]   (asteroid/ext_frame.py)
 CLAIMREF  := LINE | PATH | "none"          (LINE: an earlier claim or check of this file; PATH: another .ath file)
+kripke    := "kripke" NAME "=" ("worlds" N "rel" PAIRS ["val" (ATOM SET)+] | "all" N PROP("+"PROP)*)   (asteroid/ext_modal.py)
+claim     := "claim" ("valid" | "invalid") NAME STRING | "claim defines" NAME STRING PROPS | "claim worlds" NAME STRING "=" SET   (ext_modal)
 LIST      := "[" INTEGER ("," INTEGER)* "]"
 EXPR      := integers, n, + - * // ** ( ), postfix ! and !!, "C(" EXPR "," EXPR ")", "sum(" VAR "," EXPR "," EXPR "," EXPR ")"
 WIRE      := POINT | NAME            (a point 0 .. N-1, or an earlier gate name)
@@ -87,6 +89,20 @@ Meaning. These lines state exact claims about finite distributions. Integers and
 - `claim expect NAME = F`: the mean is exactly F. Every outcome must be an integer, else FALSE.
 - Infinite distributions are not supported. A limit over cutoffs is a separate, written argument.
 - Test: `python3 -I asteroid/tests/test_prob.py`.
+
+## Kripke frames (extension `asteroid/ext_modal.py`)
+
+Meaning. These lines state exact claims of propositional modal logic on finite frames.
+- `kripke NAME = worlds N rel [(0,1), ...]`: one frame on worlds 0..N-1. Optional `val p {0,2} q {1}` fixes a valuation.
+- `kripke NAME = all N PROP+PROP`: every relation on N worlds with these properties. PROP is reflexive, transitive, symmetric, euclidean, serial or any.
+- A formula uses lowercase atoms, T, F, `~`, `[]`, `<>`, `&`, `|`, `->`, `<->`. Unary binds tightest, then `&`, then `|`, then `->` (right associative).
+- `claim valid NAME "F"`: F is true at every world, under every valuation, on every frame of NAME.
+- `claim invalid NAME "F"`: some frame, valuation and world make F false. The countermodel is printed. A false `valid` claim prints one too.
+- `claim defines NAME "F" PROPS`: on every frame of NAME, F is valid iff the frame has PROPS. With `all N any` this is the correspondence on N worlds.
+- `claim worlds NAME "F" = {...}`: under NAME's valuation, F is true at exactly these worlds.
+- Exhaustive. No sampling. Size limits: N <= 12 for one frame, N <= 4 for `all` (65536 relations), at most 3 atoms, at most 2 000 000 frame-valuation pairs per claim. Past a limit the claim is FALSE.
+- A check on N <= 4 worlds is `checked-finite`. The statement for every N is a theorem to cite (Kripke 1963; Blackburn, de Rijke, Venema 2001).
+- Test: `python3 -I asteroid/tests/test_modal.py`. Used in `metaphysics/metaphysics.ath` and `homestuck/timelines.ath`.
 
 ## Frames (extension `asteroid/ext_frame.py`)
 

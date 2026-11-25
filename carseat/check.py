@@ -9,7 +9,10 @@
    "every escape route computes OR(people, ground)" over all 4 inputs is the same
    when the inputs are enumerated forward and in reverse, and a refuter searching
    for a counterexample finds none exactly when the prover says TRUE.
-   This is checked-finite about the verdict. That a drone means this is a reading.
+   This is checked-finite only in a trivial sense: route and spec are the same
+   function here, and order cannot change all() over 4 inputs. It holds by
+   construction and tests no real prover/refuter pair from asteroid. The gap stays open.
+   That a drone means this is a reading.
 """
 from itertools import product
 

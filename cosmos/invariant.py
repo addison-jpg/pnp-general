@@ -8,7 +8,8 @@ A claim that holds in every ordering is the kind that crosses.
    orderings for every cutoff N iff P holds everywhere or nowhere.
    At the full cutoff N = n every property has one frequency in all orderings.
 2. Example on the toy: "n*n mod 4 is 0 or 1" holds for every universe, so its frequency
-   is 1 at every cutoff N <= 3000 in ordering A and ordering B. Evenness is not: 1/2 vs 1/3.
+   is 1 at the cutoffs N = 1, 2, 3, 10, 999, 3000 in ordering A and ordering B
+   (and so at every cutoff, since it holds for each element). Evenness is not: 1/2 vs 1/3.
 All checked-finite.
 """
 from fractions import Fraction
@@ -44,7 +45,7 @@ def orderB(N):
     return out[:N]
 A = list(range(1, 3001)); B = orderB(3000)
 sq = lambda m: (m * m) % 4 in (0, 1)
-want("n*n mod 4 in {0,1}: frequency 1 at every cutoff N <= 3000 in both orderings",
+want("n*n mod 4 in {0,1}: frequency 1 at cutoffs 1, 2, 3, 10, 999, 3000 in both orderings",
      all(all(sq(m) for m in A[:N]) and all(sq(m) for m in B[:N]) for N in (1, 2, 3, 10, 999, 3000)) and all(map(sq, A + B)))
 want("evenness is ordering-dependent: 1/2 vs 1/3 at N = 3000",
      Fraction(sum(m % 2 == 0 for m in A), 3000) == Fraction(1, 2) and Fraction(sum(m % 2 == 0 for m in B), 3000) == Fraction(1, 3))

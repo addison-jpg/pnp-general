@@ -52,3 +52,26 @@ In Act 6 the trolls cross from their session to the kids' session on a meteor, a
 2. A toy Sburb session as a finite game: count the winning runs by exhaustion.
 3. Make the CTC join explicit: state the alpha timeline as a fixed point in the terms of `CtcReset.lean` (paper first, Lean last).
 4. List the Lean results whose axioms exclude `Classical.choice`: the results that carry across to constructive mathematics.
+
+## 6. The readings in the ontology schema
+
+This section sorts the readings above into the schema of `ontology/SCHEMA.md`. The level file is `homestuck/level.json` (ladder `homestuck`).
+
+| reading | carrier | invariant | move | infinity | label |
+|---|---|---|---|---|---|
+| alpha and doomed timelines (section 1) | directed graph of histories | consistency: a fixed point of the time-step map | a time loop | every loop length: `CtcReset.lean`, L169 (P_CTC in EXP) | join |
+| Act 6 retcon (section 1) | partial order of states (DAG) | `Rejoin` | a merge of branches | `DAG.lean`, `lost_undone_iff_rejoin` | join |
+| dead Daves (section 1) | finite state set of candidate runs | pass or fail the consistency check | discard a branch | open | analogy |
+| the meteor (section 5) | two models | the shared structure | transport | open | analogy |
+| alchemy (section 3) | OR circuit | gates against base | sharing a gate | `alchemy.py`, b = 3 counted | checked-finite |
+| Sburb (section 3) | finite game | reachability of the win state | a game move | open | analogy |
+| Lord English (section 3) | a system and its judge | no total self-judge | the diagonal | Lawvere's theorem, `lateral/` | analogy |
+
+## 7. One exact check: the alpha timeline as a modal formula
+
+`homestuck/timelines.ath` builds a small branching frame. The relation is "is a future of" (reflexive, transitive). An atom c marks "the loops closed so far are consistent".
+- The alpha is `[]c`: consistent here and in every future. It holds at exactly the worlds of one branch. Checked-finite.
+- A doomed world is `~<>[]c`: no future of it is alpha. It holds at exactly the other branches, including one that looks consistent at first.
+- The branch point satisfies `<>[]c & ~[]c`: alpha is still reachable but not yet fixed.
+
+This is a toy model I chose, not data from the comic. It shows the reading is exact: the alpha is the unique branch where the consistency formula holds.
