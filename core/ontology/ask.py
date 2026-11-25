@@ -267,8 +267,8 @@ def a_links(D, corpus, pillar):
     for t in shared:
         a = [r for r in cr if t in [x.lower() for x in row_tags(r)]]; b = [r for r in pr if t in [x.lower() for x in row_tags(r)]]
         out.append(f"[proposed] tag {ct[t]}: {len(a)} {C} rows, {len(b)} {P} rows")
-        out += [fmt_row(r, "work") for r in a[:3]] + [fmt_row(r, "result") for r in b[:3]]
-        if len(a) > 3 or len(b) > 3: out.append(f"[open] ... {max(0, len(a) - 3) + max(0, len(b) - 3)} more rows under {ct[t]} not shown")
+        out += [fmt_row(r, "work") for r in a[:2]] + [fmt_row(r, "result") for r in b[:2]]
+        if len(a) > 2 or len(b) > 2: out.append(f"[open] ... {max(0, len(a) - 2) + max(0, len(b) - 2)} more rows under {ct[t]} not shown")
     return out
 
 
