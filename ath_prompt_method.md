@@ -194,7 +194,7 @@ Let C(R) be the cost per checked result: the total tokens spent divided by the n
 | A10 | Opus | one paper attempt | 146,304 | 19 min | obstacle |
 | robustness | Fable | multi-part engineering | 173,252 | 29 min | tested |
 
-Read honestly, the narrow Sonnet seats cluster tightly: 84,000 to 100,000 tokens and 1 to 3 minutes for one checked lemma, across six different lemmas. That clustering is what M1 predicts. Most of the roughly 85,000 tokens is the fixed cost of reading the rules and the cited files. Repository size is not one of the measured variables yet, so M2, T1 and T2 are untested.
+Read honestly, the narrow Sonnet seats cluster tightly: 84,000 to 100,000 tokens and 1 to 3 minutes for one checked lemma, across six different lemmas. That clustering is what M1 predicts. Most of the roughly 85,000 tokens is the fixed cost of reading the rules and the cited files. Repository size is not one of the measured variables yet, so M2, T1 and T2 are untested. A later tabulation over 18 checked Sonnet seats (`ath_prompts/measure/cost_per_result.md`) gives about 78k tokens per checked lemma for plain one-lemma lines, and no trend with commit count (slope +1.5k tokens per seat, r = 0.22); heavier lines cost 130-200k.
 
 ### How to refute or confirm it
 
