@@ -1,0 +1,43 @@
+# Sync frames: light, history and metaphysics, .ath and ~ATH, Beauvoir, Car Seat Headrest. See ontology/SOURCES.md.
+check "python3 -I ontology/light.py"
+check "python3 -I ontology/history.py"
+check "python3 -I ontology/catch22.py"
+check "python3 -I ontology/beauvoir.py"
+kripke A3 = all 3 any
+claim defines A3 "p -> []<>p" symmetric
+claim defines A3 "<>T" serial
+kripke opp = worlds 2 rel [(0,0), (1,1), (0,1)]
+claim invalid opp "p -> []<>p"
+claim valid opp "[]p -> [][]p"
+kripke dia = worlds 4 rel [(0,0), (1,1), (2,2), (3,3), (0,1), (0,2), (0,3), (1,3), (2,3)]
+kripke unr = worlds 5 rel [(0,0), (1,1), (2,2), (3,3), (4,4), (0,1), (0,2), (0,3), (0,4), (1,3), (2,4)]
+claim valid dia "<>[]p -> []<>p"
+claim invalid unr "<>[]p -> []<>p"
+kripke diav = worlds 4 rel [(0,0), (1,1), (2,2), (3,3), (0,1), (0,2), (0,3), (1,3), (2,3)] val p {3}
+kripke unrv = worlds 5 rel [(0,0), (1,1), (2,2), (3,3), (4,4), (0,1), (0,2), (0,3), (0,4), (1,3), (2,4)] val p {3,4}
+claim worlds diav "<>[]p & ~p" = {0,1,2}
+claim worlds unrv "<>[]p & ~p" = {0,1,2}
+kripke both = worlds 3 rel [(0,1), (0,2)] val p {1}
+claim worlds both "<>p & <>~p" = {0}
+claim valid both "~(p & ~p)"
+# 1. Light
+frame "Addison: the lights going out (ontology/SOURCES.md); de Sitter horizon, Rindler 1956 (cited, not re-read)" reading "a(t)=e^(Ht): light from t covers comoving c/(H a(t)), so the proper event horizon is c/H at every t; series identities exact to order 40 for five rational H, limit by written reduction" -> 2 label checked-finite reach 2 cost 80
+frame "Addison: the swarm's light-cone rule (ontology/SOURCES.md)" reading "a signal moving one edge per step reaches exactly the BFS ball of radius t; all 27476 connected labelled graphs on 1..6 vertices" -> 2 label checked-finite reach 2 cost 40
+# 2. History and metaphysics. Replaces the open frame "postmodern history, the cosmological history as a metanarrative" (frames.ath).
+frame "Addison: postmodern history as a DAG, Lyotard 1979 (cosmos/BASE.md section 7; DAG.lean); the Lyotard link is analogy (reading), not checked" reading "Kripke fact only: every rooted poset on 1..4 worlds is a p-morphic image of its unravelled tree, so no formula tells a world of a rejoining history from its tree copy; .2 holds on the diamond and fails on its unravelling; tree-ness is not modally definable (cite)" -> 3 label checked-finite reach 3 cost 80
+# 4. .ath and ~ATH
+# Stays open: no check here tests that asteroid always halts; the claim is the size limits written in asteroid/SPEC.md (Kripke frames: N <= 12, N <= 4 for all, 2 000 000 pairs).
+frame "Addison: .ath mirrors ~ATH (ontology/SOURCES.md; asteroid/SPEC.md size limits)" reading "~ATH loops until a death; asteroid checks halt because every claim has a size limit; reading" -> none label open reach 1 cost 120
+frame "Addison: ~ATH, the Mobius Double Reacharound virus as a catch-22 (ontology/SOURCES.md); the virus link is analogy (reading), not checked" reading "Boolean fact only: A halts <-> B halts with B halts <-> A halts has exactly 2 consistent outcomes (both, neither); one loop bound to an external death has exactly 1 per value; a loop bound to its own negation has 0" -> 4 label checked-finite reach 2 cost 40
+# 5. Beauvoir
+frame "Beauvoir, reciprocity, Pour une morale de l'ambiguite 1947 and Le Deuxieme Sexe 1949 (not re-read; Beauvoir.lean); the reciprocity link is analogy (reading), not checked" reading "Kripke fact only: B (p -> []<>p) is valid exactly on symmetric frames on 3 worlds; on 0 -> 1 with no way back, B fails (countermodel printed) while 4 holds" -> 10 label checked-finite reach 2 cost 80
+frame "Beauvoir, my freedom requires the other's, Pour une morale de l'ambiguite 1947 (not re-read); the link is analogy (reading), not checked" reading "Kripke fact only: []<>T is valid iff every reached world reaches something, on all 530 frames on 1..3 worlds; <>T defines seriality; serial implies it, 35 frames show the converse fails" -> 5 label checked-finite reach 1 cost 80
+# 6. Car Seat Headrest: the open readings with their smallest structure. Song meaning stays a reading.
+frame "Addison: Car Seat Headrest, Twin Fantasy 2011 and 2018 (carseat/BASE.md); the re-recording link is analogy (reading), not checked" reading "Kripke fact only: two points of one directed history (0 -> 1, reflexive): 4 holds, B fails, no way back" -> 10 label checked-finite reach 1 cost 40
+frame "Addison: sync Homestuck with Car Seat Headrest (carseat/, homestuck/BASE.md sections 6 and 7); the timeline link is analogy (reading), not checked" reading "Kripke fact only: the same 2-world S4 frame as Twin Fantasy; a retcon would need a way back, which B tests and which fails" -> 10 label checked-finite reach 1 cost 40
+frame "Addison: Car Seat Headrest, How to Leave Town (essays/knowing.md); the leaving link is analogy (reading), not checked" reading "Kepler fact only: for h != 0, an orbit is bound iff E < 0, exact on the cosmos grid" -> cosmos.ath label checked-finite reach 1 cost 40
+frame "Addison: Car Seat Headrest, I Want You to Know That I'm Awake / I Hope That You're Asleep (essays/knowing.md); the link is analogy (reading), not checked" reading "Kripke fact only: p and ~p never hold at one world, but <>p & <>~p holds at the root of a 2-branch frame: two opposite maps held at once" -> 21 label checked-finite reach 1 cost 40
+# Stay open: no dated edges between 1, 2, Disjecta Membra, Please Pass the Milk Please are on record; only the Twin Fantasy pair is dated.
+frame "Addison: Car Seat Headrest, lineage of 1, 2, Disjecta Membra, Please Pass the Milk Please (carseat/BASE.md)" reading "lineage as a DAG of re-recordings; needs dated edges, which are not on record" -> none label open reach 1 cost 160
+# Stays open: "High to Death" and "Kid War" have no structure on record; a reading of a song is not checked.
+frame "Addison: Car Seat Headrest, High to Death and Kid War (carseat/BASE.md)" reading "no formal structure yet; no check decides what a song means" -> none label open reach 1 cost 160
