@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 38,
+   "checked": 40,
    "tested": 6,
    "refuted": 5
   },
@@ -26,6 +26,7 @@
    "c7512878",
    "4a5ffb32",
    "922f2826",
+   "0992c96e",
    "5fe90015",
    "30cf54bf",
    "0f8afdc1",
@@ -54,6 +55,7 @@
    "015ef337",
    "4290878b",
    "66d4cb88",
+   "7f3971c7",
    "57b5bd42"
   ],
   "unverified_here": []
@@ -162,7 +164,7 @@
   "counts": {
    "tested": 5,
    "refuted": 5,
-   "checked": 30
+   "checked": 32
   },
   "verified": [
    "1b00e1bc",
@@ -177,6 +179,7 @@
    "c7512878",
    "4a5ffb32",
    "922f2826",
+   "0992c96e",
    "5fe90015",
    "30cf54bf",
    "0f8afdc1",
@@ -204,7 +207,8 @@
    "86ffd5a1",
    "015ef337",
    "4290878b",
-   "66d4cb88"
+   "66d4cb88",
+   "7f3971c7"
   ],
   "unverified_here": []
  },
@@ -380,9 +384,10 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 28
+   "checked": 30
   },
   "verified": [
+   "0992c96e",
    "5fe90015",
    "30cf54bf",
    "0f8afdc1",
@@ -410,13 +415,14 @@
    "86ffd5a1",
    "015ef337",
    "4290878b",
-   "66d4cb88"
+   "66d4cb88",
+   "7f3971c7"
   ],
   "unverified_here": []
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 28
+   "checked": 29
   },
   "verified": [
    "5fe90015",
@@ -446,7 +452,8 @@
    "86ffd5a1",
    "015ef337",
    "4290878b",
-   "66d4cb88"
+   "66d4cb88",
+   "7f3971c7"
   ],
   "unverified_here": []
  },
@@ -461,7 +468,7 @@
  },
  "one-not/lean/PEqualNP/W951": {
   "counts": {
-   "checked": 27
+   "checked": 28
   },
   "verified": [
    "30cf54bf",
@@ -490,7 +497,8 @@
    "86ffd5a1",
    "015ef337",
    "4290878b",
-   "66d4cb88"
+   "66d4cb88",
+   "7f3971c7"
   ],
   "unverified_here": [
    {
@@ -527,12 +535,25 @@
  },
  "one-not/lean/PEqualNP/W951/Open": {
   "counts": {
-   "checked": 1
+   "checked": 2
   },
   "verified": [
-   "66d4cb88"
+   "66d4cb88",
+   "7f3971c7"
   ],
   "unverified_here": []
+ },
+ "one-not/research/open": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "cd89cf56",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
  },
  "one-not/tools": {
   "counts": {
