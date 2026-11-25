@@ -1,4 +1,10 @@
 {
+ "1bb7962a0680b2e3d022cf51f68225d5c1e4d16d28c33dce47b7cd9903af58c9": {
+  "k": 3,
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "task": "a closed formula for the sequence segmental, 1, 1, 3, 15, 105, 945 (term i is at n = i)",
+  "text": "valid FRAMES segments = [1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210, 232, 256, 281, 306, 331, 357, 384, 413, 442, 472, 504, 536, 569, 599, 632, 665, 698, 731, 765, 799, 833, 867, "
+ },
  "6295ef50504ca6f8b0229208cd1af3e33ec91879e6622e32de338a4f5b5cd6e9": {
   "k": 3,
   "model": "Qwen/Qwen2.5-0.5B-Instruct",

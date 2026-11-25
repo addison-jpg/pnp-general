@@ -151,7 +151,7 @@ def ev(a, V, budget=None):
             if abs(x).bit_length() + abs(y).bit_length() > MAXBITS + 1: raise ValueError(f"a number with more than {MAXBITS} bits")
             return _bits(x * y, budget, min(abs(x), abs(y)).bit_length() > 64)
         if k == "//":
-            _bits(x, budget, abs(y).bit_length() > 64)                       # charge the division by the size of x
+            if abs(y).bit_length() > 64: budget[0] -= ((abs(x).bit_length() >> 10) ** 2) >> 1   # a long division: k * k // 2
             if y == 0 or x % y: raise ValueError(f"{x} // {y} is not exact")
             return x // y
         if y < 0: raise ValueError(f"{x} ** {y}: negative exponent")
