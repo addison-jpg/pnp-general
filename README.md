@@ -41,7 +41,7 @@ Several natural ways to prove the general case were tried. Each one was refuted 
 
 ## Philosophy (formal)
 
-`lean/PEqualNP/Philosophy/Deleuze.lean` models one cited reading of Deleuze: distinct problems can share actual solutions, and nondegenerate singular points are isolated. `lean/PEqualNP/Philosophy/Fisher.lean` models one cited reading of Fisher's hauntology as branching time. `one-not/lean/PEqualNP/Philosophy/Bridge.lean` applies the first to this project as a formal analogy: the finite slack table is the actual and Φ the virtual, and Φ is not determined by the table. These are models of cited readings. They claim nothing about what either author meant, and they are not proofs about the texts.
+`lean/PEqualNP/Philosophy/Deleuze.lean` models one cited reading of Deleuze: distinct problems can share actual solutions, and nondegenerate singular points are isolated. `lean/PEqualNP/Philosophy/Fisher.lean` models one cited reading of Fisher's hauntology as branching time. `one-not/lean/PEqualNP/Philosophy/Bridge.lean` sets this project beside the first as a formal analogy. Φ is a function of the slack table (`Phi_eq_PhiT`, by definition), but different tables can give the same Φ (`PhiT_not_injective`, shown for small arbitrary tables, not yet for tables of real circuits), and the corner values do not determine Φ. Further files (`Unify`, `Hegel`, `Camus`, `Beauvoir`) and an independent review of all of them, `philosophy/REVIEW.md`, are in `philosophy/`. The review finds that most of the checked theorems are general facts about orders and sets, and that the link to each philosopher is interpretation. These are models of cited readings. They claim nothing about what the authors meant, and they are not proofs about the texts.
 
 ## asteroid
 
