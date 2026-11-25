@@ -11,7 +11,7 @@
 
 - L-qg-115 (C = 4), L-qg-116 (unconditional) and L-qg-169 are proved; L-qg-119 holds in the weak form 16k.
 - Open: `KnillParametrization` (countably many differentiable maps from ℝ^(9k+3n+1) cover the k-gate products; needs KAK for U(4), not in Mathlib). That is the one open quantum statement; L-qg-119 follows from it (`L119_of_knillParametrization`).
-- Seat now: C4 (Sonnet): `KnillParametrization`, or the weaker parametrization via the exponential map with the exact bound it gives (16 per gate done; 15k+1 form is `qg-frontier` rank 4).
+- Seat now: C4 (Sonnet): `KnillParametrization`, or the weaker parametrization via the exponential map with the exact bound it gives (16 per gate and the 15k+1 form are done).
 
 ## Refuted / dead
 
