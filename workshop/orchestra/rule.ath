@@ -1,0 +1,5 @@
+# rule.ath: the counts in RULE.md, as integer claims. Trivial by design: asteroid parses integer equalities only.
+# One lead, four helpers: 1 lead, 4 helpers, 5 agents per round.
+claim 1 = 1
+claim 4 = 4
+claim 5 = 5
