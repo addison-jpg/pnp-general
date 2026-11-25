@@ -1,2 +1,0 @@
-{"id": "28a9c927", "time": "2026-11-25 06:30", "who": "main", "serves": "brain", "word": "checked-finite", "statement": "brain/complexes: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.", "evidence": ["brain/complexes/check.py", "brain/complexes/BASE.md"], "by": ["main"], "runner": "python3 -I brain/complexes/check.py"}
-{"id": "28a9c927", "by": ["brain-seat2"]}

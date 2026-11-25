@@ -7,11 +7,11 @@ Serves README items: T6, T7; gaps L-gen-101 to 103. Rules, names and the other b
 ## Wall T7: XOR extension
 - 19:2x main [BIG] PRIORITY row 3 (main board): README D9 / C4(t): the witness count for a variable number t of NOT gates. [ASK] state C4(t) against `BoolSumNot t` (General/BoolSum.lean): is C4(t) the same statement as BoolSumNot t, stronger, or weaker? At t = ⌈log₂(n+1)⌉ it is a bound for all circuits (T6): say what is known there for (1,1)-disjoint sums.
 - 13:30 Generalize (session_01GmnDhg8XTmohao5zo2MMaC) [PROVED] L-gen-005/006: C(x ⊕ f) >= max + 3, = min + 4 when C(f) != C(¬f) (General/XorExtension.lean). OPEN: C(f) = C(¬f) = m, truth in {m+3, m+4}.
-- 13:30 Generalize [TESTED] SAT, f free, residual shape: no counterexample with m <= 6 for any number of variables (conditional on the encoding and the hand-derived residual shape; notes/general/generalize-xor-residual.md §3). m = 7 needs r = 10: estimated 3 h (k = 5) to 15 h (k = 7), not measured.
+- 13:30 Generalize [TESTED] SAT, f free, residual shape: no counterexample with m <= 6 for any number of variables (conditional on the encoding and the hand-derived residual shape; workshop/notes/general/generalize-xor-residual.md §3). m = 7 needs r = 10: estimated 3 h (k = 5) to 15 h (k = 7), not measured.
 - 13:30 Generalize [DEAD] purely local redundancy for the open case: checked 17-gate residual-shape circuit with no constant or duplicate wire on either side. A proof must use optimality of C(f) and C(¬f).
 - 13:30 Generalize [LEAN] XorIterate.lean: k fresh XOR variables, max + 3k <= C <= min + 4k (eaeb045). k = 2 is open even when C(f) != C(¬f); min + 4k for all k follows from the open case by induction.
-- 13:30 Generalize [ASK] one Fable here is on the open case (owner-approved); output lands in notes/general/generalize-open-case.md or General/XorOpenCase.lean.
-- 13:44 Generalize helper [TESTED] open case NOT proved, NOT refuted (notes/general/generalize-open-case.md). Hand proofs (UNVERIFIED): a counterexample has output outside {H1, H2} and, in frame A, a NOT gate on a path from H1 to the output; invariant H1 AND H2 = 0 on side 0, H1 OR H2 = 1 on side 1 (also SAT-checked small). SAT: no counterexample with m = 7 for f on 4 variables (65 classes); every tested residual-shape circuit has at least min + 5 gates. Remaining core: both shape gates pass NOT gates (XOR-like use).
+- 13:30 Generalize [ASK] one Fable here is on the open case (owner-approved); output lands in workshop/notes/general/generalize-open-case.md or General/XorOpenCase.lean.
+- 13:44 Generalize helper [TESTED] open case NOT proved, NOT refuted (workshop/notes/general/generalize-open-case.md). Hand proofs (UNVERIFIED): a counterexample has output outside {H1, H2} and, in frame A, a NOT gate on a path from H1 to the output; invariant H1 AND H2 = 0 on side 0, H1 OR H2 = 1 on side 1 (also SAT-checked small). SAT: no counterexample with m = 7 for f on 4 variables (65 classes); every tested residual-shape circuit has at least min + 5 gates. Remaining core: both shape gates pass NOT gates (XOR-like use).
 
 
 ## Wall T6, T7: ladder top, Kannan, edge function
@@ -39,5 +39,5 @@ Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the t
   `restrict_one` = one gate saved on either side; proof `lean/PEqualNP/General/XorExtension.lean`, no minimality
   assumption: count the gates that are redundant after `x := c`). OPEN: `C(x ⊕ f) = min + 4` when `C(f) = C(¬f)`; a
   counterexample must have one fixed circuit shape (hand argument), and SAT finds none for every `f` on <= 3 variables and
-  every 4-variable `f` with `C(f) = C(¬f) <= 5`. Note + evidence: `notes/general/generalize-xor-extension.md`,
+  every 4-variable `f` with `C(f) = C(¬f) <= 5`. Note + evidence: `workshop/notes/general/generalize-xor-extension.md`,
   `tools/xor-extension/`.

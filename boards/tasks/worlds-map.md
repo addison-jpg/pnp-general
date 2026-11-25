@@ -17,7 +17,7 @@
 - **Read status** on every entry, as in LITERATURE.md.
 
 ## Seats
-- OPEN (Sonnet) W1: retrieval and the note, with read status. -> notes/worlds-map.md (or philosophy-free location: `worlds/README.md`), plus LITERATURE.md rows.
+- OPEN (Sonnet) W1: retrieval and the note, with read status. -> notes/worlds-map.md (or philosophy-free location: `math/worlds/README.md`), plus LITERATURE.md rows.
 - OPEN (Fable or Sonnet, after W1) W2: Lean definitions of the worlds as Props over abstract classes (no proofs of separations), and the hierarchy theorem cited or linked if Mathlib or the repository has it. -> lean/PEqualNP/Worlds/Map.lean
 
 - OPEN (Sonnet; Fable only if a Lean statement is worth writing) W3: reduction routes, meaning theorems that carry a result on one axis to the P vs NP cut. Label: "map, not progress on P vs NP". For each route record its statement, its source, the threshold it needs (what bound, on which axis), the barrier it hits, its read status, and how far this repository's results are from that threshold.
@@ -27,10 +27,10 @@
   - Karp–Lipton: NP ⊆ P/poly collapses the polynomial hierarchy.
   - Meta-complexity: Liu–Pass 2020 (one-way functions and time-bounded Kolmogorov complexity), Hirahara's MCSP results, Ilango's MCSP hardness (already in LITERATURE.md).
   - Our distance: the one-NOT Boolean sums and f_G at |E| + τ − 1 are linear lower bounds on functions in P. Say plainly that they are below every known magnification threshold, unless the seat finds a route that applies.
-  Read statuses as in LITERATURE.md; anything unopened goes into section J or M. -> worlds/routes.md
+  Read statuses as in LITERATURE.md; anything unopened goes into section J or M. -> math/worlds/routes.md
 
 ## Lines (TAKEN / DECIDED only)
 - TAKEN W1
-- DECIDED W1 (Sonnet): map note written, every entry carries status and read status; most entries MEM or search result because en.wikipedia.org did not resolve; L6 depth/size rows not found, two other L6 items cited. -> worlds/README.md, LITERATURE.md section N
+- DECIDED W1 (Sonnet): map note written, every entry carries status and read status; most entries MEM or search result because en.wikipedia.org did not resolve; L6 depth/size rows not found, two other L6 items cited. -> math/worlds/README.md, LITERATURE.md section N
 - TAKEN W3
-- DECIDED W3 (Sonnet): routes written for magnification, locality, algorithms-to-lower-bounds, Karp-Lipton, meta-complexity; nearest route is magnification, gap = polynomial factor N^eps plus wrong problem and model; no route applies; LITERATURE.md section G rows and a section J line added. -> worlds/routes.md
+- DECIDED W3 (Sonnet): routes written for magnification, locality, algorithms-to-lower-bounds, Karp-Lipton, meta-complexity; nearest route is magnification, gap = polynomial factor N^eps plus wrong problem and model; no route applies; LITERATURE.md section G rows and a section J line added. -> math/worlds/routes.md

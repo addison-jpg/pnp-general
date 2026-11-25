@@ -19,9 +19,9 @@ asteroid/                                    the language, all of it
 proofs/                                      the Lean developments
   main/         today lean/
   w951/         today one-not/lean (minus AsteroidLang)
-research/                                    one-not (non-Lean parts), notes/, philosophy/, worlds/, cpu/, data/, tools/
+research/                                    one-not (non-Lean parts), workshop/notes/, philosophy/, math/worlds/, cpu/, data/, tools/
   LITERATURE.md  SYNTHESIS.md  NAMES.md (generated)  MST.json (generated)
-work/                                        boards: BOARD.md, boards/, boards.py, ath_prompts/, ath_prompt_method.md
+work/                                        boards: BOARD.md, boards/, boards.py, workshop/ath_prompts/, ath_prompt_method.md
 ```
 
 Root goes from ~30 entries to 11.

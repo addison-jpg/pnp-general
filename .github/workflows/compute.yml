@@ -3,7 +3,7 @@
 # other specs it `needs`. The workflow plans the DAG (at most 4 levels), runs each level after the one below it, each spec as N shard
 # jobs plus a merge (compute-job.yml), and hands every merged output to the specs that need it. One spec with no needs runs as before
 # (artifacts `shard-i` and `merged`). Trigger: Actions > compute > Run workflow with `spec` = a path in the repo, or push to a
-# compute/** branch (spec at compute/job.json on that branch).
+# workshop/compute/** branch (spec at compute/job.json on that branch).
 # Writes: only the last job, `publish`, has a write token, and it pushes one commit to the `compute-cache` branch (cache packs and
 # results), never to main. No release, no tag, no PR, no comment (QUIET).
 name: compute
@@ -13,13 +13,13 @@ on:
       spec:
         description: path to a job spec in the repo (its `needs` are run first)
         required: true
-        default: compute/specs/fano_slack.json
+        default: workshop/compute/specs/fano_slack.json
       runner:
         description: runs-on label of the shard jobs (a GPU runner goes here; paid runners are the owner's decision)
         required: false
         default: ubuntu-latest
   push:
-    branches: ['compute/**']
+    branches: ['workshop/compute/**']
 permissions:
   contents: read
 jobs:

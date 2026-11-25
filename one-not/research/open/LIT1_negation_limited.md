@@ -145,7 +145,7 @@ against base = n·q ≈ n^{3/2}. Hence:
 
 - with no limit on NOT gates the bound Σ(|S_w| − 1) fails for all large q;
 - pushing the NOT gates to the inputs (double rail, 2s + n gates, n NOT gates; the step is
-  already in `notes/beyond-one-not.md` S4) gives failure of `BoolSumNot k` for k ≥ n, so
+  already in `workshop/notes/beyond-one-not.md` S4) gives failure of `BoolSumNot k` for k ≥ n, so
   **`L105 = ∀ k, BoolSumNot k` is false**;
 - with the Beals–Nishino–Tanaka inverter (O(n log n) gates, ⌈log₂(n+1)⌉ NOT gates; DIMACS TR 95-31
   abstract seen through a search summary only, paper not opened) failure already at

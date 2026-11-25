@@ -1,6 +1,6 @@
-# Gravity, from essays/knowing.md. Heaven full of people is earth: every way out falls back to others.
+# Gravity, from culture/essays/knowing.md. Heaven full of people is earth: every way out falls back to others.
 # Each escape route is computed from the one before it, and each must equal OR(people, ground).
 let gravity = load gravity.bench
 show gravity
 claim correct(gravity)            # every escape route is bound: it returns to people or ground, on all 4 inputs
-record essays essays checked-finite "gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth."
+record culture/essays essays checked-finite "gravity.ath: every escape route in culture/essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth."

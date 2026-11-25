@@ -1,3 +1,1 @@
-{"id": "8a6ef20d", "kind": "fingerprint", "program": "routing", "radius": 0.5, "runner": "python3 -I routing/check.py", "schema": 1, "seq": [1, 3, 7, 13], "state": "DATA", "text": "routing: max over connected n-stop graphs of hitting time / hop distance, n=2..5"}
-{"id": "c74dedac", "kind": "fingerprint", "program": "routing", "radius": 0.5, "runner": "python3 -I routing/check.py", "schema": 1, "seq": [0, 1, 3, 6], "state": "DATA", "text": "routing: max shortcuts of contraction in order 0..n-1, weights 1..3, n=2..5"}
-{"by": [], "id": "1d67bc35", "kind": "level", "program": "routing", "radius": 1.0, "retests": [], "schema": 1, "text": "Routing: planned routes against haphazard buses", "who": null, "word": "open"}
+{"by": [], "id": "de8fc05c", "kind": "level", "program": "routing", "radius": 1.0, "retests": [], "schema": 1, "text": "Routing: planned routes against haphazard buses", "who": null, "word": "open"}

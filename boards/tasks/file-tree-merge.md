@@ -10,7 +10,7 @@
 ## Lines (append only: time, who, tag, one line)
 
 - 18:30 observer [DONE] `one-not/lean`: 75 leaf files -> 14 (8e37776); each old file is `section <OldName>` in its new file; `lake build PEqualNP` passes, same 9 sorry declarations (`no_minCE` + 8 PayDraft drafts in `W951/MiscSmall.lean`).
-- 18:30 observer [DONE] READMEs 19 -> 5 (ab32b7c); owner's line and quotes verbatim; long front page kept whole in `notes/front-page-2026-11-24.md`.
+- 18:30 observer [DONE] READMEs 19 -> 5 (ab32b7c); owner's line and quotes verbatim; long front page kept whole in `workshop/notes/front-page-2026-11-24.md`.
 - 18:35 observer [DONE] `MST.json` regenerated (0b4a0eb).
 - 18:35 observer [DECIDED] `lean/` (689 leaves, about 295,000 lines) and py (57 leaf scripts) are NOT merged: re-building 295,000 lines is too expensive, and scripts are run by name. They are mapped in `MST.json`. OPEN for anyone with a built `lean/` tree.
 - 18:35 observer [DATA] If your file imported one of the 75 old `one-not/lean` modules, import the new file (old name = section name inside it).

@@ -107,7 +107,7 @@ A proof of 951 must use inputs of weight ≥ 2.
 
 ## G. Fixed-degree bounds, range avoidance, magnification, meta-complexity
 
-All in `notes/general/research-lit-unrestricted.md`.
+All in `workshop/notes/general/research-lit-unrestricted.md`.
 
 - Kannan 1982 (Σ2P ∩ Π2P ⊄ SIZE(n^k); MEM, full text not reached; circuit half checked in Lean:
   `SizeHierarchy.size_hierarchy`); Cai 2007; Vinodchandran 2005; Santhanam 2007.
@@ -117,27 +117,27 @@ All in `notes/general/research-lit-unrestricted.md`.
   (hardness magnification and the locality barrier).
 - Hirahara FOCS 2018; Liu and Pass FOCS 2020 (meta-complexity).
 
-Added by seat W3 (worlds-map, 2026-11-25), routes in `worlds/routes.md`; read statuses are a tool-fetched abstract page or a search result, never a full read:
+Added by seat W3 (worlds-map, 2026-11-25), routes in `math/worlds/routes.md`; read statuses are a tool-fetched abstract page or a search result, never a full read:
 
 | Source | What it gives | Status | Note |
 |---|---|---|---|
-| Oliveira and Santhanam, "Hardness Magnification for Natural Problems", FOCS 2018, ECCC TR18-139 | MCSP[2^√n] without linear-size formulas on average gives NP not in poly-size formulas; MKtP needing N^{1+δ} circuits gives EXP not in SIZE(poly) | ABS (fetched) | `worlds/routes.md` |
-| Chen, Jin, Williams, "Hardness Magnification for all Sparse NP Languages", FOCS 2019, ECCC TR19-118 | a 2^{n^{o(1)}}-sparse NP language outside Circuit[n^{1+ε}] gives NP not in Circuit[n^k] for every k; analogues for formulas, branching programs, AC0[6], TC0; search-MCSP formula size n^{3+ε} gives Parity-P not in NC1 | ABS (fetched) | `worlds/routes.md` |
-| Chen, Hirahara, Oliveira, Pich, Rajgopal, Santhanam, "Beyond Natural Proofs: Hardness Magnification and Locality", ITCS 2020, JACM 2022, ECCC TR19-168, arXiv 1911.08297 | the locality barrier: magnification problems have circuits with small fan-in oracle gates, and weak-model techniques extend to such oracles | ABS (fetched) | `worlds/routes.md` |
-| Oliveira, Pich, Santhanam, "Hardness magnification near state-of-the-art lower bounds", Theory of Computing 2021 | thresholds near known bounds in several models | TLDR (search result) | `worlds/routes.md` |
-| Murray and Williams, "Circuit lower bounds for nondeterministic quasi-polytime: an easy witness lemma for NP and NQP", STOC 2018, ECCC TR17-188 | NQP not in ACC∘THR circuits of size n^{log^k n}, via SAT algorithms and an easy witness lemma | ABS (fetched) | `worlds/routes.md` |
-| Williams, "Non-uniform ACC circuit lower bounds", CCC 2011, JACM 2014 | NEXP not in ACC0, via a faster ACC0 circuit-SAT algorithm | MEM | `worlds/routes.md` |
-| McKay, Murray, Williams, STOC 2019 | weak compression lower bounds imply NP / EXP separations | CITED (statement from memory) | `worlds/routes.md` |
-| Liu and Pass, "On one-way functions and Kolmogorov complexity", FOCS 2020 | one-way functions iff K^t mildly hard on average | TLDR (search result) | `worlds/routes.md` |
-| Hirahara, FOCS 2018; FOCS 2022 | one-way functions and NP-hardness of approximating distributional Kolmogorov complexity; NP-hardness of partial-function MCSP (randomized reductions) | TLDR (search result) | `worlds/routes.md` |
-| Ilango, "Constant depth formula and partial function versions of MCSP are hard", FOCS 2020 | hardness of partial-truth-table MCSP and constant-depth-formula MCSP | TLDR (search result) | `worlds/routes.md` |
+| Oliveira and Santhanam, "Hardness Magnification for Natural Problems", FOCS 2018, ECCC TR18-139 | MCSP[2^√n] without linear-size formulas on average gives NP not in poly-size formulas; MKtP needing N^{1+δ} circuits gives EXP not in SIZE(poly) | ABS (fetched) | `math/worlds/routes.md` |
+| Chen, Jin, Williams, "Hardness Magnification for all Sparse NP Languages", FOCS 2019, ECCC TR19-118 | a 2^{n^{o(1)}}-sparse NP language outside Circuit[n^{1+ε}] gives NP not in Circuit[n^k] for every k; analogues for formulas, branching programs, AC0[6], TC0; search-MCSP formula size n^{3+ε} gives Parity-P not in NC1 | ABS (fetched) | `math/worlds/routes.md` |
+| Chen, Hirahara, Oliveira, Pich, Rajgopal, Santhanam, "Beyond Natural Proofs: Hardness Magnification and Locality", ITCS 2020, JACM 2022, ECCC TR19-168, arXiv 1911.08297 | the locality barrier: magnification problems have circuits with small fan-in oracle gates, and weak-model techniques extend to such oracles | ABS (fetched) | `math/worlds/routes.md` |
+| Oliveira, Pich, Santhanam, "Hardness magnification near state-of-the-art lower bounds", Theory of Computing 2021 | thresholds near known bounds in several models | TLDR (search result) | `math/worlds/routes.md` |
+| Murray and Williams, "Circuit lower bounds for nondeterministic quasi-polytime: an easy witness lemma for NP and NQP", STOC 2018, ECCC TR17-188 | NQP not in ACC∘THR circuits of size n^{log^k n}, via SAT algorithms and an easy witness lemma | ABS (fetched) | `math/worlds/routes.md` |
+| Williams, "Non-uniform ACC circuit lower bounds", CCC 2011, JACM 2014 | NEXP not in ACC0, via a faster ACC0 circuit-SAT algorithm | MEM | `math/worlds/routes.md` |
+| McKay, Murray, Williams, STOC 2019 | weak compression lower bounds imply NP / EXP separations | CITED (statement from memory) | `math/worlds/routes.md` |
+| Liu and Pass, "On one-way functions and Kolmogorov complexity", FOCS 2020 | one-way functions iff K^t mildly hard on average | TLDR (search result) | `math/worlds/routes.md` |
+| Hirahara, FOCS 2018; FOCS 2022 | one-way functions and NP-hardness of approximating distributional Kolmogorov complexity; NP-hardness of partial-function MCSP (randomized reductions) | TLDR (search result) | `math/worlds/routes.md` |
+| Ilango, "Constant depth formula and partial function versions of MCSP are hard", FOCS 2020 | hardness of partial-truth-table MCSP and constant-depth-formula MCSP | TLDR (search result) | `math/worlds/routes.md` |
 
 ## H. The problem statement and the barriers
 
 | Source | What it gives | Status | Note |
 |---|---|---|---|
-| Cook, "The P versus NP Problem" (Clay official description) | the official statement; compared line by line with `Defs/Base.lean`; Propositions 2, 3 | TXT (verbatim quotes) | `notes/general/clay-official-statement.md`, `research-pnp-defs` |
-| Baker, Gill, Solovay 1975 | relativization | checked rows L-lib-061 / 062 | `notes/checker/note-2-physics-models-and-the-three-barriers.md` |
+| Cook, "The P versus NP Problem" (Clay official description) | the official statement; compared line by line with `Defs/Base.lean`; Propositions 2, 3 | TXT (verbatim quotes) | `workshop/notes/general/clay-official-statement.md`, `research-pnp-defs` |
+| Baker, Gill, Solovay 1975 | relativization | checked rows L-lib-061 / 062 | `workshop/notes/checker/note-2-physics-models-and-the-three-barriers.md` |
 | Aaronson and Wigderson 2009 | algebrization | checked rows L-lib-065 / 076 | same |
 | Razborov and Rudich 1997 | natural proofs | checked row L-lib-086 | same |
 | Razborov 1987; Smolensky 1987 | polynomial method: depth-restricted only, no exact gate counts | MEM | `research-negation-influence` |
@@ -145,7 +145,7 @@ Added by seat W3 (worlds-map, 2026-11-25), routes in `worlds/routes.md`; read st
 ## I. Quantum gravity and complexity
 
 The full reference list of the quantum gravity program, kept here so that no cut of a README can drop it. The map from physics models to the three barriers is in
-`notes/checker/note-2-physics-models-and-the-three-barriers.md`.
+`workshop/notes/checker/note-2-physics-models-and-the-three-barriers.md`.
 
 - J. D. Bekenstein, Universal upper bound on the entropy-to-energy ratio for bounded systems,
   Phys. Rev. D 23 (1981) 287.
@@ -232,7 +232,7 @@ Ranking of the next formal targets: `lean/PEqualNP/QuantumGravity/FRONTIER.md`. 
 | Tsukiji, "Circuit Complexity of An Explicitly Defined First Slice Function", RIMS Kokyuroku 906 (1995) 81-88, file 0906-11.pdf, hdl:2433/59458 = SAME paper as row 38 (confirmed from repository metadata). Introduction, p. 81: constant-slice functions have C_{∨,∧}(f) = Θ(C_{∨,∧,¬}(f)), but "this relation, generally, does not hold for a Boolean sum" (the example after "e.g." is garbled in the text extraction; not read) | = Tsukiji, RIMS Kokyuroku 906 (1995) 81-88, hdl:2433/59458, row above (set circuits for 1-slices of Boolean sums: SC = C + Θ(n)); the 'does not hold for a Boolean sum' remark is about slices, not a C4 conjecture ADDED (research-desktop): an unsupported remark, no proof, no citation for it: a Boolean sum can have nonlinear monotone lower bounds ([6], [5,7] = (s,t)-disjointness), and the remark suggests nothing about a non-monotone upper bound. It is not a statement of C4 and not a refutation of it. Adds nothing to row 38 except this quote | TXT (read earlier, `research-lit`); TXT (intro re-read; same paper as row 38) (`research-literature-c4`) |
 | Two web searches, 2026-11-24 | no paper found that states C4 as a conjecture or proves or refutes it | absence of a hit is not evidence of absence |
 | Result of task literature-c4 (research, 2026-11-24) | none of the three arXiv papers nor the Kyoto paper states C4 as a conjecture or proves or refutes it; the nearest printed items stay Jukna and Sergeev 2013 §7 (open question) and Blum TR24-179 (open target). The XOR/OR and SUM/OR separations are in other bases (no AND / NOT) and for non-rectangle-free matrices | TXT |
-| Jukna, "On the minimum number of negations leading to super-polynomial savings", Inform. Process. Lett. 89 (2004) 71-74 (preprint ECCC TR01-058) | explicit monotone multi-output functions in P need superpolynomial size with at most log n − O(log log n) NOT gates: strong bounds are provable almost up to the Markov rung, by monotone methods, for SOME functions (not Boolean sums). Used in `notes/beyond-one-not.md` (S4, Barriers) | ABS (abstract on the author's page, seen through one web search result; paper NOT read) (`beyond-one-not`) |
+| Jukna, "On the minimum number of negations leading to super-polynomial savings", Inform. Process. Lett. 89 (2004) 71-74 (preprint ECCC TR01-058) | explicit monotone multi-output functions in P need superpolynomial size with at most log n − O(log log n) NOT gates: strong bounds are provable almost up to the Markov rung, by monotone methods, for SOME functions (not Boolean sums). Used in `workshop/notes/beyond-one-not.md` (S4, Barriers) | ABS (abstract on the author's page, seen through one web search result; paper NOT read) (`beyond-one-not`) |
 | Beals, Nishino, Tanaka, "On the complexity of negation-limited Boolean networks", SIAM J. Comput. 27 (1998) 1334-1347; Morizumi and Suzuki (IEICE Trans. E93-D, 2010) | inverter of size O(n log n), depth O(log n), with ⌈log(n+1)⌉ NOT gates; later a linear-size inverter with log^{1+o(1)} n NOT gates. Gives: rung ⌈log₂(n+1)⌉ equals all circuits up to a factor 2 and an additive O(n log n), so on dense designs (`base` ≈ n^{3/2}) that rung is a superlinear statement about all circuits (S4) | search result NOT read (one web search; the formula 2·size + O(n log n) is the standard reading of the inverter, not confirmed from the paper) (`beyond-one-not`) |
 | Result of task beyond-one-not (research agent of main, 2026-11-24; three web searches) | no printed statement of `BoolSumNot t` for t = 2, of an additive savings bound f(t) for Boolean sums, or of a t-world certificate game. The printed accountings for t NOT gates lose 1 gate per NOT (Morizumi, Tarui, Iwama: parity) or a factor about 2^t (Amano and Maruoka; Blais et al.; Jukna and Lingas); a factor 2^t is superlinear on designs only for t < ½ log₂ n | absence of a hit is not evidence of absence |
 
@@ -284,7 +284,7 @@ Notation: slack(Q) as in `one-not/tools/search/core.py`; F = multilinear extensi
 ## K. Circuit file formats
 
 Serves the asteroid language (task asteroid-bench). The format in use is ISCAS `.bench`
-(`asteroid/BENCH.md`); AIGER is an export only (`notes/aiger.md`). Status **SR** = seen in a web
+(`asteroid/BENCH.md`); AIGER is an export only (`workshop/notes/aiger.md`). Status **SR** = seen in a web
 search result only, the source itself was not opened (the hosts were not reachable from the
 container on 2026-11-24).
 
@@ -293,10 +293,10 @@ container on 2026-11-24).
 | F. Brglez, H. Fujiwara, "A neutral netlist of 10 combinational benchmark circuits and a target translator in Fortran", Proc. IEEE ISCAS, 1985 | the ISCAS-85 circuits; distributed as a numeric node list with a Fortran translator; no formal grammar | CITED; SR (title, authors, year, "never formally documented" from a search summary of ddd.fit.cvut.cz/www/prj/Benchmarks/iscas85.pdf and s2.smu.edu iscas85_format.pdf); page numbers not confirmed | `asteroid/BENCH.md` |
 | F. Brglez, D. Bryan, K. Kozminski, "Combinational profiles of sequential benchmark circuits", Proc. IEEE ISCAS, May 1989, pp. 1929-1934, doi:10.1109/ISCAS.1989.100747 | the ISCAS-89 circuits | CITED; SR (pages and DOI from a search summary of ddd.fit.cvut.cz ISCAS89.bib and scilit.com) | `asteroid/BENCH.md` |
 | `.bench` syntax in practice: ABC `read_bench` / `write_bench` (`src/base/io/ioReadBench.c`, `ioWriteBench.c`); the parser library lorina ("BENCH parser", lorina.readthedocs.io); a description page with the c17 example (sportlab.usc.edu, benchmark-project/bench.html); Atalanta | `INPUT(x)`, `OUTPUT(x)`, `name = GATE(a, b)`, `#` comments; no grammar in the sources cited | SR for ABC, lorina and the description page (none opened); Atalanta: cited, not opened | the grammar in `asteroid/BENCH.md` is asteroid's own statement of the format |
-| A. Biere, "The AIGER And-Inverter Graph (AIG) Format Version 20071012", FMV Reports 07/1, Johannes Kepler University Linz, 2007; specification text fmv.jku.at/aiger/FORMAT.aiger | header `aag M I L O A`, literals 2v / 2v+1, binary `aig` | SR (title and report number); cited, not opened (fmv.jku.at unreachable) | `notes/aiger.md` |
-| A. Biere, K. Heljanko, S. Wieringa, "AIGER 1.9 And Beyond", FMV Reports 11/2, Johannes Kepler University Linz, 2011 | bad-state, constraint, justice and fairness sections | SR (title and report number); cited, not opened | `notes/aiger.md` |
-| AIGER in competitions: the hardware model checking competition (HWMCC, from 2007); SYNTCOMP: S. Jacobs et al., "The First Reactive Synthesis Competition (SYNTCOMP 2014)", arXiv:1506.08726; S. Jacobs, "Extended AIGER Format for Synthesis", arXiv:1405.5793 | AIGER is the input format of both | SR (titles and arXiv numbers); not opened | `notes/aiger.md` |
-| Lean's verified AIG: `Std.Sat.AIG` (Lean core, from LeanSAT; used by `bv_decide`) | AND nodes with an inversion flag on each input: the AIGER data model, with proofs | cited, not opened; the module was not opened in this session | `notes/aiger.md`; target of a future proof that `toAag` keeps the function |
+| A. Biere, "The AIGER And-Inverter Graph (AIG) Format Version 20071012", FMV Reports 07/1, Johannes Kepler University Linz, 2007; specification text fmv.jku.at/aiger/FORMAT.aiger | header `aag M I L O A`, literals 2v / 2v+1, binary `aig` | SR (title and report number); cited, not opened (fmv.jku.at unreachable) | `workshop/notes/aiger.md` |
+| A. Biere, K. Heljanko, S. Wieringa, "AIGER 1.9 And Beyond", FMV Reports 11/2, Johannes Kepler University Linz, 2011 | bad-state, constraint, justice and fairness sections | SR (title and report number); cited, not opened | `workshop/notes/aiger.md` |
+| AIGER in competitions: the hardware model checking competition (HWMCC, from 2007); SYNTCOMP: S. Jacobs et al., "The First Reactive Synthesis Competition (SYNTCOMP 2014)", arXiv:1506.08726; S. Jacobs, "Extended AIGER Format for Synthesis", arXiv:1405.5793 | AIGER is the input format of both | SR (titles and arXiv numbers); not opened | `workshop/notes/aiger.md` |
+| Lean's verified AIG: `Std.Sat.AIG` (Lean core, from LeanSAT; used by `bv_decide`) | AND nodes with an inversion flag on each input: the AIGER data model, with proofs | cited, not opened; the module was not opened in this session | `workshop/notes/aiger.md`; target of a future proof that `toAag` keeps the function |
 | University of California, Berkeley, "Berkeley Logic Interchange Format (BLIF)", 1992 (distributed with SIS) | gates are `.names` truth-table covers | cited, not opened | `asteroid/BENCH.md`, Differences |
 
 ## L. Limits, flag algebras and stability (the top level of BOARD.md "THREE LEVELS")
@@ -419,47 +419,47 @@ and numbers are from the seat's memory and should be checked before being relied
 
 ## N. Worlds map (task worlds-map, seat W1)
 
-Added by seat W1, 2026-11-25. A map, not progress on P vs NP. Entries in `worlds/README.md`. en.wikipedia.org was not reachable; nothing was opened in full.
+Added by seat W1, 2026-11-25. A map, not progress on P vs NP. Entries in `math/worlds/README.md`. en.wikipedia.org was not reachable; nothing was opened in full.
 
 | Source | What it gives | Status | Note |
 |---|---|---|---|
-| Hartmanis and Stearns, Trans. AMS 117 (1965) 285-306; Stearns, Hartmanis, Lewis (1965); Hennie and Stearns (1966) | time and space hierarchy theorems: infinitely many strict levels | MEM | `worlds/README.md` |
-| Impagliazzo, "A personal view of average-case complexity", IEEE Structure in Complexity Theory (1995) | the five worlds | search result (secondary summaries) | `worlds/README.md` |
-| Karp and Lipton, STOC 1980 | NP in P/poly implies PH collapses to level 2 | MEM | `worlds/README.md` |
-| Aaronson, "Is P versus NP formally independent?", BEATCS 81 (2003) | independence from ZFC discussed | search result | `worlds/README.md` |
-| Aaronson and Wigderson, STOC 2008; ACM TOCT 1(1) 2009 | algebrization barrier | ABS (via search) | `worlds/README.md` |
-| Impagliazzo and Paturi, CCC 1999; JCSS 62 (2001) | ETH, SETH | search result | `worlds/README.md` |
-| Levin, Probl. Inf. Transm. 9 (1973); Ladner, JACM 22 (1975) | universal search (galactic P = NP); intermediate degrees if P != NP | MEM | `worlds/README.md` |
-| Razborov, Dokl. Akad. Nauk SSSR 281 (1985); Tardos, Combinatorica 8 (1988) | monotone CLIQUE bound; monotone vs general gap | MEM | `worlds/README.md` |
+| Hartmanis and Stearns, Trans. AMS 117 (1965) 285-306; Stearns, Hartmanis, Lewis (1965); Hennie and Stearns (1966) | time and space hierarchy theorems: infinitely many strict levels | MEM | `math/worlds/README.md` |
+| Impagliazzo, "A personal view of average-case complexity", IEEE Structure in Complexity Theory (1995) | the five worlds | search result (secondary summaries) | `math/worlds/README.md` |
+| Karp and Lipton, STOC 1980 | NP in P/poly implies PH collapses to level 2 | MEM | `math/worlds/README.md` |
+| Aaronson, "Is P versus NP formally independent?", BEATCS 81 (2003) | independence from ZFC discussed | search result | `math/worlds/README.md` |
+| Aaronson and Wigderson, STOC 2008; ACM TOCT 1(1) 2009 | algebrization barrier | ABS (via search) | `math/worlds/README.md` |
+| Impagliazzo and Paturi, CCC 1999; JCSS 62 (2001) | ETH, SETH | search result | `math/worlds/README.md` |
+| Levin, Probl. Inf. Transm. 9 (1973); Ladner, JACM 22 (1975) | universal search (galactic P = NP); intermediate degrees if P != NP | MEM | `math/worlds/README.md` |
+| Razborov, Dokl. Akad. Nauk SSSR 281 (1985); Tardos, Combinatorica 8 (1988) | monotone CLIQUE bound; monotone vs general gap | MEM | `math/worlds/README.md` |
 
 ## O. Languages, logics and maps between them (task language unification, Fable seat)
 
-Added 2026-11-25. Map and restatement only: `worlds/LANGUAGE.md`, `lean/PEqualNP/Worlds/Descriptive.lean`. Nothing was read in full in this seat.
+Added 2026-11-25. Map and restatement only: `math/worlds/LANGUAGE.md`, `lean/PEqualNP/Worlds/Descriptive.lean`. Nothing was read in full in this seat.
 
 | Source | What it gives | Status | Note |
 |---|---|---|---|
-| Fagin, "Generalized first-order spectra and polynomial-time recognizable sets", SIAM-AMS Proc. 7 (1974) | NP = existential second-order logic | MEM | `worlds/LANGUAGE.md` |
-| Immerman, "Relational queries computable in polynomial time", STOC 1982; Inf. Control 68 (1986) | on ordered finite structures P = FO(LFP) | MEM | `worlds/LANGUAGE.md` |
-| Vardi, "The complexity of relational query languages", STOC 1982 | the same capture of P, independently | MEM | `worlds/LANGUAGE.md` |
-| Immerman, *Descriptive Complexity*, Springer 1999 | textbook; the encoding of structures as strings | MEM (not opened) | `worlds/LANGUAGE.md` |
-| Libkin, *Elements of Finite Model Theory*, Springer 2004 | textbook; games, locality, fixed point logics, capture theorems | MEM (not opened) | `worlds/LANGUAGE.md` |
-| Grädel, Kolaitis, Libkin, Marx, Spencer, Vardi, Venema, Weinstein, *Finite Model Theory and Its Applications*, Springer 2007 | textbook; Grädel: SO-Horn captures P on ordered structures | MEM (not opened) | `worlds/LANGUAGE.md` |
-| Abiteboul and Vianu, STOC 1991 | FO(LFP) = FO(PFP) iff P = PSPACE | MEM | `worlds/LANGUAGE.md` |
-| Senellart, `descriptive-complexity` (Lean 4 library, v1.5.0, Mathlib v4.36.0, github.com/PierreSenellart/descriptive-complexity); Senellart and Gnatenko, "Descriptive Complexity in Lean: Completeness by First-Order Reductions", arXiv 2609.18261 (2026) | descriptive complexity in Lean on Mathlib's ModelTheory; 73 completeness results; bridges to `Turing.FinTM2`; whether string-level Fagin and Immerman–Vardi are proved or assumed is unclear from the page | fetched page summary; source not read | `worlds/LANGUAGE.md` section 0. PRIOR ART for `Descriptive.lean` |
-| Montague, "The proper treatment of quantification in ordinary English" (1973); "Universal grammar" (1970) | a fragment of English translated compositionally into intensional logic | MEM | `worlds/LANGUAGE.md` |
-| Lambek, "The mathematics of sentence structure", Amer. Math. Monthly 65 (1958); pregroups (1999) | grammar as a type calculus | MEM | `worlds/LANGUAGE.md` |
-| Joshi (1985), mildly context-sensitive languages; Shieber, "Evidence against the context-freeness of natural language", Linguistics and Philosophy 8 (1985) | natural-language syntax beyond context-free, within polynomial-time classes; a 2026 Computational Linguistics article disputes Shieber | MEM (Joshi); search summary (Shieber, the dispute) | `worlds/LANGUAGE.md` |
-| Coecke, Sadrzadeh, Clark, "Mathematical foundations for a compositional distributional model of meaning", arXiv 1003.4394; Linguistic Analysis 36 (journal year given as 2010 or 2011) | DisCoCat: pregroup grammar to vector spaces, sentence meaning as tensor contraction | ABS (search summary) | `worlds/LANGUAGE.md` |
-| Mikolov, Le, Sutskever, "Exploiting similarities among languages for machine translation" (2013); Conneau et al., "Word translation without parallel data" (2017); Schönemann, Psychometrika 31 (1966) | linear, then orthogonal (Procrustes) maps between word-vector spaces of two languages | search summary of secondary sources; arXiv numbers 1309.4168 and 1710.04087 from memory, unverified | `worlds/LANGUAGE.md` |
-| Howard, "The formulae-as-types notion of construction" (1969, printed 1980); Curry (1934) | proofs as programs | MEM | `worlds/LANGUAGE.md` |
+| Fagin, "Generalized first-order spectra and polynomial-time recognizable sets", SIAM-AMS Proc. 7 (1974) | NP = existential second-order logic | MEM | `math/worlds/LANGUAGE.md` |
+| Immerman, "Relational queries computable in polynomial time", STOC 1982; Inf. Control 68 (1986) | on ordered finite structures P = FO(LFP) | MEM | `math/worlds/LANGUAGE.md` |
+| Vardi, "The complexity of relational query languages", STOC 1982 | the same capture of P, independently | MEM | `math/worlds/LANGUAGE.md` |
+| Immerman, *Descriptive Complexity*, Springer 1999 | textbook; the encoding of structures as strings | MEM (not opened) | `math/worlds/LANGUAGE.md` |
+| Libkin, *Elements of Finite Model Theory*, Springer 2004 | textbook; games, locality, fixed point logics, capture theorems | MEM (not opened) | `math/worlds/LANGUAGE.md` |
+| Grädel, Kolaitis, Libkin, Marx, Spencer, Vardi, Venema, Weinstein, *Finite Model Theory and Its Applications*, Springer 2007 | textbook; Grädel: SO-Horn captures P on ordered structures | MEM (not opened) | `math/worlds/LANGUAGE.md` |
+| Abiteboul and Vianu, STOC 1991 | FO(LFP) = FO(PFP) iff P = PSPACE | MEM | `math/worlds/LANGUAGE.md` |
+| Senellart, `descriptive-complexity` (Lean 4 library, v1.5.0, Mathlib v4.36.0, github.com/PierreSenellart/descriptive-complexity); Senellart and Gnatenko, "Descriptive Complexity in Lean: Completeness by First-Order Reductions", arXiv 2609.18261 (2026) | descriptive complexity in Lean on Mathlib's ModelTheory; 73 completeness results; bridges to `Turing.FinTM2`; whether string-level Fagin and Immerman–Vardi are proved or assumed is unclear from the page | fetched page summary; source not read | `math/worlds/LANGUAGE.md` section 0. PRIOR ART for `Descriptive.lean` |
+| Montague, "The proper treatment of quantification in ordinary English" (1973); "Universal grammar" (1970) | a fragment of English translated compositionally into intensional logic | MEM | `math/worlds/LANGUAGE.md` |
+| Lambek, "The mathematics of sentence structure", Amer. Math. Monthly 65 (1958); pregroups (1999) | grammar as a type calculus | MEM | `math/worlds/LANGUAGE.md` |
+| Joshi (1985), mildly context-sensitive languages; Shieber, "Evidence against the context-freeness of natural language", Linguistics and Philosophy 8 (1985) | natural-language syntax beyond context-free, within polynomial-time classes; a 2026 Computational Linguistics article disputes Shieber | MEM (Joshi); search summary (Shieber, the dispute) | `math/worlds/LANGUAGE.md` |
+| Coecke, Sadrzadeh, Clark, "Mathematical foundations for a compositional distributional model of meaning", arXiv 1003.4394; Linguistic Analysis 36 (journal year given as 2010 or 2011) | DisCoCat: pregroup grammar to vector spaces, sentence meaning as tensor contraction | ABS (search summary) | `math/worlds/LANGUAGE.md` |
+| Mikolov, Le, Sutskever, "Exploiting similarities among languages for machine translation" (2013); Conneau et al., "Word translation without parallel data" (2017); Schönemann, Psychometrika 31 (1966) | linear, then orthogonal (Procrustes) maps between word-vector spaces of two languages | search summary of secondary sources; arXiv numbers 1309.4168 and 1710.04087 from memory, unverified | `math/worlds/LANGUAGE.md` |
+| Howard, "The formulae-as-types notion of construction" (1969, printed 1980); Curry (1934) | proofs as programs | MEM | `math/worlds/LANGUAGE.md` |
 
 ## P. The framing of P vs NP, and continuous formulations (task question-the-framing, seat FR1)
 
-Added 2026-11-25. Note: `worlds/FRAMING.md`. Only arXiv resolved among author pages; scottaaronson.com, scottaaronson.blog and users.cs.duke.edu did not resolve. One text read (Aaronson 1108.1791). Earlier rows already cover Aaronson 2003 (§N), Impagliazzo (§N), Fagin (§O), Hatami–Norine and Razborov 2007 (§L).
+Added 2026-11-25. Note: `math/worlds/FRAMING.md`. Only arXiv resolved among author pages; scottaaronson.com, scottaaronson.blog and users.cs.duke.edu did not resolve. One text read (Aaronson 1108.1791). Earlier rows already cover Aaronson 2003 (§N), Impagliazzo (§N), Fagin (§O), Hatami–Norine and Razborov 2007 (§L).
 
 | Source | What it gives | Status | Note |
 |---|---|---|---|
-| Aaronson, "Why philosophers should care about computational complexity", arXiv 1108.1791 (2011); in *Computability: Turing, Gödel, Church, and Beyond*, MIT Press 2013 | §3: the n^10000 vs 1.00000001^n objection stated; §5.1 Cobham axioms; §5.2 asymptotics have "explanatory force until proven otherwise"; §12.1 four criticisms (asymptotic, unproved, serial TM, worst case) and the burden-of-proof reply; fn. 73: arithmetic statements vs CH | TXT (§3, §5.2, §12.1, fn. 73 read) | `worlds/FRAMING.md` §1b, §2c, §2d, §2f |
+| Aaronson, "Why philosophers should care about computational complexity", arXiv 1108.1791 (2011); in *Computability: Turing, Gödel, Church, and Beyond*, MIT Press 2013 | §3: the n^10000 vs 1.00000001^n objection stated; §5.1 Cobham axioms; §5.2 asymptotics have "explanatory force until proven otherwise"; §12.1 four criticisms (asymptotic, unproved, serial TM, worst case) and the burden-of-proof reply; fn. 73: arithmetic statements vs CH | TXT (§3, §5.2, §12.1, fn. 73 read) | `math/worlds/FRAMING.md` §1b, §2c, §2d, §2f |
 | Aaronson, "Is P versus NP formally independent?", BEATCS 81 (Oct 2003) | independence discussed; ends with reflections on when questions have definite answers | search summary only (PDF hosts unreachable); also row in §N | §1d |
 | Ben-David and Halevi, "On the independence of P versus NP", Technion TR (1991/92) | independence by standard growth-rate techniques would give near-polynomial algorithms for NP | search summary (FOM post) | §1d |
 | Razborov, "Unprovability of lower bounds on circuit size in certain fragments of bounded arithmetic", Izvestiya Math. 59 (1995) | circuit lower bounds unprovable in S^1_2-type fragments, under crypto assumptions | MEM | §1d |
@@ -493,20 +493,20 @@ Added 2026-11-25. Note: `worlds/FRAMING.md`. Only arXiv resolved among author pa
 | Source | Claim used | Read status | Where used |
 |---|---|---|---|
 | Lawvere, "Diagonal arguments and cartesian closed categories", LNM 92 (1969) | fixed point theorem | memory, not opened | `Lateral/Lawvere.lean` |
-| Yanofsky, "A universal approach to self-referential paradoxes, incompleteness and fixed points", Bull. Symb. Logic 9 (2003); arXiv math/0305282 | one theorem covers Cantor, Russell, halting, Godel, Tarski | memory, not opened | `lateral/README.md` |
+| Yanofsky, "A universal approach to self-referential paradoxes, incompleteness and fixed points", Bull. Symb. Logic 9 (2003); arXiv math/0305282 | one theorem covers Cantor, Russell, halting, Godel, Tarski | memory, not opened | `math/lateral/README.md` |
 | Mathlib `Function.exists_fixed_point_of_surjective`, `ComputablePred.halting_problem` | surjective Lawvere; halting | source read (docstrings and statements) | `Lateral/*.lean` |
 
-## R. The hairy ball theorem and its extensions (task sphere-lit, seat S3; full map in `worlds/SPHERE_LIT.md`)
+## R. The hairy ball theorem and its extensions (task sphere-lit, seat S3; full map in `math/worlds/SPHERE_LIT.md`)
 
 | Source | Claim used | Read status | Where used |
 |---|---|---|---|
-| Poincaré, J. Math. Pures Appl. (4) 1 (1885) 167-244; Brouwer, Math. Ann. 71 (1912) 97-115; Hopf, Math. Ann. 96 (1926) 225-250 | hairy ball (S² then all even spheres); Poincaré-Hopf (index sum = χ) | MEM (not opened; originals French and German) | `worlds/SPHERE_LIT.md` rows 1-2 |
-| Milnor, Amer. Math. Monthly 85 (1978) 521-524 | analytic proofs of hairy ball and Brouwer | CITED (citation confirmed on a course page; text not opened) | `worlds/SPHERE_LIT.md` row 3 |
-| Radon 1922; Hurwitz 1898/1923; Adams, Ann. Math. 75 (1962) 603-632; Adams, Ann. Math. 72 (1960) 20-104 | ρ(n) vector fields on S^{n-1}; S¹, S³, S⁷ parallelizable; Hopf invariant one only n = 1, 2, 4, 8 | MEM | `worlds/SPHERE_LIT.md` rows 4-5 |
-| Hopf, Math. Ann. 104 (1931) 637-665; Lefschetz, Trans. AMS 28 (1926) 1-49 | Hopf fibration S³ -> S² (Bloch sphere); Lefschetz fixed point | MEM | `worlds/SPHERE_LIT.md` rows 6-7 |
-| Borsuk, Fund. Math. 20 (1933) 177-190; Sperner, Abh. Hamburg 6 (1928) 265-272; Tucker (1945); KKM, Fund. Math. 14 (1929) | Borsuk-Ulam, Sperner, Tucker, KKM | MEM | `worlds/SPHERE_LIT.md` rows 8-11 |
-| Papadimitriou, JCSS 48 (1994) 498-532; Daskalakis-Goldberg-Papadimitriou, SICOMP 39 (2009); Chen-Deng, FOCS 2006; Goldberg-Hollender, arXiv 1902.07657 | PPAD; Sperner/Brouwer/Nash/hairy ball PPAD-complete | CITED / ABS (listings only) | `worlds/SPHERE_LIT.md` rows 12-14 |
-| Mathlib grep (Brouwer, hairy, Borsuk, Lefschetz, Hopf, Octonion absent; Quaternion, sphere manifold, Banach, Knaster-Tarski, IVT present; `Sperner` = antichain theorem only) | what Lean already has | source read (grep) | `worlds/SPHERE_LIT.md` col. Mathlib |
+| Poincaré, J. Math. Pures Appl. (4) 1 (1885) 167-244; Brouwer, Math. Ann. 71 (1912) 97-115; Hopf, Math. Ann. 96 (1926) 225-250 | hairy ball (S² then all even spheres); Poincaré-Hopf (index sum = χ) | MEM (not opened; originals French and German) | `math/worlds/SPHERE_LIT.md` rows 1-2 |
+| Milnor, Amer. Math. Monthly 85 (1978) 521-524 | analytic proofs of hairy ball and Brouwer | CITED (citation confirmed on a course page; text not opened) | `math/worlds/SPHERE_LIT.md` row 3 |
+| Radon 1922; Hurwitz 1898/1923; Adams, Ann. Math. 75 (1962) 603-632; Adams, Ann. Math. 72 (1960) 20-104 | ρ(n) vector fields on S^{n-1}; S¹, S³, S⁷ parallelizable; Hopf invariant one only n = 1, 2, 4, 8 | MEM | `math/worlds/SPHERE_LIT.md` rows 4-5 |
+| Hopf, Math. Ann. 104 (1931) 637-665; Lefschetz, Trans. AMS 28 (1926) 1-49 | Hopf fibration S³ -> S² (Bloch sphere); Lefschetz fixed point | MEM | `math/worlds/SPHERE_LIT.md` rows 6-7 |
+| Borsuk, Fund. Math. 20 (1933) 177-190; Sperner, Abh. Hamburg 6 (1928) 265-272; Tucker (1945); KKM, Fund. Math. 14 (1929) | Borsuk-Ulam, Sperner, Tucker, KKM | MEM | `math/worlds/SPHERE_LIT.md` rows 8-11 |
+| Papadimitriou, JCSS 48 (1994) 498-532; Daskalakis-Goldberg-Papadimitriou, SICOMP 39 (2009); Chen-Deng, FOCS 2006; Goldberg-Hollender, arXiv 1902.07657 | PPAD; Sperner/Brouwer/Nash/hairy ball PPAD-complete | CITED / ABS (listings only) | `math/worlds/SPHERE_LIT.md` rows 12-14 |
+| Mathlib grep (Brouwer, hairy, Borsuk, Lefschetz, Hopf, Octonion absent; Quaternion, sphere manifold, Banach, Knaster-Tarski, IVT present; `Sperner` = antichain theorem only) | what Lean already has | source read (grep) | `math/worlds/SPHERE_LIT.md` col. Mathlib |
 
 ## J. Searched and not found (so nobody searches again)
 
@@ -528,5 +528,5 @@ Added 2026-11-25. Note: `worlds/FRAMING.md`. Only arXiv resolved among author pa
 research-nominCE-lit, research-hall-charging-lit, research-charging, research-hypergraph-hall,
 research-heredity-lit, research-and-replacement, research-negation-influence, research-partial,
 research-relax, research-fable-weight, research-fable-sokolov, research-pnp-defs, tractability-lit,
-coord-lateral, front-referee-lateral. `notes/general/`: research-lit-unrestricted,
-clay-official-statement, generalize-ladder-survey. `notes/checker/`: note-2.
+coord-lateral, front-referee-lateral. `workshop/notes/general/`: research-lit-unrestricted,
+clay-official-statement, generalize-ladder-survey. `workshop/notes/checker/`: note-2.

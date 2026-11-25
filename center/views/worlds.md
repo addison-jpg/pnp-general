@@ -17,12 +17,9 @@
 ## Cells
 - [DECIDED, r=0.0] W3 (Sonnet): routes written for magnification, locality, algorithms-to-lower-bounds, Karp-Lipton, meta-complexity; nearest route is magnification, gap = polynomial factor N^eps plus wrong problem and 
 - [DECIDED, r=0.0] W1 (Sonnet): map note written, every entry carries status and read status; most entries MEM or search result because en.wikipedia.org did not resolve; L6 depth/size rows not found, two other L6 items 
-- [OPEN, r=1.0] (Sonnet) W1: retrieval and the note, with read status. -> notes/worlds-map.md (or philosophy-free location: `worlds/README.md`), plus LITERATURE.md rows.
 - [TAKEN, r=1.0] W1
 - [OPEN, r=1.0] (Fable or Sonnet, after W1) W2: Lean definitions of the worlds as Props over abstract classes (no proofs of separations), and the hierarchy theorem cited or linked if Mathlib or the repository has it.
 - [TAKEN, r=1.0] W3
+- [OPEN, r=1.0] (Sonnet) W1: retrieval and the note, with read status. -> notes/worlds-map.md (or philosophy-free location: `math/worlds/README.md`), plus LITERATURE.md rows.
 - [OPEN, r=1.0] (Sonnet; Fable only if a Lean statement is worth writing) W3: reduction routes, meaning theorems that carry a result on one axis to the P vs NP cut. Label: "map, not progress on P vs NP". For each rou
 - [STOPPED, r=1.0] (usage; reopen later; nothing pushed) Fable: the layer and its checked maps. -> lean/PEqualNP/Worlds/Hypercomplex.lean, worlds/HYPERCOMPLEX.md
-
-## Frames
-- [checked-finite, r=0.0] Lewis, On the Plurality of Worlds (1986), indexical actuality (metaphysics/BASE.md); the Lewis link is analogy (reading), not checked: Kripke fact only: axiom 5 is valid on every S5 frame on 3 worlds

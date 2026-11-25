@@ -9,7 +9,7 @@ vertices: a connected graph has a vertex whose removal leaves only isolated poin
 exactly when it is the star. Counted exactly.
 Part C (tested, crude). A keyword detector over the feature names of Eco (1995) and Stanley (2018), paraphrased.
 It flags text for a person to review. It is never a verdict on a person or a group. Measured on a small
-synthetic labelled set written here; then run on center/shards/*.jsonl and compute/monqwensor/proposals.json.
+synthetic labelled set written here; then run on center/shards/*.jsonl and workshop/compute/monqwensor/proposals.json.
 Run: python3 -I philosophy/antifascism.py   (last line is JSON)
 """
 import itertools, json, re, glob, os
@@ -131,7 +131,7 @@ def part_d():
             except ValueError: continue
             recs += 1; s = score(" ".join(strings(r)))
             if s: flagged += 1; hits.append((os.path.basename(path), r.get("id"), s))
-    p = os.path.join(ROOT, "compute/monqwensor/proposals.json")
+    p = os.path.join(ROOT, "workshop/compute/monqwensor/proposals.json")
     prop = json.load(open(p, encoding="utf-8")); ps = list(strings(prop))
     pflag = [t[:80] for t in ps if score(t)]
     return recs, flagged, hits, len(ps), pflag

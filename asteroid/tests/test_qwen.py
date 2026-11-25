@@ -22,7 +22,7 @@ with tempfile.TemporaryDirectory() as d:
     open(prog, "w").write('seq sq = [1, 4, 9, 16, 25, 36]\nrecord . x checked "never"\nframe "a" reading "b" -> none label open\npropose t "x"\n')
     evil = ('claim formula sq = "n**2"\nclaim formula sq = "n**3"\n'
             'record asteroid bad checked-finite "a proposal must not write this"\n'
-            'frame "x" reading "y" -> none label open\ncheck "python3 -I language/check.py"\nclaim! formula sq = "n"\n')
+            'frame "x" reading "y" -> none label open\ncheck "python3 -I math/language/check.py"\nclaim! formula sq = "n"\n')
     calls = []
     def fake(model, system, user, k): calls.append(user); return evil
     X.generate = fake

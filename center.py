@@ -215,11 +215,11 @@ def build():
 def check_outer():
     """Outer-edge sync: every file path an outer surface cites must exist. Reports drift; changes nothing."""
     import re as _re
-    surfaces = ["README.md", "BOARD.md", "AGENTS.md"] + sorted(glob.glob("worlds/*.md") + glob.glob("*/README.md") + glob.glob("*/BASE.md") + glob.glob("boards/tasks/*.md"))
+    surfaces = ["README.md", "BOARD.md", "AGENTS.md"] + sorted(glob.glob("math/worlds/*.md") + glob.glob("*/README.md") + glob.glob("*/BASE.md") + glob.glob("boards/tasks/*.md"))
     pat = _re.compile(r"`([A-Za-z0-9_./\-]+\.(?:lean|py|md|ath|bench|json|jsonl|yml|png|svg))(?:::[A-Za-z0-9_.']+)?`")
     bad = []
     for f in surfaces:
-        if not os.path.exists(f) or f == "worlds/SPHERE_LIT.md": continue   # SPHERE_LIT lists Mathlib file names, not repo paths
+        if not os.path.exists(f) or f == "math/worlds/SPHERE_LIT.md": continue   # SPHERE_LIT lists Mathlib file names, not repo paths
         for n, line in enumerate(open(f, encoding="utf-8"), 1):
             if any(t in line for t in ("Mathlib", "OPEN", "->", "→", "...", "planned", "not started")): continue   # targets still to be written, Mathlib names, elisions
             for m in pat.finditer(line):

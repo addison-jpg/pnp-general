@@ -1,15 +1,15 @@
-# Frames for the metaphysics and Homestuck levels (frames.ath is kept separate). See ontology/SOURCES.md.
+# Frames for the metaphysics and Homestuck levels (frames.ath is kept separate). See core/ontology/SOURCES.md.
 kripke S5_3 = all 3 reflexive+euclidean
 kripke S4_3 = all 3 reflexive+transitive
 claim valid S5_3 "<>p -> []<>p"
 claim invalid S4_3 "<>p -> []<>p"
-frame "Addison: upgrade asteroid for metaphysics (ontology/SOURCES.md)" reading "T, 4, B, 5 hold on exactly the reflexive, transitive, symmetric, euclidean relations on 3 and 4 worlds; S5 frames are the equivalences" -> metaphysics/metaphysics.ath label checked-finite reach 2 cost 80
-frame "Lewis, On the Plurality of Worlds (1986), indexical actuality (metaphysics/BASE.md); the Lewis link is analogy (reading), not checked" reading "Kripke fact only: axiom 5 is valid on every S5 frame on 3 worlds" -> 4 label checked-finite reach 1 cost 80
-frame "Addison: a postmodern history, Lyotard 1979 (ontology/SOURCES.md; metaphysics/BASE.md); the Lyotard link is analogy (reading), not checked" reading "Kripke fact only: axiom 5 fails on some S4 frame on 3 worlds; a countermodel is printed" -> 5 label checked-finite reach 2 cost 80
+frame "Addison: upgrade asteroid for metaphysics (core/ontology/SOURCES.md)" reading "T, 4, B, 5 hold on exactly the reflexive, transitive, symmetric, euclidean relations on 3 and 4 worlds; S5 frames are the equivalences" -> philosophy/metaphysics/metaphysics.ath label checked-finite reach 2 cost 80
+frame "Lewis, On the Plurality of Worlds (1986), indexical actuality (philosophy/metaphysics/BASE.md); the Lewis link is analogy (reading), not checked" reading "Kripke fact only: axiom 5 is valid on every S5 frame on 3 worlds" -> 4 label checked-finite reach 1 cost 80
+frame "Addison: a postmodern history, Lyotard 1979 (core/ontology/SOURCES.md; philosophy/metaphysics/BASE.md); the Lyotard link is analogy (reading), not checked" reading "Kripke fact only: axiom 5 fails on some S4 frame on 3 worlds; a countermodel is printed" -> 5 label checked-finite reach 2 cost 80
 # Stays open: one merged frame (was two sources). Finite parts are checked (cosmos.ath: the ordering decides the frequency; S5 has no privileged world). Which measure is right in eternal inflation is not decided by any finite check.
-frame "Addison: the measure problem, merged (cosmos/BASE.md section 5; metaphysics/BASE.md; philosophy/PSYCHOSIS.md)" reading "no privileged world anchors a probability over worlds (S5 reading); in the cosmos toy the ordering alone decides the frequency (checked part, cosmos.ath); which measure is right stays open" -> none label open reach 2 cost 160
-frame "Addison: a Homestuck ontology (homestuck/BASE.md sections 6 and 7); the alpha and doomed timeline link is analogy (reading), not checked" reading "Kripke fact only: in the 7-world toy, []c holds at {1,4} and ~<>[]c at {2,3,5,6}" -> homestuck/timelines.ath label checked-finite reach 2 cost 80
+frame "Addison: the measure problem, merged (physics/cosmos/BASE.md section 5; philosophy/metaphysics/BASE.md; philosophy/PSYCHOSIS.md)" reading "no privileged world anchors a probability over worlds (S5 reading); in the cosmos toy the ordering alone decides the frequency (checked part, cosmos.ath); which measure is right stays open" -> none label open reach 2 cost 160
+frame "Addison: a Homestuck ontology (culture/homestuck/BASE.md sections 6 and 7); the alpha and doomed timeline link is analogy (reading), not checked" reading "Kripke fact only: in the 7-world toy, []c holds at {1,4} and ~<>[]c at {2,3,5,6}" -> culture/homestuck/timelines.ath label checked-finite reach 2 cost 80
 # Twin Fantasy 2011 and 2018 as two points of one directed history: reflexive, 0 -> 1, no way back.
 kripke tf = worlds 2 rel [(0,0), (1,1), (0,1)]
 claim invalid tf "p -> []<>p"
-frame "Addison: sync Homestuck with Car Seat Headrest (carseat/, homestuck/level.json); the timeline and retcon link is analogy (reading), not checked" reading "Kripke fact only: Twin Fantasy 2011 and 2018 as a 2-world directed frame; B fails (no way back), countermodel printed" -> 14 label checked-finite reach 1 cost 80
+frame "Addison: sync Homestuck with Car Seat Headrest (culture/carseat/, culture/homestuck/level.json); the timeline and retcon link is analogy (reading), not checked" reading "Kripke fact only: Twin Fantasy 2011 and 2018 as a 2-world directed frame; B fails (no way back), countermodel printed" -> 14 label checked-finite reach 1 cost 80

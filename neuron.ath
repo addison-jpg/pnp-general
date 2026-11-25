@@ -1,11 +1,11 @@
-# Neurons, from brain/neuron. A dendrite grows by adding segments; how many growth histories are there?
+# Neurons, from biology/brain/neuron. A dendrite grows by adding segments; how many growth histories are there?
 # Segmental growth with n tips has (2n-3)!! histories: the number of rooted binary phylogenetic trees.
-seq segmental = run "python3 -I brain/neuron/check.py" "segmental-growth"
-seq terminal = from brain/neuron/fingerprints.json "terminal-growth"
-seq catalan = from brain/neuron/fingerprints.json "Catalan"
+seq segmental = run "python3 -I biology/brain/neuron/check.py" "segmental-growth"
+seq terminal = from biology/brain/neuron/fingerprints.json "terminal-growth"
+seq catalan = from biology/brain/neuron/fingerprints.json "Catalan"
 claim segmental = [1, 1, 3, 15, 105, 945, 10395]
 claim formula segmental = "(2*n - 3)!!"          # (-1)!! = 1 at n = 1
 claim formula terminal = "(n - 1)!"
 claim formula catalan = "C(2*n - 2, n - 1) // n"  # Catalan(n-1): ordered shapes with n tips
-check "python3 -I brain/neuron/check.py"
-record brain/neuron brain checked-finite "neuron.ath: segmental-growth histories of a dendrite with n tips number (2n-3)!!, the rooted binary phylogenetic trees, for n=1..9; terminal growth gives (n-1)! and ordered shapes Catalan(n-1). Every term checked exactly against the formula, and brain/neuron/check.py passes."
+check "python3 -I biology/brain/neuron/check.py"
+record biology/brain/neuron brain checked-finite "neuron.ath: segmental-growth histories of a dendrite with n tips number (2n-3)!!, the rooted binary phylogenetic trees, for n=1..9; terminal growth gives (n-1)! and ordered shapes Catalan(n-1). Every term checked exactly against the formula, and biology/brain/neuron/check.py passes."

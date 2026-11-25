@@ -22,7 +22,7 @@ point, so the frontier covers what the set covers and is nonempty when the set i
 any FINITE set in any partial order; in `ι → ℕ` with `ι` finite the frontier of ANY set, also an
 infinite one, is finite (Dickson's lemma, from Mathlib).
 
-Section 4 is DATA: the axes of `worlds/README.md` and pointers to the rows called L6. No
+Section 4 is DATA: the axes of `math/worlds/README.md` and pointers to the rows called L6. No
 circuit numbers are encoded.
 -/
 
@@ -214,7 +214,7 @@ end Bounds
 
 Nothing below is checked against the files it names. -/
 
-/-- The circuit axes named in `worlds/README.md` ("Circuit axes") and on the task card. -/
+/-- The circuit axes named in `math/worlds/README.md` ("Circuit axes") and on the task card. -/
 inductive Axis
   | size | depth | fanOut | nots
   deriving DecidableEq, Repr
@@ -222,16 +222,16 @@ inductive Axis
 instance : Fintype Axis :=
   ⟨⟨[Axis.size, Axis.depth, Axis.fanOut, Axis.nots], by decide⟩, fun x => by cases x <;> decide⟩
 
-/-- DATA: the other axes of `worlds/README.md`, by name. They are not ℕ-valued here. -/
+/-- DATA: the other axes of `math/worlds/README.md`, by name. They are not ℕ-valued here. -/
 def worldAxes : List String :=
   ["time exponent", "average case", "non-uniformity", "provability", "barriers", "fine-grained"]
 
-/-- DATA: what carries the name L6 (`worlds/README.md`, last section, lists two things; neither is
+/-- DATA: what carries the name L6 (`math/worlds/README.md`, last section, lists two things; neither is
 a table of depth and size rows). -/
 def l6Links : List (String × String) :=
   [("L6 time average", "lean/PEqualNP/QuantumGravity/Helpers/FixedPoint.lean"),
-   ("L6 MONO lemma (hand proof, unverified)", "notes/general/generalize-open-case.md"),
-   ("worlds map", "worlds/README.md")]
+   ("L6 MONO lemma (hand proof, unverified)", "workshop/notes/general/generalize-open-case.md"),
+   ("worlds map", "math/worlds/README.md")]
 
 /-- The frontier of circuit bounds over the four axes is finite whatever the set. -/
 theorem axis_frontier_finite (S : Set (Bound Axis)) : (frontier S).Finite :=

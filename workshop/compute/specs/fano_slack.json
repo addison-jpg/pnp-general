@@ -1,0 +1,20 @@
+{
+  "name": "fano_slack",
+  "entry": "one-not/tools/tensor/shard_fano.py",
+  "args": [],
+  "shards": 20,
+  "output": "fano_slack.jsonl",
+  "requirements": [
+    "numpy>=2.0"
+  ],
+  "finding": {
+    "dir": "one-not/tools/tensor",
+    "serves": "refuter-951",
+    "statement": "Slack at all 128 cubes (any-gate) of the Fano corpus on git-compute: {circuits} circuits in {shards} shards, least slack {min_slack}, {circuits_with_negative_slack} circuits with a negative cube, merged output sha256 {sha16}.",
+    "evidence": [
+      "one-not/tools/tensor/shard_fano.py",
+      "workshop/compute/specs/fano_slack.json"
+    ],
+    "runner": "python3 -I one-not/tools/tensor/shard_fano.py --shard 1 --of 400 --out /dev/null --verify 40"
+  }
+}

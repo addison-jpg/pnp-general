@@ -14,7 +14,7 @@ import asteroid.asteroid as A
 WORDS = ["checked", "checked-finite", "checked-infinite", "paper", "tested", "refuted", "open", "premise"]
 STRONGER = {"checked", "checked-infinite"}   # need Lean or a reduction; a Python claim does not give them
 PRIOR = {"open": 0.3}                          # chance for a claim that did not pass (its label is forced to open)
-REACH, COST = 1, 80                            # 80k tokens: one plain seat, ath_prompts/measure/cost_per_result.md
+REACH, COST = 1, 80                            # 80k tokens: one plain seat, workshop/ath_prompts/measure/cost_per_result.md
 TIMEOUT = 1800
 FILE_CACHE = {}
 PAT = re.compile(r'frame "([^"]+)" reading "([^"]+)" -> (\S+) label ([\w-]+)(?: reach (\d+))?(?: cost (\d+(?:\.\d+)?))?')

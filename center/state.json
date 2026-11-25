@@ -56,6 +56,11 @@
   "findings": {},
   "mean_radius_findings": null
  },
+ "culture-homestuck": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "homestuck": {
   "cells": {},
   "findings": {},
@@ -75,6 +80,16 @@
    "checked": 1
   },
   "mean_radius_findings": 0.0
+ },
+ "math-language": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
+ "math-routing": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
  },
  "methods": {
   "cells": {
@@ -113,6 +128,11 @@
    "checked-finite": 4
   },
   "mean_radius_findings": 0.0
+ },
+ "physics-cosmos": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
  },
  "privacy": {
   "cells": {},

@@ -1,0 +1,12 @@
+# Alpha vs doomed timelines as a branching frame (culture/homestuck/BASE.md section 6). A toy model, not canon data.
+# World 0: the branch point. Heads 1, 2, 3; continuations 4, 5, 6. The relation is the future: reflexive, transitive.
+# Atom c: "every loop closed so far is consistent". Branch 2 looks consistent at first and fails later.
+kripke time = worlds 7 rel [(0,0),(1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(1,4),(2,5),(3,6)] val c {0, 1, 2, 4}
+# alpha = consistent now and in every future of this world. Exactly the alpha branch: worlds 1 and 4.
+claim worlds time "[]c" = {1, 4}
+# doomed = no future world is alpha. Exactly the doomed branches.
+claim worlds time "~<>[]c" = {2, 3, 5, 6}
+# the branch point can still reach the alpha, but is not itself alpha
+claim worlds time "<>[]c & ~[]c" = {0}
+# a deliberately wrong claim would fail: branch 2 is not alpha (see asteroid/tests/test_modal.py)
+claim valid time "[]c -> [][]c"

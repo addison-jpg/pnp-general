@@ -4,7 +4,7 @@ import PEqualNP.General.XorExtension
 If some size `s₀` is enough for exactly one of `f`, `¬f` (so `C f ≠ C ¬f`), then `x ⊕ f` has a
 circuit with `t + 4` gates exactly when `f` or `¬f` has one with `t` gates:
 `C(x ⊕ f) = min (C f) (C ¬f) + 4`. Lower bound: L-gen-005. Upper bound: L-meta-716.
-The case `C f = C ¬f` is open (`notes/general/generalize-xor-extension.md`). -/
+The case `C f = C ¬f` is open (`workshop/notes/general/generalize-xor-extension.md`). -/
 
 theorem PEqualNP.General.L006 :
     ∀ (n : ℕ) (f : (Fin n → Bool) → Bool),

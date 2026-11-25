@@ -193,4 +193,4 @@ Every name has one parent. Read bottom up: a counterexample or a theorem is a le
     - `partial_bound` · Theorem · **partial_bound**: PartialBound.lean
     - `PartialBound` · Module · **PartialBound.lean**
   - `no_minCE` · Theorem · **no_minCE**: the one unproved declaration under L-meta-951
-  - `section GeneralCircuitsProgram` · Section · **general circuits program** (old: L-gen, GeNeRALIZE, BoolSumNot, C4, K13, K2): the NOT gate ladder above rung 1; names live in lean/PEqualNP/General and notes/general
+  - `section GeneralCircuitsProgram` · Section · **general circuits program** (old: L-gen, GeNeRALIZE, BoolSumNot, C4, K13, K2): the NOT gate ladder above rung 1; names live in lean/PEqualNP/General and workshop/notes/general

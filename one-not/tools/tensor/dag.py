@@ -1,5 +1,5 @@
 """Structure between compute jobs (README, "Structure between jobs"): the job DAG, the reduce step and the road back to the board tree.
-A spec (compute/specs/*.json) is {"name", "entry", "args", "shards", "output", "requirements"} plus, all optional,
+A spec (workshop/compute/specs/*.json) is {"name", "entry", "args", "shards", "output", "requirements"} plus, all optional,
   "needs":   ["other-spec-name", ...]   specs in the same directory; their merged outputs reach the entry as  --input NAME=PATH
   "finding": {"dir", "serves", "statement", "evidence": [...], "runner"}   the board record of this job; "statement" is a format string
              over the result ({lines}, {sha256}, {shards}, {hit}, {miss}) and the top-level keys of the merged summary

@@ -1,5 +1,5 @@
-# Time frames: the local big bang, the multiverse big bang, moving forward, multiverse postmodernism. See time/BASE.md and ontology/SOURCES.md.
-check "python3 -I time/check.py"
+# Time frames: the local big bang, the multiverse big bang, moving forward, multiverse postmodernism. See physics/time/BASE.md and core/ontology/SOURCES.md.
+check "python3 -I physics/time/check.py"
 kripke S4t = all 3 reflexive+transitive
 kripke S5t = all 3 reflexive+transitive+symmetric
 claim valid S4t "[]p -> [][]p"
@@ -9,23 +9,23 @@ claim valid S5t "p -> []<>p"
 claim valid S5t "<>[]p -> []<>p"
 claim valid S4t "[]<>T"
 # 1. Local big bang
-frame "Addison: our local big bang is the repository's own history (ontology/SOURCES.md; DAG.lean)" reading "git fact only: one root commit (t = 0); the history is a DAG with merges, acyclic, every commit reaches the root; a longest root-to-HEAD path exists and is computed" -> 2 label checked-finite reach 2 cost 40
-frame "Addison: the alpha line as Homestuck's alpha timeline, commits off it as doomed branches (homestuck/BASE.md section 1); the link is analogy (reading), not checked" reading "the longest root-to-HEAD path is exact; calling it alpha is a reading" -> 2 label checked-finite reach 1 cost 40
+frame "Addison: our local big bang is the repository's own history (core/ontology/SOURCES.md; DAG.lean)" reading "git fact only: one root commit (t = 0); the history is a DAG with merges, acyclic, every commit reaches the root; a longest root-to-HEAD path exists and is computed" -> 2 label checked-finite reach 2 cost 40
+frame "Addison: the alpha line as Homestuck's alpha timeline, commits off it as doomed branches (culture/homestuck/BASE.md section 1); the link is analogy (reading), not checked" reading "the longest root-to-HEAD path is exact; calling it alpha is a reading" -> 2 label checked-finite reach 1 cost 40
 # 2. Multiverse big bang
-frame "Addison: a local big bang propagates to a multiverse big bang (ontology/SOURCES.md)" reading "order fact only: a local origin reaches every level iff it is an initial (least) element; preorders on 1..4 elements: 1, 3, 16, 145 of 1, 4, 29, 355 have one, and any two are isomorphic" -> 2 label checked-finite reach 3 cost 80
-frame "Addison: the multiverse big bang in this ontology (*/level.json)" reading "the level preorder from join arrows has no least element; with time/level.json in, the cheapest fix needs 5 new verified joins (from homestuck or from time)" -> 2 label checked-finite reach 2 cost 40
+frame "Addison: a local big bang propagates to a multiverse big bang (core/ontology/SOURCES.md)" reading "order fact only: a local origin reaches every level iff it is an initial (least) element; preorders on 1..4 elements: 1, 3, 16, 145 of 1, 4, 29, 355 have one, and any two are isomorphic" -> 2 label checked-finite reach 3 cost 80
+frame "Addison: the multiverse big bang in this ontology (*/level.json)" reading "the level preorder from join arrows has no least element; with physics/time/level.json in, the cheapest fix needs 5 new verified joins (from homestuck or from time)" -> 2 label checked-finite reach 2 cost 40
 # 3. Moving forward
-frame "Addison: moving forward through time is a round of checks (ontology/SOURCES.md; Fisher.lean lost_mono, inverted)" reading "toy fact only: a step that only adds passing checks never unsettles a record, all stores of <= 4 records and all orders of <= 4 steps; a failing re-check breaks it" -> 2 label checked-finite reach 2 cost 40
+frame "Addison: moving forward through time is a round of checks (core/ontology/SOURCES.md; Fisher.lean lost_mono, inverted)" reading "toy fact only: a step that only adds passing checks never unsettles a record, all stores of <= 4 records and all orders of <= 4 steps; a failing re-check breaks it" -> 2 label checked-finite reach 2 cost 40
 frame "Addison: settled stays settled on the real history (git log of */findings.jsonl)" reading "measured on the git history of every */findings.jsonl: at writing, 44 versions, 0 removed, 0 downgraded, 1 superseded by a rerun of the same check (ontology qualquant, new counts); confirmation lines skipped" -> 2 label tested reach 1 cost 40
 # 4. Homestuck, Beauvoir, ~ATH
 frame "Beauvoir, freedom exercised forward from a situation, Pour une morale de l'ambiguite 1947 (not re-read; Beauvoir.lean); the link is analogy (reading), not checked" reading "Kripke fact only: on reflexive-transitive frames B fails (no way back); no poset on 1..4 worlds with an edge is symmetric, so forward-only time has no reciprocity" -> 6 label checked-finite reach 2 cost 40
 # Stays open: no check here tests that asteroid always halts; the claim is the size limits in asteroid/SPEC.md.
-frame "Addison: ~ATH loops bound to a lifetime vs asteroid's time step (ontology/SOURCES.md; asteroid/SPEC.md size limits)" reading "a time step halts because every claim has a size limit; reading" -> none label open reach 1 cost 120
+frame "Addison: ~ATH loops bound to a lifetime vs asteroid's time step (core/ontology/SOURCES.md; asteroid/SPEC.md size limits)" reading "a time step halts because every claim has a size limit; reading" -> none label open reach 1 cost 120
 # 5. Multiverse postmodernism
-frame "Addison: multiverse-level postmodernism (cosmos/BASE.md section 7; cosmos/invariant.py)" reading "Kripke fact only: postmodern-safe = valid on every frame of the stated class; T, 4, []<>T valid on all S4 frames on 3 worlds (every branch) and on S5; B and .2 hold on S5 only" -> 5 label checked-finite reach 3 cost 80
-frame "Addison: which results cross to the multiverse (time/BASE.md section 5)" reading ".2 fails on some branching history and holds with no privileged world" -> 7 label checked-finite reach 2 cost 40
-frame "Addison: Lyotard's incredulity toward metanarratives as S5 (cosmos/BASE.md section 7); the link is analogy (reading), not checked" reading "S5 has no privileged world: every world sees every other in its class; B valid on S5" -> 8 label checked-finite reach 1 cost 40
-record time gitdag checked-finite "frames_time.ath: time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxation."
-record time initial checked-finite "frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder from */level.json join arrows has no least element."
-record time forward checked-finite "frames_time.ath: adding only passing checks never unsettles a record, all toy stores of <= 4 records and all orders of <= 4 steps (6558 cases); a failing re-check does. No poset on 1..4 worlds with an edge is symmetric (242 posets)."
-record time postmodern checked-finite "frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds."
+frame "Addison: multiverse-level postmodernism (physics/cosmos/BASE.md section 7; physics/cosmos/invariant.py)" reading "Kripke fact only: postmodern-safe = valid on every frame of the stated class; T, 4, []<>T valid on all S4 frames on 3 worlds (every branch) and on S5; B and .2 hold on S5 only" -> 5 label checked-finite reach 3 cost 80
+frame "Addison: which results cross to the multiverse (physics/time/BASE.md section 5)" reading ".2 fails on some branching history and holds with no privileged world" -> 7 label checked-finite reach 2 cost 40
+frame "Addison: Lyotard's incredulity toward metanarratives as S5 (physics/cosmos/BASE.md section 7); the link is analogy (reading), not checked" reading "S5 has no privileged world: every world sees every other in its class; B valid on S5" -> 8 label checked-finite reach 1 cost 40
+record physics/time gitdag checked-finite "frames_time.ath: physics/time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxation."
+record physics/time initial checked-finite "frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder from */level.json join arrows has no least element."
+record physics/time forward checked-finite "frames_time.ath: adding only passing checks never unsettles a record, all toy stores of <= 4 records and all orders of <= 4 steps (6558 cases); a failing re-check does. No poset on 1..4 worlds with an edge is symmetric (242 posets)."
+record physics/time postmodern checked-finite "frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds."

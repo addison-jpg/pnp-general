@@ -1,0 +1,159 @@
+{
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "dim": 1536,
+ "records": 326,
+ "cross_pairs": 40612,
+ "known_join_rank": 495,
+ "top": [
+  {
+   "score": 0.0619,
+   "a": "circuits: kstep_of_slack_nonneg instantiated with slack_nonneg_of_slackNonnegAll for the literal tiny of first.ath.",
+   "b": "philosophy: Supersedes 478ce785, 80d2fd4f, 2e8126de after independent review. Renames: monogamy_of_pure_pair is now pure_pair_decouples (decoupling of a",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0613,
+   "a": "other: O2 (Opus): three-qubit CKW checked in full: C(ρ_AB)² + C(ρ_AC)² + 4|Det ψ| = 4 det ρ_A for every pure ψ (Wootters concurrence from the eigen",
+   "b": "quantum-gravity: Coffman-Kundu-Wootters monogamy for three qubits, full: for every (unnormalised) pure three-qubit state psi, C(rho_AB)^2 + C(rho_AC)^2 + 4|D",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0496,
+   "a": "brain: Caspar-Klug triangulation numbers T = h^2 + hk + k^2 (distinct, ascending)",
+   "b": "other: F2: KAK for U(4) and the exact L119 are CHECKED (standard axioms): `KAK.kak`, `KAKParam.knillParametrization : KnillParametrization`, `KAKPa",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0451,
+   "a": "circuits: no_minCE implies L_meta_951 (the one-NOT bound sum (|S_i|-1) <= gates). The last link of the chain BottomPay, LightAbsorb, DDAbsorb, MixedCo",
+   "b": "quantum-gravity: L-qg-116 follows from L-qg-115 as a checked conditional theorem L116_of_L115 (same constant, union bound over (|S|+1)^k balls; the union bou",
+   "status": "proposed"
+  },
+  {
+   "score": 0.045,
+   "a": "asteroid: (Addison): Open VSX is not published (needs Addison's token).",
+   "b": "other: (Addison, 2026-11-25): yes, \"refactor aggressively if its ok with big agents\". Asked coord/main for objections and a quiet window.",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0432,
+   "a": "compbio: rooted binary phylogenetic trees, n leaves (n>=2)",
+   "b": "philosophy: labelled trees, n vertices (n>=1)",
+   "status": "proposed"
+  },
+  {
+   "score": 0.043,
+   "a": "other: F3: DAG frame (was TAKEN): a lost future is later lost or past, never ahead (`lost_or_past`); with conflict, permanent iff the states clash,",
+   "b": "philosophy: One frame (models of cited readings, no claim about the authors or circuits): in a tree of decisions a lost route is at once Fisher-lost for",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0424,
+   "a": "other: F3: DAG frame (was TAKEN): a lost future is later lost or past, never ahead (`lost_or_past`); with conflict, permanent iff the states clash,",
+   "b": "philosophy: Candidate for Beauvoir's 'to will oneself free is to will others free' (our weak reading): a move closes off no form open to the self iff it",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0419,
+   "a": "circuits: If every non-terminal cube has a strictly larger cube with slack no larger, slack is nonnegative at every cube.",
+   "b": "worlds: The rank of three parallel payers is monotone, submodular, unit-increment, violates monogamy of mutual information, and is the min-cut funct",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0414,
+   "a": "brain: Caspar-Klug triangulation numbers T = h^2 + hk + k^2 (distinct, ascending)",
+   "b": "compbio: Motzkin numbers (n>=0)",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0409,
+   "a": "asteroid: (Addison): Open VSX is not published (needs Addison's token).",
+   "b": "prompt-method: (Addison 2026-11-25, answering the [ASK] above: \"yup yup\"): fetch one small open-weight Qwen for this seat; the QUIET rule is cleared for th",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0408,
+   "a": "brain: digraphs on n nodes up to isomorphism, n=1..6",
+   "b": "philosophy: labelled trees, n vertices (n>=1)",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0407,
+   "a": "other: F3: DAG frame (was TAKEN): a lost future is later lost or past, never ahead (`lost_or_past`); with conflict, permanent iff the states clash,",
+   "b": "philosophy: Not found: a theorem for Beauvoir's 'to will oneself free is to will others free' (a tree frame has no shared future for incomparable selves",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0407,
+   "a": "circuits: A monotone path of the multilinear extension of the slack from the corner 0 does not exist on the twin trees and matched twin trees: every o",
+   "b": "worlds: The rank of three parallel payers is monotone, submodular, unit-increment, violates monogamy of mutual information, and is the min-cut funct",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0399,
+   "a": "other: (Addison, 2026-11-25): yes, \"refactor aggressively if its ok with big agents\". Asked coord/main for objections and a quiet window.",
+   "b": "prompt-method: (Addison 2026-11-25, answering the [ASK] above: \"yup yup\"): fetch one small open-weight Qwen for this seat; the QUIET rule is cleared for th",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0399,
+   "a": "circuits: If the certificate game on the lifted outputs is won, disjoint lifted classes exist, and there is no minimal counterexample.",
+   "b": "worlds: For a body positive in the bound relation variable the lfp constructor denotes the least fixed point",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0397,
+   "a": "other: gravity.ath: every escape route in culture/essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inpu",
+   "b": "philosophy: Candidate for Beauvoir's 'to will oneself free is to will others free' (our weak reading): a move closes off no form open to the self iff it",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0395,
+   "a": "brain: terminal-growth histories (n-1)!, n=1..9",
+   "b": "philosophy: labelled trees, n vertices (n>=1)",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0395,
+   "a": "brain: digraphs on n nodes up to isomorphism, n=1..6",
+   "b": "philosophy: connected labelled graphs, n vertices (n>=1)",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0394,
+   "a": "circuits: Unit-form merge set of a non-DD alive set (runMT on (Zof (S w u D), Q+e_u, S w \\ D)) has card >= |S w \\ D| - 1 and lies in F2Mix",
+   "b": "quantum-gravity: L-qg-116 follows from L-qg-115 as a checked conditional theorem L116_of_L115 (same constant, union bound over (|S|+1)^k balls; the union bou",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0393,
+   "a": "circuits: If every non-terminal cube has a strictly larger cube with slack no larger, slack is nonnegative at every cube.",
+   "b": "worlds: For a body positive in the bound relation variable the lfp constructor denotes the least fixed point",
+   "status": "proposed"
+  },
+  {
+   "score": 0.039,
+   "a": "other: gravity.ath: every escape route in culture/essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inpu",
+   "b": "philosophy: One frame (models of cited readings, no claim about the authors or circuits): in a tree of decisions a lost route is at once Fisher-lost for",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0382,
+   "a": "brain: weakly connected digraphs on n nodes up to isomorphism, n=1..6",
+   "b": "philosophy: connected labelled graphs with no critical edge (bridgeless), n vertices (n>=1)",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0381,
+   "a": "brain: biology/brain/tissue: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and rep",
+   "b": "prompt-method: Prompting claim C4 (untested): Rules phrased informally are quoted verbatim on boards more often, and corrections ('kill it') come sooner (f",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0381,
+   "a": "circuits: Local cube or one-point step at every cube with positive base gives no minimal counterexample.",
+   "b": "philosophy: Not proved: the Coffman-Kundu-Wootters inequality (needs mixed-state concurrence), min-cut = entanglement entropy for HaPPY states, contract",
+   "status": "proposed"
+  }
+ ]
+}

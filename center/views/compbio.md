@@ -4,6 +4,6 @@
 - [checked-finite, r=1.0] Exact counts by exhaustive enumeration, each checked two ways: rooted binary phylogenetic trees (2n-3)!! for n<=8; RNA secondary structures with hairpin loop >= 1 (A004148) and Motzkin numbers for n<=
 
 ## Fingerprints
+- [DATA, r=0.5] Motzkin numbers (n>=0) seq [1, 1, 2, 4, 9, 21, 51, 127]
 - [DATA, r=0.5] rooted binary phylogenetic trees, n leaves (n>=2) seq [1, 3, 15, 105, 945, 10395, 135135]
 - [DATA, r=0.5] RNA secondary structures, loop>=1, n bases (n>=0) seq [1, 1, 1, 2, 4, 8, 17, 37]
-- [DATA, r=0.5] Motzkin numbers (n>=0) seq [1, 1, 2, 4, 9, 21, 51, 127]

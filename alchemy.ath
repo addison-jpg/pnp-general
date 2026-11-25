@@ -3,4 +3,4 @@ let alch = load alchemy_b3.bench
 show alch
 claim correct(alch)                         # the seven outputs are the seven nonempty unions
 claim gates(alch) < base(alch)                # sharing: abc reuses ab, possible because the sets overlap in 2 points
-record homestuck homestuck checked-finite "alchemy.ath: the b = 3 alchemy circuit computes all seven nonempty unions on all 8 inputs, with 4 gates against a base of 5 (sharing, possible because the sets overlap in 2 points)."
+record culture/homestuck homestuck checked-finite "alchemy.ath: the b = 3 alchemy circuit computes all seven nonempty unions on all 8 inputs, with 4 gates against a base of 5 (sharing, possible because the sets overlap in 2 points)."

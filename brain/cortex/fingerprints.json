@@ -1,1 +1,0 @@
-[{"name": "Forman discrete vector fields on the cycle graph C_n, n = 3..10 (= Lucas L_2n - 2)", "seq": [16, 45, 121, 320, 841, 2205, 5776, 15125], "runner": "python3 -I brain/cortex/check.py"}]

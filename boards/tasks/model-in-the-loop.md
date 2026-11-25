@@ -11,9 +11,9 @@
 - **Compute:** this machine (4 cores, no GPU) for development; git-compute runners (4 vCPU, 16 GB) for runs; a GPU runner is Addison's decision. Weights are never committed.
 
 ## Seats
-- STOPPED (usage; reopen later): design and build the loop; partial code in compute/funsearch/ (untested). -> compute/funsearch/
-- STOPPED (usage; reopen later; nothing pushed): monqwensor (Fable): the connection finder under the whole repo (index, candidates, generated board). -> compute/monqwensor/
+- STOPPED (usage; reopen later): design and build the loop; partial code in workshop/compute/funsearch/ (untested). -> workshop/compute/funsearch/
+- STOPPED (usage; reopen later; nothing pushed): monqwensor (Fable): the connection finder under the whole repo (index, candidates, generated board). -> workshop/compute/monqwensor/
 
 ## Lines (TAKEN / DECIDED only)
-- STOPPED (usage; reopen later): FunSearch loop (Qwen proposer, sandboxed proposals, tensor scoring, islands database, target registry generated from the repo, independent recheck before any finding). -> compute/funsearch/
+- STOPPED (usage; reopen later): FunSearch loop (Qwen proposer, sandboxed proposals, tensor scoring, islands database, target registry generated from the repo, independent recheck before any finding). -> workshop/compute/funsearch/
 - NOTE (main, 2026-11-25; Addison: "the continuous monqwensor sphere is really useful"): MONQWENSOR's space already is a sphere. Normalised embeddings live on the unit sphere S^{d−1}, and cosine similarity is geometry on that sphere. For Qwen2.5-1.5B, d = 1536, so the sphere is S^{1535}: odd-dimensional. There the hairy ball theorem does NOT force a zero, and Adams gives exactly ρ(1536) − 1 = 17 everywhere-independent tangent fields (1536 = 2^9·3, ρ = 2^1 + 8·2 = 18). When MONQWENSOR restarts: index on that sphere; treat "connection flow" as a tangent field built from the cross-program gradient of similarity; record which sphere dimension each model gives (odd or even matters); keep the persistence filtration. Any "forced connection" claim from topology needs an even-dimensional sphere and a field with real meaning; otherwise it is an analogy.

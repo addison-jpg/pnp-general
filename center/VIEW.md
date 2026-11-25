@@ -47,6 +47,10 @@ cells: 1 DECIDED, 4 STOPPED, 1 TAKEN
 findings (verified): none · mean radius None
 cells: none
 
+## culture-homestuck
+findings (verified): none · mean radius None
+cells: none
+
 ## homestuck
 findings (verified): none · mean radius None
 cells: none
@@ -59,6 +63,14 @@ cells: none
 findings (verified): 1 checked · mean radius 0.0
 cells: 1 DECIDED, 1 OPEN
 - OPEN [Fable] (Fable under the revised seat rule; low priority, idle compute): the asteroid Tarski instance. Gödel-number asteroid claims (Stmt) as data that claims can menti → `one-not/lean/PEqualNP/Lateral/AsteroidTarski.lean`  (lateral-diagonal:20)
+
+## math-language
+findings (verified): none · mean radius None
+cells: none
+
+## math-routing
+findings (verified): none · mean radius None
+cells: none
 
 ## methods
 findings (verified): none · mean radius None
@@ -81,11 +93,15 @@ cells: 13 DECIDED, 5 OPEN, 2 STOPPED, 2 TAKEN
 - OPEN [Fable] (Fable): matroid union for hypergraphic ranks (converse of `Unify.unsplit_of_partition`): split condition ⟹ disjoint spanning forests; Mathlib has no matroid un → `one-not/lean/PEqualNP/W951/Open/`  (BOARD:34)
 - OPEN [Fable] (Fable): Lean, every one-string language is in `P` (`Defs/Base.lean`), to remove the hypothesis of `Unify.p_np_same_view`. -> lean/PEqualNP/Worlds/Unify.lean → `lean/PEqualNP/Worlds/Unify.lean`  (BOARD:32)
 - OPEN [Opus] (Opus): CKW realizability: every (x, y) with x + y ≤ t ≤ 1 is (τ_AB, τ_AC) of a three-qubit state with τ_{A|BC} = t (W-class states), against `CKW.ckw`. -> lean → `lean/PEqualNP/QuantumGravity/Open/CKW.lean`  (BOARD:36)
-- OPEN [Fable] (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets o → `worlds/unify_rank.py`  (BOARD:35)
+- OPEN [Fable] (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets o → `math/worlds/unify_rank.py`  (BOARD:35)
 
 ## philosophy
 findings (verified): 13 checked, 4 checked-finite · mean radius 0.0
 cells: 2 DECIDED
+
+## physics-cosmos
+findings (verified): none · mean radius None
+cells: none
 
 ## privacy
 findings (verified): 2 checked-finite · mean radius 0.0
@@ -95,8 +111,8 @@ cells: none
 findings (verified): 3 tested · mean radius 0.333
 cells: 5 DECIDED, 3 OPEN, 1 TAKEN
 - OPEN [Sonnet] (Sonnet, research session's Qwen instrument): natural languages (Addison, 2026-11-25: "is it worth bringing natural language models (like, foreign language syst → `ath_prompts/measure/languages.md`  (ath-prompt-quant:15)
-- OPEN [?] (any seat, small): export your own session's direct prompts from Addison into `ath_prompts/<your-seat>.md` in the same format (verbatim, UTC times, [choice] for  (ath-prompt-quant:7)
 - OPEN [Sonnet] (Sonnet, research session's Qwen instrument): AAVE and scene speak as registers. Source: Addison, 2026-11-25: "beavoir/philosophy/ french to english can help bu  (ath-prompt-quant:33)
+- OPEN [?] (any seat, small): export your own session's direct prompts from Addison into `workshop/ath_prompts/<your-seat>.md` in the same format (verbatim, UTC times, [ch  (ath-prompt-quant:7)
 
 ## quantum-gravity
 findings (verified): 13 checked · mean radius 0.0
@@ -113,8 +129,8 @@ cells: none
 ## worlds
 findings (verified): 9 checked · mean radius 0.0
 cells: 2 DECIDED, 3 OPEN, 1 STOPPED, 2 TAKEN
-- OPEN [Sonnet] (Sonnet) W1: retrieval and the note, with read status. -> notes/worlds-map.md (or philosophy-free location: `worlds/README.md`), plus LITERATURE.md rows. → `notes/worlds-map.md`  (worlds-map:20)
 - OPEN [Fable] (Fable or Sonnet, after W1) W2: Lean definitions of the worlds as Props over abstract classes (no proofs of separations), and the hierarchy theorem cited or lin → `lean/PEqualNP/Worlds/Map.lean`  (worlds-map:21)
+- OPEN [Sonnet] (Sonnet) W1: retrieval and the note, with read status. -> notes/worlds-map.md (or philosophy-free location: `math/worlds/README.md`), plus LITERATURE.md rows. → `notes/worlds-map.md`  (worlds-map:20)
 - OPEN [Sonnet] (Sonnet; Fable only if a Lean statement is worth writing) W3: reduction routes, meaning theorems that carry a result on one axis to the P vs NP cut. Label: "map  (worlds-map:23)
 
 ## Sequence matches across programs (proposals only; a seat decides join / analogy / rhyme)
