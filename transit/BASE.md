@@ -23,7 +23,7 @@ Source: Addison, social applications of the buses (ontology/SOURCES.md). Run: `p
 | 4 | Every directed graph on 1 to 4 states with no sink (50978), uniform steps: there is a closed class; from it nothing outside is reachable; absorption probability is exactly 1. | checked-finite | `social.py` |
 | 5 | Adding one edge from a closed class C to a state that reaches C leaves C not a closed class (77260 cases; 74008 merge into a larger closed class). | checked-finite | `social.py` |
 | 6 | Two cliques K_k, k=2..5. No bridge: cover time infinite. One bridge: finite; hitting the other clique takes k(k-1)+1 from the bridge end. Two bridges: less (k=5: 21 to 11). | checked-finite | `social.py`, exact fractions |
-| 7 | Capitalist realism: it is easier to imagine the end of the world than an alternative. | fact (cite) | Fisher 2009, *Capitalist Realism: Is There No Alternative?*, Zero Books. Read status: catalogue entries found by web search; book not read here. |
+| 7 | Capitalist realism: the sense that capitalism is the only viable system and no alternative can be imagined. | fact (cite) | Fisher 2009, *Capitalist Realism: Is There No Alternative?*, Zero Books. Read status: catalogue entries found by web search; book not read here. |
 | 8 | Weak ties bridge dense groups and carry new information. | fact (cite) | Granovetter 1973, "The Strength of Weak Ties", *American Journal of Sociology* 78(6):1360-1380. Read status: citation confirmed by web search; paper not read here. |
 
 Reading (Fisher). A closed class is a reading of capitalist realism: once the bus is in, no way out is reachable. `lean/PEqualNP/Philosophy/Fisher.lean` reads lost futures as unreachable states. An analogy, not a theorem about society.

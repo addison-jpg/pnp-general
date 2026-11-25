@@ -10,7 +10,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 - asteroid (the language and its tools): 7 checked · 3 tested · tested, re-checked in last 24h: 1/3
 - circuits (one-NOT and several-NOT): 48 checked · 6 tested · 6 refuted · tested, re-checked in last 24h: 0/6
 - lateral (Lawvere spine): 1 checked
-- other: 12 checked-finite · 3 tested · tested, re-checked in last 24h: 0/3
+- other: 13 checked-finite · 3 tested · tested, re-checked in last 24h: 0/3
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked · 4 checked-finite
 - quantum gravity: 13 checked
 - worlds (maps and unification; not progress on P vs NP): 9 checked
@@ -18,7 +18,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 91 checked · 16 checked-finite · 12 tested · 6 refuted
+## `./` 91 checked · 17 checked-finite · 12 tested · 6 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -85,8 +85,8 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `6c14680a` **tested** [compute] MONQWENSOR v1 (Qwen2.5-1.5B, mean-pooled last layer, 1536-dim, centred cosine) over 321 centre records: the one checked cross-field join (neuron segmental growth = phylogenetic trees, (2n-3)!!) ranks 1322 of 39028 cross-program pairs (top 3.4%). The top pairs are records that share boilerplate (Lean file paths, the word checked), not shared mathematics. As a link finder it is weak in this form; the sequence matcher found the same join exactly. · evidence: `compute/monqwensor/embed.py`, `compute/monqwensor/proposals.json` · main · unverified (needs a second seat in by)
 - `123bf83f` **tested** [compute] MONQWENSOR v2 (boilerplate stripped before embedding; records that state the known join excluded): the checked join (neuron segmental growth = phylogenetic trees) ranks 495 of 40612 cross-program pairs (top 1.2%, up from top 3.4% in v1). Its second-ranked pair is the same theorem recorded under two programs (three-qubit CKW), so it does find shared content; the first-ranked pair is still boilerplate. · evidence: `compute/monqwensor/embed.py`, `compute/monqwensor/proposals.json` · main · unverified (needs a second seat in by)
 
-### `cosmos/` 
-- `5b49d0e3` **checked-finite** [cosmos] cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; cosmos/check.py passes. · evidence: `cosmos.ath`, `cosmos/check.py`, `cosmos/fingerprints.json` · asteroid · unverified (needs a second seat in by)
+### `cosmos/` 1 checked-finite
+- `5b49d0e3` **checked-finite** [cosmos] cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; cosmos/check.py passes. · evidence: `cosmos.ath`, `cosmos/check.py`, `cosmos/fingerprints.json` · asteroid, confirmed by cosmos-review · VERIFIED
 
 ### `essays/` 
 - `92dfcbb0` **checked-finite** [essays] gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth. · evidence: `gravity.ath`, `/home/user/pnp-general/gravity.bench` · asteroid, confirmed by frame-review · unverified (checked-finite needs a runner (the exhaustive check, re-runnable))

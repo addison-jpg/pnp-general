@@ -36,4 +36,5 @@
 
 ## Frames
 - [checked-finite, r=0.0] Lacan, the Borromean knot (philosophy/PSYCHOSIS.md): the three rings: every linking number 0, triple invariant 1
+- [checked-finite, r=0.0] Addison: Fisher, capitalist realism (ontology/SOURCES.md; philosophy/ and Fisher.lean): a closed class of a Markov chain: once in, no state outside is reachable; every chain on up to 4 states (50978 s
 - [checked-finite, r=0.0] Deleuze and Guattari, rhizome against tree (philosophy/rhizome.py): a tree is a connected graph whose every edge is a bridge; bridgeless graphs counted to 6 vertices

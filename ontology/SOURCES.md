@@ -10,3 +10,4 @@ A frame's source must be on record. This file records ideas Addison brought in w
 - 2026-11-25. **Maximal utility** as the rule for what to formalize next. Went to the frame score (`asteroid/SPEC.md`).
 - 2026-11-25. **Finite balloons with natural bounds, forked with existing mathematics.** Open (cosmos balloon ladder).
 - 2026-11-25. **Social science applications of the bus idea:** Fisher's capitalist realism as absorption; Granovetter's weak ties as bridges. Went to `transit/social.py` and `transit/BASE.md` (readings).
+- 2026-11-25. **Car Seat Headrest, "tybee island horse ghosts"** (opening track of *1*, 2010; Bandcamp notes that its drone is one recording split into stereo and reversed in the right channel), as a philosophy frame for asteroid: a signal and its time reversal heard at once. Open (reading: forward and reverse checks of the same claim, as in asteroid's prover/refuter pairs and reader/writer round trips).

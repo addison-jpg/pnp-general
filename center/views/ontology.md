@@ -2,5 +2,7 @@
 
 ## Frames
 - [checked-finite, r=0.0] Addison: buses on the hairy ball (ontology/SOURCES.md): exact cover time of a random walk on every connected graph up to 6 vertices is at most 2m(n-1) (Aleliunas et al. 1979); index sum 2 is a cite
+- [checked-finite, r=0.0] Addison: social applications of the buses: Granovetter weak ties (ontology/SOURCES.md): two cliques K_k, k=2..5: no bridge gives infinite cover time; one bridge makes it finite, hitting time k(k-1)+1 
+- [open, r=1.0] Addison: Car Seat Headrest, tybee island horse ghosts (ontology/SOURCES.md): one drone played forward and reversed at once: a claim checked in both directions (prover and refuter, reader and writer ro
 - [open, r=1.0] Addison: Stirner's fixed ideas (ontology/SOURCES.md): the fixed idea in Stirner (1844) and in psychiatry: Esquirol's monomania, Janet's idee fixe
 - [open, r=1.0] Addison: time as socially constructed (ontology/SOURCES.md): relativity: time is a coordinate; whether it is fundamental is contested
