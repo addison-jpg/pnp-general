@@ -13,6 +13,7 @@
 
 ## Seats
 - F1 (Fable), the proof side: first pass DECIDED (above). Next: the two-set class point lemma, only as far as k = 1 needs it.
+  - TAKEN F1' (Fable): two-set class point lemma at k = 1 (BottomPay at 1_Q, one NOT wire h) + top-exclusion gap. -> `one-not/research/open/F1b_classpoint.md`
 - OPEN (Sonnet) LIT1: literature check on negation-limited Boolean sums. Cover Markov 1958; Amano–Maruoka; Morizumi; Jukna, *Boolean Function Complexity* (the negation-limited chapter); Mehlhorn and Pippenger on monotone Boolean sums. Question: is the k-NOT statement known, open or false? This must be answered before any novelty claim. -> research note `one-not/research/open/LIT1_negation_limited.md`, plus LITERATURE.md rows.
 - RE-AIMED REF1 (and the compute Fable's refuter loop): BottomPay and the two-set forms at k = 1. Was: the refuter lane pointed at PHC first, run on git-compute (`.github/workflows/compute.yml`) with the tensor backend: random and targeted payer sets on stored and generated instances, checking Lemma D's inequality. -> `one-not/research/open/REF1_phc.md`
   - Routing: REF1 records findings with `boards.py add ... --runner "<cmd>"` by default (tensor backend, `boards.py retest`); SAT cells keep SAT.
