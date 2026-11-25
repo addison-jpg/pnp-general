@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 78,
+   "checked": 81,
    "tested": 8,
    "refuted": 5
   },
@@ -90,6 +90,9 @@
    "8008158e",
    "2e78144d",
    "eb92517c",
+   "a70f6fd8",
+   "53be30e1",
+   "408f74ba",
    "aff6e6b7",
    "2e8126de",
    "957df3fd",
@@ -183,7 +186,7 @@
  },
  "lean": {
   "counts": {
-   "checked": 18
+   "checked": 21
   },
   "verified": [
    "57b5bd42",
@@ -197,6 +200,9 @@
    "8008158e",
    "2e78144d",
    "eb92517c",
+   "a70f6fd8",
+   "53be30e1",
+   "408f74ba",
    "aff6e6b7",
    "2e8126de",
    "957df3fd",
@@ -209,7 +215,7 @@
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 18
+   "checked": 21
   },
   "verified": [
    "57b5bd42",
@@ -223,6 +229,9 @@
    "8008158e",
    "2e78144d",
    "eb92517c",
+   "a70f6fd8",
+   "53be30e1",
+   "408f74ba",
    "aff6e6b7",
    "2e8126de",
    "957df3fd",
@@ -314,6 +323,24 @@
     "id": "ad6e91ac",
     "why": [
      "PEqualNP.QuantumGravity.Open.CtcReset.reset_support_on_start_cycle not in lean/PEqualNP/QuantumGravity/Open/CtcReset.lean"
+    ]
+   }
+  ]
+ },
+ "lean/PEqualNP/Worlds": {
+  "counts": {
+   "checked": 3
+  },
+  "verified": [
+   "a70f6fd8",
+   "53be30e1",
+   "408f74ba"
+  ],
+  "unverified_here": [
+   {
+    "id": "d4ed1a42",
+    "why": [
+     "needs a second seat in by"
     ]
    }
   ]

@@ -9,13 +9,14 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 
 - asteroid (the language and its tools): 7 checked · 3 tested
 - circuits (one-NOT and several-NOT): 47 checked · 5 tested · 5 refuted
+- other: 3 checked
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked
 - quantum gravity: 11 checked
 
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 78 checked · 8 tested · 5 refuted
+## `./` 81 checked · 8 tested · 5 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -39,9 +40,9 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `d23edf3b` **open** [C1, C2, C4, the sorry] Language cannot yet say: implications/hypotheses in corpus claims (sets_ok), exists-v mixed quantifiers and gain/cost of 0- and 1-steps, merge sets/pure classes/SDR/prices, negated corpus claims, a Lean form for gates>=base, fast C3_k at n>=16, kernel claims at n=14+ (see asteroid/programs/README.md) · evidence: `asteroid/programs/README.md` · main's Sonnet (programs) · unverified (needs a second seat in by)
 - `37dcef35` **checked** [the sorry, L5] The continuous form is in asteroid: for the Fano formula and a 5-input one-NOT circuit the kernel checks every cube and Lean states 0 <= Phi(p) for all p in [0,1] and 0 <= Phi(0) in the project's Phi; Phi is not monotone on the twin tree (level means 6.00 -> 8.29). · evidence: `asteroid/programs/continuous.ath`, `one-not/lean/PEqualNP/W951/Asteroid_continuous_sound.lean::fano_claim2_phi_zero`, `asteroid/ext_continuous.py` · main · VERIFIED
 
-### `lean/` 18 checked
+### `lean/` 21 checked
 
-#### `lean/PEqualNP/` 18 checked
+#### `lean/PEqualNP/` 21 checked
 
 ##### `lean/PEqualNP/Philosophy/` 7 checked
 - `66145862` **checked** [philosophy-formal] Fisher, hauntology as branching time: lost futures accumulate (lost_mono), haunting is monotone (haunted_mono), a branch point haunts (haunted_of_branch), capitalist_realism; models only cancelled possibility, no claim about Fisher. · evidence: `lean/PEqualNP/Philosophy/Fisher.lean::lost_mono`, `lean/PEqualNP/Philosophy/Fisher.lean::haunted_mono`, `lean/PEqualNP/Philosophy/Fisher.lean::haunted_of_branch`, `lean/PEqualNP/Philosophy/Fisher.lean::capitalist_realism` · R1 · unverified (capitalist_realism not in lean/PEqualNP/Philosophy/Fisher.lean)
@@ -71,6 +72,12 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `8008158e` **checked** [T9; L-qg-169, CTC] PSPACE in P_CTC up to one named lemma: any language with a polynomial-time step encoding (init, step, halt test, answer; every register halts; first halt from start answers x in L) is in PCTC, via the Aaronson-Watrous reset circuit with an answer bit; hence PSPACE subset PCTC given PspaceStepEncodingLemma. Axioms: propext, Classical.choice, Quot.sound. · evidence: `lean/PEqualNP/QuantumGravity/Open/PspaceCtc.lean::PCTC_of_stepEncoding`, `lean/PEqualNP/QuantumGravity/Open/PspaceCtc.lean::PSPACE_subset_PCTC_of_stepEncoding`, `lean/PEqualNP/QuantumGravity/Open/PspaceCtc.lean::answer_eventually_const` · O3 · VERIFIED
 - `2e78144d` **checked** [L-qg-119] Two-level saturation: every unitary of Fin d is a product of at most d(d+1)/2 unitaries that are the identity outside a 2x2 block (Givens column elimination plus d phases). Axioms: propext, Classical.choice, Quot.sound. · evidence: `lean/PEqualNP/QuantumGravity/Open/TwoLevel.lean::reachable_twoLevel` · S4 · VERIFIED
 - `eb92517c` **checked** [philosophy-formal; qg-frontier] Coffman-Kundu-Wootters monogamy for three qubits, full: for every (unnormalised) pure three-qubit state psi, C(rho_AB)^2 + C(rho_AC)^2 + 4|Det psi| = 4 det rho_A, hence tau_AB + tau_AC <= tau_A|BC, equality iff Cayley hyperdeterminant Det psi = 0. C is Wootters concurrence defined from the charpoly roots of rho * spin-flip(rho); reduced states are those of BeauvoirQG. Key lemma: rank-two rho = V V^H has C^2 = ||T||_F^2 - 2|det T|, T = V^T (sy x sy) V. Axioms: propext, Classical.choice, Quot.sound. · evidence: `lean/PEqualNP/QuantumGravity/Open/CKW.lean::ckw`, `lean/PEqualNP/QuantumGravity/Open/CKW.lean::ckw_identity`, `lean/PEqualNP/QuantumGravity/Open/CKW.lean::ckw_eq_iff`, `lean/PEqualNP/QuantumGravity/Open/CKW.lean::concurrence_sq_rankTwo` · O2 · VERIFIED
+
+##### `lean/PEqualNP/Worlds/` 3 checked
+- `a70f6fd8` **checked** [P vs NP formal statement] Granted Fagin and Immerman-Vardi as hypotheses (not proved here), the repository's P = NP holds iff FO(LFP) and existential second-order logic define the same properties of finite ordered structures; a restatement, it moves nothing · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::p_eq_np_iff_lfp_eq_eso` · language-unification · VERIFIED
+- `53be30e1` **checked** [P vs NP formal statement] ESO is inside NP from one unproved premise FOModelCheckingInP (first-order model checking in polynomial time on Turing.FinTM2; the evaluator machine is not built) · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::eso_subset_np` · language-unification · VERIFIED
+- `408f74ba` **checked** [P vs NP formal statement] For a body positive in the bound relation variable the lfp constructor denotes the least fixed point · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::lfp_isLeast` · language-unification · VERIFIED
+- `d4ed1a42` **open** [P vs NP formal statement] FOModelCheckingInP and the two capture theorems Fagin, ImmermanVardi are Props, unproved here; prior art: Senellart's Lean 4 descriptive-complexity library, not imported (needs lake update) · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::FOModelCheckingInP` · language-unification · unverified (needs a second seat in by)
 
 ### `one-not/` 48 checked · 5 tested · 5 refuted
 
