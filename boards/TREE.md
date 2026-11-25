@@ -12,12 +12,12 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 - lateral (Lawvere spine): 1 checked
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked
 - quantum gravity: 13 checked
-- worlds (maps and unification; not progress on P vs NP): 8 checked
+- worlds (maps and unification; not progress on P vs NP): 9 checked
 
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 90 checked · 9 tested · 6 refuted
+## `./` 91 checked · 9 tested · 6 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -41,9 +41,9 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `d23edf3b` **open** [C1, C2, C4, the sorry] Language cannot yet say: implications/hypotheses in corpus claims (sets_ok), exists-v mixed quantifiers and gain/cost of 0- and 1-steps, merge sets/pure classes/SDR/prices, negated corpus claims, a Lean form for gates>=base, fast C3_k at n>=16, kernel claims at n=14+ (see asteroid/programs/README.md) · evidence: `asteroid/programs/README.md` · main's Sonnet (programs) · unverified (needs a second seat in by)
 - `37dcef35` **checked** [the sorry, L5] The continuous form is in asteroid: for the Fano formula and a 5-input one-NOT circuit the kernel checks every cube and Lean states 0 <= Phi(p) for all p in [0,1] and 0 <= Phi(0) in the project's Phi; Phi is not monotone on the twin tree (level means 6.00 -> 8.29). · evidence: `asteroid/programs/continuous.ath`, `one-not/lean/PEqualNP/W951/Asteroid_continuous_sound.lean::fano_claim2_phi_zero`, `asteroid/ext_continuous.py` · main · VERIFIED
 
-### `lean/` 24 checked
+### `lean/` 25 checked
 
-#### `lean/PEqualNP/` 24 checked
+#### `lean/PEqualNP/` 25 checked
 
 ##### `lean/PEqualNP/Lateral/` 1 checked
 - `f1c3e56e` **checked** [lateral-diagonal] Cantor, Russell, no computable enumeration of computable functions and Camus no_total_answer all follow from one Lawvere diagonal lemma; Mathlib already has the surjective form (classical, Lawvere 1969; Yanofsky 2003) · evidence: `lean/PEqualNP/Lateral/Cantor.lean::cantor_from_lawvere`, `lean/PEqualNP/Lateral/Halting.lean::no_computable_enumeration`, `lean/PEqualNP/Lateral/CamusInstance.lean::camus_from_lawvere` · sonnet-lateral · VERIFIED
@@ -79,11 +79,12 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `af4035dc` **checked** [qg-frontier; L-qg-169] PSPACE ⊆ PCTC (Aaronson-Watrous direction): every language of Library.PSPACE (Turing.FinTM2, UsesSpace) has a StepEncoding, by compiling the machine to the micro-instruction code, encoding configurations as bit strings padded by empty stacks, stepL = sstep (polynomial time), pc test, output-stack read-out, polynomial length bound from per-micro-step stack bounds, halting within 2^p steps by pigeonhole; with stepEncoding_of_timed this gives PspaceStepEncodingLemma and PSPACE_subset_PCTC. Axioms: propext, Classical.choice, Quot.sound. P_CTC = PSPACE still needs PCTC ⊆ PSPACE. · evidence: `lean/PEqualNP/QuantumGravity/Open/PspaceMachine.lean::pspace_stepEncoding`, `lean/PEqualNP/QuantumGravity/Open/PspaceMachine.lean::PSPACE_subset_PCTC` · S8 · VERIFIED
 - `951c1875` **checked** [L-qg-119] Exact L-qg-119: if 9k+3n+1 < 4^n then the products of at most k two-qubit gates on n qubits are null for every left-invariant probability measure (Gap.L119), via KnillParametrization (countably many differentiable maps from R^(9k+3n+1) cover them). KAK for U(4) proved without Lie theory: every 4x4 unitary is (A1 tensor A2)(Qm diag Qd)(B1 tensor B2) in the magic basis Qm; the right factor of each gate is absorbed into a travelling layer of single-qubit gates. Standard axioms only. · evidence: `lean/PEqualNP/QuantumGravity/Open/KAKParam.lean::L119`, `lean/PEqualNP/QuantumGravity/Open/KAKParam.lean::knillParametrization`, `lean/PEqualNP/QuantumGravity/Open/KAK.lean::kak` · F2 · VERIFIED
 
-##### `lean/PEqualNP/Worlds/` 3 checked
+##### `lean/PEqualNP/Worlds/` 4 checked
 - `a70f6fd8` **checked** [P vs NP formal statement] Granted Fagin and Immerman-Vardi as hypotheses (not proved here), the repository's P = NP holds iff FO(LFP) and existential second-order logic define the same properties of finite ordered structures; a restatement, it moves nothing · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::p_eq_np_iff_lfp_eq_eso` · language-unification · VERIFIED
 - `53be30e1` **checked** [P vs NP formal statement] ESO is inside NP from one unproved premise FOModelCheckingInP (first-order model checking in polynomial time on Turing.FinTM2; the evaluator machine is not built) · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::eso_subset_np` · language-unification · VERIFIED
 - `408f74ba` **checked** [P vs NP formal statement] For a body positive in the bound relation variable the lfp constructor denotes the least fixed point · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::lfp_isLeast` · language-unification · VERIFIED
 - `d4ed1a42` **open** [P vs NP formal statement] FOModelCheckingInP and the two capture theorems Fagin, ImmermanVardi are Props, unproved here; prior art: Senellart's Lean 4 descriptive-complexity library, not imported (needs lake update) · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::FOModelCheckingInP` · language-unification · unverified (needs a second seat in by)
+- `231d94b5` **checked** [SPHERE OF FIELDS: hairy ball] Milnor's two elementary steps: a same-length tangent w at x gives ‖x + t•w‖ = ‖x‖√(1+t²); for n odd, (√(1+t²))^n agrees with no real polynomial on any interval (-ε, ε) (n = 3 is S²). The annulus bijection and volume step are not formalized, so the hairy ball theorem itself is not proved · evidence: `lean/PEqualNP/Worlds/HairyBall.lean::not_polynomial_sqrt_pow_of_odd`, `lean/PEqualNP/Worlds/HairyBall.lean::norm_add_smul_of_tangent` · S2-opus · VERIFIED
 
 ### `one-not/` 49 checked · 6 tested · 6 refuted
 

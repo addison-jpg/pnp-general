@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 90,
+   "checked": 91,
    "tested": 9,
    "refuted": 6
   },
@@ -103,6 +103,7 @@
    "a70f6fd8",
    "53be30e1",
    "408f74ba",
+   "231d94b5",
    "f1c3e56e",
    "aff6e6b7",
    "2e8126de",
@@ -197,7 +198,7 @@
  },
  "lean": {
   "counts": {
-   "checked": 24
+   "checked": 25
   },
   "verified": [
    "57b5bd42",
@@ -216,6 +217,7 @@
    "a70f6fd8",
    "53be30e1",
    "408f74ba",
+   "231d94b5",
    "f1c3e56e",
    "aff6e6b7",
    "2e8126de",
@@ -229,7 +231,7 @@
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 24
+   "checked": 25
   },
   "verified": [
    "57b5bd42",
@@ -248,6 +250,7 @@
    "a70f6fd8",
    "53be30e1",
    "408f74ba",
+   "231d94b5",
    "f1c3e56e",
    "aff6e6b7",
    "2e8126de",
@@ -359,12 +362,13 @@
  },
  "lean/PEqualNP/Worlds": {
   "counts": {
-   "checked": 3
+   "checked": 4
   },
   "verified": [
    "a70f6fd8",
    "53be30e1",
-   "408f74ba"
+   "408f74ba",
+   "231d94b5"
   ],
   "unverified_here": [
    {
