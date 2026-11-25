@@ -10,6 +10,7 @@ Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boar
 
 - The full pure-Lean verifier (`lean/PEqualNP/Verify/All.lean`, about 1,630 imports) has not finished once in this session. One run passed the lock wait but was stopped at the one-hour background limit, then a container restart killed the next. The circuit-side verifier (`one-not/lean`, 18,633 jobs) did finish once (2026-11-25, with the five new Open modules).
 - Agents' Lean builds share one machine and one build lock; each waits on the others. SAT seats (B7, B11) and Lean builds compete for the same cores.
+- Where compute pays off most directly: the refuter lane, [`refuter-951`](boards/tasks/refuter-951.md) (SAT at base − 1, DD-state search), paired with the proof seats on `BottomPay` and `no_minCE`.
 - Wanted: more cores or a dedicated build machine; a CI job that runs both verifiers on push to main and reports the time; and a rule that only one full verifier build runs at a time. Until then, check new modules one by one with `#print axioms` (as done for the quantum-gravity files).
 
 ## CURRENT STATE (formal style, one line per program; every claim is a finding in [`boards/TREE.md`](boards/TREE.md) or a task board)
