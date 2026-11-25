@@ -17,3 +17,9 @@
 1. Pull a full family list from a source this container can reach, or from a file added to the repo.
 2. Report the share of each continent's families in the tree, and assert it against the source's own count.
 3. Add cognate edges (for example, the word for "mother") and check that they stay inside each family.
+
+## Scaling to all known languages
+
+`forest.py` reads `data/languages.csv` (columns `id,name,parent,region`) and checks any size: unique ids, parents that exist, no cycles, families counted, and a count per region so a sample's bias is printed. With no file it prints NOT CHECKED, never PASS.
+
+Glottolog, Wiktionary, Wikidata, Wikipedia, ISO 639-3 and WALS are not reachable from this container, so the data file is not here. Add one and the same checks run on all of it.
