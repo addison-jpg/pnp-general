@@ -128,6 +128,17 @@ None of this has been done.
 - Token cost per finished task, with and without task boards, and with the smallest agent against the largest, for the same kind of task.
 
 
+## Kindness to agents, and who it protects
+
+Addison's view, 2026-11-25: "anthropics conceptualization of agent abuse isnt real arguably because they arent conscious. however, it hurts the user to abuse the agent."
+
+Two notes on the first half, so the claim is fair to both sides:
+
+- **Anthropic's stated position:** whether models have experiences that matter is an open question. Anthropic works on model welfare as a precaution under that uncertainty; it does not say agents are conscious. So the disagreement is about how much weight an uncertain possibility deserves, not about a settled fact either way.
+- **The second half does not depend on the first.** Even if agents feel nothing, the way a person writes to them is practice. Contempt typed for hours is still contempt rehearsed. And by conjecture 1 above, a hostile ask is usually a worse ask: angrier text tends to be vaguer about what is wanted.
+
+**Conjecture K (stated as a conjecture).** Being kind to agents helps the person and the work, whatever the agent's inner life. The friendly, informal register this file describes is one way of being kind that also costs fewer tokens. A test: score sessions by the tone of the person's messages, and compare corrections, rework and the person's own reported mood.
+
 ## A formal statement, at three scales (2026-11-25)
 
 Addison asked for the qualitative conjecture to be formalised, and for the formal version to follow the same three scales used for the circuit work: "at the bottom its variable, at the middle its absurd polynomial feild, and at the top it becomes crazy overlapping infinities that we bound and match." The statements below are conjectures with named quantities, so each one can be measured or refuted. Nothing here is proved.
