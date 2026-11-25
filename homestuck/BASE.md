@@ -2,9 +2,15 @@
 
 Source: Andrew Hussie, *Homestuck* (2009–2016), cited by act and in my own words; no text is reproduced. A note on lineage: asteroid takes its name, logo and fonts from Homestuck (Terezi and Vriska); its mathematics is circuits, not the comic. What follows treats the comic's mechanics as formal structures and says which of them join this repository's checked work. Three labels as everywhere else: **join** (a theorem in the repository already covers it), **analogy**, **open**.
 
+## 0. Reading it as literature
+
+*Homestuck* is a serious work of literature and is read here as one: a long multimodal narrative (prose, dialogue logs, animation, music, interactive pages) whose formal experiments are part of its meaning. It belongs to a lineage of time-loop and recursive fiction, and it is a work about growing up through fixed fates, about grief and doomed selves, and about authors who are characters (Hussie appears inside the story; Caliborn and Lord English contest who writes it).
+
+The formal readings below take its structures seriously as structures. They are not a substitute for literary criticism, and they do not reduce the work to its mechanics. Open: a literature row for every scholarly source on *Homestuck* (studies of webcomics, multimodal and interactive narrative, fan culture), each with its read status, added only once actually found and opened. None is cited here, to avoid inventing references.
+
 ## 1. The time mechanic: one consistent history among doomed ones
 
-The comic's rule: there is one *alpha* timeline. Any branch that cannot be made consistent with it becomes *doomed* and ends. Time players (Dave, Aradia) can loop back; their loops must close consistently, and many copies of a time player die on doomed branches. That is the "million dead Daves".
+In the work, there is one *alpha* timeline. Any branch that cannot be made consistent with it becomes *doomed* and ends. Time players (Dave, Aradia) can loop back; their loops must close consistently, and many copies of a time player die on doomed branches. That is the "million dead Daves".
 
 - **Join: CTC consistency.** "Only self-consistent histories survive" is Deutsch's consistency condition on closed timelike curves, which this repository already proves things about. `L169.lean` (P_CTC ⊆ EXP) and `CtcReset.lean` (a reset machine's consistent distributions sit on its start cycle) say that the surviving history is a fixed point of the time-step map, and that finding it takes at most exponential time. The comic's alpha timeline is the fixed point, and the doomed timelines are the iterates that do not land on it.
 - **Join: lost futures.** Doomed branches are Fisher.lean's lost futures in a branching frame (`lost_mono`: once lost, a future stays lost). DAG.lean's correction applies too: where branches can rejoin (the comic's retcon in Act 6), loss is no longer permanent (`lost_forever_iff_clash`).
