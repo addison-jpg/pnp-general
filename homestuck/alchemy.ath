@@ -1,0 +1,4 @@
+# Alchemy model (b = 3) as a circuit: items = nonempty subsets of {a, b, c}; combining = OR.
+let alch = load alchemy_b3.bench
+show alch
+claim correct(alch)                         # the seven outputs are the seven nonempty unions

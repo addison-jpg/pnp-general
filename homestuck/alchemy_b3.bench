@@ -1,0 +1,14 @@
+# Alchemy model, b = 3: an item is a nonempty subset of the 3 base items.
+# Inputs: base items a b c (1 = present in the item's ancestry).
+# Outputs: the four multi-item subsets (singletons are the inputs themselves; combining = union).
+INPUT(a)
+INPUT(b)
+INPUT(c)
+OUTPUT(ab)
+OUTPUT(ac)
+OUTPUT(bc)
+OUTPUT(abc)
+ab = OR(a, b)
+ac = OR(a, c)
+bc = OR(b, c)
+abc = OR(ab, c)
