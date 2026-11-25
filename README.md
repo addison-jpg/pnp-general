@@ -74,6 +74,8 @@ bin/asteroid hello.ath # run one program
 bin/asteroid test      # run all of them
 ```
 
+VS Code highlighting for `.ath`: download `editors/vscode/asteroid-0.1.0.vsix`, then Extensions → `…` → Install from VSIX.
+
 `bin/asteroid` with no arguments opens the interactive prompt, `bin/asteroid idle` the window.
 
 Windows: download [`asteroid.exe`](asteroid.exe) and double-click it (it is the window, with Python inside; nothing to install). Windows SmartScreen will warn, because the file is not signed: click "More info", then "Run anyway".
