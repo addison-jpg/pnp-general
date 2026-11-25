@@ -89,6 +89,7 @@ Meaning. These lines state exact claims about finite distributions. Integers and
 - `claim prob NAME (OUT, ...) = F`: the event's probability is exactly F. An outcome NAME does not have makes the claim FALSE.
 - `claim expect NAME = F`: the mean is exactly F. Every outcome must be an integer, else FALSE.
 - Infinite distributions are not supported. A limit over cutoffs is a separate, written argument.
+- Size limit: a product has at most 10^6 outcomes. Past it the line is an error.
 - Test: `python3 -I asteroid/tests/test_prob.py`.
 
 ## Kripke frames (extension `asteroid/ext_modal.py`)

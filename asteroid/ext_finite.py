@@ -27,7 +27,8 @@ def _lit(body, where):
     xs = [x for x in body.replace(",", " ").split()]
     bad = [x for x in xs if not INT.fullmatch(x)]
     if bad: raise SystemExit(f"{where}: not an integer: {bad[0]}")
-    return [int(x) for x in xs]
+    try: return [int(x) for x in xs]
+    except ValueError as e: raise SystemExit(f"{where}: {e}")      # more digits than Python reads from text
 
 def _passed(out):
     """A check passes only if one stdout line is exactly PASS and no line has the word FAIL."""

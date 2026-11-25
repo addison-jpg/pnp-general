@@ -15,8 +15,10 @@ def frac(s, where):
     s = s.strip()
     if not re.fullmatch(r"-?\d+(?:\s*/\s*\d+)?", s): raise SystemExit(f"{where}: not an integer or a/b: {s}")
     a, _, b = s.partition("/")
-    if b and int(b) == 0: raise SystemExit(f"{where}: zero denominator: {s}")
-    return Fraction(int(a), int(b)) if b else Fraction(int(a))
+    try: a, b = int(a), (int(b) if b else 1)
+    except ValueError as e: raise SystemExit(f"{where}: {e}")      # more digits than Python reads from text
+    if b == 0: raise SystemExit(f"{where}: zero denominator: {s}")
+    return Fraction(a, b)
 
 def parse_dist(body, where):
     d = {}
@@ -31,7 +33,11 @@ def parse_dist(body, where):
     if sum(d.values()) != 1: raise SystemExit(f"{where}: probabilities sum to {sum(d.values())}, not 1")
     return d
 
-def product(a, b): return {f"{x}.{y}": p * q for x, p in a.items() for y, q in b.items()}
+MAX_OUT = 10**6     # most outcomes of one distribution (a product of two big ones would not halt in time)
+
+def product(a, b):
+    if len(a) * len(b) > MAX_OUT: raise SystemExit(f"a product with {len(a) * len(b)} outcomes > {MAX_OUT}")
+    return {f"{x}.{y}": p * q for x, p in a.items() for y, q in b.items()}
 
 def _get(name, where):
     if name not in DIST: raise SystemExit(f"{where}: no distribution named {name}")

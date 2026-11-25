@@ -57,7 +57,7 @@ def generate(model, system, user, k):
     job = json.dumps({"model": model, "system": system, "user": user})
     try: r = subprocess.run([py, os.path.abspath(__file__), "--generate"], input=job, capture_output=True, text=True, env=env, timeout=900)
     except subprocess.TimeoutExpired: raise RuntimeError("the model timed out after 900 s")
-    if r.returncode != 0: raise RuntimeError("the model did not run: " + (r.stderr.strip().splitlines() or ["no message"])[-1][:200])
+    if r.returncode != 0: raise RuntimeError(f"the model did not run (exit {r.returncode}): " + (r.stderr.strip().splitlines() or ["no message"])[-1][:200])
     return r.stdout
 
 def _gen_main():

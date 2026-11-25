@@ -42,6 +42,7 @@ def _split(text, kw):
     """split at the keyword ` kw ` outside quotes and brackets"""
     out, cur, depth, q, i = [], "", 0, False, 0
     pat = f" {kw} "
+    if pat not in text: return [text]       # the common case, in linear time (a long seq literal took minutes)
     while i < len(text):
         ch = text[i]
         if ch == '"': q = not q

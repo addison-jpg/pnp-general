@@ -1,4 +1,10 @@
 {
+ "017c965912527e0712a2fec162da786fa4366b7517274491f3e324e494021ee9": {
+  "k": 3,
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "a modal formula valid exactly on symmetric frames, written as claim defines all3 FORMULA symmetric",
+  "text": "claim defines all3 \"p -> p & p -> p\" symmetric  \nclaim defines all3 \"p -> p | p -> p\" symmetric  \nclaim defines all3 \"p -> p -> p\" symmetric"
+ },
  "1bb7962a0680b2e3d022cf51f68225d5c1e4d16d28c33dce47b7cd9903af58c9": {
   "k": 3,
   "model": "Qwen/Qwen2.5-0.5B-Instruct",
