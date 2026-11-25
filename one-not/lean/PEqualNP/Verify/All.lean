@@ -184,6 +184,11 @@ import PEqualNP.W951.Small3
 import PEqualNP.W951.TUCert
 import PEqualNP.W951.TwoWorld
 import PEqualNP.Verify.Axioms
+import PEqualNP.W951.Open.FlipLemma
+import PEqualNP.W951.Open.MixedSlack
+import PEqualNP.W951.Open.MixedStepNegIff
+import PEqualNP.W951.Open.Or4ManyNot
+import PEqualNP.W951.Open.OrSystemManyNot
 /-! Generated list of every module of this project (`python3 -m asteroid check` regenerates it). The check itself is pure Lean. -/
 
 /- The ONLY theorems allowed to depend on `sorryAx`:
