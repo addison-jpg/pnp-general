@@ -22,3 +22,4 @@ asteroid/out/*.log
 .deps/
 asteroid/out/_*.lean
 asteroid/out/.repl_history
+asteroid/out/_window.ath
