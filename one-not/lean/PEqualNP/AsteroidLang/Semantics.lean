@@ -107,6 +107,7 @@ statement here yet -/
 noncomputable def semFunc (f : Func) (C : SearchCheck.Circ) : Option Int :=
   match f with
   | .gates => some (C.toGates.length : Int)
+  | .nots => some ((C.toGates.countP fun g => decide (g.op = GateOp.not)) : Int)
   | .base => some ((∑ w, ((C.setFin w).card - 1) : Nat) : Int)
   | .orwitness => some ((F2 C.toGates C.setFin ∅).card : Int)
   | .slack => some (((F2 C.toGates C.setFin ∅).card : Int) - ((∑ w, ((C.setFin w).card - 1) : Nat) : Int))
@@ -141,6 +142,7 @@ def denote (env : Env) : Expr → Prop
 def goodT : Term → Bool
   | .int _ => true
   | .app .gates _ => true
+  | .app .nots _ => true
   | .app .base _ => true
   | .app .orwitness _ => true
   | .app .slack _ => true
@@ -151,7 +153,8 @@ def exactE : Expr → Bool
   | .cmp l _ r => goodT l && goodT r
   | _ => false
 
-/-- the claims for which `eval_sound` is proved -/
+/-- the claims for which `eval_sound` is proved (comparisons of `gates`, `nots`, `base`, `orwitness`,
+`slack` and integers) -/
 def coveredE : Expr → Bool
   | .correct _ => true
   | .hyps _ want => want
@@ -175,6 +178,24 @@ theorem setsOkP {env : Env} {name : String} {C : Core.Circ} (h : env.circ? name 
     (CoreEq.toProject C).SetsOk :=
   SearchCheck.setsOk_of_setsOkB _ (by rw [setsOk_bridge]; exact setsOk_of_circ? h)
 
+/-- counting by position is counting the list -/
+theorem range_filter_getD_length {α : Type} (l : List α) (p : α → Bool) (d : α) :
+    ((List.range l.length).filter fun k => p (l.getD k d)).length = l.countP p := by
+  induction l with
+  | nil => simp
+  | cons x xs ih =>
+    rw [List.length_cons, List.range_succ_eq_map, List.filter_cons, List.filter_map,
+      List.countP_cons]
+    simp only [Function.comp_def, List.getD_cons_succ, List.getD_cons_zero, List.length_map]
+    split <;> simp_all
+
+/-- the evaluator's NOT count is the number of NOT gates of the project gate list -/
+theorem nots_bridge (C : Core.Circ) :
+    C.nots = (CoreEq.toProject C).toGates.countP fun g => decide (g.op = GateOp.not) := by
+  simp only [Core.Circ.nots, Core.notCount, range_filter_getD_length, CoreEq.toProject,
+    SearchCheck.Circ.toGates, List.map_map, List.countP_map]
+  exact List.countP_congr fun g _ => by simp [Function.comp_def, SearchCheck.toGate_not_iff]
+
 theorem func_sem {env : Env} {name : String} {C : Core.Circ} (h : env.circ? name = some C)
     (f : Func) (v : Int) (hv : semFunc f (CoreEq.toProject C) = some v) : f.eval C = v := by
   have hC := setsOkP h
@@ -185,6 +206,7 @@ theorem func_sem {env : Env} {name : String} {C : Core.Circ} (h : env.circ? name
   rw [orWitness_bridge] at hF
   cases f <;> simp only [semFunc, Option.some.injEq, reduceCtorEq] at hv
   · subst hv; simp [Func.eval, CoreEq.toProject, SearchCheck.Circ.toGates]
+  · subst hv; simp only [Func.eval]; rw [nots_bridge]
   · subst hv
     simp only [Func.eval]
     rw [← hB]; rfl
