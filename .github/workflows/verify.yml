@@ -1,0 +1,46 @@
+# Full pure-Lean verifiers on GitHub runners (BOARD.md COMPUTE). One job per Lean project: `lake build PEqualNP.Verify.All`
+# runs `#verify_axioms PEqualNP` (every theorem rests on propext, Classical.choice, Quot.sound only, except the allow-list in
+# Verify/All.lean). Prints the verifier output and the wall time. Read-only: no release, tag, PR or comment (QUIET).
+name: verify
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '**.lean'
+      - '**/lakefile.toml'
+      - '**/lake-manifest.json'
+      - '**/lean-toolchain'
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: verify ${{ matrix.dir }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        dir: [lean, one-not/lean]
+    defaults:
+      run:
+        working-directory: ${{ matrix.dir }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan with the repo toolchain
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain "$(cat lean-toolchain)"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get
+      - name: Build PEqualNP.Verify.All
+        run: |
+          start=$(date +%s)
+          set -o pipefail
+          lake build PEqualNP.Verify.All 2>&1 | tee verify.log
+          rc=$?
+          end=$(date +%s)
+          echo "=== wall time: $((end-start)) s ==="
+          echo "=== modules imported: $(grep -c '^import ' PEqualNP/Verify/All.lean) ==="
+          grep -i -E "verify_axioms|theorems|sorryAx|axioms" verify.log | tail -20 || true
+          exit $rc
