@@ -198,6 +198,18 @@
    }
   ]
  },
+ "compbio": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "2547b029",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
  "homestuck": {
   "counts": {
    "checked-finite": 1
