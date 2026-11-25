@@ -1,5 +1,6 @@
 # Posts asteroid's commits to Discord. Needs the repository secret DISCORD_WEBHOOK (a channel webhook URL).
-# Read-only on the repository; it only sends a message out. Without the secret it does nothing.
+# Read-only on the repository: it only sends a message out. Without a valid secret it does nothing and says so
+# without printing the value.
 name: asteroid to discord
 on:
   push:
@@ -13,19 +14,22 @@ jobs:
       - name: Post asteroid's commits
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          EVENT: ${{ toJSON(github.event) }}
+          COMMITS: ${{ toJSON(github.event.commits) }}
+          REPO_URL: ${{ github.event.repository.html_url }}
         run: |
-          if [ -z "$WEBHOOK" ]; then echo "no DISCORD_WEBHOOK secret: nothing sent"; exit 0; fi
-          echo "$EVENT" > event.json
           python3 - <<'PY'
-          import json, os, urllib.request
-          ev = json.load(open("event.json")); repo = ev["repository"]["html_url"]
-          for c in ev.get("commits", []):
-              who = c["author"]["name"]; msg = c["message"]
-              if who != "asteroid" and not msg.startswith("asteroid"): continue
-              text = f"**asteroid** committed [`{c['id'][:7]}`]({repo}/commit/{c['id']})\n```\n{msg[:1700]}\n```"
+          import json, os, re, sys, urllib.request
+          url = os.environ.get("WEBHOOK", "").strip()
+          if not re.fullmatch(r"https://discord(app)?\.com/api/webhooks/\d+/[\w-]+", url):
+              print("DISCORD_WEBHOOK is missing or not a Discord webhook URL: nothing sent (value not shown)")
+              sys.exit(0)
+          repo = os.environ["REPO_URL"]
+          for c in json.loads(os.environ["COMMITS"] or "[]"):
+              if c["author"]["name"] != "asteroid":
+                  continue
+              text = f"**asteroid** committed [`{c['id'][:7]}`]({repo}/commit/{c['id']})\n```\n{c['message'][:1700]}\n```"
               body = json.dumps({"username": "asteroid", "content": text}).encode()
-              req = urllib.request.Request(os.environ["WEBHOOK"], data=body, headers={"Content-Type": "application/json", "User-Agent": "asteroid-ci"})
+              req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json", "User-Agent": "asteroid-ci"})
               urllib.request.urlopen(req, timeout=20).read()
               print("posted", c["id"][:7])
           PY
