@@ -1,0 +1,10 @@
+# time/: the level's own program. See time/BASE.md.
+check "python3 -I time/check.py"
+kripke S4t = all 3 reflexive+transitive
+kripke S5t = all 3 reflexive+transitive+symmetric
+claim valid S4t "[]p -> [][]p"
+claim invalid S4t "p -> []<>p"
+claim invalid S4t "<>[]p -> []<>p"
+claim valid S5t "p -> []<>p"
+claim valid S5t "<>[]p -> []<>p"
+claim valid S4t "[]<>T"

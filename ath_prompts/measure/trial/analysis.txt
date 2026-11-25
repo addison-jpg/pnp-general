@@ -1,0 +1,40 @@
+model Qwen/Qwen2.5-1.5B-Instruct seconds 2621
+greedy: informal 19/30 formal 23/30 | informal-only 3 formal-only 7 exact McNemar p=0.3438 | out tokens mean inf 65.7 form 55.8, median 59.0 22.5; pairs inf shorter 9, longer 16
+s0: informal 17/30 formal 25/30 | informal-only 2 formal-only 10 exact McNemar p=0.0386 | out tokens mean inf 68.7 form 56.8, median 64.5 27.0; pairs inf shorter 10, longer 12
+s1: informal 17/30 formal 22/30 | informal-only 4 formal-only 9 exact McNemar p=0.2668 | out tokens mean inf 72.0 form 63.9, median 90.0 66.5; pairs inf shorter 8, longer 17
+s2: informal 16/30 formal 23/30 | informal-only 0 formal-only 7 exact McNemar p=0.0156 | out tokens mean inf 63.2 form 68.9, median 61.0 79.0; pairs inf shorter 14, longer 10
+sampled pooled per task: informal better 4, formal better 12, ties 14, exact sign p=0.0768
+sampled run totals informal [17, 17, 16] formal [25, 22, 23]
+ask tokens mean informal 13.2 formal 18.1
+
+per-task (greedy I/F, sampled I/F counts of 3):
+| ar01 | 1 | 1 | 2 | 3 | 64 | 76 |
+| ar02 | 1 | 1 | 3 | 3 | 57 | 120 |
+| ar03 | 0 | 0 | 0 | 1 | 54 | 120 |
+| ar04 | 0 | 1 | 0 | 3 | 120 | 118 |
+| ar05 | 0 | 1 | 1 | 0 | 120 | 120 |
+| ar06 | 1 | 1 | 3 | 3 | 81 | 112 |
+| ar07 | 0 | 1 | 1 | 1 | 120 | 120 |
+| ar08 | 0 | 0 | 1 | 0 | 120 | 120 |
+| ar09 | 0 | 0 | 0 | 0 | 120 | 120 |
+| ar10 | 1 | 0 | 2 | 2 | 119 | 120 |
+| ex01 | 1 | 1 | 3 | 3 | 32 | 21 |
+| ex02 | 1 | 0 | 1 | 0 | 14 | 12 |
+| ex03 | 0 | 1 | 1 | 3 | 54 | 14 |
+| ex04 | 1 | 0 | 3 | 3 | 120 | 73 |
+| ex05 | 1 | 1 | 3 | 2 | 52 | 21 |
+| py01 | 1 | 1 | 3 | 3 | 15 | 15 |
+| py02 | 1 | 1 | 2 | 3 | 61 | 14 |
+| py03 | 1 | 1 | 0 | 3 | 120 | 13 |
+| py04 | 1 | 1 | 2 | 3 | 120 | 18 |
+| py05 | 1 | 1 | 0 | 3 | 120 | 13 |
+| st01 | 1 | 1 | 3 | 3 | 13 | 2 |
+| st02 | 0 | 1 | 1 | 2 | 3 | 91 |
+| st03 | 1 | 1 | 3 | 3 | 2 | 39 |
+| st04 | 0 | 1 | 0 | 3 | 13 | 12 |
+| st05 | 1 | 1 | 3 | 3 | 4 | 3 |
+| st06 | 1 | 1 | 3 | 3 | 2 | 24 |
+| st07 | 0 | 0 | 0 | 2 | 21 | 16 |
+| st08 | 1 | 1 | 3 | 3 | 49 | 15 |
+| st09 | 1 | 1 | 3 | 3 | 95 | 11 |
+| st10 | 0 | 1 | 0 | 3 | 85 | 102 |

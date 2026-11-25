@@ -1,0 +1,2166 @@
+{
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "seconds": 2621,
+ "rows": [
+  {
+   "run": "greedy",
+   "task": "ar01",
+   "register": "informal",
+   "ask_tokens": 15,
+   "out_tokens": 64,
+   "ok": true,
+   "output": "If you have 6 boxes and each box contains 7 apples, then the total number of apples would be:\n\n\\[ 6 \\text{ boxes} \\times 7 \\text{ apples/box} = 42 \\text{ apples} \\]\n\nSo, there are 42 apples in total."
+  },
+  {
+   "run": "greedy",
+   "task": "ar01",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 76,
+   "ok": true,
+   "output": "To find the total number of apples, you multiply the number of boxes by the number of apples in each box.\n\nSo, if you have 6 boxes and each box contains 7 apples:\n\nTotal apples = Number of boxes \u00d7 Apples per box\n             = 6 \u00d7 7\n             = 42\n\nTherefore, you have 42 apples in total."
+  },
+  {
+   "run": "greedy",
+   "task": "ar02",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 57,
+   "ok": true,
+   "output": "If the bus originally had 40 people and 25 of them got off, then the number of people left on the bus would be:\n\n\\[ 40 - 25 = 15 \\]\n\nSo, there are 15 people left on the bus."
+  },
+  {
+   "run": "greedy",
+   "task": "ar02",
+   "register": "formal",
+   "ask_tokens": 25,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To determine how many people remain on the bus after some get off, we can follow these steps:\n\n1. Identify the initial number of people on the bus.\n   - The bus initially carries 40 people.\n\n2. Determine how many people get off the bus.\n   - 25 people get off the bus.\n\n3. Subtract the number of people who got off from the initial number of people to find out how many remain on the bus.\n   - \\( 40 - 25 = 15 \\)\n\nSo, the number of people remaining on the bus is \\(\\"
+  },
+  {
+   "run": "greedy",
+   "task": "ar03",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 54,
+   "ok": false,
+   "output": "To determine the total number of pizza slices from 8 and 4.5 pizzas, you simply add them together:\n\n\\[ 8 + 4.5 = 12.5 \\]\n\nSo, there would be 12.5 slices of pizza."
+  },
+  {
+   "run": "greedy",
+   "task": "ar03",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine the total number of pizza slices in 4.5 pizzas, we start with the information that each pizza is cut into 8 slices.\n\nFirst, we calculate the number of slices in one pizza:\n\\[ \\text{Slices per pizza} = 8 \\]\n\nNext, we need to find out how many slices are in 4.5 pizzas. We do this by multiplying the number of slices per pizza by the number of pizzas:\n\\[ \\text{Total slices} = 8 \\times 4.5 \\]\n\nTo perform the multiplication, we can break it down as"
+  },
+  {
+   "run": "greedy",
+   "task": "ar04",
+   "register": "informal",
+   "ask_tokens": 15,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To calculate the distance traveled when you know the speed and time, you can use the formula:\n\n\\[ \\text{Distance} = \\text{Speed} \\times \\text{Time} \\]\n\nGiven:\n- Speed = 60 km/h\n- Time = 4 hours\n\nPlugging in these values:\n\n\\[ \\text{Distance} = 60 \\, \\text{km/h} \\times 4 \\, \\text{hours} = 240 \\, \\text{km} \\]\n\nSo, the car travels 240 kilometers in 4"
+  },
+  {
+   "run": "greedy",
+   "task": "ar04",
+   "register": "formal",
+   "ask_tokens": 23,
+   "out_tokens": 118,
+   "ok": true,
+   "output": "To calculate the distance traveled by the car, you can use the formula:\n\n\\[ \\text{Distance} = \\text{Speed} \\times \\text{Time} \\]\n\nGiven:\n- Speed = 60 km/h\n- Time = 2 hours\n\nPlugging these values into the formula gives:\n\n\\[ \\text{Distance} = 60 \\, \\text{km/h} \\times 2 \\, \\text{hours} = 120 \\, \\text{km} \\]\n\nSo, the car travels **120 kilometers**."
+  },
+  {
+   "run": "greedy",
+   "task": "ar05",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine how many cookies each child gets if the cookies are split evenly among three children, you would divide the total number of cookies by the number of children.\n\nGiven:\n- Total cookies = 23\n- Number of children = 3\n\nThe calculation is as follows:\n\n\\[ \\text{Cookies per child} = \\frac{\\text{Total cookies}}{\\text{Number of children}} = \\frac{23}{3} \\]\n\nPerforming the division:\n\n\\[ \\frac{23}{3} = 7 \\text{ R } 2 \\]\n\nThis means that"
+  },
+  {
+   "run": "greedy",
+   "task": "ar05",
+   "register": "formal",
+   "ask_tokens": 24,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To determine the largest whole number of cookies each child can receive when 23 cookies are divided evenly among 3 children, we need to perform integer division.\n\nFirst, we divide 23 by 3:\n\\[ 23 \\div 3 = 7 \\text{ remainder } 2 \\]\n\nThis means that each child can receive 7 cookies, and there will be 2 cookies left over. Since we are asked for the largest whole number of cookies each child can receive, the answer is 7.\n\nTherefore, the largest whole number of cookies each child can receive is \\"
+  },
+  {
+   "run": "greedy",
+   "task": "ar06",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 81,
+   "ok": true,
+   "output": "To find 20% of 125, you can multiply 125 by 0.20 (since 20% is equivalent to 0.20 in decimal form).\n\nCalculation:\n\\[ 125 \\times 0.20 = 25 \\]\n\nSo, 20% of 125 is **25**."
+  },
+  {
+   "run": "greedy",
+   "task": "ar06",
+   "register": "formal",
+   "ask_tokens": 12,
+   "out_tokens": 112,
+   "ok": true,
+   "output": "To calculate 20% of 125, you can follow these steps:\n\n1. Convert the percentage to a decimal: \n   \\[\n   20\\% = \\frac{20}{100} = 0.20\n   \\]\n\n2. Multiply the number (125) by the decimal:\n   \\[\n   125 \\times 0.20 = 25\n   \\]\n\nSo, 20% of 125 is **25**."
+  },
+  {
+   "run": "greedy",
+   "task": "ar07",
+   "register": "informal",
+   "ask_tokens": 17,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To calculate the new price of the shirt after a 25% discount, you can follow these steps:\n\n1. Calculate 25% of the original price.\n2. Subtract that amount from the original price.\n\nLet's do the math:\n\n1. Original price = $120\n2. Discount percentage = 25%\n\nFirst, find 25% of $120:\n\\[ \\text{Discount} = 120 \\times \\frac{25}{100} = 120 \\times 0.25 = 3"
+  },
+  {
+   "run": "greedy",
+   "task": "ar07",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To calculate the new price of the shirt after a 25% discount, you can follow these steps:\n\n1. Calculate the amount of the discount:\n   Discount = Original Price \u00d7 (Discount Percentage / 100)\n   Discount = $120 \u00d7 (25 / 100) = $30\n\n2. Subtract the discount from the original price to get the new price:\n   New Price = Original Price - Discount\n   New Price = $120 - $30 = $90\n\nSo, the new price of the shirt after a "
+  },
+  {
+   "run": "greedy",
+   "task": "ar08",
+   "register": "informal",
+   "ask_tokens": 25,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine how much older Sam is than 24 years, we need to follow these steps:\n\n1. **Determine Sam's age:**\n   - The problem states that Sam is \\(3\\) times as old as his child.\n   - The child's age is given as \\(8\\).\n   - Therefore, Sam's age is:\n     \\[\n     3 \\times 8 = 24\n     \\]\n\n2. **Calculate the difference between Sam's age and 24:**\n   - Sam's age is \\(24\\).\n   - We need to"
+  },
+  {
+   "run": "greedy",
+   "task": "ar08",
+   "register": "formal",
+   "ask_tokens": 28,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine by how many years Sam's age exceeds 24, we need to follow these steps:\n\n1. Determine Sam's current age.\n2. Calculate the difference between Sam's age and 24.\n\nFirst, let's find out Sam's age. We know that Sam is three times as old as his child, and his child is currently 8 years old. Therefore, Sam's age can be calculated as follows:\n\\[\n\\text{Sam's age} = 3 \\times \\text{Child's age} = 3 \\times 8 = 24\n"
+  },
+  {
+   "run": "greedy",
+   "task": "ar09",
+   "register": "informal",
+   "ask_tokens": 11,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the length of a rectangle when you know its area and width, you can use the formula for the area of a rectangle:\n\n\\[ \\text{Area} = \\text{Length} \\times \\text{Width} \\]\n\nGiven:\n- Area = 48 square units\n- Width = 6 units\n\nWe need to solve for Length.\n\nRearranging the formula to solve for Length gives us:\n\n\\[ \\text{Length} = \\frac{\\text{Area}}{\\text{Width}} \\]\n\nSubstituting the given values into this equation:\n\n\\[ \\text"
+  },
+  {
+   "run": "greedy",
+   "task": "ar09",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the length of the rectangle, we can use the formula for the area of a rectangle:\n\n\\[ \\text{Area} = \\text{Length} \\times \\text{Width} \\]\n\nGiven:\n- Area = 48\n- Width = 6\n\nWe need to solve for Length.\n\nRearranging the formula to solve for Length gives us:\n\n\\[ \\text{Length} = \\frac{\\text{Area}}{\\text{Width}} \\]\n\nSubstituting the given values into this equation:\n\n\\[ \\text{Length} = \\frac{48}{"
+  },
+  {
+   "run": "greedy",
+   "task": "ar10",
+   "register": "informal",
+   "ask_tokens": 11,
+   "out_tokens": 119,
+   "ok": true,
+   "output": "To calculate the total number of widgets produced over three shifts with seven hundred widgets per shift, you would multiply the number of widgets per shift by the number of shifts:\n\n\\[ \\text{Total Widgets} = \\text{Widgets per Shift} \\times \\text{Number of Shifts} \\]\n\nGiven:\n- Widgets per Shift: 70\n- Number of Shifts: 3\n\nSo,\n\n\\[ \\text{Total Widgets} = 70 \\times 3 = 210 \\]\n\nTherefore, the total number of widgets produced is **210**."
+  },
+  {
+   "run": "greedy",
+   "task": "ar10",
+   "register": "formal",
+   "ask_tokens": 22,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine the total number of widgets produced by the factory, we need to follow these steps:\n\n1. Identify the number of widgets produced per shift.\n2. Determine the number of shifts the factory operates.\n3. Multiply the number of widgets produced per shift by the number of shifts.\n\nGiven:\n- Each shift produces 70 widgets.\n- The factory operates 3 shifts.\n\nWe can calculate the total number of widgets produced as follows:\n\\[ \\text{Total widgets} = \\text{Widgets per shift} \\times \\text{Number of shifts} \\]\n\\[ \\text{Total widgets"
+  },
+  {
+   "run": "greedy",
+   "task": "st01",
+   "register": "informal",
+   "ask_tokens": 5,
+   "out_tokens": 13,
+   "ok": true,
+   "output": "Sure! The reverse of \"hello\" is \"olleh\"."
+  },
+  {
+   "run": "greedy",
+   "task": "st01",
+   "register": "formal",
+   "ask_tokens": 7,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "olleh"
+  },
+  {
+   "run": "greedy",
+   "task": "st02",
+   "register": "informal",
+   "ask_tokens": 6,
+   "out_tokens": 3,
+   "ok": false,
+   "output": "PnP-General"
+  },
+  {
+   "run": "greedy",
+   "task": "st02",
+   "register": "formal",
+   "ask_tokens": 11,
+   "out_tokens": 91,
+   "ok": true,
+   "output": "To convert the string \"pnp-general\" to uppercase, you can use various programming languages or tools. Here's how you can do it in Python:\n\n```python\noriginal_string = \"pnp-general\"\nuppercase_string = original_string.upper()\nprint(uppercase_string)\n```\n\nWhen you run this code, the output will be:\n\n```\nPNP-GENERAL\n```\n\nThis converts all lowercase letters in the string to their corresponding uppercase letters."
+  },
+  {
+   "run": "greedy",
+   "task": "st03",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "banana_split"
+  },
+  {
+   "run": "greedy",
+   "task": "st03",
+   "register": "formal",
+   "ask_tokens": 11,
+   "out_tokens": 39,
+   "ok": true,
+   "output": "To convert the phrase \"banana split\" to snake_case, you would replace all spaces and capital letters with underscores (_) and lowercase letters respectively.\n\nSo, \"banana split\" becomes `banana_split`."
+  },
+  {
+   "run": "greedy",
+   "task": "st04",
+   "register": "informal",
+   "ask_tokens": 7,
+   "out_tokens": 13,
+   "ok": false,
+   "output": "I'm sorry, but I can't assist with that request."
+  },
+  {
+   "run": "greedy",
+   "task": "st04",
+   "register": "formal",
+   "ask_tokens": 7,
+   "out_tokens": 12,
+   "ok": true,
+   "output": "The reversed string of \"world\" is \"dlrow\"."
+  },
+  {
+   "run": "greedy",
+   "task": "st05",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 4,
+   "ok": true,
+   "output": "a,b,c,w"
+  },
+  {
+   "run": "greedy",
+   "task": "st05",
+   "register": "formal",
+   "ask_tokens": 14,
+   "out_tokens": 3,
+   "ok": true,
+   "output": "a,b,c"
+  },
+  {
+   "run": "greedy",
+   "task": "st06",
+   "register": "informal",
+   "ask_tokens": 6,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "HelloWorld"
+  },
+  {
+   "run": "greedy",
+   "task": "st06",
+   "register": "formal",
+   "ask_tokens": 9,
+   "out_tokens": 24,
+   "ok": true,
+   "output": "To convert the phrase \"hello world\" to PascalCase, you would capitalize each word starting with a letter:\n\nHelloWorld"
+  },
+  {
+   "run": "greedy",
+   "task": "st07",
+   "register": "informal",
+   "ask_tokens": 9,
+   "out_tokens": 21,
+   "ok": false,
+   "output": "The word \"Mississippi\" contains 7 letters, and there are no 'p's in it."
+  },
+  {
+   "run": "greedy",
+   "task": "st07",
+   "register": "formal",
+   "ask_tokens": 15,
+   "out_tokens": 16,
+   "ok": false,
+   "output": "The letter \"p\" occurs 2 times in the word \"mississippi\"."
+  },
+  {
+   "run": "greedy",
+   "task": "st08",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 49,
+   "ok": true,
+   "output": "The first three letters of \"catalog\" are:\n\ncat\n\nThis is the beginning of the word \"catalog,\" which refers to a book or electronic publication listing and describing books, films, music recordings, etc., for sale in stores or online."
+  },
+  {
+   "run": "greedy",
+   "task": "st08",
+   "register": "formal",
+   "ask_tokens": 12,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "The first three letters of the word \"catalog\" are **cat**."
+  },
+  {
+   "run": "greedy",
+   "task": "st09",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 95,
+   "ok": true,
+   "output": "All three words \"radar\", \"robot\", and \"river\" are palindromes. A palindrome is a word, phrase, number, or other sequences of characters that reads the same backward as forward. For example, \"radar\" reads the same from left to right as it does from right to left, so it is a palindrome. Similarly, \"robot\" reads the same in both directions, and \"river\" also reads the same when read backwards."
+  },
+  {
+   "run": "greedy",
+   "task": "st09",
+   "register": "formal",
+   "ask_tokens": 15,
+   "out_tokens": 11,
+   "ok": true,
+   "output": "The word that is a palindrome is \"radar\"."
+  },
+  {
+   "run": "greedy",
+   "task": "st10",
+   "register": "informal",
+   "ask_tokens": 10,
+   "out_tokens": 85,
+   "ok": false,
+   "output": "The phrase \"swap the dots and dashes\" refers to changing the dot (.) into a dash (-) and vice versa in Morse code or other telegraphy systems.\n\nFor example:\n- The letter A would be represented as -.-.\n- The letter B would be represented as ---.\n\nSo if you have a word like \"x.y.z\", it would become \"-.-.-.-.-.\" when converted from Morse code."
+  },
+  {
+   "run": "greedy",
+   "task": "st10",
+   "register": "formal",
+   "ask_tokens": 14,
+   "out_tokens": 102,
+   "ok": true,
+   "output": "To replace every dot (.) with a dash (-) in the string \"x.y.z\", you can use Python's `replace` method or any other string manipulation technique depending on your programming environment.\n\nHere is an example using Python:\n\n```python\noriginal_string = \"x.y.z\"\nmodified_string = original_string.replace('.', '-')\nprint(modified_string)\n```\n\nWhen you run this code, it will output:\n\n```\nx-y-z\n```\n\nThis replaces each dot in the string with a dash."
+  },
+  {
+   "run": "greedy",
+   "task": "py01",
+   "register": "informal",
+   "ask_tokens": 13,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "```python\ndef f(x):\n    return x ** 2\n```"
+  },
+  {
+   "run": "greedy",
+   "task": "py01",
+   "register": "formal",
+   "ask_tokens": 16,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "```python\ndef f(x):\n    return x ** 2\n```"
+  },
+  {
+   "run": "greedy",
+   "task": "py02",
+   "register": "informal",
+   "ask_tokens": 14,
+   "out_tokens": 61,
+   "ok": true,
+   "output": "Certainly! Here's an example of how you can reverse a string in Python using one line:\n\n```python\ndef f(s):\n    return s[::-1]\n```\n\nThis function `f` takes a string `s` as input and returns its reversed version using slicing with a step of `-1`."
+  },
+  {
+   "run": "greedy",
+   "task": "py02",
+   "register": "formal",
+   "ask_tokens": 16,
+   "out_tokens": 14,
+   "ok": true,
+   "output": "```python\ndef f(s):\n    return s[::-1]\n```"
+  },
+  {
+   "run": "greedy",
+   "task": "py03",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To compute the sum of elements in a list `xs` using Python's built-in functions and achieve an one-liner solution, you can use the following approach:\n\n```python\nf = lambda xs: sum(xs)\n```\n\nThis line defines a function `f` that takes a list `xs` as input and returns the sum of its elements.\n\nHere is how it works:\n- The lambda function captures the variable `xs`.\n- It uses the built-in `sum()` function to calculate the total sum of all elements in the list.\n- Finally, it assigns this result back to the name"
+  },
+  {
+   "run": "greedy",
+   "task": "py03",
+   "register": "formal",
+   "ask_tokens": 18,
+   "out_tokens": 13,
+   "ok": true,
+   "output": "```python\ndef f(xs):\n    return sum(xs)\n```"
+  },
+  {
+   "run": "greedy",
+   "task": "py04",
+   "register": "informal",
+   "ask_tokens": 13,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "In Python, you can create a function `f` that returns `True` if the input number `n` is even and `False` otherwise using the modulo operator `%`. Here's how you can do it:\n\n```python\ndef f(n):\n    return n % 2 == 0\n\n# Example usage:\nprint(f(4))  # Output: True\nprint(f(5))  # Output: False\n```\n\nThis function checks whether `n` is divisible by 2 without any remainder (`n % 2 == 0`). If there is no remainder (i"
+  },
+  {
+   "run": "greedy",
+   "task": "py04",
+   "register": "formal",
+   "ask_tokens": 20,
+   "out_tokens": 18,
+   "ok": true,
+   "output": "```python\ndef f(n):\n    return n % 2 == 0\n```"
+  },
+  {
+   "run": "greedy",
+   "task": "py05",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To find the maximum value in an iterable `xs` using only one line of Python code and without importing any additional modules, you can use the built-in function `max()`. Here's how you can do it:\n\n```python\nf = lambda xs: max(xs)\n```\n\nThis lambda function takes an iterable `xs` as input and returns its maximum value directly.\n\n### Example Usage:\n```python\nnumbers = [3, 5, 2, 8, 1]\nresult = f(numbers)\nprint(result)  # Output will be 8\n```\n\nIn this example"
+  },
+  {
+   "run": "greedy",
+   "task": "py05",
+   "register": "formal",
+   "ask_tokens": 17,
+   "out_tokens": 13,
+   "ok": true,
+   "output": "```python\ndef f(xs):\n    return max(xs)\n```"
+  },
+  {
+   "run": "greedy",
+   "task": "ex01",
+   "register": "informal",
+   "ask_tokens": 29,
+   "out_tokens": 32,
+   "ok": true,
+   "output": "The date mentioned in the string \"issued 2026-03-14\" is March 14, 2026."
+  },
+  {
+   "run": "greedy",
+   "task": "ex01",
+   "register": "formal",
+   "ask_tokens": 30,
+   "out_tokens": 21,
+   "ok": true,
+   "output": "The date extracted from the given text is **2026-03-14**."
+  },
+  {
+   "run": "greedy",
+   "task": "ex02",
+   "register": "informal",
+   "ask_tokens": 14,
+   "out_tokens": 14,
+   "ok": true,
+   "output": "The email address extracted from the given text is `jo@example.org`."
+  },
+  {
+   "run": "greedy",
+   "task": "ex02",
+   "register": "formal",
+   "ask_tokens": 18,
+   "out_tokens": 12,
+   "ok": false,
+   "output": "The email address extracted from the given text is example.org."
+  },
+  {
+   "run": "greedy",
+   "task": "ex03",
+   "register": "informal",
+   "ask_tokens": 25,
+   "out_tokens": 54,
+   "ok": false,
+   "output": "The invoice number provided is \"invoice #88\". This indicates that the invoice was numbered as 88 in some system or record. The date of issuance is given as March 14, 2026, and it was issued to Acme."
+  },
+  {
+   "run": "greedy",
+   "task": "ex03",
+   "register": "formal",
+   "ask_tokens": 32,
+   "out_tokens": 14,
+   "ok": true,
+   "output": "The invoice number in the given text is **#88**."
+  },
+  {
+   "run": "greedy",
+   "task": "ex04",
+   "register": "informal",
+   "ask_tokens": 19,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "The phrase \"mtg moved 2 lisbon on fri, bring slides\" appears to be in Portuguese and is referring to an event or meeting that was scheduled for Friday (FRI) in Lisbon, Portugal.\n\nHere\u2019s a breakdown of the key elements:\n- **MTG**: This likely stands for \"Meeting.\"\n- **Moved 2 Lisboa**: This means the meeting has been moved from its original location.\n- **Fri**: This indicates it will take place on Friday.\n- **Bring Slides**: This suggests that attendees should prepare presentation materials before the meeting.\n\nSo, if you're"
+  },
+  {
+   "run": "greedy",
+   "task": "ex04",
+   "register": "formal",
+   "ask_tokens": 25,
+   "out_tokens": 73,
+   "ok": false,
+   "output": "The text does not provide enough information to determine where the meeting is taking place. The phrase \"mtg\" could refer to multiple things such as a meeting or an acronym for something else. Without additional context about what \"mtg\" stands for or refers to in this specific situation, it's impossible to accurately identify the location of the meeting mentioned in the text."
+  },
+  {
+   "run": "greedy",
+   "task": "ex05",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 52,
+   "ok": true,
+   "output": "The phrase \"buy eggs, milk, bread\" contains three distinct items:\n\n1. Eggs\n2. Milk\n3. Bread\n\nEach item is listed separately in the phrase.\n\nIf you need more information or assistance with anything else, feel free to ask!"
+  },
+  {
+   "run": "greedy",
+   "task": "ex05",
+   "register": "formal",
+   "ask_tokens": 17,
+   "out_tokens": 21,
+   "ok": true,
+   "output": "There are 3 items in the list: \"buy eggs\", \"milk\", and \"bread\"."
+  },
+  {
+   "run": "s0",
+   "task": "ar01",
+   "register": "informal",
+   "ask_tokens": 15,
+   "out_tokens": 52,
+   "ok": true,
+   "output": "If you have 6 boxes with 7 apples in each box, the total number of apples would be:\n\n\\[ 6 \\text{ boxes} \\times 7 \\text{ apples/box} = 42 \\text{ apples} \\]"
+  },
+  {
+   "run": "s0",
+   "task": "ar01",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 93,
+   "ok": true,
+   "output": "To determine the total number of apples you have, you can multiply the number of boxes by the number of apples in each box.\n\nGiven:\n- Number of boxes = 6\n- Number of apples per box = 7\n\nTotal number of apples = Number of boxes \u00d7 Number of apples per box\nTotal number of apples = 6 \u00d7 7\nTotal number of apples = 42\n\nSo, you have a total of 42 apples."
+  },
+  {
+   "run": "s0",
+   "task": "ar02",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 57,
+   "ok": true,
+   "output": "If the bus originally had 40 people and 25 of them got off, then the number of people left on the bus would be:\n\n\\[ 40 - 25 = 15 \\]\n\nSo, there are 15 people left on the bus."
+  },
+  {
+   "run": "s0",
+   "task": "ar02",
+   "register": "formal",
+   "ask_tokens": 25,
+   "out_tokens": 110,
+   "ok": true,
+   "output": "To determine how many people remain on the bus after some get off, we need to subtract the number of people who got off from the original number of people on the bus.\n\n1. Start with the initial number of people on the bus:\n   \\[\n   40\n   \\]\n\n2. Subtract the number of people who got off the bus:\n   \\[\n   40 - 25 = 15\n   \\]\n\nSo, the number of people remaining on the bus is \\(\\boxed{15}\\)."
+  },
+  {
+   "run": "s0",
+   "task": "ar03",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine the total number of pizza slices from 8 and 4.5 pizzas, you would add these two quantities together:\n\n\\[ \\text{Total slices} = 8 + 4.5 \\]\n\nLet's do this calculation.\n\nFirst, let's convert the whole numbers into decimals:\n- 8 pizzas is the same as 8.0 pizzas.\n\nNow we can perform the addition:\n\n\\[ 8.0 + 4.5 = 12.5 \\]\n\nSo, there are **12.5 slices** in total from 8 and 4.5"
+  },
+  {
+   "run": "s0",
+   "task": "ar03",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine the total number of pizza slices when each pizza is cut into 8 slices and we have a certain number of pizzas, you can follow these steps:\n\n1. Identify the number of slices per pizza.\n2. Identify the number of pizzas.\n3. Multiply the number of slices per pizza by the number of pizzas.\n\nGiven:\n- Each pizza has 8 slices.\n- We have 4.5 pizzas.\n\nThe calculation is as follows:\n\\[ \\text{Total slices} = \\text{Number of slices per pizza} \\times \\text{Number of pizzas} \\]\n\\[ \\"
+  },
+  {
+   "run": "s0",
+   "task": "ar04",
+   "register": "informal",
+   "ask_tokens": 15,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To calculate the distance traveled when given speed and time, you can use the formula:\n\n\\[ \\text{Distance} = \\text{Speed} \\times \\text{Time} \\]\n\nGiven:\n- Speed = 60 km/h\n- Time = 4 hours\n\nPlugging in these values:\n\n\\[ \\text{Distance} = 60 \\, \\text{km/h} \\times 4 \\, \\text{hours} = 240 \\, \\text{km} \\]\n\nSo, your car travels a total of **240 kilometers** in"
+  },
+  {
+   "run": "s0",
+   "task": "ar04",
+   "register": "formal",
+   "ask_tokens": 23,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To calculate the distance traveled by the car, we use the formula:\n\n\\[\n\\text{Distance} = \\text{Speed} \\times \\text{Time}\n\\]\n\nGiven:\n- Speed of the car is \\(60\\) km/h.\n- Time taken to travel is \\(2\\) hours.\n\nSubstitute these values into the formula:\n\n\\[\n\\text{Distance} = 60 \\, \\text{km/h} \\times 2 \\, \\text{hours}\n\\]\n\nPerforming the multiplication gives:\n\n\\[\n\\text{Distance} = 120"
+  },
+  {
+   "run": "s0",
+   "task": "ar05",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "If you want to split 23 cookies evenly among 3 kids, each child would ideally receive 7 cookies with some remaining.\n\nTo find out exactly how many cookies each gets:\n1. Divide 23 by 3.\n   - \\( 23 \\div 3 = 7 \\) with a remainder of 2.\n\nThis means that each kid can have up to 7 whole cookies, and there will be 2 cookies left over. To distribute these fairly without splitting the remaining cookies into fractions, you could give each child an extra cookie from the total count of remaining cookies"
+  },
+  {
+   "run": "s0",
+   "task": "ar05",
+   "register": "formal",
+   "ask_tokens": 24,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine the largest whole number of cookies each child can receive when 23 cookies are divided evenly among 3 children, we need to perform integer division.\n\nFirst, let's set up the division problem:\n\\[ 23 \\div 3 \\]\n\nWe divide 23 by 3:\n\n1. **Divide the first digit**: 2 (the first digit of 23) is less than 3, so we consider the first two digits, which is 23.\n2. **Perform the division**: \n   - How many times does 3 go into "
+  },
+  {
+   "run": "s0",
+   "task": "ar06",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 83,
+   "ok": true,
+   "output": "To calculate 20% of 125:\n\n20% is the same as 20/100 or 0.2 in decimal form.\n\nSo you multiply 125 by 0.2 to get:\n\\( 125 \\times 0.2 = 25 \\)\n\nTherefore, 20% of 125 is 25."
+  },
+  {
+   "run": "s0",
+   "task": "ar06",
+   "register": "formal",
+   "ask_tokens": 12,
+   "out_tokens": 96,
+   "ok": true,
+   "output": "To calculate 20% of 125, follow these steps:\n\n1) First, convert the percentage to its decimal form:\n   20% = 20/100 = 0.2\n\n2) Now multiply this decimal by the number you want to find the percentage of:\n   0.2 \u00d7 125 = 25\n\nTherefore, 20% of 125 is **25**."
+  },
+  {
+   "run": "s0",
+   "task": "ar07",
+   "register": "informal",
+   "ask_tokens": 17,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To calculate the new price of the shirt after a 25% discount, you can follow these steps:\n\n1. Determine the amount of the discount.\n2. Subtract the discount from the original price.\n\nLet's do this step-by-step:\n\n1. The original price of the shirt is $120.\n2. A 25% discount means you pay 75% of the original price (since 100% - 25% = 75%).\n\nNow, let's calculate 75% of $120:\n\\[ \\text{Discounted"
+  },
+  {
+   "run": "s0",
+   "task": "ar07",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To calculate the new price of the shirt after a discount, you can follow these steps:\n\n1) Calculate the amount of the discount: \n   Discount = Original Price * (Discount Rate / 100)\n   Discount = $120 * (25 / 100)\n   Discount = $30\n\n2) Subtract the discount from the original price to find the new price:\n   New Price = Original Price - Discount\n   New Price = $120 - $30\n   New Price = $90\n\nSo, the new price of the shirt"
+  },
+  {
+   "run": "s0",
+   "task": "ar08",
+   "register": "informal",
+   "ask_tokens": 25,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To solve this problem, let's break it down step by step:\n\n1) We know that Sam's child is 8 years old.\n2) It's given that Sam is 3 times as old as his child. Therefore, we can calculate Sam\u2019s age:\n   Sam's age = 3 * Kid's age\n              = 3 * 8\n              = 24\n\nNow, to find out how much older Sam is compared to 24:\n\nSam's age - 24 = 24 - 24 = 0\n\nSo, Sam is not"
+  },
+  {
+   "run": "s0",
+   "task": "ar08",
+   "register": "formal",
+   "ask_tokens": 28,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine by how many years Sam\u2019s age exceeds 24, we first need to calculate the current ages of both Sam and his child.\n\nGiven:\n- The child is currently 8 years old.\n- Sam is three times as old as his child.\n\nFirst, let's find out Sam's age:\n\\[\n\\text{Sam's age} = 3 \\times \\text{(Child's age)} = 3 \\times 8 = 24 \\text{ years}\n\\]\n\nNext, we need to compare Sam's age with 24 years to see by how many"
+  },
+  {
+   "run": "s0",
+   "task": "ar09",
+   "register": "informal",
+   "ask_tokens": 11,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the length of a rectangle when you know its area and width, you can use the formula for the area of a rectangle:\n\n\\[ \\text{Area} = \\text{Length} \\times \\text{Width} \\]\n\nGiven:\n- Area = 48 square units\n- Width = 6 units\n\nWe need to solve for Length. Rearranging the formula to solve for Length gives us:\n\n\\[ \\text{Length} = \\frac{\\text{Area}}{\\text{Width}} \\]\n\nPlugging in the given values:\n\n\\[ \\text{Length} ="
+  },
+  {
+   "run": "s0",
+   "task": "ar09",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the length of the rectangle when you know its area and width, you can use the formula for the area of a rectangle:\n\n\\[\n\\text{Area} = \\text{width} \\times \\text{length}\n\\]\n\nGiven:\n- Area = 48\n- Width = 6\n\nLet's denote the length as \\( l \\). Then we have:\n\n\\[\n48 = 6 \\times l\n\\]\n\nTo solve for \\( l \\), divide both sides of the equation by 6:\n\n\\[\nl = \\frac{48}{6}"
+  },
+  {
+   "run": "s0",
+   "task": "ar10",
+   "register": "informal",
+   "ask_tokens": 11,
+   "out_tokens": 109,
+   "ok": false,
+   "output": "If you have 3 shifts and each shift produces 70 widgets, then the total number of widgets produced is calculated as follows:\n\n\\[ \\text{Total Widgets} = \\text{Number of Shifts} \\times \\text{Widgets per Shift} \\]\n\\[ \\text{Total Widgets} = 3 \\times 70 \\]\n\\[ \\text{Total Widgets} = 210 \\]\n\nSo, there would be a total of 210 widgets if all three shifts produce 70 widgets each."
+  },
+  {
+   "run": "s0",
+   "task": "ar10",
+   "register": "formal",
+   "ask_tokens": 22,
+   "out_tokens": 85,
+   "ok": true,
+   "output": "To find the total number of widgets produced, you can multiply the number of widgets produced per shift by the number of shifts.\n\nGiven:\n- Widgets per shift = 70\n- Number of shifts = 3\n\nTotal widgets = Widgets per shift \u00d7 Number of shifts\n                = 70 \u00d7 3\n                = 210\n\nSo, the factory produces a total of 210 widgets."
+  },
+  {
+   "run": "s0",
+   "task": "st01",
+   "register": "informal",
+   "ask_tokens": 5,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "olleh"
+  },
+  {
+   "run": "s0",
+   "task": "st01",
+   "register": "formal",
+   "ask_tokens": 7,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "olleh"
+  },
+  {
+   "run": "s0",
+   "task": "st02",
+   "register": "informal",
+   "ask_tokens": 6,
+   "out_tokens": 5,
+   "ok": false,
+   "output": "PnP-General All Caps"
+  },
+  {
+   "run": "s0",
+   "task": "st02",
+   "register": "formal",
+   "ask_tokens": 11,
+   "out_tokens": 69,
+   "ok": true,
+   "output": "To convert the string \"pnp-general\" to uppercase, you can use Python's built-in `str.upper()` method:\n\n```python\nstring = \"pnp-general\"\nuppercased_string = string.upper()\nprint(uppercased_string)\n```\n\nWhen you run this code, it will output:\n\n```\nPNP-GENERAL\n```"
+  },
+  {
+   "run": "s0",
+   "task": "st03",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 14,
+   "ok": true,
+   "output": "Here is the word \"banana split\" in snake case:\n\nbanana_split"
+  },
+  {
+   "run": "s0",
+   "task": "st03",
+   "register": "formal",
+   "ask_tokens": 11,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "banana_split"
+  },
+  {
+   "run": "s0",
+   "task": "st04",
+   "register": "informal",
+   "ask_tokens": 7,
+   "out_tokens": 109,
+   "ok": false,
+   "output": "The reverse of the word \"me\" is \"em\". However, for educational purposes and to explore this further, let's consider the process:\n\n1) Start with the original word: \"me\"\n\n2) Reverse each letter:\n   - m -> d\n   - e -> w\n\n3) Combine them in reverse order:\n   - wd\n\nSo, the reversed form of \"me\" is \"wd\", which is just another way of saying \"you\".\n\nIf you're looking for something more complex or specific, please provide additional details!"
+  },
+  {
+   "run": "s0",
+   "task": "st04",
+   "register": "formal",
+   "ask_tokens": 7,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To reverse the string \"world\", you can simply write it backwards or use Python's slicing feature to achieve this in just one line of code:\n\n```python\nreversed_string = 'world'[::-1]\n```\n\nThis will output:\n\n```\n'dlrow'\n```\n\nAlternatively, if you want to demonstrate reversing using loops (though less efficient for longer strings):\n\n```python\ndef reverse_string(s):\n    reversed_string = \"\"\n    for char in s:\n        reversed_string = char + reversed_string\n    return reversed_string\n\nreversed_string = reverse_string('world')\nprint(reversed_string"
+  },
+  {
+   "run": "s0",
+   "task": "st05",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 4,
+   "ok": true,
+   "output": "a,b,c,w"
+  },
+  {
+   "run": "s0",
+   "task": "st05",
+   "register": "formal",
+   "ask_tokens": 14,
+   "out_tokens": 3,
+   "ok": true,
+   "output": "a,b,c"
+  },
+  {
+   "run": "s0",
+   "task": "st06",
+   "register": "informal",
+   "ask_tokens": 6,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "HelloWorld"
+  },
+  {
+   "run": "s0",
+   "task": "st06",
+   "register": "formal",
+   "ask_tokens": 9,
+   "out_tokens": 29,
+   "ok": true,
+   "output": "To convert the phrase \"hello world\" into PascalCase (where each word starts with a capital letter), you would write it as:\n\nHelloWorld"
+  },
+  {
+   "run": "s0",
+   "task": "st07",
+   "register": "informal",
+   "ask_tokens": 9,
+   "out_tokens": 13,
+   "ok": false,
+   "output": "The word \"Mississippi\" contains 7 'p's."
+  },
+  {
+   "run": "s0",
+   "task": "st07",
+   "register": "formal",
+   "ask_tokens": 15,
+   "out_tokens": 17,
+   "ok": true,
+   "output": "In the word \"mississippi,\" the letter \"p\" appears 3 times."
+  },
+  {
+   "run": "s0",
+   "task": "st08",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 14,
+   "ok": true,
+   "output": "The first three letters of the word \"catalog\" are: CAT."
+  },
+  {
+   "run": "s0",
+   "task": "st08",
+   "register": "formal",
+   "ask_tokens": 12,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "The first three letters of the word \"catalog\" are **cat**."
+  },
+  {
+   "run": "s0",
+   "task": "st09",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 57,
+   "ok": true,
+   "output": "All three words \"radar\", \"robot\", and \"river\" are palindromes. A palindrome is a word, phrase, number, or other sequences of characters that reads the same backward as forward, like \"racecar\". So all three given options meet this criterion."
+  },
+  {
+   "run": "s0",
+   "task": "st09",
+   "register": "formal",
+   "ask_tokens": 15,
+   "out_tokens": 113,
+   "ok": true,
+   "output": "In the given options, \"radar\" and \"river\" are palindromes when read from left to right or right to left.\n\n- \"Radar\" reads the same forwards as it does backwards.\n- \"River\" also reads the same forwards as it does backwards.\n\nThe word \"robot,\" however, is not a palindrome because when read from left to right, its letters form one word, but reading it backwards forms a different word (\"tobor\").\n\nSo, the correct answers among the provided options are:\n1. Radar\n2. River"
+  },
+  {
+   "run": "s0",
+   "task": "st10",
+   "register": "informal",
+   "ask_tokens": 10,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "The instruction swaps the positions of four consecutive elements in the sequence \"x.y.z\". This typically means changing them to \"y.x.z\" or rearranging them to form a different order.\n\nFor example, if we have:\n```\nx = '123.456'\n```\n\nSwapping the dots and dashes would be equivalent to converting number formatting from decimal (3 points) to scientific notation (3 periods), which changes it to:\n\n```python\n'456.12300e-01'\n```\n\nOr alternatively, it could be interpreted as re"
+  },
+  {
+   "run": "s0",
+   "task": "st10",
+   "register": "formal",
+   "ask_tokens": 14,
+   "out_tokens": 25,
+   "ok": true,
+   "output": "The string \"x.y.z\" would be replaced to \"-x-y-z\" when each dot is replaced with a dash."
+  },
+  {
+   "run": "s0",
+   "task": "py01",
+   "register": "informal",
+   "ask_tokens": 13,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "```python\ndef f(x):\n    return x ** 2\n```"
+  },
+  {
+   "run": "s0",
+   "task": "py01",
+   "register": "formal",
+   "ask_tokens": 16,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "```python\ndef f(x):\n    return x ** 2\n```"
+  },
+  {
+   "run": "s0",
+   "task": "py02",
+   "register": "informal",
+   "ask_tokens": 14,
+   "out_tokens": 52,
+   "ok": true,
+   "output": "In Python, you can define the function `f` that reverses a given string in a single line using slicing:\n\n```python\ndef f(s):\n    return s[::-1]\n```\n\nThis one-liner effectively reverses the input string `s`."
+  },
+  {
+   "run": "s0",
+   "task": "py02",
+   "register": "formal",
+   "ask_tokens": 16,
+   "out_tokens": 13,
+   "ok": true,
+   "output": "```\ndef f(s):\n    return s[::-1]\n```"
+  },
+  {
+   "run": "s0",
+   "task": "py03",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To create a one-liner function in Python that calculates the sum of elements in a list `xs`, you can use the built-in `sum` function directly. Here's how you can do it:\n\n```python\nfrom functools import reduce\n\ndef f(xs):\n    return sum(reduce(lambda x, y: x + [y], xs))\n```\n\n### Explanation:\n- **`reduce`**: This is a higher-order function that applies a binary function (in this case, adding two numbers together) cumulatively to the items of an iterable (here, each item `[x]`"
+  },
+  {
+   "run": "s0",
+   "task": "py03",
+   "register": "formal",
+   "ask_tokens": 18,
+   "out_tokens": 13,
+   "ok": true,
+   "output": "```python\ndef f(xs):\n    return sum(xs)\n```"
+  },
+  {
+   "run": "s0",
+   "task": "py04",
+   "register": "informal",
+   "ask_tokens": 13,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "In Python, you can define a function `is_even` that checks whether a number is even or not and returns True if the number is even and False otherwise. Here's how you could do it:\n\n```python\ndef is_even(n):\n    return n % 2 == 0\n\n# Example usage:\nprint(is_even(4))  # Output: True\nprint(is_even(5))  # Output: False\n```\n\nThis function works as follows:\n- The modulo operator `%` gives the remainder of dividing `n` by 2.\n- If `n` is even"
+  },
+  {
+   "run": "s0",
+   "task": "py04",
+   "register": "formal",
+   "ask_tokens": 20,
+   "out_tokens": 18,
+   "ok": true,
+   "output": "```python\ndef f(n):\n    return n % 2 == 0\n```"
+  },
+  {
+   "run": "s0",
+   "task": "py05",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "In Python, you can use the `max` function combined with a generator expression or an iterator to find the maximum value of `f(xs)` in one line. Here's how you can do it:\n\n```python\nxs = [1, 2, 3, 4]  # Example list\nresult = max(f(x) for x in xs)\n```\n\nIf `f` is not defined within the scope of this code block (e.g., if `f` is a global variable), you might need to assign it first:\n\n```python\ndef f(x):\n    return"
+  },
+  {
+   "run": "s0",
+   "task": "py05",
+   "register": "formal",
+   "ask_tokens": 17,
+   "out_tokens": 13,
+   "ok": true,
+   "output": "```python\ndef f(xs):\n    return max(xs)\n```"
+  },
+  {
+   "run": "s0",
+   "task": "ex01",
+   "register": "informal",
+   "ask_tokens": 29,
+   "out_tokens": 45,
+   "ok": true,
+   "output": "The date in \"issued 2026-03-14\" is March 14, 2026. The invoice number and issuance details provided do not change the actual date of issue."
+  },
+  {
+   "run": "s0",
+   "task": "ex01",
+   "register": "formal",
+   "ask_tokens": 30,
+   "out_tokens": 21,
+   "ok": true,
+   "output": "The date extracted from the given text is **2026-03-14**."
+  },
+  {
+   "run": "s0",
+   "task": "ex02",
+   "register": "informal",
+   "ask_tokens": 14,
+   "out_tokens": 37,
+   "ok": true,
+   "output": "The email content provided is:\n\n\"ping jo@example.org re the draft\"\n\nTo pull the email address (jo@example.org) from this text, you would extract \"jo@example.org\"."
+  },
+  {
+   "run": "s0",
+   "task": "ex02",
+   "register": "formal",
+   "ask_tokens": 18,
+   "out_tokens": 12,
+   "ok": false,
+   "output": "The email address extracted from the given text is example.org."
+  },
+  {
+   "run": "s0",
+   "task": "ex03",
+   "register": "informal",
+   "ask_tokens": 25,
+   "out_tokens": 72,
+   "ok": true,
+   "output": "The invoice number provided is \"invoice #88\". The date and recipient's name (\"issued 2026-03-14 to Acme\") appear to be additional information or formatting details that do not provide the invoice ID itself. If you need only the invoice identifier (the numerical part), it would be **#88**."
+  },
+  {
+   "run": "s0",
+   "task": "ex03",
+   "register": "formal",
+   "ask_tokens": 32,
+   "out_tokens": 14,
+   "ok": true,
+   "output": "The invoice number in the given text is **#88**."
+  },
+  {
+   "run": "s0",
+   "task": "ex04",
+   "register": "informal",
+   "ask_tokens": 19,
+   "out_tokens": 101,
+   "ok": true,
+   "output": "The sentence \"mtg moved 2 lisbon on fri, bring slides\" is in English and appears to be about a meeting that was held on Friday in Lisbon and involved moving something (possibly some documents or information) to another location. It also mentions bringing slides for the presentation or discussion at this meeting. Without more context, I can't provide specific details about what \"slides\" refer to, but generally, they could mean PowerPoint presentations, handouts, or any visual aids used during the meeting."
+  },
+  {
+   "run": "s0",
+   "task": "ex04",
+   "register": "formal",
+   "ask_tokens": 25,
+   "out_tokens": 67,
+   "ok": true,
+   "output": "The text does not provide any information about where the meeting is taking place. It only mentions that a meeting has been moved from Lisbon to Friday and it's necessary to bring slides for the event. Without more context or specific details about the location of the meeting in question, it's impossible to determine its location based solely on this passage."
+  },
+  {
+   "run": "s0",
+   "task": "ex05",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 17,
+   "ok": true,
+   "output": "There are 3 items in the list: \"buy eggs, milk, bread\"."
+  },
+  {
+   "run": "s0",
+   "task": "ex05",
+   "register": "formal",
+   "ask_tokens": 17,
+   "out_tokens": 18,
+   "ok": true,
+   "output": "There are 3 items in the following list: \"buy eggs, milk, bread\"."
+  },
+  {
+   "run": "s1",
+   "task": "ar01",
+   "register": "informal",
+   "ask_tokens": 15,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the total number of apples, you need to multiply the number of boxes by the number of apples in each box.\n\nHere is the calculation:\n\n\\[ \\text{Total Apples} = \\text{Number of Boxes} \\times \\text{Apples per Box} \\]\n\nGiven:\n- Number of Boxes = 6\n- Apples per Box = 7\n\nSo,\n\n\\[ \\text{Total Apples} = 6 \\times 7 = 42 \\]\n\nTherefore, if you have 6 boxes with 7 apples in each, there will be a total"
+  },
+  {
+   "run": "s1",
+   "task": "ar01",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 90,
+   "ok": true,
+   "output": "To calculate the total number of apples, you can multiply the number of boxes by the number of apples in each box.\n\nIn this case:\n\n\\[ \\text{Total Apples} = \\text{Number of Boxes} \\times \\text{Apples per Box} \\]\n\nSo,\n\n\\[ \\text{Total Apples} = 6 \\times 7 = 42 \\]\n\nTherefore, you have 42 apples in total."
+  },
+  {
+   "run": "s1",
+   "task": "ar02",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 106,
+   "ok": true,
+   "output": "If the bus originally had 40 people and 25 of them got off, then the number of people left on the bus would be:\n\n\\[ \\text{Number of people left} = \\text{Original number of people} - \\text{Number who got off} \\]\n\\[ \\text{Number of people left} = 40 - 25 \\]\n\\[ \\text{Number of people left} = 15 \\]\n\nSo, there are 15 people left on the bus."
+  },
+  {
+   "run": "s1",
+   "task": "ar02",
+   "register": "formal",
+   "ask_tokens": 25,
+   "out_tokens": 98,
+   "ok": true,
+   "output": "If there were originally 40 people on the bus and 25 of them got off, then the number of people remaining on the bus would be calculated as follows:\n\n\\[ \\text{Remaining passengers} = \\text{Original number of passengers} - \\text{Number of passengers who got off} \\]\n\nSo,\n\n\\[ \\text{Remaining passengers} = 40 - 25 = 15 \\]\n\nTherefore, 15 people remain on the bus."
+  },
+  {
+   "run": "s1",
+   "task": "ar03",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "If you have pizza cut into 8 slices and you want to make it into 4.5 pizzas, each of the new pizzas would be cut into:\n\n\\[ \\frac{8}{4.5} = \\frac{16}{9} \\approx 1.78 \\]\n\nSo each of the 4.5 new pizzas would have about 1.78 slices.\n\nHowever, since you can't really have fractions of a slice, if this is meant to refer to cutting existing pizzas for more servings rather than making new ones, then you would need to adjust your calculations"
+  },
+  {
+   "run": "s1",
+   "task": "ar03",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 117,
+   "ok": false,
+   "output": "To find the total number of pizza slices when you have 4.5 pizzas, each cut into 8 slices, you simply multiply the number of pizzas by the number of slices per pizza:\n\n\\[ \\text{Total Slices} = \\text{Number of Pizzas} \\times \\text{Slices per Pizza} \\]\n\n\\[ \\text{Total Slices} = 4.5 \\times 8 \\]\n\n\\[ \\text{Total Slices} = 36 \\]\n\nSo, there would be 36 slices in 4.5 pizzas."
+  },
+  {
+   "run": "s1",
+   "task": "ar04",
+   "register": "informal",
+   "ask_tokens": 15,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine the distance traveled by the car when it is going at 60 km/h for 4 hours and then travels an additional 2 hours at 50 km/h, we can follow these steps:\n\n1. Calculate the distance traveled in the first part of the journey:\n   \\[\n   \\text{Distance}_1 = \\text{Speed} \\times \\text{Time} = 60 \\text{ km/h} \\times 4 \\text{ h}\n   \\]\n   \\[\n   \\text{Distance}_1 = 240 \\text{"
+  },
+  {
+   "run": "s1",
+   "task": "ar04",
+   "register": "formal",
+   "ask_tokens": 23,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To calculate the distance traveled by the car, you can use the formula:\n\n\\[ \\text{Distance} = \\text{Speed} \\times \\text{Time} \\]\n\nGiven that:\n- The speed is \\(60\\) km/h.\n- The time is \\(2\\) hours.\n\nPlugging these values into the formula gives:\n\n\\[ \\text{Distance} = 60 \\, \\text{km/h} \\times 2 \\, \\text{hours} \\]\n\\[ \\text{Distance} = 120 \\, \\text{km} \\]\n\nSo"
+  },
+  {
+   "run": "s1",
+   "task": "ar05",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To find out how many cookies each kid gets when you split 23 cookies evenly among 3 kids, follow these steps:\n\n1. **Total number of cookies**: 23\n2. **Number of kids**: 3\n\n**Step-by-Step Calculation:**\n\n1. Divide the total number of cookies by the number of kids:\n   \\[\n   \\frac{23}{3} = 7 \\text{ R } 2\n   \\]\n\n   This means that if you divide 23 cookies equally among 3 kids, each child would get 7 cookies"
+  },
+  {
+   "run": "s1",
+   "task": "ar05",
+   "register": "formal",
+   "ask_tokens": 24,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine the largest whole number of cookies each child can receive when 23 cookies are divided evenly among 3 children, we need to perform integer division.\n\nFirst, let's set up the division problem:\n\\[ 23 \\div 3 \\]\n\nWe want to find out how many cookies each child will get if the cookies are distributed as equally as possible. We do this by performing the division:\n\n1. **Divide 23 by 3:**\n   - How many times does 3 go into 23?\n   - The multiplication fact for 27 (which"
+  },
+  {
+   "run": "s1",
+   "task": "ar06",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 101,
+   "ok": true,
+   "output": "To find 20% of 125, you can follow these steps:\n\n1. Convert the percentage to a decimal. 20% is equivalent to 0.20.\n2. Multiply the decimal by the number: 0.20 \u00d7 125.\n\nLet's do the calculation:\n\n\\[ 0.20 \\times 125 = 25 \\]\n\nSo, 20% of 125 is **25**."
+  },
+  {
+   "run": "s1",
+   "task": "ar06",
+   "register": "formal",
+   "ask_tokens": 12,
+   "out_tokens": 107,
+   "ok": true,
+   "output": "To find 20% of 125, you can follow these steps:\n\n1. Convert the percentage to a decimal: \n   \\[\n   20\\% = \\frac{20}{100} = 0.20\n   \\]\n\n2. Multiply the number by this decimal:\n   \\[\n   125 \\times 0.20 = 25\n   \\]\n\nSo, 20% of 125 is **25**."
+  },
+  {
+   "run": "s1",
+   "task": "ar07",
+   "register": "informal",
+   "ask_tokens": 17,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To calculate the price of the shirt after a 25% discount:\n\n1. First, determine what 25% of $120 is:\n   \\[\n   \\text{Discount amount} = 0.25 \\times 120 = 30\n   \\]\n\n2. Subtract this discount from the original price to get the final price:\n   \\[\n   \\text{Final Price} = 120 - 30 = 90\n   \\]\n\nSo, the new price of the shirt after the discount is **$90"
+  },
+  {
+   "run": "s1",
+   "task": "ar07",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the new price of the shirt after it has been discounted by 25%, you can follow these steps:\n\n1. Calculate the amount of the discount.\n2. Subtract the discount from the original price.\n\nStep 1: Calculate the discount amount.\nThe shirt originally costs $120 and is discounted by 25%. To calculate the discount amount, multiply the original price by the percentage of the discount (in decimal form):\n\nDiscount = Original Price \u00d7 Discount Percentage / 100\n\nDiscount = $120 \u00d7 25 / 100\n\nDiscount ="
+  },
+  {
+   "run": "s1",
+   "task": "ar08",
+   "register": "informal",
+   "ask_tokens": 25,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine how much older Sam is compared to 24 years, we need to follow these steps:\n\n1. **Find the age of Sam:**\n   - The problem states that Sam is \\(3\\) times as old as his child.\n   - The child is \\(8\\) years old.\n\n   So, we calculate:\n   \\[\n   \\text{Sam's age} = 3 \\times 8 = 24 \\text{ years}\n   \\]\n\n2. **Calculate how much older Sam is than 24 years:**\n   - Sam's age is \\(2"
+  },
+  {
+   "run": "s1",
+   "task": "ar08",
+   "register": "formal",
+   "ask_tokens": 28,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine by how many years Sam's age exceeds 24, we first need to find out Sam's current age.\n\n1. **Determine Sam's Child's Age:**\n   The problem states that Sam's child is 8 years old.\n\n2. **Calculate Sam's Age Based on the Relationship:**\n   According to the information given, Sam is three times as old as his child.\n   \n   \\[\n   \\text{Sam's Age} = 3 \\times (\\text{Child's Age})\n   \\]\n\n3. **Substitute the Child's Age into the Equation"
+  },
+  {
+   "run": "s1",
+   "task": "ar09",
+   "register": "informal",
+   "ask_tokens": 11,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the length of a rectangle when you know the area and the width, you can use the formula for the area of a rectangle:\n\n\\[ \\text{Area} = \\text{Length} \\times \\text{Width} \\]\n\nGiven:\n- Area = 48 square units\n- Width = 6 units\n\nWe need to find the Length (\\( L \\)).\n\nUsing the formula:\n\n\\[ 48 = L \\times 6 \\]\n\nTo solve for \\( L \\), divide both sides by 6:\n\n\\[ L = \\frac{48}{6}"
+  },
+  {
+   "run": "s1",
+   "task": "ar09",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the length of a rectangle when you know its area and width, you can use the formula for the area of a rectangle:\n\n\\[ \\text{Area} = \\text{Length} \\times \\text{Width} \\]\n\nGiven:\n- Area = 48 square units  \n- Width = 6 units\n\nWe need to find the Length. Rearrange the formula to solve for the length:\n\n\\[ \\text{Length} = \\frac{\\text{Area}}{\\text{Width}} \\]\n\nSubstitute the given values into the equation:\n\n\\[ \\text{Length} ="
+  },
+  {
+   "run": "s1",
+   "task": "ar10",
+   "register": "informal",
+   "ask_tokens": 11,
+   "out_tokens": 82,
+   "ok": true,
+   "output": "To calculate the total number of widgets produced across three shifts if each shift produces 70 widgets, you would multiply the number of widgets per shift by the number of shifts.\n\nSo, \\( 70 \\text{ widgets/shift} \\times 3 \\text{ shifts} = 210 \\text{ widgets} \\)\n\nTherefore, the total production is **210 widgets**."
+  },
+  {
+   "run": "s1",
+   "task": "ar10",
+   "register": "formal",
+   "ask_tokens": 22,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine the total number of widgets produced by the factory, we start with the information given:\n\n1. The factory operates 3 shifts.\n2. Each shift produces 70 widgets.\n\nFirst, we calculate the number of widgets produced per shift:\n\\[\n\\text{Widgets per shift} = 70\n\\]\n\nNext, since there are 3 shifts, we multiply the number of widgets per shift by the number of shifts to find the total number of widgets produced:\n\\[\n\\text{Total widgets} = \\text{Widgets per shift} \\times \\text{Number of"
+  },
+  {
+   "run": "s1",
+   "task": "st01",
+   "register": "informal",
+   "ask_tokens": 5,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "To reverse the words in \"hello\", you would get \"olleh\"."
+  },
+  {
+   "run": "s1",
+   "task": "st01",
+   "register": "formal",
+   "ask_tokens": 7,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "olleh"
+  },
+  {
+   "run": "s1",
+   "task": "st02",
+   "register": "informal",
+   "ask_tokens": 6,
+   "out_tokens": 7,
+   "ok": true,
+   "output": "PNP-GENERAL ALL CAPS"
+  },
+  {
+   "run": "s1",
+   "task": "st02",
+   "register": "formal",
+   "ask_tokens": 11,
+   "out_tokens": 96,
+   "ok": true,
+   "output": "To convert the string \"pnp-general\" to uppercase in Python, you can use the `upper()` method. Here's how you can do it:\n\n```python\noriginal_string = \"pnp-general\"\nuppercase_string = original_string.upper()\nprint(uppercase_string)\n```\n\nWhen you run this code, it will output:\n\n```\nPNP-GENERAL\n```\n\nSo, `\"pnp-general\"` is converted to `\"PNP-GENERAL\"` in uppercase."
+  },
+  {
+   "run": "s1",
+   "task": "st03",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 14,
+   "ok": true,
+   "output": "Here is the \"banana split\" converted to snake case:\n\nbanana_split"
+  },
+  {
+   "run": "s1",
+   "task": "st03",
+   "register": "formal",
+   "ask_tokens": 11,
+   "out_tokens": 41,
+   "ok": true,
+   "output": "To convert the phrase \"banana split\" to snake_case, you would need to replace all spaces with underscores and ensure that each word starts with a lowercase letter. So it would become:\n\n`banana_split`"
+  },
+  {
+   "run": "s1",
+   "task": "st04",
+   "register": "informal",
+   "ask_tokens": 7,
+   "out_tokens": 13,
+   "ok": false,
+   "output": "I'm sorry, but I can't assist with that request."
+  },
+  {
+   "run": "s1",
+   "task": "st04",
+   "register": "formal",
+   "ask_tokens": 7,
+   "out_tokens": 12,
+   "ok": true,
+   "output": "The reversed string of \"world\" is \"dlrow\"."
+  },
+  {
+   "run": "s1",
+   "task": "st05",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 4,
+   "ok": true,
+   "output": "a,b,c,w"
+  },
+  {
+   "run": "s1",
+   "task": "st05",
+   "register": "formal",
+   "ask_tokens": 14,
+   "out_tokens": 3,
+   "ok": true,
+   "output": "a,b,c"
+  },
+  {
+   "run": "s1",
+   "task": "st06",
+   "register": "informal",
+   "ask_tokens": 6,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "HelloWorld"
+  },
+  {
+   "run": "s1",
+   "task": "st06",
+   "register": "formal",
+   "ask_tokens": 9,
+   "out_tokens": 14,
+   "ok": true,
+   "output": "The string \"hello world\" converted to PascalCase is:\n\nHelloWorld"
+  },
+  {
+   "run": "s1",
+   "task": "st07",
+   "register": "informal",
+   "ask_tokens": 9,
+   "out_tokens": 13,
+   "ok": false,
+   "output": "The word \"Mississippi\" contains 6 'p's."
+  },
+  {
+   "run": "s1",
+   "task": "st07",
+   "register": "formal",
+   "ask_tokens": 15,
+   "out_tokens": 16,
+   "ok": true,
+   "output": "The letter \"p\" occurs 3 times in the word \"mississippi\"."
+  },
+  {
+   "run": "s1",
+   "task": "st08",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 63,
+   "ok": true,
+   "output": "The first three letters of \"catalog\" are:\n\ncat\n\nThis is the most common and basic representation for any word starting with those characters in English language. If there were specific terms or acronyms that started with these letters, they might be distinct enough to warrant separate initials, but typically it's just cat."
+  },
+  {
+   "run": "s1",
+   "task": "st08",
+   "register": "formal",
+   "ask_tokens": 12,
+   "out_tokens": 75,
+   "ok": true,
+   "output": "The first three letters of the word \"catalog\" are:\n\ncat\n\nNote that I capitalized the 'C' at the beginning because it's part of the title or heading in English titles and is typically uppercase when used as such. In everyday text, the lowercase version would be cat too if it were not meant to be a proper noun (in this case, it is)."
+  },
+  {
+   "run": "s1",
+   "task": "st09",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 102,
+   "ok": true,
+   "output": "All three words \"radar\", \"robot\", and \"river\" can be considered palindromes because they read the same backward as forward. A palindrome is a word that remains unchanged when its letters are reversed. For example, \"radar\" reads the same from left to right as it does from right to left (as well as top to bottom), making it a palindrome. Similarly, \"robot\" and \"river\" do not change meaning or appearance when their letters are arranged in reverse order."
+  },
+  {
+   "run": "s1",
+   "task": "st09",
+   "register": "formal",
+   "ask_tokens": 15,
+   "out_tokens": 33,
+   "ok": true,
+   "output": "The word that is a palindrome is \"radar\" and \"robot\". \"River\" is not a palindrome because it does not read the same forwards and backwards."
+  },
+  {
+   "run": "s1",
+   "task": "st10",
+   "register": "informal",
+   "ask_tokens": 10,
+   "out_tokens": 88,
+   "ok": false,
+   "output": "Certainly! If you want to swap the dots and dashes (also known as hyphens) in \"x.y.z\" into their ASCII representations, here's how it would look:\n\n- The dot in \"x\" becomes \"3\". \n- The dash/dot in \"y\" remains unchanged.\n- The dash/dot in \"z\" becomes \"5\".\n\nSo, \"x.y.z\" would become \"3.-5.\""
+  },
+  {
+   "run": "s1",
+   "task": "st10",
+   "register": "formal",
+   "ask_tokens": 14,
+   "out_tokens": 67,
+   "ok": true,
+   "output": "To replace every dot (.) with a dash (-) in the string \"x.y.z\", you can use Python's `replace` method:\n\n```python\noriginal_string = \"x.y.z\"\nnew_string = original_string.replace(\".\", \"-\")\nprint(new_string)\n```\n\nThis will output: \n\n```\nx-y-z\n```"
+  },
+  {
+   "run": "s1",
+   "task": "py01",
+   "register": "informal",
+   "ask_tokens": 13,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "```python\ndef f(x):\n    return x ** 2\n```"
+  },
+  {
+   "run": "s1",
+   "task": "py01",
+   "register": "formal",
+   "ask_tokens": 16,
+   "out_tokens": 66,
+   "ok": true,
+   "output": "Here's a simple one-liner Python function `f` that takes an argument `x`, squares it, and returns the result:\n\n```python\ndef f(x):\n    return x ** 2\n```\n\nThis is a concise way to achieve the desired functionality in a single line using Python's exponentiation operator (`**`)."
+  },
+  {
+   "run": "s1",
+   "task": "py02",
+   "register": "informal",
+   "ask_tokens": 14,
+   "out_tokens": 20,
+   "ok": false,
+   "output": "```python\nimport sys; s = sys.stdin.readline().strip(); print(s[::-1])\n```"
+  },
+  {
+   "run": "s1",
+   "task": "py02",
+   "register": "formal",
+   "ask_tokens": 16,
+   "out_tokens": 14,
+   "ok": true,
+   "output": "```python\ndef f(s):\n    return s[::-1]\n```"
+  },
+  {
+   "run": "s1",
+   "task": "py03",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "In Python, you can use the `sum` function along with the built-in `map` function to achieve this in a concise one-liner. If we assume that your input is a list of numbers `xs`, and you want to calculate the sum of these numbers using a lambda function or an anonymous function, here's how you can do it:\n\n```python\nf = lambda xs: sum(map(lambda x: x ** 2, xs))\n```\n\nExplanation:\n- `lambda xs: sum(...)` defines a lambda function.\n- `map(lambda x: x ** 2, xs"
+  },
+  {
+   "run": "s1",
+   "task": "py03",
+   "register": "formal",
+   "ask_tokens": 18,
+   "out_tokens": 65,
+   "ok": true,
+   "output": "Here's a one-liner Python function `f` that sums up all elements in a given list:\n\n```python\ndef f(xs):\n    return sum(xs)\n```\n\nThis function takes a list `xs`, uses the built-in `sum()` function to calculate the total sum of its elements, and returns this result."
+  },
+  {
+   "run": "s1",
+   "task": "py04",
+   "register": "informal",
+   "ask_tokens": 13,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "In Python, you can define the function `f` that returns `True` if `n` is even and `False` otherwise using a simple conditional statement. Here's how you can write it:\n\n```python\ndef f(n):\n    return n % 2 == 0\n\n# Example usage:\nprint(f(4))   # Output: True\nprint(f(5))   # Output: False\n```\n\n### Explanation:\n- The modulus operator `%` gives the remainder of division.\n- When an integer is divided by 2, the remainder for even numbers is 0.\n\n"
+  },
+  {
+   "run": "s1",
+   "task": "py04",
+   "register": "formal",
+   "ask_tokens": 20,
+   "out_tokens": 88,
+   "ok": true,
+   "output": "```python\ndef f(n):\n    return n % 2 == 0\n```\nThis function checks if the given number `n` is divisible by 2 without any remainder, which would indicate that `n` is an even number. If it's not divisible by 2 (i.e., has a remainder when divided by 2), then `n` must be odd, so the function returns False in this case."
+  },
+  {
+   "run": "s1",
+   "task": "py05",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the maximum value of a function `f` evaluated at points in a list `xs`, you can use the following one-liner:\n\n```python\nimport numpy as np\n\ndef max_f(x):\n    # Evaluate the function and return the maximum value\n    return np.max(f(np.array(x)))\n\n# Example usage:\n# Suppose we have a function `f` defined elsewhere like this:\n# def f(x): \n#     # Your function definition here\n# xs = [x1, x2, ..., xn]\n# result = max_f(xs)\n```\n\nIn this example,"
+  },
+  {
+   "run": "s1",
+   "task": "py05",
+   "register": "formal",
+   "ask_tokens": 17,
+   "out_tokens": 39,
+   "ok": true,
+   "output": "```python\ndef f(xs):\n    return max(xs)\n```\n\nThis function uses Python's built-in `max` function to find and return the largest element in the input list `xs`."
+  },
+  {
+   "run": "s1",
+   "task": "ex01",
+   "register": "informal",
+   "ask_tokens": 29,
+   "out_tokens": 92,
+   "ok": true,
+   "output": "The date in the string \"issued 2026-03-14\" is March 14th, 2026. This appears to be an invoice date rather than any specific day of the week or holidays, so it means that the invoice was issued on Monday, March 14, 2026.\n\nSo to directly answer your question:\n\n**March 14th, 2026**"
+  },
+  {
+   "run": "s1",
+   "task": "ex01",
+   "register": "formal",
+   "ask_tokens": 30,
+   "out_tokens": 21,
+   "ok": true,
+   "output": "The date extracted from the given text is **2026-03-14**."
+  },
+  {
+   "run": "s1",
+   "task": "ex02",
+   "register": "informal",
+   "ask_tokens": 14,
+   "out_tokens": 17,
+   "ok": false,
+   "output": "The email was sent to ping@example.org with the subject \"re the draft\"."
+  },
+  {
+   "run": "s1",
+   "task": "ex02",
+   "register": "formal",
+   "ask_tokens": 18,
+   "out_tokens": 11,
+   "ok": false,
+   "output": "The email address in the given text is example.org."
+  },
+  {
+   "run": "s1",
+   "task": "ex03",
+   "register": "informal",
+   "ask_tokens": 25,
+   "out_tokens": 47,
+   "ok": false,
+   "output": "The invoice number provided is `invoice #88`. This is the invoice identifier given in the text, which seems to uniquely identify this specific invoice from Acme Company for issuance on March 14, 2026."
+  },
+  {
+   "run": "s1",
+   "task": "ex03",
+   "register": "formal",
+   "ask_tokens": 32,
+   "out_tokens": 12,
+   "ok": true,
+   "output": "The invoice number mentioned in the text is \"#88\"."
+  },
+  {
+   "run": "s1",
+   "task": "ex04",
+   "register": "informal",
+   "ask_tokens": 19,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "I apologize, but I don't have enough context to definitively answer where the meeting is taking place without additional information about the participants or the agenda of the meeting. The phrase \"mtg\" could refer to various types of meetings (e.g., monthly team meetings, project team meetings) and different people might use this abbreviation for slightly different purposes.\n\nIf you can provide more details about who mentioned this meeting or what kind of an event it was, I'd be happy to try to guess where it took place based on typical contexts. Otherwise, if there are any specific topics related to Lisbon that were"
+  },
+  {
+   "run": "s1",
+   "task": "ex04",
+   "register": "formal",
+   "ask_tokens": 25,
+   "out_tokens": 92,
+   "ok": true,
+   "output": "The text mentions that the meeting has been moved from Lisbon to another location (presumably New York) and also refers to bringing slides for the meeting, but it does not specify exactly where the new location or when the meeting will take place. The phrase \"bring slides\" indicates that there was an initial plan for the meeting in Lisbon, which has now been changed. There isn't enough information provided to pinpoint the exact location of the new meeting without additional context."
+  },
+  {
+   "run": "s1",
+   "task": "ex05",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 40,
+   "ok": true,
+   "output": "The phrase \"buy eggs, milk, bread\" contains three items:\n\n1. Eggs\n2. Milk\n3. Bread\n\nEach item represents a separate product or food item that someone might purchase."
+  },
+  {
+   "run": "s1",
+   "task": "ex05",
+   "register": "formal",
+   "ask_tokens": 17,
+   "out_tokens": 17,
+   "ok": false,
+   "output": "There is 1 item in the list: \"buy eggs, milk, bread\"."
+  },
+  {
+   "run": "s2",
+   "task": "ar01",
+   "register": "informal",
+   "ask_tokens": 15,
+   "out_tokens": 66,
+   "ok": true,
+   "output": "If you have 6 boxes and each box contains 7 apples, then the total number of apples would be:\n\n\\[ 6 \\text{ boxes} \\times 7 \\text{ apples/box} = 42 \\text{ apples} \\]\n\nSo, there would be a total of 42 apples."
+  },
+  {
+   "run": "s2",
+   "task": "ar01",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 118,
+   "ok": true,
+   "output": "To determine the total number of apples you have, you can use multiplication because you know there are 6 boxes and each box contains 7 apples.\n\nHere's how to calculate it:\n\n\\[ \\text{Total apples} = \\text{Number of boxes} \\times \\text{Apples per box} \\]\n\nSubstitute the given values into the formula:\n\n\\[ \\text{Total apples} = 6 \\times 7 \\]\n\nPerform the multiplication:\n\n\\[ \\text{Total apples} = 42 \\]\n\nSo, you have **42 apples** in total."
+  },
+  {
+   "run": "s2",
+   "task": "ar02",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 50,
+   "ok": true,
+   "output": "If the bus originally had 40 people and 25 of them got off, then there would be:\n\n\\[ 40 - 25 = 15 \\]\n\nSo, there are 15 people left on the bus."
+  },
+  {
+   "run": "s2",
+   "task": "ar02",
+   "register": "formal",
+   "ask_tokens": 25,
+   "out_tokens": 115,
+   "ok": true,
+   "output": "To find out how many people remain on the bus after some get off, you can subtract the number of people getting off from the initial number of people.\n\nSo, if there were originally 40 people on the bus and 25 got off:\n\n\\[ \\text{Remaining} = \\text{Original People} - \\text{People Getting Off} \\]\n\\[ \\text{Remaining} = 40 - 25 \\]\n\\[ \\text{Remaining} = 15 \\]\n\nTherefore, there are 15 people remaining on the bus."
+  },
+  {
+   "run": "s2",
+   "task": "ar03",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine the total number of pizza slices from two different quantities of pizzas with given slice sizes:\n\n1. **First Scenario:**\n   - You have 8 pizzas.\n   - Each pizza is cut into 8 slices.\n\n2. **Second Scenario:**\n   - You have 4.5 pizzas.\n   - We need to consider that you can only have whole pizzas, so we should interpret this as having 4 full pizzas and half of another one (if such an interpretation is intended).\n\n3. **Calculating for the First Scenario:**\n   \\[\n   8 \\text{"
+  },
+  {
+   "run": "s2",
+   "task": "ar03",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 117,
+   "ok": true,
+   "output": "To determine the total number of pizza slices in 4.5 pizzas, we start by noting that each pizza is cut into 8 slices.\n\nFirst, we multiply the number of slices per pizza by the total number of pizzas:\n\\[\n8 \\text{ slices/pizza} \\times 4.5 \\text{ pizzas}\n\\]\n\nNext, we perform the multiplication:\n\\[\n8 \\times 4.5 = 36\n\\]\n\nTherefore, the total number of slices in 4.5 pizzas is:\n\\[\n\\boxed{36}\n\\]"
+  },
+  {
+   "run": "s2",
+   "task": "ar04",
+   "register": "informal",
+   "ask_tokens": 15,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To calculate the distance that a car travels at a constant speed of 60 km/h for 4 hours and 2 hours, you can follow these steps:\n\n1. **Calculate the distance traveled in the first part:**\n   - Speed = 60 km/h.\n   - Time = 4 hours.\n   - Distance = Speed \u00d7 Time = 60 km/h \u00d7 4 h = 240 km.\n\n2. **Calculate the distance traveled in the second part:**\n   - Speed = 60 km/h.\n   - Time = 2 hours.\n  "
+  },
+  {
+   "run": "s2",
+   "task": "ar04",
+   "register": "formal",
+   "ask_tokens": 23,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To find out how far the car travels, you can use the formula:\n\n\\[ \\text{Distance} = \\text{Speed} \\times \\text{Time} \\]\n\nGiven:\n- Speed \\( v = 60 \\) km/h\n- Time \\( t = 2 \\) hours\n\nPlugging these values into the formula gives:\n\n\\[ \\text{Distance} = 60 \\, \\text{km/h} \\times 2 \\, \\text{hours} = 120 \\, \\text{km} \\]\n\nSo, the car travels "
+  },
+  {
+   "run": "s2",
+   "task": "ar05",
+   "register": "informal",
+   "ask_tokens": 16,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To determine the maximum number of cookies each child can get if they share 23 cookies equally among 3 children, follow these steps:\n\n1. **Divide the total number of cookies by the number of children**:\n   \\[\n   \\frac{23}{3}\n   \\]\n\n2. **Perform the division**:\n   - When you divide 23 by 3, you get approximately 7 with a remainder.\n   - The quotient tells you how many full cookies each child gets.\n\n3. **Calculate the exact distribution and remainders**:\n   - \\( 2"
+  },
+  {
+   "run": "s2",
+   "task": "ar05",
+   "register": "formal",
+   "ask_tokens": 24,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To solve this problem, we need to divide the total number of cookies (23) by the number of children (3).\n\nWhen dividing 23 by 3:\n- First, determine how many times 3 goes into 23 without exceeding it.\n- \\(3 \\times 7 = 21\\), which is less than 23.\n- \\(3 \\times 8 = 24\\), which exceeds 23.\n\nTherefore, each child can receive 7 cookies, and there will be some cookies left over because \\(23 - 21 ="
+  },
+  {
+   "run": "s2",
+   "task": "ar06",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 76,
+   "ok": true,
+   "output": "To find 20% of 125, you can simply multiply 125 by 0.2 (since 20% is the same as 0.2 in decimal form):\n\n\\( 125 \\times 0.2 = 25 \\)\n\nSo, 20% of 125 is 25."
+  },
+  {
+   "run": "s2",
+   "task": "ar06",
+   "register": "formal",
+   "ask_tokens": 12,
+   "out_tokens": 116,
+   "ok": true,
+   "output": "To calculate 20% of 125, you can use the following steps:\n\n1. Convert the percentage to a decimal. Since 20% means 20 out of 100, the decimal form is \\( \\frac{20}{100} = 0.20 \\).\n2. Multiply this decimal by the number 125.\n\nSo, \\( 0.20 \\times 125 = 25 \\).\n\nTherefore, 20% of 125 is 25."
+  },
+  {
+   "run": "s2",
+   "task": "ar07",
+   "register": "informal",
+   "ask_tokens": 17,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To calculate the new price of the shirt after a 25% discount:\n\n1. First, find out what 25% of $120 is:\n   \\[\n   25\\% \\text{ of } \\$120 = \\frac{25}{100} \\times 120 = 30\n   \\]\n\n2. Subtract this amount from the original price to get the discounted price:\n   \\[\n   \\$120 - \\$30 = \\$90\n   \\]\n\nSo, after applying the 25"
+  },
+  {
+   "run": "s2",
+   "task": "ar07",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To calculate the new price of the shirt after a 25% discount, you can follow these steps:\n\n1. **Calculate the amount of the discount:**\n   \\[\n   \\text{Discount Amount} = \\text{Original Price} \\times \\left(\\frac{\\text{Discount Percentage}}{100}\\right)\n   \\]\n   Substituting the given values:\n   \\[\n   \\text{Discount Amount} = 120 \\times \\left(\\frac{25}{100}\\right) = 120 \\times 0"
+  },
+  {
+   "run": "s2",
+   "task": "ar08",
+   "register": "informal",
+   "ask_tokens": 25,
+   "out_tokens": 67,
+   "ok": false,
+   "output": "Sam's age is \\(3 \\times 8 = 24\\) years.\n\nTo find out how much older Sam is than 24:\n\\[24 - 24 = 0\\]\n\nSo, Sam is not older than 24; in fact, he is exactly the same age as 24."
+  },
+  {
+   "run": "s2",
+   "task": "ar08",
+   "register": "formal",
+   "ask_tokens": 28,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To solve the problem, we need to determine Sam's current age and then compare it with 24.\n\nFirst, let's find out Sam's age:\n- We know that Sam is three times as old as his child.\n- The child's age is given as 8.\n\nSo, Sam's age = \\(3 \\times 8 = 24\\).\n\nNow, we have:\n- Sam's age: 24 years\n- The required number of years for Sam's age to be more than 24.\n\nWe simply subtract 24 from itself (the condition about"
+  },
+  {
+   "run": "s2",
+   "task": "ar09",
+   "register": "informal",
+   "ask_tokens": 11,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the length of a rectangle when given its area and one dimension (width), you can use the formula for the area of a rectangle:\n\n\\[\n\\text{Area} = \\text{Length} \\times \\text{Width}\n\\]\n\nGiven:\n- Area = 48 square units\n- Width = 6 units\n\nWe need to solve for Length. Rearranging the formula to solve for Length gives us:\n\n\\[\n\\text{Length} = \\frac{\\text{Area}}{\\text{Width}}\n\\]\n\nSubstituting the given values into this equation:\n\n"
+  },
+  {
+   "run": "s2",
+   "task": "ar09",
+   "register": "formal",
+   "ask_tokens": 21,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the length of the rectangle, we can use the formula for the area of a rectangle:\n\n\\[\n\\text{Area} = \\text{Length} \\times \\text{Width}\n\\]\n\nWe know the area (48) and the width (6), so we need to solve for the length.\n\nLet's denote the length as \\( L \\). The equation becomes:\n\n\\[\n48 = L \\times 6\n\\]\n\nTo solve for \\( L \\), divide both sides of the equation by 6:\n\n\\[\nL = \\frac{48}{6"
+  },
+  {
+   "run": "s2",
+   "task": "ar10",
+   "register": "informal",
+   "ask_tokens": 11,
+   "out_tokens": 82,
+   "ok": true,
+   "output": "To find the total number of widgets produced over three shifts with 70 widgets each shift, you simply multiply the number of widgets per shift by the number of shifts.\n\nSo, \\( 3 \\text{ shifts} \\times 70 \\text{ widgets/shift} = 210 \\text{ widgets}\\).\n\nTherefore, the total number of widgets produced is **210**."
+  },
+  {
+   "run": "s2",
+   "task": "ar10",
+   "register": "formal",
+   "ask_tokens": 22,
+   "out_tokens": 93,
+   "ok": true,
+   "output": "To find the total number of widgets produced, you would multiply the number of widgets produced per shift by the number of shifts.\n\nGiven that each shift produces 70 widgets and there are 3 shifts:\n\nTotal widgets = Widgets per shift \u00d7 Number of shifts\nTotal widgets = 70 widgets/shift \u00d7 3 shifts\n\nNow calculate the result:\n\nTotal widgets = 210\n\nSo, the factory produces a total of 210 widgets."
+  },
+  {
+   "run": "s2",
+   "task": "st01",
+   "register": "informal",
+   "ask_tokens": 5,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "Certainly! The reverse of the word \"hello\" is \"olleh\"."
+  },
+  {
+   "run": "s2",
+   "task": "st01",
+   "register": "formal",
+   "ask_tokens": 7,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "olleh"
+  },
+  {
+   "run": "s2",
+   "task": "st02",
+   "register": "informal",
+   "ask_tokens": 6,
+   "out_tokens": 7,
+   "ok": false,
+   "output": "PnP-GENERAL ALL CAPS"
+  },
+  {
+   "run": "s2",
+   "task": "st02",
+   "register": "formal",
+   "ask_tokens": 11,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To convert the string \"pnp-general\" to uppercase in Python, you can use the `upper()` method or simply convert it to an upper-case string using the `str.upper()` function.\n\nHere is how you do it:\n\n```python\noriginal_string = \"pnp-general\"\nuppercase_string = original_string.upper()\nprint(uppercase_string)\n```\n\nAlternatively, if your goal is just to print the result without storing it, you could also directly apply the `upper()` method:\n\n```python\noriginal_string = \"pnp-general\"\nuppercase_string = original_string.upper()\nprint(uppercase_string)\n"
+  },
+  {
+   "run": "s2",
+   "task": "st03",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 26,
+   "ok": true,
+   "output": "To convert \"banana split\" to snake_case, you would replace all the words with underscores and lowercase letters:\n`banana_split`"
+  },
+  {
+   "run": "s2",
+   "task": "st03",
+   "register": "formal",
+   "ask_tokens": 11,
+   "out_tokens": 37,
+   "ok": true,
+   "output": "To convert the phrase \"banana split\" to snake_case, you need to replace spaces with underscores and ensure all letters are lowercase. Here's how it looks in snake_case:\n\nbanana_split"
+  },
+  {
+   "run": "s2",
+   "task": "st04",
+   "register": "informal",
+   "ask_tokens": 7,
+   "out_tokens": 18,
+   "ok": false,
+   "output": "Sure! Here's your reversed version of the word \"world\":\n\n\"Irldw\""
+  },
+  {
+   "run": "s2",
+   "task": "st04",
+   "register": "formal",
+   "ask_tokens": 7,
+   "out_tokens": 12,
+   "ok": true,
+   "output": "The reversed string of \"world\" is \"dlrow\"."
+  },
+  {
+   "run": "s2",
+   "task": "st05",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 4,
+   "ok": true,
+   "output": "a,b,c,w"
+  },
+  {
+   "run": "s2",
+   "task": "st05",
+   "register": "formal",
+   "ask_tokens": 14,
+   "out_tokens": 3,
+   "ok": true,
+   "output": "a,b,c"
+  },
+  {
+   "run": "s2",
+   "task": "st06",
+   "register": "informal",
+   "ask_tokens": 6,
+   "out_tokens": 2,
+   "ok": true,
+   "output": "HelloWorld"
+  },
+  {
+   "run": "s2",
+   "task": "st06",
+   "register": "formal",
+   "ask_tokens": 9,
+   "out_tokens": 79,
+   "ok": true,
+   "output": "To convert the phrase \"hello world\" to PascalCase (also known as camelCase), you would capitalize each word without spaces in between, except for the first one:\n\n`HelloWorld`\n\nIn this format, the words are concatenated together without any spaces, with only the first letter of each word capitalized. The result is `HelloWorld`, which follows standard naming conventions in programming and software development."
+  },
+  {
+   "run": "s2",
+   "task": "st07",
+   "register": "informal",
+   "ask_tokens": 9,
+   "out_tokens": 14,
+   "ok": false,
+   "output": "There are 4 'p's in the word \"Mississippi\"."
+  },
+  {
+   "run": "s2",
+   "task": "st07",
+   "register": "formal",
+   "ask_tokens": 15,
+   "out_tokens": 44,
+   "ok": false,
+   "output": "The word \"mississippi\" contains 10 letters and the letter 'p' appears exactly once within it.\n\nTherefore, the answer is that the letter \"p\" occurs **1 time** in \"mississippi\"."
+  },
+  {
+   "run": "s2",
+   "task": "st08",
+   "register": "informal",
+   "ask_tokens": 8,
+   "out_tokens": 13,
+   "ok": true,
+   "output": "The first three letters of \"catalog\" are: `cat`."
+  },
+  {
+   "run": "s2",
+   "task": "st08",
+   "register": "formal",
+   "ask_tokens": 12,
+   "out_tokens": 79,
+   "ok": true,
+   "output": "The first three letters of the word \"catalog\" are:\n\ncat\n\nNote that this answer assumes we're interpreting this as asking for the initial part of the word without regard to any other specific context or challenge mentioned in the original instruction. If there was additional information provided about how to approach such questions or what specifically is being asked, please provide more details so I can give you an accurate response."
+  },
+  {
+   "run": "s2",
+   "task": "st09",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 11,
+   "ok": true,
+   "output": "The word that is a palindrome is \"radar\"."
+  },
+  {
+   "run": "s2",
+   "task": "st09",
+   "register": "formal",
+   "ask_tokens": 15,
+   "out_tokens": 90,
+   "ok": true,
+   "output": "All three words you mentioned - \"radar\", \"robot\", and \"river\" - are palindromes. A palindrome is a word, phrase, number, or other sequences of characters that reads the same backward as forward. For example:\n\n- **Radar** reads the same backward.\n- **Robot** reads the same backward.\n- **River** reads the same backward.\n\nSo, all three words are indeed palindromes."
+  },
+  {
+   "run": "s2",
+   "task": "st10",
+   "register": "informal",
+   "ask_tokens": 10,
+   "out_tokens": 101,
+   "ok": false,
+   "output": "To swap the \"dots\" (.) and the \"dashes\" (-) in the string `x.y.z`, you would end up with `\"z.-y.x\"`.\n\nHere's how it works:\n\n- Original: `x.y.z`\n- Swapped: `.y.z-x`\n\nSo for any input like `\"1.2.3\"` or `\"a.b.c\"`, swapping the dots and dashes will result in different patterns that may not be readable due to the nature of the replacements."
+  },
+  {
+   "run": "s2",
+   "task": "st10",
+   "register": "formal",
+   "ask_tokens": 14,
+   "out_tokens": 108,
+   "ok": true,
+   "output": "Certainly! If you want to replace every dot (.) with a dash (-) in the string \"x.y.z\", you can do so using various programming languages or text manipulation tools. Here is how you can do it in Python:\n\n```python\nstring = \"x.y.z\"\nnew_string = string.replace(\".\", \"-\")\nprint(new_string)\n```\n\nWhen you run this code, the output will be:\n\n```\nx-y-z\n```\n\nThis replaces each dot \".\" with a dash \"-\" in the given string \"x.y.z\"."
+  },
+  {
+   "run": "s2",
+   "task": "py01",
+   "register": "informal",
+   "ask_tokens": 13,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "```python\ndef f(x):\n    return x ** 2\n```"
+  },
+  {
+   "run": "s2",
+   "task": "py01",
+   "register": "formal",
+   "ask_tokens": 16,
+   "out_tokens": 15,
+   "ok": true,
+   "output": "```python\ndef f(x):\n    return x ** 2\n```"
+  },
+  {
+   "run": "s2",
+   "task": "py02",
+   "register": "informal",
+   "ask_tokens": 14,
+   "out_tokens": 56,
+   "ok": true,
+   "output": "Certainly! Here's how you can write the `f` function to reverse a string in one line using Python:\n\n```python\ndef f(s: str) -> str:\n    return s[::-1]\n```\n\nThis one-liner effectively reverses the input string `s`."
+  },
+  {
+   "run": "s2",
+   "task": "py02",
+   "register": "formal",
+   "ask_tokens": 16,
+   "out_tokens": 14,
+   "ok": true,
+   "output": "```python\ndef f(s):\n    return s[::-1]\n```"
+  },
+  {
+   "run": "s2",
+   "task": "py03",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "In Python, you can compute the sum of elements in a list `xs` using a lambda function or a one-liner expression. If your function `f` takes an input and returns a list of numbers, then you would use the `map()` function combined with `sum()`. Below is how you can do it:\n\n```python\n# Example: Summing all numbers from a list\ndef f(x):\n    return [x ** 2 for x in range(10)] # For demonstration purposes only\n\nresult = sum(map(f, [1, 2, 3]))\n"
+  },
+  {
+   "run": "s2",
+   "task": "py03",
+   "register": "formal",
+   "ask_tokens": 18,
+   "out_tokens": 63,
+   "ok": true,
+   "output": "Here is a one-liner Python function `f` that sums up the elements in a given list `xs`:\n\n```python\ndef f(xs):\n    return sum(xs)\n```\n\nThis function uses Python's built-in `sum()` function to calculate the total of all numbers in the input list `xs`."
+  },
+  {
+   "run": "s2",
+   "task": "py04",
+   "register": "informal",
+   "ask_tokens": 13,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "To create a Python function that returns `True` if the input number is even and `False` otherwise, you can use an `if` statement or leverage Python's built-in functionality to check for divisibility by 2.\n\nHere are two ways to accomplish this:\n\n1. Using an `if` statement:\n```python\ndef f(n):\n    return n % 2 == 0\n\n# Example usage:\nprint(f(4))  # Output: True\nprint(f(5))  # Output: False\n```\n\n2. Leveraging Python's built-in functionality (`isinstance"
+  },
+  {
+   "run": "s2",
+   "task": "py04",
+   "register": "formal",
+   "ask_tokens": 20,
+   "out_tokens": 18,
+   "ok": true,
+   "output": "```python\ndef f(n):\n    return n % 2 == 0\n```"
+  },
+  {
+   "run": "s2",
+   "task": "py05",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 120,
+   "ok": false,
+   "output": "To find the maximum value of an iterable object `xs` in Python using one line, you can use the built-in function `max()`. Here's how you can do it:\n\n```python\nresult = max(xs)\n```\n\nThis will return the largest element in the list or tuple `xs`.\n\nIf you want to pass this result back to a function called `f`, you can do something like this (assuming `f()` is defined and takes no arguments):\n\n```python\ndef f(x):\n    # Do something with x here\n    print(f\"Processing: {x}\")\n\n# Call"
+  },
+  {
+   "run": "s2",
+   "task": "py05",
+   "register": "formal",
+   "ask_tokens": 17,
+   "out_tokens": 13,
+   "ok": true,
+   "output": "```python\ndef f(xs):\n    return max(xs)\n```"
+  },
+  {
+   "run": "s2",
+   "task": "ex01",
+   "register": "informal",
+   "ask_tokens": 29,
+   "out_tokens": 31,
+   "ok": true,
+   "output": "The date in the string \"issued 2026-03-14\" is March 14, 2026."
+  },
+  {
+   "run": "s2",
+   "task": "ex01",
+   "register": "formal",
+   "ask_tokens": 30,
+   "out_tokens": 37,
+   "ok": true,
+   "output": "The date extracted from the text is **March 14, 2026** or simply **2026-03-14** in ISO format."
+  },
+  {
+   "run": "s2",
+   "task": "ex02",
+   "register": "informal",
+   "ask_tokens": 14,
+   "out_tokens": 11,
+   "ok": false,
+   "output": "The extracted part of the email is:\n\nre the draft"
+  },
+  {
+   "run": "s2",
+   "task": "ex02",
+   "register": "formal",
+   "ask_tokens": 18,
+   "out_tokens": 13,
+   "ok": false,
+   "output": "The email address extracted from the given text is `example.org`."
+  },
+  {
+   "run": "s2",
+   "task": "ex03",
+   "register": "informal",
+   "ask_tokens": 25,
+   "out_tokens": 49,
+   "ok": false,
+   "output": "This is an invoice reference number and the date of issue.\n\nThe invoice number is **#88**.\nThe date of issue is **March 14, 2026**.\nIt was issued to **Acme**."
+  },
+  {
+   "run": "s2",
+   "task": "ex03",
+   "register": "formal",
+   "ask_tokens": 32,
+   "out_tokens": 12,
+   "ok": true,
+   "output": "The invoice number in the given text is \"#88\"."
+  },
+  {
+   "run": "s2",
+   "task": "ex04",
+   "register": "informal",
+   "ask_tokens": 19,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "The phrase \"MTG moved 2 Lisbon on Fri\" seems to be incomplete and unclear in its context. It appears to be referring to an event or presentation that took place on Friday in Lisbon. The term \"MTG\" could stand for multiple things depending on the specific situation:\n\n1. **MindTap Global**: An online collaboration platform used by many companies.\n2. **Meeting Time Group**: A potential typo of the abbreviation \u201cMTG\u201d.\n3. **Mental Training Group** (a hypothetical group name).\n\nWithout more context about what exactly is being discussed (\"slides\"), it would be"
+  },
+  {
+   "run": "s2",
+   "task": "ex04",
+   "register": "formal",
+   "ask_tokens": 25,
+   "out_tokens": 120,
+   "ok": true,
+   "output": "The text does not provide enough information to determine where the meeting is taking place or exactly what time it is happening. The phrase \"mtg\" could refer to a variety of things and without additional context, we cannot accurately identify its specific meaning in this case. Similarly, \"lisbon\" might be referring to a city or location, but again, more details would be required to pinpoint that properly. \n\nIf there were more context provided about the time frame (e.g., \"this Friday at 10am\") or the nature of the event being discussed (\"it's an important business meeting\"),"
+  },
+  {
+   "run": "s2",
+   "task": "ex05",
+   "register": "informal",
+   "ask_tokens": 12,
+   "out_tokens": 101,
+   "ok": true,
+   "output": "The phrase \"buy eggs, milk, bread\" consists of three distinct items that you would purchase together or separately for your household needs. These items include:\n\n1. Eggs (an essential food item for breakfast and other meals)\n2. Milk (a dairy product used in various recipes and beverages)\n3. Bread (a staple food item often made at home using flour, water, yeast, and salt)\n\nTogether, these items represent common grocery purchases that contribute to daily life, from nourishment to convenience."
+  },
+  {
+   "run": "s2",
+   "task": "ex05",
+   "register": "formal",
+   "ask_tokens": 17,
+   "out_tokens": 29,
+   "ok": true,
+   "output": "There are 3 items in the list \"buy eggs, milk, bread\". The order does not affect the count of items in the list."
+  }
+ ]
+}

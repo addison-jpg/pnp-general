@@ -1363,6 +1363,13 @@
      "needs a second seat in by",
      "checked-finite needs a runner (the exhaustive check, re-runnable)"
     ]
+   },
+   {
+    "id": "900eb79c",
+    "why": [
+     "needs a second seat in by",
+     "checked-finite needs a runner (the exhaustive check, re-runnable)"
+    ]
    }
   ]
  },

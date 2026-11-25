@@ -23,18 +23,18 @@ Closed means status TRUE in `frames.jsonl`. The qual-quant frame does not count 
 
 | type | closed | total | rate |
 |---|---|---|---|
-| structure | 30 | 33 | 10/11 |
+| structure | 31 | 37 | 31/37 |
 | effect | 0 | 1 | 0 |
 | contested | 0 | 4 | 0 |
 
-Open structure: the Homestuck meteor, the .ath/~ATH mirror, the Car Seat lineage. Open effect: prompting claims C3 to C6. Open contested: time as socially constructed, Stirner's fixed ideas, the measure problem (merged), "High to Death" and "Kid War".
+Open structure: three routing frames (another job's, classified by rule 4), the Homestuck meteor, the .ath/~ATH mirror, the Car Seat lineage. Open effect: prompting claims C3 to C6. Open contested: time as socially constructed, Stirner's fixed ideas, the measure problem (merged), "High to Death" and "Kid War".
 
 ## The rule, as a measured claim
 
-On this repo, a frame closes when its reading is cut down to a finite structure; frames left as interpretation or as effects do not close. Numbers: 30 of 33 against 0 of 5.
+On this repo, a frame closes when its reading is cut down to a finite structure; frames left as interpretation or as effects do not close. Numbers: 31 of 37 against 0 of 5.
 
 Limits, said plainly:
-- n = 38. Small. This describes this repo, not a law.
+- n = 42. Small. The numbers move as frames are added; rerun `python3 -I ontology/qualquant.py`. This describes this repo, not a law.
 - Partly by construction. Most checked frames were rewritten as "Kripke fact only" or "Boolean fact only" so that a check fits; a passing check is part of why rule 4 calls them structure. The rate measures how often a reading could be cut to a structure, not whether the reading is true.
 - A closed frame closes its structure, never its reading. The reading stays analogy.
 - Effect frames need the model or new runs; none were run here.
