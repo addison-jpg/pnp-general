@@ -12,7 +12,7 @@ import asteroid.asteroid as A
 NAME, EMAIL = "asteroid", "asteroid@users.noreply.github.com"
 PUSH_TIMEOUT = 120
 PAT = re.compile(r'commit(?: "([^"]+)")?( push)?')
-STATE = {"want": None, "records": [], "build": False, "frames": set(), "failed": False, "done": False, "script": None}
+STATE = {"want": None, "records": [], "before": {}, "after": {}, "build": False, "frames": set(), "failed": False, "done": False, "script": None}
 
 def _install():
     """Wrap the writers once, so this module learns exactly which files the run wrote."""
@@ -20,7 +20,10 @@ def _install():
     if getattr(boards.add, "_commit", False): return
     add, build = boards.add, boards.build
     def add2(d, who, serves, word, statement, *a, **k):
-        r = add(d, who, serves, word, statement, *a, **k); STATE["records"].append((d, word, statement)); return r
+        f = _rel(os.path.join(d, "findings.jsonl"))
+        if f not in STATE["before"]: STATE["before"][f] = _read(f)
+        r = add(d, who, serves, word, statement, *a, **k); STATE["records"].append((d, word, statement))
+        STATE["after"][f] = _read(f); return r
     def build2(*a, **k):
         r = build(*a, **k); STATE["build"] = True; return r
     add2._commit = True; boards.add, boards.build = add2, build2
@@ -43,6 +46,15 @@ def _git(args, **k):
 def _rel(p):
     return os.path.relpath(os.path.abspath(os.path.join(A.ROOT, p)), A.ROOT).replace(os.sep, "/")
 
+def _read(rel):
+    try:
+        with open(os.path.join(A.ROOT, rel), "rb") as f: return f.read()
+    except FileNotFoundError: return b""
+
+def _head(rel):
+    r = subprocess.run(["git", "show", f"HEAD:{rel}"], cwd=A.ROOT, capture_output=True)
+    return r.stdout if r.returncode == 0 else b""
+
 def message(prog, results, records, msg=None):
     good = [r for r in results if r[2]]
     lines = [msg or f"asteroid: {prog}: {len(good)} claims true", ""]
@@ -60,6 +72,11 @@ def finish(mod, say):
         say("commit refused: a merge is in progress"); return
     if _git(["symbolic-ref", "-q", "HEAD"]).returncode != 0:
         say("commit refused: HEAD is detached"); return
+    for f in S["before"]:
+        if S["before"][f] != _head(f):
+            say(f"commit refused: {f} had changes not yet committed before this run"); return
+        if _read(f) != S["after"].get(f):
+            say(f"commit refused: {f} changed after this run wrote it"); return
     paths = [_rel(os.path.join(d, "findings.jsonl")) for d, _, _ in S["records"]]
     paths += [_rel(p) for p in sorted(S["frames"])]
     if S["build"]: paths += ["boards/TREE.md", "boards/tree.json"]

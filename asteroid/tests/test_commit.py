@@ -2,7 +2,8 @@
 Run from the repository root:  python3 -I asteroid/tests/test_commit.py      (exit 1 on any FAIL)"""
 import glob, os, shutil, subprocess, sys, tempfile
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-BASE = os.environ.get("ASTEROID_COMMIT_TEST_DIR") or tempfile.gettempdir()
+BASE = os.environ.get("ASTEROID_COMMIT_TEST_DIR") or "/tmp/claude-0/-home-user/c7c2895f-eb04-517d-b538-6d0d59d567a9/scratchpad/commit-test"
+os.makedirs(BASE, exist_ok=True)
 fails = []
 def want(name, cond):
     print(("PASS " if cond else "FAIL ") + name)
@@ -66,5 +67,34 @@ try:
     out = run(t, 'seq s = [1, 2, 3]\nclaim s = [1, 2]\nrecord notes notes tested "detached"\ncommit\n')
     want("detached HEAD: refused", "commit refused: HEAD is detached" in out)
 finally:
+    shutil.rmtree(t, ignore_errors=True)
+
+P = 'seq s = [1, 2, 3]\nclaim s = [1, 2]\nrecord notes notes tested "%s"\ncommit%s\n'
+t = make()
+try:
+    n = git(t, "rev-list", "--count", "HEAD")
+    open(os.path.join(t, "notes/findings.jsonl"), "a").write('{"id": "zz-other", "who": "someone", "serves": "notes", "word": "tested", "statement": "not from this run", "evidence": [], "by": []}\n')
+    out = run(t, P % ("dirty", "")); print(out.strip())
+    want("findings file already changed: refused", "commit refused: notes/findings.jsonl had changes" in out and git(t, "rev-list", "--count", "HEAD") == n)
+    git(t, "checkout", "-q", "--", "notes/findings.jsonl")
+
+    git(t, "stash", "-q"); git(t, "checkout", "-q", "-b", "side"); open(os.path.join(t, "m.txt"), "w").write("side\n")
+    git(t, "add", "m.txt"); git(t, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "side")
+    git(t, "checkout", "-q", "main"); open(os.path.join(t, "m.txt"), "w").write("main\n")
+    git(t, "add", "m.txt"); git(t, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "main")
+    git(t, "merge", "side")
+    n = git(t, "rev-list", "--count", "HEAD")
+    out = run(t, P % ("merge", ""))
+    want("merge in progress: refused", "commit refused: a merge is in progress" in out and git(t, "rev-list", "--count", "HEAD") == n)
+    git(t, "merge", "--abort"); git(t, "checkout", "-q", "--", ".")
+
+    bare = t + "_remote.git"
+    subprocess.run(["git", "init", "-q", "--bare", bare], capture_output=True)
+    git(t, "remote", "add", "origin", bare)
+    out = run(t, P % ("pushed", " push")); print(out.strip())
+    want("push sends the commit to origin main", "pushed to origin main" in out
+         and git(bare, "rev-parse", "main") == git(t, "rev-parse", "HEAD"))
+finally:
+    shutil.rmtree(bare if "bare" in dir() else t + "_none", ignore_errors=True)
     shutil.rmtree(t, ignore_errors=True)
 print("FAIL" if fails else "PASS"); sys.exit(1 if fails else 0)
