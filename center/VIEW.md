@@ -27,9 +27,17 @@ cells: 9 DECIDED, 15 OPEN, 8 STOPPED, 2 TAKEN
 - OPEN [Sonnet] (Sonnet): SAT cells at base − 1 for STAR4, C4 and Pasch, with one NOT gate. -> one-not/research/open/refuter_sat.py, refuter_sat.md → `one-not/research/open/refuter_sat.py,`  (refuter-951:19)
 - … 3 more in the shard
 
+## compbio
+findings (verified): none · mean radius None
+cells: none
+
 ## compute
 findings (verified): none · mean radius None
 cells: 1 DECIDED, 4 STOPPED, 1 TAKEN
+
+## homestuck
+findings (verified): none · mean radius None
+cells: none
 
 ## lateral
 findings (verified): 1 checked · mean radius 0.0
@@ -76,3 +84,7 @@ cells: 2 DECIDED, 3 OPEN, 1 STOPPED, 2 TAKEN
 - OPEN [Sonnet] (Sonnet) W1: retrieval and the note, with read status. -> notes/worlds-map.md (or philosophy-free location: `worlds/README.md`), plus LITERATURE.md rows. → `notes/worlds-map.md`  (worlds-map:20)
 - OPEN [Fable] (Fable or Sonnet, after W1) W2: Lean definitions of the worlds as Props over abstract classes (no proofs of separations), and the hierarchy theorem cited or lin → `lean/PEqualNP/Worlds/Map.lean`  (worlds-map:21)
 - OPEN [Sonnet] (Sonnet; Fable only if a Lean statement is worth writing) W3: reduction routes, meaning theorems that carry a result on one axis to the P vs NP cut. Label: "map  (worlds-map:23)
+
+## Sequence matches across programs (proposals only; a seat decides join / analogy / rhyme)
+
+- none yet

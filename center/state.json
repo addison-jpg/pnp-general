@@ -25,12 +25,22 @@
   },
   "mean_radius_findings": 0.033
  },
+ "compbio": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "compute": {
   "cells": {
    "DECIDED": 1,
    "STOPPED": 4,
    "TAKEN": 1
   },
+  "findings": {},
+  "mean_radius_findings": null
+ },
+ "homestuck": {
+  "cells": {},
   "findings": {},
   "mean_radius_findings": null
  },
