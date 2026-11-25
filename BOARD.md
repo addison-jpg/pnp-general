@@ -4,7 +4,7 @@
 
 - One NOT gate, general case: the **F2-transfer** lemma, which must use the one-NOT bound. `MixedStepNeg` is a restatement of the full count, not a smaller lemma. [`open-one-not`](boards/tasks/open-one-not.md)
 - Several NOT gates: single-output OR is settled (n−1 gates, any NOT gates). The per-set flip lemma S3(a) is proved for any number of NOT gates (`Open/FlipLemma.lean`). Open: **S3(b)**, that flip classes across all sets number at least base (cross-set sharing, Hall form). [`open-many-not`](boards/tasks/open-many-not.md)
-- Quantum gravity: L-qg-116 follows from L-qg-115; L-qg-169 (P_CTC ⊆ EXP) is proved (`Open/L169.lean`, standard axioms only); open are L-qg-115 and L-qg-119. [`open-qg`](boards/tasks/open-qg.md)
+- Quantum gravity: L-qg-116 follows from L-qg-115; L-qg-169 (P_CTC ⊆ EXP) is proved (`Open/L169.lean`, standard axioms only); L-qg-119 follows from one named lemma, `KnillParametrization` (needs the KAK decomposition of U(4), not in Mathlib; `Open/L119.lean`). Open: L-qg-115 and `KnillParametrization`. [`open-qg`](boards/tasks/open-qg.md)
 - Coordination: read your task board before starting and after each build; write one TAKEN line when you start and one DECIDED line when you finish. Do not redo a seat already marked DECIDED.
 
 ## QUIET UNTIL ADDISON SAYS IT IS READY

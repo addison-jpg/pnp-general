@@ -10,7 +10,9 @@
 ## Current target
 
 - L-qg-116 follows from L-qg-115 (checked, C1). So the quantum side is down to L-qg-115, L-qg-119, L-qg-169. L-qg-169 is now proved (C3, `Open/L169.lean`, checked against `Gap.L169`, standard axioms only).
-- Seats now: C2 (Opus, L-qg-119 or L-qg-115, running), C3 (Sonnet, L-qg-169, running).
+- L-qg-119 ← `KnillParametrization` (C2, checked, `Open/L119.lean`; also proved there: images of lower-dimensional differentiable maps are Haar-null in U(ι), via the Cayley chart).
+- Open: `KnillParametrization` (countably many differentiable maps from ℝ^(9k+3n+1) cover the k-gate products; needs KAK for U(4)) and L-qg-115 (Haar small ball; needs Haar vs volume in a chart).
+- Seats now: C4 (Sonnet): `KnillParametrization`, or the weaker parametrization via the exponential map with the exact bound it gives; C5 (Opus): L-qg-115.
 
 ## Lines (TAKEN / DECIDED only)
 
