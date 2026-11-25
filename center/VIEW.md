@@ -2,6 +2,10 @@
 
 Records live in `center/shards/<program>.jsonl`. Radius 0 = settled (Lean, or a refutation confirmed by a second seat); 1 = open. Hand-written boards are inputs until retired; this is what a seat reads.
 
+## art
+findings (verified): none · mean radius None
+cells: none
+
 ## asteroid
 findings (verified): 7 checked, 3 tested · mean radius 0.095
 cells: 7 DECIDED, 4 OPEN, 6 TAKEN

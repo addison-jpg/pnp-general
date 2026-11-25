@@ -1,4 +1,9 @@
 {
+ "art": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "asteroid": {
   "cells": {
    "DECIDED": 7,

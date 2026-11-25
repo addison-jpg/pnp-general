@@ -436,6 +436,18 @@
   ],
   "unverified_here": []
  },
+ "culture/art": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "45967313",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
  "culture/essays": {
   "counts": {},
   "verified": [],

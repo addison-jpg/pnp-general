@@ -64,6 +64,7 @@
 - [open, r=1.0] Addison: what can be proved of natural language in general: a finite fragment is all that is checked; English is not a formal language with a fixed grammar here
 - [open, r=1.0] Addison: we are underselling postmodernism; if it can so much as touch the upper disk, a lot of things may refactor very clean: ANALOGY (a reading): the joins in core/ontology/joins/ are lateral links
 - [open, r=1.0] Du Bois 1903, The Souls of Black Folk: double consciousness, looking at oneself through the eyes of others (cited from memory): ANALOGY (a reading): a one-way gaze is the 2-chain above; double conscio
+- [open, r=1.0] Addison: it is all poetry; we are converging on an art form: ANALOGY (a reading): exact structure underneath, labelled reading above, in every pillar; see core/ontology/SEMANTICS.md
 - [open, r=1.0] Stryker, My Words to Victor Frankenstein (1994) and Transgender History (2008); Stone, The Empire Strikes Back: A Posttranssexual Manifesto (written 1987, published 1991) (all cited from memory): ANAL
 - [open, r=1.0] Candidate: Heider balance in culture/social: culture/social has no balance script yet; the quadrants count balanced labellings 4, 36, 864, 63504 for 2..5 trolls; a social script that recounts them wou
 - [open, r=1.0] Addison: Car Seat Headrest, lineage of 1, 2, Disjecta Membra, Please Pass the Milk Please (culture/carseat/BASE.md): lineage as a DAG of re-recordings; needs dated edges, which are not on record
@@ -76,11 +77,14 @@
 - [open, r=1.0] Homestuck, the meteor (culture/homestuck/BASE.md section 5): the meteor as a transport map between two sessions that keeps the rules
 - [open, r=1.0] Prevalence of intersex variation: Blackless et al. 2000 (about 1.7%, broad: any departure from the typical male or female body) and Sax 2002 (about 0.018%, narrow: chromosomal, gonadal or hormonal dis
 - [open, r=1.0] Addison: Car Seat Headrest, High to Death and Kid War (culture/carseat/BASE.md): no formal structure yet; no check decides what a song means
+- [open, r=1.0] Steinmetz 2016 (Augsburg University; University of Minnesota dissertation): match a board to clusters of expert positions, not to an exact copy: ANALOGY (a reading): match a new household or question 
+- [open, r=1.0] Addison: queerness is art, music is art, it all maps through a web of poetry: ANALOGY (a reading): an exact form under an open reading, in every pillar
 - [open, r=1.0] Homestuck quadrants (culture/homestuck/quadrants/check.py): the four quadrant relations are not sexed: ANALOGY (a reading): the trolls' relations name a kind of tie between any two, a signed graph wit
 - [open, r=1.0] Zerzan 1994, Future Primitive (cited from memory): the return to a pre-symbolic, pre-agricultural life; read as the primitivist move of culture/race/RACE.md section 7: foragers as a picture of a lost 
 - [open, r=1.0] Lyotard, La Condition postmoderne 1979, incredulity toward metanarratives (cited from memory): ANALOGY (a reading): no metanarrative read as no privileged world (S5), and no privileged world read as a
 - [open, r=1.0] Critique of primitivism: romanticising primitive peoples is a racist move (Torgovnick 1990, Gone Primitive, reads modernism's taste for the primitive as a fantasy about the self; cited from memory): A
 - [open, r=1.0] Fisher, Capitalist Realism 2009 and Ghosts of My Life 2014, hauntology (cited from memory), applied to writers of 1864-1941: anachronistic: Fisher wrote about Britain after about 1980; what it still s
+- [open, r=1.0] Bronfenbrenner, The Ecology of Human Development (1979; cited from memory): the household as the microsystem, the environment since birth: ANALOGY (a reading): the first system a person is in
 - [open, r=1.0] Addison: general relativity given upwards from quantum gravity (Cheeger, Mueller, Schrader 1984: the Regge action converges to Einstein-Hilbert, cited from memory): the 4D continuum limit is not check
 - [open, r=1.0] Candidate: Propp's paired tales (culture/social/propp.py) and the sequences of culture/poetry: ANALOGY (a reading): both are ordered selections from a fixed list; no poetry sequence equals 1, 2, 3, 6,
 - [open, r=1.0] Fisher 2009, Capitalist Realism; Fisher 2014, Ghosts of My Life; Acid Communism, unfinished introduction (in k-punk, 2018); all cited from memory: ANALOGY (a reading): the way out is collective and fo
@@ -93,3 +97,4 @@
 - [open, r=1.0] Candidate: history-independent claims of physics/cosmos/invariant.py and the S5 frames of physics/time (no privileged world): invariant.py checks for n <= 7 that a property P has the same frequency at
 - [open, r=1.0] Sedgwick, Epistemology of the Closet (1990; cited from memory): the hetero/homo binary organises much of modern knowledge: ANALOGY (a reading): the same gesture as removing the sides; a binary assumed
 - [open, r=1.0] Grok incidents 2025 (NPR 2025-07-09; TechCrunch 2025-05-14, 2025-07-12; relayed, not re-read); topic intrusion as aberrant salience, Kapur 2003: reading only: filter removal as removed reality testing
+- [open, r=1.0] Benjamin 1935, Eco 1962, Sontag 1964, Munoz 2009, Lessig 2004: art opened to everyone is liberatory: ANALOGY (a reading): the open work is the aesthetic name for open source

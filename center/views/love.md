@@ -13,3 +13,7 @@
 - [DATA, r=0.5] most stable matchings on one profile k=1, n=1..3 seq [1, 2, 3]
 - [DATA, r=0.5] most stable matchings on one profile k=2, n=1..3 seq [1, 1, 2]
 - [DATA, r=0.5] preference profiles, n=1..3 seq [1, 16, 46656]
+
+## Frames
+- [checked-finite, r=0.0] Addison: bring love down to the family, as a check, not an oppressive implementation: exact fact only: on every household of 1..6 people the check passes iff no member is alone (0, 1, 4, 41, 768, 2744
+- [checked-finite, r=0.0] Beauvoir: freedom requires that the other can go on (Pour une morale de l'ambiguite, 1947; cited from memory); the link is analogy (reading), not checked: on bonds, no one left with no one is the same

@@ -96,6 +96,9 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 
 ### `culture/` 2 checked-finite
 
+#### `culture/art/` 
+- `45967313` **checked-finite** [art] culture/art/art.ath: steps 1, 5, 7, 11 generate the 12 pitch classes (Z/12); the Pythagorean comma 3^12/2^19; no stack of pure fifths closes on octaves; no fraction has twelfth power 2 (q <= 2000); webs of works with no work alone number 0, 1, 4, 41, 768, 27449 on 1..6 works. · evidence: `culture/art/art.ath`, `culture/art/art.py`, `philosophy/numbers.py` · asteroid · unverified (needs a second seat in by)
+
 #### `culture/essays/` 
 - `92dfcbb0` **checked-finite** [essays] gravity.ath: every escape route in culture/essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth. · evidence: `gravity.ath`, `/home/user/pnp-general/gravity.bench` · asteroid, confirmed by frame-review · unverified (checked-finite needs a runner (the exhaustive check, re-runnable))
 - `e5d70df4` **checked-finite** [essays] gravity.ath: every escape route in culture/essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs, with no NOT and no wasted gate; in the same run physics/cosmos/check.py passes (a body is bound exactly when its energy is negative, exact rational orbits). The argument's shape and the physical fact it echoes, not the essay's truth. · evidence: `gravity.ath`, `/home/user/pnp-general/gravity.bench`, `physics/cosmos/check.py` · asteroid · unverified (needs a second seat in by)
