@@ -14,6 +14,8 @@ import re
 
 FRAMES = {}       # name -> {"n": N, "rels": [succ masks tuple], "val": {atom: mask} or None, "desc": str}
 MAX_ONE, MAX_ALL, MAX_ATOMS, WORK = 12, 4, 3, 2 * 10**6
+NODES = 2 * 10**7          # most (frame-valuation pairs) x (formula size) for one claim
+RUN_NODES = [6 * 10**7]    # the same, for all modal claims of one run together
 PROPS = ("reflexive", "transitive", "symmetric", "euclidean", "serial", "any")
 
 # ---- relations as successor bitmasks: succ[w] has bit v set iff w R v ----
@@ -70,7 +72,9 @@ class _P:
         raise ValueError(f"unexpected {t}")
 
 def parse(s):
-    p = _P(s); a = p.imp()
+    p = _P(s)
+    try: a = p.imp()
+    except RecursionError: raise ValueError("nested too deeply")
     if p.peek() is not None: raise ValueError(f"unexpected {p.peek()}")
     return a
 
@@ -123,7 +127,14 @@ def _work(K, f, n):
     a = len(atoms(f))
     if a > MAX_ATOMS: return f"{a} atoms > {MAX_ATOMS}"
     w = len(K["rels"]) * (1 << (n * a))
-    return f"{w} frame-valuation pairs > {WORK}" if w > WORK else None
+    if w > WORK: return f"{w} frame-valuation pairs > {WORK}"
+    x = w * size(f)
+    if x > NODES: return f"{w} pairs x formula size {size(f)} = {x} > {NODES}"
+    if x > RUN_NODES[0]: return f"this run already spent its {6 * 10**7} modal steps"
+    RUN_NODES[0] -= x
+    return None
+
+def size(f): return 1 + sum(size(x) for x in f[1:] if isinstance(x, tuple))
 
 def claim_expr(text, lean, api, force=False):
     m = re.fullmatch(r'(valid|invalid) (\w+) "([^"]+)"', text)

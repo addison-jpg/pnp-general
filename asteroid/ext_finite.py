@@ -17,6 +17,8 @@ SEQ = {}            # name -> list of int
 TIMEOUT = 900
 LIMIT = 10**6       # largest n in n!, n!!, C(n, k), and the most terms one sum may add
 STEPS = 10**7       # most evaluation steps for one formula claim
+RUN_STEPS = [3 * 10**7]   # most evaluation steps for all formula claims of one run together
+MAXBITS = 10**6     # largest integer a formula may make (bits); a step on a big integer costs 1 + bits // 1024
 INT = re.compile(r"-?\d+")
 
 def _lit(body, where):
@@ -117,6 +119,14 @@ def parse(s):
 def _big(x, what):
     if x > LIMIT: raise ValueError(f"{what} with {x} > {LIMIT} is too large")
 
+def _bits(r, budget):
+    """Charge a result by its size: big integers cost more steps. Past MAXBITS the claim is FALSE."""
+    b = abs(r).bit_length() if isinstance(r, int) else 0
+    if b > MAXBITS: raise ValueError(f"a number with more than {MAXBITS} bits")
+    budget[0] -= b >> 10
+    if budget[0] < 0: raise ValueError(f"more than {STEPS} steps")
+    return r
+
 def ev(a, V, budget=None):
     if budget is None: budget = [STEPS]
     budget[0] -= 1
@@ -130,28 +140,31 @@ def ev(a, V, budget=None):
     if k == "neg": return -_ev(a[1], V)
     if k in ("+", "-", "*", "//", "**"):
         x, y = _ev(a[1], V), _ev(a[2], V)
-        if k == "+": return x + y
-        if k == "-": return x - y
-        if k == "*": return x * y
+        if k == "+": return _bits(x + y, budget)
+        if k == "-": return _bits(x - y, budget)
+        if k == "*":
+            if abs(x).bit_length() + abs(y).bit_length() > MAXBITS + 1: raise ValueError(f"a number with more than {MAXBITS} bits")
+            return _bits(x * y, budget)
         if k == "//":
             if y == 0 or x % y: raise ValueError(f"{x} // {y} is not exact")
             return x // y
         if y < 0: raise ValueError(f"{x} ** {y}: negative exponent")
         if abs(x) > 1 and y > 100000: raise ValueError("exponent too large")
-        return x ** y
+        if abs(x) > 1 and (abs(x).bit_length() - 1) * y > MAXBITS: raise ValueError(f"a number with more than {MAXBITS} bits")
+        return _bits(x ** y, budget)
     if k == "!":
         x = _ev(a[1], V)
         if x < 0: raise ValueError(f"({x})! is undefined")
         _big(x, "n!"); budget[0] -= x
         r = 1
-        for i in range(2, x + 1): r *= i
+        for i in range(2, x + 1): r = _bits(r * i, budget)
         return r
     if k == "!!":
         x = _ev(a[1], V)
         if x < -1: raise ValueError(f"({x})!! is undefined")
         _big(x, "n!!"); budget[0] -= x // 2
         r = 1
-        while x > 1: r *= x; x -= 2
+        while x > 1: r = _bits(r * x, budget); x -= 2
         return r                                   # 0!! = (-1)!! = 1
     if k == "C":
         x, y = _ev(a[1], V), _ev(a[2], V)
@@ -159,12 +172,14 @@ def ev(a, V, budget=None):
         if y < 0 or y > x: return 0
         _big(x, "C(n, k)"); budget[0] -= y
         r = 1
-        for i in range(y): r = r * (x - i) // (i + 1)
+        for i in range(y): r = _bits(r * (x - i), budget) // (i + 1)
         return r
     if k == "sum":
         lo, hi = _ev(a[2], V), _ev(a[3], V)
         _big(hi - lo + 1, "a sum of terms")
-        return sum(_ev(a[4], {**V, a[1]: j}) for j in range(lo, hi + 1))
+        t = 0
+        for j in range(lo, hi + 1): t = _bits(t + _ev(a[4], {**V, a[1]: j}), budget)
+        return t
     raise ValueError(k)
 
 FORMS = {"as-is": lambda s: list(s), "diff": lambda s: [b - a for a, b in zip(s, s[1:])],
@@ -200,11 +215,15 @@ def claim_expr(text, lean, api, force=False):
     try:
         f = parse(m3.group(2))
         if not s: return False, f"{m3.group(1)} has no terms, so the formula is tested on nothing"
-        budget = [STEPS]
-        for i, x in enumerate(s):
-            y = ev(f, {"n": k0 + i}, budget)
-            if y != x: return False, f"n={k0 + i}: formula gives {y}, sequence has {x}"
+        if RUN_STEPS[0] <= 0: return False, f"this run already spent its {3 * 10**7} formula steps"
+        budget = [min(STEPS, RUN_STEPS[0])]; start = budget[0]
+        try:
+            for i, x in enumerate(s):
+                y = ev(f, {"n": k0 + i}, budget)
+                if y != x: return False, f"n={k0 + i}: formula gives {y}, sequence has {x}"
+        finally: RUN_STEPS[0] -= start - max(budget[0], 0)
     except ValueError as e: return False, f"formula error: {e}"
+    except RecursionError: return False, "formula error: nested too deeply"
     return True, f"formula equals all {len(s)} terms, n={k0}..{k0 + len(s) - 1}"
 
 def handle(line, api):

@@ -1,0 +1,6 @@
+[
+ {"name": "parse trees of x op x ... op x with n leaves under E -> E+E | E*E | x, n=1..9 (Catalan)", "seq": [1, 1, 2, 5, 14, 42, 132, 429, 1430], "runner": "python3 -I language/check.py"},
+ {"name": "balanced parentheses of length 2m, m=0..8 (Catalan)", "seq": [1, 1, 2, 5, 14, 42, 132, 429, 1430], "runner": "python3 -I language/check.py"},
+ {"name": "distinct languages up to length 8 of DFAs with <= k states over {a,b}, k=1..3", "seq": [2, 26, 1054], "runner": "python3 -I language/check.py"},
+ {"name": "largest first disagreement with a^n b^n over k-state DFAs, k=1..3", "seq": [1, 2, 4], "runner": "python3 -I language/check.py"}
+]
