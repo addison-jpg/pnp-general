@@ -3,7 +3,15 @@
 
 A FINDING is one small record in a file `findings.jsonl` that lives in the directory of its evidence:
   {"id", "time", "who", "serves", "word", "statement", "evidence": ["path" | "path::name"], "by": [who checked it]}
-  word is one of: checked | paper | tested | refuted | open | premise
+  word is one of: checked | checked-finite | checked-infinite | paper | tested | refuted | open | premise
+  checked          a Lean proof (a .lean file in evidence).
+  checked-finite   a finite statement proved by EXHAUSTIVE verified evaluation: needs a runner that re-does the whole
+                   enumeration (or checks an UNSAT/DRAT certificate) and a second seat.
+  checked-infinite a statement about all n, proved by a finite check PLUS a reduction: a theorem that the finite check
+                   covers every n (a cutoff / small-model bound, a recurrence of known order fixed by finitely many
+                   terms, a WZ certificate, a decision procedure such as automata for automatic sequences). Needs a
+                   runner, a second seat, and "reduction": "path::name" (a .lean theorem) or "cite:..." (a known
+                   theorem, read status recorded in LITERATURE.md).
 A finding is VERIFIED when every evidence path exists, every `path::name` is found in that file, a
 `checked` finding cites a .lean file, and (for anything but `checked`) at least one name in "by" differs
 from "who". Only verified findings propagate UP: each directory's node holds the verified findings of
@@ -22,7 +30,7 @@ tolerated; seconds then is wall time). `retest` runs it single-core under nice (
 This file imports only the standard library; the tensor code is imported only inside runner commands.
 Run from the repository root. `findings.jsonl` files merge by union (append only): no conflicts."""
 import json, os, sys, time, hashlib, collections
-WORDS = ["checked", "paper", "tested", "refuted", "open", "premise"]
+WORDS = ["checked", "checked-finite", "checked-infinite", "paper", "tested", "refuted", "open", "premise"]
 SKIP = {".git", ".lake", "__pycache__", "node_modules"}
 
 def leaves():
@@ -50,6 +58,13 @@ def verified(r):
     if r.get("word") == "checked":
         if not any(e.partition("::")[0].endswith(".lean") for e in r.get("evidence", [])): why.append("checked needs a .lean file")
     elif not [b for b in r.get("by", []) if b != r.get("who")]: why.append("needs a second seat in by")
+    if r.get("word") in ("checked-finite", "checked-infinite"):
+        if not r.get("runner"): why.append(r["word"] + " needs a runner (the exhaustive check, re-runnable)")
+    if r.get("word") == "checked-infinite":
+        if not r.get("reduction"): why.append("checked-infinite needs a reduction (a proved or cited theorem that the finite check covers all n)")
+        else:
+            red = r["reduction"]; path = red.partition("::")[0]
+            if not (os.path.exists(path) or red.startswith("cite:")): why.append("reduction not found: " + red)
     rt = r.get("retest")
     if rt and not rt.get("ok"): why.append("stale: last retest failed " + str(rt.get("time")))
     return why
@@ -110,12 +125,13 @@ def build():
     tot = collections.Counter(r["word"] for r in node["."]["up"])
     print("nodes", len(node), "| verified at the root:", dict(tot), "| unverified:", sum(len(v["unverified_here"]) for v in tree.values()))
 
-def add(d, who, serves, word, statement, evidence, runner=None):
+def add(d, who, serves, word, statement, evidence, runner=None, reduction=None):
     assert word in WORDS, WORDS
     rid = hashlib.sha1((statement + d).encode()).hexdigest()[:8]
     r = {"id": rid, "time": time.strftime("%Y-%m-%d %H:%M", time.gmtime()), "who": who, "serves": serves, "word": word,
          "statement": statement, "evidence": evidence, "by": [who]}
     if runner: r["runner"] = runner
+    if reduction: r["reduction"] = reduction
     open(os.path.join(d, "findings.jsonl"), "a").write(json.dumps(r, ensure_ascii=False) + "\n"); print(rid)
 
 def retest(target=None, timeout=600):
@@ -156,9 +172,10 @@ def confirm(rid, who):
 if __name__ == "__main__":
     a = sys.argv[1:]
     if a[:1] == ["add"]:
-        run = None
+        run = red = None
         if "--runner" in a: i = a.index("--runner"); run = a[i + 1]; a = a[:i] + a[i + 2:]
-        add(a[1], a[2], a[3], a[4], a[5], a[6:], run)
+        if "--reduction" in a: i = a.index("--reduction"); red = a[i + 1]; a = a[:i] + a[i + 2:]
+        add(a[1], a[2], a[3], a[4], a[5], a[6:], run, red)
     elif a[:1] == ["retest"]:
         to = 600
         if "--timeout" in a: i = a.index("--timeout"); to = float(a[i + 1]); a = a[:i] + a[i + 2:]

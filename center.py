@@ -38,7 +38,7 @@ def program(path):
 
 def radius(rec):
     w = rec.get("word")
-    if w == "checked" and not rec.get("why_not"): return 0.0
+    if w in ("checked", "checked-finite", "checked-infinite") and not rec.get("why_not"): return 0.0
     seats = len(set(rec.get("by", [])) | {rec.get("who")})
     ok = sum(1 for t in rec.get("retests", []) if t.get("ok"))
     bad = sum(1 for t in rec.get("retests", []) if not t.get("ok"))
