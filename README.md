@@ -78,6 +78,7 @@ The P versus NP question is open. Nothing here settles it.
 - `center/`: the record store.
 - `workshop/`: work in progress.
 - `philosophy/`, `physics/` and `culture/`: the pillars.
+- `culture/marx/MARXISM.md`: concept map, core concepts only; no claim of truth. Label: analogy.
 
 ## Model layer
 
