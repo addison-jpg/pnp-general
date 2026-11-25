@@ -1,0 +1,54 @@
+# Builds asteroid.exe (the asteroid window, double-click on Windows). Run it by hand: Actions > exe > Run workflow.
+# Never on push. It makes no release and no tag: the exe is a workflow artifact and a bot commit of asteroid.exe at the repository root.
+name: exe
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }      # python.org build: ships tkinter and idlelib
+      - name: Install build tools (inside this runner only)
+        run: pip install pyinstaller numpy matplotlib
+      - name: Make an icon
+        run: |
+          python -c "from PIL import Image, ImageDraw, ImageFont; im = Image.new('RGBA', (256, 256), (20, 20, 19, 255)); d = ImageDraw.Draw(im); d.rounded_rectangle((8, 8, 248, 248), 40, outline=(25, 179, 179, 255), width=10); f = ImageFont.truetype('arialbd.ttf', 150); d.text((128, 128), '4', fill=(25, 179, 179, 255), font=f, anchor='mm'); im.save('icon.ico', sizes=[(16, 16), (32, 32), (48, 48), (256, 256)])"
+      - name: Build
+        run: >
+          pyinstaller --onefile --windowed --name asteroid --icon icon.ico
+          --add-data "asteroid;asteroid" --add-data "one-not/tools/search;one-not/tools/search"
+          --add-data "hello.ath;." --add-data "hello.bench;." --add-data "site/palette.json;site"
+          --hidden-import fractions --hidden-import itertools --hidden-import glob --hidden-import random --hidden-import subprocess
+          --hidden-import tempfile --hidden-import shutil --hidden-import platform --hidden-import cmd --hidden-import idlelib.colorizer
+          --hidden-import idlelib.percolator --hidden-import numpy --hidden-import matplotlib.pyplot --hidden-import matplotlib.backends.backend_agg
+          --paths . --paths one-not/tools/search
+          asteroid/idle_exe.py
+      - name: Smoke test (the build fails if the bundle is broken)
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath dist\asteroid.exe -ArgumentList '--selftest' -Wait -PassThru
+          Write-Host "selftest exit code $($p.ExitCode)"
+          if ($p.ExitCode -ne 0) { exit 1 }
+          Write-Host ("size: {0:N1} MB" -f ((Get-Item dist\asteroid.exe).Length / 1MB))
+      - uses: actions/upload-artifact@v4
+        with: { name: asteroid-exe, path: dist/asteroid.exe }
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write          # this job only: it commits asteroid.exe
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: asteroid-exe }
+      - name: Commit asteroid.exe to the repository root
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add asteroid.exe
+          git commit -m "asteroid.exe: built by the exe workflow [skip ci]" || { echo "no change"; exit 0; }
+          git pull --rebase origin main
+          git push origin HEAD:main

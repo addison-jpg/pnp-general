@@ -269,6 +269,11 @@ FORCE = False
 FORCE_SEEN = {}
 SKIPPED = []     # lines skipped because numpy or matplotlib is not installed
 EXTRA_LEAN = {"imports": [], "decls": []}   # extensions may add Lean imports and declarations to the generated module
+def reset():
+    """Forget every name and claim: a fresh run in the same process (the window's Run button)."""
+    for d in (env, src, CONJ, FORCE_SEEN): d.clear()
+    for l in (lean_claims, results, SKIPPED): l.clear()
+
 class Session:
     """The state of one run: the open `circuit ... end` block and the `record` lines. A file run makes one; the interactive prompt keeps one."""
     def __init__(self): self.block = None; self.records = []
@@ -418,7 +423,7 @@ def main(argv):
         print("note: Lean (the command `lake`) is not installed here, so this run is Python only: claims are evaluated, nothing is formally checked.\n      To let the Lean kernel decide: install elan, then `cd one-not/lean && lake exe cache get`.")
     if argv[:1] == ["version"]: print(VERSION); return 0
     if prompt: from asteroid import repl; return repl.main()
-    if argv[:1] == ["idle"]: from asteroid import idle; return idle.main()
+    if argv[:1] == ["idle"]: from asteroid import idle; return idle.main(argv[1:])
     if argv[:1] == ["setup"]: print("asteroid: `setup` is run by the launcher: bin/asteroid setup (or bin/setup)"); return 2
     if argv[:1] == ["demo"]:
         print("asteroid demo: the program is asteroid/demo.ath (a 4-input circuit, three true claims, one false on purpose)\n")

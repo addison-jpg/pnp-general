@@ -76,6 +76,8 @@ bin/asteroid test      # run all of them
 
 `bin/asteroid` with no arguments opens the interactive prompt, `bin/asteroid idle` the window.
 
+Windows: download [`asteroid.exe`](asteroid.exe) and double-click it (it is the window, with Python inside; nothing to install). Windows SmartScreen will warn, because the file is not signed: click "More info", then "Run anyway".
+
 These lines are for Git Bash on Windows, macOS and Linux. In cmd: `bin\asteroid.cmd demo`, `bin\setup.cmd`. In Windows PowerShell: `bin\asteroid.ps1 demo`, `bin\setup.ps1` (or the same `.cmd` names).
 
 Nothing is installed outside this folder. Delete `.venv` to undo the setup. `bin/asteroid doctor` says what your machine has. A first walk through is in `asteroid/GETTING_STARTED.md`.
