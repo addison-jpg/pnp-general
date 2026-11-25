@@ -2,7 +2,7 @@
 
 This file is a conjecture about a way of prompting. It was written from one long working session in
 this repository on 2026-11-24. It is an opinion with some evidence from that day. Nothing in it was
-measured, and nothing in it is proved.
+measured, and nothing in it is proved. A formal statement with named quantities, at three scales, was added on 2026-11-25 (see below); it is still a conjecture.
 
 It is also not a claim about P versus NP. The method produced the tools in this repository, asteroid
 among them. That is all it is claimed to have done.
@@ -127,6 +127,70 @@ None of this has been done.
   and questions sent to Addison.
 - Token cost per finished task, with and without task boards, and with the smallest agent against the largest, for the same kind of task.
 
+
+## A formal statement, at three scales (2026-11-25)
+
+Addison asked for the qualitative conjecture to be formalised, and for the formal version to follow the same three scales used for the circuit work: "at the bottom its variable, at the middle its absurd polynomial feild, and at the top it becomes crazy overlapping infinities that we bound and match." The statements below are conjectures with named quantities, so each one can be measured or refuted. Nothing here is proved.
+
+### Bottom: one seat, finite and variable
+
+A *seat* s is one agent given one board line ℓ(s). For each seat, record:
+
+- **The ask:** the token length |ℓ(s)| of the line, and the token length |p(s)| of the full prompt it was given.
+- **The reading:** the set F(s) of files it had to read, and their total length |F(s)|.
+- **The cost:** the tokens it spent, c(s), as the tools report them.
+- **The result:** r(s), one of checked, tested, refuted, obstacle (an exact missing lemma written down) or none.
+
+**Conjecture B1 (informal asks are short but dense).** For the same instruction, Addison's informal text has fewer tokens than a formal rewrite, and more information per token. The research seat's first measurement agrees: on 10 prompts, 236 Qwen2.5-0.5B tokens against 267 for the formal rewrites, at 6.0 against 4.6 nats per token (`ath_prompts/measure/results.md`).
+
+**Conjecture B2 (cost is reading).** c(s) ≈ a + b·|F(s)| + small terms. |ℓ(s)| and |p(s)| contribute little.
+
+### Middle: cost as a function of the repository
+
+Let R be the size of the repository, and let the seat's scope be bounded by its board line.
+
+**Conjecture M1 (board seats are flat in R).** A seat on a narrow board line reads only the files its line names, and those files' size does not grow with R. So c(s) = O(1) in R for a fixed kind of line.
+
+**Conjecture M2 (roaming agents are not).** An agent given the goal without a board line must locate the relevant files and history. Its |F| grows with R, polynomially in practice (at least linearly), and so does its cost.
+
+The middle scale is a polynomial bridge, and only a bridge: it describes cost curves, but it does not by itself say what happens as the project keeps growing.
+
+### Top: the limit, bound and match
+
+Let C(R) be the cost per checked result: the total tokens spent divided by the number of checked findings in the findings tree, as R grows.
+
+**Conjecture T1 (bounded cost per result).** Under the board method (findings tree, the SEAT SIZE rule, Sonnet by default, one narrow line per seat, obstacles posted as new lines), limsup C(R) < ∞ as R → ∞.
+
+**Conjecture T2 (the unbounded ratio).** For a roaming large agent, C_roam(R) → ∞. So C_roam(R) / C_board(R) → ∞. This is the precise sense of "unboundedly more efficient": not that one seat is free, but that the ratio grows without bound as the project grows.
+
+"Bound and match" here means: bound C_board above by the per-seat constant from M1, times the number of seats per checked result. Then match that against a lower bound for C_roam from M2.
+
+**The risk, as in the circuit work.** The limit statement can hide what happens at finite size. T1 also needs the number of seats per checked result to stay bounded. A run of reductions that never closes, such as three Opus seats in a row each ending on the same overlap obstacle, makes that number grow. So T1 can fail through the mathematics, not through the method.
+
+### Data so far (tool-reported, this session)
+
+| Seat | Model | Job | Tokens | Time | Result |
+|---|---|---|---|---|---|
+| A6 | Sonnet | one Lean lemma from a board line | 99,716 | 95 s | checked |
+| A8 | Sonnet | one Lean lemma from a board line | 84,399 | 62 s | checked |
+| A9 | Sonnet | two Lean lemmas from board lines | 91,567 | 80 s | checked |
+| A11 | Sonnet | one Lean conditional from a board line | 92,533 | 96 s | checked |
+| A12 | Sonnet | two Lean lemmas from board lines | 89,475 | 126 s | checked |
+| B8 | Sonnet | one Lean reduction from a board line | 86,424 | 156 s | checked |
+| A4 | Opus | open attack, wider scope | 204,309 | 28 min | obstacle and checked lemmas |
+| B5 | Opus | open attack, wider scope | 211,345 | 22 min | reduction and checked lemmas |
+| A7 | Opus | one paper attempt | 149,698 | 13 min | obstacle |
+| A10 | Opus | one paper attempt | 146,304 | 19 min | obstacle |
+| robustness | Fable | multi-part engineering | 173,252 | 29 min | tested |
+
+Read honestly, the narrow Sonnet seats cluster tightly: 84,000 to 100,000 tokens and 1 to 3 minutes for one checked lemma, across six different lemmas. That clustering is what M1 predicts. Most of the roughly 85,000 tokens is the fixed cost of reading the rules and the cited files. Repository size is not one of the measured variables yet, so M2, T1 and T2 are untested.
+
+### How to refute or confirm it
+
+- **B1:** more prompt pairs through the Qwen instrument (the research seat's task).
+- **B2 and M1:** regress c(s) on |F(s)| and |ℓ(s)| over every seat, using the tool-reported usage lines.
+- **M2 and T2:** give one fresh agent with no board line the same goal as a past Sonnet seat (for example A8's lemma), at two repository sizes, and compare the tokens.
+- **T1:** plot C(R) over the commit history, with the checked findings from `boards/tree.json` against the tokens spent.
 
 ## Related ideas
 
