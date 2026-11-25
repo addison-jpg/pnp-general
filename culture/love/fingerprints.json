@@ -1,0 +1,9 @@
+[
+ {"name": "preference profiles, n=1..3", "seq": [1, 16, 46656], "runner": "python3 -I culture/love/check.py"},
+ {"name": "one-to-one matchings (capacity 1), n=1..3", "seq": [2, 7, 34], "runner": "python3 -I culture/love/check.py"},
+ {"name": "capacity-2 matchings, n=1..3", "seq": [2, 16, 265], "runner": "python3 -I culture/love/check.py"},
+ {"name": "profiles with a unique stable matching k=1, n=1..3", "seq": [1, 14, 34080], "runner": "python3 -I culture/love/check.py"},
+ {"name": "profiles with a unique stable matching k=2, n=1..3", "seq": [1, 16, 40128], "runner": "python3 -I culture/love/check.py"},
+ {"name": "most stable matchings on one profile k=1, n=1..3", "seq": [1, 2, 3], "runner": "python3 -I culture/love/check.py"},
+ {"name": "most stable matchings on one profile k=2, n=1..3", "seq": [1, 1, 2], "runner": "python3 -I culture/love/check.py"}
+]

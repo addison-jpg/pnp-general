@@ -454,6 +454,18 @@
    }
   ]
  },
+ "culture/love": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "c911e8fd",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
  "culture/poetry": {
   "counts": {},
   "verified": [],

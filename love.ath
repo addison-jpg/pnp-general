@@ -1,0 +1,19 @@
+# Love, from culture/love. Who to pursue, on two finite sides that rank each other: stable matching.
+# Monogamy is capacity k=1, polyamory capacity k=2. Exhaustive over every preference profile for n <= 3.
+# This models stated rankings, not feelings. It cannot say who is good for anyone.
+seq profiles = run "python3 -I culture/love/check.py" "preference profiles"
+seq mono = from culture/love/fingerprints.json "one-to-one matchings"
+seq poly = from culture/love/fingerprints.json "capacity-2 matchings"
+seq unique1 = from culture/love/fingerprints.json "unique stable matching k=1"
+seq unique2 = from culture/love/fingerprints.json "unique stable matching k=2"
+seq most1 = from culture/love/fingerprints.json "most stable matchings on one profile k=1"
+seq most2 = from culture/love/fingerprints.json "most stable matchings on one profile k=2"
+claim formula profiles = "n! ** (2*n)"                  # each of 2n members ranks n others: (n!)^(2n)
+claim formula mono = "sum(i, 0, n, C(n, i) ** 2 * i!)"  # partial one-to-one matchings of two n-sets
+claim poly = [2, 16, 265]                               # pair sets with at most 2 partners each
+claim unique1 = [1, 14, 34080]                          # profiles with exactly one stable matching, k=1
+claim unique2 = [1, 16, 40128]                          # the same, k=2
+claim most1 = [1, 2, 3]                                 # most stable matchings on one profile, k=1
+claim most2 = [1, 1, 2]                                 # the same, k=2
+check "python3 -I culture/love/check.py"
+record culture/love love checked-finite "love.ath: on every preference profile of two sides of size n <= 3, a stable matching exists for capacity k=1 and k=2, brute force and deferred acceptance agree, the k=1 capacity model equals the one-to-one model, and the counts above (unique stable: 1, 14, 34080 at k=1 and 1, 16, 40128 at k=2; most stable on one profile: 3 at k=1, 2 at k=2 for n=3) are exact. Stated rankings only, not feelings; n=4 not run."
