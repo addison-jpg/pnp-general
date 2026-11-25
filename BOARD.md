@@ -50,6 +50,7 @@ The machine has 4 cores and 15 GB of memory, shared by every seat. Paper seats (
 - TAKEN O2: three-qubit CKW
 - TAKEN F1: payment Hall condition
 - TAKEN F3: DAG frame -> `lean/PEqualNP/Philosophy/DAG.lean`, `philosophy/DAG.md`
+- TAKEN F2: KAK and exact L119 (`lean/PEqualNP/QuantumGravity/Open/KAK.lean`)
 - Sonnets now: PaymentHall Prop (Lean), OR-only PHC@0 for monotone programs (paper), PHC@0 under point deletion, two-level saturation (QG rank 3), cost per result (prompt method), refuter DD search (one core). Queued until T1: PHC@0 enumeration, point-lemma SAT, refuter SAT cells.
 
 ## RULES
