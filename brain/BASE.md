@@ -1,6 +1,6 @@
 # The brain, through the hairy ball
 
-What this is: a **structural** fact about the cortex, checked. What it is not: a model of the mind or of subjective experience. Labels as elsewhere: **fact**, **checked-finite**, **open**.
+What this is: a **structural** fact about the cortex, checked. What it is not: a model of the mind or of subjective experience. Labels as elsewhere: **fact**, **tested** (random samples, not exhaustive), **open**.
 
 ## 1. The fact
 
@@ -8,7 +8,7 @@ What this is: a **structural** fact about the cortex, checked. What it is not: a
 - The hairy ball theorem (Poincaré–Brouwer) says a continuous tangent field on a sphere vanishes somewhere. Poincaré–Hopf sharpens it: the indices of the zeros sum to the Euler characteristic, 2.
 - So any smooth map on the cortex (thickness, an activation map, the gradient of any field) has critical points, at least two, with indices summing to 2. There is no "perfectly combed" cortex. Fact.
 
-## 2. The check (`checked-finite`)
+## 2. The check (`tested`)
 
 `hairy.py`: random smooth functions on subdivided icospheres (42, 162, 642 vertices), with the Banchoff index at every vertex. The index sum is 2 in every run (200 fields per size by default, 100 per size in the logged run), and every field had at least 6 critical points. Run: `python3 brain/hairy.py`.
 

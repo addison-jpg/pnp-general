@@ -2,6 +2,7 @@
 
 ## Findings
 - [checked-finite, r=0.0] Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A
+- [tested, r=0.5] Hairy ball on a model cortex: on icospheres with 42, 162 and 642 vertices, 100 random smooth functions each, the Banchoff indices of the critical points sum to 2 (the Euler characteristic) every time.
 - [checked-finite, r=1.0] Exact counts by exhaustive enumeration, each checked two ways: rooted binary phylogenetic trees (2n-3)!! for n<=8; RNA secondary structures with hairpin loop >= 1 (A004148) and Motzkin numbers for n<=
 
 ## Cells
