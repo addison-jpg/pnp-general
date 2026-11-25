@@ -2,6 +2,7 @@
    It prints "ath> ", reads one line, and runs what the line names:
      :big      run big.ath through asteroid (--no-lean, so it needs no Lean)
      :hello    run hello.ath through asteroid
+     :bus      run workshop/bus/bus.ath through asteroid
      :quit     leave
    Anything else prints a short help line. Build: gcc -O2 -static -s -o base base.c
    The asteroid binary is the ASTEROID environment variable, or else dist/linux/asteroid relative to the
@@ -29,7 +30,7 @@ int main(void) {
     const char *prog = getenv("ASTEROID");
     if (!prog || !*prog) prog = "dist/linux/asteroid";
     char line[256];
-    printf("ath> (:big :hello :quit)\n");
+    printf("ath> (:big :hello :bus :quit)\n");
     for (;;) {
         printf("ath> "); fflush(stdout);
         if (!fgets(line, sizeof line, stdin)) { printf("\n"); return 0; }
@@ -37,6 +38,7 @@ int main(void) {
         if (!strcmp(line, ":quit")) return 0;
         if (!strcmp(line, ":big")) printf("exit %d\n", run(prog, "big.ath"));
         else if (!strcmp(line, ":hello")) printf("exit %d\n", run(prog, "hello.ath"));
-        else printf("commands: :big :hello :quit\n");
+        else if (!strcmp(line, ":bus")) printf("exit %d\n", run(prog, "workshop/bus/bus.ath"));
+        else printf("commands: :big :hello :bus :quit\n");
     }
 }
