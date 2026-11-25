@@ -130,8 +130,8 @@ Controls: with `base(W)` lines (`--control`) every family tested is SAT (two3, d
 | tri4 (6) | 0134, 125, 02 | 6 | all UNSAT |
 | q4 (6) | 0123, 045, 14, 25 | 12 | all UNSAT |
 | Pasch (6) | 012, 034, 135, 245 | 15 | all UNSAT (full family 213 s); control SAT on all 15 |
-| star5 (9), two 5-sets | 01234, 05678 | 3 | single sets UNSAT; the pair did not finish at the time of writing |
-| Fano (7), up to relabelling | 7 lines | — | queued after star5, not finished |
+| star5 (9), two 5-sets | 01234, 05678 | 3 | single sets UNSAT; the pair did not finish (stopped after about 20 min) |
+| Fano (7), up to relabelling | 7 lines | — | not run (queued behind star5, stopped) |
 
 So on each of these systems **every** circuit, with any number of NOT gates and of any size, has at least
 `base` flip classes (hence at least `base` AND/OR gates), on every subsystem. For star44 this extends the
