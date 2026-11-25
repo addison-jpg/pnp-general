@@ -13,6 +13,9 @@ on:
       - '**/lean-toolchain'
 permissions:
   contents: read
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   verify:
     name: verify ${{ matrix.dir }}
