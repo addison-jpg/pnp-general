@@ -1,0 +1,19 @@
+{
+ "files": {
+  "center/VIEW.md": "a0453aae83f2441130161debba31e8116c1690275616543bdf1cbae2b99074fd",
+  "center/shards/asteroid.jsonl": "56def9c56bfc44ea4f3a4154c788f1f2332be87100b94197cb62c5b9aeaa54fc",
+  "center/shards/circuits.jsonl": "3f8d6feb21efde16a1c856932cfe9fd821392f7641217045d3cfe4247f0fea12",
+  "center/shards/compbio.jsonl": "680b719f949969d2dc220be4e9b5f931e71c56ccb7df9ea88ce6d8de93c15450",
+  "center/shards/compute.jsonl": "accc6d7b5ce302ea01d2c5be0333588a792d9747f57978426cb82d5c13aba041",
+  "center/shards/homestuck.jsonl": "cee8104181bb09cbaa75a82752ca5a22297d36ea5d2fc3c8b797d417ce1a2dab",
+  "center/shards/lateral.jsonl": "9b765d6a26fd3a690b26de31941918247ffd0e5c7cd88a0350fc527dcdb8d42e",
+  "center/shards/methods.jsonl": "24a3846577432fd0c32bd3181cdebd44b926df60c73d6e62e42d74dd0e834c00",
+  "center/shards/other.jsonl": "d45cecfd53a5ce043dbf1eb840d12aae281aa0bf8c26539f54b08c45d6a2a167",
+  "center/shards/philosophy.jsonl": "8fdfd5d044f59ac8009dd71824a64ef16c300c2ba0e21deb8b875fd56e8ebc10",
+  "center/shards/prompt-method.jsonl": "29d526ff93cf4f9203363fd9578b78e742f21a8a464001bfa4130df81b8051f1",
+  "center/shards/quantum-gravity.jsonl": "3aab28e14023559093e431a65e14a5eb27018d56eeb5386a7facc3fc8058db04",
+  "center/shards/worlds.jsonl": "b7f0c9575f51d5cfc0d2cd9285a0a6876bfe04f902ebeee1f750f00f3b159311",
+  "center/state.json": "08158acdc8399306cbaab885964601a116f0682f2453af627f3d8939f0e65603"
+ },
+ "schema": 1
+}

@@ -20,6 +20,7 @@ grows with a failed retest. It is a bookkeeping choice, not a theorem.
 Standard library only. It reuses boards.py's loader and its verification rule, so the two never disagree."""
 import json, os, re, sys, glob, hashlib, importlib.util, collections
 
+SCHEMA = 1   # 1. every record carries "schema"; readers reject a newer schema than they know
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)
 _spec = importlib.util.spec_from_file_location("boards", os.path.join(ROOT, "boards.py"))
@@ -61,7 +62,7 @@ def read_findings():
                    "text": r.get("statement", ""), "who": r.get("who"), "by": r.get("by", []),
                    "evidence": r.get("evidence", []), "runner": r.get("runner"), "why_not": why,
                    "retests": retests.get(r["id"], []), "provenance": [e.split("::")[0] for e in r.get("evidence", [])]}
-            rec["radius"] = radius(rec); out.append(rec)
+            rec["radius"] = radius(rec); rec["schema"] = SCHEMA; out.append(rec)
     return out
 
 CELL = re.compile(r"^\s*-\s+(?:\d{4}-\d\d-\d\d\s+)?(?:[A-Z]\w*\s+\((?:Opus|Sonnet|Fable)[^)]*\)\s+)?"
@@ -82,7 +83,7 @@ def read_cells():
             rec = {"kind": "cell", "id": cid, "program": program(board), "board": board, "line": n,
                    "state": {"DONE": "DECIDED", "RE-AIMED": "OPEN"}.get(state, state), "seat": kind, "text": text,
                    "target": target, "radius": 0.0 if state in ("DECIDED", "DONE") else 1.0}
-            out.append(rec)
+            rec["schema"] = SCHEMA; out.append(rec)
     return out
 
 def read_fingerprints():
@@ -92,7 +93,7 @@ def read_fingerprints():
         for e in json.load(open(f)):
             out.append({"kind": "fingerprint", "id": hashlib.sha256((f + e["name"]).encode()).hexdigest()[:8],
                         "program": program(f) if program(f) != "other" else os.path.dirname(f), "text": e["name"],
-                        "seq": e["seq"], "runner": e.get("runner"), "radius": 0.5, "state": "DATA"})
+                        "seq": e["seq"], "runner": e.get("runner"), "radius": 0.5, "state": "DATA", "schema": SCHEMA})
     return out
 
 def _forms(seq):
@@ -200,6 +201,24 @@ if __name__ == "__main__":
         bad = check_outer()
         for f, n, p in bad: print(f"{f}:{n}: cites missing {p}")
         print(f"{len(bad)} stale outer references"); sys.exit(1 if bad else 0)
+    if sys.argv[1:2] == ["test"]:   # 2. determinism: two builds of the same inputs give identical bytes
+        import hashlib as _h
+        def digest():
+            h = _h.sha256()
+            for f in sorted(glob.glob("center/shards/*.jsonl")) + ["center/VIEW.md", "center/state.json"]:
+                h.update(open(f, "rb").read())
+            return h.hexdigest()
+        build(); d1 = digest(); build(); d2 = digest()
+        assert d1 == d2, "centre is not deterministic"
+        assert all(json.loads(l).get("schema") == SCHEMA for f in glob.glob("center/shards/*.jsonl") for l in open(f)), "a record without schema"
+        print("determinism and schema checks passed", d1[:12]); sys.exit(0)
+    if sys.argv[1:2] == ["snapshot"]:   # 3. manifest of the current store: hashes of every shard and view (no copies)
+        import hashlib as _h, time as _t
+        man = {f: _h.sha256(open(f, "rb").read()).hexdigest() for f in sorted(glob.glob("center/shards/*.jsonl")) + ["center/VIEW.md", "center/state.json"]}
+        os.makedirs("center/snapshots", exist_ok=True)
+        name = _t.strftime("center/snapshots/%Y%m%dT%H%M%SZ.json", _t.gmtime())
+        json.dump({"schema": SCHEMA, "files": man}, open(name, "w"), indent=1, sort_keys=True)
+        print("snapshot manifest", name, len(man), "files"); sys.exit(0)
     if sys.argv[1:2] == ["selftest"]:
         a = {"kind": "fingerprint", "program": "x", "text": "A", "seq": [1, 3, 7, 15, 31, 63, 127]}
         b = {"kind": "fingerprint", "program": "y", "text": "B", "seq": [9, 1, 3, 7, 15, 31, 63, 99]}
