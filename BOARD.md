@@ -1,5 +1,7 @@
 # Board: P versus NP through general circuits
 
+- **ASK ADDISON: tree refactor (proposal).** Root ~30 entries → 11: `asteroid/` (language, native, editors, dist), `proofs/` (both Lean projects), `research/`, `work/` (boards). Biggest single win: `AsteroidLang` → its own Mathlib-free package. Nothing moves until Addison says yes. [`tree-refactor`](boards/tasks/tree-refactor.md)
+
 Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boards/TREE.md` → this file → task boards. The text before the refactor is in git: `git show 1f3cc11:BOARD.md`.
 
 - **TOP NOW (Addison, 2026-11-25): asteroid on plain Linux (Arch, most basic) and Windows with the native backend: less Python, no matplotlib, minimal Lean. mintty dropped (Addison).** Done: 4.4 MB Linux binary (`dist/linux`, Arch PKGBUILD) and 4.2 MB native `asteroid.exe`. Open: seat 5 (corpus, hunt/search, mixed, rest of the term language natively). [`asteroid-term`](boards/tasks/asteroid-term.md)
