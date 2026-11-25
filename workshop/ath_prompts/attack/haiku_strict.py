@@ -59,6 +59,18 @@ for name, ids in sets.items():
     for rule in ("any", "last", "first", "exact"):
         i, f, io, fo, p, n = table(ids, rule)
         print(f"{name} | {rule} | {i}/{n} | {f}/{n} | {io} | {fo} | {p:.4f}")
+# Hand codes (read by this seat, NOT blind to register): replies the substring/number rules pass but that
+# do not give the asked answer. Formal replies: none found. Keys: id -> (strict wrong, lenient wrong, reason).
+HAND = {"ar04": (1, 1, "read '4 2 hrs' as 4.2 h, answered 252"),
+        "st05": (1, 1, "answered 'a,b,c,w': read 'w' (with) as a letter; 'a,b,c' passes only as a substring"),
+        "st04": (1, 0, "answered \"'dlrow' for me\": appends the misread '4 me' to the output"),
+        "ar08": (1, 0, "gives 0, then offers 16 as what the ask 'may have meant'")}
+for col, lab in ((0, "hand strict"), (1, "hand lenient")):
+    for name, ids in sets.items():
+        inf = sum(1 for i in ids if not (i in HAND and HAND[i][col])); n = len(ids)
+        io, fo = 0, sum(1 for i in ids if i in HAND and HAND[i][col])
+        print(f"{name} | {lab} | {inf}/{n} | {n}/{n} | {io} | {fo} | {sign_p(io, fo):.4f}")
+for k, v in HAND.items(): print("  informal miss", k, "-", v[2])
 # reply length: the 'exact' rule mostly measures terseness
 L = {}
 for r in rows: L.setdefault(r["register"], []).append(len(r["response"] or ""))
