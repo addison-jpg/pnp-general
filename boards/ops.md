@@ -191,6 +191,11 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 5. The owner is away (17:55): nothing is collected for the owner. A seat waiting on the owner or stuck on a merge conflict is pointed (one line) at the procedure at the top of BOARD.md: [ASK] on its task board, [DECIDED] after 15 minutes, conflicts by fetch + merge, never force.
 6. Small boards: work without a file in boards/tasks/ is flagged to its seat (open a task file first).
 
+**Loop 02:28 UTC.** Busy round (main: ~30 TAKEN lines in 15 min across S1-S8, F1-F3, O1-O3, philosophy, qg-frontier). Two spend flags
+sent to main (one line each): a Fable seat (language unification, aeef395) with no "smaller seat failed" line, against the board's Fable
+rule; and the heavy Qwen CPU instrument (a077396) taken right after S2/S3/S6 were stopped to give S8 the 4 cores (suggest queue or
+git-compute). New owner task git-compute: brute force on free Actions runners (public repo). Nothing killed.
+
 **Loop 01:47 UTC.** New owner items on the board top: asteroid-term (TOP NOW, five Sonnet seats in order), philosophy-formal
 (P1-P4), qg-frontier (Q1-Q4). Open TAKEN without DECIDED: open-qg L115 only; open-one-not and open-many-not have none open (a container
 restart at 01:24 stopped six seats, lines marked STOPPED). VS Code Marketplace listing was published by the owner (web upload), not by an
