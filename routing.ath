@@ -1,0 +1,6 @@
+# Routing, from routing/. Dijkstra, A*, contraction hierarchies on every small weighted map; buses compared.
+check "python3 -I routing/check.py"
+seq hit = run "python3 -I routing/check.py" "hitting time / hop distance"
+claim formula hit = "n*n - 3*n + 3" from 2               # clique K_(n-1) plus one pendant stop: (n-1)(n-2)+1
+seq cut = run "python3 -I routing/check.py" "max shortcuts"
+claim formula cut = "(n - 1)*(n - 2)/2" from 2           # a star contracted centre first: every leaf pair needs a shortcut
