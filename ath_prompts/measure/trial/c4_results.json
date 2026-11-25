@@ -1,0 +1,565 @@
+{
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "rows": [
+  {
+   "rule": 0,
+   "register": "informal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "The capital of France is Paris. DONE"
+  },
+  {
+   "rule": 0,
+   "register": "informal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "Create a relaxing bedtime routine to signal your body it's time to wind down and prepare for sleep. DONE"
+  },
+  {
+   "rule": 0,
+   "register": "informal",
+   "q": "Explain what a prime number is.",
+   "ok": false,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. For example, the first six prime numbers are 2, 3, 5, 7, 11, and 13. These numbers are only divisible by 1 and themselves without leaving any remainder."
+  },
+  {
+   "rule": 0,
+   "register": "informal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "You might want to consider making a hearty vegetable stir-fry with tofu, broccoli, and bell peppers. It's quick to prepare and packed with nutrients. Serve it over brown rice or quinoa for a complete meal. Enjoy your cooking! DONE"
+  },
+  {
+   "rule": 0,
+   "register": "formal",
+   "q": "What is the capital of France?",
+   "ok": false,
+   "output": "The capital of France is Paris."
+  },
+  {
+   "rule": 0,
+   "register": "formal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": false,
+   "output": "Create a consistent sleep schedule by going to bed and waking up at the same time every day, even on weekends. This helps regulate your body's internal clock and improves overall sleep quality."
+  },
+  {
+   "rule": 0,
+   "register": "formal",
+   "q": "Explain what a prime number is.",
+   "ok": false,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. For example, the first six prime numbers are 2, 3, 5, 7, 11, and 13. These numbers are only divisible by 1 and themselves without leaving any remainder."
+  },
+  {
+   "rule": 0,
+   "register": "formal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "You could try making a hearty vegetable stir-fry with tofu, broccoli, bell peppers, and garlic. It's quick to prepare and packed with nutrients. Serve it over brown rice or quinoa for a complete meal. Enjoy your cooking! DONE"
+  },
+  {
+   "rule": 1,
+   "register": "informal",
+   "q": "What is the capital of France?",
+   "ok": false,
+   "output": "The capital of France is Paris. Ok so, Paris is known for its iconic landmarks such as the Eiffel Tower and Notre-Dame Cathedral, as well as its vibrant culture and cuisine."
+  },
+  {
+   "rule": 1,
+   "register": "informal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "Ok so try to establish a regular sleep schedule by going to bed and waking up at the same time every day, even on weekends. This helps regulate your body's internal clock and can improve the quality of your sleep."
+  },
+  {
+   "rule": 1,
+   "register": "informal",
+   "q": "Explain what a prime number is.",
+   "ok": true,
+   "output": "Ok so, a prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In other words, it cannot be formed by multiplying two smaller numbers. The first few prime numbers are 2, 3, 5, 7, 11, and so on."
+  },
+  {
+   "rule": 1,
+   "register": "informal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "Ok so you might want to consider making a hearty vegetable stir-fry with some lean protein like chicken or tofu. You can use your favorite vegetables such as bell peppers, broccoli, and carrots. Just saut\u00e9 them in a little bit of oil until they're tender, then add your protein and any sauce you prefer (like soy sauce or teriyaki). It's a quick and delicious way"
+  },
+  {
+   "rule": 1,
+   "register": "formal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "Ok so, the capital of France is Paris."
+  },
+  {
+   "rule": 1,
+   "register": "formal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "Ok so, a good tip for improving your sleep quality is to establish a consistent bedtime routine that signals your body it's time to wind down and prepare for rest. This can include activities like reading or taking a warm bath before bed."
+  },
+  {
+   "rule": 1,
+   "register": "formal",
+   "q": "Explain what a prime number is.",
+   "ok": true,
+   "output": "Ok so, a prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In mathematical terms, if p is a prime number, then for any integer a, if p divides a (i.e., there exists an integer b such that a = pb), then either a = p or a = 1. This means that a prime number"
+  },
+  {
+   "rule": 1,
+   "register": "formal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "ok so you might want to consider making a hearty vegetable stir-fry. You can use a mix of colorful vegetables like bell peppers, broccoli, and carrots, along with some tofu or chicken for protein. Add in your favorite sauce, such as soy sauce or teriyaki, and it's ready to serve!"
+  },
+  {
+   "rule": 2,
+   "register": "informal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "The capital of France is Paris."
+  },
+  {
+   "rule": 2,
+   "register": "informal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "One tip for improving your sleep quality is to establish a regular bedtime routine, such as taking a warm bath or reading a book before bed. Avoiding caffeine and electronics in the hours leading up to bedtime can also help promote better sleep."
+  },
+  {
+   "rule": 2,
+   "register": "informal",
+   "q": "Explain what a prime number is.",
+   "ok": true,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In other words, it cannot be formed by multiplying two smaller numbers.\n\nFor example, the first few prime numbers are:\n\n2, 3, 5, 7, 11, 13, 17, 19, 23, "
+  },
+  {
+   "rule": 2,
+   "register": "informal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "You could try making a hearty vegetable stir-fry with tofu, broccoli, bell peppers, and onions. You can saut\u00e9 everything in a wok or large skillet until it's all cooked through and add some soy sauce or teriyaki sauce to taste. It's a simple dish that will be delicious!"
+  },
+  {
+   "rule": 2,
+   "register": "formal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "Paris"
+  },
+  {
+   "rule": 2,
+   "register": "formal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "Create a bedtime routine to signal your body it's time to wind down and prepare for sleep."
+  },
+  {
+   "rule": 2,
+   "register": "formal",
+   "q": "Explain what a prime number is.",
+   "ok": true,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In other words, it cannot be formed by multiplying two smaller numbers. The first few prime numbers are 2, 3, 5, 7, 11, and so on."
+  },
+  {
+   "rule": 2,
+   "register": "formal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "How about trying out a hearty vegetable stir-fry with tofu and some colorful bell peppers, onions, and broccoli? You can saut\u00e9 everything in a wok or large skillet until it's all cooked through and seasoned to your liking. It's a simple dish that packs a lot of flavor!"
+  },
+  {
+   "rule": 3,
+   "register": "informal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "the capital of france is paris."
+  },
+  {
+   "rule": 3,
+   "register": "informal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": false,
+   "output": "One tip for sleeping better is to establish a regular sleep schedule by going to bed and waking up at the same time every day, even on weekends. This helps regulate your body's internal clock and can improve the quality of your sleep."
+  },
+  {
+   "rule": 3,
+   "register": "informal",
+   "q": "Explain what a prime number is.",
+   "ok": false,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In other words, it cannot be formed by multiplying two smaller numbers. The first few prime numbers are 2, 3, 5, 7, 11, and so on."
+  },
+  {
+   "rule": 3,
+   "register": "informal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": false,
+   "output": "You could try making a simple and delicious pasta dish. Here's a recipe you might like:\n\n### Simple Pasta with Tomato Sauce\n\n**Ingredients:**\n- 800g (about 2 cups) of spaghetti or any other type of pasta\n- 1 large onion, finely chopped\n- 3 cloves garlic, minced\n- 400ml (about 1 cup)"
+  },
+  {
+   "rule": 3,
+   "register": "formal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "paris"
+  },
+  {
+   "rule": 3,
+   "register": "formal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "try establishing a consistent sleep schedule by going to bed and waking up at the same time every day, even on weekends."
+  },
+  {
+   "rule": 3,
+   "register": "formal",
+   "q": "Explain what a prime number is.",
+   "ok": true,
+   "output": "a prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. for example, the first six prime numbers are 2, 3, 5, 7, 11, and 13."
+  },
+  {
+   "rule": 3,
+   "register": "formal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "you could try making a simple and delicious italian pasta dish with spaghetti, marinara sauce, and some fresh basil. it's quick to prepare and sure to satisfy your hunger!"
+  },
+  {
+   "rule": 4,
+   "register": "informal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "The capital of France is Paris."
+  },
+  {
+   "rule": 4,
+   "register": "informal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "Create a relaxing bedtime routine to signal your body it's time to sleep."
+  },
+  {
+   "rule": 4,
+   "register": "informal",
+   "q": "Explain what a prime number is.",
+   "ok": false,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself."
+  },
+  {
+   "rule": 4,
+   "register": "informal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "You could try a simple chicken parmesan or a vegetable stir-fry."
+  },
+  {
+   "rule": 4,
+   "register": "formal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "Paris."
+  },
+  {
+   "rule": 4,
+   "register": "formal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "Establish a regular sleep schedule by going to bed and waking up at the same time every day."
+  },
+  {
+   "rule": 4,
+   "register": "formal",
+   "q": "Explain what a prime number is.",
+   "ok": false,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself."
+  },
+  {
+   "rule": 4,
+   "register": "formal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "You could try a simple chicken parmesan or a vegetable stir-fry with tofu and broccoli."
+  },
+  {
+   "rule": 5,
+   "register": "informal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "The capital of France is Paris."
+  },
+  {
+   "rule": 5,
+   "register": "informal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": false,
+   "output": "One tip for improving your sleep quality is to establish a regular bedtime routine, such as taking a warm bath or reading a book before bed. Avoiding caffeine and electronics in the hours leading up to bedtime can also help promote better sleep."
+  },
+  {
+   "rule": 5,
+   "register": "informal",
+   "q": "Explain what a prime number is.",
+   "ok": true,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In other words, it cannot be formed by multiplying two smaller numbers. The first few prime numbers are 2, 3, 5, 7, 11, and so on."
+  },
+  {
+   "rule": 5,
+   "register": "informal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": false,
+   "output": "You could try making a simple and delicious chicken parmesan. Here's a recipe you can follow:\n\nIngredients:\n- 2 boneless, skinless chicken breasts\n- 1 cup all-purpose flour\n- 3 eggs\n- 1/2 cup panko breadcrumbs\n- Salt and pepper to taste\n- 1/2 cup olive oil\n\nFor the tomato sauce:\n- "
+  },
+  {
+   "rule": 5,
+   "register": "formal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "Paris."
+  },
+  {
+   "rule": 5,
+   "register": "formal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": false,
+   "output": "One tip for sleeping better is to establish a regular sleep schedule, even on weekends. This helps regulate your body's internal clock and can improve overall sleep quality. Additionally, creating a relaxing bedtime routine, such as taking a warm bath or reading a book, can also help signal to your brain that it's time to wind down and prepare for sleep."
+  },
+  {
+   "rule": 5,
+   "register": "formal",
+   "q": "Explain what a prime number is.",
+   "ok": false,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In other words, it cannot be formed by multiplying two smaller numbers. The first few prime numbers are 2, 3, 5, 7, 11, etc.\n\nFor example:\n- 2 is a prime number because its only factors are 1 and"
+  },
+  {
+   "rule": 5,
+   "register": "formal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": false,
+   "output": "As an AI language model, I don't have access to your current location or preferences. However, you can try some popular recipes like pasta carbonara, grilled salmon with lemon butter sauce, or a vegetable stir-fry with tofu and broccoli. You could also ask friends or family members what they would like to eat or search online for recipe ideas based on your dietary restrictions or preferences."
+  },
+  {
+   "rule": 6,
+   "register": "informal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "The capital of France is Paris."
+  },
+  {
+   "rule": 6,
+   "register": "informal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "One effective tip for improving your sleep quality is to establish a consistent bedtime routine. This can include activities like reading, taking a warm bath, or practicing relaxation techniques such as deep breathing or meditation before bed. Avoiding screens and electronic devices at least an hour before sleep helps reduce the stimulation that might keep you awake."
+  },
+  {
+   "rule": 6,
+   "register": "informal",
+   "q": "Explain what a prime number is.",
+   "ok": false,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In mathematical terms, if p is a prime number, then the only factors of p are 1 and p.\n\nHere are some key characteristics of prime numbers:\n\n1. **Definition**: A prime number is a number that can only be divided evenly by 1 and itself.\n2"
+  },
+  {
+   "rule": 6,
+   "register": "informal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": false,
+   "output": "It depends on your preferences and what ingredients you have available. Here are a few ideas:\n\n1. **Grilled Chicken with Vegetables**: Marinate chicken breasts in olive oil, garlic, and herbs like rosemary or thyme. Grill until cooked through. Serve with roasted vegetables such as bell peppers, zucchini, and onions.\n\n2. **Pasta with Tomato Sauce**: Cook pasta according to"
+  },
+  {
+   "rule": 6,
+   "register": "formal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "The capital of France is Paris."
+  },
+  {
+   "rule": 6,
+   "register": "formal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "One effective tip for improving your sleep quality is to establish a consistent bedtime routine. This can help signal to your body that it's time to wind down and prepare for sleep, making it easier to fall asleep and stay asleep throughout the night."
+  },
+  {
+   "rule": 6,
+   "register": "formal",
+   "q": "Explain what a prime number is.",
+   "ok": false,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In mathematical terms, if p is a prime number, then the only factors of p are 1 and p.\n\nFor example:\n- The number 2 is a prime number because its only factors are 1 and 2.\n- The number 3 is also a prime number"
+  },
+  {
+   "rule": 6,
+   "register": "formal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "For dinner, you could try making a hearty vegetable stir-fry with tofu and broccoli. You can saut\u00e9 the vegetables in a little oil until they are tender-crisp, then add some soy sauce, garlic, ginger, and sesame oil to taste. Serve over brown rice or noodles for a complete meal."
+  },
+  {
+   "rule": 7,
+   "register": "informal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "PARIS"
+  },
+  {
+   "rule": 7,
+   "register": "informal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "STAY HYDRATED: DRINK ENOUGH WATER TO AVOID DEHYDRATION, WHICH CAN IMPAIR SLEEP QUALITY."
+  },
+  {
+   "rule": 7,
+   "register": "informal",
+   "q": "Explain what a prime number is.",
+   "ok": true,
+   "output": "A PRIME NUMBER IS A NATURAL NUMBER GREATER THAN 1 THAT HAS NO DIVISORS OTHER THAN ITSELF AND 1."
+  },
+  {
+   "rule": 7,
+   "register": "informal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "I RECOMMEND COOKING A STEAK WITH ROASTED VEGETABLES. IT'S DELICIOUS AND QUICK TO PREPARE!"
+  },
+  {
+   "rule": 7,
+   "register": "formal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "PARIS"
+  },
+  {
+   "rule": 7,
+   "register": "formal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "TAKE A HOT BATH BEFORE BED TO HELP YOU DREAM MORE DEEPLY AND SLEEP EASILY."
+  },
+  {
+   "rule": 7,
+   "register": "formal",
+   "q": "Explain what a prime number is.",
+   "ok": true,
+   "output": "A PRIME NUMBER IS A NATURAL NUMBER GREATER THAN 1 THAT HAS NO DIVISORS OTHER THAN 1 AND ITSELF."
+  },
+  {
+   "rule": 7,
+   "register": "formal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": false,
+   "output": "I recommend trying out a hearty vegetable stir-fry with tofu and some colorful bell peppers, onions, and broccoli. It's quick to prepare and packed with nutrients!"
+  },
+  {
+   "rule": 8,
+   "register": "informal",
+   "q": "What is the capital of France?",
+   "ok": false,
+   "output": "The capital of France is Paris."
+  },
+  {
+   "rule": 8,
+   "register": "informal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": false,
+   "output": "One tip for improving your sleep quality is to establish a consistent bedtime routine, including activities like reading or meditation before bed. Additionally, try to maintain a cool and dark bedroom environment, which can help signal your body that it's time to wind down and prepare for sleep. If you find yourself tossing and turning, consider using an app that helps you fall asleep faster by playing white noise or gentle music."
+  },
+  {
+   "rule": 8,
+   "register": "informal",
+   "q": "Explain what a prime number is.",
+   "ok": false,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In simpler terms, it's a number that can only be divided evenly by 1 and itself without leaving any remainder. For example, the first few prime numbers are 2, 3, 5, 7, 11, and so on. Each of these"
+  },
+  {
+   "rule": 8,
+   "register": "informal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "How about trying a delicious Banana Split Skillet? It's a fun and easy way to enjoy some fresh fruit with a twist of savory flavors. You'll need sliced bananas, whipped cream, and a sprinkle of cinnamon or sugar on top. Enjoy your cooking!"
+  },
+  {
+   "rule": 8,
+   "register": "formal",
+   "q": "What is the capital of France?",
+   "ok": false,
+   "output": "The capital of France is Paris. It's a beautiful city known for its iconic landmarks like the Eiffel Tower and Notre-Dame Cathedral, as well as its vibrant culture and cuisine. If you ever visit, don't forget to try some delicious French pastries or cheese!"
+  },
+  {
+   "rule": 8,
+   "register": "formal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": false,
+   "output": "One effective tip for improving sleep quality is to establish a relaxing bedtime routine that includes activities like reading or taking a warm bath, which can help signal to your body it's time to wind down and prepare for sleep. Additionally, incorporating regular physical activity during the day can enhance your nighttime rest by reducing stress levels and promoting better sleep habits. Remember, maintaining a consistent sleep schedule, even on weekends, is"
+  },
+  {
+   "rule": 8,
+   "register": "formal",
+   "q": "Explain what a prime number is.",
+   "ok": false,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. For example, the first six prime numbers are 2, 3, 5, 7, 11, and 13. These numbers are unique because they can only be divided evenly by 1 and themselves without leaving any remainder.\n\nThe concept of prime numbers"
+  },
+  {
+   "rule": 8,
+   "register": "formal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "For a delicious and healthy option, you might consider making a creamy vegetable soup with a side of grilled chicken or tofu. To add some variety, you could include diced sweet potatoes, carrots, zucchini, and bell peppers. Top it off with a sprinkle of fresh herbs like parsley or basil, which would be a nice touch. Don't forget to garnish with a few slices of banana on top"
+  },
+  {
+   "rule": 9,
+   "register": "informal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "The capital of France is Paris."
+  },
+  {
+   "rule": 9,
+   "register": "informal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "One tip for improving your sleep quality is to establish a regular bedtime routine, such as taking a warm bath or reading a book before bed. Avoiding caffeine and electronics in the hours leading up to bedtime can also help promote better sleep. Additionally, creating a comfortable sleep environment with minimal noise and light exposure may be beneficial."
+  },
+  {
+   "rule": 9,
+   "register": "informal",
+   "q": "Explain what a prime number is.",
+   "ok": true,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In other words, it cannot be formed by multiplying two smaller numbers.\n\nHere are some key points about prime numbers:\n\n1. Definition: A prime number is a natural number p > 1 such that the only positive divisors of p are 1 and p itself.\n2."
+  },
+  {
+   "rule": 9,
+   "register": "informal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "You could try making a simple and delicious chicken parmesan. Here's a recipe you can follow:\n\nIngredients:\n- 4 boneless, skinless chicken breasts\n- 1 cup all-purpose flour\n- Salt and pepper to taste\n- 2 cups grated Parmesan cheese\n- 3/4 cup breadcrumbs\n- 1 egg (for coating the chicken)\n- Olive oil\n\n"
+  },
+  {
+   "rule": 9,
+   "register": "formal",
+   "q": "What is the capital of France?",
+   "ok": true,
+   "output": "The capital of France is Paris."
+  },
+  {
+   "rule": 9,
+   "register": "formal",
+   "q": "Give me one tip for sleeping better.",
+   "ok": true,
+   "output": "Establish a consistent sleep schedule by going to bed and waking up at the same time every day, even on weekends."
+  },
+  {
+   "rule": 9,
+   "register": "formal",
+   "q": "Explain what a prime number is.",
+   "ok": true,
+   "output": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. In simpler terms, it's a number that can only be divided evenly by 1 and itself without leaving any remainder. For example, the first few prime numbers are 2, 3, 5, 7, 11, and so on."
+  },
+  {
+   "rule": 9,
+   "register": "formal",
+   "q": "What should I cook for dinner tonight?",
+   "ok": true,
+   "output": "You could try making a hearty vegetable stir-fry with tofu, broccoli, and bell peppers. It's quick to prepare and packed with nutrients. You can also add some brown rice or quinoa for added protein and fiber. Enjoy your meal!"
+  }
+ ]
+}

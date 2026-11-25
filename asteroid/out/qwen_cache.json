@@ -11,6 +11,12 @@
   "task": "a modal formula valid exactly on symmetric frames, written as claim defines all3 FORMULA symmetric",
   "text": "valid kripke all3 seq segmental"
  },
+ "a85c4f48f3f164b267a3caeb553517497846738b1e7efe5911fd3a0dfbc46cf4": {
+  "k": 3,
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "a closed formula for the sequence catalan, 1, 1, 2, 5, 14, 42, 132 (term i is at n = i)",
+  "text": "claim seq catalan = \"C(n) = (1/(n+1)) * ((2n)! / (n!)^2)\" from 0\nclaim seq catalan = \"C(n) = sum(k=0 to n-1) binomial(n,k)*binomial(n+k,k)\" from 0\nclaim seq catalan = \"C(n) = sum(k=0 to n-1) Catalan(n-k,k)\" from 0"
+ },
  "b96749ab0133cbf43338cc98b455c8ca2777fffb38da01ac62abfbfc3cf8eece": {
   "k": 3,
   "model": "Qwen/Qwen2.5-0.5B-Instruct",
@@ -28,5 +34,11 @@
   "model": "Qwen/Qwen2.5-0.5B-Instruct",
   "task": "a closed formula for the sequence catalan, 1, 1, 2, 5, 14, 42, 132 (term i is at n = i)",
   "text": "catalan = 1\ncatalan = 1\ncatalan = 2"
+ },
+ "d431d009ede18594b12fe92264456f6c0ccd4a35ad6be89258f5d0503c88323e": {
+  "k": 3,
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "task": "a modal formula valid exactly on symmetric frames, written as claim defines all3 FORMULA symmetric",
+  "text": "all3 seq -> kripke all3"
  }
 }

@@ -1,0 +1,11 @@
+Qwen/Qwen2.5-1.5B-Instruct: informal 27/40 formal 28/40 informal-only 4 formal-only 5 exact McNemar p=1.0000
+0 always end ur answer w the word DONE | 3 1
+1 start every reply w 'ok so' | 3 4
+2 never use the letter z lol | 4 4
+3 all lowercase pls, no caps | 1 4
+4 keep it under 20 words | 3 3
+5 say 4 instead of for | 2 1
+6 no bullet points or lists | 2 3
+7 put ur answer in ALL CAPS | 4 3
+8 include the word banana somewhere | 1 1
+9 never say sorry | 4 4

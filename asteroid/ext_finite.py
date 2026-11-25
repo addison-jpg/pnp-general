@@ -10,7 +10,7 @@
 EXPR uses integers and n, + - * // ** ( ), postfix ! and !!, C(a, b), and sum(k, LO, HI, EXPR).
 Integers only: `//` must divide exactly, or the claim is FALSE. CMD is `python3 -I path.py [args]`, run from the
 repository root with a timeout. A check that passes is the record's runner, so `checked-finite` records carry it."""
-import json, os, re, shlex, subprocess, sys
+import itertools, json, os, re, shlex, subprocess, sys
 import asteroid.asteroid as A
 
 SEQ = {}            # name -> list of int
@@ -189,7 +189,7 @@ def ev(a, V, budget=None):
     raise ValueError(k)
 
 FORMS = {"as-is": lambda s: list(s), "diff": lambda s: [b - a for a, b in zip(s, s[1:])],
-         "partial": lambda s: [sum(s[:i + 1]) for i in range(len(s))], "plus1": lambda s: [x + 1 for x in s]}
+         "partial": lambda s: list(itertools.accumulate(s)), "plus1": lambda s: [x + 1 for x in s]}
 
 def _get(name):
     if name not in SEQ: raise SystemExit(f"no sequence named {name} (define it with `seq {name} = ...`)")
