@@ -145,7 +145,7 @@ def main():
     print(f"D corpus: {fl} of {recs} center records flagged; {len(pf)} of {np_} proposal strings flagged")
     for h in hits: print("  flag (for a person to judge):", h)
     for t in pf: print("  proposal flag:", t)
-    print("PASS: parts A and B exhaustive; part C measured (tested, not checked)")
+    print("parts A and B exhaustive; part C measured (tested, not checked)"); print("PASS")
     print(json.dumps({"ok": True, "frames_a": fa, "classes_a": ca, "stars_b": sb, "precision": c["precision"],
                       "recall": c["recall"], "fpr": c["fpr"], "records": recs, "flagged": fl,
                       "proposal_strings": np_, "proposal_flagged": len(pf)}))
