@@ -1,0 +1,17 @@
+# Gravity (essays/knowing.md): every escape route is a bound orbit.
+# Inputs: people (others are there), ground (you land somewhere).
+# Each output is an escape route; it must come back to OR(people, ground): no escape velocity.
+INPUT(people)
+INPUT(ground)
+OUTPUT(heaven)
+OUTPUT(leave_town)
+OUTPUT(party)
+OUTPUT(mirror)
+#@ or heaven = people ground
+#@ or leave_town = people ground
+#@ or party = people ground
+#@ or mirror = people ground
+heaven = OR(people, ground)
+leave_town = OR(heaven, people)
+party = OR(leave_town, ground)
+mirror = OR(party, heaven)

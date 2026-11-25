@@ -43,3 +43,7 @@ Anger does not have to blur into resentment. It can narrow into something sharp 
 *Disjecta membra* means scattered limbs, the fragments left of something whole. A self is made like that: pieces of a father you did not choose, songs you understood one way, a party, a verse about a glass. You do not get one clean origin. You get fragments, and you put them together facing other people.
 
 Those days are long resolved. I am happier than ever. The mirror broke and I would not miss it. The skin is shed, and what is left is the face, turned outward, in a world that is going to be full of people either way.
+
+---
+
+*Formal note.* The gravity argument is checked as a circuit in `../gravity.ath` (`asteroid gravity.ath`): every escape route (heaven, leaving town, the party, the mirror) computes OR(people, ground), on all inputs. This checks the argument's shape, that each route falls back to others; it does not prove the essay true.
