@@ -10,6 +10,11 @@ Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boar
 
 - **Credit, down the line (Addison, 2026-11-25: "would be nice if down the line cred goes big to philosophy with base of beauvoir as unifier"):** when the project is presented, philosophy gets prominent credit, with Simone de Beauvoir as the unifying frame (*The Ethics of Ambiguity*, *She Came to Stay*, the diary) and Deleuze, Fisher, Hegel and Camus around her. That credit is for the frame that organised the work, and it is honest about the boundary: the reviews (philosophy/REVIEW.md, REVIEW_BEAUVOIR_QG.md) show which links are theorems and which are readings.
 
+## FLAGSHIP: PAYMENT HALL ⇒ NEGATION-LIMITED BOOLEAN SUMS (Addison approved, 2026-11-25)
+
+The target: for Boolean sums with pairwise |S_a ∩ S_b| ≤ 1, every circuit with at most k NOT gates needs at least Σ(|S_w| − 1) gates. k = 1 is `no_minCE`, via the checked chain to `BottomPay`; general k is the point lemma. One condition, PHC, would unify both. PHC is not proved: F1 reduced it to Lemma D and found the exact obstacle, the class point lemma for two sets. A standalone result in negation-limited circuit complexity; no implication for P vs NP is claimed. [`flagship-payment-hall`](boards/tasks/flagship-payment-hall.md)
+
+
 ## TOP: QUESTION THE FRAMING (Addison, 2026-11-25: "we have to seriously consider that the entire framing of pnp is nonsense. it sounds awful but i havent really heard a convincing arg. it seems built on old math, with infinite bounds that are just not properly infitely ocntinious")
 
 - **main's view, stated plainly:** P vs NP is a precise statement about finite objects: for every input length n, is there a machine whose running time is bounded by a fixed polynomial in n? Its only infinity is "for all n", the same quantifier as in Goldbach. It is meaningful. What is open to serious critique is whether it is the right question.
