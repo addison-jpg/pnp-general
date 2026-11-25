@@ -82,6 +82,10 @@ cells: 2 DECIDED, 6 OPEN, 1 STOPPED
 - OPEN [Fable] (Fable): for item 5, one more edge as data (coord): "refuted → restrict". The general point lemma (several-NOT) was refuted by AG(2,8) (`one-not/data/witnesses/  (methods-formal:26)
 - OPEN [Fable] (Fable): item 3, `Methods/Board.lean`. Design ready: a record = (dir as a list of segments, id, optional who / word / evidence, by, optional retest ok); a world  (methods-formal:21)
 
+## narrative
+findings (verified): none · mean radius None
+cells: none
+
 ## ontology
 findings (verified): 4 checked-finite · mean radius 0.0
 cells: none
@@ -116,6 +120,14 @@ cells: 5 DECIDED, 3 OPEN, 1 TAKEN
 
 ## quantum-gravity
 findings (verified): 13 checked · mean radius 0.0
+cells: none
+
+## queer
+findings (verified): none · mean radius None
+cells: none
+
+## race
+findings (verified): none · mean radius None
 cells: none
 
 ## routing

@@ -37,13 +37,13 @@ Eduardo Bonilla-Silva, *Racism without Racists* (2003; cited from memory). After
 
 ## 6. A case: Anais Nin
 
-Critics and readers have documented racist and exoticizing portrayals in Anais Nin's writing (cited from memory, not re-read here): characters of colour written as closer to nature, the body and sex, as backdrops for white self-discovery, in her erotica and in her diaries. No slur is quoted here.
+The claim: Anais Nin's writing has racist and exoticizing portrayals of people of colour, in her erotica (for example *Delta of Venus*, published 1977) and in her diaries (cited from memory, not re-read). Characters of colour are said to be written as closer to nature, the body and sex, as backdrops for white self-discovery. This is the user's characterisation. No named critic or work stands behind it in this file, so it is unsourced here. No slur is quoted.
 
-- **Reading:** this is the primitivist move of section 7, inside a celebrated modernist. It is a reading of texts, not a judgment of a whole person, and the documentation should be re-read before anything stronger is said. **Open.**
+- **Reading:** this is the primitivist move of section 7, inside a celebrated modernist. It is a reading of texts, not a judgment of a whole person. It needs the texts re-read and a named critical source before anything stronger is said. **Open.**
 
 ## 7. The critique of primitivism
 
-Romanticising "primitive" peoples is a racist move. Marianna Torgovnick, *Gone Primitive* (1990; cited from memory), reads Western modernism's taste for the "primitive" as a fantasy about the self. The "noble savage" and the "savage" are the same gaze with the value flipped: both make living people into a picture of the past.
+The critique holds that romanticising "primitive" peoples is a racist move (**analogy**, a reading; not checked). Marianna Torgovnick, *Gone Primitive* (1990; cited from memory), reads Western modernism's taste for the "primitive" as a fantasy about the self. The "noble savage" and the "savage" are the same gaze with the value flipped: both make living people into a picture of the past.
 
 - **Analogy:** the 2-chain once more. The romantic and the contemptuous viewer both stand on the seeing side.
 - **This bears directly on anarcho-primitivism.** A politics that holds up foragers as a lost good life repeats the move unless it listens to living Indigenous people as contemporaries with their own futures. See `philosophy/ANPRIM.md`.
@@ -55,5 +55,5 @@ Romanticising "primitive" peoples is a racist move. Marianna Torgovnick, *Gone P
 
 ## Open
 
-1. Re-read the sources and change their read status.
+1. Re-read the sources and change their read status. For Nin, find and name a critical source, or drop the case.
 2. Intersections of more than two attributes: how fast the margin classes grow for 2x2x2 tables.

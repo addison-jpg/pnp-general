@@ -104,6 +104,11 @@
   "findings": {},
   "mean_radius_findings": null
  },
+ "narrative": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "ontology": {
   "cells": {},
   "findings": {
@@ -160,6 +165,16 @@
    "checked": 13
   },
   "mean_radius_findings": 0.0
+ },
+ "queer": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
+ "race": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
  },
  "routing": {
   "cells": {},

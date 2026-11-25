@@ -15,9 +15,10 @@ coordinate: none reproduces the other, for every pair and every pair of threshol
 The same for the mean of the traits as a classifier against each single trait. At the corners (thresholds 1/2)
 the extension agrees with the two-valued count (asserted). What survives: "the traits can disagree" survives.
 What does not: a single threshold standing in for the rest.
-Published disagreement on prevalence of intersex variation, stated without choosing: Fausto-Sterling et al. 2000
-(about 1.7% under a broad definition) and Sax 2002 (about 0.018% under a narrow one), both cited from memory.
-The gap is mostly a question of which variations count, not of arithmetic. Nothing here settles it.
+Published disagreement on prevalence of intersex variation, stated without choosing: Blackless et al. 2000
+(about 1.7%, broad: any departure from the typical male or female body) and Sax 2002 (about 0.018%, narrow: chromosomal,
+gonadal or hormonal discordance only), both cited from memory. Sax argues the gap is which variations count;
+others dispute where to draw the line. That is a published disagreement. Nothing here settles it.
 Run: python3 -I culture/queer/traits.py   (last line is JSON)
 """
 import itertools, json, time
@@ -65,7 +66,7 @@ def main():
             assert all((c[i] >= F(1, 2)) == bool(c[i]) for i in range(k))
         out[k] = {"grid_points": len(pts), "corners": len(corners), "interior": interior, "pairs_tested": tested}
         print(f"k={k}: grid points={len(pts)} corners={len(corners)} between the corners={interior} | threshold comparisons={tested}, none reproduces another trait")
-    print("prevalence of intersex variation, not chosen between: about 1.7% (Fausto-Sterling et al. 2000, broad) vs about 0.018% (Sax 2002, narrow); cited from memory")
+    print("prevalence of intersex variation, not chosen between: about 1.7% (Blackless et al. 2000, broad) vs about 0.018% (Sax 2002, narrow); cited from memory")
     print("PASS")
     print(json.dumps({"states": states, "seconds": round(time.time() - t0, 2),
                       "combos": [r[1] for r in rows], "not_aligned": [r[3] for r in rows],

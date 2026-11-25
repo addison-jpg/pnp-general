@@ -4,4 +4,6 @@
 - [checked-finite, r=0.0] frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds.
 - [checked-finite, r=0.0] frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder
 - [checked-finite, r=0.0] frames_time.ath: physics/time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edg
+- [checked-finite, r=1.0] core/ontology/joins/time_poetry.ath: by brute force over every relation on 1..4 worlds, S5 frames (reflexive, transitive, symmetric) number 1, 2, 5, 15 and S4 frames 1, 4, 29, 355; the S5 counts equal
+- [checked-finite, r=1.0] core/ontology/joins/cosmos_time.ath: for every n <= 6 and every property P of n universes, P is history-independent in the sense of physics/cosmos/invariant.py (same frequency at every cutoff in every
 - [checked-finite, r=1.0] frames_time.ath: adding only passing checks never unsettles a record, all toy stores of <= 4 records and all orders of <= 4 steps (6558 cases); a failing re-check does. No poset on 1..4 worlds with an

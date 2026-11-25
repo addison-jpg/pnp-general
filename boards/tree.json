@@ -372,7 +372,14 @@
    "d6c97be6",
    "05debba4"
   ],
-  "unverified_here": []
+  "unverified_here": [
+   {
+    "id": "d4f11420",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
  },
  "core": {
   "counts": {
@@ -556,6 +563,12 @@
    },
    {
     "id": "d7179e58",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "77e11604",
     "why": [
      "needs a second seat in by"
     ]
@@ -1637,6 +1650,18 @@
   "unverified_here": [
    {
     "id": "dce151ff",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "1e25aba1",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "2e5e1ddf",
     "why": [
      "needs a second seat in by"
     ]

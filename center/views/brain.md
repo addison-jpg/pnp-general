@@ -11,6 +11,7 @@
 - [checked-finite, r=0.0] biology/brain/dna: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [checked-finite, r=0.0] biology/brain/neuron: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [tested, r=0.5] Hairy ball on a model cortex: on icospheres with 42, 162 and 642 vertices, 100 random smooth functions each, the Banchoff indices of the critical points sum to 2 (the Euler characteristic) every time.
+- [checked-finite, r=1.0] core/ontology/joins/brain_curvature.ath: on the icospheres of biology/brain/hairy.py (subdivision 0..3: 12, 42, 162, 642 vertices) chi = 2 three ways, exact: V - E + F, the deficit sum of physics/curv
 
 ## Fingerprints
 - [DATA, r=0.5] Forman discrete vector fields on the cycle graph C_n, n = 3..10 (= Lucas L_2n - 2) seq [16, 45, 121, 320, 841, 2205, 5776, 15125]
@@ -31,5 +32,7 @@
 ## Frames
 - [checked-finite, r=0.0] biology/brain/neuron ordered arbor shapes as parse trees (neuron.ath): parse trees of x+...+x with n+1 leaves, operators erased, are exactly the ordered binary arbor shapes with n+1 tips, n=0..6; the 
 - [checked-finite, r=0.0] the hairy ball on the cortex (biology/brain/cortex/BASE.md); the bus reading is the build's own, math/transit/BASE.md: exact cover time of a random walk on every connected graph up to 6 vertices is at
+- [checked-finite, r=0.0] Join: rooted binary phylogenetic trees (biology/compbio) and segmental-growth histories of a dendrite (biology/brain/neuron): both stored sequences equal (2n-3)!! term by term (compbio n = 2..8, neuro
 - [checked-finite, r=0.0] the hairy ball on the cortex (biology/brain/cortex/BASE.md): discrete Morse: critical cells sum to 2 in every field on the tetrahedron
 - [checked-finite, r=0.0] a neuron grows like a phylogeny (biology/brain/neuron): segmental growth histories number (2n-3)!!, the rooted binary trees
+- [checked-finite, r=0.0] Join: the hairy ball of biology/brain/hairy.py (index sum 2) and discrete Gauss-Bonnet of physics/curvature/check.py (deficits add to 2 pi chi): on the icospheres of hairy.py, subdivision 0..3, chi = 

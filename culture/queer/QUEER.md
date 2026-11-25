@@ -34,8 +34,9 @@ At the corners the cube agrees with the count. What survives the extension: the 
 What does not: any one trait standing in for the others.
 This is exact on that grid only. All of [0,1] would need a proof; none is claimed.
 
-**Prevalence, not chosen.** Fausto-Sterling et al. (2000) put intersex variation at about 1.7% under a broad definition.
-Sax (2002) put it at about 0.018% under a narrow one. Both cited from memory. The gap is mostly which variations count.
+**Prevalence, not chosen.** Blackless et al. (2000; Fausto-Sterling is one of six authors) put intersex variation at about 1.7%, a broad definition: any departure from the typical male or female body.
+Sax (2002) put it at about 0.018%, a narrow one: chromosomal, gonadal or hormonal discordance only. Both cited from memory.
+Sax argues the gap is which variations count. That is his claim, and others dispute where the line falls.
 Nothing here settles it, and nothing here depends on it.
 
 ## Middle: the theory
@@ -53,7 +54,8 @@ All cited from memory. One short summary each is not the book.
 
 1. The love model's two sides are the binary built into the mathematics. Removing it is the roommates problem. (analogy)
 2. The exact consequence is small and checked: stability can fail. 2 of 8 profiles at n=3, 48 of 1296 at n=4.
-   So the category was doing real work in the old model: it was what guaranteed a stable answer. That is a fact about the model, not about people.
+   Checked: stability fails once the sides are removed, and held on every n=3 two-sided profile. Not checked: that the sides caused the guarantee,
+   or that they stand for sex or gender. That link is a reading (analogy), and it says nothing about people.
 3. Destroying the categorical difference is not a loss to avoid. It is a design change. The new model has to be built on something else.
    Reciprocity is the candidate (Beauvoir, *The Second Sex*, 1949, cited from memory): a blocking pair already needs both people, with no side.
    A new guarantee for that model is not found here. (open)

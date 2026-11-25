@@ -15,7 +15,7 @@ The later debate: counts of working hours left out food processing, tool making 
 
 ## 2. The critique of primitivism
 
-`culture/race/RACE.md` section 7: romanticising "primitive" peoples is a racist move. It turns living Indigenous people into a picture of humanity's past. Any anarcho-primitivism that does not face this repeats the gaze it claims to escape. Foragers are contemporaries with their own politics and futures, not evidence for someone else's longing.
+`culture/race/RACE.md` section 7 (**analogy**, a reading): romanticising "primitive" peoples is a racist move. It turns living Indigenous people into a picture of humanity's past. Any anarcho-primitivism that does not face this repeats the gaze it claims to escape. Foragers are contemporaries with their own politics and futures, not evidence for someone else's longing.
 
 ## 3. "Industrial Society and Its Future" (Kaczynski, published 1995): a critical reading
 
@@ -38,11 +38,12 @@ Described in my own words, not quoted.
 **Where it fails, empirically.**
 - Industrial systems have been reformed in part: pollution law, ozone treaties, labour law. The "no reform" premise is contradicted by history.
 - Billions of people live on industrial agriculture and medicine. A collapse would kill the poor, the sick, the disabled and the young first. A forager economy cannot support the present population.
+- These empirical points are cited from memory and not checked here (**open**).
 - Its strategy failed on its own terms: the bombings persuaded no movement into being, and the manifesto's publication led to the author's identification and arrest in 1996.
 
 **The violence.** Between 1978 and 1995 Kaczynski mailed or placed bombs that killed 3 people and injured 23 (cited from memory; I am confident of the 3 deaths and the 1978 to 1995 span; some accounts count 24 injured, so the injury count is not certain here). These were murders of people who had harmed no one. Nothing in the text excuses them. The violence is condemned plainly and without qualification. The ideas in the text, where they have merit, came from others first, who never needed violence.
 
-## 4. The formal argument against his strategy
+## 4. A graph fact, and a reading against his strategy
 
 **Checked-finite** (`philosophy/cone.py`, every base graph on up to 6 vertices, 33,867 graphs; see `philosophy/PSYCHOSIS.md` section 5). Put one hub over a base: the cone.
 - The hub is critical (removing it disconnects everything) exactly when the base is disconnected.
@@ -51,13 +52,14 @@ Described in my own words, not quoted.
 
 **Analogy (a reading):** let the hub be the industrial system and the base be people. Where people depend on the system and not on each other, the base is in pieces. Attacking the hub then cuts everyone off, and the cut falls hardest on those with no lateral links at all: the isolated, the poor, the sick. The attack harms the people it claims to free, first and most.
 
-The non-violent alternative follows from the same fact: build lateral links (mutual aid, cooperatives, community, care) until the hub is not critical. Then no one depends on one centre, and the centre can be changed without anyone being cut off. This is slower and it is the only route the graph allows that harms no one.
+**Analogy (a reading), not a consequence of the check:** a non-violent alternative is to build lateral links (mutual aid, cooperatives, community, care) until the hub is not critical. In the graph, no vertex then depends on one centre. Read socially, the centre could then be changed without anyone being cut off. This is a choice argued for. The graph fact says nothing about harm, and nothing about which routes exist.
 
 ## 5. Forward, not back: Mark Fisher
 
-Mark Fisher, "Acid Communism" (unfinished introduction, published in *k-punk*, 2018; cited from memory). The way out of capitalist realism is collective and forward-looking: consciousness raised together, the counterculture's sense that the world could be freer, carried forward. That is the opposite of primitivism's return.
+Mark Fisher, *Capitalist Realism* (2009): the widespread sense that there is no alternative to capitalism, not even one we can imagine (described, cited from memory). *Ghosts of My Life* (2014): hauntology, futures that were lost but still press on the present (cited from memory). "Acid Communism" (unfinished introduction, published in *k-punk*, 2018; cited from memory). The way out of capitalist realism is collective and forward-looking: consciousness raised together, the counterculture's sense that the world could be freer, carried forward. That is the opposite of primitivism's return.
 
-- **Analogy:** history as a 2-chain (`core/ontology/asymmetry.py`, checked-finite: every non-symmetric preorder on 1 to 4 worlds maps onto it). There is no way back to an earlier world. The choice is what to build next, and with whom.
+- **Checked-finite** (`core/ontology/asymmetry.py`): every non-symmetric preorder on 1 to 4 worlds maps onto the 2-chain.
+- **Analogy (a reading):** history as a 2-chain, with no way back to an earlier world. The choice is what to build next, and with whom. Not checked.
 
 ## Limits
 
