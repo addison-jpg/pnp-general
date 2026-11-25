@@ -11,6 +11,7 @@
 - **Compute:** this machine (4 cores, no GPU) for development; git-compute runners (4 vCPU, 16 GB) for runs; a GPU runner is Addison's decision. Weights are never committed.
 
 ## Seats
-- Fable (main): design and build the loop. -> compute/funsearch/
+- TAKEN (main Fable): design and build the loop. -> compute/funsearch/
 
 ## Lines (TAKEN / DECIDED only)
+- TAKEN (main Fable): FunSearch loop (Qwen proposer, sandboxed proposals, tensor scoring, islands database, target registry generated from the repo, independent recheck before any finding). -> compute/funsearch/
