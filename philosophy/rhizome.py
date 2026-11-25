@@ -64,7 +64,7 @@ def main():
     print("connected graphs            ", conn)
     print("trees (every edge critical) ", trees)
     print("no critical edge (bridgeless)", bridgeless)
-    print("fact 1 (tree iff every edge is critical) and fact 2 (one extra edge frees exactly its cycle): hold in every case")
+    print("fact 1 (tree iff every edge is critical) and fact 2 (one extra edge leaves exactly (n-1)-d bridges): hold in every case")
     print("PASS")
     print(json.dumps({"states": graphs, "seconds": round(time.time() - t0, 2), "bridgeless": bridgeless}))
 

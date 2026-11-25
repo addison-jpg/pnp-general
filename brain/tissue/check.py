@@ -203,10 +203,29 @@ def chi_grid(m,n,glue):
 for m in range(3,9):
     for n in range(1,9):
         assert chi_grid(m,n,False)==1 and chi_grid(m,n,True)==0; STATES+=2
-# closing both ends (neuropores) with one cap cell each: chi 0 + 2 = 2 (sphere)
+# closing both ends (neuropores): build the capped complex explicitly.
+# Faces: the m*n squares plus one m-gon cap on ring j=0 and one on ring j=n.
+def chi_capped(m,n):
+    V={(i,j) for i in range(m) for j in range(n+1)}
+    E=set(); F=[]
+    for i in range(m):
+        for j in range(n+1):
+            E.add(frozenset(((i,j),((i+1)%m,j))))
+            if j<n: E.add(frozenset(((i,j),(i,j+1))))
+    for i in range(m):
+        for j in range(n):
+            F.append([(i,j),((i+1)%m,j),((i+1)%m,j+1),(i,j+1)])
+    F.append([(i,0) for i in range(m)]); F.append([(i,n) for i in range(m)])
+    # every face boundary is a cycle of existing edges; every edge lies on exactly 2 faces (closed surface)
+    cnt={e:0 for e in E}
+    for f in F:
+        for k in range(len(f)):
+            e=frozenset((f[k],f[(k+1)%len(f)])); assert e in E; cnt[e]+=1
+    assert all(c==2 for c in cnt.values())
+    return len(V)-len(E)+len(F)
 for m in range(3,9):
     for n in range(1,9):
-        assert chi_grid(m,n,True)+2==2
+        assert chi_capped(m,n)==2; STATES+=1
 print("6. sheet m x n (m=3..8,n=1..8): chi=1; rolled and fused into tube: chi=0; tube + 2 end caps: chi=2; PASS")
 
 secs=round(time.time()-T0,2)

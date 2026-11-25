@@ -78,7 +78,7 @@ for name, F in (("tetrahedron", TET), ("octahedron", OCT)) if FULL else (("tetra
     print(f"{name}: {cnt} discrete vector fields; every one has c0-c1+c2 = 2; "
           f"min critical cells = {min(sum(p) for p in prof)}")
 for name in results: assert min(sum(p) for p in results[name][1]) == 2
-if not FULL: print("octahedron: skipped by default (about 60 s); run with --full to enumerate all 12845921")
+if not FULL: print("octahedron: NOT checked in this run (about 90 s); run with --full to enumerate and check the count 12845921")
 
 # family: cycle graph C_n (a circle): c0 - c1 = 0 for every field
 cyc = []
@@ -200,7 +200,8 @@ for _ in range(8):
     ests.append(d)
 mean = sum(ests) / len(ests)
 se = math.sqrt(sum((e - mean) ** 2 for e in ests) / (len(ests) - 1) / len(ests))
-assert abs(mean - math.pi) < 4 * se + 0.1, (mean, se)
+assert abs(mean - math.pi) < 3 * se, (mean, se)  # within 3 SE of pi, no slack
+# regression pin for seed 7 (detects code changes, not a statistical test)
 assert round(mean, 3) == 3.054 and round(se, 3) == 0.046
 print(f"random monochromatic field: pinwheels per L^2 = {mean:.3f} +- {se:.3f} (SE, 8 samples of 16L x 16L); pi = {math.pi:.3f}")
 

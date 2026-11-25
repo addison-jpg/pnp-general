@@ -38,7 +38,9 @@ print("unordered shapes (W-E)     n=1..9:", we, " recurrence n=1..11:", W[1:12])
 for n in range(1, NMAX + 1):
     for t in ordered[n]:
         def bp(t): return 0 if t == TIP else 1 + bp(t[0]) + bp(t[1])
+        def nodes(t): return 1 if t == TIP else 1 + nodes(t[0]) + nodes(t[1])
         assert bp(t) == n - 1
+        assert nodes(t) == 2 * n - 1  # one segment above each node, trunk included
 print("every arbor: n-1 branch points, 2n-1 segments (trunk counted): PASS")
 
 # ---- 2. growth models, summed over all growth histories (exact)
@@ -63,21 +65,34 @@ def run(grow, nmax):
             c = canon(t); pu[c] = pu.get(c, 0) + F(w, tot)
         P[n] = pu
     return hist, P
-# brute force: literally list every history for small n, as a cross-check
-def brute(grow, nmax):
+# brute force, independent of grow_*: a tree is a mutable child list per node;
+# a history is a sequence of node choices (tips only, or any node), listed one by one.
+def brute(kind, nmax):
     res = {}
-    def rec(t, n, path_w):
-        res.setdefault(n, {}); c = canon(t); res[n][c] = res[n].get(c, 0) + 1
-        if n < nmax:
-            for s in grow(t): rec(s, n + 1, 0)
-    rec(TIP, 1, 0); return res
+    def to_tuple(ch, v): return TIP if not ch[v] else (to_tuple(ch, ch[v][0]), to_tuple(ch, ch[v][1]))
+    def rec(ch, root, n):
+        res.setdefault(n, {}); c = canon(to_tuple(ch, root)); res[n][c] = res[n].get(c, 0) + 1
+        if n == nmax: return
+        for v in range(len(ch)):
+            if kind == "T" and ch[v]: continue
+            new = [list(x) for x in ch]; r = root
+            if kind == "T":  # tip v becomes a branch point with two new tips
+                new[v] = [len(new), len(new) + 1]; new += [[], []]
+            else:  # segment above v gets branch point u with children v and new tip w
+                u, w = len(new), len(new) + 1
+                new += [[v, w], []]
+                for p in range(len(ch)):
+                    new[p] = [u if x == v else x for x in new[p]]
+                if v == root: r = u
+            rec(new, r, n + 1)
+    rec([[]], 0, 1); return res
 hT, PT = run(grow_terminal, NMAX); hS, PS = run(grow_segmental, NMAX)
 dfact = lambda m: 1 if m <= 0 else m * dfact(m - 2)
 assert hT == [factorial(n - 1) for n in range(1, NMAX + 1)]
 assert hS == [dfact(2 * n - 3) for n in range(1, NMAX + 1)]
 print("growth histories, terminal  (n-1)! :", hT)
 print("growth histories, segmental (2n-3)!!:", hS)
-for g, P in ((grow_terminal, PT), (grow_segmental, PS)):
+for g, P in (("T", PT), ("S", PS)):
     b = brute(g, 7)
     for n in range(1, 8):
         tot = sum(b[n].values())
@@ -124,7 +139,7 @@ for n in range(3, NMAX + 1):
     eaT = sum(p * asym(s) for s, p in PT[n].items()); eaS = sum(p * asym(s) for s, p in PS[n].items())
     esT = sum(p * strahler(s) for s, p in PT[n].items()); esS = sum(p * strahler(s) for s, p in PS[n].items())
     rows.append((n, eaT, eaS, esT, esS))
-    if n >= 4: assert eaT != eaS and eaS > eaT
+    if n >= 4: assert eaT != eaS and eaS > eaT and esS < esT
     print(f"  n={n} E[asym] T={eaT} S={eaS}   E[Strahler] T={esT} S={esS}")
 # n=4 by hand: caterpillar partitions (3,1),(2,1),(1,1) -> (1+1+0)/3 = 2/3; balanced 0.
 # terminal 2/3*2/3 = 4/9; segmental 4/5*2/3 = 8/15
@@ -133,7 +148,7 @@ assert [str(r[1]) for r in rows] == "1/2 4/9 11/24 34/75 247/540 1006/2205 513/1
 assert [str(r[2]) for r in rows] == "1/2 8/15 47/84 359/630 1147/1980 26354/45045 354587/600600".split()
 assert [str(r[3]) for r in rows] == "2 7/3 8/3 43/15 133/45 946/315 3851/1260".split()
 assert [str(r[4]) for r in rows] == "2 11/5 17/7 55/21 91/33 408/143 2088/715".split()
-print("expected asymmetry differs between models for every n=4..9: PASS")
+print("n=4..9: segmental has higher E[asymmetry] and lower E[Strahler] than terminal: PASS")
 
 # ---- 5. criticality: every segment is a bridge
 def edges(t):

@@ -10,11 +10,11 @@ What this is: the **formal structures** two bodies of theory use to describe psy
 
 ### What was computed (`milnor.py`)
 
-A link here is a set of closed polygons with integer coordinates. The program turns it into a diagram and computes Milnor's invariants (Milnor, "Link groups", *Annals of Mathematics* 59, 1954; read: statement only) in exact integer arithmetic. The linking number lk says whether two rings are linked. The triple number μ(ijk) detects three rings that hold together with no two linked. μ(ijkl) does the same for four. Each result is the same in every view tried, and the Borromean triple number is confirmed by a second, independent method (counting the one point where three flat discs meet: Mellor and Melvin, *Algebraic & Geometric Topology* 3, 2003; read: abstract and theorem statement).
+A link here is a set of closed polygons with integer coordinates. The program turns it into a diagram and computes Milnor's invariants (Milnor, "Link groups", *Annals of Mathematics* 59, 1954; read: statement only) in exact integer arithmetic. The linking number lk says whether two rings are linked. The triple number μ(ijk) detects three rings that hold together with no two linked. μ(ijkl), defined once all shorter invariants vanish, detects one kind of four-ring inseparability. Each result is the same in every view tried, and the Borromean triple number is confirmed by a second method (counting the one point where three flat discs meet: Mellor and Melvin, *Algebraic & Geometric Topology* 3, 2003; read: abstract and theorem statement).
 
 | Lacan's structure | The link | Computed | What it shows |
 |---|---|---|---|
-| The knot holds | Borromean rings R, S, I | every lk = 0; μ(RSI) = μ(SIR) = μ(IRS) = −1 | No two rings are linked. No ring can be pulled away from the others. No ring is privileged: the number is the same from each ring's side. |
+| The knot holds | Borromean rings R, S, I | every lk = 0; μ(RSI) = μ(SIR) = μ(IRS) = −1 | No two rings are linked. No ring can be pulled away from the others. Cutting any one ring frees the other two (row below), so no ring is more critical than another. (That μ is the same from each ring is cyclic symmetry, true for every link, so it is not evidence here.) |
 | One ring is cut | any two of the three | lk = 0 | The remaining two come apart. |
 | An error at one crossing (Lacan on Joyce, *Sém. XXIII*) | Borromean rings with one R–S crossing changed (16 cases) | lk(R, S) = ±1; lk(R, I) = lk(S, I) = 0 | R and S lock together, and I is free. This is what Lacan says of Joyce: the imaginary slips away. |
 | Three loose rings and a sinthome | four rings R, S, I, Σ (Bing double) | every lk = 0; every μ(ijk) = 0; μ(RSIΣ) = +1 | The three alone fall apart. With Σ, all four hold. Every ring is still critical, Σ included. |
@@ -43,14 +43,14 @@ Not encoded: Lacan's own drawing of Joyce's repaired knot, which is not the four
 Call an edge **critical** if removing it disconnects the graph. Over every labelled graph on up to 6 vertices (33,867 graphs, none sampled):
 
 - A connected graph is a tree exactly when **every** edge is critical.
-- Adding one edge to a tree frees exactly the edges of the cycle it closes.
+- Adding one edge to a tree leaves exactly (n − 1) − d bridges, where d is the tree distance between its ends: the d + 1 edges of the cycle it closes stop being critical. (The program checks the count; that the freed edges are those of the cycle is the standard argument.)
 - Graphs with **no** critical edge (the rhizome's defining property) number 1, 0, 1, 10, 253, 11968 for 1 to 6 vertices, against 1, 1, 3, 16, 125, 1296 trees.
 
 ## 3. Where the two differ, exactly
 
 The usual summary is "Lacan keeps a centre, Deleuze and Guattari reject it". The computations say something more precise.
 
-- The Borromean knot has **no centre**. No ring is privileged (the triple number is the same from each ring), and no two rings are even linked. It is not a tree with a root.
+- The Borromean knot has **no centre**. No ring is privileged: cutting any one of them frees the others. And no two rings are even linked. It is not a tree with a root.
 - What the Borromean knot shares with the tree is **criticality**: every element is critical. Cut any ring and everything comes apart; cut any edge of a tree and it disconnects. The four-ring chain keeps that property.
 - The rhizome is the opposite extreme: no element is critical.
 

@@ -3,8 +3,8 @@
   "counts": {
    "checked": 91,
    "tested": 9,
-   "refuted": 6,
-   "checked-finite": 1
+   "checked-finite": 3,
+   "refuted": 6
   },
   "verified": [
    "8d76417d",
@@ -22,6 +22,8 @@
    "cd323891",
    "a9fa308e",
    "47f8a89b",
+   "16674147",
+   "90333a01",
    "1b00e1bc",
    "64233838",
    "04a575bf",
@@ -1124,14 +1126,17 @@
  },
  "philosophy": {
   "counts": {
-   "checked": 5
+   "checked": 5,
+   "checked-finite": 2
   },
   "verified": [
    "b32db1b7",
    "fe9dfe5d",
    "cd323891",
    "a9fa308e",
-   "47f8a89b"
+   "47f8a89b",
+   "16674147",
+   "90333a01"
   ],
   "unverified_here": [
    {
@@ -1148,18 +1153,6 @@
    },
    {
     "id": "7ec00390",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "16674147",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "90333a01",
     "why": [
      "needs a second seat in by"
     ]

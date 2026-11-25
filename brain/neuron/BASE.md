@@ -17,12 +17,12 @@ Each row is counted by listing all trees and agrees with its recurrence. The orc
 
 ## 2. Two growth models
 
-A **growth history** is the sequence of branchings that builds a tree from one tip. Two hypotheses (fact: van Pelt and Verwer 1983):
+A **growth history** is the sequence of branchings that builds a tree from one tip. Two hypotheses. They predate 1983: Verwer, van Pelt and Noest 1987 credit Berry et al. 1980 (not opened; cited only as credited there) alongside van Pelt and Verwer 1983. The exact probabilities under both are given by van Pelt and Verwer 1983 (fact, from the abstract only):
 
 - **Terminal growth**: each new branch forms on a tip chosen uniformly. Histories: (n − 1)! = 1, 1, 2, 6, 24, 120, 720, 5040, 40320.
 - **Segmental growth**: each new branch forms on any segment chosen uniformly, tip or inner. Histories: (2n − 3)!! = 1, 1, 3, 15, 105, …, 2027025.
 
-The exact probability of every unordered shape, n ≤ 9, is the share of histories that end in it (checked-finite; summed over all histories, and also listed one history at a time for n ≤ 7, which agrees). Examples (`*` is a tip):
+The exact probability of every unordered shape, n ≤ 9, is the share of histories that end in it (checked-finite; summed over all histories, and also listed one history at a time for n ≤ 7 by a second, separate implementation that stores each tree as a child list and does not reuse the first one's growth code; they agree). Examples (`*` is a tip):
 
 | shape | terminal | segmental |
 |---|---|---|
@@ -43,7 +43,7 @@ For all 93 shapes with 2 ≤ n ≤ 9 (checked-finite):
 
 ## 4. The models are told apart by shape alone (checked-finite, n = 3..9)
 
-**Partition asymmetry** of a branch point with r and s tips on its two sides is |r − s|/(r + s − 2), and 0 for r = s = 1. **Tree asymmetry** is its mean over all n − 1 branch points (van Pelt et al. 1992; definition from memory, see sources). **Horton–Strahler order**: a tip has order 1; a branch point takes the larger child order, plus 1 if the two are equal.
+**Partition asymmetry** of a branch point with r and s tips on its two sides is |r − s|/(r + s − 2), and 0 for r = s = 1. **Tree asymmetry** is its mean over all n − 1 branch points (van Pelt et al. 1992; the formula here is from memory and was not checked against the paper's text). **Horton–Strahler order**: a tip has order 1; a branch point takes the larger child order, plus 1 if the two are equal.
 
 | n | E[asymmetry] terminal | segmental | E[Strahler] terminal | segmental |
 |---|---|---|---|---|
@@ -55,7 +55,7 @@ For all 93 shapes with 2 ≤ n ≤ 9 (checked-finite):
 | 8 | 1006/2205 | 26354/45045 | 946/315 | 408/143 |
 | 9 | 513/1120 | 354587/600600 | 3851/1260 | 2088/715 |
 
-From n = 4 on, segmental growth gives more asymmetric trees and lower Strahler order (checked-finite to n = 9).
+For each n = 4..9, segmental growth gives higher expected asymmetry and lower expected Strahler order (checked-finite: both inequalities are asserted in the script, n = 4..9 only).
 
 ## 5. Criticality
 
@@ -68,13 +68,12 @@ Only shape. No lengths, diameters, electrical properties, or the axon. Real arbo
 ## Open
 
 1. The one-parameter family between terminal and segmental growth (Verwer, van Pelt and Noest 1987): compute exact shape probabilities as functions of the parameter.
-2. Fitting to measured arbors (e.g. Uylings et al. 1983 report agreement with terminal growth for the cortical neurons they studied): not done here.
+2. Fitting to measured arbors: not done here. Which model fits which measured neurons is not claimed here.
 3. Matching the Catalan row with the non-crossing structures named in `compbio/BASE.md`: for the matcher.
 
 ## Sources
 
 - J. van Pelt, R. W. H. Verwer, "The exact probabilities of branching patterns under terminal and segmental growth hypotheses", *Bulletin of Mathematical Biology* 45 (1983) 269–285, doi 10.1007/BF02462361. Read status: search result only (abstract summary).
-- H. B. M. Uylings, R. W. H. Verwer, J. van Pelt, J. G. Parnavelas, *Acta Stereologica* (1983), topological analysis of cortical neurons. Search result only.
-- R. W. H. Verwer, J. van Pelt, A. J. Noest (1987), one-parameter growth model containing terminal and segmental growth as cases. Search result only (as described in another result; journal not confirmed).
-- J. van Pelt, H. B. M. Uylings, R. W. H. Verwer, R. J. Pentney, M. J. Woldenberg, "Tree asymmetry: a sensitive and practical measure for binary topological trees", *Bulletin of Mathematical Biology* 54 (1992). From memory, not opened.
-- D. Aldous, "Stochastic models and descriptive statistics for phylogenetic trees, from Yule to today", *Statistical Science* 16 (2001). From memory, not opened (Yule and uniform/PDA models).
+- R. W. H. Verwer, J. van Pelt, A. J. Noest, *Bulletin of Mathematical Biology* 49 (1987) 363–378, doi 10.1007/BF02460126. A one-parameter growth model with terminal and segmental growth as special cases; credits Berry et al. 1980 for the models. Search result only (bibliographic details from an independent checker's search).
+- J. van Pelt, H. B. M. Uylings, R. W. H. Verwer, R. J. Pentney, M. J. Woldenberg, "Tree asymmetry: a sensitive and practical measure for binary topological trees", *Bulletin of Mathematical Biology* 54(5) (1992) 759–784, doi 10.1007/BF02459929. Search result only (from an independent checker's search); the asymmetry formula was not confirmed against the text.
+- D. Aldous, "Stochastic models and descriptive statistics for phylogenetic trees, from Yule to today", *Statistical Science* 16(1) (2001) 23–34. From memory, not opened (Yule and uniform/PDA models).

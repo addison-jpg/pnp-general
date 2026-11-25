@@ -24,13 +24,13 @@ Burnside's lemma: necklaces = (1/n) Σ_{i=0}^{n-1} k^gcd(i,n); for prime n this 
 
 | Complex | Ring size | Gene pool | Ceiling (necklaces) | What exists |
 |---|---|---|---|---|
-| GABA-A receptor | 5 | 19 subunits | 495,235 (bracelets 251,047) | Olsen & Sieghart 2008 list 26 native subtypes (identified, probable, tentative); "a few dozen" with reasonable certainty |
-| Ionotropic glutamate receptor | 4 | 18 subunits (from memory) | 26,334 | far fewer; assembly is within families (AMPA, kainate, NMDA) |
-| Connexon (half a gap junction) | 6 | 21 human connexins | 14,296,051 | far fewer |
+| GABA-A receptor | 5 | 19 subunits | 495,235 (bracelets 251,047) | Olsen & Sieghart 2008 list 26 native subtypes across three tiers (identified, high probability, tentative); how many are in the identified tier is not confirmed here (open) |
+| Ionotropic glutamate receptor | 4 | 18 subunits (from memory, open) | 26,334 | far fewer; assembly mostly within families (AMPA, kainate, NMDA) is from memory, not cited (open) |
+| Connexon (half a gap junction) | 6 | 21 human connexins (open) | 14,296,051 | far fewer |
 
 - GABA-A: 19 subunit genes (α1–6, β1–3, γ1–3, δ, ε, θ, π, ρ1–3), mostly 2α:2β:1γ. **Fact.** The ceiling 495,235 = (19^5 + 4·19)/5 is **checked-finite** (formula; it matches the orchestrator's expectation).
-- Potassium channels (Kv) are tetramers like glutamate receptors: same n = 4 necklace count. **Fact** (from memory).
-- Gap junctions: two connexons, one from each cell, dock across the gap. This is cells joining. With homomeric connexons (all six alike): 21 homotypic + C(21,2) = 210 heterotypic = 231 pairings. With any hexamers: 14,296,051·14,296,052/2 = 102,188,544,245,326 unordered pairs. **Checked-finite** (arithmetic); the connexin count of 21 is **fact** but annotation-dependent (20 to 22 in different studies).
+- Potassium channels (Kv) are tetramers like glutamate receptors: same n = 4 necklace count. **Open** (from memory, no citation yet).
+- Gap junctions: two connexons, one from each cell, dock across the gap. This is cells joining. With homomeric connexons (all six alike): 21 homotypic + C(21,2) = 210 heterotypic = 231 pairings. With any hexamers: 14,296,051·14,296,052/2 = 102,188,544,245,326 unordered pairs. **Checked-finite** (arithmetic); the connexin count of 21 is an input taken from search results only, not from a cited primary source, so it is **open** (counts of 20 to 22 appear depending on annotation).
 
 ## 3. Dscam1: identity by sampling
 
@@ -49,13 +49,14 @@ Mouse: 14 α + 22 β + 22 γ variable exons = 58 (Wu et al. 2001). **Fact** (cou
 
 ## Joins
 
-- **Join**: necklaces here are orbits of the cyclic group acting on words, the same Burnside counting as any rotation-class count in the repo; the matcher should compare `fingerprints.json` (OEIS A000031-family columns, from memory) with other levels.
+- **Open** (candidate join, no repo file named yet): necklaces here are orbits of the cyclic group acting on words (Burnside counting). The matcher should compare `fingerprints.json` with other levels. Each fingerprint fixes the ring size n and varies the number of colours k = 1..7; no OEIS A-numbers are claimed for these rows. (A000031 is a different slice: k = 2 fixed, n varying.)
 - **Analogy**: Dscam1/protocadherin identity as random codes with few collisions (birthday problem).
 
 ## Limits and open items
 
 1. Confirm the isoforms-per-neuron figures in Hattori et al. 2009 and use them in place of m = 10, 20, 50.
-2. Glutamate subunit count 18 and Kv tetramers are from memory; cite a primary source.
+2. Glutamate subunit count 18, within-family assembly, Kv tetramers and the connexin count 21 are from memory or search results; cite primary sources.
+4. In `check.py` the hardcoded sequences and the PIN table of probabilities are regression guards (values recorded from a run), not independent checks. The independent checks are enumeration against Burnside and the comb form against the product form.
 3. Assembly rules (which neighbours are allowed) would cut the ceilings; not modelled.
 
 ## Sources
@@ -64,4 +65,4 @@ Mouse: 14 α + 22 β + 22 γ variable exons = 58 (Wu et al. 2001). **Fact** (cou
 - Schmucker et al., "Drosophila Dscam is an axon guidance receptor exhibiting extraordinary molecular diversity", Cell 101:671–684 (2000) — search result only.
 - Hattori et al., "Robust discrimination between self and non-self neurites requires thousands of Dscam1 isoforms", Nature 461:644–648 (2009) — abstract only.
 - Wu et al., "Comparative DNA sequence analysis of mouse and human protocadherin gene clusters", Genome Res 11:389 (2001) — search result only.
-- Human connexin count 21 (with 20–22 by annotation) — search result only (review summaries).
+- Human connexin count 21 (with 20–22 by annotation) — search result only (review summaries); no specific reference opened.

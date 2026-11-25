@@ -15,7 +15,7 @@ A **motif pattern** is a weakly connected digraph up to isomorphism (weakly conn
 | 5 | 9608 | 9364 | Burnside |
 | 6 | 1540944 | 1530843 | Burnside |
 
-- n = 1..4: **checked-finite** by canonical forms over all labelled digraphs. n = 5, 6: **checked-finite** by Burnside's lemma (count fixed digraphs per permutation) and the inverse Euler transform (all graphs to connected ones); the two methods agree on n = 1..4. All expected values matched.
+- n = 1..4: **checked-finite** by canonical forms over all labelled digraphs. n = 5, 6: exact **counting**, not enumeration (no graph is listed one by one), by Burnside's lemma (count fixed digraphs per permutation) and the inverse Euler transform (all graphs to connected ones); the two methods agree on n = 1..4. All expected values matched.
 - The 13 three-node patterns are the triad patterns used by Milo et al. That the paper uses exactly these 13: **from memory**; the search confirmed the paper, not the figure.
 
 ## 2. Directed cliques and the flag complex
@@ -24,7 +24,7 @@ A **directed k-simplex** is k + 1 neurons v0, ..., vk with an arc vi → vj for 
 
 - **Checked-finite:** for all 4165 labelled digraphs on 1..4 nodes, Betti numbers are non-negative and the Euler–Poincaré formula holds (alternating sum of simplex counts = alternating sum of Betti numbers).
 - Holes appear early. Labelled digraphs with β1 > 0: 0, 1, 26, 1842 (n = 1..4); with β2 > 0: 0, 0, 1, 498. The n = 2 case is a reciprocal pair: two 1-simplices on the same two neurons make a loop. Checked-finite.
-- Labelled digraphs on 3 nodes by number of directed 2-simplices (0..6): 39, 12, 6, 6, 0, 0, 1. For 4 nodes: see `fingerprints.json`. Checked-finite. (The orchestrator's expected 48, 12, 3, 1 was not confirmed; it is not the computed value.)
+- Labelled digraphs on 3 nodes by number of directed 2-simplices (0..6): 39, 12, 6, 6, 0, 0, 1. For 4 nodes: see `fingerprints.json`. Checked-finite. (An earlier guess of 48, 12, 3, 1, made while building this level, was wrong; the table above is the computed value.)
 - Reimann et al. (2017) apply this complex to a reconstructed neocortical microcircuit and find many high-dimensional directed cliques and cavities. **Fact** (abstract).
 
 ## 3. Expected count in a random digraph
@@ -46,6 +46,8 @@ A connection is **critical** if deleting it leaves the network disconnected.
 | 3 | 13 | 3 | 8 |
 | 4 | 199 | 8 | 146 |
 
+Convention: the single neuron (n = 1) has no arcs, so "every arc critical" holds vacuously and it is counted as a tree; "no arc critical" is counted only for graphs with at least one arc, so n = 1 gives 0 there. (Counting it vacuously in both columns would give 1, 1, 8, 146.)
+
 Fractions of critical arcs at n = 4: 0 (146 graphs), 1/7 (2), 1/6 (6), 1/5 (19), 1/4 (8), 1/2 (10), 1 (8). Checked-finite.
 
 - **Join:** `philosophy/rhizome.py` checks that a connected graph is a tree exactly when every edge is critical. Here the same holds for digraphs: every arc is critical exactly when the digraph is an oriented tree (no reciprocal pair, n − 1 arcs). Checked-finite for n ≤ 4. One neuron's branching arbor is a tree, every segment critical; a network with loops is not.
@@ -53,13 +55,13 @@ Fractions of critical arcs at n = 4: 0 (146 graphs), 1/7 (2), 1/6 (6), 1/5 (19),
 
 ## 5. Real connectomes
 
-C. elegans has 302 neurons. Varshney et al. (2011) assembled its hermaphrodite chemical and gap-junction networks; Cook et al. (2019) give whole-animal connectomes of both sexes, with 3.2% (hermaphrodite) and 2.4% (male) of possible edges (search summary). The data were not downloaded or analysed here. **Open.**
+C. elegans has 302 neurons. Varshney et al. (2011) assembled its hermaphrodite chemical and gap-junction networks; Cook et al. (2019) give whole-animal connectomes of both sexes. The data were not downloaded or analysed here. **Open.**
 
 ## Joins
 
 - Digraph motif counts: the same counting-sequence route as `compbio/BASE.md` (fingerprints).
 - Critical edges and trees: `philosophy/rhizome.py` (join, the same statement on undirected graphs, extended to directed).
-- Euler–Poincaré on a simplicial complex: the general fact any other repo level with a chain complex shares (open: no specific file checked).
+- Euler–Poincaré on a simplicial complex: not a join yet, because no repo file with a chain complex has been named. **Open.**
 
 ## Open items
 

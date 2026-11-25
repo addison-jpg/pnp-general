@@ -182,6 +182,7 @@ for n in range(1, 5):
         und = {frozenset(e) for e in E}
         is_tree = len(und) == n - 1 and len(E) == n - 1
         if m: fr[Fraction(cr, m)] = fr.get(Fraction(cr, m), 0) + 1
+        # convention: n=1 (no arcs) counts as all-critical (vacuous) but NOT as no-critical
         if m and cr == 0: none_crit += 1
         if cr == m: all_crit += 1
         assert (cr == m) == is_tree  # every connection critical iff an oriented tree

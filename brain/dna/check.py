@@ -4,9 +4,9 @@
 1. A closed two-strand ribbon with n full twists about a flat circle: lk(strand 1, strand 2) = n.
 2. Strand passage = crossing flip: every inter-strand flip changes lk by exactly 1 in absolute value;
    a duplex passage (all four strand crossings of a duplex self-crossing) changes Lk by exactly 2.
-3. Replication catenanes T(2,2k): lk = k; |lk| drops by 1 per flip, so k passages are needed, and k suffice for lk = 0.
+3. Replication catenanes T(2,2k): lk = -k; a greedy run of |k| flips reaches lk = 0 (the lower bound |k| is deduced from 2a, not enumerated).
 4. Kinetoplast chainmail on a honeycomb patch: |lk| matrix = adjacency matrix; interior valence 3.
-5. Borromean rings: all pairwise lk = 0, Milnor mu(123) = +-1.
+5. Borromean rings: all pairwise lk = 0, Milnor mu(123) = -1 for this polygon and orientation.
 Run: python3 -I brain/dna/check.py
 """
 import json, math, os, sys, time
@@ -61,10 +61,14 @@ def eight(t):
     c = (2 * math.cos(t), math.sin(2 * t), 0.6 * math.sin(t))
     d = (-2 * math.sin(t), 2 * math.cos(2 * t), 0.0); L = math.hypot(d[0], d[1])
     return c, (d[1] / L, -d[0] / L, 0.0)
-res2 = {}
+res2 = {}; OFFSET = None
 for n in (-2, 0, 1, 3):
     link = ribbon(n, core=eight, m=160, w=0.08); m = 160
-    X = gen_diagram(link); lk = lk_by_count(X, 0, 1); assert lk == n + 1   # the core itself has writhe-like +1 in this frame
+    X = gen_diagram(link); lk = lk_by_count(X, 0, 1); assert lk == invariants(X, 2)[(0, 1)]
+    # framing offset c = lk - n: measured, then required to be the same for every n (each extra full twist adds exactly 1).
+    # Its origin (writhe of the core vs. turning of the frame) is NOT computed here.
+    if OFFSET is None: OFFSET = lk - n
+    assert lk - n == OFFSET, (n, lk, OFFSET)
     far = [k for k, (o, u, s) in enumerate(X) if min(abs(o[1] - u[1]), m - abs(o[1] - u[1])) > m // 4]
     assert len(far) == 4, len(far)
     Y = X
@@ -72,7 +76,8 @@ for n in (-2, 0, 1, 3):
     d = lk_by_count(Y, 0, 1) - lk
     assert abs(d) == 2 and d == -sum(X[k][2] for k in far if X[k][0][0] != X[k][1][0])
     res2[n] = (lk, lk + d); STATES += 1
-print("2b. duplex passage (4 strand crossings flipped), (Lk before, after):", res2)
+assert OFFSET == 1 and all(res2[n] == (n + OFFSET, n + OFFSET - 2) for n in res2)
+print("2b. duplex passage (4 strand crossings flipped), (Lk before, after):", res2, "; measured framing offset Lk - n =", OFFSET)
 
 # ---- 3. torus links T(2,2k)
 def torus(k, m=None):
@@ -92,7 +97,7 @@ for k in list(range(-5, 0)) + list(range(1, 6)):
         j = next(i for i, (o, u, s) in enumerate(X) if o[0] != u[0] and s == (1 if lk > 0 else -1))
         X = flip(X, j); new = lk_by_count(X, 0, 1); assert abs(new) == abs(lk) - 1; lk = new; steps += 1
     assert lk == 0 and X0lk == -k and steps == abs(k); res3[k] = (X0lk, steps); STATES += 1
-print("3. T(2,2k): k -> (lk, passages used to reach lk 0; lower bound |lk|):", res3)
+print("3. T(2,2k): k -> (lk, greedy passages used to reach lk 0):", res3)
 
 # ---- 4. kinetoplast honeycomb chainmail
 def honeycomb(R=2):
@@ -145,7 +150,7 @@ print("4. kinetoplast patch,", NHEX, "hexagons: rings", N, "links", len(E), "val
 
 # ---- 5. Borromean
 inv = invariants(gen_diagram(milnor.borromean()), 3)
-assert all(inv[(i, j)] == 0 for i in range(3) for j in range(3) if i != j) and abs(inv[(0, 1, 2)]) == 1
+assert all(inv[(i, j)] == 0 for i in range(3) for j in range(3) if i != j) and inv[(0, 1, 2)] == -1
 print("5. Borromean rings: pairwise lk 0, mu(123) =", inv[(0, 1, 2)]); STATES += 1
 
 print("PASS")

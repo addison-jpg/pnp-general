@@ -1,6 +1,6 @@
 # Tissue: cells join into sheets
 
-What this is: the **combinatorics and topology** of an epithelium. An *epithelium* is a sheet of cells packed side by side; the nervous system starts as one (the neural plate). Seen from above, each cell is a polygon. Usually three cells meet at each corner, so the sheet is a *trivalent* tiling: every corner has three walls. What this is not: a model of the mind, a clinical claim, or a claim about any person. Run: `python3 -I brain/tissue/check.py`. It prints PASS and `{"states": 37254, ...}` in about a second. Labels: **fact** (cited), **checked-finite** (exact and exhaustive over a stated finite set), **tested** (sampled or floating point), **join**, **analogy**, **open**.
+What this is: the **combinatorics and topology** of an epithelium. An *epithelium* is a sheet of cells packed side by side; the nervous system starts as one (the neural plate). Seen from above, each cell is a polygon. Usually three cells meet at each corner, so the sheet is a *trivalent* tiling: every corner has three walls. What this is not: a model of the mind, a clinical claim, or a claim about any person. Run: `python3 -I brain/tissue/check.py`. It prints PASS and `{"states": 37302, ...}` in about a second. Labels: **fact** (cited), **checked-finite** (exact and exhaustive over a stated finite set), **tested** (sampled or floating point), **join**, **analogy**, **open**.
 
 One tool runs through the whole file. The *dual* of a trivalent tiling puts a point in each cell and joins neighbouring cells. Because three cells meet at each corner, the dual is a *triangulation*. A cell with s sides is a dual vertex of degree s. The script stores every sheet as its dual triangulation.
 
@@ -12,7 +12,7 @@ One tool runs through the whole file. The *dual* of a trivalent tiling puts a po
 | 1b | On a flat sheet the mean tends to 6 as F grows. | fact (follows from 1); the formula 6 − 12/F is checked, the limit is not computed | — |
 | 2 | Gibson chain: stationary shares of cells with 5, 6, 7, 8, 9, 10 sides are 28.88, 46.40, 20.85, 3.59, 0.27, 0.01 percent; no 4-sided cells; mean 6. | checked-finite for the chain cut off at 24 sides (exact Fraction eigenvector, verified π P = π); the cut-off at 16 agrees to 1e−12 | exact |
 | 3 | A direct simulation of topological division does **not** reproduce the chain's distribution (see below). | tested | 3 seeds × 6144 cells |
-| 4 | A T1 transition (neighbour exchange) is an edge flip of the dual triangulation: two cells lose a side, two gain one, nothing else changes, χ stays 2. | checked-finite on 200 random flips (each verified); the identification itself is a fact | exact |
+| 4 | A T1 transition (neighbour exchange) is an edge flip of the dual triangulation: two cells lose a side, two gain one, nothing else changes, χ stays 2. | tested: 200 random flips, each verified exactly (the counts are exact; the flips are sampled). That a T1 is the dual edge flip is standard in the literature, from memory, not cited here; the counting rule itself follows from the definitions | exact |
 | 5 | Lewis's law and the Aboav–Weaire law | fact (empirical), not derived here | — |
 | 6 | Flat sheet χ = 1; tube χ = 0; tube closed at both ends χ = 2. | checked-finite on square-grid complexes m = 3..8, n = 1..8 | exact counts |
 
@@ -43,11 +43,11 @@ The simulation is much broader than the chain and has many 4-sided cells. The li
 
 ### 6. Neural tube closure
 
-The neural plate is a disc (χ = 1). It folds, and two opposite edges fuse: the result is an open tube (χ = 0). Fusing a path of k walls identifies k + 1 corners and k walls, so χ drops by exactly 1. The tube then closes at its two ends (the neuropores). Adding one cap cell at each end gives a sphere (χ = 2). Checked on square grids. That closure happens this way in embryos is a fact of developmental biology (standard textbooks, from memory); only the counts are computed.
+The neural plate is a disc (χ = 1). It folds, and two opposite edges fuse: the result is an open tube (χ = 0). Fusing a path of k walls identifies k + 1 corners and k walls, so χ drops by exactly 1. The tube then closes at its two ends (the neuropores). Adding one cap cell at each end gives a sphere (χ = 2). Checked on square grids: the capped complex is built explicitly (squares plus two m-gon caps), every edge is checked to lie on exactly two faces, and V − E + F = 2 is counted for m = 3..8, n = 1..8. That closure happens this way in embryos is a fact of developmental biology (standard textbooks, from memory); only the counts are computed.
 
 ## Joins
 
-- **Edge flip.** A T1 transition is the flip of one edge of the dual triangulation. That is the move the membrane level (`brain/membrane/`, built in parallel and not yet in the repo when this was written) uses to enumerate triangulations. Join, pending that file.
+- **Edge flip.** A T1 transition is the flip of one edge of the dual triangulation. That is the same move `brain/membrane/check.py` uses to enumerate triangulations of the sphere by breadth-first search over edge flips. Join: `brain/membrane/check.py` (section 1, `flips`).
 - **Euler characteristic.** The same invariant χ as in `brain/dna/` (topology of DNA loops is counted there by linking number, a different invariant; the shared object is the closed surface). Analogy until a shared computation exists.
 - **Markov chain stationary vector.** An exact eigenvector computation in Fractions. Any other level with a finite Markov chain can reuse `stationary()`.
 
@@ -59,13 +59,13 @@ The neural plate is a disc (χ = 1). It folds, and two opposite edges fuse: the 
 
 ## Open items
 
-1. Open the Gibson paper and supplement; confirm the exact transition rule and their published prediction and measurements, and compare with the table above.
+1. Open the Gibson paper and supplement (hosted by the Perrimon lab); confirm the exact transition rule and their published prediction and measurements, and compare with the table above.
 2. Add T1 relaxation to the simulation and see whether it moves towards the chain.
 3. A flat sheet with a boundary, and a count of tilings (an integer sequence for fingerprints). None is produced here, so there is no fingerprints.json.
 
 ## Sources
 
 - Gibson, M. C., Patel, A. B., Nagpal, R., Perrimon, N. (2006). "The emergence of geometric order in proliferating metazoan epithelia." *Nature* 442, 1038–1041, doi:10.1038/nature05014. Search result only: the search confirmed the title, authors, journal, and that the paper uses a Markov chain whose equilibrium polygon distribution is compared with tissue from several animals. The transition rule and numbers are from memory.
-- Sandersius et al. (follow-up work noting 4-sided cells that the chain does not produce). Search result only; full citation not confirmed.
+- Sandersius, S. A., Chuai, M., Weijer, C. J., Newman, T. J. (2011). "Correlating cell behavior with tissue topology in embryonic epithelia." *PLoS ONE* 6(4): e18081, doi:10.1371/journal.pone.0018081, arXiv:1201.5137. Search result only. Supports: non-spatial (Markov) models do not robustly reproduce the neighbour statistics of proliferating epithelia; spatial simulation does. A specific statement about 4-sided cells was not confirmed and is not claimed.
 - Euler's polyhedron formula. Standard, from memory.
 - Lewis 1928; Aboav 1970; Weaire 1974. From memory, not opened.
