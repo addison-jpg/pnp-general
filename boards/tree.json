@@ -1723,6 +1723,30 @@
    }
   ]
  },
+ "workshop/board": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "774a9b37",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "d1a43f48",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "eecdacb5",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
  "workshop/bus": {
   "counts": {},
   "verified": [],
