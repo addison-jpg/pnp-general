@@ -9,7 +9,7 @@ HONESTY. Every theorem below is elementary: finite sets, natural numbers, functi
 records which of the candidate joins between the programs of this repository (circuits, quantum
 gravity, logic and language, philosophy) are theorems, in the weakest form that is true. The
 names of the programs appear only in comments; no theorem here is about circuits of any size,
-about unitaries, about spacetime, or about P versus NP. `worlds/UNIFY_ALL.md` says what each
+about unitaries, about spacetime, or about P versus NP. `math/worlds/UNIFY_ALL.md` says what each
 theorem is an instance of, and lists the analogies and the failed rhymes that are NOT here.
 
 * Part A (counting and payment): the truncation `trunc c f`, the largest potential below `f`

@@ -1,0 +1,422 @@
+[
+ {
+  "id": "ar01",
+  "register": "informal",
+  "response": "6 boxes with 7 apples each is 6 \u00d7 7 = 42 apples in total."
+ },
+ {
+  "id": "ar01",
+  "register": "formal",
+  "response": "6 boxes \u00d7 7 apples per box = 42 apples in total."
+ },
+ {
+  "id": "ar02",
+  "register": "informal",
+  "response": "15 people are left on the bus (40 - 25 = 15)."
+ },
+ {
+  "id": "ar02",
+  "register": "formal",
+  "response": "15 people remain on the bus (40 - 25 = 15)."
+ },
+ {
+  "id": "ar03",
+  "register": "informal",
+  "response": "36 slices. Each pizza is cut into 8 slices, so 4.5 pizzas x 8 = 36."
+ },
+ {
+  "id": "ar03",
+  "register": "formal",
+  "response": "36 slices. 4.5 pizzas \u00d7 8 slices per pizza = 36."
+ },
+ {
+  "id": "ar04",
+  "register": "informal",
+  "response": "Reading \"4 2 hrs\" as 4.2 hours, the car travels 60 km/h \u00d7 4.2 h = 252 km. (If you meant 4 hours 2 minutes, that is 60 \u00d7 4.0333 h \u2248 242 km.)"
+ },
+ {
+  "id": "ar04",
+  "register": "formal",
+  "response": "120 km. A speed of 60 km/h for 2 hours gives 60 \u00d7 2 = 120 km."
+ },
+ {
+  "id": "ar05",
+  "register": "informal",
+  "response": "Each kid gets at most 7 cookies. 3 \u00d7 7 = 21, which leaves 2 cookies over, since 23 isn't divisible by 3 (23 \u00f7 3 = 7 remainder 2)."
+ },
+ {
+  "id": "ar05",
+  "register": "formal",
+  "response": "7. Dividing 23 cookies among 3 children gives 23 \u00f7 3 = 7 remainder 2, since 3 \u00d7 7 = 21 and 23 \u2212 21 = 2. Each child can receive 7 whole cookies, with 2 left over."
+ },
+ {
+  "id": "ar06",
+  "register": "informal",
+  "response": "20% of 125 is 25 (0.20 \u00d7 125 = 25)."
+ },
+ {
+  "id": "ar06",
+  "register": "formal",
+  "response": "20% of 125 is 25."
+ },
+ {
+  "id": "ar07",
+  "register": "informal",
+  "response": "The shirt now costs 90. A 25% discount on 120 takes off 30 (120 \u00d7 0.25), leaving 120 \u2212 30 = 90."
+ },
+ {
+  "id": "ar07",
+  "register": "formal",
+  "response": "The new price is 90. A 25% discount on 120 takes off 30 (120 \u00d7 0.25), leaving 120 \u2212 30 = 90."
+ },
+ {
+  "id": "ar08",
+  "register": "informal",
+  "response": "Sam is 3 times his kid's age, and the kid is 8, so Sam is 3 x 8 = 24 years old. The question asks how much older Sam is than 24, and Sam is exactly 24, so he is 0 years older than 24. The question may have meant to ask how much older Sam is than his kid, which is 24 - 8 = 16 years."
+ },
+ {
+  "id": "ar08",
+  "register": "formal",
+  "response": "Sam's age is 3 \u00d7 8 = 24. Sam's age exceeds 24 by 24 \u2212 24 = 0 years, so the answer is 0."
+ },
+ {
+  "id": "ar09",
+  "register": "informal",
+  "response": "The length is 8. A rectangle's area is length times width, so length = 48 / 6 = 8."
+ },
+ {
+  "id": "ar09",
+  "register": "formal",
+  "response": "The length is 8. Area = length \u00d7 width, so 48 = length \u00d7 6, giving length = 48 / 6 = 8."
+ },
+ {
+  "id": "ar10",
+  "register": "informal",
+  "response": "210 widgets total (3 shifts x 70 widgets each)."
+ },
+ {
+  "id": "ar10",
+  "register": "formal",
+  "response": "210 widgets. Three shifts of 70 widgets each is 3 \u00d7 70 = 210."
+ },
+ {
+  "id": "st01",
+  "register": "informal",
+  "response": "olleh"
+ },
+ {
+  "id": "st01",
+  "register": "formal",
+  "response": "olleh"
+ },
+ {
+  "id": "st02",
+  "register": "informal",
+  "response": "PNP-GENERAL"
+ },
+ {
+  "id": "st02",
+  "register": "formal",
+  "response": "PNP-GENERAL"
+ },
+ {
+  "id": "st03",
+  "register": "informal",
+  "response": "banana_split"
+ },
+ {
+  "id": "st03",
+  "register": "formal",
+  "response": "banana_split"
+ },
+ {
+  "id": "st04",
+  "register": "informal",
+  "response": "Reversing 'world' gives 'dlrow'. \"4 me\" reads as \"for me\", since \"4\" is shorthand for \"for\". Taken together: 'dlrow' for me."
+ },
+ {
+  "id": "st04",
+  "register": "formal",
+  "response": "dlrow"
+ },
+ {
+  "id": "st05",
+  "register": "informal",
+  "response": "a,b,c,w"
+ },
+ {
+  "id": "st05",
+  "register": "formal",
+  "response": "a,b,c"
+ },
+ {
+  "id": "st06",
+  "register": "informal",
+  "response": "HelloWorld"
+ },
+ {
+  "id": "st06",
+  "register": "formal",
+  "response": "HelloWorld"
+ },
+ {
+  "id": "st07",
+  "register": "informal",
+  "response": "\"mississippi\" contains 2 p's."
+ },
+ {
+  "id": "st07",
+  "register": "formal",
+  "response": "The letter \"p\" occurs 2 times in \"mississippi\"."
+ },
+ {
+  "id": "st08",
+  "register": "informal",
+  "response": "cat"
+ },
+ {
+  "id": "st08",
+  "register": "formal",
+  "response": "The first three letters of \"catalog\" are \"cat\"."
+ },
+ {
+  "id": "st09",
+  "register": "informal",
+  "response": "radar is the only palindrome of the three. It reads the same forwards and backwards. \"robot\" reversed is \"tobor\", and \"river\" reversed is \"revir\", so neither is a palindrome."
+ },
+ {
+  "id": "st09",
+  "register": "formal",
+  "response": "radar is the palindrome. It reads the same forwards and backwards, while robot and river do not."
+ },
+ {
+  "id": "st10",
+  "register": "informal",
+  "response": "x-y-z"
+ },
+ {
+  "id": "st10",
+  "register": "formal",
+  "response": "x-y-z"
+ },
+ {
+  "id": "py01",
+  "register": "informal",
+  "response": "def f(x): return x * x"
+ },
+ {
+  "id": "py01",
+  "register": "formal",
+  "response": "def f(x): return x * x"
+ },
+ {
+  "id": "py02",
+  "register": "informal",
+  "response": "def f(s): return s[::-1]"
+ },
+ {
+  "id": "py02",
+  "register": "formal",
+  "response": "def f(s): return s[::-1]"
+ },
+ {
+  "id": "py03",
+  "register": "informal",
+  "response": "def f(xs): return sum(xs)"
+ },
+ {
+  "id": "py03",
+  "register": "formal",
+  "response": "def f(xs): return sum(xs)"
+ },
+ {
+  "id": "py04",
+  "register": "informal",
+  "response": "def f(n):\n    return n % 2 == 0"
+ },
+ {
+  "id": "py04",
+  "register": "formal",
+  "response": "def f(n): return n % 2 == 0"
+ },
+ {
+  "id": "py05",
+  "register": "informal",
+  "response": "f = lambda xs: max(xs)"
+ },
+ {
+  "id": "py05",
+  "register": "formal",
+  "response": "def f(xs): return max(xs)"
+ },
+ {
+  "id": "ex01",
+  "register": "informal",
+  "response": "The date in 'invoice #88, issued 2026-03-14 to acme' is 2026-03-14 (March 14, 2026)."
+ },
+ {
+  "id": "ex01",
+  "register": "formal",
+  "response": "2026-03-14"
+ },
+ {
+  "id": "ex02",
+  "register": "informal",
+  "response": "jo@example.org"
+ },
+ {
+  "id": "ex02",
+  "register": "formal",
+  "response": "jo@example.org"
+ },
+ {
+  "id": "ex03",
+  "register": "informal",
+  "response": "The invoice number is 88 (invoice #88, issued 2026-03-14 to acme)."
+ },
+ {
+  "id": "ex03",
+  "register": "formal",
+  "response": "88"
+ },
+ {
+  "id": "ex04",
+  "register": "informal",
+  "response": "The meeting has moved to Lisbon on Friday, and you should bring slides. Per the note, \"mtg moved 2 lisbon on fri, bring slides\" (read \"2\" as \"to\"). Friday is 2026-11-27 from today's date, 2026-11-25. The note doesn't give a time or venue, so check the original invite for those."
+ },
+ {
+  "id": "ex04",
+  "register": "formal",
+  "response": "Lisbon. The text says \"mtg moved 2 lisbon on fri\", where \"2\" is shorthand for \"to\", so the meeting was moved to Lisbon on Friday."
+ },
+ {
+  "id": "ex05",
+  "register": "informal",
+  "response": "3"
+ },
+ {
+  "id": "ex05",
+  "register": "formal",
+  "response": "3"
+ },
+ {
+  "id": "h01",
+  "register": "informal",
+  "response": "Change due: $20.50. Total is 3 shirts at $18.50 ($55.50) plus 2 hats at $12 ($24.00), which comes to $79.50. Paying with a $100 bill leaves $20.50 in change."
+ },
+ {
+  "id": "h01",
+  "register": "formal",
+  "response": "The customer receives 20.50 in change. The shirts cost 3 \u00d7 18.50 = 55.50, the hats cost 2 \u00d7 12 = 24.00, so the total is 79.50, and 100.00 \u2212 79.50 = 20.50."
+ },
+ {
+  "id": "h02",
+  "register": "informal",
+  "response": "1035 minutes after midnight. Starting at 9:40 is 580 minutes after midnight, and 7h35m is 455 minutes, so the work ends at 17:15."
+ },
+ {
+  "id": "h02",
+  "register": "formal",
+  "response": "1035 minutes. A shift starting at 9:40 and lasting 7 h 35 min ends at 17:15, and 17 \u00d7 60 + 15 = 1035 minutes after midnight."
+ },
+ {
+  "id": "h03",
+  "register": "informal",
+  "response": "The final price is 80. The price rises 25% from 80 to 100, then falls 20% from 100 to 80, so it ends where it started."
+ },
+ {
+  "id": "h03",
+  "register": "formal",
+  "response": "The final price is 80. An 80 price increased by 25% becomes 100, and decreasing that by 20% gives 80, so the net change is zero."
+ },
+ {
+  "id": "h04",
+  "register": "informal",
+  "response": "The fourth number is 12. The four numbers average 12, so they sum to 48. The three known numbers sum to 10 + 11 + 15 = 36, and 48 - 36 = 12."
+ },
+ {
+  "id": "h04",
+  "register": "formal",
+  "response": "The fourth number is 12. The four numbers have a mean of 12, so they sum to 4 \u00d7 12 = 48. The three known numbers sum to 10 + 11 + 15 = 36, so the fourth is 48 \u2212 36 = 12."
+ },
+ {
+  "id": "h05",
+  "register": "informal",
+  "response": "128. The smallest 3-digit multiple of 7 is 105 (7 \u00d7 15), and the largest is 994 (7 \u00d7 142). The count is 142 \u2212 15 + 1 = 128."
+ },
+ {
+  "id": "h05",
+  "register": "formal",
+  "response": "128. The smallest three-digit multiple of 7 is 105 (7 \u00d7 15) and the largest is 994 (7 \u00d7 142), so the count is 142 \u2212 15 + 1 = 128."
+ },
+ {
+  "id": "h06",
+  "register": "informal",
+  "response": "593. Multiples of 3 from 1 to 50 sum to 408 (3 \u00d7 136), multiples of 5 sum to 275 (5 \u00d7 55), and multiples of 15 sum to 90 (15 + 30 + 45). Inclusion-exclusion gives 408 + 275 \u2212 90 = 593."
+ },
+ {
+  "id": "h06",
+  "register": "formal",
+  "response": "593. Multiples of 3 from 1 to 50 sum to 408, multiples of 5 sum to 275, and multiples of 15 (counted in both) sum to 90, so 408 + 275 - 90 = 593."
+ },
+ {
+  "id": "h07",
+  "register": "informal",
+  "response": "\"abcdef\" reversed is \"fedcba\". Removing the first 2 letters leaves \"dcba\"."
+ },
+ {
+  "id": "h07",
+  "register": "formal",
+  "response": "dcba"
+ },
+ {
+  "id": "h08",
+  "register": "informal",
+  "response": "'onomatopoeia' contains 8 vowels (o, o, a, o, o, e, i, a), counting a, e, i, o and u. There is no 'y' in the word."
+ },
+ {
+  "id": "h08",
+  "register": "formal",
+  "response": "\"onomatopoeia\" contains 8 vowels: o, o, a, o, o, e, i, a. Counting by letter, that is 4 o's, 2 a's, 1 e, and 1 i."
+ },
+ {
+  "id": "h09",
+  "register": "informal",
+  "response": "Here is the Python function. It removes spaces, lowercases the string, and checks whether it reads the same backwards:\n\n```python\ndef f(s):\n    cleaned = s.replace(\" \", \"\").lower()\n    return cleaned == cleaned[::-1]\n```\n\nExamples: `f(\"A man a plan a canal Panama\")` returns True, and `f(\"Hello\")` returns False."
+ },
+ {
+  "id": "h09",
+  "register": "formal",
+  "response": "```python\ndef f(s):\n    cleaned = [c.lower() for c in s if not c.isspace()]\n    return cleaned == cleaned[::-1]\n```\n\nThis lowercases each character and drops whitespace, then compares the sequence with its reverse. Examples: `f(\"A man a plan a canal Panama\")` returns True, and `f(\"hello\")` returns False. Only whitespace is ignored; other punctuation is kept, so `\"A man, a plan\"` would return False."
+ },
+ {
+  "id": "h10",
+  "register": "informal",
+  "response": "```python\ndef f(xs):\n    distinct = set(xs)\n    if len(distinct) < 2:\n        return None\n    return sorted(distinct, reverse=True)[1]\n```\n\nThe function collects the distinct values with `set`, returns `None` when there are fewer than two, and otherwise returns the second-largest entry of the descending sort. Examples: `f([3, 1, 3, 2])` returns `2`, `f([5, 5])` returns `None`, and `f([])` returns `None`. This runs in O(n log n) time; a single pass with two tracked maxima would be O(n) if needed. No tools were used."
+ },
+ {
+  "id": "h10",
+  "register": "formal",
+  "response": "Python function:\n\ndef f(xs):\n    distinct = set(xs)\n    if len(distinct) < 2:\n        return None\n    return sorted(distinct)[-2]\n\nExamples: f([3, 1, 4, 4, 2]) returns 3; f([5, 5, 5]) returns None; f([]) returns None; f([1, 2]) returns 1.\n\nNotes: set() deduplicates, so repeated maxima are handled. This runs in O(n log n) because of the sort. For a single pass in O(n) time, track the top two distinct values instead. The elements must be hashable and mutually comparable."
+ },
+ {
+  "id": "h11",
+  "register": "informal",
+  "response": "apple-fig-pear"
+ },
+ {
+  "id": "h11",
+  "register": "formal",
+  "response": "apple-fig-pear"
+ },
+ {
+  "id": "h12",
+  "register": "informal",
+  "response": "The sum of the digits of 2^20 is 31. Here 2^20 = 1048576, and 1 + 0 + 4 + 8 + 5 + 7 + 6 = 31."
+ },
+ {
+  "id": "h12",
+  "register": "formal",
+  "response": "31. 2^20 = 1048576, and 1+0+4+8+5+7+6 = 31."
+ }
+]

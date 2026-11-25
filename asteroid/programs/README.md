@@ -1,6 +1,6 @@
 # asteroid programs: the formal proof as runnable files
 
-One program per group of items of [`notes/front-page-2026-11-24.md`](../../notes/front-page-2026-11-24.md). Run one with `python3 -m asteroid run asteroid/programs/NAME.ath`, all with `python3 -m asteroid test [--no-lean]`.
+One program per group of items of [`workshop/notes/front-page-2026-11-24.md`](../../notes/front-page-2026-11-24.md). Run one with `python3 -m asteroid run asteroid/programs/NAME.ath`, all with `python3 -m asteroid test [--no-lean]`.
 
 | Program | README items | What it checks | Python claims / Lean theorems | Time (Lean / no Lean) |
 |---|---|---|---|---|

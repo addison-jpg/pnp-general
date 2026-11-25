@@ -19,7 +19,7 @@ LIMIT = 10**6       # largest n in n!, n!!, C(n, k), and the most terms one sum 
 STEPS = 10**7       # most evaluation steps for one formula claim
 RUN_STEPS = [3 * 10**7]   # most evaluation steps for all formula claims of one run together
 MAXBITS = 10**6     # largest integer a formula may make (bits); a step on a big integer costs 1 + bits // 1024
-WRITERS = {"boards.py", "center.py", "one-not/tools/tensor/dag.py", "compute/funsearch/targets.py"}   # they write findings or run shell commands
+WRITERS = {"boards.py", "center.py", "one-not/tools/tensor/dag.py", "workshop/compute/funsearch/targets.py"}   # they write findings or run shell commands
 INT = re.compile(r"-?\d+")
 
 def _lit(body, where):

@@ -127,7 +127,7 @@ z = OR(a, u)
 - **AIGER** (A. Biere, "The AIGER And-Inverter Graph (AIG) Format Version 20071012", FMV Reports
   07/1, Johannes Kepler University Linz, 2007). The only gate is AND and negation is a free bit on
   every edge, so the number of NOT gates is not a property of an AIGER file. asteroid exports to
-  AIGER (`AsteroidLang.Bench.toAag`) and does not read it; see `notes/aiger.md`.
+  AIGER (`AsteroidLang.Bench.toAag`) and does not read it; see `workshop/notes/aiger.md`.
 - **BLIF** (University of California, Berkeley, "Berkeley Logic Interchange Format (BLIF)", 1992,
   distributed with SIS). A gate is a `.names` block, a truth-table cover with any number of inputs,
   so "one gate" has no fixed cost and a negation can sit inside any cover.

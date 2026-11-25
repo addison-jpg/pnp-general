@@ -1,0 +1,8 @@
+# Join privacy + poetry: one count, the Bell numbers. An equality pattern of n table rows and a rhyme scheme of n lines are both a set partition.
+check "python3 -I biology/privacy/check.py"
+check "python3 -I culture/poetry/check.py"
+seq rows = from biology/privacy/fingerprints.json "Bell numbers"
+seq rhyme = from culture/poetry/fingerprints.json "rhyme schemes"
+claim rows matches rhyme
+frame "Join: equality patterns of table rows (biology/privacy) and rhyme schemes (culture/poetry)" reading "both are set partitions of n items, so both are the Bell numbers: the two stored sequences agree on all 8 common terms, 1, 2, 5, 15, 52, 203, 877, 4140, and both checks pass" -> 6 label checked-finite reach 2 cost 40
+record biology/privacy join-poetry checked-finite "core/ontology/joins/privacy_poetry.ath: equality patterns of n table rows (biology/privacy/fingerprints.json) and rhyme schemes of n lines (culture/poetry/fingerprints.json) agree on all 8 common terms, the Bell numbers 1, 2, 5, 15, 52, 203, 877, 4140; biology/privacy/check.py and culture/poetry/check.py both pass. Both are set partitions."

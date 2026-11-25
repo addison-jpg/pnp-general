@@ -227,7 +227,7 @@ for name, parent in [
  ("MinCERewire", "no gate-saving rewiring"), ("GraphHeavy", "heavy point"),
  ("ChainSum_qgd2", C), ("CertDHeavy", "point step for real-witness gates"),
 ]: add(name+".lean", parent, "lean module", name, "")
-add("general circuits program", ROOT, "neighbour", "L-gen, GeNeRALIZE, BoolSumNot, C4, K13, K2", "the NOT gate ladder above rung 1; names live in lean/PEqualNP/General and notes/general")
+add("general circuits program", ROOT, "neighbour", "L-gen, GeNeRALIZE, BoolSumNot, C4, K13, K2", "the NOT gate ladder above rung 1; names live in lean/PEqualNP/General and workshop/notes/general")
 
 for k, v in N.items():
     assert v["parent"] is None or v["parent"] in N, (k, v["parent"])
@@ -306,7 +306,7 @@ def build():
 
     # coverage: which code-like tokens of the key documents have no name yet
     codes = " ".join(v["code"] + " " + k for k, v in N.items())
-    docs = ["one-not/DEAD_ENDS.md", "notes/synthesis/collation-2026-11-24.md", "one-not/FINDINGS_2026-11-24.md"]
+    docs = ["one-not/DEAD_ENDS.md", "workshop/notes/synthesis/collation-2026-11-24.md", "one-not/FINDINGS_2026-11-24.md"]
     tok = {}
     for d in docs:
         for t in re.findall(r"\b(?:cx[A-Za-z0-9_]+|[A-Z][A-Za-z]*[0-9][A-Za-z0-9']*|[A-Z]{2,}(?:-[A-Z0-9]+)+|[A-Z][a-z]+[A-Z][A-Za-z0-9]*)\b", open(d).read()):

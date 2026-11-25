@@ -1,0 +1,9 @@
+# Art at the base of the ontology. See culture/art/ART.md and culture/art/art.py.
+check "python3 -I culture/art/art.py"
+check "python3 -I philosophy/numbers.py"
+frame "Music: the circle of fifths and the Pythagorean comma (cited)" reading "exact facts only: steps 1, 5, 7, 11 generate Z/12; 3^12 != 2^19; no pure fifths close on octaves" -> 2 label checked-finite reach 3 cost 40
+frame "Equal temperament needs an irrational; philosophy/NUMBERS.md puts the same choice to physics" reading "no fraction has twelfth power 2 (denominators up to 2000); and no fraction squares to 2 (numbers.py)" -> 3 label checked-finite reach 3 cost 40
+frame "The Unitarian web of all existence (1985; cited from memory); the link is analogy (reading), not checked" reading "a web with no work alone is counted like a household with no one alone: 0, 1, 4, 41, 768, 27449" -> 2 label checked-finite reach 3 cost 40
+frame "Benjamin 1935, Eco 1962, Sontag 1964, Munoz 2009, Lessig 2004: art opened to everyone is liberatory" reading "ANALOGY (a reading): the open work is the aesthetic name for open source" -> none label open reach 3 cost 120
+frame "Addison: queerness is art, music is art, it all maps through a web of poetry" reading "ANALOGY (a reading): an exact form under an open reading, in every pillar" -> none label open reach 3 cost 160
+record culture/art art checked-finite "culture/art/art.ath: steps 1, 5, 7, 11 generate the 12 pitch classes (Z/12); the Pythagorean comma 3^12/2^19; no stack of pure fifths closes on octaves; no fraction has twelfth power 2 (q <= 2000); webs of works with no work alone number 0, 1, 4, 41, 768, 27449 on 1..6 works."

@@ -1,34 +1,34 @@
 # Frames: one per idea Addison brought, tied to the claim that formalizes it, or to none if still open.
 # score = reach * chance / cost (asteroid/SPEC.md, "Frames"). reach = groups it helps; cost in thousands of tokens.
 check "python3 -I philosophy/rhizome.py"
-check "python3 -I brain/cortex/check.py"
-check "python3 -I transit/check.py"
-check "python3 -I transit/social.py"
+check "python3 -I biology/brain/cortex/check.py"
+check "python3 -I math/transit/check.py"
+check "python3 -I math/transit/social.py"
 frame "Lacan, the Borromean knot (philosophy/PSYCHOSIS.md)" reading "the three rings: every linking number 0, triple invariant 1" -> knots.ath label checked-finite reach 2 cost 80
 frame "Deleuze and Guattari, rhizome against tree (philosophy/rhizome.py)" reading "a tree is a connected graph whose every edge is a bridge; bridgeless graphs counted to 6 vertices" -> 3 label checked-finite reach 1 cost 80
-frame "the hairy ball on the cortex (brain/cortex/BASE.md)" reading "discrete Morse: critical cells sum to 2 in every field on the tetrahedron" -> 4 label checked-finite reach 3 cost 80
-frame "a neuron grows like a phylogeny (brain/neuron)" reading "segmental growth histories number (2n-3)!!, the rooted binary trees" -> neuron.ath label checked-finite reach 2 cost 80
-frame "privacy as counting (privacy/BASE.md)" reading "equality patterns of n rows are set partitions, Bell numbers" -> privacy.ath label checked-finite reach 2 cost 80
-frame "gravity as inevitability (essays/knowing.md)" reading "every escape route computes OR(people, ground)" -> gravity.ath label checked-finite reach 1 cost 80
-frame "Homestuck alchemy (homestuck/BASE.md)" reading "alchemy at b = 3 is an OR circuit that shares gates" -> alchemy.ath label checked-finite reach 2 cost 80
+frame "the hairy ball on the cortex (biology/brain/cortex/BASE.md)" reading "discrete Morse: critical cells sum to 2 in every field on the tetrahedron" -> 4 label checked-finite reach 3 cost 80
+frame "a neuron grows like a phylogeny (biology/brain/neuron)" reading "segmental growth histories number (2n-3)!!, the rooted binary trees" -> neuron.ath label checked-finite reach 2 cost 80
+frame "privacy as counting (biology/privacy/BASE.md)" reading "equality patterns of n rows are set partitions, Bell numbers" -> privacy.ath label checked-finite reach 2 cost 80
+frame "gravity as inevitability (culture/essays/knowing.md)" reading "every escape route computes OR(people, ground)" -> gravity.ath label checked-finite reach 1 cost 80
+frame "Homestuck alchemy (culture/homestuck/BASE.md)" reading "alchemy at b = 3 is an OR circuit that shares gates" -> alchemy.ath label checked-finite reach 2 cost 80
 # Stays open: no map between two sessions is written down; invariant.py checks the cargo (order-free claims), not the vessel.
-frame "Homestuck, the meteor (homestuck/BASE.md section 5)" reading "the meteor as a transport map between two sessions that keeps the rules" -> none label open reach 2 cost 160
+frame "Homestuck, the meteor (culture/homestuck/BASE.md section 5)" reading "the meteor as a transport map between two sessions that keeps the rules" -> none label open reach 2 cost 160
 # Stays open: needs new prompting runs, which use the model; the CPU is taken.
-frame "prompting claims C3 to C6 (ath_prompts/SYNTHESIS.md)" reading "informal asks succeed as well with fewer corrections; boards cut duplicates and messages" -> none label open reach 3 cost 240
-frame "Addison: buses on the hairy ball (ontology/SOURCES.md)" reading "exact cover time of a random walk on every connected graph up to 6 vertices is at most 2m(n-1) (Aleliunas et al. 1979); index sum 2 is a cite" -> 5 label checked-finite reach 2 cost 80
-# Stays open: a contested question in philosophy of physics; no finite check decides it. cosmos/BASE.md section 7 gives the reading.
-frame "Addison: time as socially constructed (ontology/SOURCES.md)" reading "relativity: time is a coordinate; whether it is fundamental is contested" -> none label open reach 1 cost 160
+frame "prompting claims C3 to C6 (workshop/ath_prompts/SYNTHESIS.md)" reading "informal asks succeed as well with fewer corrections; boards cut duplicates and messages" -> none label open reach 3 cost 240
+frame "Addison: buses on the hairy ball (core/ontology/SOURCES.md)" reading "exact cover time of a random walk on every connected graph up to 6 vertices is at most 2m(n-1) (Aleliunas et al. 1979); index sum 2 is a cite" -> 5 label checked-finite reach 2 cost 80
+# Stays open: a contested question in philosophy of physics; no finite check decides it. physics/cosmos/BASE.md section 7 gives the reading.
+frame "Addison: time as socially constructed (core/ontology/SOURCES.md)" reading "relativity: time is a coordinate; whether it is fundamental is contested" -> none label open reach 1 cost 160
 # Stays open: a history-of-ideas claim; needs sources found and read, none invented.
-frame "Addison: Stirner's fixed ideas (ontology/SOURCES.md)" reading "the fixed idea in Stirner (1844) and in psychiatry: Esquirol's monomania, Janet's idee fixe" -> none label open reach 1 cost 160
+frame "Addison: Stirner's fixed ideas (core/ontology/SOURCES.md)" reading "the fixed idea in Stirner (1844) and in psychiatry: Esquirol's monomania, Janet's idee fixe" -> none label open reach 1 cost 160
 
-frame "Addison: Fisher, capitalist realism (ontology/SOURCES.md; philosophy/ and Fisher.lean)" reading "a closed class of a Markov chain: once in, no state outside is reachable; every chain on up to 4 states (50978 sink-free graphs) has one and absorbs with probability 1" -> 6 label checked-finite reach 2 cost 80
-frame "Addison: social applications of the buses: Granovetter weak ties (ontology/SOURCES.md)" reading "two cliques K_k, k=2..5: no bridge gives infinite cover time; one bridge makes it finite, hitting time k(k-1)+1 from the bridge end; a second bridge lowers it" -> 6 label checked-finite reach 2 cost 80
-record transit transit checked-finite "frames.ath: transit/social.py passes. Every sink-free chain on 1..4 states has a closed class, absorbs with probability 1, and 77260 single edges out of a closed class to a state reaching back all break it. Two cliques K_k (k=2..5): one bridge makes cover time finite; hitting time from the bridge end is k(k-1)+1; a second bridge lowers it."
-check "python3 -I carseat/check.py"
-frame "Addison: Car Seat Headrest, tybee island horse ghosts (ontology/SOURCES.md)" reading "one drone played forward and reversed at once: a claim checked in both directions (prover and refuter, reader and writer round trip)" -> 27 label checked-finite reach 1 cost 120
+frame "Addison: Fisher, capitalist realism (core/ontology/SOURCES.md; philosophy/ and Fisher.lean)" reading "a closed class of a Markov chain: once in, no state outside is reachable; every chain on up to 4 states (50978 sink-free graphs) has one and absorbs with probability 1" -> 6 label checked-finite reach 2 cost 80
+frame "Addison: social applications of the buses: Granovetter weak ties (core/ontology/SOURCES.md)" reading "two cliques K_k, k=2..5: no bridge gives infinite cover time; one bridge makes it finite, hitting time k(k-1)+1 from the bridge end; a second bridge lowers it" -> 6 label checked-finite reach 2 cost 80
+record math/transit transit checked-finite "frames.ath: math/transit/social.py passes. Every sink-free chain on 1..4 states has a closed class, absorbs with probability 1, and 77260 single edges out of a closed class to a state reaching back all break it. Two cliques K_k (k=2..5): one bridge makes cover time finite; hitting time from the bridge end is k(k-1)+1; a second bridge lowers it."
+check "python3 -I culture/carseat/check.py"
+frame "Addison: Car Seat Headrest, tybee island horse ghosts (core/ontology/SOURCES.md)" reading "one drone played forward and reversed at once: a claim checked in both directions (prover and refuter, reader and writer round trip)" -> 27 label checked-finite reach 1 cost 120
 frame "Addison: the multiverse is Deleuzean; the psychosis framework (philosophy/PSYCHOSIS.md)" reading "the measure problem as a missing anchor: Lacan supplies one (a chosen measure, a sinthome), Deleuze refuses one (the virtual as multiplicity); the cosmos toy shows the ordering alone decides the probability" -> cosmos.ath label checked-finite reach 3 cost 80
-check "python3 -I cosmos/invariant.py"
-frame "Addison: postmodern history of the universe along time, Lyotard 1979 (cosmos/BASE.md section 7)" reading "a claim crosses to every branch only if it holds in every ordering: for n <= 7, a frequency is ordering-independent at every cutoff iff the property is constant; n^2 mod 4 in {0,1} has frequency 1 in orderings A and B" -> 30 label checked-finite reach 3 cost 80
-frame "Addison: Car Seat Headrest as a level, dated records (carseat/BASE.md)" reading "1 2010, 2 2010, Twin Fantasy 2011, Face to Face 2018 form a time-ordered list; the two versions are 7 years apart" -> 27 label checked-finite reach 1 cost 40
-frame "Addison: Car Seat Headrest, heaven full of people (essays/knowing.md; carseat/BASE.md)" reading "every escape route computes OR(people, ground)" -> gravity.ath label checked-finite reach 1 cost 40
+check "python3 -I physics/cosmos/invariant.py"
+frame "Addison: postmodern history of the universe along time, Lyotard 1979 (physics/cosmos/BASE.md section 7)" reading "a claim crosses to every branch only if it holds in every ordering: for n <= 7, a frequency is ordering-independent at every cutoff iff the property is constant; n^2 mod 4 in {0,1} has frequency 1 in orderings A and B" -> 30 label checked-finite reach 3 cost 80
+frame "Addison: Car Seat Headrest as a level, dated records (culture/carseat/BASE.md)" reading "1 2010, 2 2010, Twin Fantasy 2011, Face to Face 2018 form a time-ordered list; the two versions are 7 years apart" -> 27 label checked-finite reach 1 cost 40
+frame "Addison: Car Seat Headrest, heaven full of people (culture/essays/knowing.md; culture/carseat/BASE.md)" reading "every escape route computes OR(people, ground)" -> gravity.ath label checked-finite reach 1 cost 40
 # The open Car Seat readings and the postmodern-history DAG frame moved to frames_sync.ath with their checks.

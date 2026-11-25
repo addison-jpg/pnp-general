@@ -4,7 +4,7 @@ import PEqualNP.Library.L010
 /-!
 # Descriptive complexity: P versus NP as a question about logical languages
 
-Task `language unification` (BOARD.md, TEAM). Prose and the honest map: `worlds/LANGUAGE.md`.
+Task `language unification` (BOARD.md, TEAM). Prose and the honest map: `math/worlds/LANGUAGE.md`.
 
 **Prior art, not ours.** Fagin 1974 (NP = existential second-order logic) and Immerman 1982/86,
 Vardi 1982 (on ordered finite structures, P = first-order logic with least fixed points) are

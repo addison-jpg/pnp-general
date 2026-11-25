@@ -1,7 +1,12 @@
 {
+ "art": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "asteroid": {
   "cells": {
-   "DECIDED": 6,
+   "DECIDED": 7,
    "OPEN": 4,
    "TAKEN": 6
   },
@@ -14,7 +19,7 @@
  "brain": {
   "cells": {},
   "findings": {
-   "checked-finite": 9
+   "checked-finite": 10
   },
   "mean_radius_findings": 0.0
  },
@@ -39,8 +44,10 @@
  },
  "compbio": {
   "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
  },
  "compute": {
   "cells": {
@@ -53,13 +60,29 @@
  },
  "cosmos": {
   "cells": {},
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
+ },
+ "curvature": {
+  "cells": {},
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
+ },
+ "essays": {
+  "cells": {},
   "findings": {},
   "mean_radius_findings": null
  },
  "homestuck": {
   "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
  },
  "language": {
   "cells": {},
@@ -76,12 +99,22 @@
   },
   "mean_radius_findings": 0.0
  },
+ "love": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "methods": {
   "cells": {
    "DECIDED": 2,
    "OPEN": 6,
    "STOPPED": 1
   },
+  "findings": {},
+  "mean_radius_findings": null
+ },
+ "narrative": {
+  "cells": {},
   "findings": {},
   "mean_radius_findings": null
  },
@@ -99,10 +132,8 @@
    "STOPPED": 2,
    "TAKEN": 2
   },
-  "findings": {
-   "checked-finite": 7
-  },
-  "mean_radius_findings": 0.0
+  "findings": {},
+  "mean_radius_findings": null
  },
  "philosophy": {
   "cells": {
@@ -114,10 +145,15 @@
   },
   "mean_radius_findings": 0.0
  },
+ "poetry": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "privacy": {
   "cells": {},
   "findings": {
-   "checked-finite": 2
+   "checked-finite": 3
   },
   "mean_radius_findings": 0.0
  },
@@ -139,12 +175,45 @@
   },
   "mean_radius_findings": 0.0
  },
- "routing": {
+ "queer": {
   "cells": {},
   "findings": {},
   "mean_radius_findings": null
  },
+ "race": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
+ "routing": {
+  "cells": {},
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
+ },
+ "social": {
+  "cells": {},
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
+ },
  "time": {
+  "cells": {},
+  "findings": {
+   "checked-finite": 4
+  },
+  "mean_radius_findings": 0.0
+ },
+ "transit": {
+  "cells": {},
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
+ },
+ "universes": {
   "cells": {},
   "findings": {},
   "mean_radius_findings": null

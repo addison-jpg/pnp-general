@@ -31,7 +31,7 @@ except SystemExit as e: want("bad literal is an error", "not an integer" in str(
 
 prog = '''seq cat = [1, 1, 2, 5, 14, 42, 132]
 seq ps = [1, 2, 4, 9, 23, 65, 197]
-seq bell = from privacy/fingerprints.json "Bell numbers"
+seq bell = from biology/privacy/fingerprints.json "Bell numbers"
 claim cat = [1, 1, 2, 5, 14]
 claim cat = [1, 1, 2, 5, 15]
 claim cat matches ps partial
@@ -41,7 +41,7 @@ claim formula cat = "n!"
 claim formula cat = "n // 2"
 claim formula bell = "sum(k, 0, n, sum(j, 0, k, (-1)**j * C(k, j) * (k - j)**n) // k!)"
 claim bell matches cat
-check "python3 -I brain/neuron/check.py"
+check "python3 -I biology/brain/neuron/check.py"
 check "python3 -I asteroid/tests/finite_nopass.py"
 '''
 expect = [True, False, True, False, True, False, False, True, False, True, False]

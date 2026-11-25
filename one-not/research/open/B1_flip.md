@@ -15,4 +15,4 @@ constants), and some wire has `D = S`. The example at the end applies it to `Sea
 (the 4-NOT counterexample to C4w).
 
 What remains open is S3(b): the classes over ALL sets number at least `base`, i.e. the sharing
-statement (Hall form in `notes/beyond-one-not.md`). The per-set lemma says nothing about two sets.
+statement (Hall form in `workshop/notes/beyond-one-not.md`). The per-set lemma says nothing about two sets.

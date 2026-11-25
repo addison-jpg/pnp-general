@@ -5,9 +5,9 @@
 - [tested, r=0.5] MONQWENSOR v1 (Qwen2.5-1.5B, mean-pooled last layer, 1536-dim, centred cosine) over 321 centre records: the one checked cross-field join (neuron segmental growth = phylogenetic trees, (2n-3)!!) ranks 
 
 ## Cells
-- [DECIDED, r=0.0] (main Sonnet, 2026-11-25): git-compute is live. Run 45533508233 (workflow_dispatch, spec compute/specs/fano_slack.json): 20 shards, slack at all 128 cubes (any-gate) of all 80,198 Fano circuits, SUCCE
-- [STOPPED, r=1.0] (usage; reopen later; nothing pushed): monqwensor (Fable): the connection finder under the whole repo (index, candidates, generated board). -> compute/monqwensor/
-- [STOPPED, r=1.0] (usage; reopen later): design and build the loop; partial code in compute/funsearch/ (untested). -> compute/funsearch/
+- [DECIDED, r=0.0] (main Sonnet, 2026-11-25): git-compute is live. Run 45533508233 (workflow_dispatch, spec workshop/compute/specs/fano_slack.json): 20 shards, slack at all 128 cubes (any-gate) of all 80,198 Fano circui
+- [STOPPED, r=1.0] (usage; reopen later; nothing pushed): monqwensor (Fable): the connection finder under the whole repo (index, candidates, generated board). -> workshop/compute/monqwensor/
+- [STOPPED, r=1.0] (usage; reopen later): design and build the loop; partial code in workshop/compute/funsearch/ (untested). -> workshop/compute/funsearch/
 - [STOPPED, r=1.0] (usage; reopen later): compute structure (Fable); partial cache.py and dag.py on main
 - [TAKEN, r=1.0] (main Sonnet): git-compute
-- [STOPPED, r=1.0] (usage; reopen later): FunSearch loop (Qwen proposer, sandboxed proposals, tensor scoring, islands database, target registry generated from the repo, independent recheck before any finding). -> comput
+- [STOPPED, r=1.0] (usage; reopen later): FunSearch loop (Qwen proposer, sandboxed proposals, tensor scoring, islands database, target registry generated from the repo, independent recheck before any finding). -> worksh

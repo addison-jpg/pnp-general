@@ -9,5 +9,5 @@
 
 ## Lines (append only: time, who, tag, one line)
 
-- 19:00 Generalize [DATA] status: not proved, not refuted. Proved: max + 3, exact min + 4 when C(f) != C(¬f), iterated bounds (XorIterate.lean). SAT: no counterexample m <= 6, any number of variables; m = 7 for 4 variables (Fable, 1d6db78). m = 7 for 5 to 8 variables timed out at 2 h and was stopped by the owner. Candidate lemmas: notes/general/generalize-open-case.md.
+- 19:00 Generalize [DATA] status: not proved, not refuted. Proved: max + 3, exact min + 4 when C(f) != C(¬f), iterated bounds (XorIterate.lean). SAT: no counterexample m <= 6, any number of variables; m = 7 for 4 variables (Fable, 1d6db78). m = 7 for 5 to 8 variables timed out at 2 h and was stopped by the owner. Candidate lemmas: workshop/notes/general/generalize-open-case.md.
 - 19:00 Generalize [DECIDED] paused by the owner (direct instruction "u need to stop"); not TAKEN. No processes running from this seat.

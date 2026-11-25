@@ -24,3 +24,6 @@ asteroid/out/_*.lean
 asteroid/out/.repl_history
 asteroid/out/_window.ath
 asteroid/out/native_check_*.svg
+
+core/ontology/.ask_cache.json
+core/ontology/.ask_cache.json.tmp

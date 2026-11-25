@@ -2,16 +2,20 @@
 
 Records live in `center/shards/<program>.jsonl`. Radius 0 = settled (Lean, or a refutation confirmed by a second seat); 1 = open. Hand-written boards are inputs until retired; this is what a seat reads.
 
+## art
+findings (verified): none · mean radius None
+cells: none
+
 ## asteroid
 findings (verified): 7 checked, 3 tested · mean radius 0.095
-cells: 6 DECIDED, 4 OPEN, 6 TAKEN
+cells: 7 DECIDED, 4 OPEN, 6 TAKEN
 - OPEN [?] seat 2 term-bundle stays with coord's seat line (asteroid-vscode seat, which scoped this board).  (asteroid-term:27)
 - OPEN [?] no seat has written a TAKEN line yet; `asteroid/logo_art.py` does not exist. Seat: coord's Sonnet seat (see Seats above).  (asteroid-cli-logo:12)
 - OPEN [?] seat 5, `corpus`, `hunt`/`search`, `mixed`, the rest of the term language (NATIVE.md "What remains" 1-3).  (asteroid-term:28)
 - OPEN [?] (Addison): Open VSX is not published (needs Addison's token).  (asteroid-vscode:11)
 
 ## brain
-findings (verified): 9 checked-finite · mean radius 0.0
+findings (verified): 10 checked-finite · mean radius 0.0
 cells: none
 
 ## carseat
@@ -36,7 +40,7 @@ cells: 9 DECIDED, 15 OPEN, 8 STOPPED, 2 TAKEN
 - … 3 more in the shard
 
 ## compbio
-findings (verified): none · mean radius None
+findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
 ## compute
@@ -44,11 +48,19 @@ findings (verified): none · mean radius None
 cells: 1 DECIDED, 4 STOPPED, 1 TAKEN
 
 ## cosmos
+findings (verified): 1 checked-finite · mean radius 0.0
+cells: none
+
+## curvature
+findings (verified): 1 checked-finite · mean radius 0.0
+cells: none
+
+## essays
 findings (verified): none · mean radius None
 cells: none
 
 ## homestuck
-findings (verified): none · mean radius None
+findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
 ## language
@@ -60,6 +72,10 @@ findings (verified): 1 checked · mean radius 0.0
 cells: 1 DECIDED, 1 OPEN
 - OPEN [Fable] (Fable under the revised seat rule; low priority, idle compute): the asteroid Tarski instance. Gödel-number asteroid claims (Stmt) as data that claims can menti → `one-not/lean/PEqualNP/Lateral/AsteroidTarski.lean`  (lateral-diagonal:20)
 
+## love
+findings (verified): none · mean radius None
+cells: none
+
 ## methods
 findings (verified): none · mean radius None
 cells: 2 DECIDED, 6 OPEN, 1 STOPPED
@@ -70,51 +86,79 @@ cells: 2 DECIDED, 6 OPEN, 1 STOPPED
 - OPEN [Fable] (Fable): for item 5, one more edge as data (coord): "refuted → restrict". The general point lemma (several-NOT) was refuted by AG(2,8) (`one-not/data/witnesses/  (methods-formal:26)
 - OPEN [Fable] (Fable): item 3, `Methods/Board.lean`. Design ready: a record = (dir as a list of segments, id, optional who / word / evidence, by, optional retest ok); a world  (methods-formal:21)
 
+## narrative
+findings (verified): none · mean radius None
+cells: none
+
 ## ontology
 findings (verified): 4 checked-finite · mean radius 0.0
 cells: none
 
 ## other
-findings (verified): 7 checked-finite · mean radius 0.0
+findings (verified): none · mean radius None
 cells: 13 DECIDED, 5 OPEN, 2 STOPPED, 2 TAKEN
 - OPEN [Fable] (Fable): Lean, a parameter-dimension potential for products of two-qubit gates that is `Unify.Lip 15` (or 9), so that L119's count is literally `Unify.lip_count → `lean/PEqualNP/QuantumGravity/Open/`  (BOARD:33)
 - OPEN [Fable] (Fable): matroid union for hypergraphic ranks (converse of `Unify.unsplit_of_partition`): split condition ⟹ disjoint spanning forests; Mathlib has no matroid un → `one-not/lean/PEqualNP/W951/Open/`  (BOARD:34)
 - OPEN [Fable] (Fable): Lean, every one-string language is in `P` (`Defs/Base.lean`), to remove the hypothesis of `Unify.p_np_same_view`. -> lean/PEqualNP/Worlds/Unify.lean → `lean/PEqualNP/Worlds/Unify.lean`  (BOARD:32)
 - OPEN [Opus] (Opus): CKW realizability: every (x, y) with x + y ≤ t ≤ 1 is (τ_AB, τ_AC) of a three-qubit state with τ_{A|BC} = t (W-class states), against `CKW.ckw`. -> lean → `lean/PEqualNP/QuantumGravity/Open/CKW.lean`  (BOARD:36)
-- OPEN [Fable] (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets o → `worlds/unify_rank.py`  (BOARD:35)
+- OPEN [Fable] (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets o → `math/worlds/unify_rank.py`  (BOARD:35)
 
 ## philosophy
 findings (verified): 13 checked, 4 checked-finite · mean radius 0.0
 cells: 2 DECIDED
 
+## poetry
+findings (verified): none · mean radius None
+cells: none
+
 ## privacy
-findings (verified): 2 checked-finite · mean radius 0.0
+findings (verified): 3 checked-finite · mean radius 0.0
 cells: none
 
 ## prompt-method
 findings (verified): 3 tested · mean radius 0.333
 cells: 5 DECIDED, 3 OPEN, 1 TAKEN
 - OPEN [Sonnet] (Sonnet, research session's Qwen instrument): natural languages (Addison, 2026-11-25: "is it worth bringing natural language models (like, foreign language syst → `ath_prompts/measure/languages.md`  (ath-prompt-quant:15)
-- OPEN [?] (any seat, small): export your own session's direct prompts from Addison into `ath_prompts/<your-seat>.md` in the same format (verbatim, UTC times, [choice] for  (ath-prompt-quant:7)
 - OPEN [Sonnet] (Sonnet, research session's Qwen instrument): AAVE and scene speak as registers. Source: Addison, 2026-11-25: "beavoir/philosophy/ french to english can help bu  (ath-prompt-quant:33)
+- OPEN [?] (any seat, small): export your own session's direct prompts from Addison into `workshop/ath_prompts/<your-seat>.md` in the same format (verbatim, UTC times, [ch  (ath-prompt-quant:7)
 
 ## quantum-gravity
 findings (verified): 13 checked · mean radius 0.0
 cells: none
 
-## routing
+## queer
 findings (verified): none · mean radius None
 cells: none
 
+## race
+findings (verified): none · mean radius None
+cells: none
+
+## routing
+findings (verified): 1 checked-finite · mean radius 0.0
+cells: none
+
+## social
+findings (verified): 1 checked-finite · mean radius 0.0
+cells: none
+
 ## time
+findings (verified): 4 checked-finite · mean radius 0.0
+cells: none
+
+## transit
+findings (verified): 1 checked-finite · mean radius 0.0
+cells: none
+
+## universes
 findings (verified): none · mean radius None
 cells: none
 
 ## worlds
 findings (verified): 9 checked · mean radius 0.0
 cells: 2 DECIDED, 3 OPEN, 1 STOPPED, 2 TAKEN
-- OPEN [Sonnet] (Sonnet) W1: retrieval and the note, with read status. -> notes/worlds-map.md (or philosophy-free location: `worlds/README.md`), plus LITERATURE.md rows. → `notes/worlds-map.md`  (worlds-map:20)
 - OPEN [Fable] (Fable or Sonnet, after W1) W2: Lean definitions of the worlds as Props over abstract classes (no proofs of separations), and the hierarchy theorem cited or lin → `lean/PEqualNP/Worlds/Map.lean`  (worlds-map:21)
+- OPEN [Sonnet] (Sonnet) W1: retrieval and the note, with read status. -> notes/worlds-map.md (or philosophy-free location: `math/worlds/README.md`), plus LITERATURE.md rows. → `notes/worlds-map.md`  (worlds-map:20)
 - OPEN [Sonnet] (Sonnet; Fable only if a Lean statement is worth writing) W3: reduction routes, meaning theorems that carry a result on one axis to the P vs NP cut. Label: "map  (worlds-map:23)
 
 ## Sequence matches across programs (proposals only; a seat decides join / analogy / rhyme)
@@ -136,3 +180,11 @@ cells: 2 DECIDED, 3 OPEN, 1 STOPPED, 2 TAKEN
 - segmental-growth histories (2n-3)!!, n=1..9 [as is] ~ rooted binary phylogenetic trees, n leaves (n>=2) [as is], 7 terms
 - segmental-growth histories (2n-3)!!, n=1..9 [first differences] ~ rooted binary phylogenetic trees, n leaves (n>=2) [first differences], 6 terms
 - segmental-growth histories (2n-3)!!, n=1..9 [plus 1] ~ rooted binary phylogenetic trees, n leaves (n>=2) [plus 1], 7 terms
+- Bell numbers: equality patterns (set partitions) of n table rows, n=1..8 [as is] ~ rhyme schemes of n lines (Bell numbers) [as is], 8 terms
+- Bell numbers: equality patterns (set partitions) of n table rows, n=1..8 [first differences] ~ rhyme schemes of n lines (Bell numbers) [first differences], 7 terms
+- Bell numbers: equality patterns (set partitions) of n table rows, n=1..8 [partial sums] ~ rhyme schemes of n lines (Bell numbers) [partial sums], 8 terms
+- Bell numbers: equality patterns (set partitions) of n table rows, n=1..8 [plus 1] ~ rhyme schemes of n lines (Bell numbers) [plus 1], 8 terms
+- alchemy items at saturation, b base items [first differences] ~ capiton chains fixed after the signifier ends [as is], 5 terms
+- alchemy items at saturation, b base items [first differences] ~ capiton chains fixed after the signifier ends [first differences], 5 terms
+- alchemy items at saturation, b base items [plus 1] ~ capiton chains fixed after the signifier ends [as is], 6 terms
+- alchemy items at saturation, b base items [plus 1] ~ capiton chains fixed after the signifier ends [first differences], 6 terms

@@ -1,15 +1,16 @@
-# Builds asteroid.exe for Windows: the native Lean evaluator (asteroid/NATIVE.md), about 6 MB, no Python inside.
-# Double-click opens the asteroid prompt (4ST>) in a console window (Windows Terminal on Windows 11).
-# Run it by hand: Actions > exe > Run workflow. Never on push. It makes no release and no tag (QUIET):
-# the exe is a workflow artifact and a bot commit of asteroid.exe at the repository root.
-# Until 2026-11-25 this built a PyInstaller bundle of the tkinter window (asteroid/idle_exe.py), because the
-# Lean binary was 122 MiB; it is now 6 MB (boards/tasks/asteroid-term.md, seat 1).
+# Builds the two asteroid programs for Windows and Linux and commits them to dist/ on the branch it was run on:
+#   ast       the native checker, written in Lean (asteroid/NATIVE.md): a few MB, no Python inside.
+#             dist/windows/ast.exe, dist/linux/ast. The Lean target keeps the name `asteroid`; only the file is renamed.
+#   asteroid  the universal language: the full Python implementation, every extension, one file (PyInstaller,
+#             packaging/universal/asteroid.spec). dist/windows/asteroid.exe, dist/linux/asteroid.
+# Run it by hand: Actions > exe > Run workflow. Never on push. It makes no release and no tag (QUIET): the files are
+# workflow artifacts and one bot commit ([skip ci]) by the publish job, the only job that may write.
 name: exe
 on: workflow_dispatch
 permissions:
   contents: read
 jobs:
-  build:
+  ast-windows:
     runs-on: windows-latest
     steps:
       - run: git config --global core.longpaths true
@@ -20,7 +21,7 @@ jobs:
           curl.exe -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.ps1 -o elan-init.ps1
           .\elan-init.ps1 -NoPrompt 1 -DefaultToolchain none
           Add-Content $env:GITHUB_PATH "$env:USERPROFILE\.elan\bin"
-      - name: Build the native asteroid (no Mathlib is compiled; lake only clones it to resolve the project)
+      - name: Build the native checker (no Mathlib is compiled; lake only clones it to resolve the project)
         shell: pwsh
         working-directory: one-not/lean
         run: lake build asteroid
@@ -29,37 +30,112 @@ jobs:
         run: |
           pip install pillow
           python -c "from PIL import Image; Image.open('editors/vscode/images/icon.png').save('icon.ico', sizes=[(16,16),(32,32),(48,48),(256,256)])"
-          Copy-Item one-not/lean/.lake/build/bin/asteroid.exe asteroid.exe
+          Copy-Item one-not/lean/.lake/build/bin/asteroid.exe ast.exe
           npm install --no-save rcedit@4.0.1
-          node -e "require('rcedit')('asteroid.exe', { icon: 'icon.ico', 'version-string': { CompanyName: 'addison-jpg', ProductName: 'asteroid', FileDescription: 'asteroid (native evaluator)', LegalCopyright: 'MIT' }, 'file-version': '0.4.0', 'product-version': '0.4.0' }).then(() => console.log('rcedit ok'), e => { console.error(e); process.exit(1) })"
+          node -e "require('rcedit')('ast.exe', { icon: 'icon.ico', 'version-string': { CompanyName: 'addison-jpg', ProductName: 'asteroid', FileDescription: 'ast (native asteroid checker)', LegalCopyright: 'MIT' }, 'file-version': '0.4.0', 'product-version': '0.4.0' }).then(() => console.log('rcedit ok'), e => { console.error(e); process.exit(1) })"
       - name: Smoke test (the build fails if the exe is broken)
         shell: pwsh
         run: |
-          .\asteroid.exe version
+          .\ast.exe version
           if ($LASTEXITCODE -ne 0) { exit 1 }
-          .\asteroid.exe hello.ath --no-proof
+          .\ast.exe hello.ath --no-proof
           if ($LASTEXITCODE -ne 0) { exit 1 }
-          .\asteroid.exe asteroid\tests\notgate.ath --no-proof
+          .\ast.exe asteroid\tests\notgate.ath --no-proof
           if ($LASTEXITCODE -ne 1) { Write-Host "notgate should exit 1 (one forced false claim)"; exit 1 }
-          ":quit" | .\asteroid.exe
+          ":quit" | .\ast.exe
           if ($LASTEXITCODE -ne 0) { exit 1 }
-          Write-Host ("size: {0:N1} MB" -f ((Get-Item asteroid.exe).Length / 1MB))
+          Write-Host ("size: {0:N1} MB" -f ((Get-Item ast.exe).Length / 1MB))
       - uses: actions/upload-artifact@v4
-        with: { name: asteroid-exe, path: asteroid.exe }
-  publish:
-    needs: build
+        with: { name: ast-windows, path: ast.exe }
+
+  ast-linux:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write          # this job only: it commits asteroid.exe
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with: { name: asteroid-exe }
-      - name: Commit asteroid.exe to the repository root
+      - name: Install elan
         run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan-init.sh
+          sh elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build the native checker and strip it
+        working-directory: one-not/lean
+        run: |
+          lake build asteroid
+          strip -o ../../ast .lake/build/bin/asteroid
+      - name: Smoke test
+        run: |
+          ./ast version
+          ./ast hello.ath --no-proof
+          set +e; ./ast asteroid/tests/notgate.ath --no-proof; rc=$?; set -e
+          [ "$rc" = 1 ] || { echo "notgate should exit 1 (one forced false claim), got $rc"; exit 1; }
+          echo ":quit" | ./ast
+          ls -l ast
+      - uses: actions/upload-artifact@v4
+        with: { name: ast-linux, path: ast }
+
+  asteroid:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: git config --global core.longpaths true
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13" }
+      - name: "Install PyInstaller, numpy, matplotlib (nothing heavy: no torch, no transformers)"
+        run: python -m pip install pyinstaller==6.22.3 numpy==2.5.5 matplotlib==3.11.2 pillow
+      - name: Icon (Windows)
+        if: runner.os == 'Windows'
+        run: python -c "from PIL import Image; Image.open('editors/vscode/images/icon.png').save('packaging/universal/icon.ico', sizes=[(16,16),(32,32),(48,48),(256,256)])"
+      - name: Build the one-file asteroid
+        run: python -m PyInstaller --noconfirm --distpath build-out --workpath build-work packaging/universal/asteroid.spec
+      - name: Smoke test
+        shell: bash
+        run: |
+          B=build-out/asteroid; [ -f "$B.exe" ] && B="$B.exe"
+          "$B" version
+          "$B" hello.ath --no-proof
+          set +e; "$B" asteroid/tests/notgate.ath --no-proof; rc=$?; set -e
+          [ "$rc" = 1 ] || { echo "notgate should exit 1 (one forced false claim), got $rc"; exit 1; }
+          echo "propose and ask.py --model without a model must say so, not crash"
+          set +e; "$B" -I core/ontology/ask.py --model "what is open about time"; rc=$?; set -e
+          [ "$rc" = 3 ] || { echo "ask.py --model should exit 3 (model missing), got $rc"; exit 1; }
+          mkdir -p build-pub && cp "$B" build-pub/ && ls -l build-pub
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asteroid-${{ runner.os }}
+          path: build-pub/*
+
+  publish:
+    needs: [ast-windows, ast-linux, asteroid]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write          # this job only: it commits the four files to dist/
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with: { path: art }
+      - name: Commit dist/windows/ast.exe, dist/windows/asteroid.exe, dist/linux/ast, dist/linux/asteroid
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          mkdir -p dist/windows dist/linux
+          cp art/ast-windows/ast.exe dist/windows/ast.exe
+          cp art/asteroid-Windows/asteroid.exe dist/windows/asteroid.exe
+          cp art/ast-linux/ast dist/linux/ast
+          cp art/asteroid-Linux/asteroid dist/linux/asteroid
+          chmod +x dist/linux/ast dist/linux/asteroid
+          # the Arch package downloads dist/linux/ast: its checksum follows the new file
+          sum=$(sha256sum dist/linux/ast | cut -d' ' -f1)
+          sed -i "s/^sha256sums=('[0-9a-f]*'/sha256sums=('$sum'/" packaging/arch/PKGBUILD
+          ls -l dist/windows dist/linux
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add asteroid.exe
-          git commit -m "asteroid.exe: native build by the exe workflow [skip ci]" || { echo "no change"; exit 0; }
-          git pull --rebase origin main
-          git push origin HEAD:main
+          git add dist/windows/ast.exe dist/windows/asteroid.exe dist/linux/ast dist/linux/asteroid packaging/arch/PKGBUILD
+          git commit -m "dist: ast and asteroid, built by the exe workflow [skip ci]" || { echo "no change"; exit 0; }
+          git pull --rebase origin "$BRANCH"
+          git push origin "HEAD:$BRANCH"

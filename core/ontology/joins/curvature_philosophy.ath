@@ -1,0 +1,6 @@
+# Join curvature + philosophy: the cone's apex is a fan; flat iff 6. Shared fact computed in core/ontology/joins/fan.py.
+check "python3 -I physics/curvature/check.py"
+check "python3 -I philosophy/cone.py"
+check "python3 -I core/ontology/joins/fan.py"
+frame "Join: the cone of philosophy/cone.py and the fan of physics/curvature/check.py (Regge 1961, cited from memory)" reading "for d = 3..12 the cone over a d-cycle is a disk with the apex inside, and the apex deficit (2 - d/3) pi is 0 exactly when d = 6: the hub sits flat inside the disk only over a 6-ring" -> 4 label checked-finite reach 3 cost 40
+record physics/curvature join-cone checked-finite "core/ontology/joins/curvature_philosophy.ath: for d = 3..12 the cone over a d-cycle (philosophy/cone.py is_disk) is a disk with the apex inside, and the apex is a fan of d equilateral triangles whose deficit (physics/curvature/check.py) is 0 exactly when d = 6. Both checks pass in the same run."

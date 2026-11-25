@@ -68,6 +68,20 @@ The two graph and link facts are checked. The reading of the two theories throug
 - The computations establish facts about links and graphs. They show that Lacan's topological claims are correct as mathematics. They do not show that minds are links.
 - Nothing here describes any particular person, and nothing here is advice about treatment.
 
+## 5. Cone and disk: when a hub stops being critical (`cone.py`)
+
+**Checked-finite** (every base graph on up to 6 vertices, 33,867 graphs). Put one hub over a base: the cone.
+- The hub is critical (removing it disconnects everything) exactly when the base is disconnected. A spoke is critical exactly when its base point has no lateral link.
+- The fewest lateral links that make the hub not critical: the number of base pieces minus one.
+- The cone is a disk exactly when the base is one path or one cycle. The hub is *inside* the disk only for a cycle; for a path it sits on the edge.
+
+**The repository, measured:** `big.ath` is a hub over 23 universes with 3 lateral links in 20 pieces, 19 of them isolated. The hub is critical, and at least 19 lateral links are needed before it is not. A disk with the hub inside needs one ring through all 23.
+
+**Readings (analogy, mine, not in the texts):**
+- A star (a hub over scattered points) is the structure where every relation passes through one centre. Remove the centre and nothing connects. That is one way to read Lacan's foreclosure (section 1) and Fisher's capitalist realism (*Capitalist Realism: Is There No Alternative?*, 2009, cited from memory): relations privatised through one centre, so no alternative is reachable without it.
+- Lateral links between base points (mutual aid, kindness between the parts rather than through the centre) are what make the hub not critical. Enough of them, in a ring, flatten the cone into a disk with the hub inside and nothing critical: the Deleuze and Guattari extreme of section 3.
+- Kraepelin's *dementia praecox* (1899) and Bleuler's renaming to schizophrenia (1911) are history here (cited from memory), and section 4's limits apply: none of this describes a person or a treatment.
+
 ## Open
 
 1. Encode Lacan's drawing of Joyce's repaired knot from the primary text (page cited), and compute its invariants.

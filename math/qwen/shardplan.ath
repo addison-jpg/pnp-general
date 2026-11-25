@@ -1,0 +1,3 @@
+# This plans a 7B download and does not perform it. Only the small index and safetensors headers are read, never weights.
+check "python3 -I math/qwen/remote_headers.py"
+frame "The 7B bipartite graph (339 tensors, 4 shards) has no subset of fewer than 4 shards covering every tensor, so the full model is the minimum download" reading "every shard holds at least one tensor, so each shard is needed; the plan downloads nothing" -> 2 label checked-finite reach 1 cost 40

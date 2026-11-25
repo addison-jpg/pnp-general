@@ -1,0 +1,2 @@
+{"id": "5b49d0e3", "time": "2026-11-25 07:11", "who": "asteroid", "serves": "cosmos", "word": "checked-finite", "statement": "cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; physics/cosmos/check.py passes.", "evidence": ["cosmos.ath", "physics/cosmos/check.py", "physics/cosmos/fingerprints.json"], "by": ["asteroid"], "runner": "python3 -I physics/cosmos/check.py"}
+{"id": "5b49d0e3", "by": ["cosmos-review"]}

@@ -1,12 +1,14 @@
 {
  ".": {
   "counts": {
+   "checked-finite": 32,
    "checked": 91,
    "tested": 12,
-   "checked-finite": 26,
    "refuted": 6
   },
   "verified": [
+   "d7179e58",
+   "2befeb37",
    "8d76417d",
    "7d2be507",
    "31d6a07d",
@@ -18,9 +20,12 @@
    "a023c28e",
    "37dcef35",
    "c392a233",
-   "b63be80e",
-   "04ad73e2",
-   "7ce4c9ea",
+   "4e1d6548",
+   "3fadb567",
+   "95f52829",
+   "d85c69c0",
+   "6feb4aef",
+   "1178a112",
    "b32db1b7",
    "fe9dfe5d",
    "cd323891",
@@ -91,13 +96,13 @@
    "0e0a820c",
    "aff0216f",
    "c70b8e8f",
-   "4e1d6548",
-   "3fadb567",
-   "95f52829",
-   "d85c69c0",
-   "6feb4aef",
-   "1178a112",
    "5b49d0e3",
+   "9b1eb613",
+   "ff4253f7",
+   "ddc281d6",
+   "a8530ec5",
+   "1e25aba1",
+   "8d82a517",
    "3cef3bcc",
    "8f8708a6",
    "28a9c927",
@@ -107,9 +112,13 @@
    "ed925eb4",
    "4445c2b2",
    "26399549",
-   "ff4253f7",
-   "ddc281d6",
-   "a8530ec5",
+   "570a8228",
+   "d6c97be6",
+   "05debba4",
+   "d4f11420",
+   "b63be80e",
+   "04ad73e2",
+   "7ce4c9ea",
    "57b5bd42",
    "89fa09ba",
    "182f7509",
@@ -135,9 +144,6 @@
    "7961ecd5",
    "14e1a81a",
    "f9156a1e",
-   "d6c97be6",
-   "05debba4",
-   "2befeb37",
    "a38f09e6",
    "d57af9d8",
    "d094077a",
@@ -232,65 +238,34 @@
    }
   ]
  },
- "ath_prompts": {
+ "biology": {
   "counts": {
-   "tested": 3
+   "checked-finite": 14
   },
   "verified": [
-   "b63be80e",
-   "04ad73e2",
-   "7ce4c9ea"
+   "8d82a517",
+   "3cef3bcc",
+   "8f8708a6",
+   "28a9c927",
+   "50ff478c",
+   "d8b0058e",
+   "06993bb7",
+   "ed925eb4",
+   "4445c2b2",
+   "26399549",
+   "570a8228",
+   "d6c97be6",
+   "05debba4",
+   "d4f11420"
   ],
-  "unverified_here": [
-   {
-    "id": "9210ca4e",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "e30094e1",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "3c332165",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "3581165c",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "956856de",
-    "why": [
-     "needs a second seat in by"
-    ]
-   }
-  ]
+  "unverified_here": []
  },
- "ath_prompts/measure/trial": {
-  "counts": {},
-  "verified": [],
-  "unverified_here": [
-   {
-    "id": "f97a544e",
-    "why": [
-     "needs a second seat in by"
-    ]
-   }
-  ]
- },
- "brain": {
+ "biology/brain": {
   "counts": {
-   "checked-finite": 9
+   "checked-finite": 10
   },
   "verified": [
+   "8d82a517",
    "3cef3bcc",
    "8f8708a6",
    "28a9c927",
@@ -310,7 +285,7 @@
    }
   ]
  },
- "brain/complexes": {
+ "biology/brain/complexes": {
   "counts": {
    "checked-finite": 1
   },
@@ -319,7 +294,7 @@
   ],
   "unverified_here": []
  },
- "brain/cortex": {
+ "biology/brain/cortex": {
   "counts": {
    "checked-finite": 1
   },
@@ -328,7 +303,7 @@
   ],
   "unverified_here": []
  },
- "brain/dna": {
+ "biology/brain/dna": {
   "counts": {
    "checked-finite": 1
   },
@@ -337,7 +312,7 @@
   ],
   "unverified_here": []
  },
- "brain/membrane": {
+ "biology/brain/membrane": {
   "counts": {
    "checked-finite": 1
   },
@@ -346,7 +321,7 @@
   ],
   "unverified_here": []
  },
- "brain/network": {
+ "biology/brain/network": {
   "counts": {
    "checked-finite": 1
   },
@@ -355,7 +330,7 @@
   ],
   "unverified_here": []
  },
- "brain/neuron": {
+ "biology/brain/neuron": {
   "counts": {
    "checked-finite": 3
   },
@@ -366,7 +341,7 @@
   ],
   "unverified_here": []
  },
- "brain/tissue": {
+ "biology/brain/tissue": {
   "counts": {
    "checked-finite": 1
   },
@@ -375,9 +350,13 @@
   ],
   "unverified_here": []
  },
- "compbio": {
-  "counts": {},
-  "verified": [],
+ "biology/compbio": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "570a8228"
+  ],
   "unverified_here": [
    {
     "id": "2547b029",
@@ -387,34 +366,89 @@
    }
   ]
  },
- "compute/monqwensor": {
-  "counts": {},
-  "verified": [],
+ "biology/privacy": {
+  "counts": {
+   "checked-finite": 3
+  },
+  "verified": [
+   "d6c97be6",
+   "05debba4",
+   "d4f11420"
+  ],
+  "unverified_here": []
+ },
+ "core": {
+  "counts": {
+   "checked-finite": 4
+  },
+  "verified": [
+   "a38f09e6",
+   "d57af9d8",
+   "d094077a",
+   "d1c86cb4"
+  ],
+  "unverified_here": []
+ },
+ "core/ontology": {
+  "counts": {
+   "checked-finite": 4
+  },
+  "verified": [
+   "a38f09e6",
+   "d57af9d8",
+   "d094077a",
+   "d1c86cb4"
+  ],
   "unverified_here": [
    {
-    "id": "6c14680a",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "123bf83f",
+    "id": "900eb79c",
     "why": [
      "needs a second seat in by"
     ]
    }
   ]
  },
- "cosmos": {
+ "core/universes": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "42704262",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "5e8f4f17",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "culture": {
   "counts": {
-   "checked-finite": 1
+   "checked-finite": 2
   },
   "verified": [
-   "5b49d0e3"
+   "d7179e58",
+   "2befeb37"
   ],
   "unverified_here": []
  },
- "essays": {
+ "culture/art": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "45967313",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "culture/essays": {
   "counts": {},
   "verified": [],
   "unverified_here": [
@@ -423,10 +457,16 @@
     "why": [
      "checked-finite needs a runner (the exhaustive check, re-runnable)"
     ]
+   },
+   {
+    "id": "e5d70df4",
+    "why": [
+     "needs a second seat in by"
+    ]
    }
   ]
  },
- "homestuck": {
+ "culture/homestuck": {
   "counts": {
    "checked-finite": 1
   },
@@ -448,24 +488,88 @@
    }
   ]
  },
- "language": {
+ "culture/love": {
   "counts": {},
   "verified": [],
   "unverified_here": [
    {
-    "id": "55eb514b",
+    "id": "c911e8fd",
     "why": [
      "needs a second seat in by"
     ]
    },
    {
-    "id": "447b1e89",
+    "id": "ecbebf63",
     "why": [
      "needs a second seat in by"
     ]
    },
    {
-    "id": "a86aea63",
+    "id": "c36f4c4f",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "culture/poetry": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "df8cb0b1",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "01074012",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "culture/queer": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "7c1930ce",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "culture/race": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "31e67e2d",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "culture/social": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "d7179e58"
+  ],
+  "unverified_here": [
+   {
+    "id": "7de7173e",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "e596ac08",
     "why": [
      "needs a second seat in by"
     ]
@@ -655,12 +759,84 @@
    }
   ]
  },
- "metaphysics": {
+ "math": {
+  "counts": {
+   "checked-finite": 2,
+   "checked": 5
+  },
+  "verified": [
+   "c392a233",
+   "4e1d6548",
+   "3fadb567",
+   "95f52829",
+   "d85c69c0",
+   "6feb4aef",
+   "1178a112"
+  ],
+  "unverified_here": []
+ },
+ "math/language": {
   "counts": {},
   "verified": [],
   "unverified_here": [
    {
-    "id": "3b1ee0ad",
+    "id": "55eb514b",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "447b1e89",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "a86aea63",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "math/routing": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "c392a233"
+  ],
+  "unverified_here": []
+ },
+ "math/transit": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "1178a112"
+  ],
+  "unverified_here": []
+ },
+ "math/worlds": {
+  "counts": {
+   "checked": 5
+  },
+  "verified": [
+   "4e1d6548",
+   "3fadb567",
+   "95f52829",
+   "d85c69c0",
+   "6feb4aef"
+  ],
+  "unverified_here": [
+   {
+    "id": "63b81527",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "d70bec07",
     "why": [
      "needs a second seat in by"
     ]
@@ -1268,7 +1444,7 @@
    {
     "id": "029438d9",
     "why": [
-     "missing [\"one-not/research/open/REF1_phc.py\",\"one-not/research/open/REF1_phc.md\",\"compute/specs/ref1_phc.json\"]",
+     "missing [\"one-not/research/open/REF1_phc.py\",\"one-not/research/open/REF1_phc.md\",\"workshop/compute/specs/ref1_phc.json\"]",
      "needs a second seat in by"
     ]
    }
@@ -1375,25 +1551,6 @@
    }
   ]
  },
- "ontology": {
-  "counts": {
-   "checked-finite": 4
-  },
-  "verified": [
-   "a38f09e6",
-   "d57af9d8",
-   "d094077a",
-   "d1c86cb4"
-  ],
-  "unverified_here": [
-   {
-    "id": "900eb79c",
-    "why": [
-     "needs a second seat in by"
-    ]
-   }
-  ]
- },
  "philosophy": {
   "counts": {
    "checked": 5,
@@ -1431,33 +1588,66 @@
    }
   ]
  },
- "privacy": {
+ "philosophy/metaphysics": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "3b1ee0ad",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "physics": {
   "counts": {
-   "checked-finite": 2
+   "checked-finite": 6
   },
   "verified": [
-   "d6c97be6",
-   "05debba4"
+   "5b49d0e3",
+   "9b1eb613",
+   "ff4253f7",
+   "ddc281d6",
+   "a8530ec5",
+   "1e25aba1"
   ],
   "unverified_here": []
  },
- "routing": {
+ "physics/cosmos": {
   "counts": {
    "checked-finite": 1
   },
   "verified": [
-   "c392a233"
+   "5b49d0e3"
   ],
   "unverified_here": []
  },
- "time": {
+ "physics/curvature": {
   "counts": {
-   "checked-finite": 3
+   "checked-finite": 1
+  },
+  "verified": [
+   "9b1eb613"
+  ],
+  "unverified_here": [
+   {
+    "id": "b45aba07",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "physics/time": {
+  "counts": {
+   "checked-finite": 4
   },
   "verified": [
    "ff4253f7",
    "ddc281d6",
-   "a8530ec5"
+   "a8530ec5",
+   "1e25aba1"
   ],
   "unverified_here": [
    {
@@ -1468,35 +1658,143 @@
    }
   ]
  },
- "transit": {
+ "workshop": {
   "counts": {
-   "checked-finite": 1
+   "tested": 3
   },
   "verified": [
-   "1178a112"
+   "b63be80e",
+   "04ad73e2",
+   "7ce4c9ea"
   ],
   "unverified_here": []
  },
- "worlds": {
+ "workshop/ath_prompts": {
   "counts": {
-   "checked": 5
+   "tested": 3
   },
   "verified": [
-   "4e1d6548",
-   "3fadb567",
-   "95f52829",
-   "d85c69c0",
-   "6feb4aef"
+   "b63be80e",
+   "04ad73e2",
+   "7ce4c9ea"
   ],
   "unverified_here": [
    {
-    "id": "63b81527",
+    "id": "9210ca4e",
     "why": [
      "needs a second seat in by"
     ]
    },
    {
-    "id": "d70bec07",
+    "id": "e30094e1",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "3c332165",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "3581165c",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "956856de",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "workshop/ath_prompts/measure/trial": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "f97a544e",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "workshop/board": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "774a9b37",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "d1a43f48",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "eecdacb5",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "workshop/bus": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "17a62daf",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "a991242d",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "workshop/compute/monqwensor": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "6c14680a",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "123bf83f",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "workshop/steinmetz": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "1230d1c2",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "59978272",
     "why": [
      "needs a second seat in by"
     ]

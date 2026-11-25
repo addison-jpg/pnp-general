@@ -13,6 +13,8 @@ import hashlib, json, os, re, subprocess, sys, tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+if getattr(sys, "frozen", False) and os.environ.get("ASTEROID_ROOT"):   # the one-file build: the repository it found
+    ROOT = os.environ["ASTEROID_ROOT"]; HERE = os.path.join(ROOT, "asteroid")
 MODELS = {"0.5B": "Qwen/Qwen2.5-0.5B-Instruct", "1.5B": "Qwen/Qwen2.5-1.5B-Instruct"}
 KMAX = 8
 PROPOSALS = {}      # name -> list of (candidate, verdict); for display only, never read by a claim

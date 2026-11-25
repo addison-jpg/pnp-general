@@ -24,7 +24,7 @@ Instance families (`REF1_phc.py`):
 | run | instances (distinct, after de-duplication) | stored | sys | rand | prog | violations |
 |---|---:|---:|---:|---:|---:|---:|
 | local sample, 1 core under `nice` (budgets 90-300 s per shard) | 226,712 | 7,042 | 59,718 | 16,435 | 143,517 | 0 |
-| compute job, spec `compute/specs/ref1_phc.json`, 20 shards, run 45536681420, shards 258-650 s | **2,305,227** | 7,344 | 436,772 | 117,127 | 1,743,984 | **0** |
+| compute job, spec `workshop/compute/specs/ref1_phc.json`, 20 shards, run 45536681420, shards 258-650 s | **2,305,227** | 7,344 | 436,772 | 117,127 | 1,743,984 | **0** |
 
 In the compute job: 1,163,351 BottomPay DD states visited; 2,285,122 instances checked exhaustively, 20,105 by the
 targeted search (more than 14 useful payers); no shard stopped on its time budget. Results were read from the shard
@@ -52,4 +52,4 @@ partition, and prints c_w(J) for the stored R, so a violation would be rechecked
 
     nice python3 -I one-not/research/open/REF1_phc.py --selftest
     nice python3 -I one-not/research/open/REF1_phc.py --shard 1 --of 400 --budget 60 --out /dev/null
-    gh api -X POST repos/addison-jpg/pnp-general/actions/workflows/compute.yml/dispatches -f ref=main -f 'inputs[spec]=compute/specs/ref1_phc.json'
+    gh api -X POST repos/addison-jpg/pnp-general/actions/workflows/compute.yml/dispatches -f ref=main -f 'inputs[spec]=workshop/compute/specs/ref1_phc.json'

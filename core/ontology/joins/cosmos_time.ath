@@ -1,0 +1,3 @@
+# Cosmos + time: an open candidate, no record. No shared fact is computed from both sides yet.
+check "python3 -I physics/cosmos/invariant.py"
+frame "Candidate: history-independent claims of physics/cosmos/invariant.py and the S5 frames of physics/time (no privileged world)" reading "invariant.py checks for n <= 7 that a property P has the same frequency at every cutoff in every ordering exactly when P is constant. physics/time checks validity on every frame for every valuation; it never evaluates p -> []p under one fixed valuation on one cluster. So no number or function from physics/time enters a join; a record needs one; open" -> none label open reach 2 cost 80

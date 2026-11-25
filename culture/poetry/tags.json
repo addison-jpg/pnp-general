@@ -1,0 +1,22 @@
+{
+ "about": "Tags for culture/poetry. 'label' is the honest status of the fact behind the tag; 'origin' is 'proposed' when the tag or its reading was made by an agent (model output) and not by a person or a cited source.",
+ "tags": [
+  {"tag": "rhyme-scheme", "means": "a set partition of the lines (a restricted growth string); Bell(n) of them", "label": "checked-finite", "origin": "proposed", "check": "F1"},
+  {"tag": "block-profile", "means": "the multiset of rhyme-class sizes; counted by n!/(prod size! prod mult!)", "label": "checked-finite", "origin": "proposed", "check": "F2"},
+  {"tag": "sonnet-shakespearean", "means": "ABAB CDCD EFEF GG: the 1 alternating scheme among 27 quatrain-local ones, among 135135 with 7 rhymes used twice", "label": "checked-finite", "origin": "proposed", "check": "F2"},
+  {"tag": "sonnet-petrarchan", "means": "ABBAABBA CDECDE: 1576575 schemes share its profile (all enumerated at n = 14; the formula agrees)", "label": "checked-finite", "origin": "proposed", "check": "F2"},
+  {"tag": "sestina", "means": "the spiral permutation on 6 end words: one 6-cycle, order 6, no fixed point", "label": "checked-finite", "origin": "proposed", "check": "F3"},
+  {"tag": "n-ine", "means": "the spiral on n end words; one n-cycle for n in 1,2,3,5,6,9,11,14,18,23,26,29,30 (n <= 30)", "label": "checked-finite", "origin": "proposed", "check": "F3"},
+  {"tag": "combinatorial-poem", "means": "Queneau 1961: 10 choices on each of 14 lines, 10^14 poems (the product rule)", "label": "checked-finite", "origin": "proposed", "check": "F4"},
+  {"tag": "combinatorial-poem-rhyme", "means": "every one of Queneau's 10^14 poems keeps one rhyme scheme; true if each line slot's ten variants share a rhyme; that the book does so is not checked here", "label": "open", "origin": "proposed", "check": "F4"},
+  {"tag": "condensation", "means": "a non-injective map from thoughts to signifiers; its kernel is a rhyme scheme", "label": "checked-finite", "origin": "proposed", "check": "P1", "reading": "Freud 1900, Verdichtung", "reading_label": "analogy"},
+  {"tag": "displacement", "means": "a permutation of emphasis; the sum of intensity is kept; total displacement is a derangement", "label": "checked-finite", "origin": "proposed", "check": "P2", "reading": "Freud 1900, Verschiebung", "reading_label": "analogy"},
+  {"tag": "metaphor", "means": "substitution inside a paradigm class; an equivalence relation", "label": "checked-finite", "origin": "proposed", "check": "P3", "reading": "Jakobson 1956; Lacan 1957", "reading_label": "analogy"},
+  {"tag": "metonymy", "means": "contiguity in the chain; symmetric, not transitive", "label": "checked-finite", "origin": "proposed", "check": "P3", "reading": "Jakobson 1956; Lacan 1957", "reading_label": "analogy"},
+  {"tag": "point-de-capiton", "means": "in the code {0,01,11}, with the chain's length known, the first signifier is often fixed only after it ends, and on 2 chains per length only by the last bit; without the length the delay is unbounded (0 1^k stays open); read backwards the code is instant", "label": "checked-finite", "origin": "proposed", "check": "P4", "reading": "Lacan 1955-56, 1960", "reading_label": "analogy"},
+  {"tag": "repetition", "means": "every self-map of a finite set is eventually periodic (tail + cycle <= n)", "label": "checked-finite", "origin": "proposed", "check": "P5", "reading": "Freud 1920, Wiederholungszwang", "reading_label": "analogy"},
+  {"tag": "refrain", "means": "a fixed point of a self-map; n^n - (n-1)^n maps have one", "label": "checked-finite", "origin": "proposed", "check": "P5", "reading": "the refrain as the return of the same", "reading_label": "analogy"},
+  {"tag": "anchor", "means": "in the rhyme reading frame the anchors are the final cluster, always a suffix: the couplet (Shakespeare), the sestet (Petrarch), every line (terza rima)", "label": "checked-finite", "origin": "proposed", "check": "P6", "reading": "our own S4 definition (proposed, not Freud's or Lacan's), read against Freud 1923 and Lacan 1955-56", "reading_label": "analogy"},
+  {"tag": "quilting-is-local", "means": "whether Lacan's quilting is local (P4) or global (P6); the two models disagree", "label": "open", "origin": "proposed"}
+ ]
+}

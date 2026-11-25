@@ -1,0 +1,8 @@
+# The two-way bus, written into memory by asteroid. Pure .ath: no Python, no shell.
+# Design in workshop/bus/README.md. The one claim is the layer order the bus relies on: programs, evidence, memory.
+seq layers = [0, 1, 2]
+claim layers = [0, 1, 2]
+frame "Two-way bus: OUT from programs down to memory, IN from memory back up (workshop/bus/README.md)" reading "a design reading: the two trees run opposite ways" -> none label open reach 1 cost 40
+frame "Layer order: no bus edge skips a layer (programs, evidence, memory)" reading "a design rule; the layer order above is the only claim" -> 4 label open reach 1 cost 40
+frame "Spiral sync: OUT, IN, OUT until no edge is pruned (a fixed point)" reading "a design rule; not yet checked by asteroid" -> none label open reach 1 cost 40
+record workshop/bus bus open "The two-way bus: OUT (programs to memory) and IN (memory to programs) share one pruned edge set, pruned by layer order and first parent; the spiral runs OUT, IN, OUT to a fixed point. The only claim is the layer order (0, 1, 2). The laws are design, not yet checked."

@@ -104,7 +104,7 @@ Meaning. These lines state exact claims of propositional modal logic on finite f
 - `claim worlds NAME "F" = {...}`: under NAME's valuation, F is true at exactly these worlds.
 - Exhaustive. No sampling. Size limits: N <= 12 for one frame, N <= 4 for `all` (65536 relations), at most 3 atoms, at most 2 000 000 frame-valuation pairs per claim, and at most 2 * 10^7 pairs times formula size per claim. All modal claims of one run share 6 * 10^7. Past a limit the claim is FALSE.
 - A check on N <= 4 worlds is `checked-finite`. The statement for every N is a theorem to cite (Kripke 1963; Blackburn, de Rijke, Venema 2001).
-- Test: `python3 -I asteroid/tests/test_modal.py`. Used in `metaphysics/metaphysics.ath` and `homestuck/timelines.ath`.
+- Test: `python3 -I asteroid/tests/test_modal.py`. Used in `philosophy/metaphysics/metaphysics.ath` and `culture/homestuck/timelines.ath`.
 
 ## Proposals: the model guesses, asteroid decides (extension `asteroid/ext_qwen.py`)
 
@@ -118,7 +118,7 @@ Meaning. `propose NAME "TASK"` asks a local Qwen model for up to K candidate cla
 - Only a candidate copied into a program as a claim, and passing there, can become a result. Until then it is model output, labelled `tested` at most.
 - Model outputs are cached by a hash of (model, prompt, K) in `asteroid/out/qwen_cache.json` (or `$ASTEROID_QWEN_CACHE`). A rerun reads the cache: deterministic and cheap.
 - Without the model or `transformers`, the line prints "model unavailable" and does nothing.
-- Test (no model; the generator is mocked): `python3 -I asteroid/tests/test_qwen.py`. Demo: `language/propose_demo.ath`.
+- Test (no model; the generator is mocked): `python3 -I asteroid/tests/test_qwen.py`. Demo: `math/language/propose_demo.ath`.
 
 ## Frames (extension `asteroid/ext_frame.py`)
 
@@ -132,7 +132,7 @@ A frame ties an idea to the claim that formalizes it. The first string is the so
 
 Score: `score = reach * chance / cost`.
 - reach: an integer >= 1, the fields or groups it helps. Default 1.
-- cost: thousands of tokens. Default 80, the cost of one plain seat (`ath_prompts/measure/cost_per_result.md`).
+- cost: thousands of tokens. Default 80, the cost of one plain seat (`workshop/ath_prompts/measure/cost_per_result.md`).
 - chance: 1.0 if the claim passed. Otherwise a prior by label: `open` 0.3.
 - These weights are choices, not measurements. Change them in `ext_frame.py`.
 
@@ -178,7 +178,7 @@ bin/asteroid test --no-lean  # Python and plots only (what GitHub Actions runs o
 
 asteroid states three guarantees. Each is tested, not proved: halting in general is undecidable.
 1. Halting. Every claim halts by a size limit (above). Child runs (frame files, `check`, `seq ... run`) nest at most 3 deep and number at most 64 per top run, so a loop of files or of checks ends. A `check` or `seq ... run` script halts by its own timeout (900 s); `hunt` runs as long as its SECONDS say.
-2. No escape. `check` and `seq ... run` run only `python3 -I path.py [args]`, with path a file inside the repository after symlinks are resolved. No shell is used. Scripts that write findings or run commands (`boards.py`, `center.py`, `one-not/tools/tensor/dag.py`, `compute/funsearch/targets.py`) are refused.
+2. No escape. `check` and `seq ... run` run only `python3 -I path.py [args]`, with path a file inside the repository after symlinks are resolved. No shell is used. Scripts that write findings or run commands (`boards.py`, `center.py`, `one-not/tools/tensor/dag.py`, `workshop/compute/funsearch/targets.py`) are refused.
 3. Checks cannot be removed. A record is written only if the run has at least one claim and every claim is TRUE. `checked` needs Lean; `checked-infinite` is refused (a run cannot give a reduction). A duplicate statement is kept, not added. A frame on a failed claim is `open`; a stronger label on a Python claim is downgraded. `$ASTEROID_FRAMES` must name a `.jsonl` file that is not a `findings.jsonl`.
 
 Test: `python3 -I asteroid/tests/test_anti_ath.py`. It writes adversarial programs into a scratch directory and runs each with `--no-lean` and a 120 s outer timeout, in three families (halting, no escape, no removal). It compares every `findings.jsonl` and `frames.jsonl` of the repository before and after. Not covered: runs with Lean (`verify lean DIR` and `theorem ... in DIR` run `lake` in DIR), `save` and `plot` paths, and `commit` lines.

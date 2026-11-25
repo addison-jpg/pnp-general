@@ -1,0 +1,80 @@
+# Love, from culture/love. Who to pursue, on two finite sides that rank each other: stable matching.
+# Monogamy is capacity k=1, polyamory capacity k=2. Exhaustive over every preference profile for n <= 3.
+# This models stated rankings, not feelings. It cannot say who is good for anyone.
+seq profiles = run "python3 -I culture/love/check.py" "preference profiles"
+seq mono = from culture/love/fingerprints.json "one-to-one matchings"
+seq poly = from culture/love/fingerprints.json "capacity-2 matchings"
+seq unique1 = from culture/love/fingerprints.json "unique stable matching k=1"
+seq unique2 = from culture/love/fingerprints.json "unique stable matching k=2"
+seq most1 = from culture/love/fingerprints.json "most stable matchings on one profile k=1"
+seq most2 = from culture/love/fingerprints.json "most stable matchings on one profile k=2"
+claim formula profiles = "n! ** (2*n)"                  # each of 2n members ranks n others: (n!)^(2n)
+claim formula mono = "sum(i, 0, n, C(n, i) ** 2 * i!)"  # partial one-to-one matchings of two n-sets
+claim poly = [2, 16, 265]                               # pair sets with at most 2 partners each
+claim unique1 = [1, 14, 34080]                          # profiles with exactly one stable matching, k=1
+claim unique2 = [1, 16, 40128]                          # the same, k=2
+claim most1 = [1, 2, 3]                                 # most stable matchings on one profile, k=1
+claim most2 = [1, 1, 2]                                 # the same, k=2
+check "python3 -I culture/love/check.py"
+record culture/love love checked-finite "love.ath: on every preference profile of two sides of size n <= 3, a stable matching exists for capacity k=1 and k=2, brute force and deferred acceptance agree, the k=1 capacity model equals the one-to-one model, and the counts above (unique stable: 1, 14, 34080 at k=1 and 1, 16, 40128 at k=2; most stable on one profile: 3 at k=1, 2 at k=2 for n=3) are exact. Stated rankings only, not feelings; n=4 not run."
+# Paths to stability (culture/love/paths.py): start from any matching, satisfy one blocking pair at a time.
+# Exhaustive over every profile and every start, n <= 3, k = 1 and 2. Roth and Vande Vate 1990 (from memory) says k=1 always can.
+check "python3 -I culture/love/paths.py"
+seq path1 = from culture/love/paths_fingerprints.json "longest shortest path to stability k=1"
+seq path2 = from culture/love/paths_fingerprints.json "longest shortest path to stability k=2"
+seq stuck1 = from culture/love/paths_fingerprints.json "cannot reach stability k=1"
+seq stuck2 = from culture/love/paths_fingerprints.json "cannot reach stability k=2"
+seq cyc1 = from culture/love/paths_fingerprints.json "cycle of blocking-pair moves k=1"
+seq cyc2 = from culture/love/paths_fingerprints.json "cycle of blocking-pair moves k=2"
+claim path1 = [1, 2, 4]                                 # longest shortest path to a stable matching, k=1, n=1..3
+claim path2 = [1, 4, 6]                                 # the same, k=2
+claim stuck1 = [0, 0, 0]                                # starts that cannot reach stability, k=1 (the theorem)
+claim stuck2 = [0, 0, 0]                                # the same at k=2: found, not assumed
+claim cyc1 = [0, 2, 27492]                              # profiles where some move sequence cycles, k=1
+claim cyc2 = [0, 0, 11136]                              # the same, k=2
+# Over the field Q (culture/love/field.py): fractional matchings, exact vertices, Birkhoff-von Neumann.
+check "python3 -I culture/love/field.py"
+seq bm1 = from culture/love/field_fingerprints.json "b-matching polytope vertices k=1"
+seq bm32 = from culture/love/field_fingerprints.json "b-matching polytope vertices k=3/2"
+seq frac32 = from culture/love/field_fingerprints.json "fractional vertices k=3/2"
+seq bm2 = from culture/love/field_fingerprints.json "b-matching polytope vertices k=2"
+seq ds3 = from culture/love/field_fingerprints.json "3x3 doubly stochastic"
+seq ds4 = from culture/love/field_fingerprints.json "4x4 doubly stochastic"
+claim bm1 = [7, 34]                                     # k=1, n=2..3: the vertices are the one-to-one matchings
+claim bm2 = [16, 265]                                   # k=2, n=2..3: the vertices are the capacity-2 matchings
+claim bm32 = [25, 766]                                  # k=3/2, n=2..3: all vertices
+claim frac32 = [18, 732]                                # of which fractional
+claim formula ds3 = "(n+1)*(n+2)*(n**2+3*n+4)//8"       # 3x3 line-sum-q tables, q=1..6 (MacMahon, from memory), each decomposed
+claim ds4 = [24, 282, 2008]                             # 4x4, q=1..3, each decomposed exactly
+record culture/love love-paths checked-finite "love.ath: on every preference profile with n <= 3 and every starting matching, satisfying one blocking pair at a time can reach a stable matching, at k=1 and at k=2; longest shortest path 4 at k=1 and 6 at k=2 for n=3; some move sequence cycles on 2, 27492 profiles (k=1, n=2, 3) and 0, 11136 (k=2). Stated rankings only."
+record culture/love love-field checked-finite "love.ath: on all 16 profiles with n=2, the fractional stable polytope (Rothblum form) has only integral vertices, exactly the stable matchings; the fractional b-matching polytope with capacity k has 7, 34 vertices at k=1 and 16, 265 at k=2 (n=2, 3), all integral, and 25, 766 at k=3/2, of which 18, 732 fractional; every 3x3 doubly stochastic matrix in (1/q)Z for q <= 6 and every 4x4 one for q <= 3 is an exact convex combination of permutation matrices. The n=3 stable-polytope sample is tested, not part of this record."
+# Native (culture/love/native, Rust, std only): the same definitions recomputed and compared with every Python fingerprint above
+# (n <= 3; a mismatch fails). Only after that passes: the k=1 stable polytope on all 46656 n=3 profiles, and n=4 at k=1 by
+# symmetry (relabel A and B; one representative per orbit, weighted by its orbit size; the weights are asserted to sum to (n!)^(2n)).
+check "python3 -I culture/love/native_diff.py --new"
+seq npoly = from culture/love/native_fingerprints.json "stable polytope k=1, n=3, all profiles"
+seq npolyhist = from culture/love/native_fingerprints.json "profiles with 1, 2, 3 vertices"
+seq norbits = from culture/love/native_fingerprints.json "profile orbits under relabelling"
+seq nweights = from culture/love/native_fingerprints.json "orbit weights summed"
+seq nunique = from culture/love/native_fingerprints.json "unique stable matching k=1, n=1..4"
+seq nmost = from culture/love/native_fingerprints.json "most stable matchings on one profile k=1, n=1..4"
+seq ntotal = from culture/love/native_fingerprints.json "stable matchings summed over profiles k=1, n=1..4"
+seq nhist4 = from culture/love/native_fingerprints.json "n=4 k=1 profiles by number of stable matchings"
+claim npoly = [46656, 60324]                            # all n=3 profiles; every corner integral and a stable matching; 60324 corners
+claim npolyhist = [34080, 11484, 1092]                  # profiles with 1, 2, 3 corners (1 corner: the 34080 unique-stable profiles)
+claim formula nweights = "n! ** (2*n)"                  # the orbit weights add up to every profile, n=1..4
+claim norbits = [1, 5, 1300, 191108196]                 # orbits of profiles under relabelling A and B
+claim nunique = [1, 14, 34080, 65867261184]             # profiles with exactly one stable matching, k=1; n=4 is new
+claim nmost = [1, 2, 3, 10]                             # most stable matchings on one profile, k=1; n=4 is new
+claim ntotal = [1, 18, 60324, 163661617152]             # stable matchings summed over all profiles, k=1
+claim nhist4 = [65867261184, 35927285472, 7303612896, 861578352, 111479616, 3478608, 581472, 36432, 0, 144]   # n=4: no profile has exactly 9
+# Look at us (workshop/ath_prompts/us): asks and agent seats as a matching, on recorded seat data only. Analogy.
+check "python3 -I workshop/ath_prompts/us/us.py"
+seq usblock = from workshop/ath_prompts/us/us_fingerprints.json "blocking pairs of the recorded assignment"
+seq uslist = from workshop/ath_prompts/us/us_fingerprints.json "longest acceptable seat list"
+seq usfail = from workshop/ath_prompts/us/us_fingerprints.json "asks where the Beauvoir condition fails"
+seq usdead = from workshop/ath_prompts/us/us_fingerprints.json "dead-end runs"
+claim usblock = [0]                                     # the recorded assignment is stable under the data-derived preferences
+claim uslist = [1]                                      # but no ask has two recorded seats, so the test has no power yet
+claim usfail = [1]                                      # one paper attempt (Opus): []<>T false there
+claim usdead = [2]                                      # A7 and A10: obstacle, no follow-up line in the recorded files

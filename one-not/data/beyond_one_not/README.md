@@ -1,6 +1,6 @@
 # one-not/data/beyond_one_not
 
-Data of task `beyond-one-not` (README items C4, T6). Write-up: `notes/beyond-one-not.md`. Scripts: `one-not/tools/beyond_one_not/`.
+Data of task `beyond-one-not` (README items C4, T6). Write-up: `workshop/notes/beyond-one-not.md`. Scripts: `one-not/tools/beyond_one_not/`.
 
 | File | What it is |
 |---|---|

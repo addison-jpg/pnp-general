@@ -1,6 +1,6 @@
 # Anti-fascism, baked into the philosophy frameworks
 
-Code: `philosophy/antifascism.py`. Frames: `frames_antifascism.ath`. Source line: `ontology/SOURCES.md` (Addison, 2026-11-25).
+Code: `philosophy/antifascism.py`. Frames: `frames_antifascism.ath`. Source line: `core/ontology/SOURCES.md` (Addison, 2026-11-25).
 
 Words used here. **fact**: cited, with read status. **checked-finite**: exhaustive on stated small sizes. **tested**: measured, with a stated false-positive rate. **analogy**: a reading, never labelled checked. **open**: no claim yet.
 
@@ -16,7 +16,7 @@ Words used here. **fact**: cited, with read status. **checked-finite**: exhausti
 |---|---|---|---|
 | Beauvoir, *Pour une morale de l'ambiguite* (1947): the serious man; oppression | Reciprocity is symmetry (B axiom, already checked in `frames_sync.ath`). Fascism refuses reciprocity: one class reaches all and is reached by none. | On every Kripke frame on 2..4 worlds (66064 frames, 2100 such classes), B fails at every member of that class. | checked-finite (fact); the link is analogy |
 | Deleuze and Guattari, *L'Anti-Oedipe* (1972); Foucault, preface "Anti-Oedipus: Introduction to the Non-Fascist Life" (1977) | Microfascism: desire organised around one centre. The rhizome has no critical part; the tree has only critical parts. | Joins `philosophy/rhizome.py` (every edge critical iff tree). New: a connected graph whose edges all touch one vertex and are all critical is exactly the star (18 stars, 3..6 vertices, every graph checked). The single critical centre is the formal shape they warn about. | checked-finite (fact); the link is analogy |
-| Fisher, *Capitalist Realism* (2009) | "No alternative" as an absorbing class. | `transit/social.py` part a: absorption into closed classes with probability 1. | analogy (reading); open in frames |
+| Fisher, *Capitalist Realism* (2009) | "No alternative" as an absorbing class. | `math/transit/social.py` part a: absorption into closed classes with probability 1. | analogy (reading); open in frames |
 | Lacan, paranoia | Eco's obsession with a plot: all meaning anchored to one persecuting master signifier. | none | analogy (reading); open |
 | Grok incidents, 2025 (NPR 2025-07-09; TechCrunch 2025-05-14, 2025-07-12; relayed, not re-read) | Topic intrusion as aberrant salience (Kapur 2003, already cited) and as obsession with a plot. Removing a filter as removed reality testing. One upstream change as a single critical part (cf. the star fact). | none | analogy (reading); open |
 
@@ -33,7 +33,7 @@ Measured on 20 synthetic sentences written for this file (10 flag-worthy, 10 neu
 - The false positive: "Weeds must be eliminated from the garden in spring." Keyword matching cannot see context.
 - Recall on 10 sentences written by the same author as the markers is optimistic. Expect worse on real text.
 
-Run on the repo: 0 of 429 records in `center/shards/*.jsonl` flagged; 0 of 76 strings in `compute/monqwensor/proposals.json` flagged. Expected near zero. The record count grows as frames are written.
+Run on the repo: 0 of 429 records in `center/shards/*.jsonl` flagged; 0 of 76 strings in `workshop/compute/monqwensor/proposals.json` flagged. Expected near zero. The record count grows as frames are written.
 
 ## 4. Open
 

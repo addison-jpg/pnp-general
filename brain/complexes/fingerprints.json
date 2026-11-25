@@ -1,5 +1,0 @@
-[
- {"name": "necklaces of length 4 in k colours, k=1..7 (rotation only)", "seq": [1, 6, 24, 70, 165, 336, 616], "runner": "python3 -I brain/complexes/check.py"},
- {"name": "necklaces of length 5 in k colours, k=1..7 (rotation only)", "seq": [1, 8, 51, 208, 629, 1560, 3367], "runner": "python3 -I brain/complexes/check.py"},
- {"name": "necklaces of length 6 in k colours, k=1..7 (rotation only)", "seq": [1, 14, 130, 700, 2635, 7826, 19684], "runner": "python3 -I brain/complexes/check.py"}
-]

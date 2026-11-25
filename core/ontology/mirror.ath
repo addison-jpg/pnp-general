@@ -1,0 +1,5 @@
+# The Beauvoir mirror: reciprocal, and every reached world can go on. See core/ontology/mirror.py.
+check "python3 -I core/ontology/mirror.py"
+check "python3 -I core/ontology/beauvoir.py"
+frame "Beauvoir, Pour une morale de l'ambiguite (1947; cited from memory): freedom requires the other's; the mirror is the reciprocal case" reading "exact fact only: on every relation up to 3 worlds the reciprocal relations number 2, 8, 64; the serial clause is redundant for reciprocal relations (a reached world reaches back), so these are the symmetric counts" -> 2 label checked-finite reach 3 cost 40
+frame "Addison: the Beauvoir mirror implemented as a finite check; the reading (analogy): reciprocity is the stronger condition; serial alone does not give it" reading "ANALOGY (a reading): the cycle 0->1->2->0 is serial but not reciprocal" -> none label open reach 2 cost 80

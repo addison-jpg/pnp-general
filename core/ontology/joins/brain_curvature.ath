@@ -1,0 +1,6 @@
+# Join brain + curvature: one Euler characteristic, 2. Shared fact computed in core/ontology/joins/euler.py.
+check "python3 -I biology/brain/hairy.py"
+check "python3 -I physics/curvature/check.py"
+check "python3 -I core/ontology/joins/euler.py"
+frame "Join: the hairy ball of biology/brain/hairy.py (index sum 2) and discrete Gauss-Bonnet of physics/curvature/check.py (deficits add to 2 pi chi)" reading "on the icospheres of hairy.py, subdivision 0..3, chi = 2 three ways, exact: V - E + F, deficit sum over 2 pi, and the Banchoff index sum for 3 fixed integer height orders. Exhaustive over that stated set only; hairy.py's random fields stay tested" -> 4 label checked-finite reach 2 cost 40
+record biology/brain join-curvature checked-finite "core/ontology/joins/brain_curvature.ath: on the icospheres of biology/brain/hairy.py (subdivision 0..3: 12, 42, 162, 642 vertices) chi = 2 three ways, exact: V - E + F, the deficit sum of physics/curvature/check.py over 2 pi, and the Banchoff index sum with hairy.py's link rule for 3 fixed integer height orders. Exhaustive over that stated set only; the random fields of hairy.py are tested, not checked."

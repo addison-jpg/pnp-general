@@ -38,7 +38,7 @@ c = OR(x2, x3)
 * `read : String → Except String Core.Circ`: `parse` then `toCirc`, with line numbers in
   errors.
 
-* `toAag : Core.Circ → String`: export to ASCII AIGER (`notes/aiger.md`); the function is
+* `toAag : Core.Circ → String`: export to ASCII AIGER (`workshop/notes/aiger.md`); the function is
   kept, the gate count and the NOT count are not.
 
 The reader uses only the public standard library: `String.splitOn`, `String.trimAscii`,

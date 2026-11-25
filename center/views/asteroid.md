@@ -11,6 +11,7 @@
 - [tested, r=0.286] Native plot phi writes SVG (101 exact Phi points) and matches Python to 0.00e+00 on hello (n=4) and first (tiny n=4, fano n=7); R1 reran native_plot_check.py on both.
 - [tested, r=0.333] Python mixed slack from continuous.slack_table agrees with an independent naive implementation at all 81 + 243 states of two circuits (n = 4, 5; witness count and base at every state), and MixedStep v
 - [tested, r=0.333] Native binary, interactive prompt (asteroid / asteroid repl): 4ST> prompt, :help :load :save :quit, circuit blocks; verdicts equal python3 -m asteroid on hello.bench. R1 reran :help and :quit on the b
+- [tested, r=0.5] first light: every top-level .ath program (except hello.ath, which needs Lean) runs and every claim in it is TRUE.
 - [tested, r=0.5] Lean asteroid on Linux: hello/first/notgate from repo and other folders, CRLF+BOM copies, a folder with a space, quoted and spaced load paths, program-folder load resolution, --no-proof, --doctor and 
 - [tested, r=0.5] asteroid launchers, commit 16c66ec. Run by hand on Linux (Python 3.13): bin/asteroid test with Lean from another folder, 15 of 15 ok, 4 min 57 s; bin/asteroid test --no-lean, 15 of 15 ok, with the .ve
 - [tested, r=0.5] 34 circuits converted to .bench (all witness circuits and 3 beyond_one_not circuits; fano_sat66.json is a list of 66 circuits, not converted); the Python and Lean readers agree on all 34, on hello.ben
@@ -25,6 +26,7 @@
 - [DECIDED, r=0.0] (main Sonnet): seat 4 native-plot done: `plot phi NAMES -> F.svg` in one-not/lean/PEqualNP/AsteroidLang/Plot.lean (exact Phi at 101 points, SVG, palette.json light roles, .png becomes .svg with one li
 - [DECIDED, r=0.0] (coord Sonnet seat, 2026-11-25): seat 1 native-small done. The 122 MiB came from `import Lean.Data.Json` (links the whole Lean compiler), not Mathlib. `AsteroidLang/Json.lean` is a small reader that i
 - [DECIDED, r=0.0] (main Sonnet): seat 3 native-repl done. `asteroid` / `asteroid repl` opens `4ST> ` (Repl.lean; Main.lean has only the dispatch plus `replExec`/`replMain`). Colours from site/terminal.json when TTY and
+- [DECIDED, r=0.0] (2026-11-25, Addison: "two separate .exes on the front page"): the native file moved to `dist/windows/ast.exe` (Linux: `dist/linux/ast`). The universal build (PyInstaller, `packaging/universal/asteroi
 - [DECIDED, r=0.0] (coord seat, 2026-11-25): fixed main's Linux-pass bug: the binary now also tries A/one-not/lean at each ancestor A, so dist/linux/asteroid finds the project. first.ath from /tmp: 7 true, exit 0; hello
 - [DECIDED, r=0.0] (coord seat, 2026-11-25): option (a), the native Lean binary. exe.yml run 45528996969 built it on windows-latest and committed it (cacec06): `asteroid.exe` 4.2 MB (was 43 MB PyInstaller), console app,
 - [OPEN, r=1.0] seat 2 term-bundle stays with coord's seat line (asteroid-vscode seat, which scoped this board).
@@ -39,6 +41,5 @@
 - [OPEN, r=1.0] (Addison): Open VSX is not published (needs Addison's token).
 
 ## Frames
-- [checked-finite, r=0.0] Addison: upgrade asteroid for metaphysics (ontology/SOURCES.md): T, 4, B, 5 hold on exactly the reflexive, transitive, symmetric, euclidean relations on 3 and 4 worlds; S5 frames are the equivalences
-- [open, r=1.0] Addison: ~ATH loops bound to a lifetime vs asteroid's time step (ontology/SOURCES.md; asteroid/SPEC.md size limits): a time step halts because every claim has a size limit; reading
-- [open, r=1.0] Addison: .ath mirrors ~ATH (ontology/SOURCES.md; asteroid/SPEC.md size limits): ~ATH loops until a death; asteroid checks halt because every claim has a size limit; reading
+- [open, r=1.0] Addison: .ath mirrors ~ATH (core/ontology/SOURCES.md; asteroid/SPEC.md size limits): ~ATH loops until a death; asteroid checks halt because every claim has a size limit; reading
+- [open, r=1.0] Addison: ~ATH loops bound to a lifetime vs asteroid's time step (core/ontology/SOURCES.md; asteroid/SPEC.md size limits): a time step halts because every claim has a size limit; reading

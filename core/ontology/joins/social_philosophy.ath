@@ -1,0 +1,6 @@
+# Join social + philosophy: a bridge is a local bridge. Shared fact computed in core/ontology/joins/bridges.py.
+check "python3 -I culture/social/weakties.py"
+check "python3 -I philosophy/rhizome.py"
+check "python3 -I core/ontology/joins/bridges.py"
+frame "Join: local bridges of culture/social/weakties.py (Granovetter 1973; Easley and Kleinberg 2010; cited from memory) and bridges of philosophy/rhizome.py" reading "every bridge (critical edge) is a local bridge (endpoints share no neighbour), on every connected labelled graph on 1..6 vertices; not conversely (65759 local-bridge edges, 28907 bridges); the 896 graphs on 1..5 vertices with a local bridge recomputed" -> 4 label checked-finite reach 3 cost 40
+record culture/social join-rhizome checked-finite "core/ontology/joins/social_philosophy.ath: on every connected labelled graph on 1..6 vertices, every bridge of philosophy/rhizome.py (an edge whose loss disconnects) is a local bridge of culture/social/weakties.py (endpoints share no neighbour), and not conversely (65759 local-bridge edges, 28907 bridges); both checks pass in the same run. A weak tie can be a rhizome bridge only if it is a local bridge."

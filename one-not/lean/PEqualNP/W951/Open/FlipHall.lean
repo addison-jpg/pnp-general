@@ -3,7 +3,7 @@ import Mathlib
 /-!
 # FlipHall: S3(b) for two sets of size at most 3, the function-level core (B5)
 
-S3(b) in Hall form (`notes/beyond-one-not.md`): for every family `W` of sets, the flip classes serving
+S3(b) in Hall form (`workshop/notes/beyond-one-not.md`): for every family `W` of sets, the flip classes serving
 `W` number at least `base(W)`. Notation as in `Open/FlipLemma.lean`: `D(f)` at a zero point `Z` of `S` is
 `{u ∈ S : f(Z + e_u) ≠ f(Z)}`; `f` is `S`-thin if `|D(f)| ≤ 1` at every zero point of `S`.
 

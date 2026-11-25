@@ -83,7 +83,7 @@
 - [tested, r=0.5] asteroid/programs/beyond_one_not.ath exits 0 with and without Lean: 23 claims true, 4 kernel theorems (3 restated in the project's definitions), 5 hunts of 6 s at t <= 2, 3 with no counterexample
 - [tested, r=0.5] NOT gates free: hunt for #AND/OR gates < base with at most 2, 3 NOT gates: 477,525 / 504,203 mutations, 0 hits. The NOT-free bound is tight with 3 NOT gates that cannot be removed (dm3: 9 gates, 6 AND
 - [tested, r=0.5] On star44 (the system of the t = 4 break, base 6) no correct circuit with at most 2 NOT gates has witness count below base at any size s = 10..14, and none with at most 3 NOT gates at s = 10, 11 (s = 
-- [tested, r=0.5] Flip classes: the per-set lemma (at every zero point of every set at least |S|-1 flip classes; paper proof for every number of NOT gates in notes/beyond-one-not.md S3a) has 0 failures on 18 corpus cir
+- [tested, r=0.5] Flip classes: the per-set lemma (at every zero point of every set at least |S|-1 flip classes; paper proof for every number of NOT gates in workshop/notes/beyond-one-not.md S3a) has 0 failures on 18 c
 - [tested, r=0.5] World bound (#AND/OR gates >= largest base(Q,R) of a subcube with constant NOT outputs; paper proof from rung 0 for every t) holds on 19 of 19 corpus circuits; its one-NOT worst case W1 = max_x min(b1
 - [tested, r=0.5] flipslack(c) = margin[C4 count (flip classes)](c) on all 15 witness files with n <= 9 and on the 4 many-NOT files (19 circuits, 4 with 4 to 6 NOT gates), so flipslack >= 0 agrees; slack (OR count) is 
 - [tested, r=0.5] F2-transfer |F2'| >= base' holds at all 1,353,627 restrictions with base'>0 of 3,263 one-NOT circuits (n 4..10), 0 failures, NOT alive and killed both tight; the 4-NOT control reproduces A1's 248 nega

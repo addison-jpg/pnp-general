@@ -4,7 +4,7 @@ import PEqualNP.W951.SearchCheck
 /-!
 # FlipLemma: the per-set flip lemma S3(a), any number of NOT gates
 
-Statement (`notes/beyond-one-not.md`, S3(a), `FlipClasses.local`): for every correct circuit, every
+Statement (`workshop/notes/beyond-one-not.md`, S3(a), `FlipClasses.local`): for every correct circuit, every
 set `S` and every zero point `Z` of `S`, at least `|S| - 1` flip classes have `|D| ≥ 2` at `(S, Z)`,
 where `D(g) = {u ∈ S : g(Z + e_u) ≠ g(Z)}` and a flip class is a wire function up to complement.
 

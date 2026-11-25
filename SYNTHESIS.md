@@ -1,6 +1,6 @@
 # Synthesis
 
-One page. It is the parent of three longer leaves in `notes/synthesis/` (`three-layers-long.md`,
+One page. It is the parent of three longer leaves in `workshop/notes/synthesis/` (`three-layers-long.md`,
 `big-picture.md`, `collation-2026-11-24.md`); nothing in them was dropped. Names follow
 [`NAMES.md`](NAMES.md); sources are in [`LITERATURE.md`](LITERATURE.md). Nothing here says that
 P versus NP is settled.
@@ -52,7 +52,7 @@ general circuits (Markov and Fischer, checked: `Fischer.L104`).
 Every open item concerns a `notInput` that depends on at least two inputs. The technique reads the
 inside of the circuit at Boolean points, so it does not relativize or algebrize, and it concerns
 one explicit sparse family, so it is not a natural property; it is also far below the range the
-barriers speak about (table per technique: `notes/synthesis/big-picture.md` section 3).
+barriers speak about (table per technique: `workshop/notes/synthesis/big-picture.md` section 3).
 
 **General circuits.** Checked: `Fischer.L104`; the size hierarchy; C(x ⊕ f) ≥ max + 3 and = min + 4
 when C(f) ≠ C(¬f); Kannan's uniform half reduced to a polynomial-time check. Open: L-gen-101 to

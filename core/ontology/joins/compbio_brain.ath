@@ -1,0 +1,8 @@
+# Join compbio + brain: one count, (2n-3)!!. Tree building and segmental growth are the same insertion: a new leaf on any of 2n-3 edges.
+check "python3 -I biology/brain/neuron/check.py"
+seq phylo = from biology/compbio/fingerprints.json "phylogenetic"
+seq arbor = from biology/brain/neuron/fingerprints.json "segmental"
+claim formula phylo = "(2*n-2)! // (2**(n-1) * (n-1)!)" from 2
+claim formula arbor = "(2*n-2)! // (2**(n-1) * (n-1)!)" from 1
+frame "Join: rooted binary phylogenetic trees (biology/compbio) and segmental-growth histories of a dendrite (biology/brain/neuron)" reading "both stored sequences equal (2n-3)!! term by term (compbio n = 2..8, neuron n = 1..9); compbio's own script prints no PASS line, so only its stored fingerprint is read" -> 6 label checked-finite reach 2 cost 40
+record biology/compbio join-neuron checked-finite "core/ontology/joins/compbio_brain.ath: rooted binary phylogenetic trees with n leaves (biology/compbio/fingerprints.json, n = 2..8) and segmental-growth histories with n tips (biology/brain/neuron/fingerprints.json, n = 1..9) both equal (2n-2)!/(2^(n-1)(n-1)!) = (2n-3)!! term by term; biology/brain/neuron/check.py passes. Both add a new leaf on any of the 2n-3 edges."

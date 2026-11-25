@@ -1,0 +1,16 @@
+# big.ath: the whole repository as one brain. Each universe (a field in the centre) is a cell.
+# The cell bodies are the brain folders (biology/brain/*): finite checks there count as checked-finite.
+# Connections are record citations between universes (core/universes/network.py). Nothing here is upgraded.
+check "python3 -I core/universes/network.py"
+check "python3 -I biology/brain/neuron/check.py"
+check "python3 -I biology/brain/cortex/check.py"
+check "python3 -I biology/brain/network/check.py"
+# A culture cell: troll quadrants as signed balance, and love (stable matching, k=1 and k=2), whose refusal check imports it.
+check "python3 -I culture/homestuck/quadrants/check.py"
+check "python3 -I culture/love/check.py"
+# Love from where you stand (paths to stability from any matching), and love over Q (fractional matchings as weight matrices).
+check "python3 -I culture/love/paths.py"
+check "python3 -I culture/love/field.py"
+record core/universes universes checked-finite "big.ath: the universe network (its cells, the connections it finds, and its critical connections, as the script prints them) is computed exactly from center/shards; the brain checks it runs are finite and exhaustive. The sampled hairy-ball result (biology/brain/hairy.py) is tested, so it is not part of this program."
+# Love, native: the Rust recomputation must equal every Python love fingerprint (n <= 3).
+check "python3 -I culture/love/native_diff.py"

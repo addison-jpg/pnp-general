@@ -1,0 +1,10 @@
+[
+ {"name": "stable polytope k=1 vertices summed, n=2 all profiles, n=3 sample (every 97th)", "seq": [18, 618], "runner": "python3 -I culture/love/field.py"},
+ {"name": "profiles where direct k=2 stability admits unstable points, n=2..3", "seq": [14, 466], "runner": "python3 -I culture/love/field.py"},
+ {"name": "b-matching polytope vertices k=1, n=2..3", "seq": [7, 34], "runner": "python3 -I culture/love/field.py"},
+ {"name": "b-matching polytope vertices k=3/2, n=2..3", "seq": [25, 766], "runner": "python3 -I culture/love/field.py"},
+ {"name": "b-matching polytope fractional vertices k=3/2, n=2..3", "seq": [18, 732], "runner": "python3 -I culture/love/field.py"},
+ {"name": "b-matching polytope vertices k=2, n=2..3", "seq": [16, 265], "runner": "python3 -I culture/love/field.py"},
+ {"name": "3x3 doubly stochastic matrices in (1/q)Z, q=1..6", "seq": [6, 21, 55, 120, 231, 406], "runner": "python3 -I culture/love/field.py"},
+ {"name": "4x4 doubly stochastic matrices in (1/q)Z, q=1..3", "seq": [24, 282, 2008], "runner": "python3 -I culture/love/field.py"}
+]

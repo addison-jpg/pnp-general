@@ -45,16 +45,16 @@ Carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp), landed on main 2026-11-
 - Lean, merged for real: `one-not/lean`, 75 leaf files -> 14 (each old file is a `section <OldName>` inside its new file, bodies unchanged). Gate passed: `lake build PEqualNP` completes; the sorry warnings are the same 9 declarations (`no_minCE` + the 8 PayDraft drafts, now in `W951/MiscSmall.lean`). If you import one of the 75 old modules, import the new file instead (old -> new: `git show 8e37776 --stat`, or the section names).
 - Lean in `lean/`: 689 leaves (about 295,000 lines) NOT merged, too expensive to re-build; mapped in `MST.json`.
 - py: mapped in `MST.json`, not merged (scripts are run by name).
-- READMEs: 19 -> 5 files, about 90 KB -> 14 KB; the owner's line and quotes verbatim; the long front page is kept whole in `notes/front-page-2026-11-24.md`.
+- READMEs: 19 -> 5 files, about 90 KB -> 14 KB; the owner's line and quotes verbatim; the long front page is kept whole in `workshop/notes/front-page-2026-11-24.md`.
 
 
 ## Handoff lines (one per session: branch, commit, what is unfinished)
 - session_01GmnDhg8XTmohao5zo2MMaC (Generalize; attached here with owner OK in its own chat): `pnp-general` main (L-gen-005,
   L-gen-006); older copy on pequalnp-work `mirror/pensive-galileo-7rfw13` (4c7bfb4). Unfinished: the case `C(f) = C(¬f)` of
-  `C(x ⊕ f) = min + 4` (helper's partial results, unverified: `notes/general/generalize-xor-residual.md`; its 17-gate example is now
+  `C(x ⊕ f) = min + 4` (helper's partial results, unverified: `workshop/notes/general/generalize-xor-residual.md`; its 17-gate example is now
   CHECKED: a circuit of the counterexample shape with no constant or duplicate wire on either side, so no local redundancy
   argument closes the case; SAT, conditional on the encoding: no counterexample with `m ≤ 6` for any number of variables). Resumed by the owner ("go") after a stand-down; next rows are ranked in
-  `notes/general/generalize-ladder-survey.md`. MERGE with desktop GeNeRALIZE (owner via Discussion: "this is useful it should merge"): proposed that
+  `workshop/notes/general/generalize-ladder-survey.md`. MERGE with desktop GeNeRALIZE (owner via Discussion: "this is useful it should merge"): proposed that
   this session is the live seat; GeNeRALIZE agrees if the owner confirms in its chat, and is not closed.
 - session_01GmnDhczcdJyEX4WwHrrzPx (desktop GeNeRALIZE; owner in its own chat: "work in pnp-general ALWAYS"): its checked work is now
   HERE on main (imported 1:1 from pequalnp-work claude/funny-maxwell-o4s4k1 @ bcb1d99; builds; every main theorem std axioms):
@@ -98,7 +98,7 @@ Carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp), landed on main 2026-11-
 - session_01GmnDheoRytFdZ9LUQXmuGK (pnp-subproblem; attached here 08:55 with owner OK in its own chat): role REFEREE B (merge-tree
   charging) for no_minCE. Unfinished: waits for front's B claims (~11:30). Older work on pequalnp-work: board-unified 5136256 (paused),
   board f865a6d (referee file, copied to one-not/board/agents/pnp-subproblem-referee-angle2.md).
-- session_01GmnDhgoeSPwoi25gcFxUPJ (checker-checker; attached here 09:28 with owner OK in its own chat; 1to1 seat = checker, with observer session_01GmnDhegXGF8MJNAhiA1AHp): Done: note-2, physics models vs the three barriers (unified gravity / CTCs / BBBV / holographic complexity -> relativization L-lib-061/062, algebrization L-lib-065/076, natural proofs L-lib-086; verdict: exact as a map, no barrier passed; L-lib-035 is vacuous per L-lib-093) at notes/checker/note-2-physics-models-and-the-three-barriers.md, with 3 Lean corollaries notes/checker/BarrierMap.lean (compiled on the pinned toolchain + Mathlib, std axioms only; not run through the checker). Same files on pequalnp-work mirror/serene-davinci-l1jdj2 5684af9. Unfinished: nothing; 0 agents.
+- session_01GmnDhgoeSPwoi25gcFxUPJ (checker-checker; attached here 09:28 with owner OK in its own chat; 1to1 seat = checker, with observer session_01GmnDhegXGF8MJNAhiA1AHp): Done: note-2, physics models vs the three barriers (unified gravity / CTCs / BBBV / holographic complexity -> relativization L-lib-061/062, algebrization L-lib-065/076, natural proofs L-lib-086; verdict: exact as a map, no barrier passed; L-lib-035 is vacuous per L-lib-093) at workshop/notes/checker/note-2-physics-models-and-the-three-barriers.md, with 3 Lean corollaries workshop/notes/checker/BarrierMap.lean (compiled on the pinned toolchain + Mathlib, std axioms only; not run through the checker). Same files on pequalnp-work mirror/serene-davinci-l1jdj2 5684af9. Unfinished: nothing; 0 agents.
 
 - session_01GmnDhcTAHGf6Zx99zs3cPd (cTAHG, LP / price-form Lean for 951; attached here 09:45 with owner OK in its own chat): LANDED on main:
   ChainPick (2902b9b), SDR certificates on 35 hard circuits (SDRCert/SDRWitness/SDRWitnessFixh16), PriceOff build fix (93b5865),

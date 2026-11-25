@@ -1,2 +1,0 @@
-{"name": "funsearch_recheck", "entry": "compute/funsearch/entry.py", "args": ["recheck"], "needs": [],
- "shards": 1, "output": "funsearch_recheck.jsonl", "requirements": ["numpy>=2.0"]}

@@ -22,6 +22,7 @@
 - [checked, r=0.3] Fisher, hauntology as branching time: lost futures accumulate (lost_mono), haunting is monotone (haunted_mono), a branch point haunts (haunted_of_branch), capitalist_realism; models only cancelled pos
 - [checked, r=0.3] Minimal cuts of a weighted graph: complement symmetry (rt_compl), strong subadditivity (rt_submodular), monogamy of mutual information (rt_monogamy), so no graph has the 4-party GHZ entropy pattern (n
 - [checked, r=0.3] Seven one-NOT board rows encoded as a Fisher frame (names and statuses are data copied from the boards, not checked): refuted rows C2, C4, L5 are lost futures of the present A4-A7-A10-BottomPay and st
+- [checked-finite, r=1.0] Modal correspondence checked exactly on all 512 relations on 3 worlds and all 65536 on 4: T, 4, B, 5 are valid exactly on the reflexive, transitive, symmetric, euclidean frames; T and 5 together exact
 - [open, r=1.0] Not proved: the Coffman-Kundu-Wootters inequality (needs mixed-state concurrence), min-cut = entanglement entropy for HaPPY states, contraction of a general tensor network to the factorised form. Not 
 - [open, r=1.0] Not found: a theorem for Beauvoir's 'to will oneself free is to will others free' (a tree frame has no shared future for incomparable selves; a frame with joins loses lost_mono), a model of master and
 
@@ -35,9 +36,17 @@
 - [DATA, r=0.5] connected labelled graphs with no critical edge (bridgeless), n vertices (n>=1) seq [1, 0, 1, 10, 253, 11968]
 
 ## Frames
+- [checked-finite, r=0.0] Addison: Fisher, capitalist realism (core/ontology/SOURCES.md; philosophy/ and Fisher.lean): a closed class of a Markov chain: once in, no state outside is reachable; every chain on up to 4 states (50
+- [checked-finite, r=0.0] Addison: a postmodern history, Lyotard 1979 (core/ontology/SOURCES.md; philosophy/metaphysics/BASE.md); the Lyotard link is analogy (reading), not checked: Kripke fact only: axiom 5 fails on some S4 f
 - [checked-finite, r=0.0] Deleuze and Guattari, the rhizome against the arborescent centre (philosophy/rhizome.py): graph fact only: bridgeless connected graphs have no critical part; trees have only critical parts
 - [checked-finite, r=0.0] Lacan, the Borromean knot (philosophy/PSYCHOSIS.md): the three rings: every linking number 0, triple invariant 1
-- [checked-finite, r=0.0] Addison: Fisher, capitalist realism (ontology/SOURCES.md; philosophy/ and Fisher.lean): a closed class of a Markov chain: once in, no state outside is reachable; every chain on up to 4 states (50978 s
+- [checked-finite, r=0.0] Addison: upgrade asteroid for metaphysics (core/ontology/SOURCES.md): T, 4, B, 5 hold on exactly the reflexive, transitive, symmetric, euclidean relations on 3 and 4 worlds; S5 frames are the equivale
+- [checked-finite, r=0.0] Join: local bridges of culture/social/weakties.py (Granovetter 1973; Easley and Kleinberg 2010; cited from memory) and bridges of philosophy/rhizome.py: every bridge (critical edge) is a local bridge 
+- [checked-finite, r=0.0] Lewis, On the Plurality of Worlds (1986), indexical actuality (philosophy/metaphysics/BASE.md); the Lewis link is analogy (reading), not checked: Kripke fact only: axiom 5 is valid on every S5 frame o
 - [checked-finite, r=0.0] Addison: the multiverse is Deleuzean; the psychosis framework (philosophy/PSYCHOSIS.md): the measure problem as a missing anchor: Lacan supplies one (a chosen measure, a sinthome), Deleuze refuses one
+- [checked-finite, r=0.0] Join: the cone of philosophy/cone.py and the fan of physics/curvature/check.py (Regge 1961, cited from memory): for d = 3..12 the cone over a d-cycle is a disk with the apex inside, and the apex defic
+- [checked-finite, r=0.0] cone.py facts 1 and 4, every base graph on up to 6 vertices (33,867): the hub is a cut vertex exactly when the base is disconnected; the fewest added lateral links that stop this is pieces - 1: a grap
 - [checked-finite, r=0.0] Deleuze and Guattari, rhizome against tree (philosophy/rhizome.py): a tree is a connected graph whose every edge is a bridge; bridgeless graphs counted to 6 vertices
-- [open, r=1.0] Addison: the measure problem, merged (cosmos/BASE.md section 5; metaphysics/BASE.md; philosophy/PSYCHOSIS.md): no privileged world anchors a probability over worlds (S5 reading); in the cosmos toy the
+- [open, r=1.0] Addison: the measure problem, merged (physics/cosmos/BASE.md section 5; philosophy/metaphysics/BASE.md; philosophy/PSYCHOSIS.md): no privileged world anchors a probability over worlds (S5 reading); in
+- [open, r=1.0] Responsibility to those who rely on asteroid: never print a label stronger than its check (philosophy/RESPONSIBILITY.md, a position): a position; the enforced part is in asteroid/ext_frame.py: a frame
+- [open, r=1.0] Candidate: the doubling map of philosophy/numbers.py and time (physics/time, physics/cosmos): ANALOGY (a reading): a shift that forgets one digit per step reads as time that loses the past; no shared 

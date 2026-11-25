@@ -6,3 +6,7 @@
 ## Cells
 - [DECIDED, r=0.0] (Sonnet, 2026-11-25, was TAKEN): Lawvere spine, Cantor, Russell, computable-enumeration, halting bridge (Mathlib restated, not derived), Camus all checked; asteroid/Tarski dropped (no formal claim syn
 - [OPEN, r=1.0] (Fable under the revised seat rule; low priority, idle compute): the asteroid Tarski instance. Gödel-number asteroid claims (Stmt) as data that claims can mention; show that no asteroid-definable pred
+
+## Frames
+- [open, r=1.0] Against the manifesto's strategy: attacking a hub while the base has no lateral links: ANALOGY (a reading) of the graph fact above: when people depend on the system and not on each other, destroying i
+- [open, r=1.0] A non-violent alternative: lateral links, mutual aid and community: ANALOGY (a reading) of the same graph fact: build links between people until no centre is critical, rather than attack the centre. A

@@ -8,17 +8,24 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | program | checked | checked-finite | tested | refuted |
 |---|---|---|---|---|
 | asteroid | 7 | 0 | 3 | 0 |
-| brain | 0 | 9 | 0 | 0 |
+| brain | 0 | 10 | 0 | 0 |
 | circuits | 48 | 0 | 6 | 6 |
+| compbio | 0 | 1 | 0 | 0 |
+| cosmos | 0 | 1 | 0 | 0 |
+| curvature | 0 | 1 | 0 | 0 |
+| homestuck | 0 | 1 | 0 | 0 |
 | lateral | 1 | 0 | 0 | 0 |
 | ontology | 0 | 4 | 0 | 0 |
-| other | 0 | 7 | 0 | 0 |
 | philosophy | 13 | 4 | 0 | 0 |
-| privacy | 0 | 2 | 0 | 0 |
+| privacy | 0 | 3 | 0 | 0 |
 | prompt-method | 0 | 0 | 3 | 0 |
 | quantum-gravity | 13 | 0 | 0 | 0 |
+| routing | 0 | 1 | 0 | 0 |
+| social | 0 | 1 | 0 | 0 |
+| time | 0 | 4 | 0 | 0 |
+| transit | 0 | 1 | 0 | 0 |
 | worlds | 9 | 0 | 0 | 0 |
-| **all** | **91** | **26** | **12** | **6** |
+| **all** | **91** | **32** | **12** | **6** |
 
 ## asteroid
 
@@ -39,15 +46,16 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 
 | label | statement | evidence | recheck |
 |---|---|---|---|
-| checked-finite | Terminal dendrite growth gives exactly the Yule (equal-rates) phylogenetic distribution on tree shapes, and segmental growth exactly the uniform (PDA) distribution, for every unordered shape with up to 9 tips; segmental growth histories number (2n-3)!!, the count of rooted binary phylogenetic tre... | `brain/neuron/check.py`, `brain/neuron/BASE.md` | `python3 -I brain/neuron/check.py` |
-| checked-finite | brain/complexes: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/complexes/check.py`, `brain/complexes/BASE.md` | `python3 -I brain/complexes/check.py` |
-| checked-finite | brain/cortex: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/cortex/check.py`, `brain/cortex/BASE.md` | `python3 -I brain/cortex/check.py` |
-| checked-finite | brain/dna: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/dna/check.py`, `brain/dna/BASE.md` | `python3 -I brain/dna/check.py` |
-| checked-finite | brain/membrane: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/membrane/check.py`, `brain/membrane/BASE.md` | `python3 -I brain/membrane/check.py` |
-| checked-finite | brain/network: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/network/check.py`, `brain/network/BASE.md` | `python3 -I brain/network/check.py` |
-| checked-finite | brain/neuron: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/neuron/check.py`, `brain/neuron/BASE.md` | `python3 -I brain/neuron/check.py` |
-| checked-finite | brain/tissue: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/tissue/check.py`, `brain/tissue/BASE.md` | `python3 -I brain/tissue/check.py` |
-| checked-finite | neuron.ath: segmental-growth histories of a dendrite with n tips number (2n-3)!!, the rooted binary phylogenetic trees, for n=1..9; terminal growth gives (n-1)! and ordered shapes Catalan(n-1). Every term checked exactly against the formula, and brain/neuron/check.py passes. | `neuron.ath`, `brain/neuron/fingerprints.json`, `brain/neuron/check.py` | `python3 -I brain/neuron/check.py` |
+| checked-finite | Terminal dendrite growth gives exactly the Yule (equal-rates) phylogenetic distribution on tree shapes, and segmental growth exactly the uniform (PDA) distribution, for every unordered shape with up to 9 tips; segmental growth histories number (2n-3)!!, the count of rooted binary phylogenetic tre... | `biology/brain/neuron/check.py`, `biology/brain/neuron/BASE.md` | `python3 -I biology/brain/neuron/check.py` |
+| checked-finite | biology/brain/complexes: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `biology/brain/complexes/check.py`, `biology/brain/complexes/BASE.md` | `python3 -I biology/brain/complexes/check.py` |
+| checked-finite | biology/brain/cortex: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `biology/brain/cortex/check.py`, `biology/brain/cortex/BASE.md` | `python3 -I biology/brain/cortex/check.py` |
+| checked-finite | biology/brain/dna: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `biology/brain/dna/check.py`, `biology/brain/dna/BASE.md` | `python3 -I biology/brain/dna/check.py` |
+| checked-finite | biology/brain/membrane: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `biology/brain/membrane/check.py`, `biology/brain/membrane/BASE.md` | `python3 -I biology/brain/membrane/check.py` |
+| checked-finite | biology/brain/network: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `biology/brain/network/check.py`, `biology/brain/network/BASE.md` | `python3 -I biology/brain/network/check.py` |
+| checked-finite | biology/brain/neuron: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `biology/brain/neuron/check.py`, `biology/brain/neuron/BASE.md` | `python3 -I biology/brain/neuron/check.py` |
+| checked-finite | biology/brain/tissue: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `biology/brain/tissue/check.py`, `biology/brain/tissue/BASE.md` | `python3 -I biology/brain/tissue/check.py` |
+| checked-finite | core/ontology/joins/brain_curvature.ath: on the icospheres of biology/brain/hairy.py (subdivision 0..3: 12, 42, 162, 642 vertices) chi = 2 three ways, exact: V - E + F, the deficit sum of physics/curvature/check.py over 2 pi, and the Banchoff index sum with hairy.py's link rule for 3 fixed intege... | `core/ontology/joins/brain_curvature.ath`, `biology/brain/hairy.py`, `physics/curvature/check.py` | `python3 -I biology/brain/hairy.py && python3 -I physics/curvature/check.py && python3 -I core/ontology/joins/euler.py` |
+| checked-finite | neuron.ath: segmental-growth histories of a dendrite with n tips number (2n-3)!!, the rooted binary phylogenetic trees, for n=1..9; terminal growth gives (n-1)! and ordered shapes Catalan(n-1). Every term checked exactly against the formula, and biology/brain/neuron/check.py passes. | `neuron.ath`, `biology/brain/neuron/fingerprints.json`, `biology/brain/neuron/check.py` | `python3 -I biology/brain/neuron/check.py` |
 
 ## circuits
 
@@ -114,6 +122,30 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | tested | The one-point step holds at every cube on 12 of 12 irreducible circuits whose NOT gate is read. | `one-not/tools/search/irreducible.py` |  |
 | tested | With exactly 2 NOT gates, neither feeding the other, the minimum circuit size is base + 3 on tri3, star3 and tri4 (UNSAT at base + 1, base + 2) and above base + 2 on q4 and Pasch: on these systems NOT gates cost gates, never save them. | `one-not/tools/kill_tests/c4t_sat.py`, `one-not/data/c4g/t2_runs.log` |  |
 
+## compbio
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | core/ontology/joins/compbio_brain.ath: rooted binary phylogenetic trees with n leaves (biology/compbio/fingerprints.json, n = 2..8) and segmental-growth histories with n tips (biology/brain/neuron/fingerprints.json, n = 1..9) both equal (2n-2)!/(2^(n-1)(n-1)!) = (2n-3)!! term by term; biology/bra... | `core/ontology/joins/compbio_brain.ath`, `biology/brain/neuron/check.py`, `biology/compbio/fingerprints.json` | `python3 -I biology/brain/neuron/check.py` |
+
+## cosmos
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; physics/cosmos/check.py passes. | `cosmos.ath`, `physics/cosmos/check.py`, `physics/cosmos/fingerprints.json` | `python3 -I physics/cosmos/check.py` |
+
+## curvature
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | core/ontology/joins/curvature_philosophy.ath: for d = 3..12 the cone over a d-cycle (philosophy/cone.py is_disk) is a disk with the apex inside, and the apex is a fan of d equilateral triangles whose deficit (physics/curvature/check.py) is 0 exactly when d = 6. Both checks pass in the same run. | `core/ontology/joins/curvature_philosophy.ath`, `physics/curvature/check.py`, `philosophy/cone.py` | `python3 -I physics/curvature/check.py && python3 -I philosophy/cone.py && python3 -I core/ontology/joins/fan.py` |
+
+## homestuck
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A model of combination, not the comic's recipe. | `culture/homestuck/alchemy.py::reachable_counts` | `python3 -I culture/homestuck/alchemy.py 3 3` |
+
 ## lateral
 
 | label | statement | evidence | recheck |
@@ -124,22 +156,10 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 
 | label | statement | evidence | recheck |
 |---|---|---|---|
-| checked-finite | frames_sync.ath: B defines symmetry on all frames on 3 worlds; on 0->1 reflexive, B fails and 4 holds; []<>T defines successor-seriality on all 530 frames on 1..3 worlds, <>T seriality; 35 frames are successor-serial but not serial. | `frames_sync.ath`, `ontology/light.py`, `ontology/history.py` | `bin/asteroid --no-lean frames_sync.ath` |
-| checked-finite | frames_sync.ath: ontology/catch22.py passes. A<->B, B<->A: exactly 2 consistent outcomes (both halt, neither); one loop bound to an external death: 1 outcome per value; a loop bound to its own negation: 0. | `frames_sync.ath`, `ontology/light.py`, `ontology/history.py` | `python3 -I ontology/catch22.py` |
-| checked-finite | frames_sync.ath: ontology/history.py passes. All 24 rooted posets on 1..4 worlds (21 trees, 3 rejoining) are p-morphic images of their unravelled trees; worlds agree with their copies on 8 formulas under every valuation; .2 valid on the diamond, invalid on its unravelling. | `frames_sync.ath`, `ontology/light.py`, `ontology/history.py` | `python3 -I ontology/history.py` |
-| checked-finite | frames_sync.ath: ontology/light.py passes. de Sitter a=e^(Ht): series identities for the horizon integral exact to order 40 at H in {1,1/2,3/7,5,22/7}, proper horizon c/H; light cone equals the BFS ball on all 27476 connected labelled graphs on 1..6 vertices. | `frames_sync.ath`, `ontology/light.py`, `ontology/history.py` | `python3 -I ontology/light.py` |
-
-## other
-
-| label | statement | evidence | recheck |
-|---|---|---|---|
-| checked-finite | Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A model of combination, not the comic's recipe. | `homestuck/alchemy.py::reachable_counts` | `python3 -I homestuck/alchemy.py 3 3` |
-| checked-finite | cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; cosmos/check.py passes. | `cosmos.ath`, `cosmos/check.py`, `cosmos/fingerprints.json` | `python3 -I cosmos/check.py` |
-| checked-finite | frames.ath: transit/social.py passes. Every sink-free chain on 1..4 states has a closed class, absorbs with probability 1, and 77260 single edges out of a closed class to a state reaching back all break it. Two cliques K_k (k=2..5): one bridge makes cover time finite; hitting time from the bridge... | `frames.ath`, `philosophy/rhizome.py`, `brain/cortex/check.py` | `python3 -I philosophy/rhizome.py && python3 -I brain/cortex/check.py && python3 -I transit/check.py && python3 -I transit/social.py` |
-| checked-finite | frames_routing.ath: routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierarchies (fixed order; every order for n<=4) give the Floyd-Warshall distance for every pair. A* wit... | `frames_routing.ath`, `routing/check.py` | `python3 -I routing/check.py` |
-| checked-finite | frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds. | `frames_time.ath`, `time/check.py` | `python3 -I time/check.py` |
-| checked-finite | frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder from */level.json join arrows has no least element. | `frames_time.ath`, `time/check.py` | `python3 -I time/check.py` |
-| checked-finite | frames_time.ath: time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxation. | `frames_time.ath`, `time/check.py` | `python3 -I time/check.py` |
+| checked-finite | frames_sync.ath: B defines symmetry on all frames on 3 worlds; on 0->1 reflexive, B fails and 4 holds; []<>T defines successor-seriality on all 530 frames on 1..3 worlds, <>T seriality; 35 frames are successor-serial but not serial. | `frames_sync.ath`, `core/ontology/light.py`, `core/ontology/history.py` | `bin/asteroid --no-lean frames_sync.ath` |
+| checked-finite | frames_sync.ath: core/ontology/catch22.py passes. A<->B, B<->A: exactly 2 consistent outcomes (both halt, neither); one loop bound to an external death: 1 outcome per value; a loop bound to its own negation: 0. | `frames_sync.ath`, `core/ontology/light.py`, `core/ontology/history.py` | `python3 -I core/ontology/catch22.py` |
+| checked-finite | frames_sync.ath: core/ontology/history.py passes. All 24 rooted posets on 1..4 worlds (21 trees, 3 rejoining) are p-morphic images of their unravelled trees; worlds agree with their copies on 8 formulas under every valuation; .2 valid on the diamond, invalid on its unravelling. | `frames_sync.ath`, `core/ontology/light.py`, `core/ontology/history.py` | `python3 -I core/ontology/history.py` |
+| checked-finite | frames_sync.ath: core/ontology/light.py passes. de Sitter a=e^(Ht): series identities for the horizon integral exact to order 40 at H in {1,1/2,3/7,5,22/7}, proper horizon c/H; light cone equals the BFS ball on all 27476 connected labelled graphs on 1..6 vertices. | `frames_sync.ath`, `core/ontology/light.py`, `core/ontology/history.py` | `python3 -I core/ontology/light.py` |
 
 ## philosophy
 
@@ -167,16 +187,17 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 
 | label | statement | evidence | recheck |
 |---|---|---|---|
-| checked-finite | Privacy as exact combinatorics on synthetic data: k-anonymity over all 65536 four-row tables (largest k = 1, 2, 4 for 64800, 720, 16 tables) with the least-generalization search equal to brute force on every table; the exact distribution of unique individuals matches E = n(1-1/D)^(n-1) for 30 (n,... | `privacy/check.py`, `privacy/BASE.md` | `python3 -I privacy/check.py` |
-| checked-finite | privacy.ath: the equality patterns of n table rows number B(n), the Bell numbers, for n=1..8, each term equal to the sum over k of S(n,k) computed exactly; privacy/check.py passes. | `privacy.ath`, `privacy/fingerprints.json`, `privacy/check.py` | `python3 -I privacy/check.py` |
+| checked-finite | Privacy as exact combinatorics on synthetic data: k-anonymity over all 65536 four-row tables (largest k = 1, 2, 4 for 64800, 720, 16 tables) with the least-generalization search equal to brute force on every table; the exact distribution of unique individuals matches E = n(1-1/D)^(n-1) for 30 (n,... | `biology/privacy/check.py`, `biology/privacy/BASE.md` | `python3 -I biology/privacy/check.py` |
+| checked-finite | core/ontology/joins/privacy_poetry.ath: equality patterns of n table rows (biology/privacy/fingerprints.json) and rhyme schemes of n lines (culture/poetry/fingerprints.json) agree on all 8 common terms, the Bell numbers 1, 2, 5, 15, 52, 203, 877, 4140; biology/privacy/check.py and culture/poetry/... | `core/ontology/joins/privacy_poetry.ath`, `biology/privacy/check.py`, `culture/poetry/check.py` | `python3 -I biology/privacy/check.py && python3 -I culture/poetry/check.py` |
+| checked-finite | privacy.ath: the equality patterns of n table rows number B(n), the Bell numbers, for n=1..8, each term equal to the sum over k of S(n,k) computed exactly; biology/privacy/check.py passes. | `privacy.ath`, `biology/privacy/fingerprints.json`, `biology/privacy/check.py` | `python3 -I biology/privacy/check.py` |
 
 ## prompt-method
 
 | label | statement | evidence | recheck |
 |---|---|---|---|
-| tested | Prompting claim C1 (supported): Over matched informal/formal prompt pairs, informal token count is lower in more than half of pairs and in the pooled sum. Numbers: The source is ath_prompts/measure/results.md, which uses Qwen2.5-0.5B token counts. I recomputed the 10 typed prompt pairs with /tmp/... | `ath_prompts/SYNTHESIS.md` |  |
-| tested | Prompting claim C2 (supported): Informal bits per character exceed formal in at least 9 of 10 pairs at every model size, Wilcoxon p<0.05. Numbers: My recount from ath_prompts/measure/heavy/data/*.json gives these counts of pairs where informal bits/char is higher than formal: 0.5B 10 of 10, p=0.0... | `ath_prompts/SYNTHESIS.md` |  |
-| tested | Prompting claim C8 (toss-up): Slope of Sonnet tokens per checked result vs commit count is not different from 0, and C(R) stays below a fixed bound. Numbers: Source: /home/user/pnp-general/ath_prompts/measure/cost_per_result.md. The linear fit over 18 Sonnet seats in seat order gives a slope of +... | `ath_prompts/SYNTHESIS.md` |  |
+| tested | Prompting claim C1 (supported): Over matched informal/formal prompt pairs, informal token count is lower in more than half of pairs and in the pooled sum. Numbers: The source is workshop/ath_prompts/measure/results.md, which uses Qwen2.5-0.5B token counts. I recomputed the 10 typed prompt pairs w... | `workshop/ath_prompts/SYNTHESIS.md` |  |
+| tested | Prompting claim C2 (supported): Informal bits per character exceed formal in at least 9 of 10 pairs at every model size, Wilcoxon p<0.05. Numbers: My recount from workshop/ath_prompts/measure/heavy/data/*.json gives these counts of pairs where informal bits/char is higher than formal: 0.5B 10 of ... | `workshop/ath_prompts/SYNTHESIS.md` |  |
+| tested | Prompting claim C8 (toss-up): Slope of Sonnet tokens per checked result vs commit count is not different from 0, and C(R) stays below a fixed bound. Numbers: Source: /home/user/pnp-general/ath_prompts/measure/cost_per_result.md. The linear fit over 18 Sonnet seats in seat order gives a slope of +... | `workshop/ath_prompts/SYNTHESIS.md` |  |
 
 ## quantum-gravity
 
@@ -195,6 +216,33 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | checked | P_CTC is inside EXP (PCTC ⊆ EXP), via a padded bounded-iteration machine for the register map | `lean/PEqualNP/QuantumGravity/Open/L169.lean::PCTC_subset_EXP` |  |
 | checked | Reset-to-start trick behind PSPACE in P_CTC: if a step map halts from every configuration, every Deutsch-consistent state of the reset map is supported on the cycle through start. | `lean/PEqualNP/QuantumGravity/Open/CtcReset.lean::reset_support_on_start_cycle` |  |
 | checked | Two-level saturation: every unitary of Fin d is a product of at most d(d+1)/2 unitaries that are the identity outside a 2x2 block (Givens column elimination plus d phases). Axioms: propext, Classical.choice, Quot.sound. | `lean/PEqualNP/QuantumGravity/Open/TwoLevel.lean::reachable_twoLevel` |  |
+
+## routing
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | frames_routing.ath: math/routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierarchies (fixed order; every order for n<=4) give the Floyd-Warshall distance for every pair. A... | `frames_routing.ath`, `math/routing/check.py` | `python3 -I math/routing/check.py` |
+
+## social
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | core/ontology/joins/social_philosophy.ath: on every connected labelled graph on 1..6 vertices, every bridge of philosophy/rhizome.py (an edge whose loss disconnects) is a local bridge of culture/social/weakties.py (endpoints share no neighbour), and not conversely (65759 local-bridge edges, 28907... | `core/ontology/joins/social_philosophy.ath`, `culture/social/weakties.py`, `philosophy/rhizome.py` | `python3 -I culture/social/weakties.py && python3 -I philosophy/rhizome.py && python3 -I core/ontology/joins/bridges.py` |
+
+## time
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | core/ontology/joins/time_poetry.ath: by brute force over every relation on 1..4 worlds, S5 frames (reflexive, transitive, symmetric) number 1, 2, 5, 15 and S4 frames 1, 4, 29, 355; the S5 counts equal the rhyme schemes of culture/poetry/fingerprints.json, and 1 + 2 + 5 = 8 and 1 + 4 + 29 = 34 are... | `core/ontology/joins/time_poetry.ath`, `physics/time/check.py`, `core/ontology/joins/s5.py` | `python3 -I physics/time/check.py && python3 -I core/ontology/joins/s5.py` |
+| checked-finite | frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
+| checked-finite | frames_time.ath: physics/time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxation. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
+| checked-finite | frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder from */level.json join arrows has no least element. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
+
+## transit
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | frames.ath: math/transit/social.py passes. Every sink-free chain on 1..4 states has a closed class, absorbs with probability 1, and 77260 single edges out of a closed class to a state reaching back all break it. Two cliques K_k (k=2..5): one bridge makes cover time finite; hitting time from the b... | `frames.ath`, `philosophy/rhizome.py`, `biology/brain/cortex/check.py` | `python3 -I philosophy/rhizome.py && python3 -I biology/brain/cortex/check.py && python3 -I math/transit/check.py && python3 -I math/transit/social.py` |
 
 ## worlds
 

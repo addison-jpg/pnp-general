@@ -42,10 +42,10 @@ Memory per R-batch is capped by `budget` (bytes, default 2 GiB); lower it for a 
 ## How to run a compute job (GitHub Actions, `.github/workflows/compute.yml`)
 
 A job spec is a JSON file in the repo: `{"name", "entry": "path/to/script.py", "args": [...], "shards": N (<= 20), "output": "file.jsonl", "requirements": ["numpy>=2.0"]}`
-(example: `compute/specs/fano_slack.json`). The entry must accept `--shard i --of N --out PATH` and write its share (JSON lines) to PATH; shard i takes items j with j % N == i.
+(example: `workshop/compute/specs/fano_slack.json`). The entry must accept `--shard i --of N --out PATH` and write its share (JSON lines) to PATH; shard i takes items j with j % N == i.
 Test it locally first on a small slice (`python3 -I ENTRY --shard 1 --of 400 --out /tmp/s.jsonl --verify 40`), push the spec and entry to main, then either
 
-    gh api -X POST repos/addison-jpg/pnp-general/actions/workflows/compute.yml/dispatches -f ref=main -f 'inputs[spec]=compute/specs/fano_slack.json'
+    gh api -X POST repos/addison-jpg/pnp-general/actions/workflows/compute.yml/dispatches -f ref=main -f 'inputs[spec]=workshop/compute/specs/fano_slack.json'
     # or push a branch compute/NAME whose compute/job.json is the spec
 
 Poll with `gh api 'repos/addison-jpg/pnp-general/actions/runs?event=workflow_dispatch&per_page=5'`. Results are artifacts: `shard-i` per shard and `merged` (shards concatenated in order), fetched with
@@ -82,9 +82,9 @@ Jobs used to be alone: each run computed everything again and left its result in
 5. **GPU.** `compute.yml` takes a `runner` input (the `runs-on` label of the shard jobs, default `ubuntu-latest`). The backend auto-detects
    torch / jax, so a GPU runner needs only that label and `torch` in the spec's `requirements`. Paid runners are the owner's decision.
 
-    python3 -I one-not/tools/tensor/dag.py plan compute/specs/lemmad_recheck.json       # the levels
-    python3 -I one-not/tools/tensor/dag.py local compute/specs/test/tiny_sweep.json     # a two-spec DAG on this machine; run it twice to see the cache
-    gh api -X POST repos/addison-jpg/pnp-general/actions/workflows/compute.yml/dispatches -f ref=main -f 'inputs[spec]=compute/specs/lemmad_recheck.json'
+    python3 -I one-not/tools/tensor/dag.py plan workshop/compute/specs/lemmad_recheck.json       # the levels
+    python3 -I one-not/tools/tensor/dag.py local workshop/compute/specs/test/tiny_sweep.json     # a two-spec DAG on this machine; run it twice to see the cache
+    gh api -X POST repos/addison-jpg/pnp-general/actions/workflows/compute.yml/dispatches -f ref=main -f 'inputs[spec]=workshop/compute/specs/lemmad_recheck.json'
     git fetch origin compute-cache && git show FETCH_HEAD:results/lemmad_recheck/run-RUNID.json
     python3 -I one-not/tools/tensor/dag.py reduce --who SEAT --dry
 

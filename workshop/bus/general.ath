@@ -1,0 +1,6 @@
+# General structure of the two-way bus. Readings only: no claim checks a result here.
+# Source of the structure: workshop/bus/README.md (laws L1 to L4, spiral pass OUT, IN, OUT).
+frame "workshop/bus/README.md: two trees on one edge set, OUT P -> E -> M and IN M -> E -> P" reading "Two trees go opposite ways: OUT from programs down to memory, IN from memory back up." -> none label open reach 1 cost 40
+frame "workshop/bus/README.md: laws L1 (layer order) and L4 (prune by sorted first parent)" reading "Each tree is pruned by the layer order programs, evidence, memory, so no edge skips a layer." -> none label open reach 1 cost 40
+frame "workshop/bus/README.md: spiral pass and stop rule (runs until one prunes nothing)" reading "The bus syncs as a spiral: OUT, IN, OUT, repeated until no edge is pruned." -> none label open reach 1 cost 40
+frame "Ontology files in the repo: center/shards/quantum-gravity.jsonl and center/shards/philosophy.jsonl" reading "The spiral structure is downstream of the quantum-gravity and philosophy ontology files already in the repo: center/shards/quantum-gravity.jsonl and center/shards/philosophy.jsonl." -> none label open reach 1 cost 40
