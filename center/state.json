@@ -132,6 +132,11 @@
   },
   "mean_radius_findings": 0.0
  },
+ "routing": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "worlds": {
   "cells": {
    "DECIDED": 2,

@@ -98,6 +98,10 @@ cells: 5 DECIDED, 3 OPEN, 1 TAKEN
 findings (verified): 13 checked · mean radius 0.0
 cells: none
 
+## routing
+findings (verified): none · mean radius None
+cells: none
+
 ## worlds
 findings (verified): 9 checked · mean radius 0.0
 cells: 2 DECIDED, 3 OPEN, 1 STOPPED, 2 TAKEN

@@ -39,3 +39,4 @@
 - [checked-finite, r=0.0] Addison: Fisher, capitalist realism (ontology/SOURCES.md; philosophy/ and Fisher.lean): a closed class of a Markov chain: once in, no state outside is reachable; every chain on up to 4 states (50978 s
 - [checked-finite, r=0.0] Addison: the multiverse is Deleuzean; the psychosis framework (philosophy/PSYCHOSIS.md): the measure problem as a missing anchor: Lacan supplies one (a chosen measure, a sinthome), Deleuze refuses one
 - [checked-finite, r=0.0] Deleuze and Guattari, rhizome against tree (philosophy/rhizome.py): a tree is a connected graph whose every edge is a bridge; bridgeless graphs counted to 6 vertices
+- [open, r=1.0] Addison: the measure problem, merged (cosmos/BASE.md section 5; metaphysics/BASE.md; philosophy/PSYCHOSIS.md): no privileged world anchors a probability over worlds (S5 reading); in the cosmos toy the

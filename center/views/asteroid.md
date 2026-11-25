@@ -40,3 +40,4 @@
 
 ## Frames
 - [checked-finite, r=0.0] Addison: upgrade asteroid for metaphysics (ontology/SOURCES.md): T, 4, B, 5 hold on exactly the reflexive, transitive, symmetric, euclidean relations on 3 and 4 worlds; S5 frames are the equivalences
+- [open, r=1.0] Addison: .ath mirrors ~ATH (ontology/SOURCES.md; asteroid/SPEC.md size limits): ~ATH loops until a death; asteroid checks halt because every claim has a size limit; reading
