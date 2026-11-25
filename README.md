@@ -2,6 +2,8 @@
 
 asteroid is a small language for claims that are checked, not trusted. Programs are `.ath` files. Each claim is one plain line, and each claim is checked when the program runs.
 
+Direct questions to the repo, answered by asteroid with their labels: [workshop/asks/ASKS.md](workshop/asks/ASKS.md). The base `ast` binary cannot answer them yet.
+
 ## The packet
 
 `dist/packet.tar.gz` (1.6 MB) holds everything needed to run small programs without installing anything: the native checker `ast`, `little.ath`, `big.ath`, `hello.bench`, the PowerShell terminal `base.ps1`, and `TERMINAL.md`. Unpack it and run:

@@ -1,0 +1,8 @@
+# Direct asks, answered by asteroid. Each line is a question, not a claim.
+ask "status"
+ask "how many results are verified"
+ask "show open frames"
+ask "what is open about circuit"
+ask "what is verified about circuit"
+ask "list tags"
+ask "list pillars"
