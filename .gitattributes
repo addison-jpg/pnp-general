@@ -10,7 +10,7 @@ boards/TREE.md merge=union
 # asteroid (.ath) is not a GitHub Linguist language (Linguist adds one only after ~200 repositories use it), so the
 # language bar cannot say "asteroid". Ruby gives .ath files `#` comments and keyword colours when viewed on GitHub;
 # linguist-detectable=false keeps them out of the bar, where they showed as a confusing "Ruby".
-*.ath linguist-language=Ruby linguist-detectable=false
+*.ath linguist-language=Ruby
 # Generated files (each says so at its top): collapsed in diffs.
 NAMES.md linguist-generated
 MST.json linguist-generated
