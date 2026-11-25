@@ -51,3 +51,14 @@ Universes are the positive integers. The property is "even".
 ## 6. In asteroid
 
 `cosmos.ath` runs `check.py`, reads the place sequence, and states the two cutoffs at N = 6 as finite distributions: P(even) = 1/2 under A and 1/3 under B (checked-finite: the support is exactly the six universes). The new lines (`dist`, `claim prob`, `claim expect`, product) are in `asteroid/ext_prob.py` and `asteroid/SPEC.md`.
+
+## 7. A postmodern history of the universe, along time
+
+Source: Addison, 2026-11-25 (ontology/SOURCES.md). Reading, not proved.
+
+- Fact (search result only): Lyotard, *La Condition postmoderne* (1979; English 1984) defines the postmodern, simplifying to the extreme, as incredulity toward metanarratives.
+- Reading: the standard cosmological history (one line from the Big Bang to now) is a metanarrative. Read with Lyotard, history need not be one line.
+- The repo's position: a history can be a DAG with branches that rejoin (`DAG.lean`), not one line. The measure toy (section 5) shows that the "probability of a history" depends on the ordering.
+- If this held, what would propagate to the multiverse: only claims whose hypotheses hold there (the transport rule, `homestuck/BASE.md` section 5). A claim that holds in every ordering and every branch needs no chosen history, so it is exactly the kind that crosses.
+- Checked-finite (`cosmos/invariant.py`): for n ≤ 7 universes, over all orderings and all properties, a property's frequency is the same at every cutoff in every ordering iff it holds everywhere or nowhere. Example on the toy: "n² mod 4 is 0 or 1" holds for every universe, so its frequency is 1 at every cutoff N ≤ 3000 in both orderings A and B. Evenness does not cross: 1/2 against 1/3.
+- Open: whether any non-trivial physical statement is history-independent in this sense.

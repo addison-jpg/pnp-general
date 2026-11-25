@@ -1,0 +1,25 @@
+{
+ "id": "carseat",
+ "ladder": "carseat",
+ "name": "Car Seat Headrest: the works Addison brought",
+ "scale_m": null,
+ "carriers": ["directed graph", "record store"],
+ "invariants": ["count", "energy sign"],
+ "moves": [],
+ "infinity": [
+  {"family": "every later re-recording of a work",
+   "handled_by": "open",
+   "reduction": "each re-recording adds a node and an arrow to an earlier version, so the lineage would stay a DAG; not proved",
+   "word": "open"}
+ ],
+ "checks": [
+  {"id": "dated-order", "statement": "the dated records (1 2010, 2 2010, Twin Fantasy 2011, Face to Face 2018) are time-ordered; the two Twin Fantasy versions are 7 years apart", "word": "checked-finite", "runner": "python3 -I carseat/check.py"},
+  {"id": "both-ways", "statement": "the gravity verdict over all 4 inputs is the same forward and reversed, and the refuter agrees with the prover", "word": "checked-finite", "runner": "python3 -I carseat/check.py"}
+ ],
+ "arrows": [
+  {"to": "essays", "kind": "same_carrier", "what": "heaven full of people: gravity.ath, every escape route returns", "status": "analogy"},
+  {"to": "cosmos", "kind": "same_invariant", "what": "leaving town as escape velocity: E < 0 is bound", "status": "analogy"},
+  {"to": "philosophy", "kind": "same_carrier", "what": "lineage with rejoining versions as a DAG (DAG.lean)", "status": "analogy"}
+ ],
+ "new_terms": {}
+}
