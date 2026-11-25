@@ -5,7 +5,7 @@ The graph comes from `workshop/route/route.py`. It has three layers: P (program 
 Two trees share one edge set and run opposite ways.
 OUT goes down: P -> E -> M. IN goes up: M -> E -> P.
 
-## Laws (checked in code)
+## Laws (checked in workshop/bus/laws.ath, Python asteroid)
 
 - L1 layer order: OUT edges are P->E or E->M. IN edges are M->E or E->P. No edge skips a layer.
 - L2 tree: each tree has no cycle, and each node has at most one parent.
@@ -22,4 +22,4 @@ A spiral pass is OUT, then IN, then OUT. A prune in one tree is a prune in both.
 
 The graph carries no claimed meaning. It records which files name which files. The vectors are static token embeddings, not meanings.
 
-Status: the bus is being rewritten as `workshop/bus/bus.ath` (asteroid statements only; no Python). Until it lands, this README describes the design, and nothing here is checked.
+Status: L1 to L4 are checked in `workshop/bus/laws.ath` under Python asteroid (17 true, 0 false). The native `ast` binary does not run them yet. Feed (reading vectors from JSON) is not built.

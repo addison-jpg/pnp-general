@@ -10,7 +10,7 @@ Direct questions to the repo, answered by asteroid with their labels: [workshop/
 
     ./ast little.ath --no-proof
 
-Tested from a fresh folder: 4 claims true, 0 false. The packet does not include the full `asteroid` bundle (47 MB), so `big.ath` needs that bundle; `ast` alone skips its checks. The Linux prompt was removed earlier, so the packet's terminal is the PowerShell script.
+Tested from a fresh folder: 4 claims true, 0 false. The packet does not include the full `asteroid` bundle (45 MiB, 47,188,944 bytes), so `big.ath` needs that bundle; `ast` alone skips its checks. The Linux prompt was removed earlier, so the packet's terminal is the PowerShell script.
 
 Download: https://github.com/addison-jpg/pnp-general/raw/refactor/pillars/dist/packet.tar.gz
 
@@ -68,7 +68,7 @@ The P versus NP question is open. Nothing here settles it.
 
 - The native port of the `big.ath` checks. Until it is done, `ast` still calls Python for those checks.
 - The two-way bus laws L3 and L4. They are not checkable in asteroid yet.
-- The Windows binary. `base` is Linux only.
+- The universal Windows `asteroid.exe` (the PyInstaller bundle). Native `ast.exe` exists (4.2 MiB) but has not been run on Windows here.
 - P versus NP. Nothing here settles it.
 
 ## Where things are
