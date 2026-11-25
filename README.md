@@ -12,6 +12,10 @@ Addison's project theme, as a machine: a 4-bit accumulator CPU (PC, ACC, a 16-wo
 
     bin/asteroid run-cpu cpu/cpu.bench --steps 24
 
+The same folder has a SIMD variant, `cpu/simd.bench`: 4 lanes with their own ACC and a mask bit, one shared PC and decoder, branching as predication (877 gates, 31 NOT; linear in the lane count). It is the SIMT idea behind GPUs at toy scale, not a GPU.
+
+    bin/asteroid run-cpu cpu/simd.bench --init 3,7,0,12 --steps 14
+
 ## Why this is open
 
 This project is aimed at the P versus NP problem, and it is public on purpose.
