@@ -10,7 +10,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 - asteroid (the language and its tools): 7 checked · 3 tested · tested, re-checked in last 24h: 1/3
 - circuits (one-NOT and several-NOT): 48 checked · 6 tested · 6 refuted · tested, re-checked in last 24h: 0/6
 - lateral (Lawvere spine): 1 checked
-- other: 21 checked-finite · 3 tested · tested, re-checked in last 24h: 0/3
+- other: 22 checked-finite · 3 tested · tested, re-checked in last 24h: 0/3
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked · 4 checked-finite
 - quantum gravity: 13 checked
 - worlds (maps and unification; not progress on P vs NP): 9 checked
@@ -18,7 +18,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 91 checked · 25 checked-finite · 12 tested · 6 refuted
+## `./` 91 checked · 26 checked-finite · 12 tested · 6 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -318,8 +318,8 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `d6c97be6` **checked-finite** [privacy] Privacy as exact combinatorics on synthetic data: k-anonymity over all 65536 four-row tables (largest k = 1, 2, 4 for 64800, 720, 16 tables) with the least-generalization search equal to brute force on every table; the exact distribution of unique individuals matches E = n(1-1/D)^(n-1) for 30 (n, D) pairs; randomized response meets epsilon-DP with ratio p/(1-p) over all 98 neighbour pairs, and sequential composition adds exactly; Bell and Stirling numbers by enumeration. Definitions on synthetic data, not a guarantee for any real release. · evidence: `privacy/check.py`, `privacy/BASE.md` · main, confirmed by privacy-seat2 · VERIFIED
 - `05debba4` **checked-finite** [privacy] privacy.ath: the equality patterns of n table rows number B(n), the Bell numbers, for n=1..8, each term equal to the sum over k of S(n,k) computed exactly; privacy/check.py passes. · evidence: `privacy.ath`, `privacy/fingerprints.json`, `privacy/check.py` · asteroid, confirmed by frame-review · VERIFIED
 
-### `routing/` 
-- `c392a233` **checked-finite** [routing] frames_routing.ath: routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierarchies (fixed order; every order for n<=4) give the Floyd-Warshall distance for every pair. A* with the halved heuristic never settles more nodes than Dijkstra; ALT can, on ties (12431 queries). Max hitting time over hop distance is n^2-3n+3 for n=2..5. · evidence: `frames_routing.ath`, `routing/check.py` · asteroid · unverified (needs a second seat in by)
+### `routing/` 1 checked-finite
+- `c392a233` **checked-finite** [routing] frames_routing.ath: routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierarchies (fixed order; every order for n<=4) give the Floyd-Warshall distance for every pair. A* with the halved heuristic never settles more nodes than Dijkstra; ALT can, on ties (12431 queries). Max hitting time over hop distance is n^2-3n+3 for n=2..5. · evidence: `frames_routing.ath`, `routing/check.py` · asteroid, confirmed by routing-review · VERIFIED
 
 ### `time/` 3 checked-finite
 - `ff4253f7` **checked-finite** [gitdag] frames_time.ath: time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxation. · evidence: `frames_time.ath`, `time/check.py` · asteroid, confirmed by time-review · VERIFIED

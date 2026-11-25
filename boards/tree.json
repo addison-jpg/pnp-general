@@ -3,7 +3,7 @@
   "counts": {
    "checked": 91,
    "tested": 12,
-   "checked-finite": 25,
+   "checked-finite": 26,
    "refuted": 6
   },
   "verified": [
@@ -17,6 +17,7 @@
    "1088bc27",
    "a023c28e",
    "37dcef35",
+   "c392a233",
    "b63be80e",
    "04ad73e2",
    "7ce4c9ea",
@@ -1399,16 +1400,13 @@
   "unverified_here": []
  },
  "routing": {
-  "counts": {},
-  "verified": [],
-  "unverified_here": [
-   {
-    "id": "c392a233",
-    "why": [
-     "needs a second seat in by"
-    ]
-   }
-  ]
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "c392a233"
+  ],
+  "unverified_here": []
  },
  "time": {
   "counts": {
