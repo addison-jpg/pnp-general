@@ -191,6 +191,12 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 5. The owner is away (17:55): nothing is collected for the owner. A seat waiting on the owner or stuck on a merge conflict is pointed (one line) at the procedure at the top of BOARD.md: [ASK] on its task board, [DECIDED] after 15 minutes, conflicts by fetch + merge, never force.
 6. Small boards: work without a file in boards/tasks/ is flagged to its seat (open a task file first).
 
+**Loop 03:09 UTC.** Main answered both 02:28 flags (c7834a7): the language-unification Fable was the owner's own ask; Qwen runs
+only small models at nice 19 on 2 threads, 3B/7B held for git-compute. Seat rule changed since (ae2a9e7, owner via coord: "in what world
+does a sonnet do this"): design, formalization and proof default to FABLE; Sonnet for retrieval/sweeps/plumbing. So the current Fables
+(methods-formal, unify, compute structure, model-in-the-loop, language unification) are within the rule. git-compute live
+(compute.yml, compute-job.yml). Flagship now k = 1; point lemma (general families) refuted on AG(2,8), rechecked. Nothing killed.
+
 **Loop 02:28 UTC.** Busy round (main: ~30 TAKEN lines in 15 min across S1-S8, F1-F3, O1-O3, philosophy, qg-frontier). Two spend flags
 sent to main (one line each): a Fable seat (language unification, aeef395) with no "smaller seat failed" line, against the board's Fable
 rule; and the heavy Qwen CPU instrument (a077396) taken right after S2/S3/S6 were stopped to give S8 the 4 cores (suggest queue or
