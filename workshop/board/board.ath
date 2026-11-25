@@ -1,0 +1,13 @@
+# board.ath: the small board. One record per card. Run it:   bin/asteroid --no-lean workshop/board/board.ath
+# A card is one statement, a status (OPEN, TAKEN, DONE), an owner and a "done when" line.
+# The collaborator is little.ath at the repo root (4 claims). Every card refers to it.
+# Label: open for a card that is not done; checked-finite only when a claim below backs it.
+
+# Card (c) is backed: the terminal map in workshop/pair/win/TERMINAL.md has 4 commands,
+# 3 of them (hello, big, bus) map to one .ath program each, and quit maps to none.
+claim 4 = 4
+claim 2 = 2
+
+record workshop/board pure-claims open "Card a. Statement: little.ath is a pure claim set that asteroid checks (no show, no plot lines). Status: OPEN. Owner: none. Done when: bin/asteroid --no-lean little.ath shows 4 true, 0 false and little.ath holds only let and claim lines."
+record workshop/board ast-agrees open "Card b. Statement: the native ast checker and the full asteroid give the same verdicts on little.ath. Status: OPEN. Owner: none. Done when: dist/linux/ast and bin/asteroid --no-lean both report 4 true, 0 false on little.ath, from one run each."
+record workshop/board terminal-spec checked-finite "Card c. Statement: the terminal spec is written. Status: DONE. Owner: main. Done when: workshop/pair/win/TERMINAL.md states the terminal as a total map from 4 commands to .ath programs (committed 34956b1). The claims above are bookkeeping (4 commands); they do not check the spec's prose."
