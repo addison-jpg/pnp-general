@@ -9,3 +9,4 @@
 
 ## Lines (TAKEN / DECIDED only)
 
+- B2 DECIDED: proved in Lean (Open/Or4ManyNot.lean): OR of n inputs needs n-1 AND/OR gates with any number of NOT gates (free); OR4 needs 3. Structural, no enumeration.
