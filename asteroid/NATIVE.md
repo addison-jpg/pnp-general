@@ -16,7 +16,52 @@ lake exe asteroid ../../hello.ath --no-proof   # evaluate only
 Exit code 0: every claim true and (unless `--no-proof`) accepted by the proof checker. Exit 1: a claim
 is false or the proof checker rejected the module. Exit 2: the program could not be read (parse
 error, missing or bad `.bench` file, a claim naming a circuit that is not defined).
-`let NAME = load FILE.bench` reads the file relative to the program file.
+`let NAME = load FILE.bench` reads the file relative to the program file (see Windows and Git Bash below).
+
+## Windows and Git Bash
+
+The same commands, in Git Bash, from the repository folder. Lean comes from elan
+(`~/.elan/bin`, `%USERPROFILE%\.elan\bin`); no Python is needed.
+
+```
+cd one-not/lean && lake exe cache get && lake build asteroid && cd ../..
+one-not/lean/.lake/build/bin/asteroid.exe hello.ath             # the built binary, run directly
+one-not/lean/.lake/build/bin/asteroid.exe hello.ath --no-proof  # evaluate only
+one-not/lean/.lake/build/bin/asteroid.exe --doctor hello.ath    # where it looked, what it found
+```
+
+`lake build asteroid` puts one binary at `one-not/lean/.lake/build/bin/asteroid` (`asteroid.exe` on
+Windows). It can be run from any folder, or put on PATH (`export PATH="$PWD/one-not/lean/.lake/build/bin:$PATH"`, then
+`asteroid hello.ath`); `lake exe asteroid` is the same program.
+
+- **The project** (the folder with `lakefile.toml` and `PEqualNP/W951`) is searched upwards from the
+  binary's folder, then the program's folder, then the current folder. Not found: the run evaluates
+  only and says so in one line.
+- **`lake`** is looked for in every folder on PATH (`lake.exe` on Windows), then `~/.elan/bin` and
+  `%USERPROFILE%\.elan\bin`, and asked `lake --version` inside the project (elan picks the toolchain
+  there). Not found: the run evaluates only, says so in one line, and exits 0 if every claim is true.
+- **Paths**: `\` and `/` both separate folders, `C:/…` and `/…` are absolute, a path may hold spaces.
+  `let NAME = load PATH` takes the rest of the line as the path, with or without quotes
+  (`load "C:/Users/Some Name/x.bench"`). A relative path is read from the PROGRAM's folder (then from
+  the repository folder, which `asteroid/examples/first.ath` uses), never from the current folder.
+- **Text**: programs and `.bench` files are read as UTF-8; CRLF line ends and a byte-order mark
+  (Notepad) are accepted. The generated proof modules are written byte for byte with LF.
+- **`--doctor`** prints the binary, the current folder, every place searched for the project and
+  for `lake`, what was found, and whether a run will prove or only evaluate. Exit 0.
+
+**Tested here, on Linux only** (2026-11-25; Windows itself cannot be run in this environment, so
+nothing below was run on Windows or in Git Bash): `hello.ath`, `asteroid/examples/first.ath`,
+`asteroid/tests/notgate.ath` from the repository folder and from other folders, with proofs (3, 8
+proved; notgate's forced false claim rejected, exit 1); copies of `hello.ath` and `hello.bench` with
+CRLF and a byte-order mark (3 proved); `/tmp/…/a b/hello.ath` (a space in the folder, 3 proved);
+`load` with a quoted path holding a space, an unquoted absolute path holding a space, and a `\`
+path; a run from a folder holding a broken `hello.bench` (the program's own one was read);
+`--no-proof`; `--doctor`; a run with no `lake` on PATH and no `~/.elan` (one line, evaluate only,
+exit 0); a missing program (exit 2). Verdicts equal `python3 -m asteroid` on every program; the
+Python version (at the time) failed on the CRLF + byte-order-mark copy and on the `\` path.
+`lake build PEqualNP.Verify.All` still succeeds. **Not tested**: Windows path handling by the Lean
+runtime (drive letters, `\\?\` paths from `realPath`), finding `lake.exe`, Git Bash's own path
+conversion, and building the 122 MiB binary with the Windows toolchain.
 
 ## Verbs
 

@@ -212,6 +212,14 @@ def Block.step (b : Block) (ws : List String) : Option Block :=
     | _ => none
   | _ => none
 
+/-- the path of `let NAME = load PATH`: the rest of the line after `load`, so a path may hold
+spaces (`C:/Users/Some Name/x.bench`), with surrounding double or single quotes removed -/
+def loadPath (line : String) : String :=
+  let rest := ("=".intercalate ((line.splitOn "=").drop 1)).trimAscii.toString
+  let p := (rest.drop 4).trimAscii.toString
+  if p.length ≥ 2 && ((p.startsWith "\"" && p.endsWith "\"") || (p.startsWith "'" && p.endsWith "'"))
+  then ((p.drop 1).dropEnd 1).toString else p
+
 /-- refuse a circuit name the proof module could not use -/
 def checkName (file : String) (ln : Nat) (name : String) : Except String Unit :=
   if reserved.contains name then
@@ -245,7 +253,9 @@ def parseLines (file : String) :
         | some n => parseLines file (ln + 1) (some { name, n }) rest
         | none => throw s!"{file}:{ln}: the number of inputs must be a number: {n}"
       | _ => do
-        let stmt := parseStmt ws
+        let stmt := match ws with
+          | "let" :: name :: "=" :: "load" :: _ :: _ => .load name (loadPath ((raw.splitOn "#").headD ""))
+          | _ => parseStmt ws
         if let .load name _ := stmt then checkName file ln name
         (⟨ln, stmt⟩ :: ·) <$> parseLines file (ln + 1) none rest
 

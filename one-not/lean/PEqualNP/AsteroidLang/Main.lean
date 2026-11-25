@@ -7,6 +7,7 @@ import PEqualNP.AsteroidLang.Bench
 ```
 asteroid FILE.ath             run a program: evaluate its claims, then have Lean check the proofs
 asteroid FILE.ath --no-proof  evaluate only
+asteroid --doctor [FILE.ath]  where the project and `lake` were looked for and found
 asteroid version
 ```
 
@@ -23,6 +24,7 @@ def version : String := "asteroid 0.4 (Lean: compiled evaluator, proofs checked 
 /-- how to call the program -/
 def usage : String :=
   "usage: asteroid FILE.ath [--no-proof]    run a program (--no-proof: evaluate only)\n" ++
+  "       asteroid --doctor [FILE.ath]      where it looks for the project and `lake`\n" ++
   "       asteroid version"
 
 /-- a circuit from the JSON form `{\"n\", \"sets\", \"gates\", \"outs\"}` -/
@@ -41,6 +43,25 @@ def circOfJson (src : String) : Except String Circ := do
     | _ => throw s!"unknown gate type {op}"
   pure ⟨n, sets, outs, gates⟩
 
+/-- a path as written on the command line or in a program: `\` separates folders on every system,
+and a drive letter (`C:/…`) is kept -/
+def slashPath (p : String) : System.FilePath :=
+  System.FilePath.normalize ⟨p.map fun c => if c == '\\' then '/' else c⟩
+
+/-- a text file as UTF-8, with a byte-order mark dropped and CRLF / CR line ends read as LF -/
+def readText (file : System.FilePath) : IO String := do
+  let s ← IO.FS.readFile file
+  let s := if s.startsWith "\uFEFF" then (s.drop 1).toString else s
+  return (s.replace "\r\n" "\n").replace "\r" "\n"
+
+/-- write a text file byte for byte (LF line ends on every system) -/
+def writeText (file : System.FilePath) (text : String) : IO Unit :=
+  IO.FS.writeBinFile file text.toUTF8
+
+/-- the absolute form of a path, if it exists -/
+def real? (p : System.FilePath) : IO (Option System.FilePath) := do
+  try return some (← IO.FS.realPath p) catch _ => return none
+
 /-- the first folder, from `dir` upwards, that holds the Lean project of asteroid -/
 partial def findProject (dir : System.FilePath) : IO (Option System.FilePath) := do
   if (← (dir / "lakefile.toml").pathExists) && (← (dir / "PEqualNP" / "W951").isDir) then
@@ -49,21 +70,43 @@ partial def findProject (dir : System.FilePath) : IO (Option System.FilePath) :=
   | some up => if up == dir then return none else findProject up
   | none => return none
 
-/-- the Lean project: above the executable, above the current folder, or in `one-not/lean` -/
-def locateProject : IO (Option System.FilePath) := do
+/-- where the project is looked for: above the executable (the project it was built from), above
+the program file, above the current folder, and in `one-not/lean` below the current folder -/
+def projectStarts (file : Option String) : IO (List System.FilePath) := do
   let cwd ← IO.currentDir
-  let app ← IO.appPath
-  for start in [app, cwd, cwd / "one-not" / "lean" / "PEqualNP"] do
-    if let some dir ← findProject (← IO.FS.realPath start) then return some dir
+  let prog := match file with
+    | some f => [((slashPath f).parent.getD ".")]
+    | none => []
+  return [(← IO.appPath).parent.getD "."] ++ prog ++ [cwd, cwd / "one-not" / "lean"]
+
+/-- the Lean project of asteroid, searched from `projectStarts` -/
+def locateProject (file : Option String) : IO (Option System.FilePath) := do
+  for start in ← projectStarts file do
+    if let some s ← real? start then
+      if let some dir ← findProject s then return some dir
   return none
 
-/-- the command `lake`: on the path, or where elan installs it -/
-def locateLake : IO (Option String) := do
-  let home := (← IO.getEnv "HOME").getD ""
-  for cmd in ["lake", s!"{home}/.elan/bin/lake"] do
+/-- the places `lake` is looked for: every folder on PATH, then where elan installs it
+(`~/.elan/bin`, `%USERPROFILE%\.elan\bin`), then the bare name -/
+def lakeCandidates : IO (List String) := do
+  let exe := if System.Platform.isWindows then "lake.exe" else "lake"
+  let mut out := #[]
+  for d in System.SearchPath.parse ((← IO.getEnv "PATH").getD "") do
+    if !d.toString.isEmpty then out := out.push (d / exe).toString
+  for v in ["HOME", "USERPROFILE"] do
+    if let some h ← IO.getEnv v then
+      if !h.isEmpty then out := out.push (slashPath h / ".elan" / "bin" / exe).toString
+  out := out.push "lake"
+  return out.toList.eraseDups
+
+/-- the command `lake` and its version line: the first candidate that answers `lake --version`,
+asked inside the project (elan's `lake` picks its toolchain from the project's `lean-toolchain`) -/
+def locateLake (project : Option System.FilePath) : IO (Option (String × String)) := do
+  for cmd in ← lakeCandidates do
+    if cmd != "lake" && !(← System.FilePath.pathExists cmd) then continue
     try
-      let out ← IO.Process.output { cmd, args := #["--version"] }
-      if out.exitCode == 0 then return some cmd
+      let out ← IO.Process.output { cmd, args := #["--version"], cwd := project }
+      if out.exitCode == 0 then return some (cmd, out.stdout.trimAscii.toString)
     catch _ => pure ()
   return none
 
@@ -74,9 +117,10 @@ def seconds (ms : Nat) : String :=
 
 /-- `path` relative to the folder `root`, if it is inside it -/
 def relativeTo (root path : System.FilePath) : String :=
-  let prefix_ := root.toString ++ "/"
-  if path.toString.startsWith prefix_ then (path.toString.drop prefix_.length).toString
-  else path.toString
+  let fwd (p : System.FilePath) := p.toString.map fun c => if c == '\\' then '/' else c
+  let prefix_ := fwd root ++ "/"
+  let p := fwd path
+  if p.startsWith prefix_ then (p.drop prefix_.length).toString else p
 
 /-- build one module of the project; returns success and the time in milliseconds -/
 def lakeBuild (lake : String) (project : System.FilePath) (mod : String) : IO (Bool × Nat) := do
@@ -159,7 +203,8 @@ def ofBenchCirc (C : SearchCheck.Circ) : Circ :=
   ⟨C.n, C.sets, C.outs, C.gates.map fun g => ⟨g.op, g.a, g.b⟩⟩
 
 /-- read the files a program loads; the result is the program as `run` takes it. `dir` is the
-folder of the program file: a path is read from there, else from `root`, else as written. -/
+folder of the program file: a relative path is read from there (never from the current folder),
+else from the repository folder `root`; an absolute path (`/…`, `C:/…`) as written. -/
 def resolve (script : String) (dir root : System.FilePath) (lines : List Line) :
     IO (List Line × List Item × List Circ) := do
   let mut out := #[]
@@ -170,12 +215,14 @@ def resolve (script : String) (dir root : System.FilePath) (lines : List Line) :
     | .circuit name C => items := items.push (.circuit name C); out := out.push l
     | .claim _ _ e _ => items := items.push (.claim l.num e); out := out.push l
     | .load name path =>
+      let p := slashPath path
       let file ← do
-        if ← (dir / path).pathExists then pure (dir / path)
-        else if ← (root / path).pathExists then pure (root / path) else pure (System.FilePath.mk path)
+        if p.isAbsolute then pure p
+        else if ← (dir / p).pathExists then pure (dir / p)
+        else if ← (root / p).pathExists then pure (root / p) else pure (dir / p)
       unless ← file.pathExists do
         throw <| IO.userError s!"{script}:{l.num}: cannot load {path}: no such file"
-      let text ← IO.FS.readFile file
+      let text ← readText file
       if path.endsWith ".json" then
         match circOfJson text with
         | .ok C =>
@@ -199,7 +246,7 @@ def resolve (script : String) (dir root : System.FilePath) (lines : List Line) :
 def prove (p : Prover) (script mod : String) (t : Tally) : IO (Bool × Nat) := do
   let claims := t.claims.toList
   let dir := p.project / "PEqualNP" / "W951"
-  IO.FS.writeFile (dir / s!"{mod}.lean") (proofModule script mod t.env claims)
+  writeText (dir / s!"{mod}.lean") (proofModule script mod t.env claims)
   let (ok, ms) ← lakeBuild p.lake p.project mod
   if !ok then
     IO.println s!"NOT PROVED: the proof checker rejected this program's claims ({seconds ms} s)"
@@ -208,7 +255,7 @@ def prove (p : Prover) (script mod : String) (t : Tally) : IO (Bool × Nat) := d
   match soundModule mod claims with
   | none => return (true, claims.length)
   | some (text, made) =>
-    IO.FS.writeFile (dir / s!"{mod}_sound.lean") text
+    writeText (dir / s!"{mod}_sound.lean") text
     let (ok, ms) ← lakeBuild p.lake p.project s!"{mod}_sound"
     if ok then
       IO.println s!"proved: {made} of them also hold in the project's own definitions \
@@ -220,25 +267,33 @@ def prove (p : Prover) (script mod : String) (t : Tally) : IO (Bool × Nat) := d
 
 /-- run one program; the result is the exit code -/
 def runFile (file : String) (noProof : Bool) : IO UInt32 := do
-  let project ← locateProject
+  let path := slashPath file
+  unless ← path.pathExists do
+    IO.eprintln s!"asteroid: {file}: no such file"; return 2
+  let project ← locateProject (some file)
   let root := (project.bind (·.parent)).bind (·.parent) |>.getD "."
-  let script := relativeTo root (← IO.FS.realPath file)
-  let lines ← match parse script (← IO.FS.readFile file) with
+  let script := relativeTo root (← IO.FS.realPath path)
+  let lines ← match parse script (← readText path) with
     | .ok lines => pure lines
     | .error e => IO.eprintln e; return 2
-  let (lines, items, loads) ← resolve script ((System.FilePath.mk file).parent.getD ".") root lines
+  let (lines, items, loads) ← resolve script (path.parent.getD ".") root lines
   let verdicts ← match run {} items with
     | .ok vs => pure vs
     | .error e => IO.eprintln s!"{script}: {e}"; return 2
   let t ← lines.foldlM step { verdicts, loads }
   let prover ← if noProof || t.claims.isEmpty then pure none else do
-    match project, ← locateLake with
-    | some project, some lake => pure (some (⟨project, lake⟩ : Prover))
-    | _, _ =>
-      IO.println "note: no proof checker here (the command `lake`, or the Lean project this \
-        program was built from, was not found): claims are evaluated, nothing is proved."
+    match project, ← locateLake project with
+    | some project, some (lake, _) => pure (some (⟨project, lake⟩ : Prover))
+    | none, _ =>
+      IO.println "note: evaluate only: no Lean project (a folder with lakefile.toml and \
+        PEqualNP/W951) above the executable, the program or the current folder \
+        (asteroid --doctor shows where it looked)"
       pure none
-  let stem := (System.FilePath.mk file).fileStem.getD "program"
+    | _, none =>
+      IO.println "note: evaluate only: the command `lake` was not found on PATH or in \
+        ~/.elan/bin (asteroid --doctor shows where it looked)"
+      pure none
+  let stem := path.fileStem.getD "program"
   let mod := "Asteroid_" ++ stem.map fun c => if c.isAlphanum || c == '_' then c else '_'
   let (ok, proved) ← match prover with
     | some p => prove p script mod t
@@ -252,6 +307,40 @@ def runFile (file : String) (noProof : Bool) : IO UInt32 := do
     ++ (if t.skipped > 0 then s!"; {t.skipped} lines skipped (not in the Lean version yet)" else ""))
   return if t.bad == 0 && ok then 0 else 1
 
+/-- `asteroid --doctor`: where the project and `lake` were looked for, what was found, and whether
+a run proves or only evaluates -/
+def doctor (file : Option String) : IO UInt32 := do
+  IO.println version
+  IO.println s!"system: {if System.Platform.isWindows then "Windows" else "not Windows"}"
+  IO.println s!"executable: {← IO.appPath}"
+  IO.println s!"current folder: {← IO.currentDir}"
+  if let some f := file then
+    IO.println s!"program: {f} ({if ← (slashPath f).pathExists then "found" else "NOT FOUND"})"
+  IO.println "project (a folder with lakefile.toml and PEqualNP/W951), searched upwards from:"
+  for s in ← projectStarts file do
+    let r ← real? s
+    let found ← match r with
+      | some r => findProject r
+      | none => pure none
+    IO.println s!"  {r.getD s}: {match found with | some d => s!"found {d}" | none => "nothing"}"
+  let project ← locateProject file
+  IO.println s!"  -> {match project with | some d => d.toString | none => "NOT FOUND"}"
+  let cands ← lakeCandidates
+  let present ← cands.filterM fun c => if c == "lake" then pure true else System.FilePath.pathExists c
+  IO.println s!"lake, looked for in {cands.length - 1} places (every folder on PATH, ~/.elan/bin, \
+    %USERPROFILE%\\.elan\\bin), present in:"
+  for c in present do
+    IO.println s!"  {if c == "lake" then "lake (the bare name, as the system resolves it)" else c}"
+  let lake ← locateLake project
+  IO.println s!"  -> {match lake with | some (c, v) => s!"{c}: {v}" | none => "NOT FOUND"}"
+  match project, lake with
+  | some _, some _ =>
+    IO.println "a run will: evaluate the claims, then prove the `by lean` ones with `lake build`"
+  | _, _ =>
+    IO.println "a run will: evaluate only (nothing is proved; add `lake` to PATH or build \
+      asteroid inside the repository)"
+  return 0
+
 end AsteroidLang
 
 open AsteroidLang in
@@ -260,7 +349,9 @@ def main (args : List String) : IO UInt32 := do
   let flags := ["--no-proof", "--no-lean"]
   let noProof := args.any flags.contains
   match args.filter (!flags.contains ·) with
-  | ["version"] => IO.println version; return 0
+  | ["version"] | ["--version"] => IO.println version; return 0
+  | ["--doctor"] | ["doctor"] => doctor none
+  | ["--doctor", file] | ["doctor", file] => doctor (some file)
   | [file] | ["run", file] =>
     try runFile file noProof
     catch e => IO.eprintln s!"asteroid: {e}"; return 2
