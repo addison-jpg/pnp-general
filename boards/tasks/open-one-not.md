@@ -19,6 +19,8 @@
 - STOPPED A13 (container restart; partial A10_bottom_hill.py kept; reopen to continue) (Sonnet): hill-climb for a BOTTOM PAY failure: mutate gates of stored one-NOT circuits n <= 9 and switch circuits (as `A7_hill.py`), keep correct circuits whose minimum over DD states of (matroid-union rank in E minus Σ need_w) does not rise; use `rado` from `A10_light_attack.py`. Record start count, steps, minimum reached, any failure state. -> `one-not/research/open/A10_bottom_hill.py`, `A10_bottom_hill.md`
 - 2026-11-25 A14 (Opus) STOPPED A14 (container restart; partial A14_bottom_hall.py kept; reopen to continue): BOTTOM PAY (A10 §3, matroid form): at every mixed state of a one-NOT correct circuit (pairwise |S_a ∩ S_b| ≤ 1), for every set A of OR gates outside the top family that are 0 at 1_Q, Σ_{w DD} (need_w − r_w(A)) ≤ |E \ A|, r_w = rank of A in the bottom forest matroid of w (classes: heavy atoms joined, light singletons). Implies light absorption (paper, A10 §1). Tested 0 failures (same runs as the A10 line). -> one-not/research/open/
 
+- OPEN (Sonnet): Lean, `PaymentHall` (U1 §1) as a Prop: payers a Finset, per set a hyperedge map payer -> Finset of points, disjoint per-set forests of size need_w; theorem `card_ge_of_paymentHall` (sum need_w <= card payers) and `bottomPay_of_paymentHall` stating BottomPay (Open/LightAbsorb.lean) as the instance at 1_Q. -> one-not/lean/PEqualNP/W951/Open/PaymentHall.lean
+
 ## Refuted / dead
 
 - Minimality alone: gates' ≥ base' but |F2'| ≤ gates', so it points the wrong way (A1).
