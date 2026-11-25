@@ -10,7 +10,7 @@ What this is: a **structural** fact about the cortex, checked. What it is not: a
 
 ## 2. The check (`checked-finite`)
 
-`hairy.py`: random smooth functions on subdivided icospheres (42, 162, 642 vertices), with the Banchoff index at every vertex. The index sum is 2 in every run (300 fields per size by default, 100 per size in the logged run), and every field had at least 6 critical points. Run: `python3 brain/hairy.py`.
+`hairy.py`: random smooth functions on subdivided icospheres (42, 162, 642 vertices), with the Banchoff index at every vertex. The index sum is 2 in every run (200 fields per size by default, 100 per size in the logged run), and every field had at least 6 critical points. Run: `python3 brain/hairy.py`.
 
 ## 3. What it joins
 
