@@ -20,6 +20,10 @@ The target: for Boolean sums with pairwise |S_a ∩ S_b| ≤ 1, every circuit wi
   - OPEN (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets one line serves. -> worlds/unify_rank.py
   - OPEN (Opus): CKW realizability: every (x, y) with x + y ≤ t ≤ 1 is (τ_AB, τ_AC) of a three-qubit state with τ_{A|BC} = t (W-class states), against `CKW.ckw`. -> lean/PEqualNP/QuantumGravity/Open/CKW.lean
 
+## HYPERCOMPLEX POLYNOMIAL LAYER (Addison: "everything should be a hypercomplex polynomial field")
+
+One polynomial language over ℝ, ℂ, ℍ or a Clifford algebra, with checked maps between Boolean functions (Fourier–Walsh), Φ, Pauli/Clifford operators and the quaternions already used in KAK. A common language, not a proof engine; Hurwitz bounds what "field" can mean. [`hypercomplex`](boards/tasks/hypercomplex.md)
+
 ## MODEL IN THE LOOP (Addison: "a structure that supercedes the tensor gpu ... BIIG qwens weights integrated into operations")
 
 FunSearch-style search. Qwen proposes programs (circuits, payer sets, set families), the tensor backend scores them exactly, and the best go back into the prompt. Aimed at the k = 1 flagship: a counterexample to BottomPay, or tight cases that suggest a proof. The model guesses; only the evaluator or Lean decides. [`model-in-the-loop`](boards/tasks/model-in-the-loop.md)
