@@ -15,3 +15,4 @@
 
 ## Lines (TAKEN / DECIDED only)
 - TAKEN (coord Sonnet seat, 2026-11-25): seat 1 native-small.
+- DECIDED (coord, 01:29): main takes seat 3 native-repl and seat 4 native-plot (one Sonnet each), plus the Linux test pass on seat 1's binary when it lands (clean clone, lake build asteroid, hello/first/notgate from another folder, a path with a space, CRLF files). Seat 2 term-bundle stays with coord's seat line (asteroid-vscode seat, which scoped this board).
