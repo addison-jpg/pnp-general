@@ -5,12 +5,12 @@
 //   :memory     count the centre store's records (center/shards/*.jsonl) by (kind, word)
 //   :find WORD  count the records whose line contains WORD; show the first 3 ids and programs
 //   :quit       stop
-// Any other `:` line is an unknown command; a plain line is echoed. The store is read under the
+// Any other `:` line is an unknown command; any other line is echoed. The store is read under the
 // current directory, or under the folder given as the first argument. Fixed buffers, no allocator.
 use core::arch::{asm, global_asm};
 use core::panic::PanicInfo;
 
-const LINE: usize = 16384; // longest record read, in bytes, newline excluded; a longer one is counted as skipped
+const LINE: usize = 16384; // longest record read, in bytes without its newline; a longer one is counted as skipped
 const FILES: usize = 256; // most shard files
 const PAIRS: usize = 1024; // most distinct (kind, word) pairs
 const TEXT: usize = 65536; // bytes of (kind, word) text the pair table holds
@@ -34,16 +34,15 @@ struct Pair { off: usize, len: usize, n: usize }
 struct Tally {
     files: usize, total: usize, skipped: usize, found: usize, np: usize, nt: usize, full: bool,
     pairs: [Pair; PAIRS],
-    text: [u8; TEXT], // each pair's key: kind, a zero byte, word (JSON output never holds a raw zero byte)
+    text: [u8; TEXT], // the pairs' keys: kind, a zero byte, word (json.dumps never writes a raw zero byte)
     key: [u8; LINE + 2],
 }
 struct St {
     t: Tally,
-    line: [u8; LINE + 1],
-    dents: [u8; 4096],
-    names: [[u8; 256]; FILES], // a Linux file name is at most 255 bytes
-    nlen: [usize; FILES],
-    order: [usize; FILES],
+    io: [u8; 65536], // directory entries, then file contents
+    line: [u8; LINE],
+    names: [[u8; 256]; FILES], // zero-terminated; a Linux file name is at most 255 bytes
+    order: [u8; FILES], // name indices in byte order of name, as Python's sorted(glob(...))
 }
 // All zero, so it lives in .bss: the kernel provides it, the file does not carry it.
 static mut ST: St = unsafe { core::mem::zeroed() };
@@ -102,11 +101,9 @@ fn memory(t: &mut Tally, root: &[u8]) {
     if t.full { write(b"refused: more than 1024 distinct (kind, word) pairs, or 65536 bytes of their text\n"); return; }
     summary(t, root);
     // Insertion sort by key, which is (kind, word) order because the zero byte sorts first.
-    let mut i = 1;
-    while i < t.np {
+    for i in 1..t.np {
         let mut j = i;
         while j > 0 && lt(key(t, j), key(t, j - 1)) { t.pairs.swap(j, j - 1); j -= 1; }
-        i += 1;
     }
     for i in 0..t.np {
         let k = key(t, i);
@@ -118,90 +115,75 @@ fn memory(t: &mut Tally, root: &[u8]) {
 fn key(t: &Tally, i: usize) -> &[u8] { let p = t.pairs[i]; &t.text[p.off..p.off + p.len] }
 
 fn summary(t: &Tally, root: &[u8]) {
-    write(&root[..root.len() - 1]); write(b"/center/shards: "); num(t.files, 0); write(b" shard files, "); num(t.total, 0);
+    write(cstr(root)); write(b"/center/shards: "); num(t.files, 0); write(b" shard files, "); num(t.total, 0);
     write(b" records, "); num(t.skipped, 0); write(b" skipped (too long)\n");
 }
 
-// Reads ROOT/center/shards/*.jsonl in byte order of name (Python's sorted(glob) order; glob skips
-// names that start with a dot) and hands each record to `record`. False if nothing could be read.
+// Reads ROOT/center/shards/*.jsonl in byte order of name and hands each line to `record`.
+// False if the folder cannot be opened or holds too many shard files.
 fn scan(st: &mut St, root: &[u8], needle: &[u8]) -> bool {
     let t = &mut st.t;
     t.files = 0; t.total = 0; t.skipped = 0; t.found = 0; t.np = 0; t.nt = 0; t.full = false;
     let r = openat(-100, root.as_ptr(), DIR); // -100: AT_FDCWD
     let d = if r < 0 { r } else { let d = openat(r, b"center/shards\0".as_ptr(), DIR); close(r); d };
-    if d < 0 { write(b"cannot open "); write(&root[..root.len() - 1]); write(b"/center/shards\n"); return false; }
+    if d < 0 { write(b"cannot open "); write(cstr(root)); write(b"/center/shards\n"); return false; }
+    // List the names that glob's *.jsonl matches (it skips names that start with a dot).
     let mut n = 0;
     loop {
-        let got = unsafe { sys(217, d as usize, st.dents.as_mut_ptr() as usize, st.dents.len()) };
+        let got = unsafe { sys(217, d as usize, st.io.as_mut_ptr() as usize, st.io.len()) }; // getdents64
         if got <= 0 { break; }
         let mut o = 0;
         while o < got as usize {
-            // struct linux_dirent64: inode (8), offset (8), record length (2), type (1), name.
-            let len = st.dents[o + 16] as usize | (st.dents[o + 17] as usize) << 8;
-            let e = &st.dents[o + 19..o + len];
-            let name = &e[..pos(e, 0).unwrap_or(e.len())];
+            // struct linux_dirent64: inode (8 bytes), offset (8), record length (2), type (1), name
+            let e = &st.io[o..];
+            let name = cstr(&e[19..]);
             let l = name.len();
             if l > 6 && name[0] != b'.' && starts(&name[l - 6..], b".jsonl") {
                 if n == FILES { close(d); write(b"refused: more than 256 shard files\n"); return false; }
-                st.names[n][..l].copy_from_slice(name);
-                st.names[n][l] = 0;
-                st.nlen[n] = l;
-                let mut j = n;
-                while j > 0 && lt(name, &st.names[st.order[j - 1]][..st.nlen[st.order[j - 1]]]) {
-                    st.order[j] = st.order[j - 1];
-                    j -= 1;
-                }
-                st.order[j] = n;
+                st.names[n][..=l].copy_from_slice(&e[19..20 + l]); // with its zero byte
+                let mut j = n; // insert, keeping `order` sorted
+                while j > 0 && lt(&st.names[n], &st.names[st.order[j - 1] as usize]) { st.order[j] = st.order[j - 1]; j -= 1; }
+                st.order[j] = n as u8;
                 n += 1;
             }
-            o += len;
+            o += e[16] as usize | (e[17] as usize) << 8;
         }
     }
     for k in 0..n {
-        let i = st.order[k];
-        let f = openat(d, st.names[i].as_ptr(), 0);
-        if lines(st, f, needle) { st.t.files += 1; }
-        else { write(b"cannot read "); write(&st.names[i][..st.nlen[i]]); write(b"\n"); }
-        if f >= 0 { close(f); }
+        let name = &st.names[st.order[k] as usize];
+        let f = openat(d, name.as_ptr(), 0);
+        if f >= 0 && lines(&mut st.t, &mut st.io, &mut st.line, f, needle) { st.t.files += 1; }
+        else { write(b"cannot read "); write(cstr(name)); write(b"\n"); }
+        close(f);
     }
     close(d);
     true
 }
 
 // One record per line. A line longer than LINE bytes is counted as skipped, never parsed in part.
-fn lines(st: &mut St, f: isize, needle: &[u8]) -> bool {
-    if f < 0 { return false; }
-    let mut len = 0;
-    let mut skip = false;
+fn lines(t: &mut Tally, io: &mut [u8], line: &mut [u8; LINE], f: isize, needle: &[u8]) -> bool {
+    let (mut len, mut long) = (0, false);
     loop {
-        let r = read(f, &mut st.line[len..]);
+        let r = read(f, io);
         if r < 0 { return false; }
-        if r == 0 {
-            if skip { st.t.skipped += 1; } else if len > 0 { record(&mut st.t, &st.line[..len], needle); }
-            return true;
+        for &c in &io[..r as usize] {
+            if c == b'\n' { record(t, &line[..len], long, needle); len = 0; long = false; }
+            else if len < LINE { line[len] = c; len += 1; }
+            else { long = true; }
         }
-        let end = len + r as usize;
-        let mut s = 0;
-        while let Some(i) = pos(&st.line[s..end], b'\n') {
-            if skip { st.t.skipped += 1; skip = false; }
-            else if i > 0 { record(&mut st.t, &st.line[s..s + i], needle); }
-            s += i + 1;
-        }
-        // Keep the unfinished line. A full buffer with no newline holds a record longer than LINE.
-        if skip || end - s == LINE + 1 { skip = true; len = 0; }
-        else { st.line.copy_within(s..end, 0); len = end - s; }
+        if r == 0 { record(t, &line[..len], long, needle); return true; } // a last line with no newline
     }
 }
 
-fn record(t: &mut Tally, l: &[u8], needle: &[u8]) {
+fn record(t: &mut Tally, l: &[u8], long: bool, needle: &[u8]) {
+    if long { t.skipped += 1; return; }
+    if l.is_empty() { return; }
     t.total += 1;
     if needle.is_empty() {
-        let k = field(l, b"\"kind\": \"");
-        let w = field(l, b"\"word\": \"");
-        let kl = k.len() + 1 + w.len();
-        t.key[..k.len()].copy_from_slice(k);
-        t.key[k.len()] = 0;
-        t.key[k.len() + 1..kl].copy_from_slice(w);
+        let mut kl = 0;
+        for part in [field(l, b"\"kind\": \""), b"\0", field(l, b"\"word\": \"")] {
+            for &c in part { t.key[kl] = c; kl += 1; }
+        }
         let key = &t.key[..kl];
         for i in 0..t.np {
             let p = t.pairs[i];
@@ -230,6 +212,7 @@ fn field<'a>(l: &'a [u8], pat: &[u8]) -> &'a [u8] {
 }
 
 fn pos(s: &[u8], c: u8) -> Option<usize> { s.iter().position(|&x| x == c) }
+fn cstr(s: &[u8]) -> &[u8] { &s[..pos(s, 0).unwrap_or(s.len())] }
 fn starts(h: &[u8], p: &[u8]) -> bool { h.len() >= p.len() && p.iter().zip(h).all(|(a, b)| a == b) }
 fn eq(a: &[u8], b: &[u8]) -> bool { a.len() == b.len() && starts(a, b) }
 fn at(h: &[u8], p: &[u8]) -> Option<usize> { (0..h.len()).find(|&i| starts(&h[i..], p)) }
