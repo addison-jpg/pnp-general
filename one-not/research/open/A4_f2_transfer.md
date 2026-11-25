@@ -74,8 +74,10 @@ is not yet restricted to OR gates.
   0 merges that are not F2, 0 overlaps, and 0 cases with fewer than `k_w − 1` merges. With `--all` (DD sets
   included) it finds 53,826 NOT-gate merges, 2,428 DD merges outside F2, 3,534 overlaps, all between two DD
   sets (none DD/non-DD, as `overlap_needs_DD` says), and 0 DD-absorption failures. The same check on the
-  3,166-circuit corpus (`A4_unit_merges.py --all`, without `--nocorpus`) had not finished when this note
-  was committed.
+  stored data plus the `f2lib` corpus (`A4_unit_merges.py --all`: 3,183 circuits, 2,856,789 states,
+  1,454,402 non-DD set runs) also finds 0 merges that are not OR, 0 merges that are not F2 for non-DD sets,
+  and 0 overlaps that are not DD/DD (5,174 DD/DD). It finds 0 DD-absorption failures at 242,296 DD states,
+  29,459 of them tight.
 
 ## 4. What to try next
 
