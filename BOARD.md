@@ -10,6 +10,11 @@ Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boar
 
 - **Credit, down the line (Addison, 2026-11-25: "would be nice if down the line cred goes big to philosophy with base of beauvoir as unifier"):** when the project is presented, philosophy gets prominent credit, with Simone de Beauvoir as the unifying frame (*The Ethics of Ambiguity*, *She Came to Stay*, the diary) and Deleuze, Fisher, Hegel and Camus around her. That credit is for the frame that organised the work, and it is honest about the boundary: the reviews (philosophy/REVIEW.md, REVIEW_BEAUVOIR_QG.md) show which links are theorems and which are readings.
 
+## THE CENTRE (read this first): `center/VIEW.md`, built by `python3 -I center.py`
+
+The board now lives in a central store: every finding and every board cell as a record, sharded by program in `center/shards/`, each with a computed radius (0 = settled, 1 = open). `center/VIEW.md` is the generated view; `python3 -I center.py ask TEXT` is a seat's one query. Hand-written boards (this file, boards/tasks/) are inputs until they are retired. It grows three ways: richer records, more records (shards), more record kinds (one reader each).
+
+
 ## FLAGSHIP: PAYMENT HALL ⇒ NEGATION-LIMITED BOOLEAN SUMS (Addison approved, 2026-11-25)
 
 The target: for Boolean sums with pairwise |S_a ∩ S_b| ≤ 1, every circuit with at most k NOT gates needs at least Σ(|S_w| − 1) gates. k = 1 is `no_minCE`, via the checked chain to `BottomPay`; general k is the point lemma. One condition, PHC, would unify both. PHC is not proved: F1 reduced it to Lemma D and found the exact obstacle, the class point lemma for two sets. A standalone result in negation-limited circuit complexity; no implication for P vs NP is claimed. [`flagship-payment-hall`](boards/tasks/flagship-payment-hall.md)

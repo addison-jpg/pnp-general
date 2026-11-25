@@ -1,0 +1,103 @@
+{
+ "asteroid": {
+  "cells": {
+   "DECIDED": 6,
+   "OPEN": 4,
+   "TAKEN": 6
+  },
+  "findings": {
+   "checked": 7,
+   "tested": 3
+  },
+  "mean_radius_findings": 0.095
+ },
+ "circuits": {
+  "cells": {
+   "DECIDED": 9,
+   "OPEN": 15,
+   "STOPPED": 8,
+   "TAKEN": 2
+  },
+  "findings": {
+   "checked": 48,
+   "refuted": 6,
+   "tested": 6
+  },
+  "mean_radius_findings": 0.033
+ },
+ "compute": {
+  "cells": {
+   "DECIDED": 1,
+   "STOPPED": 4,
+   "TAKEN": 1
+  },
+  "findings": {},
+  "mean_radius_findings": null
+ },
+ "lateral": {
+  "cells": {
+   "DECIDED": 1,
+   "OPEN": 1
+  },
+  "findings": {
+   "checked": 1
+  },
+  "mean_radius_findings": 0.0
+ },
+ "methods": {
+  "cells": {
+   "DECIDED": 2,
+   "OPEN": 6,
+   "STOPPED": 1
+  },
+  "findings": {},
+  "mean_radius_findings": null
+ },
+ "other": {
+  "cells": {
+   "DECIDED": 13,
+   "OPEN": 5,
+   "STOPPED": 2,
+   "TAKEN": 2
+  },
+  "findings": {},
+  "mean_radius_findings": null
+ },
+ "philosophy": {
+  "cells": {
+   "DECIDED": 2
+  },
+  "findings": {
+   "checked": 13
+  },
+  "mean_radius_findings": 0.0
+ },
+ "prompt-method": {
+  "cells": {
+   "DECIDED": 5,
+   "OPEN": 3,
+   "TAKEN": 1
+  },
+  "findings": {},
+  "mean_radius_findings": null
+ },
+ "quantum-gravity": {
+  "cells": {},
+  "findings": {
+   "checked": 13
+  },
+  "mean_radius_findings": 0.0
+ },
+ "worlds": {
+  "cells": {
+   "DECIDED": 2,
+   "OPEN": 3,
+   "STOPPED": 1,
+   "TAKEN": 2
+  },
+  "findings": {
+   "checked": 9
+  },
+  "mean_radius_findings": 0.0
+ }
+}
