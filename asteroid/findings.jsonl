@@ -16,3 +16,4 @@
 {"id": "fb772b9e", "by": ["R1"]}
 {"id": "0898a92f", "runner": "python3 one-not/research/open/native_plot_check.py hello.ath asteroid/examples/first.ath"}
 {"id": "0898a92f", "retest": {"time": "2026-11-25 02:53", "ok": true, "states": null, "seconds": 0.31, "speedup": null}}
+{"id": "0616d4cd", "time": "2026-11-25 10:44", "who": "asteroid", "serves": "asteroid", "word": "tested", "statement": "first light: every top-level .ath program (except hello.ath, which needs Lean) runs and every claim in it is TRUE.", "evidence": ["first_light.ath", "asteroid/tests/run_all_ath.py"], "by": ["asteroid"], "runner": "python3 -I asteroid/tests/run_all_ath.py"}
