@@ -256,12 +256,14 @@ repositories are frozen as they are; new work lands here. Models: avoid Fable ru
 acceptable; Sonnet is fine. Never run `lake update`.
 
 
-## IDEA, NOT SEATED: A SPHERE OF FIELDS (Addison, 2026-11-25: "we can sketch a sphere out of this, if each monqwensor field is complex enough, put some infinity of them around a sphere")
+## SPHERE OF FIELDS (SEATED 2026-11-25: Fable S1 theory, Opus S2 analytic proof, Sonnet S3 literature) (Addison, 2026-11-25: "we can sketch a sphere out of this, if each monqwensor field is complex enough, put some infinity of them around a sphere")
 
 The precise mathematics is a field attached to every point of a sphere: a section of a bundle over S². Two real joins to test, theory first:
 - **Hopf fibration / Bloch sphere.** Pure qubit states are the points of S²; the unit quaternions S³ = SU(2) fibre over S² with circle fibres. This joins the hypercomplex layer (quaternions), the qubit and KAK work, and the sphere picture in one standard object.
 - **Hairy ball / Poincaré–Hopf.** Every continuous tangent field on S² vanishes somewhere (the zeros' indices sum to χ(S²) = 2). In Deleuze.lean's terms (a problem = a vector field, the actual = its zeros), every problem posed on the sphere has an actual solution, by topology alone. That is a theorem, not a rhyme, and it is the first place the philosophy files would meet real topology.
 - Lean is last: Mathlib may lack the hairy ball theorem and Brouwer, so this stays `paper` until a statement is final.
+- Extensions to follow (theory first): Poincaré–Hopf; Adams 1962 (the maximal number of independent vector fields on S^{n−1} is the Radon–Hurwitz number ρ(n), so S¹, S³, S⁷ are parallelizable exactly because of ℂ, ℍ, 𝕆, joining the hypercomplex layer); Hopf invariant one; Lefschetz; Brouwer and Borsuk–Ulam; Milnor's analytic proof (1978); combinatorial versions (Sperner, Tucker) and their complexity: finding a Sperner/Brouwer point is PPAD-complete (Papadimitriou 1994), a real link from the sphere back to complexity classes.
+- Team now (Addison: "2 fables an opus and a sonnet is plenty"): S1 Fable (sphere theory), F1' Fable (k = 1 class point lemma, theory first), S2 Opus, S3 Sonnet.
 
 ## PAUSED 2026-11-25 ~03:30 (Addison: "im a bit worried about usage ... all subprocesses should die")
 All seats stopped. Partial work kept: compute/funsearch/ (untested FunSearch loop), one-not/tools/tensor/{cache,dag}.py, lean/PEqualNP/Philosophy/Spinoza.lean (checked, 0ec029c). Not started or not pushed: monqwensor, hyperfinite, hypercomplex, Buddhist, the rest of the emotion framework (Freud, Lacan, Dependence, Arabic/Greek/Stoic strands). Each card keeps its full brief; reopen any by seating one line.
