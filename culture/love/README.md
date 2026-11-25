@@ -2,6 +2,8 @@
 
 Who to pursue, as a small finite model. Monogamy and polyamory are one model with a capacity k.
 Run `python3 -I culture/love/check.py` (about 3 s) or `bin/asteroid --no-lean love.ath`.
+Paths from any matching: `python3 -I culture/love/paths.py` (about 30 s).
+Fractional matchings over Q: `python3 -I culture/love/field.py` (about 30 s).
 Tests: `python3 -I culture/love/test_love.py`.
 
 ## What it models
@@ -55,10 +57,92 @@ Over every matching and every set of refusals among the unmatched pairs:
 Parity and brute force agree on n <= 2 (4 members). n=3 (6 members) uses parity only.
 Three couples who each refuse every member of the other couples are not balanced: they need three camps.
 
+## Paths to stability: start where you are
+
+### Facts (checked-finite: every profile and every starting matching, n <= 3, k = 1 and 2)
+
+The move: pick one pair that blocks the current matching. The two pair up.
+If one of them is full (k partners), it first drops its worst partner. At k=1: each leaves its partner, if any.
+Roth and Vande Vate (1990, cited from memory) prove that at k=1, from any matching, some sequence of moves reaches a stable matching.
+`paths.py` builds the whole move graph of each profile and searches back from the stable set once.
+
+| k | n | matchings | starts that cannot reach stability | longest shortest path | profiles with a cycle of moves |
+|---|---|---|---|---|---|
+| 1 | 1 | 2 | 0 | 1 | 0 |
+| 1 | 2 | 7 | 0 | 2 | 2 of 16 |
+| 1 | 3 | 34 | 0 | 4 | 27492 of 46656 |
+| 2 | 1 | 2 | 0 | 1 | 0 |
+| 2 | 2 | 16 | 0 | 4 | 0 of 16 |
+| 2 | 3 | 265 | 0 | 6 | 11136 of 46656 |
+
+At k=1 "no start is stuck" is asserted (the theorem, on this finite set).
+At k=2 it was not assumed. It came out true for n <= 3. Beyond that it is open here.
+Some path always exists, but moves can also go round. Cycles first appear at n=2. One, at k=1:
+a0: b0 > b1, a1: b1 > b0, b0: a1 > a0, b1: a0 > a1.
+{a0b0} -> {a1b0} -> {a1b1} -> {a0b1} -> {a0b0}, one blocking pair each time.
+From {a0b0} the pair a1b1 also blocks, and taking it ends at a stable matching.
+On n <= 2 the fast move table is asserted equal to a move built directly from `check.blocking_pairs`.
+
+### Reading (analogy)
+
+This is a reading, not a fact.
+The ask: search from right after the memory cache, not from scratch. Start from the situation you are in.
+Here that is literal. Any matching is a start, and at k=1 one blocking pair at a time can reach stability from it.
+At most 4 steps for n=3 at k=1, at most 6 at k=2.
+But a careless order can walk in a circle. Being free to start anywhere does not mean every walk ends.
+Calling the search "Beauvoirean" is a name for the reading. Nothing here checks Beauvoir.
+
+## Monogamy and polyamory over Q: fields and weight matrices
+
+### Facts
+
+A fractional matching gives each pair a weight x_ij in Q, with 0 <= x_ij <= 1 and row and column sums <= k.
+The integer models above are the 0/1 points. Vertices are enumerated exactly (Fraction, double description).
+On n=2 the method is asserted equal to a brute force over every square tight subsystem.
+
+1. Stable polytope at k=1 (Vande Vate 1989, Rothblum 1992, cited from memory). For each pair (i, j):
+   x_ij + (sum of x_ij' over j' that i ranks above j) + (sum of x_i'j over i' that j ranks above i) >= 1.
+   On a 0/1 point this says the pair does not block.
+   Every vertex is integral, and the vertices are exactly the stable matchings found by brute force in `check.py`.
+   n=2: all 16 profiles, 18 vertices in all (checked-finite).
+   n=3: profiles number 0, 97, 194, ... in `check.profiles(3)` order, 481 of 46656, 618 vertices in all (tested, sampled).
+   All 46656 would take about 20 minutes (estimated from 27 ms per profile), over the time budget.
+2. Capacity k as a rational number. The direct k-version, k x_ij + (better for i) + (better for j) >= k,
+   is not exact. Every stable matching satisfies it. But at k=2 unstable matchings satisfy it too:
+   14 of 16 profiles at n=2 (checked-finite), 466 of the 481 sampled at n=3 (tested).
+   Example, everyone with the same tastes: {a0b0, a0b1, a1b0} passes at a1b1 (0 + 1 + 1 = 2), yet a1 and b1 both have room, so a1b1 blocks.
+   So no stable polytope is claimed for k > 1. The plain polytope {0 <= x <= 1, row and column sums <= k} is (checked-finite):
+
+| n | k=1 vertices | k=3/2 vertices (fractional) | k=2 vertices |
+|---|---|---|---|
+| 2 | 7 | 25 (18) | 16 |
+| 3 | 34 | 766 (732) | 265 |
+
+   At k=1 and k=2 every vertex is 0/1, and they are exactly the matchings of the integer models (7, 34 and 16, 265).
+   At k=3/2 a vertex is [[1, 1/2], [1/2, 0]]: x00=1, row 0 = 3/2, column 0 = 3/2, x11=0.
+3. Birkhoff and von Neumann (cited from memory): every doubly stochastic matrix is a convex combination of permutation matrices.
+   Each matrix was decomposed exactly, and the sum was asserted to rebuild it.
+   Every 3x3 one with entries in (1/q)Z, q=1..6: 6, 21, 55, 120, 231, 406 matrices (checked-finite; the counts fit MacMahon's formula, from memory).
+   Every 4x4 one, q=1..3: 24, 282, 2008 (checked-finite). 200 seeded random 5x5 ones, q=7 (tested).
+
+### Reading (analogy)
+
+This is a reading, not a biology claim.
+Over Q, monogamy and polyamory are one polytope with a dial k. At k=1 and k=2 its corners are the integer models.
+Between them, at k=3/2, most corners are fractional: half a partner is a corner, not a blend.
+A fractional matching has the shape of a normalised weight matrix from a presynaptic set A to a postsynaptic set B.
+Birkhoff says a doubly stochastic weight matrix is a mixture of one-to-one wirings.
+`biology/brain/network` models unweighted directed graphs only. It says nothing about weights.
+So the step from fields to neurons is analogy. Whether real synaptic weights rank, match or stabilise this way is open.
+
 ## Sources (cited, not re-read here)
 
 - Stable marriage and deferred acceptance: Gale and Shapley 1962. Cited from memory.
 - The many-to-many (capacity) version is a known generalisation. Cited from memory, not re-derived.
+- Paths to stability: Roth and Vande Vate 1990. Cited from memory.
+- Fractional stable matching polytope: Vande Vate 1989, Rothblum 1992. Cited from memory.
+- Birkhoff 1946 and von Neumann 1953 (doubly stochastic matrices). Cited from memory.
+- The 3x3 count formula (q+1)(q+2)(q^2+3q+4)/8: MacMahon. Cited from memory; the counts here are enumerated.
 - Structural balance: Cartwright and Harary 1956, as cited in the quadrants check.
 - The quadrant names and signs are cited from the Homestuck fan wiki (fanlore.org, mspaintadventures.fandom.com), not reproduced.
 
@@ -75,4 +159,8 @@ Whether those things really rank each other is open.
 ## Open
 
 - n=4 and above: not run.
+- Paths at k=2 beyond n=3: whether every start can reach stability.
+- The k=1 stable polytope on all 46656 n=3 profiles: only a sample of 481 is run.
+- A linear description of stability for k > 1 (the direct one fails; comb-type inequalities from the literature are not tried here).
+- Whether neurons' weights behave like any of this.
 - Whether the pursuit rule is good advice for a person: not a question this model can answer.

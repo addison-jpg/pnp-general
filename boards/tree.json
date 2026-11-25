@@ -429,6 +429,12 @@
     "why": [
      "checked-finite needs a runner (the exhaustive check, re-runnable)"
     ]
+   },
+   {
+    "id": "e5d70df4",
+    "why": [
+     "needs a second seat in by"
+    ]
    }
   ]
  },
@@ -460,6 +466,18 @@
   "unverified_here": [
    {
     "id": "c911e8fd",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "ecbebf63",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "c36f4c4f",
     "why": [
      "needs a second seat in by"
     ]
@@ -1528,6 +1546,18 @@
    "5b49d0e3"
   ],
   "unverified_here": []
+ },
+ "physics/curvature": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "b45aba07",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
  },
  "physics/time": {
   "counts": {
