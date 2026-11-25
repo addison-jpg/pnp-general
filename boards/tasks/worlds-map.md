@@ -21,3 +21,4 @@
 - OPEN (Fable or Sonnet, after W1) W2: Lean definitions of the worlds as Props over abstract classes (no proofs of separations), and the hierarchy theorem cited or linked if Mathlib or the repository has it. -> lean/PEqualNP/Worlds/Map.lean
 
 ## Lines (TAKEN / DECIDED only)
+- TAKEN W1
