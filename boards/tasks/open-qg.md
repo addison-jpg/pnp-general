@@ -9,3 +9,4 @@
 
 ## Lines (TAKEN / DECIDED only)
 
+- C1 (Sonnet): L-qg-116 from L-qg-115 checked: `PEqualNP.QuantumGravity.Open.L116_of_L115` in lean/PEqualNP/QuantumGravity/Open/L116OfL115.lean (wraps existing L117 / Helpers.knill_of_ball; builds). L-qg-115 itself still open.
