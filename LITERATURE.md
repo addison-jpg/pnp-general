@@ -480,6 +480,14 @@ Added 2026-11-25. Note: `worlds/FRAMING.md`. Only arXiv resolved among author pa
 | Braverman and Cook, "Computing over the reals: foundations for scientific computing", Notices AMS 53(3) (2006) 318-329; arXiv cs/0509042 | bit model defended against BSS | ABS (search) | §3e |
 | Kawamura, "Lipschitz continuous ordinary differential equations are polynomial-space complete", CCC 2009 / Comput. Complexity 2010 | ODE solving PSPACE-complete | MEM | §3e |
 
+## Q. Lateral: the diagonal spine (task lateral-diagonal)
+
+| Source | Claim used | Read status | Where used |
+|---|---|---|---|
+| Lawvere, "Diagonal arguments and cartesian closed categories", LNM 92 (1969) | fixed point theorem | memory, not opened | `Lateral/Lawvere.lean` |
+| Yanofsky, "A universal approach to self-referential paradoxes, incompleteness and fixed points", Bull. Symb. Logic 9 (2003); arXiv math/0305282 | one theorem covers Cantor, Russell, halting, Godel, Tarski | memory, not opened | `lateral/README.md` |
+| Mathlib `Function.exists_fixed_point_of_surjective`, `ComputablePred.halting_problem` | surjective Lawvere; halting | source read (docstrings and statements) | `Lateral/*.lean` |
+
 ## J. Searched and not found (so nobody searches again)
 
 - A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`); LIT1 web search 2026-11-25 also none (`LIT1_negation_limited`: verdict OPEN).

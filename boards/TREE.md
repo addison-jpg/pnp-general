@@ -9,14 +9,14 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 
 - asteroid (the language and its tools): 7 checked · 3 tested
 - circuits (one-NOT and several-NOT): 48 checked · 5 tested · 5 refuted
-- other: 3 checked
+- other: 4 checked
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked
 - quantum gravity: 13 checked
 
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 84 checked · 8 tested · 5 refuted
+## `./` 85 checked · 8 tested · 5 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -40,9 +40,12 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `d23edf3b` **open** [C1, C2, C4, the sorry] Language cannot yet say: implications/hypotheses in corpus claims (sets_ok), exists-v mixed quantifiers and gain/cost of 0- and 1-steps, merge sets/pure classes/SDR/prices, negated corpus claims, a Lean form for gates>=base, fast C3_k at n>=16, kernel claims at n=14+ (see asteroid/programs/README.md) · evidence: `asteroid/programs/README.md` · main's Sonnet (programs) · unverified (needs a second seat in by)
 - `37dcef35` **checked** [the sorry, L5] The continuous form is in asteroid: for the Fano formula and a 5-input one-NOT circuit the kernel checks every cube and Lean states 0 <= Phi(p) for all p in [0,1] and 0 <= Phi(0) in the project's Phi; Phi is not monotone on the twin tree (level means 6.00 -> 8.29). · evidence: `asteroid/programs/continuous.ath`, `one-not/lean/PEqualNP/W951/Asteroid_continuous_sound.lean::fano_claim2_phi_zero`, `asteroid/ext_continuous.py` · main · VERIFIED
 
-### `lean/` 23 checked
+### `lean/` 24 checked
 
-#### `lean/PEqualNP/` 23 checked
+#### `lean/PEqualNP/` 24 checked
+
+##### `lean/PEqualNP/Lateral/` 1 checked
+- `f1c3e56e` **checked** [lateral-diagonal] Cantor, Russell, no computable enumeration of computable functions and Camus no_total_answer all follow from one Lawvere diagonal lemma; Mathlib already has the surjective form (classical, Lawvere 1969; Yanofsky 2003) · evidence: `lean/PEqualNP/Lateral/Cantor.lean::cantor_from_lawvere`, `lean/PEqualNP/Lateral/Halting.lean::no_computable_enumeration`, `lean/PEqualNP/Lateral/CamusInstance.lean::camus_from_lawvere` · sonnet-lateral · VERIFIED
 
 ##### `lean/PEqualNP/Philosophy/` 7 checked
 - `66145862` **checked** [philosophy-formal] Fisher, hauntology as branching time: lost futures accumulate (lost_mono), haunting is monotone (haunted_mono), a branch point haunts (haunted_of_branch), capitalist_realism; models only cancelled possibility, no claim about Fisher. · evidence: `lean/PEqualNP/Philosophy/Fisher.lean::lost_mono`, `lean/PEqualNP/Philosophy/Fisher.lean::haunted_mono`, `lean/PEqualNP/Philosophy/Fisher.lean::haunted_of_branch`, `lean/PEqualNP/Philosophy/Fisher.lean::capitalist_realism` · R1 · unverified (capitalist_realism not in lean/PEqualNP/Philosophy/Fisher.lean)

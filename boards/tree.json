@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 84,
+   "checked": 85,
    "tested": 8,
    "refuted": 5
   },
@@ -96,6 +96,7 @@
    "a70f6fd8",
    "53be30e1",
    "408f74ba",
+   "f1c3e56e",
    "aff6e6b7",
    "2e8126de",
    "957df3fd",
@@ -189,7 +190,7 @@
  },
  "lean": {
   "counts": {
-   "checked": 23
+   "checked": 24
   },
   "verified": [
    "57b5bd42",
@@ -208,6 +209,7 @@
    "a70f6fd8",
    "53be30e1",
    "408f74ba",
+   "f1c3e56e",
    "aff6e6b7",
    "2e8126de",
    "957df3fd",
@@ -220,7 +222,7 @@
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 23
+   "checked": 24
   },
   "verified": [
    "57b5bd42",
@@ -239,6 +241,7 @@
    "a70f6fd8",
    "53be30e1",
    "408f74ba",
+   "f1c3e56e",
    "aff6e6b7",
    "2e8126de",
    "957df3fd",
@@ -246,6 +249,15 @@
    "7961ecd5",
    "14e1a81a",
    "f9156a1e"
+  ],
+  "unverified_here": []
+ },
+ "lean/PEqualNP/Lateral": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "f1c3e56e"
   ],
   "unverified_here": []
  },
