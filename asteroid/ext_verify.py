@@ -11,16 +11,16 @@ from asteroid import asteroid as A
 
 STD = {"propext", "Classical.choice", "Quot.sound"}
 def _env():
-    local = "/home/user/pequalnp-proofs/tools/bin"
-    return dict(os.environ, PATH=(local + ":" if os.path.isdir(local) else "") + os.environ["PATH"])
+    return A.lake_env()
 
 def write_all(proj):
     """Regenerate the import list of PEqualNP/Verify/All.lean, keeping its `#verify_axioms` line and comment."""
-    p = os.path.join(proj, "PEqualNP/Verify/All.lean"); old = open(p).read()
+    p = os.path.join(proj, "PEqualNP/Verify/All.lean"); old = open(p, encoding="utf-8").read()
     tail = old[old.index("import PEqualNP.Verify.Axioms"):]
-    mods = sorted(f[len(proj) + 1:-5].replace("/", ".") for f in glob.glob(os.path.join(proj, "PEqualNP/**/*.lean"), recursive=True) if "/Verify/" not in f)
+    files = [f.replace(os.sep, "/") for f in glob.glob(os.path.join(proj, "PEqualNP/**/*.lean"), recursive=True)]
+    mods = sorted(f[len(proj) + 1:-5].replace("/", ".") for f in files if "/Verify/" not in f)
     new = "".join(f"import {m}\n" for m in mods) + tail
-    if new != old: open(p, "w").write(new)
+    if new != old: open(p, "w", encoding="utf-8", newline="\n").write(new)
     return len(mods)
 
 def handle(line, api):
@@ -29,7 +29,7 @@ def handle(line, api):
         proj = m.group(1).rstrip("/"); text = f"verify lean {proj}"
         if A.NO_LEAN: print(f"{ln}: {text}: skipped (--no-lean)"); return True
         n = write_all(proj); t0 = time.time()
-        try: r = subprocess.run(["lake", "build", "PEqualNP.Verify.All"], cwd=proj, env=_env(), capture_output=True, text=True, timeout=int(m.group(2) or 1500))
+        try: r = subprocess.run([A.lake(), "build", "PEqualNP.Verify.All"], cwd=proj, env=_env(), capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=int(m.group(2) or 1500))
         except subprocess.TimeoutExpired:
             api["results"].append((ln, text, False, True)); print(f"{ln}: {text}: NOT FINISHED within the time limit ({n} modules); no verdict"); return True
         out = r.stdout + r.stderr; s = re.search(r"verify_axioms \S+: (\d+) modules, (\d+) theorems; (\d+) on propext[^;]*; (\d+) allowed to depend on sorryAx", out)
@@ -41,8 +41,8 @@ def handle(line, api):
     if m := re.fullmatch(r"theorem (\S+) from (\S+) in (\S+)", line):
         name, mod, proj = m.groups(); text = f"theorem {name}"
         if A.NO_LEAN: print(f"{ln}: {text}: skipped (--no-lean)"); return True
-        tmp = os.path.abspath("asteroid/out/_thm.lean"); open(tmp, "w").write(f"import {mod}\n#print axioms {name}\n")
-        r = subprocess.run(["lake", "env", "lean", tmp], cwd=proj, env=_env(), capture_output=True, text=True); os.remove(tmp)
+        tmp = os.path.abspath("asteroid/out/_thm.lean"); open(tmp, "w", encoding="utf-8", newline="\n").write(f"import {mod}\n#print axioms {name}\n")
+        r = subprocess.run([A.lake(), "env", "lean", tmp], cwd=proj, env=_env(), capture_output=True, text=True, encoding="utf-8", errors="replace"); os.remove(tmp)
         out = (r.stdout + r.stderr).replace("\n", " "); a = re.search(r"depends on axioms: \[([^\]]*)\]", out)
         ax = {x.strip() for x in a.group(1).split(",")} if a else (set() if "does not depend on any axioms" in out else None)
         ok = r.returncode == 0 and ax is not None and ax <= STD

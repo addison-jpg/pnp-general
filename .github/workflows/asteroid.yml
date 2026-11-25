@@ -1,11 +1,13 @@
-# asteroid: run every program under asteroid/examples when the language or a program changes.
-# The `python` job evaluates all claims and draws the plots. The `kernel` job (run by hand) also lets Lean decide.
+# asteroid: run every program under asteroid/examples when the language, a program or a launcher changes.
+# The `python` job runs the launchers in bin/ on Linux, macOS and Windows (Git Bash, and cmd + PowerShell):
+# first with a plain Python (no numpy, no matplotlib), then after bin/setup. It evaluates all claims and draws the plots.
+# The `kernel` job (run by hand) also lets Lean decide.
 name: asteroid
 
 on:
   push:
     branches: [main]
-    paths: ['asteroid/**', '**.ath', 'one-not/tools/search/**', 'one-not/lean/PEqualNP/W951/Asteroid.lean', 'one-not/lean/PEqualNP/W951/SearchCheck.lean']
+    paths: ['asteroid/**', '**.ath', 'hello.bench', 'bin/**', '.github/workflows/asteroid.yml', 'one-not/tools/search/**', 'one-not/lean/PEqualNP/W951/Asteroid.lean', 'one-not/lean/PEqualNP/W951/SearchCheck.lean']
   workflow_dispatch:
 
 permissions:
@@ -13,18 +15,82 @@ permissions:
 
 jobs:
   python:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    name: python (${{ matrix.os }}, ${{ matrix.shell }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, shell: bash }
+          - { os: macos-latest, shell: bash }
+          - { os: windows-latest, shell: bash }   # GitHub's bash on Windows is Git Bash
+          - { os: windows-latest, shell: cmd }
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install numpy matplotlib
-      - run: python3 -m asteroid test --no-lean
+
+      - name: Plain Python, no setup (bash)
+        if: matrix.shell == 'bash'
+        shell: bash
+        run: |
+          bin/asteroid --doctor
+          bin/asteroid demo --no-lean
+          bin/asteroid hello.ath --no-lean
+          cd "$RUNNER_TEMP" && "$GITHUB_WORKSPACE/bin/asteroid" demo --no-lean
+      - name: Setup, twice, and all programs (bash)
+        if: matrix.shell == 'bash'
+        shell: bash
+        run: |
+          bin/setup
+          bin/setup
+          bin/asteroid --doctor
+          bin/asteroid test --no-lean
+
+      - name: Plain Python, no setup (cmd)
+        if: matrix.shell == 'cmd'
+        shell: cmd
+        run: |
+          call bin\asteroid.cmd --doctor
+          if errorlevel 1 exit /b 1
+          call bin\asteroid.cmd demo --no-lean
+          if errorlevel 1 exit /b 1
+          call bin\asteroid.cmd hello.ath --no-lean
+          if errorlevel 1 exit /b 1
+      - name: Setup, twice, and all programs (cmd)
+        if: matrix.shell == 'cmd'
+        shell: cmd
+        run: |
+          call bin\setup.cmd
+          if errorlevel 1 exit /b 1
+          call bin\setup.cmd
+          if errorlevel 1 exit /b 1
+          call bin\asteroid.cmd --doctor
+          if errorlevel 1 exit /b 1
+          call bin\asteroid.cmd test --no-lean
+          if errorlevel 1 exit /b 1
+      - name: PowerShell launchers
+        if: matrix.shell == 'cmd'
+        shell: pwsh
+        run: |
+          bin\setup.ps1
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          bin\asteroid.ps1 --doctor
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          bin\asteroid.ps1 demo --no-lean
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          bin\asteroid.ps1 hello.ath --no-lean
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+
+      - name: End-to-end test of the launcher
+        shell: bash
+        run: python asteroid/tests/test_e2e.py
+
       - uses: actions/upload-artifact@v4
         with:
-          name: asteroid-plots
+          name: asteroid-plots-${{ matrix.os }}-${{ matrix.shell }}
           path: asteroid/out/*.png
           if-no-files-found: ignore
 
@@ -37,7 +103,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install numpy matplotlib
+      - run: bin/setup
       - name: Install elan
         run: |
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
@@ -45,4 +111,4 @@ jobs:
       - name: Mathlib cache
         working-directory: one-not/lean
         run: lake exe cache get
-      - run: python3 -m asteroid test
+      - run: bin/asteroid test

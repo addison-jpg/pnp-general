@@ -1,7 +1,23 @@
 #!/bin/sh
 # Run asteroid straight from this folder: nothing is installed anywhere else.
-# Uses the repository's own .venv if bin/setup made one, otherwise the system python3.
-HERE="$(cd "$(dirname "$0")/.." && pwd)"
-PY="$HERE/.venv/bin/python"
-[ -x "$PY" ] || PY="python3"
-PYTHONPATH="$HERE${PYTHONPATH:+:$PYTHONPATH}" exec "$PY" -m asteroid "$@"
+# Works from any directory, in sh, bash, zsh and Git Bash on Windows.
+# Python used: the repository's own .venv if bin/setup made one, otherwise python3, then py -3, then python.
+HERE="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)" || { echo "asteroid: cannot find my own folder" >&2; exit 1; }
+works() { "$@" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 9) else 1)' >/dev/null 2>&1; }
+PY= PYFLAG=
+if   works "$HERE/.venv/bin/python";         then PY="$HERE/.venv/bin/python"
+elif works "$HERE/.venv/Scripts/python.exe"; then PY="$HERE/.venv/Scripts/python.exe"
+elif works python3;                          then PY=python3
+elif works py -3;                            then PY=py PYFLAG=-3
+elif works python;                           then PY=python
+else
+  echo "asteroid: no Python 3.9 or newer found (tried .venv, python3, py -3, python)." >&2
+  echo "          Install Python from https://www.python.org/downloads/ and run this again." >&2
+  exit 1
+fi
+# Windows Python (Git Bash) wants a Windows path; give it one, so no path conversion can go wrong.
+case "$(uname -s 2>/dev/null)" in
+  MINGW*|MSYS*) if command -v cygpath >/dev/null 2>&1; then HERE="$(cygpath -w "$HERE")"; fi ;;
+esac
+PYTHONPATH="$HERE"; export PYTHONPATH
+exec "$PY" $PYFLAG -X utf8 "$HERE/asteroid/__main__.py" "$@"

@@ -20,3 +20,4 @@ asteroid/out/*.log
 *.egg-info/
 .venv/
 .deps/
+asteroid/out/_*.lean

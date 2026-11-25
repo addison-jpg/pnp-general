@@ -36,11 +36,30 @@ record one-not/data/witnesses C2 checked "…"
 ```
 
 ```bash
-python3 -m asteroid run asteroid/examples/first.ath
-python3 -m asteroid test
+bin/asteroid asteroid/examples/first.ath
+bin/asteroid test
 ```
 
-The exact grammar is in [`SPEC.md`](SPEC.md). On every push that touches the language or a program, GitHub Actions runs `python3 -m asteroid test --no-lean` (workflow `.github/workflows/asteroid.yml`); the Lean kernel job is started by hand.
+## Install
+
+There is nothing to install. asteroid runs from this folder with any Python 3.9 or newer.
+
+```
+bin/asteroid demo        # a tiny built-in program: three true claims and one false on purpose
+bin/asteroid --doctor    # what this machine has: Python, numpy, matplotlib, Lean, and what a run will do
+bin/setup                # once, optional: numpy and matplotlib, for plots and the continuous and mixed lines
+```
+
+- **The commands above are for Git Bash on Windows, macOS and Linux.** In cmd write `bin\asteroid.cmd` and `bin\setup.cmd`. In PowerShell write `bin\asteroid.ps1` and `bin\setup.ps1`, or the `.cmd` names if PowerShell refuses to run scripts. A first walk through in Git Bash is in [`GETTING_STARTED.md`](GETTING_STARTED.md).
+- **What `bin/setup` does.** It makes a folder `.venv` inside the repository (a private Python environment) and puts numpy and matplotlib in it. Nothing else. Nothing goes to your user or system Python, and nothing to AppData. It is safe to run twice.
+- **To undo it,** delete the `.venv` folder.
+- **Without `bin/setup`** every program still runs. A line that needs numpy or matplotlib prints one line (`10: plot needs numpy: run bin/setup  (line skipped)`) and the run goes on. numpy is needed by `plot`, the continuous form (`phi`, `bernstein`, `levelmeans`) and mixed slack (`mslack`, `mixedstep`). matplotlib is needed by `plot` only.
+- **To type `asteroid` in place of `bin/asteroid`,** put `bin` on your PATH. Git Bash, bash or zsh, from the repository folder: `echo "export PATH=\"$PWD/bin:\$PATH\"" >> ~/.bashrc` (zsh: `~/.zshrc`). Windows cmd: add the full path of the `bin` folder under Settings, "Edit environment variables for your account", Path.
+- **Lean** is found on PATH, or in elan's standard folder (`~/.elan/bin`, on Windows `%USERPROFILE%\.elan\bin`). Without it asteroid says so and only evaluates.
+- **Paths in a program.** `load FILE` looks beside the program first, then in the repository. A path may contain spaces, and may be in quotes. A program outside the repository writes its plots beside itself.
+- **Tested on:** Linux here, and Linux, macOS and Windows (Git Bash, cmd, PowerShell) by GitHub Actions on every push: see `.github/workflows/asteroid.yml`. No one has yet run the `.cmd` and `.ps1` launchers by hand on a Windows desktop.
+
+The exact grammar is in [`SPEC.md`](SPEC.md). On every push that touches the language or a program, GitHub Actions runs `bin/asteroid test --no-lean` on Linux, macOS and Windows (workflow `.github/workflows/asteroid.yml`); the Lean kernel job is started by hand.
 
 ## Circuits are `.bench` files
 
@@ -111,7 +130,7 @@ Python proposes, Lean decides: a `by lean` claim counts only when the generated 
 | `examples/prove.ath` | 0 claims (`prove` statements only) | kernel-checked by `prove` | |
 | `programs/*.ath` | see "The proof as programs" below | | |
 
-Totals, 2026-11-24, 15 programs (`examples/` 6, `programs/` 9 incl. `edges.ath`): `python3 -m asteroid test --no-lean`: all ok, 68 s; `python3 -m asteroid test` with Lean: all ok, 3 min 44 s. Claims true / Lean theorems per program, from the second run: conjecture 6 / 4, corpus 3 / 30, first 7 / 8, many_not 8 / 5, mixed 11 / 11, prove 0 / –, big_check 11 / –, continuous 13 / 6, edges 26 / 15, ladder 10 / 6, open 4 / 0, pictures 1 / 0, refuted 28 / 2, theorem 10 / 33.
+Totals, 2026-11-24, 15 programs (`examples/` 6, `programs/` 9 incl. `edges.ath`): `bin/asteroid test --no-lean`: all ok, 68 s; `bin/asteroid test` with Lean: all ok, 3 min 44 s. Claims true / Lean theorems per program, from the second run: conjecture 6 / 4, corpus 3 / 30, first 7 / 8, many_not 8 / 5, mixed 11 / 11, prove 0 / –, big_check 11 / –, continuous 13 / 6, edges 26 / 15, ladder 10 / 6, open 4 / 0, pictures 1 / 0, refuted 28 / 2, theorem 10 / 33.
 
 Axioms of the generated theorems: `propext` only.
 
@@ -200,7 +219,7 @@ cd one-not/lean && lake build PEqualNP.Verify.All        # no Python, no asteroi
 ```
 
 ```bash
-python3 -m asteroid run asteroid/programs/big_check.ath  # the same, started from asteroid, plus the cited theorems one by one
+bin/asteroid asteroid/programs/big_check.ath  # the same, started from asteroid, plus the cited theorems one by one
 ```
 
 | Project | Modules | Theorems | Standard axioms only | Allowed `sorryAx` | Other axioms |
@@ -219,7 +238,7 @@ python3 -m asteroid run asteroid/programs/big_check.ath  # the same, started fro
 
 ## The proof as programs
 
-Programs in [`programs/`](programs/README.md), one per group of numbered items; all exit 0 and `python3 -m asteroid test` runs them.
+Programs in [`programs/`](programs/README.md), one per group of numbered items; all exit 0 and `bin/asteroid test` runs them.
 
 | Program | README items | What it checks | Python claims / Lean theorems | Time (Lean / no Lean) |
 |---|---|---|---|---|
@@ -229,7 +248,7 @@ Programs in [`programs/`](programs/README.md), one per group of numbered items; 
 | `programs/ladder.ath` | T6, C4, C4w, Theorem | rung 0 (circuits with no NOT gate: count >= 0 and `gates >= base`, kernel) against the four many-NOT files (all have `witness < base`, all have `gates >= base`, flip classes >= 0) | 10 / 6 | 15 s / 1 s |
 | `programs/pictures.ath` | D8, L5 | plot phi for the twin tree, MATCH-C, Pappus, Fano; histograms of slack and gates over the corpus | 1 / 0 (6 PNGs in `asteroid/out/`) | 2 s / 2 s |
 
-`python3 -m asteroid test` runs them (with Lean 3 min 44 s for examples and programs together; `--no-lean` 68 s).
+`bin/asteroid test` runs them (with Lean 3 min 44 s for examples and programs together; `--no-lean` 68 s).
 
 ### What the language cannot yet say (`# WISH:` lines in the programs)
 

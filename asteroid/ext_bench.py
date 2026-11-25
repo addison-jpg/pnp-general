@@ -174,17 +174,20 @@ def of_circ(c, name=""):
 
 
 def handle(line, api):
-    if m := re.fullmatch(r"let (\w+) = load (\S+\.bench)", line):
+    if m := re.fullmatch(r"let (\w+) = load (.+\.bench[\"']?)", line):
         import asteroid.asteroid as A
         A.check_name(m.group(1), f"{api['script']}:{api['ln']}")
-        try: c = read(open(m.group(2)).read())
-        except BenchError as e: raise SystemExit(f"{m.group(2)}: {e.msg}")
-        api["env"][m.group(1)] = c; api["src"][m.group(1)] = m.group(2)
+        f = A.in_path(m.group(2))
+        if not os.path.isfile(f): raise SystemExit(f"{api['script']}:{api['ln']}: load: no file {A._plain(m.group(2))} (looked beside the program and in the repository)")
+        try: c = read(open(f, encoding="utf-8").read())
+        except BenchError as e: raise SystemExit(f"{f}: {e.msg}")
+        api["env"][m.group(1)] = c; api["src"][m.group(1)] = f
         print(f"{api['ln']}: {m.group(1)} loaded ({c['n']} inputs, {len(c['gates'])} gates)"); return True
-    if m := re.fullmatch(r"save (\w+) -> (\S+\.bench)", line):
+    if m := re.fullmatch(r"save (\w+) -> (.+\.bench[\"']?)", line):
         if m.group(1) not in api["env"]: raise SystemExit(f"{api['script']}:{api['ln']}: save: no circuit named {m.group(1)}")
-        open(m.group(2), "w").write(print_netlist(of_circ(api["env"][m.group(1)], m.group(1))))
-        print(f"{api['ln']}: wrote {m.group(2)}"); return True
+        import asteroid.asteroid as A
+        f = A.out_path(m.group(2)); open(f, "w", encoding="utf-8", newline="\n").write(print_netlist(of_circ(api["env"][m.group(1)], m.group(1))))
+        print(f"{api['ln']}: wrote {f}"); return True
     return False
 
 
@@ -197,11 +200,11 @@ def describe(d, path):
 
 def main(argv):
     for f in argv:
-        d = json.load(open(f)); c = {k: d[k] for k in ("n", "sets", "gates", "outs")}
+        d = json.load(open(f, encoding="utf-8")); c = {k: d[k] for k in ("n", "sets", "gates", "outs")}
         out = os.path.splitext(f)[0] + ".bench"; text = print_netlist(of_circ(c, describe(d, f)))
         back = read(text)
         if back != {**c, "gates": [list(g) for g in c["gates"]]}: raise SystemExit(f"{f}: the round trip changed the circuit; nothing written")
-        open(out, "w").write(text); print(f"wrote {out}")
+        open(out, "w", encoding="utf-8", newline="\n").write(text); print(f"wrote {out}")
 
 
 if __name__ == "__main__": main(sys.argv[1:])

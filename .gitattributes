@@ -8,3 +8,9 @@ NAMES.md merge=union
 **/findings.jsonl merge=union
 boards/TREE.md merge=union
 *.ath linguist-language=Ruby linguist-detectable
+
+# Launchers: the sh scripts must keep LF (Git Bash on Windows), the Windows scripts keep CRLF. Git never converts them.
+bin/asteroid text eol=lf
+bin/setup text eol=lf
+bin/*.cmd -text
+bin/*.ps1 -text

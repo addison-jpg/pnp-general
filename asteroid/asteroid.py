@@ -26,14 +26,17 @@ A script is a list of lines; `#` starts a comment. The verbs:
   (extensions)                               a file asteroid/ext_NAME.py with `handle(line, api) -> bool` adds verbs
   record DIR ITEM WORD "STATEMENT"           a finding (boards.py) citing this script and, if built, its Lean module
 
-Run from anywhere (after `pip install -e .` in the repository; or `python3 -m asteroid …` from its root):
+Run from anywhere with the launcher in the repository's bin folder (bin/asteroid; on Windows also bin\\asteroid.cmd
+and bin\\asteroid.ps1). Nothing is installed outside the repository. Below, `asteroid` stands for that launcher:
   asteroid FILE.ath                 run one program (also: asteroid run FILE.ath)
+  asteroid demo                     a tiny built-in program: start here
   asteroid test                     run every program under asteroid/examples and asteroid/programs
   asteroid version
+  asteroid --doctor                 what this machine has: Python, numpy, matplotlib, Lean, and what a run will do
   --no-lean                         evaluate only, prove nothing. Chosen automatically when Lean is not installed.
   --show-lean                       also print the generated Lean files and the axioms used
 Python proposes, Lean decides: a `by lean` claim counts only if the generated module builds."""
-import sys, os, re, json, subprocess, shlex, operator, time
+import sys, os, re, json, subprocess, shlex, operator, time, shutil, functools
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # the repository, wherever the command is typed
 CALLER_DIR = os.getcwd()
 os.chdir(ROOT)
@@ -63,6 +66,50 @@ RESERVED = ["tt", "varTT", "correctB", "witnessCount", "hasWitness", "Gate", "Ci
 def check_name(name, where):
     if name in RESERVED: raise SystemExit(f"{where}: the name `{name}` is taken by the proof library; pick another name for this circuit")
 
+def lake_env():
+    """The environment for Lean: PATH as it is, then two fallbacks: the folder used in the project's own container
+    (if it exists) and the standard elan folder (~/.elan/bin, on Windows %USERPROFILE%\\.elan\\bin)."""
+    home = [os.environ.get("ELAN_HOME"), os.path.join(os.path.expanduser("~"), ".elan"),
+            os.path.join(os.environ["USERPROFILE"], ".elan") if os.environ.get("USERPROFILE") else None]
+    # the container's folder holds a wrapper that queues builds; it exists nowhere else, so elsewhere elan's is used
+    dirs = ["/home/user/pequalnp-proofs/tools/bin"] + [os.path.join(h, "bin") for h in home if h]
+    path = [x for x in os.environ.get("PATH", "").split(os.pathsep) if x]
+    return dict(os.environ, PATH=os.pathsep.join(path + [d for d in dict.fromkeys(dirs) if os.path.isdir(d) and d not in path]))
+
+@functools.lru_cache(maxsize=None)
+def lake():
+    """Full path of the `lake` command, or None. A full path, because Windows does not search the child's PATH."""
+    return shutil.which("lake", path=lake_env()["PATH"])
+
+LEAN_DIR = os.path.join(ROOT, "one-not", "lean")
+def mathlib_cache():
+    b = os.path.join(LEAN_DIR, ".lake", "packages", "mathlib", ".lake", "build", "lib")
+    return any(os.path.isfile(os.path.join(b, sub, "Mathlib.olean")) for sub in ("", "lean"))
+
+def need(mod, what):
+    """Import numpy or matplotlib when a line needs it. Missing: the line is skipped with one message (see run)."""
+    import importlib
+    try: return importlib.import_module(mod)
+    except ImportError as e:
+        e.asteroid = f"{what} needs {mod}: run bin/setup"; raise
+
+PROG_DIR = ROOT   # the folder of the program being run (set by run)
+def _plain(p):
+    p = p.strip(); return p[1:-1] if len(p) >= 2 and p[0] == p[-1] and p[0] in "\"'" else p
+def in_path(p):
+    """A file a program reads: a path with spaces is fine, quotes are optional. A relative path is looked for
+    beside the program first, then in the repository (the shipped programs name their files from the repository)."""
+    p = _plain(p)
+    if os.path.isabs(p): return p
+    a = os.path.join(PROG_DIR, p)
+    return a if os.path.exists(a) or not os.path.exists(p) else p
+def out_path(p):
+    """A file a program writes: from the repository for a program inside it, else beside the program. Folders are made."""
+    p = _plain(p)
+    inside = os.path.commonpath([ROOT, PROG_DIR]) == ROOT if os.path.splitdrive(ROOT)[0].lower() == os.path.splitdrive(PROG_DIR)[0].lower() else False
+    if not os.path.isabs(p) and not inside: p = os.path.join(PROG_DIR, p)
+    os.makedirs(os.path.dirname(os.path.abspath(p)), exist_ok=True); return p
+
 CONJ = {}      # name -> expression with the circuit variable `c`
 API = {}
 def _exts():
@@ -82,8 +129,9 @@ def do_claim(text, lean):
     m = re.fullmatch(r'forall cubes slack\((\w+)\)\s*>=\s*0', text)
     if m:
         c = env[m.group(1)]; n = c["n"]
-        import continuous as C
-        sl = C.slack_table(c, 0, any_gate=False); alive = [Q for Q in range(1 << n) if core.base(c, Q) > 0]
+        try: import continuous as C; sl = C.slack_table(c, 0, any_gate=False)
+        except ImportError: sl = [core.slack(c, Q, any_gate=False) for Q in range(1 << n)]   # no numpy: the same numbers, slower
+        alive = [Q for Q in range(1 << n) if core.base(c, Q) > 0]
         worst = min(int(sl[Q]) for Q in range(1 << n)); ok = worst >= 0
         if lean and (ok or FORCE): lean_claims.append((m.group(1), "claim", f"slackNonnegAll {m.group(1)} = true", text))
         return ok, f"least slack over {1 << n} cubes = {worst} ({len(alive)} cubes with positive base)"
@@ -133,7 +181,7 @@ def hunt_conjecture(name, secs, max_not, seed):
             if mn > mc: stall += 1; continue
             stall = 0 if mn < mc else stall + 1; cur, mc = new, mn
             if mn < 0:
-                env[name + "_cex"] = new; p = f"asteroid/out/{name}_cex.json"; json.dump(new, open(p, "w")); src[name + "_cex"] = p
+                env[name + "_cex"] = new; p = f"asteroid/out/{name}_cex.json"; json.dump(new, open(p, "w", encoding="utf-8", newline="\n")); src[name + "_cex"] = p
                 return f"hunt {name}: COUNTEREXAMPLE after {tried} moves ({new['n']} inputs, {len(new['gates'])} gates, {core.nots(new)} NOT), bound to {name}_cex, saved {p}"
     return f"hunt {name}: no counterexample in {tried} moves ({secs} s, at most {max_not} NOT gates); this proves nothing"
 
@@ -154,16 +202,15 @@ def build_lean(script):
     for i, (c, kind, stmt, text) in enumerate(lean_claims):
         t = f"{c}_claim{i}"; names.append(t); out.append(f"/-- asteroid: `claim {text}` -/\ntheorem {t} : {stmt} := by decide +kernel")
     out.append(f"end SearchCheck.{mod}")
-    open(path, "w").write("\n".join(out) + "\n")
-    local = "/home/user/pequalnp-proofs/tools/bin"
-    envp = dict(os.environ, PATH=(local + ":" if os.path.isdir(local) else "") + os.environ["PATH"]); t0 = time.time()
-    r = subprocess.run(["lake", "build", f"PEqualNP.W951.{mod}"], cwd="one-not/lean", env=envp, capture_output=True, text=True)
+    open(path, "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
+    envp = lake_env(); t0 = time.time()
+    r = subprocess.run([lake(), "build", f"PEqualNP.W951.{mod}"], cwd=LEAN_DIR, env=envp, capture_output=True, text=True, encoding="utf-8", errors="replace")
     ok = r.returncode == 0
     ax = ""
     if ok:
         tmp = os.path.join(ROOT, f"asteroid/out/_axioms_{os.getpid()}.lean")
-        open(tmp, "w").write(f"import PEqualNP.W951.{mod}\n" + "".join(f"#print axioms SearchCheck.{mod}.{t}\n" for t in names))
-        a = subprocess.run(["lake", "env", "lean", tmp], cwd="one-not/lean", env=envp, capture_output=True, text=True).stdout
+        open(tmp, "w", encoding="utf-8", newline="\n").write(f"import PEqualNP.W951.{mod}\n" + "".join(f"#print axioms SearchCheck.{mod}.{t}\n" for t in names))
+        a = subprocess.run([lake(), "env", "lean", tmp], cwd=LEAN_DIR, env=envp, capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
         ax = "; ".join(sorted(set(re.findall(r"axioms: \[([^\]]*)\]", a.replace("\n", " "))))) or "none"; os.remove(tmp)
     else: print("\n".join(l for l in (r.stdout + r.stderr).splitlines() if "error" in l)[:1500])
     res = {"module": path, "ok": ok, "seconds": round(time.time() - t0, 1), "theorems": names, "axioms": ax, "sound": None}
@@ -197,13 +244,14 @@ def build_sound(mod, names, envp):
             out.append(f"/-- `{text}`: the sum of (|S| − 1) is at most the number of gates of this circuit. -/\ntheorem {n} : ∑ w_, (({c}.setFin w_).card - 1) ≤ {c}.toGates.length :=\n  base_le_gates_of_slackGe {c} {c}_setsOk {t}")
     if not made: return None
     out.append(f"end {mod}_sound"); out.append("end SearchCheck"); smod = mod + "_sound"; path = f"one-not/lean/PEqualNP/W951/{smod}.lean"
-    open(path, "w").write("\n".join(out) + "\n"); t0 = time.time()
-    r = subprocess.run(["lake", "build", f"PEqualNP.W951.{smod}"], cwd="one-not/lean", env=envp, capture_output=True, text=True)
+    open(path, "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n"); t0 = time.time()
+    r = subprocess.run([lake(), "build", f"PEqualNP.W951.{smod}"], cwd=LEAN_DIR, env=envp, capture_output=True, text=True, encoding="utf-8", errors="replace")
     if r.returncode != 0: print("\n".join(l for l in (r.stdout + r.stderr).splitlines() if "error" in l)[:1500])
     return {"module": path, "ok": r.returncode == 0, "seconds": round(time.time() - t0, 1), "theorems": made}
 
 def plot_phi(names, out):
-    import continuous as C, matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
+    need("numpy", "plot"); matplotlib = need("matplotlib", "plot"); import continuous as C
+    matplotlib.use("Agg"); import matplotlib.pyplot as plt
     ps = [i / 200 for i in range(201)]; fig, ax = plt.subplots(1, 2, figsize=(12, 4.6))
     for nme in names:
         c = env[nme]; n = c["n"]; m = C.level_means(C.slack_table(c, 0, any_gate=core.nots(c) > 1), n)
@@ -216,56 +264,66 @@ NO_LEAN = False
 SHOW_LEAN = False
 FORCE = False
 FORCE_SEEN = {}
+SKIPPED = []     # lines skipped because numpy or matplotlib is not installed
 EXTRA_LEAN = {"imports": [], "decls": []}   # extensions may add Lean imports and declarations to the generated module
 def run(script):
+    global PROG_DIR
+    if not os.path.isfile(script): raise SystemExit(f"asteroid: no such program: {os.path.abspath(script)}")
+    PROG_DIR = os.path.dirname(os.path.abspath(script))
     records = []
     block = None
-    for ln, raw in enumerate(open(script), 1):
+    for ln, raw in enumerate(open(script, encoding="utf-8"), 1):
         line = raw.split("#", 1)[0].strip()
         if not line: continue
         API.update({"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN})
-        if block is not None:
-            name, n, wires, gates, sets, outs = block
-            W = lambda x: int(x) if x.isdigit() else wires[x]
-            if line == "end":
-                env[name] = {"n": n, "sets": sets, "gates": gates, "outs": outs}; block = None
-                print(f"{ln}: {name} defined ({n} inputs, {len(gates)} gates, correct {core.correct(env[name])})"); continue
-            if m := re.fullmatch(r"(\w+) = (or|and) (\w+) (\w+)", line): gates.append([m.group(2), W(m.group(3)), W(m.group(4))]); wires[m.group(1)] = n + len(gates) - 1
-            elif m := re.fullmatch(r"(\w+) = not (\w+)", line): gates.append(["not", W(m.group(2))]); wires[m.group(1)] = n + len(gates) - 1
-            elif m := re.fullmatch(r"set ([\d ]+) -> (\w+)", line): sets.append([int(x) for x in m.group(1).split()]); outs.append(W(m.group(2)))
-            else: raise SystemExit(f"{script}:{ln}: cannot parse inside circuit: {line}")
-            continue
-        if m := re.fullmatch(r"circuit (\w+) (\d+)", line): check_name(m.group(1), f"{script}:{ln}"); block = (m.group(1), int(m.group(2)), {}, [], [], []); continue
-        if m := re.fullmatch(r"let (\w+) = load (\S+\.json)", line):
-            check_name(m.group(1), f"{script}:{ln}")
-            d = json.load(open(m.group(2))); env[m.group(1)] = {k: d[k] for k in ("n", "sets", "gates", "outs")}; src[m.group(1)] = m.group(2)
-            print(f"{ln}: {m.group(1)} loaded ({d['n']} inputs, {len(d['gates'])} gates)")
-        elif m := re.fullmatch(r"show (\w+)", line):
-            a = m.group(1); print(f"{ln}: {a}: " + ", ".join(f"{f} {F(f, a)}" for f in ("gates", "nots", "base", "witness", "orwitness", "correct")))
-        elif not re.match(r"claim!? forall c in ", line) and (m := re.fullmatch(r"claim(!?) (.+?)(\s+by lean)?", line)):
-            global FORCE
-            FORCE = bool(m.group(1)); m = re.fullmatch(r"claim!? (.+?)(\s+by lean)?", line)
-            ok, detail = do_claim(m.group(1).strip(), bool(m.group(2)))
-            results.append((ln, m.group(1).strip(), ok, bool(m.group(2)))); print(f"{ln}: claim {m.group(1).strip()}: python {'TRUE' if ok else 'FALSE'} ({detail})")
-        elif m := re.fullmatch(r"plot phi (.+?) -> (\S+)", line):
-            plot_phi(m.group(1).split(), m.group(2)); print(f"{ln}: wrote {m.group(2)}")
-        elif m := re.fullmatch(r"conjecture (\w+):\s*(.+)", line):
-            CONJ[m.group(1)] = m.group(2).strip(); print(f"{ln}: conjecture {m.group(1)}(c) := {m.group(2).strip()}")
-        elif (m := re.fullmatch(r"hunt (\w+) (\d+) (\d+)(?: (\d+))?", line)) and m.group(1) in CONJ:
-            print(f"{ln}: " + hunt_conjecture(m.group(1), int(m.group(2)), int(m.group(3)), int(m.group(4) or 0)))
-        elif m := re.fullmatch(r'hunt "([^"]+)" (\d+) (\d+)(?: (\d+))?(\s*&)?', line):
-            cmd = [sys.executable, "-I", "one-not/tools/search/hunt.py", m.group(1), m.group(2), m.group(3), m.group(4) or "0"]
-            if m.group(5):
-                log = f"asteroid/out/hunt_{int(time.time())}.log"; subprocess.Popen(cmd, stdout=open(log, "w"), stderr=subprocess.STDOUT, start_new_session=True)
-                print(f"{ln}: hunt started in the background, log {log}")
-            else: print(f"{ln}: " + subprocess.run(cmd, capture_output=True, text=True).stdout.strip().splitlines()[-1])
-        elif m := re.fullmatch(r'record (\S+) (\S+) (\w+) "(.+)"', line): records.append(m.groups())
-        else:
-            import glob, importlib
-            api = API; api.update({"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN})
-            for f in sorted(glob.glob(os.path.join(ROOT, "asteroid", "ext_*.py"))):
-                if importlib.import_module("asteroid." + os.path.basename(f)[:-3]).handle(line, api): break
-            else: raise SystemExit(f"{script}:{ln}: cannot parse: {line}")
+        try:
+            if block is not None:
+                name, n, wires, gates, sets, outs = block
+                W = lambda x: int(x) if x.isdigit() else wires[x]
+                if line == "end":
+                    env[name] = {"n": n, "sets": sets, "gates": gates, "outs": outs}; block = None
+                    print(f"{ln}: {name} defined ({n} inputs, {len(gates)} gates, correct {core.correct(env[name])})"); continue
+                if m := re.fullmatch(r"(\w+) = (or|and) (\w+) (\w+)", line): gates.append([m.group(2), W(m.group(3)), W(m.group(4))]); wires[m.group(1)] = n + len(gates) - 1
+                elif m := re.fullmatch(r"(\w+) = not (\w+)", line): gates.append(["not", W(m.group(2))]); wires[m.group(1)] = n + len(gates) - 1
+                elif m := re.fullmatch(r"set ([\d ]+) -> (\w+)", line): sets.append([int(x) for x in m.group(1).split()]); outs.append(W(m.group(2)))
+                else: raise SystemExit(f"{script}:{ln}: cannot parse inside circuit: {line}")
+                continue
+            if m := re.fullmatch(r"circuit (\w+) (\d+)", line): check_name(m.group(1), f"{script}:{ln}"); block = (m.group(1), int(m.group(2)), {}, [], [], []); continue
+            if m := re.fullmatch(r"let (\w+) = load (.+\.json[\"']?)", line):
+                check_name(m.group(1), f"{script}:{ln}")
+                f = in_path(m.group(2)); d = json.load(open(f, encoding="utf-8")); env[m.group(1)] = {k: d[k] for k in ("n", "sets", "gates", "outs")}; src[m.group(1)] = f
+                print(f"{ln}: {m.group(1)} loaded ({d['n']} inputs, {len(d['gates'])} gates)")
+            elif m := re.fullmatch(r"show (\w+)", line):
+                a = m.group(1); print(f"{ln}: {a}: " + ", ".join(f"{f} {F(f, a)}" for f in ("gates", "nots", "base", "witness", "orwitness", "correct")))
+            elif not re.match(r"claim!? forall c in ", line) and (m := re.fullmatch(r"claim(!?) (.+?)(\s+by lean)?", line)):
+                global FORCE
+                FORCE = bool(m.group(1)); m = re.fullmatch(r"claim!? (.+?)(\s+by lean)?", line)
+                ok, detail = do_claim(m.group(1).strip(), bool(m.group(2)))
+                results.append((ln, m.group(1).strip(), ok, bool(m.group(2)))); print(f"{ln}: claim {m.group(1).strip()}: python {'TRUE' if ok else 'FALSE'} ({detail})")
+            elif m := re.fullmatch(r"plot phi (.+?) -> (.+)", line):
+                o = out_path(m.group(2)); plot_phi(m.group(1).split(), o); print(f"{ln}: wrote {o}")
+            elif m := re.fullmatch(r"conjecture (\w+):\s*(.+)", line):
+                CONJ[m.group(1)] = m.group(2).strip(); print(f"{ln}: conjecture {m.group(1)}(c) := {m.group(2).strip()}")
+            elif (m := re.fullmatch(r"hunt (\w+) (\d+) (\d+)(?: (\d+))?", line)) and m.group(1) in CONJ:
+                print(f"{ln}: " + hunt_conjecture(m.group(1), int(m.group(2)), int(m.group(3)), int(m.group(4) or 0)))
+            elif m := re.fullmatch(r'hunt "([^"]+)" (\d+) (\d+)(?: (\d+))?(\s*&)?', line):
+                cmd = [sys.executable, "-I", "-X", "utf8", "one-not/tools/search/hunt.py", m.group(1), m.group(2), m.group(3), m.group(4) or "0"]
+                if m.group(5):
+                    log = f"asteroid/out/hunt_{int(time.time())}.log"; detach = {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS} if os.name == "nt" else {"start_new_session": True}
+                    subprocess.Popen(cmd, stdout=open(log, "wb"), stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, **detach)
+                    print(f"{ln}: hunt started in the background, log {log}")
+                else: print(f"{ln}: " + subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace").stdout.strip().splitlines()[-1])
+            elif m := re.fullmatch(r'record (\S+) (\S+) (\w+) "(.+)"', line): records.append(m.groups())
+            else:
+                import glob, importlib
+                api = API; api.update({"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN})
+                for f in sorted(glob.glob(os.path.join(ROOT, "asteroid", "ext_*.py"))):
+                    if importlib.import_module("asteroid." + os.path.basename(f)[:-3]).handle(line, api): break
+                else: raise SystemExit(f"{script}:{ln}: cannot parse: {line}")
+        except ImportError as e:               # numpy or matplotlib missing: skip this line, keep going
+            mod = (getattr(e, "name", None) or "").split(".")[0]
+            if mod not in ("numpy", "matplotlib"): raise
+            SKIPPED.append(ln); print(f"{ln}: " + getattr(e, "asteroid", f"{line.split()[0]} needs {mod}: run bin/setup") + "  (line skipped)")
     L = None if NO_LEAN else build_lean(script)
     if NO_LEAN and lean_claims: print(f"not proved: {len(lean_claims)} claims were only evaluated (no proof checker in this run)")
     if L:
@@ -282,27 +340,77 @@ def run(script):
         import boards
         ev = [script] + ([f"{L['module']}::{L['theorems'][-1]}"] if L and L["ok"] else []) + list(dict.fromkeys(src.values()))
         boards.add(d, "asteroid", item, word, stmt, ev); boards.build()
-    print(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; {len(L['theorems'])} proved" if L and L["ok"] else ""))
+    print(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; {len(L['theorems'])} proved" if L and L["ok"] else "")
+          + (f"; {len(SKIPPED)} lines skipped (numpy or matplotlib missing: run bin/setup)" if SKIPPED else ""))
     return 1 if bad or (L and not L["ok"]) or (L and L.get("sound") and not L["sound"]["ok"]) else 0
 
 VERSION = "asteroid 0.3 (Python + Lean kernel + matplotlib)"
+def doctor():
+    """What this machine has, and what a run will do. Changes nothing."""
+    import platform, importlib.util
+    venv = os.path.join(ROOT, ".venv"); inside = os.path.realpath(sys.prefix) == os.path.realpath(venv)
+    print(VERSION); print(f"repository   {ROOT}")
+    print(f"system       {platform.system()} {platform.release()} ({platform.machine()})")
+    ms = os.environ.get("MSYSTEM")
+    print("shell        " + (f"Git Bash / MSYS ({ms})" if ms else "PowerShell or cmd" if os.name == "nt" else os.environ.get("SHELL", "unknown")))
+    print(f"python       {platform.python_version()}  {sys.executable}")
+    print("             " + ("this is the repository's own .venv" if inside else
+          "this is NOT the repository's .venv (" + ("there is one, but the launcher did not use it" if os.path.isdir(venv) else "none yet: bin/setup makes it") + ")"))
+    have = {}
+    for mod in ("numpy", "matplotlib"):
+        try: spec = importlib.util.find_spec(mod)
+        except Exception: spec = None
+        have[mod] = spec is not None
+        try:
+            from importlib import metadata; ver = metadata.version(mod) if spec else ""
+        except Exception: ver = ""
+        print(f"{mod:<12} " + (f"present {ver}  {os.path.dirname(spec.origin or '')}" if spec else "MISSING: run bin/setup"))
+    lk = lake(); cache = mathlib_cache()
+    print("lake (Lean)  " + (lk or "NOT FOUND (looked on PATH and in ~/.elan/bin). Install elan: https://lean-lang.org/install/"))
+    print("Mathlib      " + ("cache present in one-not/lean/.lake" if cache else "NO CACHE in one-not/lean/.lake: run `lake exe cache get` in one-not/lean (needs lake)"))
+    print("a run will   " + ("PROVE: `by lean` claims go to the proof checker" if lk and cache else
+          "PROVE, but SLOWLY: without the Mathlib cache the first proof compiles Mathlib (hours). Get the cache first, or use --no-lean" if lk else
+          "EVALUATE ONLY: no Lean here, so claims are computed in Python and nothing is proved"))
+    miss = [m for m in have if not have[m]]
+    print("             " + ("plots and the continuous and mixed lines work" if not miss else
+          f"without {' and '.join(miss)}: " + ("plot lines are skipped; " if not have["matplotlib"] or not have["numpy"] else "")
+          + ("continuous, mixed, bernstein, phi and corpus lines are skipped; " if not have["numpy"] else "") + "everything else runs"))
+    return 0
+
 def main(argv):
     global NO_LEAN, SHOW_LEAN
+    for st in (sys.stdout, sys.stderr):                 # Windows consoles and pipes: always UTF-8, never a crash on a symbol
+        try: st.reconfigure(encoding="utf-8", errors="replace")
+        except Exception: pass
+    os.makedirs(os.path.join(ROOT, "asteroid", "out"), exist_ok=True)
+    if "--doctor" in argv or argv[:1] == ["doctor"]: return doctor()
     NO_LEAN = "--no-lean" in argv; SHOW_LEAN = "--show-lean" in argv; argv = [a for a in argv if a not in ("--no-lean", "--show-lean")]
-    # a program path is read from where the command was typed
-    argv = [os.path.relpath(os.path.join(CALLER_DIR, a), ROOT) if a.endswith((".ath", ".ast")) and not os.path.isabs(a) else a for a in argv]
-    import shutil
-    local = "/home/user/pequalnp-proofs/tools/bin"
-    if not NO_LEAN and not shutil.which("lake", path=(local + ":" if os.path.isdir(local) else "") + os.environ.get("PATH", "")):
+    def prog(a):                                        # a program path is read from where the command was typed
+        if not a.endswith((".ath", ".ast")): return a
+        p = os.path.normpath(os.path.join(CALLER_DIR, a))
+        try: p = os.path.relpath(p, ROOT)
+        except ValueError: pass                         # Windows, another drive: keep the full path
+        return p.replace(os.sep, "/")
+    argv = [prog(a) for a in argv]
+    if not NO_LEAN and not lake():
         NO_LEAN = True
         print("note: Lean (the command `lake`) is not installed here, so this run is Python only: claims are evaluated, nothing is formally checked.\n      To let the Lean kernel decide: install elan, then `cd one-not/lean && lake exe cache get`.")
     if argv[:1] == ["version"]: print(VERSION); return 0
+    if argv[:1] == ["demo"]:
+        print("asteroid demo: the program is asteroid/demo.ath (a 4-input circuit, three true claims, one false on purpose)\n")
+        run("asteroid/demo.ath"); good = [r[2] for r in results] == [True, True, True, False]
+        print("\n" + ("demo OK: three claims TRUE and the last one FALSE, as written." if good else "demo FAILED: expected three TRUE claims and one FALSE.")
+              + ("" if not NO_LEAN else "\nNothing was proved in this run (no Lean here, or --no-lean): the claims were computed in Python."))
+        print("Try next:\n  bin/asteroid hello.ath     a program that loads a circuit file and draws a plot\n  bin/asteroid --doctor      what this machine has\n  bin/setup                  once, for plots: numpy and matplotlib in a .venv inside this folder")
+        return 0 if good else 1
     if argv[:1] == ["run"] and len(argv) == 2: return run(argv[1])
     if argv[:1] == ["test"]:
         import glob; bad = 0
         for f in sorted(glob.glob("asteroid/examples/*.ath") + glob.glob("asteroid/programs/*.ath")):
-            r = subprocess.run([sys.executable, "-m", "asteroid", "run", f] + (["--no-lean"] if NO_LEAN else []), capture_output=True, text=True)
-            print(("ok   " if r.returncode == 0 else "FAIL ") + f + "  |  " + (r.stdout.strip().splitlines() or ["(no output)"])[-1]); bad += r.returncode != 0
+            f = f.replace(os.sep, "/")
+            r = subprocess.run([sys.executable, "-X", "utf8", os.path.join(ROOT, "asteroid", "__main__.py"), "run", f] + (["--no-lean"] if NO_LEAN else []), cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
+            last = (r.stdout.strip().splitlines() or (r.stderr.strip().splitlines() or ["(no output)"])[-1:])[-1]
+            print(("ok   " if r.returncode == 0 else "FAIL ") + f + "  |  " + last); bad += r.returncode != 0
         return 1 if bad else 0
     if len(argv) == 1 and argv[0].endswith((".ath", ".ast")): return run(argv[0])   # .ast: the old extension, still read
     print(__doc__); return 2

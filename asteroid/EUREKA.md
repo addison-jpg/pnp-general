@@ -16,7 +16,7 @@ Most likely guess: the owner remembers a name loosely; the closest real things a
 
 ## What was built (a stand-in, not Eureka)
 Verb `prove "STATEMENT" by TACTIC` in `asteroid/ext_eureka.py`: writes `theorem asteroid_prove : STATEMENT := by TACTIC` (import Mathlib) and checks it with `lake env lean`. Tactics: decide, omega, simp, aesop, norm_num, rfl, simp_arith, trivial, `decide +kernel`. No network, no key.
-- Example `asteroid/examples/prove.ath`: 3 statements accepted in about 15 s with Lean; `python3 -m asteroid test --no-lean` passes all 5 examples (the verb is skipped there).
+- Example `asteroid/examples/prove.ath`: 3 statements accepted in about 15 s with Lean; `bin/asteroid test --no-lean` passes all 5 examples (the verb is skipped there).
 - A false statement (`2 + 2 = 5` by decide) is REJECTED and the run exits 1.
-- Use: `export PATH="/home/user/pequalnp-proofs/tools/bin:$PATH"; python3 -m asteroid run asteroid/examples/prove.ath`.
+- Use: `bin/asteroid asteroid/examples/prove.ath`.
 - If the owner names a link for the real "Eureka", write it on `boards/tasks/lean-eureka-asteroid.md`.

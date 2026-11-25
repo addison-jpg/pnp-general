@@ -7,7 +7,6 @@ Definitions are in asteroid/SPEC.md; Lean side: one-not/lean/PEqualNP/W951/Aster
 Python uses continuous.slack_table / continuous.mixed_margin; `direct_*` below is an independent, naive implementation
 used to cross-check (every single-state claim is checked against it; asteroid/tests/test_mixed.py does whole circuits)."""
 import re, operator
-import numpy as np
 import asteroid.asteroid as A
 
 OPS = {"=": operator.eq, "!=": operator.ne, "<": operator.lt, "<=": operator.le, ">": operator.gt, ">=": operator.ge}
@@ -61,7 +60,7 @@ def direct_mixedstep(c):
 
 # ---------- Python via continuous.py ----------
 def _C():
-    import continuous; return continuous
+    A.need("numpy", "mixed slack (mslack, mixedstep)"); import continuous; return continuous
 
 def _compress(Q, R, n):
     """index of Q among the points outside R (the sub-vector convention of continuous.slack_table)"""

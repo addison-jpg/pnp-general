@@ -57,7 +57,7 @@ c = OR(x2, x3)
 This is `hello.ath`, a program that checks that circuit:
 
 ```
-# hello.ath: run with: asteroid hello.ath
+# hello.ath: run with: bin/asteroid hello.ath
 let hello = load hello.bench
 show hello
 claim correct(hello) by lean                  # it computes both ORs on all 16 inputs
@@ -68,12 +68,15 @@ plot phi hello -> asteroid/out/hello.png
 ```
 
 ```
-bin/setup              # once: a private Python environment inside this folder (.venv); on Windows: bin\setup
-bin/asteroid hello.ath # run one program;                                                  on Windows: bin\asteroid hello.ath
+bin/asteroid demo      # start here: a tiny built-in program. Needs only Python 3.9 or newer, no setup
+bin/setup              # once, for plots: numpy and matplotlib in a private environment inside this folder (.venv)
+bin/asteroid hello.ath # run one program
 bin/asteroid test      # run all of them
 ```
 
-Nothing is installed outside this folder. Delete `.venv` to undo the setup.
+These lines are for Git Bash on Windows, macOS and Linux. In cmd: `bin\asteroid.cmd demo`, `bin\setup.cmd`. In Windows PowerShell: `bin\asteroid.ps1 demo`, `bin\setup.ps1` (or the same `.cmd` names).
+
+Nothing is installed outside this folder. Delete `.venv` to undo the setup. `bin/asteroid --doctor` says what your machine has. A first walk through is in `asteroid/GETTING_STARTED.md`.
 
 Without Lean installed, asteroid says so and only evaluates. In that case nothing is proved. The manual is `asteroid/README.md`, and the format of `.bench` files is described in `asteroid/BENCH.md`.
 

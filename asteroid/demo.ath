@@ -1,0 +1,12 @@
+# The demo: `bin/asteroid demo`. One circuit written here, three true claims, one false on purpose.
+circuit demo 4            # 4 inputs, named 0 1 2 3
+  a = or 0 1
+  b = or 2 3
+  top = or a b
+  set 0 1 2 3 -> top      # the wire `top` must be the OR of inputs 0 1 2 3
+end
+show demo
+claim correct(demo) by lean          # true: the circuit computes what it should
+claim gates(demo) = base(demo)       # true: 3 gates, and 3 is the least possible
+claim slack(demo) >= 0 by lean       # true: the count behind the theorem
+claim! gates(demo) < base(demo)      # FALSE on purpose: asteroid says so and does not hide it

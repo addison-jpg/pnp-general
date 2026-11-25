@@ -11,9 +11,10 @@
 """
 import re
 from fractions import Fraction
+import asteroid.asteroid as A
 
 def _levels(api, name):
-    import continuous as C
+    A.need("numpy", "the continuous form (phi, bernstein)"); import continuous as C
     c = api["env"][name]; n = c["n"]
     sl = C.slack_table(c, 0, any_gate=False)
     return n, sl, [Fraction(int(sum(int(sl[Q]) for Q in range(1 << n) if bin(Q).count("1") == i)), max(1, __import__("math").comb(n, i))) for i in range(n + 1)]

@@ -15,11 +15,11 @@ def _circuits(path):
     base = os.path.basename(path)
     try:
         if path.endswith(".jsonl"):
-            for i, line in enumerate(open(path)):
+            for i, line in enumerate(open(path, encoding="utf-8")):
                 if line.strip():
                     try: yield f"{base}#{i}", json.loads(line)
                     except ValueError: yield f"{base}#{i}", None
-        else: yield base, json.load(open(path))
+        else: yield base, json.load(open(path, encoding="utf-8"))
     except (ValueError, OSError): yield base, None
 
 def _norm(d):
@@ -46,6 +46,7 @@ def handle(line, api):
                 if "n" in lim and c["n"] > lim["n"]: sk("n too large"); continue
                 if "nots" in lim and core.nots(c) > lim["nots"]: sk("too many NOT gates"); continue
                 try: good = core.correct(c)
+                except ImportError: raise
                 except Exception: good = False
                 if not good: sk("incorrect"); continue
                 gen = f"{_lean_safe(name)}_{len(items)}"; env[gen] = c; api["src"][gen] = path; items.append((label, gen))
@@ -65,6 +66,7 @@ def handle(line, api):
         bad = []; A.FORCE = False
         for label, g in items:
             try: ok, _ = A.do_claim(_sub(expr, g), lean)
+            except ImportError: raise
             except Exception as e: ok = False
             if not ok: bad.append(label)
         ok = not bad; k = len(items)
@@ -76,13 +78,14 @@ def handle(line, api):
         name, expr = m.group(1), m.group(2).strip(); n = 0; items = CORPORA[name]; err = 0
         for label, g in items:
             try: n += bool(A.do_claim(_sub(expr, g), False)[0])
+            except ImportError: raise
             except Exception: err += 1
         print(f"{ln}: count c in {name}: {expr}: {n} of {len(items)}" + (f" ({err} could not be evaluated)" if err else ""))
         return True
-    m = re.fullmatch(r"plot hist (\w+) (\w+) -> (\S+)", line)
+    m = re.fullmatch(r"plot hist (\w+) (\w+) -> (.+)", line)
     if m:
-        func, name, out = m.groups(); vals = [A.F(func, g) for _, g in CORPORA[name]]
-        import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
+        func, name, out = m.groups(); out = A.out_path(out); vals = [A.F(func, g) for _, g in CORPORA[name]]
+        matplotlib = A.need("matplotlib", "corpus plot"); matplotlib.use("Agg"); import matplotlib.pyplot as plt
         os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
         fig, ax = plt.subplots(figsize=(6, 3.8)); lo, hi = int(min(vals)), int(max(vals))
         ax.hist(vals, bins=[x - .5 for x in range(lo, hi + 2)], color="#3b6ea5", edgecolor="white")

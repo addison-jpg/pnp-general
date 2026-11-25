@@ -1,5 +1,43 @@
 #!/bin/sh
-# One-time: make a private Python environment INSIDE this folder (.venv) with numpy and matplotlib.
-# Nothing goes to your user or system Python. Delete the .venv folder to undo it.
-HERE="$(cd "$(dirname "$0")/.." && pwd)"
-python3 -m venv "$HERE/.venv" && "$HERE/.venv/bin/python" -m pip install --quiet numpy matplotlib && echo "ready: $HERE/.venv"
+# Once: make a private Python environment INSIDE this folder (.venv) with numpy and matplotlib.
+# Nothing goes to your user or system Python. Delete the .venv folder to undo it. Safe to run again.
+# Works in sh, bash, zsh and Git Bash on Windows.
+HERE="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)" || { echo "setup: cannot find my own folder" >&2; exit 1; }
+works() { "$@" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 9) else 1)' >/dev/null 2>&1; }
+venv_python() {
+  if   [ -f "$HERE/.venv/bin/python" ];         then VPY="$HERE/.venv/bin/python"
+  elif [ -f "$HERE/.venv/Scripts/python.exe" ]; then VPY="$HERE/.venv/Scripts/python.exe"
+  else VPY=; fi
+}
+venv_python
+if [ -n "$VPY" ] && works "$VPY" && "$VPY" -m pip --version >/dev/null 2>&1; then
+  echo "setup: using the .venv that is already here"
+else
+  PY= PYFLAG=
+  if   works python3; then PY=python3
+  elif works py -3;   then PY=py PYFLAG=-3
+  elif works python;  then PY=python
+  else
+    echo "setup: no Python 3.9 or newer found (tried python3, py -3, python)." >&2
+    echo "       Install Python from https://www.python.org/downloads/ and run this again." >&2
+    exit 1
+  fi
+  TARGET="$HERE/.venv"
+  case "$(uname -s 2>/dev/null)" in
+    MINGW*|MSYS*) if command -v cygpath >/dev/null 2>&1; then TARGET="$(cygpath -w "$TARGET")"; fi ;;
+  esac
+  echo "setup: making $HERE/.venv"
+  "$PY" $PYFLAG -m venv --clear "$TARGET" || {
+    echo "setup: could not make the environment." >&2
+    echo "       On Debian or Ubuntu first run: sudo apt install python3-venv" >&2
+    exit 1
+  }
+  venv_python
+  [ -n "$VPY" ] || { echo "setup: the new .venv has no python in it" >&2; exit 1; }
+fi
+"$VPY" -m pip install --quiet --disable-pip-version-check numpy matplotlib || {
+  echo "setup: could not install numpy and matplotlib (no network?)." >&2
+  echo "       asteroid still runs: only plots and the continuous and mixed lines are skipped. Run this again later." >&2
+  exit 1
+}
+echo "ready: $HERE/.venv   (check with: bin/asteroid --doctor)"

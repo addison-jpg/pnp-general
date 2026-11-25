@@ -30,7 +30,7 @@ WIT = 'one-not/data/witnesses/'
 TIGHT_UP = {"n": 7, "sets": [[0, 1, 2], [0, 3, 4], [0, 5, 6], [1, 3, 5], [1, 4, 6], [2, 3, 6], [2, 4, 5]], "gates": [["not", 4], ["or", 2, 0], ["or", 8, 1], ["or", 3, 0], ["or", 10, 4], ["or", 0, 5], ["or", 12, 6], ["or", 3, 1], ["or", 14, 5], ["and", 6, 7], ["and", 6, 2], ["or", 16, 17], ["or", 18, 1], ["or", 19, 4], ["or", 3, 2], ["or", 21, 6], ["and", 2, 7], ["or", 23, 4], ["or", 24, 5]], "outs": [9, 11, 13, 15, 20, 22, 25]}
 
 def load(f):
-    d = json.load(open(f)); return {"n": d['n'], "sets": d['sets'], "gates": d['gates'], "outs": d['outs'], "name": os.path.basename(f)[:-5]}
+    d = json.load(open(f, encoding="utf-8")); return {"n": d['n'], "sets": d['sets'], "gates": d['gates'], "outs": d['outs'], "name": os.path.basename(f)[:-5]}
 
 def circuits(args):
     """Circuits from: F.json | F.jsonl[:COUNT] (one circuit per line) | corpus (the 3,155 circuits of c3_allq.py: f2lib.corpus(9) + f2lib.randgen(1, 3000))."""
@@ -40,14 +40,14 @@ def circuits(args):
             for c in L.corpus(9) + L.randgen(1, 3000): yield {"n": c['n'], "sets": c['S'], "gates": c['G'], "outs": c['outs'], "name": c['name']}
         elif '.jsonl' in a:
             f, _, lim = a.partition(':'); lim = int(lim) if lim else None
-            for i, line in enumerate(open(f)):
+            for i, line in enumerate(open(f, encoding="utf-8")):
                 if lim is not None and i >= lim: break
                 d = json.loads(line); d.setdefault('name', '%s#%d' % (os.path.basename(f), i)); yield d
         else: yield load(a)
 
 def default_files(nmax=16):
     fs = sorted(glob.glob(WIT + '*.json') + glob.glob(WIT + 'nonlocal/*.json'))
-    return [f for f in fs if json.load(open(f))['n'] <= nmax]
+    return [f for f in fs if json.load(open(f, encoding="utf-8"))['n'] <= nmax]
 
 def free_points(n, R): return [v for v in range(n) if not R >> v & 1]
 
@@ -296,7 +296,7 @@ def cmd_hunt(args):
                 if top is None or mc > top[0]: top = (mc, copy.deepcopy(cur))
                 if mc[0] >= 1:
                     os.makedirs('one-not/tools/search/found', exist_ok=True); p = 'one-not/tools/search/found/mixed_step_seed%d.json' % seed
-                    json.dump(dict(cur, name='hunt mixed step', margin=mc[0]), open(p, 'w')); print('FOUND', p); return
+                    json.dump(dict(cur, name='hunt mixed step', margin=mc[0]), open(p, "w", encoding="utf-8", newline="\n")); print('FOUND', p); return
             else: stall += 1
     print('mixed step | seed %d | n <= %d | %d mutations, %d kept | counterexamples 0 | largest (least step change) %s%s' % (seed, nmax, tried, kept, top[0][0] if top else None, ' (%d gates)' % len(top[1]['gates']) if top else ''))
 

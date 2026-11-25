@@ -81,7 +81,7 @@ def main():
     seed = int(sys.argv[4]) if len(sys.argv) > 4 else 0; rng = random.Random(seed); f = REGISTRY[name]
     starts = []
     for p in sys.argv[5:] or sorted(glob.glob('one-not/data/witnesses/*.json')):
-        d = json.load(open(p))
+        d = json.load(open(p, encoding="utf-8"))
         if d['n'] <= 8: starts.append({"n": d['n'], "sets": d['sets'], "gates": [list(g) for g in d['gates']], "outs": d['outs']})
     starts += [or_tree(c['n'], c['sets']) for c in starts]
     t0 = time.time(); tried = kept = 0; best_all = None; found = 0
@@ -98,7 +98,7 @@ def main():
                 if best_all is None or mc < best_all[0]: best_all = (mc, copy.deepcopy(cur))
                 if mc < 0:
                     found += 1; p = f"one-not/tools/search/found/{name.split()[0]}_seed{seed}_{found}.json"
-                    json.dump(dict(cur, name=f"hunt {name}", margin=mc), open(p, 'w')); print("FOUND", p, "margin", mc, "gates", len(cur['gates']), "NOT", nots(cur)); break
+                    json.dump(dict(cur, name=f"hunt {name}", margin=mc), open(p, "w", encoding="utf-8", newline="\n")); print("FOUND", p, "margin", mc, "gates", len(cur['gates']), "NOT", nots(cur)); break
             else: stall += 1
     b = best_all
     print(f"{name} | max NOT {max_not} | seed {seed} | {tried} mutations, {kept} kept | counterexamples {found} | least margin {b[0] if b else None}" + (f" (n = {b[1]['n']}, {len(b[1]['gates'])} gates, {nots(b[1])} NOT)" if b else ""))

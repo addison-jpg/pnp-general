@@ -15,12 +15,12 @@ def handle(line, api):
     stmt, tac, ln = m.group(1), m.group(2).strip(), api["ln"]
     if tac not in TACTICS: raise SystemExit(f"{api['script']}:{ln}: prove: tactic must be one of {sorted(TACTICS)}")
     text = f"prove {stmt} by {tac}"
-    if A.NO_LEAN or not shutil.which("lake"):
+    if A.NO_LEAN or not A.lake():
         print(f"{ln}: {text}: skipped ({'--no-lean' if A.NO_LEAN else 'lake not found'})"); return True
     src = f"import Mathlib\n\ntheorem asteroid_prove : {stmt} := by {tac}\n"
     with tempfile.TemporaryDirectory() as d:
-        p = os.path.join(d, "Prove.lean"); open(p, "w").write(src)
-        r = subprocess.run(["lake", "env", "lean", p], cwd="one-not/lean", capture_output=True, text=True, timeout=600)
+        p = os.path.join(d, "Prove.lean"); open(p, "w", encoding="utf-8", newline="\n").write(src)
+        r = subprocess.run([A.lake(), "env", "lean", p], cwd=A.LEAN_DIR, env=A.lake_env(), capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=600)
     ok = r.returncode == 0
     api["results"].append((ln, text, ok, True))
     print(f"{ln}: {text}: kernel {'ACCEPTED' if ok else 'REJECTED'}" + ("" if ok else ": " + (r.stdout + r.stderr).strip().splitlines()[0][:160]))
