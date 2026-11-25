@@ -1,0 +1,1 @@
+{"id": "182f7509", "time": "2026-11-25 00:16", "who": "C3", "serves": "L-qg-169", "word": "checked", "statement": "P_CTC is inside EXP (PCTC ⊆ EXP), via a padded bounded-iteration machine for the register map", "evidence": ["lean/PEqualNP/QuantumGravity/Open/L169.lean::PCTC_subset_EXP"], "by": ["C3"]}
