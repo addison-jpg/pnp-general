@@ -1,0 +1,39 @@
+# attempt.ath: little.ath's four claims, then new claims on the same objects (hello.bench, integers, literal lists, Kripke frames).
+# Run:   bin/asteroid --no-lean workshop/little/attempt.ath
+# Only claims that print TRUE are kept. Claims that printed FALSE are listed in the note at the end.
+
+# --- from little.ath ---
+let hello = load ../../hello.bench
+show hello
+claim correct(hello) by lean                  # it computes both ORs on all 16 inputs
+claim gates(hello) = base(hello)              # 3 gates, and 3 is the least possible without a NOT gate
+claim hyps(hello) by lean                     # the theorem's side conditions hold
+claim forall cubes slack(hello) >= 0 by lean  # the count behind the theorem, at every cube
+
+# --- new claims: circuit counts on hello ---
+claim theorem(hello)                          # hyps and correct imply gates >= base
+claim witness(hello) = orwitness(hello)       # both count the same OR gates here
+claim base(hello) = 3                         # the sets have 3 points beyond one each, in total
+claim gates(hello) >= base(hello)             # the bound behind the theorem, as a plain integer claim
+claim anyslack(hello) >= 0                    # the weakest slack: any gate witness
+
+# --- new claims: integers and literal lists ---
+seq tri = [1, 3, 6, 10, 15, 21]
+claim formula tri = "n*(n+1)//2"              # triangular numbers, from n = 1
+claim formula tri = "C(n+1,2)"                # the same sequence as a binomial
+seq pow2 = [1, 2, 4, 8, 16, 32]
+claim formula pow2 = "2**(n-1)"               # powers of two, from n = 1
+
+# --- new claims: Kripke frames (ext_modal), all frames on 3 worlds ---
+kripke ALL3 = all 3 any
+claim valid ALL3 "[](p -> q) -> ([]p -> []q)" # the K axiom: valid on every frame
+claim invalid ALL3 "[]p -> <>p"               # not valid: a frame with no successor refutes it
+claim defines ALL3 "[]p -> [][]p" transitive  # the 4 axiom is the transitivity condition
+claim defines ALL3 "[]p -> p" reflexive       # the T axiom is the reflexivity condition
+claim defines ALL3 "p -> []<>p" symmetric     # the B axiom is the symmetry condition
+claim defines ALL3 "<>p -> []<>p" euclidean   # the 5 axiom is the euclidean condition
+
+# Note, claims that printed FALSE and were removed (not weakened):
+#   valid ALL3 "[]p -> [][]p"   (countermodel: 3 worlds, R = [(0,1),(1,0)], p = {0}; the 4 axiom needs transitivity)
+#   valid ALL3 "p -> <>p"       (countermodel: 3 worlds, R = [], p = {0}; the D-like axiom needs seriality)
+# Not a FALSE print, but a parse error, so the line was removed: forall cubes slack(hello) >= 1
