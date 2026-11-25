@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Look at us: asks (Addison's jobs) and seats (agent sizes) as a two-sided matching, on recorded data only. Analogy.
+"""Look at us: asks (recorded jobs) and seats (agent sizes) as a two-sided matching, on recorded data only. Analogy.
 Data: the seat table in ath_prompt_method.md (Sonnet and Opus rows; the one Fable row is not a haiku/sonnet/opus
 seat and is left out) and the C3 Haiku run (measure/trial/CLAUDE_HAIKU.md: 84 asks, about 65k tokens each, tested).
-Preferences, from the data and nothing else:
+Ranks, from the data and nothing else:
  ask -> seat: a seat is acceptable to an ask only if the data records that seat on that ask; ranked by best recorded
    result (checked > checked lemmas > tested > obstacle), then by lower mean recorded tokens.
  seat -> ask: the asks it closed first (same result order), then lower mean recorded tokens. Capacity: the number of

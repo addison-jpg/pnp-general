@@ -1,7 +1,7 @@
 # us
 
-Addison asked the love model to look at us: Addison and the agents.
-This is a reading (analogy). It models recorded behaviour, cost and results only. Nothing here is about anyone's feelings or inner life.
+The love model applied to recorded work: asks (jobs) and agent seat sizes.
+This is a reading (analogy). Its only inputs are recorded runs: seat size, tokens and result.
 Run `python3 -I workshop/ath_prompts/us/us.py` (well under a second), or `bin/asteroid --no-lean love.ath`.
 
 ## Small: the answer
@@ -13,7 +13,7 @@ Run `python3 -I workshop/ath_prompts/us/us.py` (well under a second), or `bin/as
 
 ## Middle: the model
 
-Asks are Addison's jobs. Seats are agent sizes: haiku, sonnet, opus. It is the capacity model of `culture/love`, with incomplete lists.
+Asks are recorded jobs. Seats are agent sizes: haiku, sonnet, opus. It is the capacity model of `culture/love`, with incomplete lists.
 
 Data, and nothing else:
 - the seat table in `ath_prompt_method.md` (Sonnet: A6, A8, A9, A11, A12, B8; Opus: A4, B5, A7, A10). The one Fable row is not a
@@ -21,12 +21,12 @@ Data, and nothing else:
 - the C3 Haiku run, `workshop/ath_prompts/measure/trial/CLAUDE_HAIKU.md`: 84 asks, about 65k tokens each, result tested,
   and a written follow-up ("A harder set where the model fails some pairs is needed").
 
-Preferences, derived:
+Ranks, derived from the data:
 - An ask finds a seat acceptable only if the data records that seat on that ask. It ranks acceptable seats by the best recorded
   result (checked > checked lemmas > tested > obstacle), then by lower mean recorded tokens.
 - A seat ranks asks the same way: the ones it closed first, then lower recorded tokens.
 - Capacity of a seat: the number of asks it was recorded on (haiku 1, sonnet 4, opus 2).
-- A pair blocks when each would take the other. The comparison is `wants` from `culture/love/check.py`, imported.
+- A pair blocks when each ranks the other above its assigned partner. The comparison is `wants` from `culture/love/check.py`, imported.
 
 | ask | seat | runs | result |
 |---|---|---|---|
@@ -55,7 +55,7 @@ only the seat tables and the C3 run were used. If they exist, adding them makes 
 ## Reading (analogy)
 
 This is a reading, not a fact.
-Stable here means: on what was recorded, no ask and seat would both rather have been paired with each other.
+Stable here means: on what was recorded, no ask and seat rank each other above their assigned partners (ranks taken from recorded results and tokens).
 It does not show the size rule is right. To test it, the same ask must be recorded on two sizes (for example one Lean lemma on Haiku and on Sonnet).
 The Beauvoir reading: whatever an ask reaches should be able to go on. An obstacle with a follow-up line goes on; one without is a dead end.
 Kindness conjecture K (`ath_prompt_method.md`) stays a conjecture. Nothing here measures tone.
@@ -64,4 +64,4 @@ Kindness conjecture K (`ath_prompt_method.md`) stays a conjecture. Nothing here 
 
 - The same ask on two seat sizes, so the stability check has power.
 - Follow-up lines for A7 and A10, from the boards.
-- The Fable seats, as a fourth size, if wanted.
+- The Fable seats, as a fourth size, if needed.

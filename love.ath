@@ -68,7 +68,7 @@ claim nunique = [1, 14, 34080, 65867261184]             # profiles with exactly 
 claim nmost = [1, 2, 3, 10]                             # most stable matchings on one profile, k=1; n=4 is new
 claim ntotal = [1, 18, 60324, 163661617152]             # stable matchings summed over all profiles, k=1
 claim nhist4 = [65867261184, 35927285472, 7303612896, 861578352, 111479616, 3478608, 581472, 36432, 0, 144]   # n=4: no profile has exactly 9
-# Look at us (workshop/ath_prompts/us): asks and agent seats as a matching, on recorded seat data only. Analogy; no feelings modelled.
+# Look at us (workshop/ath_prompts/us): asks and agent seats as a matching, on recorded seat data only. Analogy.
 check "python3 -I workshop/ath_prompts/us/us.py"
 seq usblock = from workshop/ath_prompts/us/us_fingerprints.json "blocking pairs of the recorded assignment"
 seq uslist = from workshop/ath_prompts/us/us_fingerprints.json "longest acceptable seat list"
