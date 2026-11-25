@@ -51,7 +51,7 @@ The machine has 4 cores and 15 GB of memory, shared by every seat. Paper seats (
 - DONE O3: PSPACE ⊆ P_CTC up to `PspaceStepEncodingLemma` (two OPEN Sonnet lines on qg-frontier) -> lean/PEqualNP/QuantumGravity/Open/PspaceCtc.lean
 - DECIDED O2 (Opus): three-qubit CKW checked in full: C(ρ_AB)² + C(ρ_AC)² + 4|Det ψ| = 4 det ρ_A for every pure ψ (Wootters concurrence from the eigenvalues of ρρ̃), so τ_AB + τ_AC ≤ τ_{A|BC}, equality iff Det ψ = 0 (`ckw`, `ckw_identity`, `ckw_eq_iff`). -> `lean/PEqualNP/QuantumGravity/Open/CKW.lean`
 - TAKEN F1: payment Hall condition
-- TAKEN F3: DAG frame -> `lean/PEqualNP/Philosophy/DAG.lean`, `philosophy/DAG.md`
+- DECIDED F3: DAG frame (was TAKEN): a lost future is later lost or past, never ahead (`lost_or_past`); with conflict, permanent iff the states clash, else recovered at the union; ten board rows as data, `lost_mono` fails on them, refuted claims never return and their material is the salvage. Beauvoir: one thin iff, one negative result. -> `philosophy/DAG.md`, `lean/PEqualNP/Philosophy/DAG.lean`
 - TAKEN F2: KAK and exact L119 (`lean/PEqualNP/QuantumGravity/Open/KAK.lean`)
 - Sonnets now: PaymentHall Prop (Lean), OR-only PHC@0 for monotone programs (paper), PHC@0 under point deletion, two-level saturation (QG rank 3), cost per result (prompt method), refuter DD search (one core). Queued until T1: PHC@0 enumeration, point-lemma SAT, refuter SAT cells.
 

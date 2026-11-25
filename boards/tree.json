@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 74,
+   "checked": 78,
    "tested": 8,
    "refuted": 5
   },
@@ -92,7 +92,11 @@
    "eb92517c",
    "aff6e6b7",
    "2e8126de",
-   "957df3fd"
+   "957df3fd",
+   "dde7834a",
+   "7961ecd5",
+   "14e1a81a",
+   "f9156a1e"
   ],
   "unverified_here": []
  },
@@ -179,7 +183,7 @@
  },
  "lean": {
   "counts": {
-   "checked": 14
+   "checked": 18
   },
   "verified": [
    "57b5bd42",
@@ -195,13 +199,17 @@
    "eb92517c",
    "aff6e6b7",
    "2e8126de",
-   "957df3fd"
+   "957df3fd",
+   "dde7834a",
+   "7961ecd5",
+   "14e1a81a",
+   "f9156a1e"
   ],
   "unverified_here": []
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 14
+   "checked": 18
   },
   "verified": [
    "57b5bd42",
@@ -217,18 +225,26 @@
    "eb92517c",
    "aff6e6b7",
    "2e8126de",
-   "957df3fd"
+   "957df3fd",
+   "dde7834a",
+   "7961ecd5",
+   "14e1a81a",
+   "f9156a1e"
   ],
   "unverified_here": []
  },
  "lean/PEqualNP/Philosophy": {
   "counts": {
-   "checked": 3
+   "checked": 7
   },
   "verified": [
    "aff6e6b7",
    "2e8126de",
-   "957df3fd"
+   "957df3fd",
+   "dde7834a",
+   "7961ecd5",
+   "14e1a81a",
+   "f9156a1e"
   ],
   "unverified_here": [
    {
