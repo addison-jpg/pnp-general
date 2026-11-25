@@ -58,6 +58,9 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 ### `compbio/` 
 - `2547b029` **checked-finite** [compbio] Exact counts by exhaustive enumeration, each checked two ways: rooted binary phylogenetic trees (2n-3)!! for n<=8; RNA secondary structures with hairpin loop >= 1 (A004148) and Motzkin numbers for n<=8. · evidence: `compbio/fingerprints.py::rna_brute` · main · unverified (needs a second seat in by)
 
+#### `compute/monqwensor/` 
+- `6c14680a` **tested** [compute] MONQWENSOR v1 (Qwen2.5-1.5B, mean-pooled last layer, 1536-dim, centred cosine) over 321 centre records: the one checked cross-field join (neuron segmental growth = phylogenetic trees, (2n-3)!!) ranks 1322 of 39028 cross-program pairs (top 3.4%). The top pairs are records that share boilerplate (Lean file paths, the word checked), not shared mathematics. As a link finder it is weak in this form; the sequence matcher found the same join exactly. · evidence: `compute/monqwensor/embed.py`, `compute/monqwensor/proposals.json` · main · unverified (needs a second seat in by)
+
 ### `essays/` 
 - `92dfcbb0` **checked-finite** [essays] gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth. · evidence: `gravity.ath`, `/home/user/pnp-general/gravity.bench` · asteroid · unverified (needs a second seat in by; checked-finite needs a runner (the exhaustive check, re-runnable))
 

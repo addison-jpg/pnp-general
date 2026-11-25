@@ -1,0 +1,159 @@
+{
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "dim": 1536,
+ "records": 321,
+ "cross_pairs": 39028,
+ "known_join_rank": 1322,
+ "top": [
+  {
+   "score": 0.0887,
+   "a": "circuits: kstep_of_slack_nonneg instantiated with slack_nonneg_of_slackNonnegAll for the literal tiny of first.ath.",
+   "b": "methods: (main Fable, 2026-11-25): item 2, multidimensional bounds, checked. `lean/PEqualNP/Methods/Pareto.lean`: `frontier_isAntichain`, `frontier_i",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0742,
+   "a": "methods: (main Fable, 2026-11-25): item 2, multidimensional bounds, checked. `lean/PEqualNP/Methods/Pareto.lean`: `frontier_isAntichain`, `frontier_i",
+   "b": "philosophy: unification of Fisher, Deleuze, Hegel, Camus, Beauvoir on Fisher's frame. lean/PEqualNP/Philosophy/{Hegel,Camus,Beauvoir,Unify}.lean and one",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0733,
+   "a": "circuits: kstep_of_slack_nonneg instantiated with slack_nonneg_of_slackNonnegAll for the literal tiny of first.ath.",
+   "b": "methods: (main Fable, 2026-11-25): item 1, forced pairs, checked. `lean/PEqualNP/Methods/Cells.lean`: `checked_absorbing`, `refuted_absorbing`, `test",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0712,
+   "a": "circuits: A16 (provenance: the file one-not/lean/PEqualNP/W951/Open/MixedCountMono.lean landed inside commit 3eb9384, titled \"philosophy: ...\"): `mixe",
+   "b": "methods: (main Fable, 2026-11-25): item 2, multidimensional bounds, checked. `lean/PEqualNP/Methods/Pareto.lean`: `frontier_isAntichain`, `frontier_i",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0644,
+   "a": "methods: (main Fable, 2026-11-25): item 1, forced pairs, checked. `lean/PEqualNP/Methods/Cells.lean`: `checked_absorbing`, `refuted_absorbing`, `test",
+   "b": "philosophy: unification of Fisher, Deleuze, Hegel, Camus, Beauvoir on Fisher's frame. lean/PEqualNP/Philosophy/{Hegel,Camus,Beauvoir,Unify}.lean and one",
+   "status": "proposed"
+  },
+  {
+   "score": 0.064,
+   "a": "methods: (main Fable, 2026-11-25): item 1, forced pairs, checked. `lean/PEqualNP/Methods/Cells.lean`: `checked_absorbing`, `refuted_absorbing`, `test",
+   "b": "philosophy: , DAG frame: `lean/PEqualNP/Philosophy/DAG.lean` builds, standard axioms. Replacement for `lost_mono`: `lost_or_past` (still lost or now pas",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0635,
+   "a": "methods: (main Fable, 2026-11-25): item 2, multidimensional bounds, checked. `lean/PEqualNP/Methods/Pareto.lean`: `frontier_isAntichain`, `frontier_i",
+   "b": "other: F2: KAK for U(4) and the exact L119 are CHECKED (standard axioms): `KAK.kak`, `KAKParam.knillParametrization : KnillParametrization`, `KAKPa",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0632,
+   "a": "circuits: kstep_of_slack_nonneg instantiated with slack_nonneg_of_slackNonnegAll for the literal tiny of first.ath.",
+   "b": "philosophy: unification of Fisher, Deleuze, Hegel, Camus, Beauvoir on Fisher's frame. lean/PEqualNP/Philosophy/{Hegel,Camus,Beauvoir,Unify}.lean and one",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0622,
+   "a": "circuits: A16 (provenance: the file one-not/lean/PEqualNP/W951/Open/MixedCountMono.lean landed inside commit 3eb9384, titled \"philosophy: ...\"): `mixe",
+   "b": "methods: (main Fable, 2026-11-25): item 1, forced pairs, checked. `lean/PEqualNP/Methods/Cells.lean`: `checked_absorbing`, `refuted_absorbing`, `test",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0621,
+   "a": "methods: (main Fable, 2026-11-25): item 2, multidimensional bounds, checked. `lean/PEqualNP/Methods/Pareto.lean`: `frontier_isAntichain`, `frontier_i",
+   "b": "philosophy: , DAG frame: `lean/PEqualNP/Philosophy/DAG.lean` builds, standard axioms. Replacement for `lost_mono`: `lost_or_past` (still lost or now pas",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0615,
+   "a": "circuits: A16 (provenance: the file one-not/lean/PEqualNP/W951/Open/MixedCountMono.lean landed inside commit 3eb9384, titled \"philosophy: ...\"): `mixe",
+   "b": "other: F2: KAK for U(4) and the exact L119 are CHECKED (standard axioms): `KAK.kak`, `KAKParam.knillParametrization : KnillParametrization`, `KAKPa",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0614,
+   "a": "circuits: kstep_of_slack_nonneg instantiated with slack_nonneg_of_slackNonnegAll for the literal tiny of first.ath.",
+   "b": "philosophy: Supersedes 478ce785, 80d2fd4f, 2e8126de after independent review. Renames: monogamy_of_pure_pair is now pure_pair_decouples (decoupling of a",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0613,
+   "a": "circuits: (Sonnet): `DDAbsorb gates p S Q D` for every `MinCE S gates out`, NOT gate p, disjoint Q D (i.e. hypothesis `hD` of `mixedStepNeg_of_ddAbsor",
+   "b": "methods: (main Fable, 2026-11-25): item 2, multidimensional bounds, checked. `lean/PEqualNP/Methods/Pareto.lean`: `frontier_isAntichain`, `frontier_i",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0601,
+   "a": "circuits: A16 (provenance: the file one-not/lean/PEqualNP/W951/Open/MixedCountMono.lean landed inside commit 3eb9384, titled \"philosophy: ...\"): `mixe",
+   "b": "other: O3: PSPACE ⊆ P_CTC up to `PspaceStepEncodingLemma` (two OPEN Sonnet lines on qg-frontier) -> lean/PEqualNP/QuantumGravity/Open/PspaceCtc.lea",
+   "status": "proposed"
+  },
+  {
+   "score": 0.06,
+   "a": "methods: (main Fable, 2026-11-25): item 2, multidimensional bounds, checked. `lean/PEqualNP/Methods/Pareto.lean`: `frontier_isAntichain`, `frontier_i",
+   "b": "other: (Fable): matroid union for hypergraphic ranks (converse of `Unify.unsplit_of_partition`): split condition ⟹ disjoint spanning forests; Mathl",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0594,
+   "a": "circuits: (Sonnet): `DDAbsorb gates p S Q D` for every `MinCE S gates out`, NOT gate p, disjoint Q D (i.e. hypothesis `hD` of `mixedStepNeg_of_ddAbsor",
+   "b": "other: O3: PSPACE ⊆ P_CTC up to `PspaceStepEncodingLemma` (two OPEN Sonnet lines on qg-frontier) -> lean/PEqualNP/QuantumGravity/Open/PspaceCtc.lea",
+   "status": "proposed"
+  },
+  {
+   "score": 0.059,
+   "a": "circuits: (Sonnet): `DDAbsorb gates p S Q D` for every `MinCE S gates out`, NOT gate p, disjoint Q D (i.e. hypothesis `hD` of `mixedStepNeg_of_ddAbsor",
+   "b": "other: F2: KAK for U(4) and the exact L119 are CHECKED (standard axioms): `KAK.kak`, `KAKParam.knillParametrization : KnillParametrization`, `KAKPa",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0574,
+   "a": "circuits: A16 (provenance: the file one-not/lean/PEqualNP/W951/Open/MixedCountMono.lean landed inside commit 3eb9384, titled \"philosophy: ...\"): `mixe",
+   "b": "philosophy: unification of Fisher, Deleuze, Hegel, Camus, Beauvoir on Fisher's frame. lean/PEqualNP/Philosophy/{Hegel,Camus,Beauvoir,Unify}.lean and one",
+   "status": "proposed"
+  },
+  {
+   "score": 0.056,
+   "a": "other: F2: KAK for U(4) and the exact L119 are CHECKED (standard axioms): `KAK.kak`, `KAKParam.knillParametrization : KnillParametrization`, `KAKPa",
+   "b": "philosophy: unification of Fisher, Deleuze, Hegel, Camus, Beauvoir on Fisher's frame. lean/PEqualNP/Philosophy/{Hegel,Camus,Beauvoir,Unify}.lean and one",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0555,
+   "a": "circuits: kstep_of_slack_nonneg instantiated with slack_nonneg_of_slackNonnegAll for the literal tiny of first.ath.",
+   "b": "philosophy: , DAG frame: `lean/PEqualNP/Philosophy/DAG.lean` builds, standard axioms. Replacement for `lost_mono`: `lost_or_past` (still lost or now pas",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0555,
+   "a": "methods: (main Fable, 2026-11-25): item 2, multidimensional bounds, checked. `lean/PEqualNP/Methods/Pareto.lean`: `frontier_isAntichain`, `frontier_i",
+   "b": "other: O3: PSPACE ⊆ P_CTC up to `PspaceStepEncodingLemma` (two OPEN Sonnet lines on qg-frontier) -> lean/PEqualNP/QuantumGravity/Open/PspaceCtc.lea",
+   "status": "proposed"
+  },
+  {
+   "score": 0.055,
+   "a": "asteroid: (main Sonnet): seat 3 native-repl",
+   "b": "compute: (main Sonnet): git-compute",
+   "status": "proposed"
+  },
+  {
+   "score": 0.053,
+   "a": "circuits: no_minCE implies L_meta_951 (the one-NOT bound sum (|S_i|-1) <= gates). The last link of the chain BottomPay, LightAbsorb, DDAbsorb, MixedCo",
+   "b": "methods: (main Fable, 2026-11-25): item 2, multidimensional bounds, checked. `lean/PEqualNP/Methods/Pareto.lean`: `frontier_isAntichain`, `frontier_i",
+   "status": "proposed"
+  },
+  {
+   "score": 0.0526,
+   "a": "other: O2 (Opus): three-qubit CKW checked in full: C(ρ_AB)² + C(ρ_AC)² + 4|Det ψ| = 4 det ρ_A for every pure ψ (Wootters concurrence from the eigen",
+   "b": "quantum-gravity: Coffman-Kundu-Wootters monogamy for three qubits, full: for every (unnormalised) pure three-qubit state psi, C(rho_AB)^2 + C(rho_AC)^2 + 4|D",
+   "status": "proposed"
+  },
+  {
+   "score": 0.052,
+   "a": "circuits: If every non-terminal cube has a strictly larger cube with slack no larger, slack is nonnegative at every cube.",
+   "b": "worlds: The rank of three parallel payers is monotone, submodular, unit-increment, violates monogamy of mutual information, and is the min-cut funct",
+   "status": "proposed"
+  }
+ ]
+}
