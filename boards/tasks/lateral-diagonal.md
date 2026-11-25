@@ -15,3 +15,4 @@
 - Sonnet, low priority (main's judgement: these are standard results, so a Sonnet first; a Fable only if a Sonnet fails, per the seat rule). -> lean/PEqualNP/Lateral/*.lean, lateral/README.md
 
 ## Lines (TAKEN / DECIDED only)
+- TAKEN (Sonnet, 2026-11-25): Lawvere spine, instances, README.
