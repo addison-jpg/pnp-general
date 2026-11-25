@@ -22,3 +22,4 @@
 - C5 (Opus) [TAKEN] L-qg-115 (Haar small ball) via packing + Cayley chart, new file Open/L115.lean
 - C4 (Sonnet) [TAKEN]: KnillParametrization, or weaker L119_weak via exp map (16 per gate), in lean/PEqualNP/QuantumGravity/Open/KnillParam.lean
 - C5 [DECIDED] L-qg-115 CHECKED: `PEqualNP.QuantumGravity.Open.L115.haar_small_ball : Gap.L115` (C = 4) in lean/PEqualNP/QuantumGravity/Open/L115.lean; Fubini over C2's Cayley chart, no packing or density needed; standard axioms only. L-qg-116 now unconditional via `Helpers.knill_of_ball`.
+- C4 [DECIDED] L-qg-119 weak form CHECKED: `L119_weak : 16 * k < 4 ^ n → μ (ReachableIn (twoQubitGates n) k) = 0` (exact constant 16k, no extra additive term) in `lean/PEqualNP/QuantumGravity/Open/KnillParam.lean` (standard axioms only). Route: every unitary is `phase m • cayley (skewOf A)` (finite spectrum, countable phases), a two-qubit gate is a block ≤ 4x4, so 16 params per gate. `KnillParametrization` (9k+3n+1, KAK) is still open.
