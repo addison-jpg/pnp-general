@@ -9,3 +9,4 @@ A frame's source must be on record. This file records ideas Addison brought in w
 - 2026-11-25. **The Homestuck meteor as a vessel between worlds.** Went to `homestuck/BASE.md` §5 (transport).
 - 2026-11-25. **Maximal utility** as the rule for what to formalize next. Went to the frame score (`asteroid/SPEC.md`).
 - 2026-11-25. **Finite balloons with natural bounds, forked with existing mathematics.** Open (cosmos balloon ladder).
+- 2026-11-25. **Social science applications of the bus idea:** Fisher's capitalist realism as absorption; Granovetter's weak ties as bridges. Went to `transit/social.py` and `transit/BASE.md` (readings).

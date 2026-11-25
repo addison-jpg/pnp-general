@@ -3,6 +3,7 @@
 check "python3 -I philosophy/rhizome.py"
 check "python3 -I brain/cortex/check.py"
 check "python3 -I transit/check.py"
+check "python3 -I transit/social.py"
 frame "Lacan, the Borromean knot (philosophy/PSYCHOSIS.md)" reading "the three rings: every linking number 0, triple invariant 1" -> knots.ath label checked-finite reach 2 cost 80
 frame "Deleuze and Guattari, rhizome against tree (philosophy/rhizome.py)" reading "a tree is a connected graph whose every edge is a bridge; bridgeless graphs counted to 6 vertices" -> 3 label checked-finite reach 1 cost 80
 frame "the hairy ball on the cortex (brain/cortex/BASE.md)" reading "discrete Morse: critical cells sum to 2 in every field on the tetrahedron" -> 4 label checked-finite reach 3 cost 80
@@ -15,3 +16,7 @@ frame "prompting claims C3 to C6 (ath_prompts/SYNTHESIS.md)" reading "informal a
 frame "Addison: buses on the hairy ball (ontology/SOURCES.md)" reading "exact cover time of a random walk on every connected graph up to 6 vertices is at most 2m(n-1) (Aleliunas et al. 1979); index sum 2 is a cite" -> 5 label checked-finite reach 2 cost 80
 frame "Addison: time as socially constructed (ontology/SOURCES.md)" reading "relativity: time is a coordinate; whether it is fundamental is contested" -> none label open reach 1 cost 160
 frame "Addison: Stirner's fixed ideas (ontology/SOURCES.md)" reading "the fixed idea in Stirner (1844) and in psychiatry: Esquirol's monomania, Janet's idee fixe" -> none label open reach 1 cost 160
+
+frame "Addison: Fisher, capitalist realism (ontology/SOURCES.md; philosophy/ and Fisher.lean)" reading "a closed class of a Markov chain: once in, no state outside is reachable; every chain on up to 4 states (50978 sink-free graphs) has one and absorbs with probability 1" -> 6 label checked-finite reach 2 cost 80
+frame "Addison: social applications of the buses: Granovetter weak ties (ontology/SOURCES.md)" reading "two cliques K_k, k=2..5: no bridge gives infinite cover time; one bridge makes it finite, hitting time k(k-1)+1 from the bridge end; a second bridge lowers it" -> 6 label checked-finite reach 2 cost 80
+record transit transit checked-finite "frames.ath: transit/social.py passes. Every sink-free chain on 1..4 states has a closed class, absorbs with probability 1, and 77260 single edges out of a closed class to a state reaching back all break it. Two cliques K_k (k=2..5): one bridge makes cover time finite; hitting time from the bridge end is k(k-1)+1; a second bridge lowers it."
