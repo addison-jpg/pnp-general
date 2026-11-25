@@ -19,8 +19,10 @@ def canon(faces):
     nxt = rotation(faces)
     prv = {v: {b: a for a, b in d.items()} for v, d in nxt.items()}
     best = None
+    md = max(len(d) for d in nxt.values())
     for rot in (nxt, prv):
         for u in rot:
+            if len(rot[u]) != md: continue
             for v in rot[u]:
                 lab = {u: 0}; order = [u]; first = {u: v}; code = []; i = 0
                 while i < len(order):
@@ -98,6 +100,7 @@ def check_tri(faces, V=None):
     return V, E, F
 
 NMAX = 11 if "--n11" in sys.argv else 10
+if "--quick" in sys.argv: NMAX = 9
 EXPECT = {4: 1, 5: 1, 6: 2, 7: 5, 8: 14, 9: 50, 10: 233, 11: 1249}
 counts = []
 for n in range(4, NMAX + 1):
