@@ -6,6 +6,10 @@ Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boar
 - **FILES FOR ADDISON (2026-11-25): give a direct link, not only a file card.** Commit the file (a .vsix, a logo, a PNG) and give `https://github.com/addison-jpg/pnp-general/raw/main/<path>`.
 
 
+## MAP OF THE WORLDS (Addison, 2026-11-25: "the bounds are always multidimensional, continuous, likely infinite")
+
+A map, not progress on P vs NP. P vs NP is one binary cut inside a landscape with many axes: time exponent, average case, non-uniformity, provability, barriers, fine-grained, and the circuit axes this repository works on. Only the hierarchy theorems' infinitely many levels are proved. [`worlds-map`](boards/tasks/worlds-map.md)
+
 ## COMPUTE IS THE BOTTLENECK (Addison, 2026-11-25: "that cpu is the issue that will fix everything")
 
 - The full pure-Lean verifier (`lean/PEqualNP/Verify/All.lean`, about 1,630 imports) has not finished once in this session. One run passed the lock wait but was stopped at the one-hour background limit, then a container restart killed the next. The circuit-side verifier (`one-not/lean`, 18,633 jobs) did finish once (2026-11-25, with the five new Open modules).
