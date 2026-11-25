@@ -153,6 +153,15 @@ class Love(unittest.TestCase):
         self.assertEqual(FD.rebuild(3, dec), A)
         self.assertEqual(sum(1 for _ in FD.line_sum_tables(3, 2)), 21)
 
+    def test_us_text_has_no_about_people_phrasing(self):
+        # reviewer finding: the "us" README and us.py docstring named a person and spoke of feelings and wishes
+        import ast, re
+        us = os.path.join(HERE, "..", "..", "workshop", "ath_prompts", "us")
+        readme = open(os.path.join(us, "README.md"), encoding="utf-8").read()
+        doc = ast.get_docstring(ast.parse(open(os.path.join(us, "us.py"), encoding="utf-8").read()))
+        for text in (readme, doc):
+            self.assertIsNone(re.search(r"addison|feeling|inner life|rather|would take|wanted", text, re.I))
+
 if __name__ == "__main__":
     r = unittest.main(exit=False, verbosity=1).result
     sys.exit(0 if r.wasSuccessful() else 1)
