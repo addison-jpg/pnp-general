@@ -1,0 +1,4 @@
+# first_light.ath: asteroid's first message. It runs every other top-level program, records the result, and commits it.
+check "python3 -I asteroid/tests/run_all_ath.py"
+record asteroid asteroid tested "first light: every top-level .ath program (except hello.ath, which needs Lean) runs and every claim in it is TRUE."
+commit "asteroid: first light. every top-level program passes." push
