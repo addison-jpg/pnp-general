@@ -371,8 +371,8 @@ want("real repo: every query ran, exit 0 except the nonsense one (2), no traceba
      all(rc == (2 if q == "nonsense" else 0) and not tb for q, rc, tb in outs), outs)
 want("real repo: no answer line lacks a label", all(l.startswith("[") for q in ("status", "show findings", "what connects beauvoir and time", "what is open about time")
                                                  for l in ask.answer(q, REPO)[1].splitlines()))
-r = subprocess.run([sys.executable, "-I", "-c", "import json, boards; print(json.dumps({d + '/' + str(x['id']): boards.verified(x) for d in boards.leaves() "
-                    "for x in boards.load(d) if 'statement' in x}))"], cwd=REPO, capture_output=True, text=True, env=dict(env, PYTHONDONTWRITEBYTECODE="1"))
+r = subprocess.run([sys.executable, "-I", "-c", "import sys; sys.dont_write_bytecode = True; sys.path.insert(0, '.'); import json, boards; print(json.dumps({d + '/' + str(x['id']): boards.verified(x) for d in boards.leaves() "
+                    "for x in boards.load(d) if 'statement' in x}))"], cwd=REPO, capture_output=True, text=True, env=env)
 mine = {os.path.normpath(f["program"]) + "/" + f["id"]: f["why_not"] for f in ask.board_findings(REPO)}
 theirs = {os.path.normpath(k): v for k, v in json.loads(r.stdout or "{}").items()}
 want("real repo: the why_not of every board finding equals boards.verified (same rule, root-relative)", r.returncode == 0 and len(mine) > 100 and mine == theirs,

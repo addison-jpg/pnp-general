@@ -149,9 +149,9 @@ def _json(path):
 
 
 def _inside(root, rel):
-    """A path named in the data (never in a query), kept inside root. None if it is absolute or leaves root."""
-    if not isinstance(rel, str) or not rel or os.path.isabs(rel) or "\x00" in rel: return None
-    r = os.path.realpath(root); p = os.path.realpath(os.path.join(r, rel))
+    """A path named in the data (never in a query), kept inside root. None if it leaves root."""
+    if not isinstance(rel, str) or not rel or "\x00" in rel: return None
+    r = os.path.realpath(root); p = os.path.realpath(os.path.join(r, rel))      # an absolute rel stays absolute
     return p if p == r or p.startswith(r + os.sep) else None
 
 
