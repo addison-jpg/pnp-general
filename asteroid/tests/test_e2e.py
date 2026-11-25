@@ -65,6 +65,13 @@ def main():
             note = f"rc={rc}; " + (f"one clear line: {mpl[0]!r}" if one else f"messy output, last={last!r}")
             record("plot program (matplotlib)", True, "recorded, not enforced: " + note)
 
+        # the interactive prompt, fed from stdin: state persists across lines, verdicts appear, output is plain when piped
+        feed = "let h = load hello.bench\nshow h\nclaim gates(h) = base(h)\nclaim! gates(h) < base(h)\nnonsense\n:save kept.ath\n:quit\n"
+        pr = subprocess.run([LAUNCHER], cwd=tmp, input=feed.encode(), capture_output=True, timeout=120)
+        po = pr.stdout.decode("utf-8", "replace")
+        okp = (pr.returncode == 0 and "python TRUE" in po and "python FALSE" in po and "rejected:" in po and "\x1b" not in po
+               and os.path.isfile(os.path.join(tmp, "kept.ath")))
+        record("prompt (stdin)", okp, "" if okp else f"rc={pr.returncode} out={po[-600:]!r}")
         rc, out = run(["--doctor"], tmp)
         if "--show-lean" in out:       # the usage text: flag not implemented yet
             record("--doctor", True, "SKIP: flag not there yet")

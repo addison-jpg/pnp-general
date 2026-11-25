@@ -1,6 +1,7 @@
 # Run asteroid straight from this folder: nothing is installed anywhere else. PowerShell form of bin\asteroid.cmd.
 # Python used: the repository's own .venv if bin\setup made one, otherwise py -3, then python, then python3.
 # If PowerShell refuses to run scripts, use bin\asteroid.cmd, which does the same.
+if ($args.Count -gt 0 -and $args[0] -eq 'setup') { & (Join-Path $PSScriptRoot 'setup.ps1'); exit $LASTEXITCODE }
 $ErrorActionPreference = 'Continue'
 $here = Split-Path -Parent $PSScriptRoot
 function Test-Python([string[]]$Cmd) {

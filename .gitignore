@@ -21,3 +21,4 @@ asteroid/out/*.log
 .venv/
 .deps/
 asteroid/out/_*.lean
+asteroid/out/.repl_history

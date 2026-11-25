@@ -2,6 +2,7 @@
 rem Run asteroid straight from this folder: nothing is installed anywhere else.
 rem Python used: the repository's own .venv if bin\setup.cmd made one, otherwise py -3, then python.
 setlocal
+if /i "%~1"=="setup" ( call "%~dp0setup.cmd" & exit /b %ERRORLEVEL% )
 for %%I in ("%~dp0..") do set "HERE=%%~fI"
 set "PY=%HERE%\.venv\Scripts\python.exe"
 set "PYARG="

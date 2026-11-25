@@ -28,12 +28,15 @@ A script is a list of lines; `#` starts a comment. The verbs:
 
 Run from anywhere with the launcher in the repository's bin folder (bin/asteroid; on Windows also bin\\asteroid.cmd
 and bin\\asteroid.ps1). Nothing is installed outside the repository. Below, `asteroid` stands for that launcher:
+  asteroid                          the interactive prompt (also: asteroid repl); asteroid idle is the window
   asteroid FILE.ath                 run one program (also: asteroid run FILE.ath)
+  asteroid setup                    once: numpy and matplotlib in a .venv inside the repository
   asteroid demo                     a tiny built-in program: start here
   asteroid test                     run every program under asteroid/examples and asteroid/programs
   asteroid version
-  asteroid --doctor                 what this machine has: Python, numpy, matplotlib, Lean, and what a run will do
-  --no-lean                         evaluate only, prove nothing. Chosen automatically when Lean is not installed.
+  asteroid doctor                   (also --doctor) what this machine has: Python, numpy, matplotlib, Lean, and what a run will do
+  --no-lean  (--no-proof)           evaluate only, prove nothing. Chosen automatically when Lean is not installed.
+  --no-color                        no colours (also automatic when piped or NO_COLOR is set)
   --show-lean                       also print the generated Lean files and the axioms used
 Python proposes, Lean decides: a `by lean` claim counts only if the generated module builds."""
 import sys, os, re, json, subprocess, shlex, operator, time, shutil, functools
@@ -266,81 +269,94 @@ FORCE = False
 FORCE_SEEN = {}
 SKIPPED = []     # lines skipped because numpy or matplotlib is not installed
 EXTRA_LEAN = {"imports": [], "decls": []}   # extensions may add Lean imports and declarations to the generated module
+class Session:
+    """The state of one run: the open `circuit ... end` block and the `record` lines. A file run makes one; the interactive prompt keeps one."""
+    def __init__(self): self.block = None; self.records = []
+
+def say(text=""):
+    """Every line a program prints goes through here, so colours and the interactive prompt (ui.py) can sit on top."""
+    try: from asteroid import ui; text = ui.paint(str(text))
+    except ImportError: pass
+    print(text)
+
+def exec_line(st, raw, ln, script):
+    """Run ONE line against the persistent environment. `run` calls this for each line of a file; the prompt for each line typed."""
+    line = raw.split("#", 1)[0].strip()
+    if not line: return
+    API.update({"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN})
+    try:
+        if st.block is not None:
+            name, n, wires, gates, sets, outs = st.block
+            W = lambda x: int(x) if x.isdigit() else wires[x]
+            if line == "end":
+                env[name] = {"n": n, "sets": sets, "gates": gates, "outs": outs}; st.block = None
+                say(f"{ln}: {name} defined ({n} inputs, {len(gates)} gates, correct {core.correct(env[name])})"); return
+            if m := re.fullmatch(r"(\w+) = (or|and) (\w+) (\w+)", line): gates.append([m.group(2), W(m.group(3)), W(m.group(4))]); wires[m.group(1)] = n + len(gates) - 1
+            elif m := re.fullmatch(r"(\w+) = not (\w+)", line): gates.append(["not", W(m.group(2))]); wires[m.group(1)] = n + len(gates) - 1
+            elif m := re.fullmatch(r"set ([\d ]+) -> (\w+)", line): sets.append([int(x) for x in m.group(1).split()]); outs.append(W(m.group(2)))
+            else: raise SystemExit(f"{script}:{ln}: cannot parse inside circuit: {line}")
+            return
+        if m := re.fullmatch(r"circuit (\w+) (\d+)", line): check_name(m.group(1), f"{script}:{ln}"); st.block = (m.group(1), int(m.group(2)), {}, [], [], []); return
+        if m := re.fullmatch(r"let (\w+) = load (.+\.json[\"']?)", line):
+            check_name(m.group(1), f"{script}:{ln}")
+            f = in_path(m.group(2)); d = json.load(open(f, encoding="utf-8")); env[m.group(1)] = {k: d[k] for k in ("n", "sets", "gates", "outs")}; src[m.group(1)] = f
+            say(f"{ln}: {m.group(1)} loaded ({d['n']} inputs, {len(d['gates'])} gates)")
+        elif m := re.fullmatch(r"show (\w+)", line):
+            a = m.group(1); say(f"{ln}: {a}: " + ", ".join(f"{f} {F(f, a)}" for f in ("gates", "nots", "base", "witness", "orwitness", "correct")))
+        elif not re.match(r"claim!? forall c in ", line) and (m := re.fullmatch(r"claim(!?) (.+?)(\s+by lean)?", line)):
+            global FORCE
+            FORCE = bool(m.group(1)); m = re.fullmatch(r"claim!? (.+?)(\s+by lean)?", line)
+            ok, detail = do_claim(m.group(1).strip(), bool(m.group(2)))
+            results.append((ln, m.group(1).strip(), ok, bool(m.group(2)))); say(f"{ln}: claim {m.group(1).strip()}: python {'TRUE' if ok else 'FALSE'} ({detail})")
+        elif m := re.fullmatch(r"plot phi (.+?) -> (.+)", line):
+            o = out_path(m.group(2)); plot_phi(m.group(1).split(), o); say(f"{ln}: wrote {o}")
+        elif m := re.fullmatch(r"conjecture (\w+):\s*(.+)", line):
+            CONJ[m.group(1)] = m.group(2).strip(); say(f"{ln}: conjecture {m.group(1)}(c) := {m.group(2).strip()}")
+        elif (m := re.fullmatch(r"hunt (\w+) (\d+) (\d+)(?: (\d+))?", line)) and m.group(1) in CONJ:
+            say(f"{ln}: " + hunt_conjecture(m.group(1), int(m.group(2)), int(m.group(3)), int(m.group(4) or 0)))
+        elif m := re.fullmatch(r'hunt "([^"]+)" (\d+) (\d+)(?: (\d+))?(\s*&)?', line):
+            cmd = [sys.executable, "-I", "-X", "utf8", "one-not/tools/search/hunt.py", m.group(1), m.group(2), m.group(3), m.group(4) or "0"]
+            if m.group(5):
+                log = f"asteroid/out/hunt_{int(time.time())}.log"; detach = {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS} if os.name == "nt" else {"start_new_session": True}
+                subprocess.Popen(cmd, stdout=open(log, "wb"), stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, **detach)
+                say(f"{ln}: hunt started in the background, log {log}")
+            else: say(f"{ln}: " + subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace").stdout.strip().splitlines()[-1])
+        elif m := re.fullmatch(r'record (\S+) (\S+) (\w+) "(.+)"', line): st.records.append(m.groups())
+        else:
+            import glob, importlib
+            api = API; api.update({"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN})
+            for f in sorted(glob.glob(os.path.join(ROOT, "asteroid", "ext_*.py"))):
+                if importlib.import_module("asteroid." + os.path.basename(f)[:-3]).handle(line, api): break
+            else: raise SystemExit(f"{script}:{ln}: cannot parse: {line}")
+    except ImportError as e:               # numpy or matplotlib missing: skip this line, keep going
+        mod = (getattr(e, "name", None) or "").split(".")[0]
+        if mod not in ("numpy", "matplotlib"): raise
+        SKIPPED.append(ln); say(f"{ln}: " + getattr(e, "asteroid", f"{line.split()[0]} needs {mod}: run bin/setup") + "  (line skipped)")
+
 def run(script):
     global PROG_DIR
     if not os.path.isfile(script): raise SystemExit(f"asteroid: no such program: {os.path.abspath(script)}")
     PROG_DIR = os.path.dirname(os.path.abspath(script))
-    records = []
-    block = None
-    for ln, raw in enumerate(open(script, encoding="utf-8"), 1):
-        line = raw.split("#", 1)[0].strip()
-        if not line: continue
-        API.update({"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN})
-        try:
-            if block is not None:
-                name, n, wires, gates, sets, outs = block
-                W = lambda x: int(x) if x.isdigit() else wires[x]
-                if line == "end":
-                    env[name] = {"n": n, "sets": sets, "gates": gates, "outs": outs}; block = None
-                    print(f"{ln}: {name} defined ({n} inputs, {len(gates)} gates, correct {core.correct(env[name])})"); continue
-                if m := re.fullmatch(r"(\w+) = (or|and) (\w+) (\w+)", line): gates.append([m.group(2), W(m.group(3)), W(m.group(4))]); wires[m.group(1)] = n + len(gates) - 1
-                elif m := re.fullmatch(r"(\w+) = not (\w+)", line): gates.append(["not", W(m.group(2))]); wires[m.group(1)] = n + len(gates) - 1
-                elif m := re.fullmatch(r"set ([\d ]+) -> (\w+)", line): sets.append([int(x) for x in m.group(1).split()]); outs.append(W(m.group(2)))
-                else: raise SystemExit(f"{script}:{ln}: cannot parse inside circuit: {line}")
-                continue
-            if m := re.fullmatch(r"circuit (\w+) (\d+)", line): check_name(m.group(1), f"{script}:{ln}"); block = (m.group(1), int(m.group(2)), {}, [], [], []); continue
-            if m := re.fullmatch(r"let (\w+) = load (.+\.json[\"']?)", line):
-                check_name(m.group(1), f"{script}:{ln}")
-                f = in_path(m.group(2)); d = json.load(open(f, encoding="utf-8")); env[m.group(1)] = {k: d[k] for k in ("n", "sets", "gates", "outs")}; src[m.group(1)] = f
-                print(f"{ln}: {m.group(1)} loaded ({d['n']} inputs, {len(d['gates'])} gates)")
-            elif m := re.fullmatch(r"show (\w+)", line):
-                a = m.group(1); print(f"{ln}: {a}: " + ", ".join(f"{f} {F(f, a)}" for f in ("gates", "nots", "base", "witness", "orwitness", "correct")))
-            elif not re.match(r"claim!? forall c in ", line) and (m := re.fullmatch(r"claim(!?) (.+?)(\s+by lean)?", line)):
-                global FORCE
-                FORCE = bool(m.group(1)); m = re.fullmatch(r"claim!? (.+?)(\s+by lean)?", line)
-                ok, detail = do_claim(m.group(1).strip(), bool(m.group(2)))
-                results.append((ln, m.group(1).strip(), ok, bool(m.group(2)))); print(f"{ln}: claim {m.group(1).strip()}: python {'TRUE' if ok else 'FALSE'} ({detail})")
-            elif m := re.fullmatch(r"plot phi (.+?) -> (.+)", line):
-                o = out_path(m.group(2)); plot_phi(m.group(1).split(), o); print(f"{ln}: wrote {o}")
-            elif m := re.fullmatch(r"conjecture (\w+):\s*(.+)", line):
-                CONJ[m.group(1)] = m.group(2).strip(); print(f"{ln}: conjecture {m.group(1)}(c) := {m.group(2).strip()}")
-            elif (m := re.fullmatch(r"hunt (\w+) (\d+) (\d+)(?: (\d+))?", line)) and m.group(1) in CONJ:
-                print(f"{ln}: " + hunt_conjecture(m.group(1), int(m.group(2)), int(m.group(3)), int(m.group(4) or 0)))
-            elif m := re.fullmatch(r'hunt "([^"]+)" (\d+) (\d+)(?: (\d+))?(\s*&)?', line):
-                cmd = [sys.executable, "-I", "-X", "utf8", "one-not/tools/search/hunt.py", m.group(1), m.group(2), m.group(3), m.group(4) or "0"]
-                if m.group(5):
-                    log = f"asteroid/out/hunt_{int(time.time())}.log"; detach = {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS} if os.name == "nt" else {"start_new_session": True}
-                    subprocess.Popen(cmd, stdout=open(log, "wb"), stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, **detach)
-                    print(f"{ln}: hunt started in the background, log {log}")
-                else: print(f"{ln}: " + subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace").stdout.strip().splitlines()[-1])
-            elif m := re.fullmatch(r'record (\S+) (\S+) (\w+) "(.+)"', line): records.append(m.groups())
-            else:
-                import glob, importlib
-                api = API; api.update({"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN})
-                for f in sorted(glob.glob(os.path.join(ROOT, "asteroid", "ext_*.py"))):
-                    if importlib.import_module("asteroid." + os.path.basename(f)[:-3]).handle(line, api): break
-                else: raise SystemExit(f"{script}:{ln}: cannot parse: {line}")
-        except ImportError as e:               # numpy or matplotlib missing: skip this line, keep going
-            mod = (getattr(e, "name", None) or "").split(".")[0]
-            if mod not in ("numpy", "matplotlib"): raise
-            SKIPPED.append(ln); print(f"{ln}: " + getattr(e, "asteroid", f"{line.split()[0]} needs {mod}: run bin/setup") + "  (line skipped)")
+    st = Session()
+    for ln, raw in enumerate(open(script, encoding="utf-8"), 1): exec_line(st, raw, ln, script)
+    records = st.records
     L = None if NO_LEAN else build_lean(script)
-    if NO_LEAN and lean_claims: print(f"not proved: {len(lean_claims)} claims were only evaluated (no proof checker in this run)")
+    if NO_LEAN and lean_claims: say(f"not proved: {len(lean_claims)} claims were only evaluated (no proof checker in this run)")
     if L:
-        if L["ok"]: print(f"proved: {len(L['theorems'])} claims accepted by the proof checker in {L['seconds']} s")
-        else: print(f"NOT PROVED: the proof checker rejected this program's claims ({L['seconds']} s)")
-        if SHOW_LEAN: print(f"  lean module {L['module']}; axioms: {L['axioms']}")
+        if L["ok"]: say(f"proved: {len(L['theorems'])} claims accepted by the proof checker in {L['seconds']} s")
+        else: say(f"NOT PROVED: the proof checker rejected this program's claims ({L['seconds']} s)")
+        if SHOW_LEAN: say(f"  lean module {L['module']}; axioms: {L['axioms']}")
     if L and L.get("sound"):
         Sd = L["sound"]
-        print((f"proved: {len(Sd['theorems'])} of them also hold in the project's own definitions" if Sd["ok"] else "NOT PROVED: the restatement in the project's own definitions failed") + f" ({Sd['seconds']} s)")
-        if SHOW_LEAN: print(f"  lean module {Sd['module']}")
+        say((f"proved: {len(Sd['theorems'])} of them also hold in the project's own definitions" if Sd["ok"] else "NOT PROVED: the restatement in the project's own definitions failed") + f" ({Sd['seconds']} s)")
+        if SHOW_LEAN: say(f"  lean module {Sd['module']}")
     bad = [r for r in results if not r[2]]
     for d, item, word, stmt in records:
-        if bad or (word == "checked" and not (L and L["ok"])): print(f"record skipped ({stmt[:40]}...): a claim failed or Lean did not build"); continue
+        if bad or (word == "checked" and not (L and L["ok"])): say(f"record skipped ({stmt[:40]}...): a claim failed or Lean did not build"); continue
         import boards
         ev = [script] + ([f"{L['module']}::{L['theorems'][-1]}"] if L and L["ok"] else []) + list(dict.fromkeys(src.values()))
         boards.add(d, "asteroid", item, word, stmt, ev); boards.build()
-    print(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; {len(L['theorems'])} proved" if L and L["ok"] else "")
+    say(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; {len(L['theorems'])} proved" if L and L["ok"] else "")
           + (f"; {len(SKIPPED)} lines skipped (numpy or matplotlib missing: run bin/setup)" if SKIPPED else ""))
     return 1 if bad or (L and not L["ok"]) or (L and L.get("sound") and not L["sound"]["ok"]) else 0
 
@@ -384,7 +400,11 @@ def main(argv):
         except Exception: pass
     os.makedirs(os.path.join(ROOT, "asteroid", "out"), exist_ok=True)
     if "--doctor" in argv or argv[:1] == ["doctor"]: return doctor()
-    NO_LEAN = "--no-lean" in argv; SHOW_LEAN = "--show-lean" in argv; argv = [a for a in argv if a not in ("--no-lean", "--show-lean")]
+    NO_LEAN = any(a in argv for a in ("--no-lean", "--no-proof")); SHOW_LEAN = "--show-lean" in argv   # --no-proof: the same flag, quiet alias
+    from asteroid import ui; ui.setup(no_color="--no-color" in argv)
+    argv = [a for a in argv if a not in ("--no-lean", "--no-proof", "--show-lean", "--no-color")]
+    if argv[:1] in (["--version"], ["-V"]): argv = ["version"]
+    if argv[:1] == ["--doctor"]: argv = ["doctor"]
     def prog(a):                                        # a program path is read from where the command was typed
         if not a.endswith((".ath", ".ast")): return a
         p = os.path.normpath(os.path.join(CALLER_DIR, a))
@@ -392,10 +412,14 @@ def main(argv):
         except ValueError: pass                         # Windows, another drive: keep the full path
         return p.replace(os.sep, "/")
     argv = [prog(a) for a in argv]
-    if not NO_LEAN and not lake():
+    prompt = not argv or argv[:1] == ["repl"]
+    if not NO_LEAN and not lake() and not prompt:
         NO_LEAN = True
         print("note: Lean (the command `lake`) is not installed here, so this run is Python only: claims are evaluated, nothing is formally checked.\n      To let the Lean kernel decide: install elan, then `cd one-not/lean && lake exe cache get`.")
     if argv[:1] == ["version"]: print(VERSION); return 0
+    if prompt: from asteroid import repl; return repl.main()
+    if argv[:1] == ["idle"]: from asteroid import idle; return idle.main()
+    if argv[:1] == ["setup"]: print("asteroid: `setup` is run by the launcher: bin/asteroid setup (or bin/setup)"); return 2
     if argv[:1] == ["demo"]:
         print("asteroid demo: the program is asteroid/demo.ath (a 4-input circuit, three true claims, one false on purpose)\n")
         run("asteroid/demo.ath"); good = [r[2] for r in results] == [True, True, True, False]

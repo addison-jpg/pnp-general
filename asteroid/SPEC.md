@@ -86,3 +86,20 @@ bin/asteroid asteroid/examples/first.ath
 bin/asteroid test            # every program under asteroid/examples
 bin/asteroid test --no-lean  # Python and plots only (what GitHub Actions runs on every push)
 ```
+
+## One name for each thing typed in the terminal (old -> kept)
+
+The old spelling keeps working quietly; the kept one is what the docs use.
+
+| old | kept |
+|---|---|
+| `bin/setup`, `bin\setup.cmd`, `bin\setup.ps1` | `bin/asteroid setup` (the `setup` scripts are what it runs) |
+| `--doctor` | `doctor` |
+| `--version`, `-V` | `version` |
+| `--no-proof` | `--no-lean` |
+| `run FILE.ath` | `FILE.ath` |
+| `.ast` files | `.ath` |
+| `python -m asteroid` | `bin/asteroid` (the launcher picks the right Python) |
+| nothing typed | the interactive prompt (`bin/asteroid repl` is the same) |
+
+Language verbs are not renamed. `claim EXPR by lean` and the extension verb `prove` stay as they are: they differ in what they send to Lean.

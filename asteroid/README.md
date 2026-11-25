@@ -61,6 +61,17 @@ bin/setup                # once, optional: numpy and matplotlib, for plots and t
 
 The exact grammar is in [`SPEC.md`](SPEC.md). On every push that touches the language or a program, GitHub Actions runs `bin/asteroid test --no-lean` on Linux, macOS and Windows (workflow `.github/workflows/asteroid.yml`); the Lean kernel job is started by hand.
 
+## Interactive
+
+Addison asked for "basically Python IDLE", so asteroid has two interactive faces, both built on pieces that already ship with Python:
+
+```bash
+bin/asteroid          # the prompt: type asteroid lines, state stays between lines
+bin/asteroid idle     # the window: editor, Run (F5), output, plot preview
+```
+
+The prompt is built on the standard library's `cmd` module (`cmd.Cmd`, with `readline` history where the platform has it). Each line goes through the same line evaluator a file uses. Meta commands: `:help`, `:load FILE.ath`, `:lean on|off` (off by default, so it is fast), `:save FILE.ath`, `:quit` (Ctrl-D too). Colours show only on a terminal and not when `NO_COLOR` is set; `--no-color` turns them off. The window is built on `tkinter` and Python's own IDLE code (`idlelib`: its colorizer and percolator); on Windows `tkinter` ships with python.org Python.
+
 ## Circuits are `.bench` files
 
 A circuit is a file in the ISCAS `.bench` netlist format, the format of the ISCAS-85 and ISCAS-89

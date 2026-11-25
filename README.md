@@ -74,9 +74,11 @@ bin/asteroid hello.ath # run one program
 bin/asteroid test      # run all of them
 ```
 
+`bin/asteroid` with no arguments opens the interactive prompt, `bin/asteroid idle` the window.
+
 These lines are for Git Bash on Windows, macOS and Linux. In cmd: `bin\asteroid.cmd demo`, `bin\setup.cmd`. In Windows PowerShell: `bin\asteroid.ps1 demo`, `bin\setup.ps1` (or the same `.cmd` names).
 
-Nothing is installed outside this folder. Delete `.venv` to undo the setup. `bin/asteroid --doctor` says what your machine has. A first walk through is in `asteroid/GETTING_STARTED.md`.
+Nothing is installed outside this folder. Delete `.venv` to undo the setup. `bin/asteroid doctor` says what your machine has. A first walk through is in `asteroid/GETTING_STARTED.md`.
 
 Without Lean installed, asteroid says so and only evaluates. In that case nothing is proved. The manual is `asteroid/README.md`, and the format of `.bench` files is described in `asteroid/BENCH.md`.
 

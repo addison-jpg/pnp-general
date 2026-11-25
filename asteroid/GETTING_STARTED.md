@@ -69,6 +69,17 @@ What the lines mean:
 - The last lines depend on Lean. With Lean installed they say `proved: ...` for the claims marked
   `by lean`. Without it you get `not proved: 3 claims were only evaluated`, and that is fine for now.
 
+## 3b. Interactive
+
+Addison asked for "basically Python IDLE", so asteroid has two interactive faces, both built on pieces that already ship with Python:
+
+```bash
+bin/asteroid          # the prompt: type asteroid lines, state stays between lines
+bin/asteroid idle     # the window: editor, Run (F5), output, plot preview
+```
+
+The prompt is built on the standard library's `cmd` module (`cmd.Cmd`, with `readline` history where the platform has it). Each line goes through the same line evaluator a file uses. Meta commands: `:help`, `:load FILE.ath`, `:lean on|off` (off by default, so it is fast), `:save FILE.ath`, `:quit` (Ctrl-D too). Colours show only on a terminal and not when `NO_COLOR` is set; `--no-color` turns them off. The window is built on `tkinter` and Python's own IDLE code (`idlelib`: its colorizer and percolator); on Windows `tkinter` ships with python.org Python.
+
 ## 4. Write your own
 
 A circuit is a `.bench` file. Save this as `demo.bench` in the `pnp-general` folder. It has four

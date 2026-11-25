@@ -15,6 +15,8 @@ else
   echo "          Install Python from https://www.python.org/downloads/ and run this again." >&2
   exit 1
 fi
+# `bin/asteroid setup` is the one-time setup (bin/setup still works the same).
+if [ "$1" = "setup" ]; then shift; exec sh "$HERE/bin/setup" "$@"; fi
 # Windows Python (Git Bash) wants a Windows path; give it one, so no path conversion can go wrong.
 case "$(uname -s 2>/dev/null)" in
   MINGW*|MSYS*) if command -v cygpath >/dev/null 2>&1; then HERE="$(cygpath -w "$HERE")"; fi ;;
