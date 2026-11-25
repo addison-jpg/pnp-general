@@ -1,0 +1,15 @@
+{
+  "what": "terminal colours for the asteroid executable: plain 16-colour ANSI SGR codes, downstream of the logo (4ST teal -> cyan, eroid blue -> blue). Raw on purpose; no 256-colour or true-colour codes.",
+  "rules": "print ESC[<code>m before the text and ESC[0m after it; print no codes at all when the NO_COLOR variable is set or stdout is not a terminal.",
+  "sgr": {
+    "logo": "36",
+    "logo_alt": "34",
+    "accent": "36",
+    "proved": "32",
+    "refuted": "31",
+    "open": "33",
+    "muted": "90",
+    "reset": "0"
+  },
+  "banner": "4ST in logo (cyan) then eroid in logo_alt (blue), on one line: ESC[36m4ST ESC[34meroid ESC[0m (no spaces)"
+}
