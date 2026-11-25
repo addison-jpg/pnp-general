@@ -14,7 +14,7 @@
 - **Risk:** the count is exact and integer, while limits lose o(n). If tight circuits are not stable (many unlike shapes at slack 0), the stability step fails. The Fano corpus with its 245 non-up-set tight cubes is the first place to look.
 
 **Open seats (start only when Addison says go):**
-- OPEN (Sonnet): write the density form: express |F2|, base and gates of a one-NOT circuit as sums of counts of small labelled patterns (sets, wires, the NOT gate's wire h); state "slack ≥ 0" as a linear inequality in pattern densities. -> one-not/research/open/limits_density_form.md
+- TAKEN L1 (Sonnet): write the density form: express |F2|, base and gates of a one-NOT circuit as sums of counts of small labelled patterns (sets, wires, the NOT gate's wire h); state "slack ≥ 0" as a linear inequality in pattern densities. -> one-not/research/open/limits_density_form.md
 - OPEN (Sonnet): literature rows (read status) for flag algebras, hypergraph limits, flag-algebra-plus-stability exact results, and any limit theory for Boolean circuits or set systems. -> LITERATURE.md
 - OPEN (Opus, after the two above): does the density inequality hold in the limit; attempt a flag-algebra certificate on the smallest pattern size; list the tight limit objects (stability candidates). -> one-not/research/open/limits_certificate.md
 
