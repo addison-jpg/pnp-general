@@ -120,18 +120,18 @@ fn summary(t: &Tally, root: &[u8]) {
 }
 
 // Reads ROOT/center/shards/*.jsonl in byte order of name and hands each line to `record`.
-// False if the folder cannot be opened or holds too many shard files.
+// False, after saying why, if the folder cannot be read or holds more than FILES shard files.
 fn scan(st: &mut St, root: &[u8], needle: &[u8]) -> bool {
     let t = &mut st.t;
     t.files = 0; t.total = 0; t.skipped = 0; t.found = 0; t.np = 0; t.nt = 0; t.full = false;
     let r = openat(-100, root.as_ptr(), DIR); // -100: AT_FDCWD
     let d = if r < 0 { r } else { let d = openat(r, b"center/shards\0".as_ptr(), DIR); close(r); d };
-    if d < 0 { write(b"cannot open "); write(cstr(root)); write(b"/center/shards\n"); return false; }
     // List the names that glob's *.jsonl matches (it skips names that start with a dot).
     let mut n = 0;
     loop {
-        let got = unsafe { sys(217, d as usize, st.io.as_mut_ptr() as usize, st.io.len()) }; // getdents64
-        if got <= 0 { break; }
+        let got = if d < 0 { d } else { unsafe { sys(217, d as usize, st.io.as_mut_ptr() as usize, st.io.len()) } }; // getdents64
+        if got < 0 { close(d); write(b"cannot read "); write(cstr(root)); write(b"/center/shards\n"); return false; }
+        if got == 0 { break; }
         let mut o = 0;
         while o < got as usize {
             // struct linux_dirent64: inode (8 bytes), offset (8), record length (2), type (1), name
