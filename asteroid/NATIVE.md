@@ -111,13 +111,13 @@ All in `one-not/lean/PEqualNP/AsteroidLang/Semantics.lean`; none uses `sorry` or
 rest on `propext`, `Classical.choice`, `Quot.sound` only. `denote` is the meaning of a claim in the
 project's own definitions; `eval_sound` is about `Expr.eval`, the function the executable runs.
 
-- `eval_sound`: a claim of a covered form that the evaluator calls true holds in the project's definitions. Covered forms: `correct(c)` (the project's `Circuit.eval` on `C.toGates` computes the OR of every set on every input), `hyps(c)` (the hypotheses of the main theorem), `forall cubes slack(c) >= 0` (`baseDQ C.setFin ∅ Q ≤ |F2 C.toGates C.setFin Q|` for every `Q`), every comparison between whole numbers and `gates`, `base`, `orwitness`, `slack` (about `C.toGates.length`, `∑ (|S| − 1)`, `|F2 … ∅|`), and `not` of such a comparison.
-- `correct_bridge`, `slackNonnegAll_bridge`, `hypsB_bridge`, `setsOk_bridge`, `orWitness_bridge`, `base_bridge`: the executable's light checker on a circuit equals the project's checker on the same circuit as a project circuit (`CoreEq.toProject`).
+- `eval_sound`: a claim of a covered form that the evaluator calls true holds in the project's definitions. Covered forms: `correct(c)` (the project's `Circuit.eval` on `C.toGates` computes the OR of every set on every input), `hyps(c)` (the hypotheses of the main theorem), `forall cubes slack(c) >= 0` (`baseDQ C.setFin ∅ Q ≤ |F2 C.toGates C.setFin Q|` for every `Q`), every comparison between whole numbers and `gates`, `nots`, `base`, `orwitness`, `slack` (about `C.toGates.length`, the number of NOT gates of `C.toGates`, `∑ (|S| − 1)`, `|F2 … ∅|`), and `not` of such a comparison.
+- `correct_bridge`, `slackNonnegAll_bridge`, `hypsB_bridge`, `setsOk_bridge`, `orWitness_bridge`, `base_bridge`, `nots_bridge` (`nots C = |{g ∈ C.toGates | g.op = GateOp.not}|`): the executable's light checker on a circuit equals the project's checker on the same circuit as a project circuit (`CoreEq.toProject`).
 - `tt_map`, `tables_map`, `orTables_map`, `notCount_map`, `hypsB_map`: the light checkers do not see the gate record, only the op code and two wires.
 - `func_sem`, `term_sem`, `term_ex`, `cmp_ex`: the value the executable computes for a count is the value of the project's definition.
 
-Without a soundness theorem yet: `witness`, `nots` and `anyslack` as comparison terms (the missing
-statements: `witnessCount C = number of gate wires with a witness` and `nots C = |{g ∈ C.toGates | g.op = GateOp.not}|`);
+Without a soundness theorem yet: `witness` and `anyslack` as comparison terms (the missing
+statement: `witnessCount C = number of gate wires with a witness`);
 `hyps(c) = false`, `not correct(c)`, `not hyps(c)`, `not forall cubes …` (these need the converse, that a
 failing check means the statement fails: the checkers are sound, not shown complete); the
 `slack(c) >= 0 by lean` per-cube forms with a cube other than the empty one.
