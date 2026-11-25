@@ -4,7 +4,7 @@ A program is a text file `NAME.ath`. Lines are read top to bottom. `#` starts a 
 
 ```
 program   := line*
-line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check
+line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check | frame
 circuit   := "circuit" NAME N NEWLINE (gate | out)* "end"
 gate      := NAME "=" ("or" | "and") WIRE WIRE  |  NAME "=" "not" WIRE
 out       := "set" POINT+ "->" WIRE
@@ -43,6 +43,8 @@ seq       := "seq" NAME "=" ("from" PATH [STRING] | "run" STRING [STRING] | LIST
 check     := "check" STRING                                                          (asteroid/ext_finite.py; STRING is "python3 -I path.py [args]")
 claim     := "claim" NAME "=" LIST | "claim" NAME "matches" NAME [FORM] | "claim formula" NAME "=" STRING ["from" INTEGER]   (ext_finite)
 FORM      := as-is | diff | partial | plus1
+frame     := "frame" STRING "reading" STRING "->" CLAIMREF "label" WORD ["reach" INTEGER] ["cost" NUMBER]   (asteroid/ext_frame.py)
+CLAIMREF  := LINE | PATH | "none"          (LINE: an earlier claim or check of this file; PATH: another .ath file)
 LIST      := "[" INTEGER ("," INTEGER)* "]"
 EXPR      := integers, n, + - * // ** ( ), postfix ! and !!, "C(" EXPR "," EXPR ")", "sum(" VAR "," EXPR "," EXPR "," EXPR ")"
 WIRE      := POINT | NAME            (a point 0 .. N-1, or an earlier gate name)
@@ -75,6 +77,24 @@ Meaning. These lines let any level state an exact claim about an integer sequenc
 - Size limits. n!, n!! and C(n, k) need n <= 10^6. One sum adds at most 10^6 terms. One claim takes at most 10^7 steps. Past a limit the claim is FALSE.
 - Each claim prints TRUE or FALSE and counts in the summary. `by lean` is not available for them.
 - Each passing `check` or `seq ... run` becomes the runner of the program's records. So `record ... checked-finite` carries a runner. The files read are cited as evidence.
+
+## Frames (extension `asteroid/ext_frame.py`)
+
+A frame ties an idea to the claim that formalizes it. The first string is the source: what was brought, and where it is written. The second is the reading.
+- `-> LINE`: the claim or check on that earlier line of this file. It must have printed TRUE.
+- `-> PATH`: another `.ath` file. It is run with `--no-lean`. It must exit 0.
+- `-> none`: no claim yet.
+- The frame is TRUE only if its claim passed in this run. Otherwise it is OPEN, and its label is forced to `open`.
+- A Python claim supports at most `checked-finite`. A frame labelled `checked` or `checked-infinite` is downgraded to `checked-finite`, and the output says so.
+- A frame is not a claim. It does not change the summary or the exit code.
+
+Score: `score = reach * chance / cost`.
+- reach: an integer >= 1, the fields or groups it helps. Default 1.
+- cost: thousands of tokens. Default 80, the cost of one plain seat (`ath_prompts/measure/cost_per_result.md`).
+- chance: 1.0 if the claim passed. Otherwise a prior by label: `open` 0.3.
+- These weights are choices, not measurements. Change them in `ext_frame.py`.
+
+Each frame is written to `frames.jsonl` at the repository root (or `$ASTEROID_FRAMES`). Fields: source, reading, claim, label, score, status, reach, cost. One line per (source, reading, claim). A rerun replaces that line, so there are no duplicates. `center.py` reads it as record kind `frame`. `python3 -I center.py queue` lists the open frames, highest score first. `frames.ath` at the root holds the backfilled frames.
 
 ## Mixed states (extension `asteroid/ext_mixed.py`; Lean: `one-not/lean/PEqualNP/W951/AsteroidMixed.lean`)
 

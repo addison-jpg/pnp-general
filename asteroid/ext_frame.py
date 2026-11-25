@@ -65,7 +65,9 @@ def handle(line, api):
         hits = [r for r in api["results"] if r[0] == int(ref)]
         if not hits: raise SystemExit(f"{where}: no claim or check at line {ref} before this frame")
         passed, why = hits[-1][2], f"line {ref} {'TRUE' if hits[-1][2] else 'FALSE'}"
-        claim = f"{os.path.relpath(os.path.abspath(api['script']), A.ROOT).replace(os.sep, '/')}:{ref}"
+        sp = os.path.abspath(api["script"])
+        if os.path.commonpath([A.ROOT, sp]) == A.ROOT: sp = os.path.relpath(sp, A.ROOT).replace(os.sep, "/")
+        claim = f"{sp}:{ref}"
     elif ref.endswith((".ath", ".ast")):
         passed, why = _run_file(ref, where); claim = ref
     else: raise SystemExit(f"{where}: CLAIMREF must be a line number, a .ath file, or none")
