@@ -1,6 +1,8 @@
 import Lean.Data.Json
 import PEqualNP.AsteroidLang.Emit
 import PEqualNP.AsteroidLang.Bench
+import PEqualNP.AsteroidLang.Repl
+import PEqualNP.AsteroidLang.Plot
 /-!
 # asteroid: the command line
 
@@ -25,6 +27,7 @@ def version : String := "asteroid 0.4 (Lean: compiled evaluator, proofs checked 
 def usage : String :=
   "usage: asteroid FILE.ath [--no-proof]    run a program (--no-proof: evaluate only)\n" ++
   "       asteroid --doctor [FILE.ath]      where it looks for the project and `lake`\n" ++
+  "       asteroid [repl]                   the interactive prompt\n" ++
   "       asteroid version"
 
 /-- a circuit from the JSON form `{\"n\", \"sets\", \"gates\", \"outs\"}` -/
@@ -157,6 +160,9 @@ structure Tally where
   bad : Nat := 0
   /-- statements this version does not run (other than `plot`) -/
   skipped : Nat := 0
+  /-- where `plot` writes: the project folder, and the file for a path written in the program -/
+  root : System.FilePath := "."
+  outPath : String → System.FilePath := fun p => p
 
 /-- print one statement and update the tally -/
 def step (t : Tally) (l : Line) : IO Tally := do
@@ -194,6 +200,9 @@ def step (t : Tally) (l : Line) : IO Tally := do
                       good := t.good + (if v.value then 1 else 0),
                       bad := t.bad + (if v.value then 0 else 1) }
   | .unsupported what =>
+    if what.startsWith "plot phi " then
+      IO.println s!"{l.num}: {← Plot.runPlot t.env t.root t.outPath what}"
+      return t
     let verb := (words what).headD what
     IO.println s!"{l.num}: {verb}: not in the Lean version yet"
     return { t with skipped := t.skipped + 1 }
@@ -280,7 +289,13 @@ def runFile (file : String) (noProof : Bool) : IO UInt32 := do
   let verdicts ← match run {} items with
     | .ok vs => pure vs
     | .error e => IO.eprintln s!"{script}: {e}"; return 2
-  let t ← lines.foldlM step { verdicts, loads }
+  let progDir := (← IO.FS.realPath path).parent.getD "."
+  let inRepo := (relativeTo root progDir ++ "/").startsWith "/" == false &&
+    !(relativeTo root progDir).contains ':'
+  let outPath := fun (p : String) =>
+    let q := slashPath p
+    if q.isAbsolute then q else if inRepo then root / q else progDir / q
+  let t ← lines.foldlM step { verdicts, loads, root, outPath }
   let prover ← if noProof || t.claims.isEmpty then pure none else do
     match project, ← locateLake project with
     | some project, some (lake, _) => pure (some (⟨project, lake⟩ : Prover))
@@ -341,6 +356,19 @@ def doctor (file : Option String) : IO UInt32 := do
       asteroid inside the repository)"
   return 0
 
+/-- the prompt's evaluation of statements typed or loaded: files are read from the current folder -/
+def replExec (root : System.FilePath) (env : Env) (lines : List Line) : IO Env := do
+  let (lines, items, loads) ← resolve "repl.ath" "." root lines
+  match run env items with
+  | .error e => throw <| IO.userError e
+  | .ok verdicts => return (← lines.foldlM step { env, verdicts, loads }).env
+
+/-- `asteroid` with no arguments: the interactive prompt -/
+def replMain : IO UInt32 := do
+  let project ← locateProject none
+  let root := (project.bind (·.parent)).bind (·.parent) |>.getD "."
+  Repl.repl root (replExec root)
+
 end AsteroidLang
 
 open AsteroidLang in
@@ -349,6 +377,7 @@ def main (args : List String) : IO UInt32 := do
   let flags := ["--no-proof", "--no-lean"]
   let noProof := args.any flags.contains
   match args.filter (!flags.contains ·) with
+  | [] | ["repl"] => replMain
   | ["version"] | ["--version"] => IO.println version; return 0
   | ["--doctor"] | ["doctor"] => doctor none
   | ["--doctor", file] | ["doctor", file] => doctor (some file)
