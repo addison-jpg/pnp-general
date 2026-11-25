@@ -230,7 +230,7 @@ theorem axis_mul (w x t a b c d : ℝ) (hwx : w ^ 2 + x ^ 2 = 1) (ha : a = w ^ 2
   subst ha hc hb hd
   ext i j
   fin_cases i <;> fin_cases j <;>
-    simp [Matrix.mul_apply, Fin.sum_univ_four, Matrix.diagonal_apply, hwx]
+    simp [Matrix.mul_apply, Matrix.diagonal_apply, hwx]
 
 theorem col_of_orth {O : Matrix (Fin 4) (Fin 4) ℝ} (hO : Oᵀ * O = 1) (i j : Fin 4) :
     ∑ k, O k i * O k j = if i = j then 1 else 0 := by
@@ -334,5 +334,251 @@ theorem orth_loc (O : Matrix (Fin 4) (Fin 4) ℝ) (hO : Oᵀ * O = 1) :
       _ = Lq p * (Cq q * O₂) := by rw [← hO₁eq]
       _ = Lq p * (Cq q * (Cq ![w, x, 0, 0] * diagonal ![1, 1, 1, t])) := by rw [← hO₂f]
       _ = _ := by simp only [Matrix.mul_assoc]
+
+/-! ### A symmetric unitary matrix is diagonalised by a real orthogonal matrix -/
+
+section Takagi
+
+open PEqualNP.QuantumGravity.Open.L119 PEqualNP.QuantumGravity.Open.KnillParam
+  PEqualNP.QuantumGravity.Open.KnillParam15
+
+variable {ι : Type} [Fintype ι] [DecidableEq ι]
+
+/-- A real matrix as a complex matrix. -/
+noncomputable abbrev cx (O : Matrix ι ι ℝ) : Matrix ι ι ℂ := O.map (algebraMap ℝ ℂ)
+
+theorem cx_mul (A B : Matrix ι ι ℝ) : cx (A * B) = cx A * cx B := Matrix.map_mul
+
+theorem cx_one : cx (1 : Matrix ι ι ℝ) = 1 := by
+  ext i j; by_cases h : i = j <;> simp [cx, Matrix.one_apply, h]
+
+theorem cx_transpose (A : Matrix ι ι ℝ) : cx Aᵀ = (cx A)ᵀ := rfl
+
+theorem star_cx (A : Matrix ι ι ℝ) : star (cx A) = (cx A)ᵀ := by
+  ext i j; simp [cx, Matrix.star_apply]
+
+theorem cx_diagonal (s : ι → ℝ) : cx (diagonal s) = diagonal fun i => (s i : ℂ) := by
+  ext i j; by_cases h : i = j <;> simp [cx, h]
+
+theorem cx_injective : Function.Injective (cx (ι := ι)) := by
+  intro A B h
+  ext i j
+  have := congrFun (congrFun h i) j
+  simpa [cx] using this
+
+theorem symm_unitary_diag (S : Matrix ι ι ℂ) (hS : S * star S = 1) (hsym : Sᵀ = S) :
+    ∃ (O : Matrix ι ι ℝ) (d : ι → ℂ), Oᵀ * O = 1 ∧ (∀ i, d i * star (d i) = 1) ∧
+      S = cx O * diagonal d * (cx O)ᵀ := by
+  obtain ⟨m, A, hA⟩ := unitary_chart hS
+  set X := skewOf A with hXdef
+  have hX : Xᴴ = -X := skewOf_conjTranspose A
+  set C := cayley X with hC
+  have hCS : C = star (phase m) • S := by
+    rw [hA, smul_smul, star_phase_mul, one_smul]
+  have hCsym : Cᵀ = C := by rw [hCS, Matrix.transpose_smul, hsym]
+  obtain ⟨hunit, hinv⟩ := cayley_inv hX
+  have hdet : IsUnit (C + 1).det := (Matrix.isUnit_iff_isUnit_det _).1 hunit
+  have hcomm : (C + 1) * (C - 1) = (C - 1) * (C + 1) := by
+    simp only [Matrix.add_mul, Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_add, Matrix.one_mul,
+      Matrix.mul_one]
+    abel
+  have hinv' : (C - 1) * (C + 1)⁻¹ = X := by
+    rw [← hinv]
+    calc (C - 1) * (C + 1)⁻¹ = (C + 1)⁻¹ * ((C + 1) * (C - 1)) * (C + 1)⁻¹ := by
+          rw [← Matrix.mul_assoc, nonsing_inv_mul _ hdet, Matrix.one_mul]
+      _ = (C + 1)⁻¹ * (C - 1) * ((C + 1) * (C + 1)⁻¹) := by
+          rw [hcomm]; simp only [Matrix.mul_assoc]
+      _ = _ := by rw [mul_nonsing_inv _ hdet, Matrix.mul_one]
+  have hXsym : Xᵀ = X := by
+    conv_lhs => rw [← hinv]
+    rw [Matrix.transpose_mul, Matrix.transpose_nonsing_inv, Matrix.transpose_sub,
+      Matrix.transpose_add, Matrix.transpose_one, hCsym, hinv']
+  -- `X` is `i` times a real symmetric matrix
+  set H : Matrix ι ι ℝ := Matrix.of fun i j => (X i j).im with hH
+  have hre : ∀ i j, (X i j).re = 0 := by
+    intro i j
+    have h1 := congrFun (congrFun hX i) j
+    have h2 := congrFun (congrFun hXsym i) j
+    simp only [conjTranspose_apply, Matrix.neg_apply, Matrix.transpose_apply] at h1 h2
+    rw [h2] at h1
+    have := congrArg Complex.re h1
+    simp at this
+    linarith
+  have hXH : X = Complex.I • cx H := by
+    ext i j
+    apply Complex.ext <;> simp [cx, hH, hre]
+  have hHh : H.IsHermitian := by
+    ext i j
+    have h2 := congrFun (congrFun hXsym i) j
+    simp only [Matrix.transpose_apply] at h2
+    simp [hH, Matrix.conjTranspose_apply, h2]
+  set O : Matrix ι ι ℝ := (hHh.eigenvectorUnitary : Matrix ι ι ℝ) with hO
+  have hOO : Oᵀ * O = 1 := by
+    have := mem_unitaryGroup_iff'.1 hHh.eigenvectorUnitary.2
+    rwa [Matrix.star_eq_conjTranspose, Matrix.conjTranspose_eq_transpose_of_trivial] at this
+  have hOO' : O * Oᵀ = 1 := mul_eq_one_comm.1 hOO
+  have hspec : H = O * diagonal hHh.eigenvalues * Oᵀ := by
+    refine hHh.spectral_theorem.trans ?_
+    simp [Unitary.conjStarAlgAut_apply, hO, Matrix.star_eq_conjTranspose,
+      Matrix.conjTranspose_eq_transpose_of_trivial]
+  have hU : star (cx O) * cx O = 1 := by
+    rw [star_cx, ← cx_transpose, ← cx_mul, hOO, cx_one]
+  have hXcj : X = cj (cx O) fun j => Complex.I * (hHh.eigenvalues j : ℂ) := by
+    rw [hXH]
+    conv_lhs => rw [hspec]
+    rw [cx_mul, cx_mul, cx_diagonal, cx_transpose, ← star_cx]
+    exact cj_smul (cx O) Complex.I fun j => (hHh.eigenvalues j : ℂ)
+  have hcay : C = cj (cx O) fun j => (1 + Complex.I * (hHh.eigenvalues j : ℂ)) /
+      (1 - Complex.I * (hHh.eigenvalues j : ℂ)) := by
+    rw [hC, hXcj]; exact cayley_cj hU _
+  set d : ι → ℂ := fun j => phase m * ((1 + Complex.I * (hHh.eigenvalues j : ℂ)) /
+      (1 - Complex.I * (hHh.eigenvalues j : ℂ))) with hd
+  have hSd : S = cj (cx O) d := by rw [hA, hcay, cj_smul]
+  refine ⟨O, d, hOO, ?_, ?_⟩
+  · have h : cj (cx O) d * cj (cx O) (fun j => star (d j)) = 1 := by
+      rw [← cj_conjTranspose hU, ← hSd]; exact hS
+    rw [cj_mul hU, ← cj_one hU] at h
+    intro j
+    exact congrFun (cj_inj hU h) j
+  · rw [hSd, cj, star_cx]
+
+/-- Every unitary is `R diag(δ) Oᵀ` with `R`, `O` real orthogonal. -/
+theorem unitary_orth_diag_orth (V : Matrix ι ι ℂ) (hV : V * star V = 1) :
+    ∃ (R O : Matrix ι ι ℝ) (δ : ι → ℂ), Rᵀ * R = 1 ∧ Oᵀ * O = 1 ∧
+      (∀ i, δ i * star (δ i) = 1) ∧ V = cx R * diagonal δ * (cx O)ᵀ := by
+  have hV' : star V * V = 1 := mul_eq_one_comm.1 hV
+  obtain ⟨O, d, hOO, hd, hS⟩ := symm_unitary_diag (Vᵀ * V) (by
+    rw [star_mul, Matrix.mul_assoc, ← Matrix.mul_assoc V, hV, Matrix.one_mul]
+    have : Vᵀ * star Vᵀ = (star V * V)ᵀ := by
+      ext i j; simp [Matrix.mul_apply, Matrix.star_apply, mul_comm]
+    rw [this, hV', Matrix.transpose_one])
+    (by rw [Matrix.transpose_mul, Matrix.transpose_transpose])
+  have hOc : (cx O)ᵀ * cx O = 1 := by rw [← cx_transpose, ← cx_mul, hOO, cx_one]
+  have hOc' : cx O * (cx O)ᵀ = 1 := mul_eq_one_comm.1 hOc
+  have hex : ∀ i, ∃ z : ℂ, z ^ 2 = d i := fun i =>
+    IsAlgClosed.exists_pow_nat_eq (d i) (n := 2) (by norm_num)
+  choose δ hδ using hex
+  have hδ1 : ∀ i, δ i * star (δ i) = 1 := by
+    intro i
+    have h1 : Complex.normSq (d i) = 1 := by
+      have := hd i
+      rw [Complex.star_def, Complex.mul_conj] at this
+      exact_mod_cast this
+    have h2 : Complex.normSq (δ i) ^ 2 = 1 := by rw [← map_pow, hδ, h1]
+    have h3 : Complex.normSq (δ i) = 1 := by
+      have := Complex.normSq_nonneg (δ i); nlinarith
+    rw [Complex.star_def, Complex.mul_conj, h3]; simp
+  set R' : Matrix ι ι ℂ := V * cx O * diagonal (fun i => star (δ i)) with hR'
+  have hdd : diagonal (fun i => star (δ i)) * diagonal δ = (1 : Matrix ι ι ℂ) := by
+    rw [diagonal_mul_diagonal, ← diagonal_one]; congr 1; funext i
+    rw [mul_comm]; exact hδ1 i
+  have hVeq : V = R' * diagonal δ * (cx O)ᵀ := by
+    rw [hR', Matrix.mul_assoc (V * cx O), hdd, Matrix.mul_one, Matrix.mul_assoc, hOc',
+      Matrix.mul_one]
+  have hRt : R'ᵀ * R' = 1 := by
+    have : R'ᵀ * R' = diagonal (fun i => star (δ i)) * ((cx O)ᵀ * (Vᵀ * V) * cx O) *
+        diagonal (fun i => star (δ i)) := by
+      rw [hR']; simp only [Matrix.transpose_mul, Matrix.diagonal_transpose, Matrix.mul_assoc]
+    rw [this, hS]
+    have : (cx O)ᵀ * (cx O * diagonal d * (cx O)ᵀ) * cx O = diagonal d := by
+      calc (cx O)ᵀ * (cx O * diagonal d * (cx O)ᵀ) * cx O
+          = ((cx O)ᵀ * cx O) * diagonal d * ((cx O)ᵀ * cx O) := by simp only [Matrix.mul_assoc]
+        _ = diagonal d := by rw [hOc, Matrix.one_mul, Matrix.mul_one]
+    rw [this, diagonal_mul_diagonal, diagonal_mul_diagonal, ← diagonal_one]; congr 1; funext i
+    rw [← hδ i]
+    have := hδ1 i
+    linear_combination (δ i * star (δ i) + 1) * this
+  have hRs : R' * star R' = 1 := by
+    have : star R' = diagonal δ * (cx O)ᵀ * star V := by
+      rw [hR', star_mul, star_mul, star_cx, Matrix.star_eq_conjTranspose (diagonal _),
+        diagonal_conjTranspose, Matrix.mul_assoc]
+      congr 2; funext i; simp
+    rw [this, hR']
+    calc V * cx O * diagonal (fun i => star (δ i)) * (diagonal δ * (cx O)ᵀ * star V)
+        = V * (cx O * (diagonal (fun i => star (δ i)) * diagonal δ) * (cx O)ᵀ) * star V := by
+          simp only [Matrix.mul_assoc]
+      _ = 1 := by rw [hdd, Matrix.mul_one, hOc', Matrix.mul_one, hV]
+  have hreal : R'ᵀ = star R' := by
+    calc R'ᵀ = R'ᵀ * (R' * star R') := by rw [hRs, Matrix.mul_one]
+      _ = star R' := by rw [← Matrix.mul_assoc, hRt, Matrix.one_mul]
+  set R : Matrix ι ι ℝ := Matrix.of fun i j => (R' i j).re with hR
+  have hRR' : cx R = R' := by
+    ext i j
+    have := congrFun (congrFun hreal j) i
+    simp only [Matrix.transpose_apply, Matrix.star_apply] at this
+    have him : (R' i j).im = 0 := by
+      have h := congrArg Complex.im this
+      simp at h; linarith
+    apply Complex.ext <;> simp [cx, hR, him]
+  refine ⟨R, O, δ, ?_, hOO, hδ1, by rw [hRR']; exact hVeq⟩
+  apply cx_injective
+  rw [cx_mul, cx_transpose, hRR', hRt, cx_one]
+
+end Takagi
+
+/-! ### The Cartan form of a `4 × 4` unitary -/
+
+theorem Qm_conjTranspose : Qmᴴ = (2 : ℂ) • Qd := by
+  rw [Qd, smul_smul]; norm_num
+
+/-- KAK: every `4 × 4` unitary is `(A₁ ⊗ A₂) (Qm diag(δ) Qd) (B₁ ⊗ B₂)` with unitary `2 × 2`
+factors and unit `δ`. -/
+theorem kak (W : Matrix (Bool × Bool) (Bool × Bool) ℂ) (hW : W * star W = 1) :
+    ∃ (A₁ A₂ B₁ B₂ : Matrix Bool Bool ℂ) (δ : Fin 4 → ℂ),
+      A₁ * star A₁ = 1 ∧ A₂ * star A₂ = 1 ∧ B₁ * star B₁ = 1 ∧ B₂ * star B₂ = 1 ∧
+      (∀ i, δ i * star (δ i) = 1) ∧
+      W = (A₁ ⊗ₖ A₂) * (Qm * diagonal δ * Qd) * (B₁ ⊗ₖ B₂) := by
+  set V := Qd * W * Qm with hVdef
+  have hVV : V * star V = 1 := by
+    have : star V = Qd * star W * Qm := by
+      rw [hVdef, Matrix.star_eq_conjTranspose, conjTranspose_mul, conjTranspose_mul,
+        Qm_conjTranspose, Qd, conjTranspose_smul, conjTranspose_conjTranspose,
+        Matrix.star_eq_conjTranspose]
+      simp only [Matrix.mul_smul, Matrix.smul_mul, smul_smul, Matrix.mul_assoc]
+      norm_num
+    rw [this, hVdef]
+    calc Qd * W * Qm * (Qd * star W * Qm) = Qd * (W * (Qm * Qd) * star W) * Qm := by
+          simp only [Matrix.mul_assoc]
+      _ = 1 := by rw [Qm_mul_Qd, Matrix.mul_one, hW, Matrix.mul_one, Qd_mul_Qm]
+  have hWV : W = Qm * V * Qd := by
+    rw [hVdef]
+    calc W = (Qm * Qd) * W * (Qm * Qd) := by rw [Qm_mul_Qd, Matrix.one_mul, Matrix.mul_one]
+      _ = _ := by simp only [Matrix.mul_assoc]
+  obtain ⟨R, O, δ, hR, hO, hδ, hV⟩ := unitary_orth_diag_orth V hVV
+  obtain ⟨h₁, s₁, ⟨A₁, A₂, hA₁, hA₂, e₁⟩, hs₁, hR'⟩ := orth_loc R hR
+  obtain ⟨h₂, s₂, ⟨B₁, B₂, hB₁, hB₂, e₂⟩, hs₂, hO'⟩ := orth_loc O hO
+  have E1 : Qm * cx R = (A₁ ⊗ₖ A₂) * Qm * diagonal (fun i => (s₁ i : ℂ)) := by
+    rw [hR', cx_mul, cx_diagonal, ← Matrix.mul_assoc]
+    exact congrArg (· * _) e₁
+  have E2' : Qm * cx O = (B₁ ⊗ₖ B₂) * Qm * diagonal (fun i => (s₂ i : ℂ)) := by
+    rw [hO', cx_mul, cx_diagonal, ← Matrix.mul_assoc]
+    exact congrArg (· * _) e₂
+  have E2 : (cx O)ᵀ * Qd = diagonal (fun i => (s₂ i : ℂ)) * Qd * (star B₁ ⊗ₖ star B₂) := by
+    have e := congrArg conjTranspose E2'
+    rw [conjTranspose_mul, conjTranspose_mul, conjTranspose_mul, diagonal_conjTranspose,
+      conjTranspose_kronecker, ← Matrix.star_eq_conjTranspose (cx O), star_cx] at e
+    have hs : (star fun i => (s₂ i : ℂ)) = fun i => (s₂ i : ℂ) := by
+      funext i; simp
+    rw [hs] at e
+    rw [Qd, Matrix.mul_smul, Matrix.mul_smul, Matrix.smul_mul, e]
+    simp only [Matrix.mul_assoc, Matrix.star_eq_conjTranspose]
+  have hs₁' : ∀ i, (s₁ i : ℂ) ^ 2 = 1 := fun i => by exact_mod_cast hs₁ i
+  have hs₂' : ∀ i, (s₂ i : ℂ) ^ 2 = 1 := fun i => by exact_mod_cast hs₂ i
+  refine ⟨A₁, A₂, star B₁, star B₂, fun i => s₁ i * δ i * s₂ i, hA₁, hA₂, ?_, ?_, ?_, ?_⟩
+  · rw [star_star]; exact mul_eq_one_comm.1 hB₁
+  · rw [star_star]; exact mul_eq_one_comm.1 hB₂
+  · intro i
+    have : star ((s₁ i : ℂ) * δ i * s₂ i) = s₁ i * star (δ i) * s₂ i := by simp
+    rw [this]
+    linear_combination ((s₁ i : ℂ) ^ 2 * (s₂ i : ℂ) ^ 2) * hδ i + (s₂ i : ℂ) ^ 2 * hs₁' i + hs₂' i
+  · rw [hWV, hV]
+    calc Qm * (cx R * diagonal δ * (cx O)ᵀ) * Qd
+        = (Qm * cx R) * diagonal δ * ((cx O)ᵀ * Qd) := by simp only [Matrix.mul_assoc]
+      _ = (A₁ ⊗ₖ A₂) * Qm * diagonal (fun i => (s₁ i : ℂ)) * diagonal δ *
+            (diagonal (fun i => (s₂ i : ℂ)) * Qd * (star B₁ ⊗ₖ star B₂)) := by rw [E1, E2]
+      _ = (A₁ ⊗ₖ A₂) * (Qm * (diagonal (fun i => (s₁ i : ℂ)) * diagonal δ *
+            diagonal (fun i => (s₂ i : ℂ))) * Qd) * (star B₁ ⊗ₖ star B₂) := by
+          simp only [Matrix.mul_assoc]
+      _ = _ := by rw [diagonal_mul_diagonal, diagonal_mul_diagonal]
 
 end PEqualNP.QuantumGravity.Open.KAK
