@@ -13,6 +13,8 @@
 - [checked-finite, r=0.0] Addison: a local big bang propagates to a multiverse big bang (ontology/SOURCES.md): order fact only: a local origin reaches every level iff it is an initial (least) element; preorders on 1..4 element
 - [checked-finite, r=0.0] Addison: a postmodern history, Lyotard 1979 (ontology/SOURCES.md; metaphysics/BASE.md); the Lyotard link is analogy (reading), not checked: Kripke fact only: axiom 5 fails on some S4 frame on 3 worlds
 - [checked-finite, r=0.0] Addison: the lights going out (ontology/SOURCES.md); de Sitter horizon, Rindler 1956 (cited, not re-read): a(t)=e^(Ht): light from t covers comoving c/(H a(t)), so the proper event horizon is c/H at e
+- [checked-finite, r=0.0] Addison: the multiverse big bang in this ontology (*/level.json): the level preorder from join arrows has no least element; with time/level.json in, the cheapest fix needs 5 new verified joins (from h
+- [checked-finite, r=0.0] Addison: map-service routing on OpenStreetMap architecture for the outer buses (ontology/SOURCES.md): Dijkstra, A* (halved exact and one-landmark ALT heuristics) and contraction hierarchies return the
 - [checked-finite, r=0.0] Addison: the multiverse big bang in this ontology (*/level.json): the level preorder from join arrows has no least element; the cheapest fix needs 4 new verified joins
 - [checked-finite, r=0.0] Addison: moving forward through time is a round of checks (ontology/SOURCES.md; Fisher.lean lost_mono, inverted): toy fact only: a step that only adds passing checks never unsettles a record, all stor
 - [checked-finite, r=0.0] Addison: a Homestuck ontology (homestuck/BASE.md sections 6 and 7); the alpha and doomed timeline link is analogy (reading), not checked: Kripke fact only: in the 7-world toy, []c holds at {1,4} and ~
@@ -22,5 +24,4 @@
 - [checked-finite, r=0.0] Addison: ~ATH, the Mobius Double Reacharound virus as a catch-22 (ontology/SOURCES.md); the virus link is analogy (reading), not checked: Boolean fact only: A halts <-> B halts with B halts <-> A halt
 - [checked-finite, r=0.0] Addison: social applications of the buses: Granovetter weak ties (ontology/SOURCES.md): two cliques K_k, k=2..5: no bridge gives infinite cover time; one bridge makes it finite, hitting time k(k-1)+1 
 - [open, r=1.0] Addison: Stirner's fixed ideas (ontology/SOURCES.md): the fixed idea in Stirner (1844) and in psychiatry: Esquirol's monomania, Janet's idee fixe
-- [open, r=1.0] Addison: map-service routing on OpenStreetMap architecture for the outer buses (ontology/SOURCES.md): Dijkstra, A* (halved exact and one-landmark ALT heuristics) and contraction hierarchies return the
 - [open, r=1.0] Addison: time as socially constructed (ontology/SOURCES.md): relativity: time is a coordinate; whether it is fundamental is contested

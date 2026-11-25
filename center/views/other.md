@@ -51,6 +51,7 @@
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, How to Leave Town (essays/knowing.md); the leaving link is analogy (reading), not checked: Kepler fact only: for h != 0, an orbit is bound iff E < 0, exact on the cosmos gr
 - [checked-finite, r=0.0] Addison: the centre as a road network (routing/BASE.md): programs linked by shared evidence files: 14 components among 17 programs; most programs are unreachable from the rest
 - [checked-finite, r=0.0] Addison: which results cross to the multiverse (time/BASE.md section 5): .2 fails on some branching history and holds with no privileged world
+- [checked-finite, r=0.0] Addison: planned routes against haphazard buses (transit/BASE.md; routing/BASE.md): max hitting time / hop distance over connected n-stop graphs is n^2-3n+3 for n=2..5, the clique with one pendant sto
 - [checked-finite, r=0.0] Homestuck alchemy (homestuck/BASE.md): alchemy at b = 3 is an OR circuit that shares gates
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, I Want You to Know That I'm Awake / I Hope That You're Asleep (essays/knowing.md); the link is analogy (reading), not checked: Kripke fact only: p and ~p never hold at one 
 - [checked-finite, r=0.0] Addison: sync Homestuck with Car Seat Headrest (carseat/, homestuck/level.json); the timeline and retcon link is analogy (reading), not checked: Kripke fact only: Twin Fantasy 2011 and 2018 as a 2-wor
@@ -58,8 +59,8 @@
 - [checked-finite, r=0.0] Beauvoir, reciprocity, Pour une morale de l'ambiguite 1947 and Le Deuxieme Sexe 1949 (not re-read; Beauvoir.lean); the reciprocity link is analogy (reading), not checked: Kripke fact only: B (p -> []<
 - [checked-finite, r=0.0] Addison: Car Seat Headrest as a level, dated records (carseat/BASE.md): 1 2010, 2 2010, Twin Fantasy 2011, Face to Face 2018 form a time-ordered list; the two versions are 7 years apart
 - [tested, r=0.5] Addison: settled stays settled on the real history (git log of */findings.jsonl): measured on the history: 42 versions of the findings.jsonl files, 0 records removed, 0 downgraded (confirmation lines 
+- [tested, r=0.5] Addison: settled stays settled on the real history (git log of */findings.jsonl): measured on the git history of every */findings.jsonl: at writing, 44 versions, 0 removed, 0 downgraded, 1 superseded 
 - [open, r=1.0] Addison: the Google Maps algorithm (routing/BASE.md): the method Google Maps uses in production
 - [open, r=1.0] Addison: Car Seat Headrest, High to Death and Kid War (carseat/BASE.md): no formal structure yet; no check decides what a song means
 - [open, r=1.0] Homestuck, the meteor (homestuck/BASE.md section 5): the meteor as a transport map between two sessions that keeps the rules
-- [open, r=1.0] Addison: planned routes against haphazard buses (transit/BASE.md; routing/BASE.md): max hitting time / hop distance over connected n-stop graphs is n^2-3n+3 for n=2..5, the clique with one pendant sto
 - [open, r=1.0] Addison: Car Seat Headrest, lineage of 1, 2, Disjecta Membra, Please Pass the Milk Please (carseat/BASE.md): lineage as a DAG of re-recordings; needs dated edges, which are not on record
