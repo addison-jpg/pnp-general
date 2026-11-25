@@ -1,0 +1,3 @@
+# Qwen2.5-7B-Instruct: exact counts read from its Hugging Face headers (no weights stored). See math/qwen/remote_headers.py.
+check "python3 -I math/qwen/remote_headers.py"
+frame "Qwen2.5-7B-Instruct tensor and parameter counts, read by byte range from the public safetensors headers" reading "exact fact only: 4 shards, 339 tensors, 7,615,616,512 parameters, BF16; the weights themselves are not stored in the repo" -> 2 label checked-finite reach 1 cost 40
