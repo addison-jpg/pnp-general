@@ -1,0 +1,8 @@
+# The smallest love: a household as a check, not a template. See culture/love/family.py.
+check "python3 -I culture/love/family.py"
+check "python3 -I core/ontology/beauvoir.py"
+frame "Addison: bring love down to the family, as a check, not an oppressive implementation" reading "exact fact only: on every household of 1..6 people the check passes iff no member is alone (0, 1, 4, 41, 768, 27449); every hand-written shape passes or fails by that alone" -> 2 label checked-finite reach 3 cost 40
+frame "Beauvoir: freedom requires that the other can go on (Pour une morale de l'ambiguite, 1947; cited from memory); the link is analogy (reading), not checked" reading "on bonds, no one left with no one is the same condition as successor-seriality on a symmetric relation" -> 3 label checked-finite reach 2 cost 40
+frame "Bronfenbrenner, The Ecology of Human Development (1979; cited from memory): the household as the microsystem, the environment since birth" reading "ANALOGY (a reading): the first system a person is in" -> none label open reach 2 cost 80
+frame "Steinmetz 2016 (Augsburg University; University of Minnesota dissertation): match a board to clusters of expert positions, not to an exact copy" reading "ANALOGY (a reading): match a new household or question to the nearest recorded one; see core/ontology/SEMANTICS.md" -> none label open reach 2 cost 80
+frame "Addison: it is all poetry; we are converging on an art form" reading "ANALOGY (a reading): exact structure underneath, labelled reading above, in every pillar; see core/ontology/SEMANTICS.md" -> none label open reach 3 cost 160

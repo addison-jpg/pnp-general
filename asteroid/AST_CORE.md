@@ -49,6 +49,17 @@ Writing it shows what is still missing: `cone(G, n)` (add the apex's edges) and 
 
 With these, all four facts of `cone.py` are expressible in roughly 15 lines of `.ath`, and the Rust stays domain-free. This is a paper check, not a run.
 
+## Beauvoir in the core (so it never has to be asked for again)
+
+Two built-in claims, cheap, available to every program:
+
+| claim | meaning | checked today by |
+|---|---|---|
+| `claim mirror R` | Beauvoir's condition on a finite relation R: every state reached from anywhere can itself go on (successor-seriality, []<>T) | `core/ontology/beauvoir.py` |
+| `claim reaches_stable P` | from every starting state of a finite system P, a path of single local repairs reaches a stable state (the search from where you stand) | `culture/love/paths.py` (Roth and Vande Vate's theorem at k = 1, cited from memory) |
+
+The smallest program that uses both is the household check (`culture/love/family.py`, about 50 lines in Python today): no member is left with no one. It is the first candidate to port to `.ath` on the Rust core.
+
 ## Next
 
 1. Write the core grammar into `asteroid/SPEC.md` as a new section, once agreed.
