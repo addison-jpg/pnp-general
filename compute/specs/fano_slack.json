@@ -1,0 +1,8 @@
+{
+  "name": "fano_slack",
+  "entry": "one-not/tools/tensor/shard_fano.py",
+  "args": [],
+  "shards": 20,
+  "output": "fano_slack.jsonl",
+  "requirements": ["numpy>=2.0"]
+}

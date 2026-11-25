@@ -1,0 +1,91 @@
+# Compute jobs on GitHub runners (boards/tasks/git-compute.md). A job spec (JSON) names a Python entry point in the repo, its args,
+# a shard count N (<= 20) and an output file name. The workflow runs the entry as `python3 -I ENTRY ARGS --shard i --of N --out PATH`
+# on N ubuntu-latest jobs, uploads each shard's output as an artifact, then merges the shards (concatenated in shard order) into one artifact.
+# Trigger: Actions > compute > Run workflow with `spec` = a path in the repo (e.g. compute/specs/fano_slack.json), or push to a compute/** branch
+# (spec at compute/job.json on that branch). Read-only: no push, no release, no tag, no PR, no comment (QUIET).
+name: compute
+on:
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: path to a job spec in the repo
+        required: true
+        default: compute/specs/fano_slack.json
+  push:
+    branches: ['compute/**']
+permissions:
+  contents: read
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.p.outputs.matrix }}
+      shards: ${{ steps.p.outputs.shards }}
+      spec: ${{ steps.p.outputs.spec }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        env:
+          SPEC_IN: ${{ github.event_name == 'workflow_dispatch' && inputs.spec || 'compute/job.json' }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          spec = os.path.normpath(os.environ['SPEC_IN'])
+          assert not spec.startswith(('..', '/')) and spec.endswith('.json') and os.path.isfile(spec), 'bad spec path ' + spec
+          j = json.load(open(spec))
+          n = j['shards']; assert isinstance(n, int) and 1 <= n <= 20, 'shards must be 1..20'
+          e = os.path.normpath(j['entry']); assert e.endswith('.py') and not e.startswith(('..', '/')) and os.path.isfile(e), 'bad entry ' + e
+          assert all(isinstance(x, str) for x in j.get('args', [])), 'args must be strings'
+          assert re.fullmatch(r'[A-Za-z0-9._-]+', j['output']), 'output must be a plain file name'
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('matrix=' + json.dumps({'shard': list(range(n))}) + '\n')
+              f.write('shards=%d\n' % n)
+              f.write('spec=' + spec + '\n')
+          PY
+  shard:
+    needs: plan
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Run shard ${{ matrix.shard }} of ${{ needs.plan.outputs.shards }}
+        env:
+          SPEC: ${{ needs.plan.outputs.spec }}
+          SHARD: ${{ matrix.shard }}
+          OF: ${{ needs.plan.outputs.shards }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess, sys
+          j = json.load(open(os.environ['SPEC']))
+          subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-q'] + j.get('requirements', ['numpy>=2.0']))
+          os.makedirs('shards', exist_ok=True)
+          cmd = [sys.executable, '-I', j['entry']] + j.get('args', []) + ['--shard', os.environ['SHARD'], '--of', os.environ['OF'], '--out', 'shards/%s.part' % os.environ['SHARD']]
+          print(cmd, flush=True); sys.exit(subprocess.call(cmd))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shard-${{ matrix.shard }}
+          path: shards/${{ matrix.shard }}.part
+  merge:
+    needs: [plan, shard]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { pattern: shard-*, path: parts }
+      - name: Merge in shard order
+        env:
+          SPEC: ${{ needs.plan.outputs.spec }}
+          OF: ${{ needs.plan.outputs.shards }}
+        run: |
+          mkdir -p merged
+          OUT=merged/$(python3 -c "import json,os;print(json.load(open(os.environ['SPEC']))['output'])")
+          : > "$OUT"
+          for i in $(seq 0 $((OF-1))); do cat "parts/shard-$i/$i.part" >> "$OUT"; done
+          wc -l "$OUT"; sha256sum "$OUT"
+      - uses: actions/upload-artifact@v4
+        with: { name: merged, path: merged/ }

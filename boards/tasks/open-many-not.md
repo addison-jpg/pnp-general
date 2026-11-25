@@ -10,13 +10,16 @@
 ## Current target
 
 - Proved: single OR (B2), systems of ORs by partition (B4), S3(a) per-set flip lemma (B1), the point-lemma ingredients (B8). Findings: Or4ManyNot, OrSystemManyNot, FlipLemma, FlipHall, PointLemma in `boards/TREE.md`.
-- Open: **S3(b)**, flip classes across all sets ≥ base (Hall form). Reduced (B5) to the thin-basis lemma, then (B6) to the **point lemma**; for two sets (B9) to **rule R2**. Fano and two 5-sets are the first unsettled systems at the thin-basis level (two 5-sets settled by SAT, B6).
+- Open: **S3(b)**, flip classes across all sets ≥ base (Hall form). Reduced (B5) to the thin-basis lemma, then (B6) to the **point lemma**; for two sets (B9) to **rule R2**, which is false as a local rule (O1); target now **PHC@0** (U1). Fano and two 5-sets are the first unsettled systems at the thin-basis level (two 5-sets settled by SAT, B6).
 - Systems of several overlapping ORs with cycles: no bound beyond base-below.
 
 ## OPEN / STOPPED
 
 - OPEN (Sonnet): SAT, run `python3 -I one-not/research/open/B6_point_sat.py NAME` for NAME in fano, grid3, ag3, pg3 with long timeouts (one at a time, background), record UNSAT/SAT/unfinished with seconds in one-not/research/open/B6_thin_basis.md s3. UNSAT at base-1 proves the thin-basis lemma for that system; SAT is not a counterexample (relaxation) and then needs a multi-point version (points 0 and e_u) of the same encoding.
-- TAKEN O1 (Opus): paper proof of rule R2 (B9 s3.2): in every program with S, T among its lines (|S ∩ T| <= 1, both of size >= 2), removing one private point deletes >= 1 line after cleanup, or removing a private pair a in S, e in T deletes >= 2. Implies the point lemma for two sets. -> one-not/research/open/B9_point_two_sets.md
+- DECIDED O1 (Opus): rule R2 (B9 s3.2) as stated is FALSE (exact SAT, witnesses re-checked by two independent cleanup counts): (3,5) disjoint and shared with 8 lines, (4,4) disjoint with 9 lines (four leaf-leaf lines whose squares partition S x T), more at 9..11 lines; R2 holds (UNSAT) at every K <= base+1 run. The point lemma is untouched (needs R2 only below base); any gate-elimination step must use m <= base-1. PHC@0 holds on all three smallest R2 counterexamples: PHC@0 (U1) is the better target. -> one-not/research/open/O1_r2.md, O1_r2_check.py
+- OPEN (Sonnet): exact, PHC@0 at the R2-failure sizes: enumerate R2-failing programs of `B11_r2_sat.py r2sat` at (3,5) d and s with 8 lines and (4,4) d with 9 lines (blocking clauses on line values, cap 10^4), test PHC@0 (U1_payment_hall.partition) on each; record count, exhaustive or capped, failures. -> one-not/research/open/O1a_phc_r2cex.md
+- OPEN (Sonnet): paper proof, PHC@0 for |S| = 2: in every point program with S, T among its lines (|S| = 2, |S cap T| <= 1) there are a line X containing S and |T| - 1 other lines forming a spanning tree of T, each line paying one pair of points inside its own value cap T. -> one-not/research/open/O1b_phc_s2.md
+- OPEN (Sonnet): exact SAT, bounded R2: `B11_r2_sat.py r2sat` at K = base and base + 1 for (4,5) and (3,6), shared and disjoint (one core, nice, 900 s cap each); all UNSAT supports R2 restricted to m <= base + 1, any SAT kills it. -> one-not/research/open/O1c_r2_bounded.md
 - STOPPED B7 (container restart; partial B7_thin_sat.py kept; reopen to continue): SAT of the thin-basis problem (B5 section 5) on Fano, two 5-sets, K4-type and next cyclic systems on 5-6 points, long runs plus one-line-more control; one-not/research/open/B7_thin_sat.py, B7_thin_sat.md
 - STOPPED B10 (container restart; partial draft B10_point_S3.md kept, 105 lines; reopen to continue) (was OPEN, Sonnet): paper proof of the point lemma for |S| = 3, any T (|S ∩ T| <= 1): no program of |T| lines has S and T among its lines. Use the tight-tree lemma of B9 s2; the open cases are: T's sub-DAG has |T| lines with |T|+1 leaf slots (one leaf slot without a T-point, or one T-point in two leaf slots), or with |T| leaf slots and one line read twice. -> one-not/research/open/B9_point_two_sets.md s2
 - STOPPED B11 (container restart; partial B11_r2_sat.py kept, runs lost; reopen to continue) (Sonnet): SAT, rule R2 of B9 s3.2 exactly (not sampled): add to B9_two_sets.py a mode that asks for a program of K lines (no dead line) computing S, T in which no private point and no private pair (a in S, e in T) satisfies R2 after cleanup; run 4 4 d and 3 5 d for K = 10..13. UNSAT = R2 holds there; SAT = R2 false, record the witness. -> one-not/research/open/B9_point_two_sets.md s3.3
@@ -30,6 +33,7 @@
 - B4's partition bound does not settle the acyclic thin-basis case; it is not a bound for overlapping systems with cycles.
 - With XOR as a fifth op the point lemma is false (3,3 shared in 3 lines): any proof must use monotonicity (B9).
 - The one-point rule R is false (10-line witness, |S| = 3, |T| = 5) (B9).
+- Rule R2 (point or S/T pair removal) is false for programs with extra lines: (3,5) with 8 lines, (4,4) disjoint with 9 (O1, exact SAT). Only the count-using form (m <= base - 1) can hold.
 - B3 SAT: 224 systems (n <= 6) UNSAT for t = 2, 3 at base-1, no hit: not a refutation, no counterexample either.
 
 ## Decided (one line each; the file holds the proof or the note)
@@ -42,3 +46,4 @@
 - B6: thin-basis lemma reduced to the point lemma (sens at the all-zero point: lines become A∪B, A∩B, A∖B, B∖A of partial transversals); exact SAT UNSAT at base-1 on two 5-sets (shared point and disjoint) and Pasch, so S3(b) holds on two 5-sets for every circuit; Fano not finished (300 s). -> `one-not/research/open/B6_thin_basis.md`
 - B8: `sens_gate`, `sens_thin_card`, `sens_orS`. -> `Open/PointLemma.lean`
 - B9: point lemma for two sets not proved in general; proved when min(|S|,|T|) <= 2 (tight-tree lemma, paper); exact SAT UNSAT at |S|+|T|-3 lines for every size pair with |S|+|T| <= 10; gate elimination: rule R2 implies the lemma (paper). Exact obstacle: R2. -> `one-not/research/open/B9_point_two_sets.md`, `B9_two_sets.py`
+- O1: rule R2 refuted (exact SAT, (3,5) 8 lines, (4,4) d 9 lines); PHC@0 holds on the counterexamples and is the better target. -> `one-not/research/open/O1_r2.md`

@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 73,
+   "checked": 82,
    "tested": 8,
    "refuted": 5
   },
@@ -89,9 +89,18 @@
    "2ee8c618",
    "8008158e",
    "2e78144d",
+   "eb92517c",
+   "af4035dc",
+   "a70f6fd8",
+   "53be30e1",
+   "408f74ba",
    "aff6e6b7",
    "2e8126de",
-   "957df3fd"
+   "957df3fd",
+   "dde7834a",
+   "7961ecd5",
+   "14e1a81a",
+   "f9156a1e"
   ],
   "unverified_here": []
  },
@@ -178,7 +187,7 @@
  },
  "lean": {
   "counts": {
-   "checked": 13
+   "checked": 22
   },
   "verified": [
    "57b5bd42",
@@ -191,15 +200,24 @@
    "2ee8c618",
    "8008158e",
    "2e78144d",
+   "eb92517c",
+   "af4035dc",
+   "a70f6fd8",
+   "53be30e1",
+   "408f74ba",
    "aff6e6b7",
    "2e8126de",
-   "957df3fd"
+   "957df3fd",
+   "dde7834a",
+   "7961ecd5",
+   "14e1a81a",
+   "f9156a1e"
   ],
   "unverified_here": []
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 13
+   "checked": 22
   },
   "verified": [
    "57b5bd42",
@@ -212,20 +230,33 @@
    "2ee8c618",
    "8008158e",
    "2e78144d",
+   "eb92517c",
+   "af4035dc",
+   "a70f6fd8",
+   "53be30e1",
+   "408f74ba",
    "aff6e6b7",
    "2e8126de",
-   "957df3fd"
+   "957df3fd",
+   "dde7834a",
+   "7961ecd5",
+   "14e1a81a",
+   "f9156a1e"
   ],
   "unverified_here": []
  },
  "lean/PEqualNP/Philosophy": {
   "counts": {
-   "checked": 3
+   "checked": 7
   },
   "verified": [
    "aff6e6b7",
    "2e8126de",
-   "957df3fd"
+   "957df3fd",
+   "dde7834a",
+   "7961ecd5",
+   "14e1a81a",
+   "f9156a1e"
   ],
   "unverified_here": [
    {
@@ -251,7 +282,7 @@
  },
  "lean/PEqualNP/QuantumGravity": {
   "counts": {
-   "checked": 10
+   "checked": 12
   },
   "verified": [
    "57b5bd42",
@@ -263,7 +294,9 @@
    "9c7d09e2",
    "2ee8c618",
    "8008158e",
-   "2e78144d"
+   "2e78144d",
+   "eb92517c",
+   "af4035dc"
   ],
   "unverified_here": [
    {
@@ -276,7 +309,7 @@
  },
  "lean/PEqualNP/QuantumGravity/Open": {
   "counts": {
-   "checked": 8
+   "checked": 10
   },
   "verified": [
    "182f7509",
@@ -286,13 +319,33 @@
    "9c7d09e2",
    "2ee8c618",
    "8008158e",
-   "2e78144d"
+   "2e78144d",
+   "eb92517c",
+   "af4035dc"
   ],
   "unverified_here": [
    {
     "id": "ad6e91ac",
     "why": [
      "PEqualNP.QuantumGravity.Open.CtcReset.reset_support_on_start_cycle not in lean/PEqualNP/QuantumGravity/Open/CtcReset.lean"
+    ]
+   }
+  ]
+ },
+ "lean/PEqualNP/Worlds": {
+  "counts": {
+   "checked": 3
+  },
+  "verified": [
+   "a70f6fd8",
+   "53be30e1",
+   "408f74ba"
+  ],
+  "unverified_here": [
+   {
+    "id": "d4ed1a42",
+    "why": [
+     "needs a second seat in by"
     ]
    }
   ]
@@ -855,6 +908,12 @@
    },
    {
     "id": "8e6acfe6",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "d6034ffc",
     "why": [
      "needs a second seat in by"
     ]

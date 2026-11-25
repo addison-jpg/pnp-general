@@ -418,6 +418,27 @@ Added by seat W1, 2026-11-25. A map, not progress on P vs NP. Entries in `worlds
 | Levin, Probl. Inf. Transm. 9 (1973); Ladner, JACM 22 (1975) | universal search (galactic P = NP); intermediate degrees if P != NP | MEM | `worlds/README.md` |
 | Razborov, Dokl. Akad. Nauk SSSR 281 (1985); Tardos, Combinatorica 8 (1988) | monotone CLIQUE bound; monotone vs general gap | MEM | `worlds/README.md` |
 
+## O. Languages, logics and maps between them (task language unification, Fable seat)
+
+Added 2026-11-25. Map and restatement only: `worlds/LANGUAGE.md`, `lean/PEqualNP/Worlds/Descriptive.lean`. Nothing was read in full in this seat.
+
+| Source | What it gives | Status | Note |
+|---|---|---|---|
+| Fagin, "Generalized first-order spectra and polynomial-time recognizable sets", SIAM-AMS Proc. 7 (1974) | NP = existential second-order logic | MEM | `worlds/LANGUAGE.md` |
+| Immerman, "Relational queries computable in polynomial time", STOC 1982; Inf. Control 68 (1986) | on ordered finite structures P = FO(LFP) | MEM | `worlds/LANGUAGE.md` |
+| Vardi, "The complexity of relational query languages", STOC 1982 | the same capture of P, independently | MEM | `worlds/LANGUAGE.md` |
+| Immerman, *Descriptive Complexity*, Springer 1999 | textbook; the encoding of structures as strings | MEM (not opened) | `worlds/LANGUAGE.md` |
+| Libkin, *Elements of Finite Model Theory*, Springer 2004 | textbook; games, locality, fixed point logics, capture theorems | MEM (not opened) | `worlds/LANGUAGE.md` |
+| Grädel, Kolaitis, Libkin, Marx, Spencer, Vardi, Venema, Weinstein, *Finite Model Theory and Its Applications*, Springer 2007 | textbook; Grädel: SO-Horn captures P on ordered structures | MEM (not opened) | `worlds/LANGUAGE.md` |
+| Abiteboul and Vianu, STOC 1991 | FO(LFP) = FO(PFP) iff P = PSPACE | MEM | `worlds/LANGUAGE.md` |
+| Senellart, `descriptive-complexity` (Lean 4 library, v1.5.0, Mathlib v4.36.0, github.com/PierreSenellart/descriptive-complexity); Senellart and Gnatenko, "Descriptive Complexity in Lean: Completeness by First-Order Reductions", arXiv 2609.18261 (2026) | descriptive complexity in Lean on Mathlib's ModelTheory; 73 completeness results; bridges to `Turing.FinTM2`; whether string-level Fagin and Immerman–Vardi are proved or assumed is unclear from the page | fetched page summary; source not read | `worlds/LANGUAGE.md` section 0. PRIOR ART for `Descriptive.lean` |
+| Montague, "The proper treatment of quantification in ordinary English" (1973); "Universal grammar" (1970) | a fragment of English translated compositionally into intensional logic | MEM | `worlds/LANGUAGE.md` |
+| Lambek, "The mathematics of sentence structure", Amer. Math. Monthly 65 (1958); pregroups (1999) | grammar as a type calculus | MEM | `worlds/LANGUAGE.md` |
+| Joshi (1985), mildly context-sensitive languages; Shieber, "Evidence against the context-freeness of natural language", Linguistics and Philosophy 8 (1985) | natural-language syntax beyond context-free, within polynomial-time classes; a 2026 Computational Linguistics article disputes Shieber | MEM (Joshi); search summary (Shieber, the dispute) | `worlds/LANGUAGE.md` |
+| Coecke, Sadrzadeh, Clark, "Mathematical foundations for a compositional distributional model of meaning", arXiv 1003.4394; Linguistic Analysis 36 (journal year given as 2010 or 2011) | DisCoCat: pregroup grammar to vector spaces, sentence meaning as tensor contraction | ABS (search summary) | `worlds/LANGUAGE.md` |
+| Mikolov, Le, Sutskever, "Exploiting similarities among languages for machine translation" (2013); Conneau et al., "Word translation without parallel data" (2017); Schönemann, Psychometrika 31 (1966) | linear, then orthogonal (Procrustes) maps between word-vector spaces of two languages | search summary of secondary sources; arXiv numbers 1309.4168 and 1710.04087 from memory, unverified | `worlds/LANGUAGE.md` |
+| Howard, "The formulae-as-types notion of construction" (1969, printed 1980); Curry (1934) | proofs as programs | MEM | `worlds/LANGUAGE.md` |
+
 ## J. Searched and not found (so nobody searches again)
 
 - A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`).
