@@ -4,7 +4,7 @@ A program is a text file `NAME.ath`. Lines are read top to bottom. `#` starts a 
 
 ```
 program   := line*
-line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record
+line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check
 circuit   := "circuit" NAME N NEWLINE (gate | out)* "end"
 gate      := NAME "=" ("or" | "and") WIRE WIRE  |  NAME "=" "not" WIRE
 out       := "set" POINT+ "->" WIRE
@@ -39,8 +39,14 @@ verify    := "verify lean" DIR ["within" SECONDS]                               
 theorem   := "theorem" FULL_NAME "from" MODULE "in" DIR                              (asteroid/ext_verify.py)
 levelmeans := "levelmeans" NAME                                                      (asteroid/ext_continuous.py)
 record    := "record" DIR ITEM WORD STRING
+seq       := "seq" NAME "=" ("from" PATH [STRING] | "run" STRING [STRING] | LIST)    (asteroid/ext_finite.py)
+check     := "check" STRING                                                          (asteroid/ext_finite.py; STRING is "python3 -I path.py [args]")
+claim     := "claim" NAME "=" LIST | "claim" NAME "matches" NAME [FORM] | "claim formula" NAME "=" STRING ["from" INTEGER]   (ext_finite)
+FORM      := as-is | diff | partial | plus1
+LIST      := "[" INTEGER ("," INTEGER)* "]"
+EXPR      := integers, n, + - * // ** ( ), postfix ! and !!, "C(" EXPR "," EXPR ")", "sum(" VAR "," EXPR "," EXPR "," EXPR ")"
 WIRE      := POINT | NAME            (a point 0 .. N-1, or an earlier gate name)
-WORD      := checked | paper | tested | refuted | open | premise
+WORD      := checked | checked-finite | checked-infinite | paper | tested | refuted | open | premise
 ```
 
 ## Meaning
@@ -50,6 +56,19 @@ WORD      := checked | paper | tested | refuted | open | premise
 - `base(c)` = sum over the sets of (size − 1). `witness(c)` = gates of any type that are 0 at a zero point of a set and 1 at two of its atoms; `orwitness(c)` = the same for OR gates only. `slack(c)` = `orwitness(c)` − `base(c)`; `anyslack` uses `witness`. A **cube** is a set of points fixed to 1; `slack` at a cube counts only the sets that avoid it.
 - `corpus W = GLOB` loads every circuit of every matching `.json` (one circuit) or `.jsonl` (one per line, bare or under the key `circuit`) file; files that are not circuits, are incorrect, or break the `where` limits are skipped and counted in the printed line. `claim forall c in W: EXPR` evaluates EXPR with `c` replaced by each circuit, in Python, and prints one summary line (TRUE on all, or FALSE with the first failing files); it is true only if it holds on all. With `by lean` each circuit is registered under a generated name `W_<i>` and one Lean claim per circuit goes into the one module; refused above 40 circuits, or above n = 8 for `forall cubes`. `count c in W: EXPR` prints how many satisfy EXPR. `plot hist FUNC W -> F.png` histograms FUNC(c).
 - `margin["name"](c)` is the margin of a conjecture in `one-not/tools/search/conjectures.py`; below 0 means a counterexample.
+
+## Finite claims (extension `asteroid/ext_finite.py`)
+
+Meaning. These lines let any level state an exact claim about an integer sequence.
+- `seq NAME = from PATH "KEY"` reads the one entry of a `fingerprints.json` whose name contains KEY. Without KEY, PATH is a `.json` list of integers. `seq NAME = [ ... ]` is a literal.
+- `seq NAME = run "CMD" "KEY"` runs CMD from the repository root. It must exit 0. The sequence is then read from the `fingerprints.json` beside the script.
+- CMD is always `python3 -I path.py [args]`, with the path inside the repository. It runs with a timeout of 900 s.
+- `claim NAME = [ ... ]`: the first terms are exactly these.
+- `claim NAME matches NAME2 FORM`: FORM applied to NAME equals NAME2 on their common prefix. The prefix must have at least 5 terms. FORM is `as-is` (the default), `diff` (first differences), `partial` (partial sums) or `plus1`. These are the centre's matcher forms.
+- `claim formula NAME = "EXPR" from K`: term i of NAME equals EXPR at n = K + i - 1. K is 1 by default. Integers only. `//` must divide exactly, else the claim is FALSE. `0!! = (-1)!! = 1`. `C(a, b)` is 0 when b < 0 or b > a.
+- `check "CMD"`: CMD must exit 0 and print the word PASS. It counts as a claim.
+- Each claim prints TRUE or FALSE and counts in the summary. `by lean` is not available for them.
+- Each passing `check` or `seq ... run` becomes the runner of the program's records. So `record ... checked-finite` carries a runner. The files read are cited as evidence.
 
 ## Mixed states (extension `asteroid/ext_mixed.py`; Lean: `one-not/lean/PEqualNP/W951/AsteroidMixed.lean`)
 

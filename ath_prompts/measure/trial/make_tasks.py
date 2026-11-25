@@ -1,0 +1,41 @@
+import json
+T=[]
+def a(id,kind,ans,inf,form):T.append(dict(id=id,kind=kind,answer=ans,informal=inf,formal=form))
+# arithmetic: answer = final number in output
+a("ar01","num",42,"if i got 6 boxes w 7 apples each how many apples total","If I have 6 boxes containing 7 apples each, how many apples do I have in total?")
+a("ar02","num",15,"bus has 40 ppl, 25 get off. how many left","A bus carries 40 people, and 25 of them get off. How many people remain on the bus?")
+a("ar03","num",36,"pizza cut in 8, 4.5 pizzas, how many slices lol","Each pizza is cut into 8 slices. How many slices are there in 4.5 pizzas?")
+a("ar04","num",120,"car goes 60 km/h 4 2 hrs, how far","A car travels at 60 km/h for 2 hours. How far does it travel, in kilometres?")
+a("ar05","num",7,"23 cookies split between 3 kids evenly, how many does each get max","23 cookies are divided evenly among 3 children. What is the largest whole number of cookies each child can receive?")
+a("ar06","num",25,"whats 20% of 125 pls","Please compute 20% of 125.")
+a("ar07","num",90,"shirt costs 120 and its 25% off. price now?","A shirt costs 120 and is discounted by 25%. What is the new price?")
+a("ar08","num",17,"sam is 3x as old as his kid. kid is 8. how much older is sam than 24","Sam is three times as old as his child, who is 8. By how many years does Sam's age exceed 24? Hmm wait".replace(" Hmm wait",""))
+a("ar09","num",8,"rect area 48 width 6 whats the length","A rectangle has an area of 48 and a width of 6. What is its length?")
+a("ar10","num",210,"3 shifts of 70 widgets each, total?","A factory runs 3 shifts, each producing 70 widgets. How many widgets are produced in total?")
+# fix ar08 answer: 24 vs 24 ->0; rewrite
+T[7]=dict(id="ar08",kind="num",answer=0,informal="sam is 3x as old as his kid. kid is 8. how much older is sam than 24",formal="Sam is three times as old as his child, who is 8. By how many years does Sam's age exceed 24?")
+# strings: answer must appear verbatim in output
+a("st01","contains","olleh","reverse the word hello pls","Please reverse the word \"hello\".")
+a("st02","contains","PNP-GENERAL","make pnp-general all caps","Convert the string \"pnp-general\" to uppercase.")
+a("st03","contains","banana_split","turn 'banana split' into snake case","Convert the phrase \"banana split\" to snake_case.")
+a("st04","contains","dlrow","reverse 'world' 4 me","Please reverse the string \"world\".")
+a("st05","contains","a,b,c","join a b c w commas no spaces","Join the letters a, b and c with commas and no spaces.")
+a("st06","contains","HelloWorld","hello world -> PascalCase pls","Convert \"hello world\" to PascalCase.")
+a("st07","contains","3","how many p's in 'mississippi'","How many times does the letter \"p\" occur in \"mississippi\"?")
+a("st08","contains","cat","first 3 letters of 'catalog'?","What are the first three letters of the word \"catalog\"?")
+a("st09","contains","radar","which of these is a palindrome: radar, robot, river","Which of the following words is a palindrome: radar, robot, river?")
+a("st10","contains","x-y-z","swap the dots 4 dashes in x.y.z","Replace every dot with a dash in the string \"x.y.z\".")
+# python: extract a def, exec, run asserts
+a("py01","py","assert f(2)==4 and f(-3)==9","write a 1 line python fn f(x) that squares x","Write a one-line Python function f(x) that returns the square of x.")
+a("py02","py","assert f('abc')=='cba' and f('')==''","python fn f(s) reverses a string, 1 line pls","Write a one-line Python function f(s) that returns the string s reversed.")
+a("py03","py","assert f([1,2,3])==6 and f([])==0","py f(xs) -> sum of list, oneliner","Write a one-line Python function f(xs) that returns the sum of the list xs.")
+a("py04","py","assert f(4) is True and f(7) is False","f(n) in python true if n even else false, short","Write a one-line Python function f(n) that returns True if n is even and False otherwise.")
+a("py05","py","assert f([3,1,2])==3 and f([-1,-5])==-1","python f(xs) gives the biggest item, 1 line","Write a one-line Python function f(xs) that returns the largest element of xs.")
+# extraction
+a("ex01","contains","2026-03-14","whats the date in this: 'invoice #88, issued 2026-03-14 to acme'","Extract the date from the following text: \"invoice #88, issued 2026-03-14 to acme\".")
+a("ex02","contains","jo@example.org","pull the email out: 'ping jo@example.org re the draft'","Extract the email address from the following text: \"ping jo@example.org re the draft\".")
+a("ex03","num",88,"invoice number? 'invoice #88, issued 2026-03-14 to acme'","What is the invoice number in the following text: \"invoice #88, issued 2026-03-14 to acme\"?")
+a("ex04","contains","Lisbon","where's the meeting: 'mtg moved 2 lisbon on fri, bring slides'","Where is the meeting, according to the following text: \"mtg moved 2 lisbon on fri, bring slides\"?")
+a("ex05","num",3,"how many items: 'buy eggs, milk, bread'","How many items are in the following list: \"buy eggs, milk, bread\"?")
+json.dump(T,open("tasks.json","w"),indent=1)
+print(len(T))

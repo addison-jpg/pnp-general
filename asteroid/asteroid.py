@@ -268,11 +268,12 @@ SHOW_LEAN = False
 FORCE = False
 FORCE_SEEN = {}
 SKIPPED = []     # lines skipped because numpy or matplotlib is not installed
+RUNNERS = []     # repo check commands that passed in this run (ext_finite); a record carries them as its runner
 EXTRA_LEAN = {"imports": [], "decls": []}   # extensions may add Lean imports and declarations to the generated module
 def reset():
     """Forget every name and claim: a fresh run in the same process (the window's Run button)."""
     for d in (env, src, CONJ, FORCE_SEEN): d.clear()
-    for l in (lean_claims, results, SKIPPED): l.clear()
+    for l in (lean_claims, results, SKIPPED, RUNNERS): l.clear()
 
 class Session:
     """The state of one run: the open `circuit ... end` block and the `record` lines. A file run makes one; the interactive prompt keeps one."""
@@ -361,7 +362,7 @@ def run(script):
         import boards
         if os.path.isfile(os.path.join(d, "findings.jsonl")) and any(r.get("statement") == stmt for r in boards.load(d)): say(f"record kept ({stmt[:40]}...): already in {d}/findings.jsonl"); continue
         ev = [script] + ([f"{L['module']}::{L['theorems'][-1]}"] if L and L["ok"] else []) + list(dict.fromkeys(src.values()))
-        boards.add(d, "asteroid", item, word, stmt, ev); boards.build()
+        boards.add(d, "asteroid", item, word, stmt, ev, runner=" && ".join(dict.fromkeys(RUNNERS)) or None); boards.build()
     say(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; {len(L['theorems'])} proved" if L and L["ok"] else "")
           + (f"; {len(SKIPPED)} lines skipped (numpy or matplotlib missing: run bin/setup)" if SKIPPED else ""))
     return 1 if bad or (L and not L["ok"]) or (L and L.get("sound") and not L["sound"]["ok"]) else 0
