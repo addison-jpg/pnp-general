@@ -9,9 +9,10 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 
 - asteroid (the language and its tools): 7 checked · 3 tested · tested, re-checked in last 24h: 1/3
 - circuits (one-NOT and several-NOT): 48 checked · 5 tested · 5 refuted · tested, re-checked in last 24h: 0/5
-- other: 4 checked
+- lateral (Lawvere spine): 1 checked
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked
 - quantum gravity: 13 checked
+- worlds (maps and unification; not progress on P vs NP): 3 checked
 
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 

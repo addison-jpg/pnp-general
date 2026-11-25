@@ -84,6 +84,9 @@ def build():
         out.append("")
     def program(d):
         dl = d.lower()
+        if "methods" in dl: return "methods (results about the method, not about circuits)"
+        if "lateral" in dl: return "lateral (Lawvere spine)"
+        if dl.startswith("worlds") or "/worlds" in dl: return "worlds (maps and unification; not progress on P vs NP)"
         if "philosoph" in dl: return "philosophy (formal models of readings; not mathematics of circuits)"
         if "quantumgravity" in dl: return "quantum gravity"
         if "asteroid" in dl or dl.startswith("bin") or dl.startswith("site"): return "asteroid (the language and its tools)"
