@@ -15,7 +15,7 @@
 
 **Open seats (start only when Addison says go):**
 - TAKEN L1 (Sonnet): write the density form: express |F2|, base and gates of a one-NOT circuit as sums of counts of small labelled patterns (sets, wires, the NOT gate's wire h); state "slack ≥ 0" as a linear inequality in pattern densities. -> one-not/research/open/limits_density_form.md
-- TAKEN L2 (Sonnet): literature rows (read status) for flag algebras, hypergraph limits, flag-algebra-plus-stability exact results, and any limit theory for Boolean circuits or set systems. -> LITERATURE.md
+- DECIDED L2 (Sonnet): literature rows (read status) for flag algebras, hypergraph limits, flag-algebra-plus-stability exact results, and any limit theory for Boolean circuits or set systems. -> LITERATURE.md DECIDED: section L added to LITERATURE.md, 13 rows, all search-result-only; no circuit-side limit theory found, only an unopened Oxford thesis lead.
 - OPEN (Opus, after the two above): does the density inequality hold in the limit; attempt a flag-algebra certificate on the smallest pattern size; list the tight limit objects (stability candidates). -> one-not/research/open/limits_certificate.md
 
 
