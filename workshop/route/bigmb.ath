@@ -1,0 +1,9 @@
+# bigmb.ath: counts for the bigmb to littlemb mapping (bigmb_littlemb.json).
+# Each memory name is paired by token id when it is a single token in both vocabularies.
+# The numbers below are the counts the pairing script printed. Asteroid reads these literals, not the JSON.
+# Static input rows only: these are token embeddings, not meanings.
+claim 31 = 31
+claim 22 = 22
+claim 22 = 22
+claim 9 = 9
+claim 22 = 22
