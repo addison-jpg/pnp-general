@@ -3,3 +3,5 @@
 claim 1 = 1
 claim 4 = 4
 claim 5 = 5
+# Write the rule into the memory record the bus reads (the double-way memory: OUT here, IN from the bus).
+record workshop/orchestra rule open "One lead and four helpers per round (workshop/orchestra/RULE.md). The lead is one Opus agent; each helper is one Haiku agent with one input and one output; helpers do not spawn helpers. Counts checked in rule.ath (3 true). The reason for four is a default, not an optimum."
