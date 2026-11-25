@@ -3,7 +3,7 @@
   "displayName": "asteroid (.ath)",
   "description": "Syntax highlighting for asteroid (.ath) programs: circuits, claims, Lean proofs.",
   "version": "0.1.0",
-  "publisher": "addison-jpg",
+  "publisher": "asteroid",
   "license": "MIT",
   "icon": "images/icon.png",
   "repository": { "type": "git", "url": "https://github.com/addison-jpg/pnp-general.git", "directory": "editors/vscode" },
