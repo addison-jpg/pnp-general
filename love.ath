@@ -48,3 +48,33 @@ claim formula ds3 = "(n+1)*(n+2)*(n**2+3*n+4)//8"       # 3x3 line-sum-q tables,
 claim ds4 = [24, 282, 2008]                             # 4x4, q=1..3, each decomposed exactly
 record culture/love love-paths checked-finite "love.ath: on every preference profile with n <= 3 and every starting matching, satisfying one blocking pair at a time can reach a stable matching, at k=1 and at k=2; longest shortest path 4 at k=1 and 6 at k=2 for n=3; some move sequence cycles on 2, 27492 profiles (k=1, n=2, 3) and 0, 11136 (k=2). Stated rankings only."
 record culture/love love-field checked-finite "love.ath: on all 16 profiles with n=2, the fractional stable polytope (Rothblum form) has only integral vertices, exactly the stable matchings; the fractional b-matching polytope with capacity k has 7, 34 vertices at k=1 and 16, 265 at k=2 (n=2, 3), all integral, and 25, 766 at k=3/2, of which 18, 732 fractional; every 3x3 doubly stochastic matrix in (1/q)Z for q <= 6 and every 4x4 one for q <= 3 is an exact convex combination of permutation matrices. The n=3 stable-polytope sample is tested, not part of this record."
+# Native (culture/love/native, Rust, std only): the same definitions recomputed and compared with every Python fingerprint above
+# (n <= 3; a mismatch fails). Only after that passes: the k=1 stable polytope on all 46656 n=3 profiles, and n=4 at k=1 by
+# symmetry (relabel A and B; one representative per orbit, weighted by its orbit size; the weights are asserted to sum to (n!)^(2n)).
+check "python3 -I culture/love/native_diff.py --new"
+seq npoly = from culture/love/native_fingerprints.json "stable polytope k=1, n=3, all profiles"
+seq npolyhist = from culture/love/native_fingerprints.json "profiles with 1, 2, 3 vertices"
+seq norbits = from culture/love/native_fingerprints.json "profile orbits under relabelling"
+seq nweights = from culture/love/native_fingerprints.json "orbit weights summed"
+seq nunique = from culture/love/native_fingerprints.json "unique stable matching k=1, n=1..4"
+seq nmost = from culture/love/native_fingerprints.json "most stable matchings on one profile k=1, n=1..4"
+seq ntotal = from culture/love/native_fingerprints.json "stable matchings summed over profiles k=1, n=1..4"
+seq nhist4 = from culture/love/native_fingerprints.json "n=4 k=1 profiles by number of stable matchings"
+claim npoly = [46656, 60324]                            # all n=3 profiles; every corner integral and a stable matching; 60324 corners
+claim npolyhist = [34080, 11484, 1092]                  # profiles with 1, 2, 3 corners (1 corner: the 34080 unique-stable profiles)
+claim formula nweights = "n! ** (2*n)"                  # the orbit weights add up to every profile, n=1..4
+claim norbits = [1, 5, 1300, 191108196]                 # orbits of profiles under relabelling A and B
+claim nunique = [1, 14, 34080, 65867261184]             # profiles with exactly one stable matching, k=1; n=4 is new
+claim nmost = [1, 2, 3, 10]                             # most stable matchings on one profile, k=1; n=4 is new
+claim ntotal = [1, 18, 60324, 163661617152]             # stable matchings summed over all profiles, k=1
+claim nhist4 = [65867261184, 35927285472, 7303612896, 861578352, 111479616, 3478608, 581472, 36432, 0, 144]   # n=4: no profile has exactly 9
+# Look at us (workshop/ath_prompts/us): asks and agent seats as a matching, on recorded seat data only. Analogy; no feelings modelled.
+check "python3 -I workshop/ath_prompts/us/us.py"
+seq usblock = from workshop/ath_prompts/us/us_fingerprints.json "blocking pairs of the recorded assignment"
+seq uslist = from workshop/ath_prompts/us/us_fingerprints.json "longest acceptable seat list"
+seq usfail = from workshop/ath_prompts/us/us_fingerprints.json "asks where the Beauvoir condition fails"
+seq usdead = from workshop/ath_prompts/us/us_fingerprints.json "dead-end runs"
+claim usblock = [0]                                     # the recorded assignment is stable under the data-derived preferences
+claim uslist = [1]                                      # but no ask has two recorded seats, so the test has no power yet
+claim usfail = [1]                                      # one paper attempt (Opus): []<>T false there
+claim usdead = [2]                                      # A7 and A10: obstacle, no follow-up line in the recorded files

@@ -1,0 +1,7 @@
+[
+ {"name": "us: asks, seats, recorded runs", "seq": [7, 3, 11], "runner": "python3 -I workshop/ath_prompts/us/us.py"},
+ {"name": "us: longest acceptable seat list of an ask", "seq": [1], "runner": "python3 -I workshop/ath_prompts/us/us.py"},
+ {"name": "us: blocking pairs of the recorded assignment", "seq": [0], "runner": "python3 -I workshop/ath_prompts/us/us.py"},
+ {"name": "us: asks where the Beauvoir condition fails", "seq": [1], "runner": "python3 -I workshop/ath_prompts/us/us.py"},
+ {"name": "us: dead-end runs", "seq": [2], "runner": "python3 -I workshop/ath_prompts/us/us.py"}
+]
