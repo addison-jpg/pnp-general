@@ -1,5 +1,7 @@
 # Board: P versus NP through general circuits
 
+- **TOP NOW (Addison, 2026-11-25): asteroid.exe becomes a real terminal (mintty, like Git Bash) on a native backend, less Python, no matplotlib, minimal Lean.** Five seats in order, one Sonnet each. [`asteroid-term`](boards/tasks/asteroid-term.md)
+
 - **FILES FOR ADDISON (Addison, 2026-11-25): give a direct link, not only a file card.** When handing Addison a file (a .vsix, a logo, a PNG), commit it and give the raw GitHub link, `https://github.com/addison-jpg/pnp-general/raw/main/<path>`, which downloads in one click. File-card widgets in the chat are hard to download from.
 
 - **DONE (Addison, 2026-11-25): .ath highlighting in VS Code is published** on the Marketplace as `asteroid.asteroid` (publisher ID `asteroid`), v0.1.0. Open VSX not yet (needs Addison's token). [`asteroid-vscode`](boards/tasks/asteroid-vscode.md)
