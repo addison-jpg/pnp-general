@@ -117,10 +117,26 @@ def check(m):
         assert out[k][0] == 'X' and v[out[k][1]] == s, k
     assert len({out[k][1] for k in sets}) == q * q
     base = q * q * (q - 1)
+    if DUMP:
+        import json
+        leaves, lines = [], []
+        for op, A, B in prog:
+            refs = []
+            for r in (A, B):
+                if r[0] == 'X':
+                    refs.append(['X', r[1]])
+                else:
+                    refs.append(['L', len(leaves)]); leaves.append(sorted(leaf_points(r, q)))
+            lines.append([op] + refs)
+        json.dump({'q': q, 'leaves': leaves, 'lines': lines}, open(f'{DUMP}_q{q}.json', 'w'))
     print(f"q={q} points={q*q} sets={q*q} base={base} lines={len(prog)} "
           f"{'BELOW base (point lemma fails here)' if len(prog) <= base - 1 else 'not below base'}")
 
 
+DUMP = None
 if __name__ == '__main__':
-    for m in [int(a) for a in sys.argv[1:]] or [2, 3, 4]:
+    args = sys.argv[1:]
+    if '--dump' in args:   # --dump PREFIX: write leaves and lines of each program to PREFIX_q<q>.json
+        i = args.index('--dump'); DUMP = args[i + 1]; args = args[:i] + args[i + 2:]
+    for m in [int(a) for a in args] or [2, 3, 4]:
         check(m)
