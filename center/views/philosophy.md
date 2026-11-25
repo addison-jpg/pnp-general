@@ -35,6 +35,7 @@
 - [DATA, r=0.5] connected labelled graphs with no critical edge (bridgeless), n vertices (n>=1) seq [1, 0, 1, 10, 253, 11968]
 
 ## Frames
+- [checked-finite, r=0.0] Deleuze and Guattari, the rhizome against the arborescent centre (philosophy/rhizome.py): graph fact only: bridgeless connected graphs have no critical part; trees have only critical parts
 - [checked-finite, r=0.0] Lacan, the Borromean knot (philosophy/PSYCHOSIS.md): the three rings: every linking number 0, triple invariant 1
 - [checked-finite, r=0.0] Addison: Fisher, capitalist realism (ontology/SOURCES.md; philosophy/ and Fisher.lean): a closed class of a Markov chain: once in, no state outside is reachable; every chain on up to 4 states (50978 s
 - [checked-finite, r=0.0] Addison: the multiverse is Deleuzean; the psychosis framework (philosophy/PSYCHOSIS.md): the measure problem as a missing anchor: Lacan supplies one (a chosen measure, a sinthome), Deleuze refuses one

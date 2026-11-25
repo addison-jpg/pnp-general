@@ -5,13 +5,13 @@
 - [checked-finite, r=0.0] Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A
 - [checked-finite, r=0.0] cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; cosmos/check.py passes.
 - [checked-finite, r=0.0] frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds.
+- [checked-finite, r=0.0] frames_routing.ath: routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierar
 - [checked-finite, r=0.0] frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder
 - [checked-finite, r=0.0] frames_time.ath: time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxa
 - [checked-finite, r=0.667] alchemy.ath: the b = 3 alchemy circuit computes all seven nonempty unions on all 8 inputs, with 4 gates against a base of 5 (sharing, possible because the sets overlap in 2 points).
 - [checked-finite, r=0.667] gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth.
 - [checked-finite, r=1.0] Modal correspondence checked exactly on all 512 relations on 3 worlds and all 65536 on 4: T, 4, B, 5 are valid exactly on the reflexive, transitive, symmetric, euclidean frames; T and 5 together exact
 - [checked-finite, r=1.0] Toy 7-world branching history (reflexive, transitive): []c holds exactly on the alpha branch {1,4}, ~<>[]c exactly on the doomed branches {2,3,5,6}, and the branch point is the only world where <>[]c 
-- [checked-finite, r=1.0] frames_routing.ath: routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierar
 - [checked-finite, r=1.0] frames_time.ath: adding only passing checks never unsettles a record, all toy stores of <= 4 records and all orders of <= 4 steps (6558 cases); a failing re-check does. No poset on 1..4 worlds with an
 
 ## Cells
@@ -49,9 +49,11 @@
 - [checked-finite, r=0.0] Addison: multiverse-level postmodernism (cosmos/BASE.md section 7; cosmos/invariant.py): Kripke fact only: postmodern-safe = valid on every frame of the stated class; T, 4, []<>T valid on all S4 frame
 - [checked-finite, r=0.0] gravity as inevitability (essays/knowing.md): every escape route computes OR(people, ground)
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, How to Leave Town (essays/knowing.md); the leaving link is analogy (reading), not checked: Kepler fact only: for h != 0, an orbit is bound iff E < 0, exact on the cosmos gr
+- [checked-finite, r=0.0] Beauvoir, as above; smallest case: Kripke fact only: world 0 reaches 0,1,2 and is reached by none; B is invalid, countermodel printed
 - [checked-finite, r=0.0] Addison: the centre as a road network (routing/BASE.md): programs linked by shared evidence files: 14 components among 17 programs; most programs are unreachable from the rest
 - [checked-finite, r=0.0] Addison: which results cross to the multiverse (time/BASE.md section 5): .2 fails on some branching history and holds with no privileged world
 - [checked-finite, r=0.0] Addison: planned routes against haphazard buses (transit/BASE.md; routing/BASE.md): max hitting time / hop distance over connected n-stop graphs is n^2-3n+3 for n=2..5, the clique with one pendant sto
+- [checked-finite, r=0.0] Addison: the centre as a road network (routing/BASE.md): programs linked by shared evidence files: 16 components among 19 programs (snapshot 2026-11-25, 420 records; rerun check.py); most programs are
 - [checked-finite, r=0.0] Homestuck alchemy (homestuck/BASE.md): alchemy at b = 3 is an OR circuit that shares gates
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, I Want You to Know That I'm Awake / I Hope That You're Asleep (essays/knowing.md); the link is analogy (reading), not checked: Kripke fact only: p and ~p never hold at one 
 - [checked-finite, r=0.0] Addison: sync Homestuck with Car Seat Headrest (carseat/, homestuck/level.json); the timeline and retcon link is analogy (reading), not checked: Kripke fact only: Twin Fantasy 2011 and 2018 as a 2-wor
@@ -62,5 +64,11 @@
 - [tested, r=0.5] Addison: settled stays settled on the real history (git log of */findings.jsonl): measured on the git history of every */findings.jsonl: at writing, 44 versions, 0 removed, 0 downgraded, 1 superseded 
 - [open, r=1.0] Addison: the Google Maps algorithm (routing/BASE.md): the method Google Maps uses in production
 - [open, r=1.0] Addison: Car Seat Headrest, High to Death and Kid War (carseat/BASE.md): no formal structure yet; no check decides what a song means
+- [open, r=1.0] Lacan, paranoia and the master signifier (not re-read); Eco's obsession with a plot as meaning anchored to one persecutor: reading only; no structure checked
 - [open, r=1.0] Homestuck, the meteor (homestuck/BASE.md section 5): the meteor as a transport map between two sessions that keeps the rules
+- [open, r=1.0] Beauvoir, the serious man and oppression, Pour une morale de l'ambiguite 1947 (not re-read); fascism as refusal of reciprocity is analogy (reading), not checked: Kripke fact only: on every frame on 2.
+- [open, r=1.0] Eco, Ur-Fascism 1995 (Il fascismo eterno) and Stanley, How Fascism Works 2018 (not re-read); feature names paraphrased: keyword detector, tested on 20 synthetic sentences: precision 0.91, recall 1.00,
+- [open, r=1.0] Deleuze and Guattari, L'Anti-Oedipe 1972; Foucault, preface to Anti-Oedipus 1977 (not re-read); microfascism as a single critical centre is analogy (reading), not checked: graph fact only: a connected
+- [open, r=1.0] Fisher, Capitalist Realism 2009 (not re-read); no alternative as an absorbing class is analogy (reading), not checked: chain fact only: transit/social.py part a, absorption probability 1 into closed c
 - [open, r=1.0] Addison: Car Seat Headrest, lineage of 1, 2, Disjecta Membra, Please Pass the Milk Please (carseat/BASE.md): lineage as a DAG of re-recordings; needs dated edges, which are not on record
+- [open, r=1.0] Grok incidents 2025 (NPR 2025-07-09; TechCrunch 2025-05-14, 2025-07-12; relayed, not re-read); topic intrusion as aberrant salience, Kapur 2003: reading only: filter removal as removed reality testing
