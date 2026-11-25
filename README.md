@@ -74,7 +74,7 @@ bin/asteroid hello.ath # run one program
 bin/asteroid test      # run all of them
 ```
 
-Linux (no Python, no Lean): [`dist/linux/asteroid`](dist/linux/README.md), a 4.3 MB binary; Arch: `packaging/arch/PKGBUILD`; Windows: the same inside Arch on WSL.
+Linux (no Python, no Lean): [`dist/linux/asteroid`](dist/linux/README.md), a 4.4 MB binary; Arch: `packaging/arch/PKGBUILD`; Windows: the same inside Arch on WSL.
 
 VS Code highlighting for `.ath`: search **asteroid** in Extensions ([Marketplace](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid)).
 

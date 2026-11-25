@@ -83,7 +83,7 @@ conversion, and building the 122 MiB binary with the Windows toolchain.
 | run, evaluate only | 0.1 to 0.6 s | about 0.9 s (`lake exe` start included) |
 | run with proofs, hello / first / notgate | 16.8 / 8.8 / 9.4 s | 12.7 / 7.7 / 9.8 s |
 | build | none | 23 s for the executable with Mathlib unpacked by `lake exe cache get`; 1 s when nothing changed |
-| binary | | 6.3 MB (`.lake/build/bin/asteroid`); 4.3 MB stripped (`dist/linux/asteroid`). Was 122 MiB until 2026-11-25 |
+| binary | | 6.3 MB (`.lake/build/bin/asteroid`); 4.4 MB stripped (`dist/linux/asteroid`). Was 122 MiB until 2026-11-25 |
 
 Differences in the text: the Python line reads `claim …: python TRUE (…)`, the Lean line `claim …: TRUE
 (…)`; a claim without a Lean form says `evaluated only` in Lean and `Python only` in Python.
@@ -96,7 +96,7 @@ checkers a second time as functions of plain data (`Nat`, `List`), so the evalua
 are proofs only. The `.bench` reader uses `Core`'s `Gate` and `Circ` (it used `SearchCheck`'s, which
 imports Mathlib), and `.json` circuits are read by `Json.lean`, a small reader that imports nothing.
 The 122 MiB binary of before came from `import Lean.Data.Json`, which links the whole Lean compiler
-(Meta, Elab); without it the binary is 6.3 MB (4.3 MB stripped).
+(Meta, Elab); without it the binary is 6.3 MB (4.4 MB stripped).
 
 ## What remains to drop Python, largest first
 

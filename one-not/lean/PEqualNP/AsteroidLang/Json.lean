@@ -3,7 +3,7 @@
 
 `Lean.Data.Json` links the whole Lean compiler (Meta, Elab) into the executable, about 80 MB. The
 circuit files need only objects, arrays, strings, whole numbers, `true`, `false` and `null`, so this
-reader handles exactly those (a number with a fraction or exponent is an error). It imports nothing.
+reader handles exactly those; a number with a fraction or exponent is kept as its text (`real`). It imports nothing.
 -/
 
 namespace AsteroidLang.Json
@@ -13,6 +13,7 @@ inductive Val where
   | null
   | bool (b : Bool)
   | num (i : Int)
+  | real (text : String)
   | str (s : String)
   | arr (xs : List Val)
   | obj (kvs : List (String × Val))
@@ -33,11 +34,11 @@ def expect (c : Char) : P Unit := do
 def lit (w : String) (v : Val) : P Val := do
   let cs ← get
   if cs.take w.length == w.toList then set (cs.drop w.length); return v
-  else throw s!"bad literal near '{String.mk (cs.take 10)}'"
+  else throw s!"bad literal near '{String.ofList (cs.take 10)}'"
 
 partial def strBody (acc : List Char) : P String := do
   match ← get with
-  | '"' :: rest => set rest; return String.mk acc.reverse
+  | '"' :: rest => set rest; return String.ofList acc.reverse
   | '\\' :: c :: rest =>
     set rest
     let d := match c with | 'n' => '\n' | 't' => '\t' | 'r' => '\r' | c => c
@@ -51,8 +52,12 @@ def number : P Val := do
   let ds := cs.takeWhile Char.isDigit
   if ds.isEmpty then throw "bad number"
   let rest := cs.drop ds.length
+  let numChar (c : Char) := c.isDigit || c == '.' || c == 'e' || c == 'E' || c == '+' || c == '-'
   if let c :: _ := rest then
-    if c == '.' || c == 'e' || c == 'E' then throw "only whole numbers are read"
+    if c == '.' || c == 'e' || c == 'E' then
+      let tail := rest.takeWhile numChar
+      set (rest.drop tail.length)
+      return .real (String.ofList ((if neg then ['-'] else []) ++ ds ++ tail))
   set rest
   let n : Nat := ds.foldl (fun n d => 10 * n + (d.toNat - '0'.toNat)) 0
   return .num (if neg then -(n : Int) else n)
@@ -94,6 +99,12 @@ def Val.field (v : Val) (k : String) : Except String Val :=
   match v with
   | .obj kvs => match kvs.lookup k with | some x => .ok x | none => .error s!"no key '{k}'"
   | _ => .error s!"not an object (looking for '{k}')"
+
+/-- the string at key `k`, or `d` when it is missing or not a string -/
+def Val.strOr (v : Val) (k d : String) : String :=
+  match v.field k with
+  | .ok (.str s) => s
+  | _ => d
 
 def Val.nat : Val → Except String Nat
   | .num (.ofNat n) => .ok n

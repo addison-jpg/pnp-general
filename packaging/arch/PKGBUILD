@@ -13,7 +13,7 @@ provides=('asteroid')
 source=("asteroid::https://github.com/addison-jpg/pnp-general/raw/main/dist/linux/asteroid"
         "hello.ath::https://github.com/addison-jpg/pnp-general/raw/main/hello.ath"
         "hello.bench::https://github.com/addison-jpg/pnp-general/raw/main/hello.bench")
-sha256sums=('01cf0a0a6d9f45240cb86bc5714de6d72f50d97255ccf5ece4e382afa7fd25d4'
+sha256sums=('315300fe7fe219314db98f3454190772baaec534af4384c61cc0a3cd93dca4f9'
             'SKIP'
             'SKIP')
 

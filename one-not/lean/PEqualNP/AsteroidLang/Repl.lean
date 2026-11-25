@@ -1,4 +1,4 @@
-import Lean.Data.Json
+import PEqualNP.AsteroidLang.Json
 import PEqualNP.AsteroidLang.Eval
 /-!
 # asteroid: the interactive prompt
@@ -29,9 +29,9 @@ structure Palette where
 /-- the palette of `site/terminal.json` under `root`, if it can be read; else the built-in one -/
 def loadPalette (root : System.FilePath) : IO Palette := do
   try
-    let j ← IO.ofExcept (Lean.Json.parse (← IO.FS.readFile (root / "site" / "terminal.json")))
-    let s ← IO.ofExcept (j.getObjVal? "sgr")
-    let g (k d : String) : String := (s.getObjValAs? String k).toOption.getD d
+    let j ← IO.ofExcept (AsteroidLang.Json.parse (← IO.FS.readFile (root / "site" / "terminal.json")))
+    let s ← IO.ofExcept (j.field "sgr")
+    let g (k d : String) : String := s.strOr k d
     return { logo := g "logo" "36", logoAlt := g "logo_alt" "34", accent := g "accent" "36",
              proved := g "proved" "32", refuted := g "refuted" "31", open_ := g "open" "33",
              muted := g "muted" "90" }

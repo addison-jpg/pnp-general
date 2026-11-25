@@ -1,6 +1,6 @@
 # asteroid for Linux
 
-`asteroid` here is the native evaluator (`asteroid/NATIVE.md`), stripped: one 4.3 MB binary, x86-64, glibc only. No Python, no Lean needed to evaluate.
+`asteroid` here is the native evaluator (`asteroid/NATIVE.md`), stripped: one 4.4 MB binary, x86-64, glibc only. No Python, no Lean needed to evaluate.
 
 ```
 curl -LO https://github.com/addison-jpg/pnp-general/raw/main/dist/linux/asteroid

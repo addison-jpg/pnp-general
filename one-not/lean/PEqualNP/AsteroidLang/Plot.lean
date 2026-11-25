@@ -1,4 +1,4 @@
-import Lean.Data.Json
+import PEqualNP.AsteroidLang.Json
 import PEqualNP.AsteroidLang.Eval
 /-!
 # asteroid: `plot phi NAME [NAME ...] -> FILE.svg`
@@ -23,9 +23,9 @@ structure Colors where
 def loadColors (root : System.FilePath) : IO Colors := do
   let d : Colors := {}
   try
-    let j ← IO.ofExcept (Lean.Json.parse (← IO.FS.readFile (root / "site" / "palette.json")))
-    let l ← IO.ofExcept (j.getObjVal? "light")
-    let g (k dflt : String) : String := (l.getObjValAs? String k).toOption.getD dflt
+    let j ← IO.ofExcept (AsteroidLang.Json.parse (← IO.FS.readFile (root / "site" / "palette.json")))
+    let l ← IO.ofExcept (j.field "light")
+    let g (k dflt : String) : String := l.strOr k dflt
     return { background := g "background" d.background, text := g "text" d.text,
              muted := g "muted" d.muted,
              curves := #[g "accent" d.curves[0]!, g "proved" d.curves[1]!,
