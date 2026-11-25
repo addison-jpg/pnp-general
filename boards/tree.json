@@ -1,12 +1,13 @@
 {
  ".": {
   "counts": {
-   "checked-finite": 26,
+   "checked-finite": 32,
    "checked": 91,
    "tested": 12,
    "refuted": 6
   },
   "verified": [
+   "d7179e58",
    "2befeb37",
    "8d76417d",
    "7d2be507",
@@ -96,9 +97,12 @@
    "aff0216f",
    "c70b8e8f",
    "5b49d0e3",
+   "9b1eb613",
    "ff4253f7",
    "ddc281d6",
    "a8530ec5",
+   "1e25aba1",
+   "8d82a517",
    "3cef3bcc",
    "8f8708a6",
    "28a9c927",
@@ -108,8 +112,10 @@
    "ed925eb4",
    "4445c2b2",
    "26399549",
+   "570a8228",
    "d6c97be6",
    "05debba4",
+   "d4f11420",
    "b63be80e",
    "04ad73e2",
    "7ce4c9ea",
@@ -234,9 +240,10 @@
  },
  "biology": {
   "counts": {
-   "checked-finite": 11
+   "checked-finite": 14
   },
   "verified": [
+   "8d82a517",
    "3cef3bcc",
    "8f8708a6",
    "28a9c927",
@@ -246,16 +253,19 @@
    "ed925eb4",
    "4445c2b2",
    "26399549",
+   "570a8228",
    "d6c97be6",
-   "05debba4"
+   "05debba4",
+   "d4f11420"
   ],
   "unverified_here": []
  },
  "biology/brain": {
   "counts": {
-   "checked-finite": 9
+   "checked-finite": 10
   },
   "verified": [
+   "8d82a517",
    "3cef3bcc",
    "8f8708a6",
    "28a9c927",
@@ -269,12 +279,6 @@
   "unverified_here": [
    {
     "id": "e629ef32",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "8d82a517",
     "why": [
      "needs a second seat in by"
     ]
@@ -347,17 +351,15 @@
   "unverified_here": []
  },
  "biology/compbio": {
-  "counts": {},
-  "verified": [],
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "570a8228"
+  ],
   "unverified_here": [
    {
     "id": "2547b029",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "570a8228",
     "why": [
      "needs a second seat in by"
     ]
@@ -366,20 +368,14 @@
  },
  "biology/privacy": {
   "counts": {
-   "checked-finite": 2
+   "checked-finite": 3
   },
   "verified": [
    "d6c97be6",
-   "05debba4"
+   "05debba4",
+   "d4f11420"
   ],
-  "unverified_here": [
-   {
-    "id": "d4f11420",
-    "why": [
-     "needs a second seat in by"
-    ]
-   }
-  ]
+  "unverified_here": []
  },
  "core": {
   "counts": {
@@ -432,9 +428,10 @@
  },
  "culture": {
   "counts": {
-   "checked-finite": 1
+   "checked-finite": 2
   },
   "verified": [
+   "d7179e58",
    "2befeb37"
   ],
   "unverified_here": []
@@ -546,8 +543,12 @@
   ]
  },
  "culture/social": {
-  "counts": {},
-  "verified": [],
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "d7179e58"
+  ],
   "unverified_here": [
    {
     "id": "7de7173e",
@@ -557,12 +558,6 @@
    },
    {
     "id": "e596ac08",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "d7179e58",
     "why": [
      "needs a second seat in by"
     ]
@@ -1601,13 +1596,15 @@
  },
  "physics": {
   "counts": {
-   "checked-finite": 4
+   "checked-finite": 6
   },
   "verified": [
    "5b49d0e3",
+   "9b1eb613",
    "ff4253f7",
    "ddc281d6",
-   "a8530ec5"
+   "a8530ec5",
+   "1e25aba1"
   ],
   "unverified_here": []
  },
@@ -1621,17 +1618,15 @@
   "unverified_here": []
  },
  "physics/curvature": {
-  "counts": {},
-  "verified": [],
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "9b1eb613"
+  ],
   "unverified_here": [
    {
     "id": "b45aba07",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "9b1eb613",
     "why": [
      "needs a second seat in by"
     ]
@@ -1640,22 +1635,17 @@
  },
  "physics/time": {
   "counts": {
-   "checked-finite": 3
+   "checked-finite": 4
   },
   "verified": [
    "ff4253f7",
    "ddc281d6",
-   "a8530ec5"
+   "a8530ec5",
+   "1e25aba1"
   ],
   "unverified_here": [
    {
     "id": "dce151ff",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "1e25aba1",
     "why": [
      "needs a second seat in by"
     ]
