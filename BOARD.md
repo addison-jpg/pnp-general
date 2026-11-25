@@ -46,6 +46,7 @@ Assessment (main): rational; a known proof pattern, flag algebras plus stability
 The machine has 4 cores and 15 GB of memory, shared by every seat. Paper seats (Fable, Opus) use almost no CPU; Lean builds and SAT do. So: one Lean build at a time per seat; SAT and search seats run one core each under `nice`, at most two at once. The other SAT seats wait for the tensor backend (T1) and start after it lands.
 - Fables: F1 the payment Hall condition (BottomPay and PHC@0, one statement); F2 KAK for U(4) and the exact L119 (9k + 3n + 1); F3 the DAG frame (joins: the real board history, Beauvoir's "willing others free").
 - Opus: O1 rule R2 (point lemma, two sets); O2 three-qubit CKW monogamy in Lean; O3 the PSPACE ⊆ P_CTC encoding.
+- TAKEN F1: payment Hall condition
 - Sonnets now: PaymentHall Prop (Lean), OR-only PHC@0 for monotone programs (paper), PHC@0 under point deletion, two-level saturation (QG rank 3), cost per result (prompt method), refuter DD search (one core). Queued until T1: PHC@0 enumeration, point-lemma SAT, refuter SAT cells.
 
 ## RULES
