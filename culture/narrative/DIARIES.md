@@ -4,7 +4,7 @@ These are **readings** (analogy). Nothing here is a diagnosis: historical person
 
 ## The shared reading
 
-A diary is a story told one step at a time, with no ending known in advance. In `narrative.py`'s terms it is a sequence of states. Arthur Frank's types (*The Wounded Storyteller*, 1995) ask how such a sequence ends: back where it began (restitution), somewhere new (quest), or without settling (chaos).
+A diary is a story told one step at a time, with no ending known in advance. In `narrative.py`'s terms it is a sequence of states. Arthur Frank's types (*The Wounded Storyteller*, 1995) ask how such a sequence ends: back where it began (restitution), somewhere other than where it began (quest), or without settling (chaos). The code's types are coarse proxies: its "quest" means only "not restored", so a story that goes from well to ill and stays ill counts, which Frank would not call a quest.
 
 Lethargy, read here, is something else: a reached state that cannot go on. Beauvoir's condition, written []<>T, says that every world you can reach can itself reach something. `beauvoir.py` checks, on all 530 frames on 1 to 3 worlds, that []<>T holds exactly when the frame is successor-serial, and that a dead-end world is exactly what breaks it. Lethargy is that dead end: a reached world with no next step. This is the reading. The modal fact is checked-finite; that lethargy is such a world is analogy.
 
@@ -50,7 +50,7 @@ Critical note: readers in Black feminist thought have criticised *The Second Sex
 
 ## Fisher and hauntology: anachronistic, and still useful
 
-Mark Fisher, *Capitalist Realism* (2009) and *Ghosts of My Life* (2014), cited from memory: the slow cancellation of the future, a culture that can no longer imagine anything new, and depression read as a social state rather than only a private one. Hauntology is Derrida's word (*Specters of Marx*, 1993), used by Fisher for late twentieth-century culture.
+Mark Fisher, *Capitalist Realism* (2009) and *Ghosts of My Life* (2014), cited from memory: the slow cancellation of the future, a culture that can no longer imagine anything new, and depression read as a social state rather than only a private one. Hauntology is Derrida's word (*Specters of Marx*, 1993; cited from memory), used by Fisher for late twentieth-century culture.
 
 Applying this to writers of 1864 to 1941 is **anachronistic**. Fisher wrote about neoliberal Britain after about 1980. These writers lived before it, and their futures were open in ways his were not.
 

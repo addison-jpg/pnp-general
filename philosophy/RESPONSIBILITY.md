@@ -24,7 +24,7 @@ This is a **position**, not a result. Nothing in it is checked, except where it 
 
 ## 4. The postmodern link, through Frank
 
-Arthur Frank, *The Wounded Storyteller* (1995; cited from memory), argues that ill people reclaim their own story from the medical story told about them. Restitution is the story medicine prefers; chaos is the story it cannot hear; quest is the one the teller makes. Read with Lyotard (`philosophy/OPEN_RESEARCH.md`): the medical narrative is a metanarrative, and the incredulity toward it is a person's right to tell their own life.
+Arthur Frank, *The Wounded Storyteller* (1995; cited from memory), argues that ill people reclaim their own story from the medical story told about them. Restitution is the story medicine prefers; chaos is the story it cannot hear; quest is the one the teller makes. Read with Lyotard (*The Postmodern Condition*, 1979; cited from memory; `philosophy/OPEN_RESEARCH.md`): the medical narrative is a metanarrative, and the incredulity toward it is a person's right to tell their own life.
 
 The same duty runs through all three sections above. People keep their own stories, so no real person's story is modelled. Agents are not told a settled story about their inner life, in either direction. And asteroid does not tell a stronger story than its check allows. In each case the duty is the same: do not overwrite someone's story with a stronger one of your own.
 
