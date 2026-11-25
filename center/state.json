@@ -93,7 +93,7 @@
    "TAKEN": 2
   },
   "findings": {
-   "checked-finite": 3
+   "checked-finite": 6
   },
   "mean_radius_findings": 0.0
  },

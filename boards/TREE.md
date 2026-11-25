@@ -10,7 +10,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 - asteroid (the language and its tools): 7 checked · 3 tested · tested, re-checked in last 24h: 1/3
 - circuits (one-NOT and several-NOT): 48 checked · 6 tested · 6 refuted · tested, re-checked in last 24h: 0/6
 - lateral (Lawvere spine): 1 checked
-- other: 14 checked-finite · 3 tested · tested, re-checked in last 24h: 0/3
+- other: 17 checked-finite · 3 tested · tested, re-checked in last 24h: 0/3
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked · 4 checked-finite
 - quantum gravity: 13 checked
 - worlds (maps and unification; not progress on P vs NP): 9 checked
@@ -18,7 +18,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 91 checked · 18 checked-finite · 12 tested · 6 refuted
+## `./` 91 checked · 21 checked-finite · 12 tested · 6 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -321,11 +321,11 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 ### `routing/` 
 - `c392a233` **checked-finite** [routing] frames_routing.ath: routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierarchies (fixed order; every order for n<=4) give the Floyd-Warshall distance for every pair. A* with the halved heuristic never settles more nodes than Dijkstra; ALT can, on ties (12431 queries). Max hitting time over hop distance is n^2-3n+3 for n=2..5. · evidence: `frames_routing.ath`, `routing/check.py` · asteroid · unverified (needs a second seat in by)
 
-### `time/` 
-- `ff4253f7` **checked-finite** [gitdag] frames_time.ath: time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxation. · evidence: `frames_time.ath`, `time/check.py` · asteroid, confirmed by time-review · unverified (checked-finite needs a runner (the exhaustive check, re-runnable))
-- `ddc281d6` **checked-finite** [initial] frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder from */level.json join arrows has no least element. · evidence: `frames_time.ath`, `time/check.py` · asteroid, confirmed by time-review · unverified (checked-finite needs a runner (the exhaustive check, re-runnable))
-- `dce151ff` **checked-finite** [forward] frames_time.ath: adding only passing checks never unsettles a record, all toy stores of <= 4 records and all orders of <= 4 steps (6558 cases); a failing re-check does. No poset on 1..4 worlds with an edge is symmetric (242 posets). · evidence: `frames_time.ath`, `time/check.py` · asteroid · unverified (needs a second seat in by; checked-finite needs a runner (the exhaustive check, re-runnable))
-- `a8530ec5` **checked-finite** [postmodern] frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds. · evidence: `frames_time.ath`, `time/check.py` · asteroid, confirmed by time-review · unverified (checked-finite needs a runner (the exhaustive check, re-runnable))
+### `time/` 3 checked-finite
+- `ff4253f7` **checked-finite** [gitdag] frames_time.ath: time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxation. · evidence: `frames_time.ath`, `time/check.py` · asteroid, confirmed by time-review · VERIFIED
+- `ddc281d6` **checked-finite** [initial] frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder from */level.json join arrows has no least element. · evidence: `frames_time.ath`, `time/check.py` · asteroid, confirmed by time-review · VERIFIED
+- `dce151ff` **checked-finite** [forward] frames_time.ath: adding only passing checks never unsettles a record, all toy stores of <= 4 records and all orders of <= 4 steps (6558 cases); a failing re-check does. No poset on 1..4 worlds with an edge is symmetric (242 posets). · evidence: `frames_time.ath`, `time/check.py` · asteroid · unverified (needs a second seat in by)
+- `a8530ec5` **checked-finite** [postmodern] frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds. · evidence: `frames_time.ath`, `time/check.py` · asteroid, confirmed by time-review · VERIFIED
 
 ### `transit/` 1 checked-finite
 - `1178a112` **checked-finite** [transit] frames.ath: transit/social.py passes. Every sink-free chain on 1..4 states has a closed class, absorbs with probability 1, and 77260 single edges out of a closed class to a state reaching back all break it. Two cliques K_k (k=2..5): one bridge makes cover time finite; hitting time from the bridge end is k(k-1)+1; a second bridge lowers it. · evidence: `frames.ath`, `philosophy/rhizome.py`, `brain/cortex/check.py`, `transit/check.py`, `transit/social.py` · asteroid, confirmed by social-review · VERIFIED

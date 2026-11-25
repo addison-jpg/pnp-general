@@ -3,7 +3,7 @@
   "counts": {
    "checked": 91,
    "tested": 12,
-   "checked-finite": 18,
+   "checked-finite": 21,
    "refuted": 6
   },
   "verified": [
@@ -106,6 +106,9 @@
    "ed925eb4",
    "4445c2b2",
    "26399549",
+   "ff4253f7",
+   "ddc281d6",
+   "a8530ec5",
    "57b5bd42",
    "89fa09ba",
    "182f7509",
@@ -1422,32 +1425,19 @@
   ]
  },
  "time": {
-  "counts": {},
-  "verified": [],
+  "counts": {
+   "checked-finite": 3
+  },
+  "verified": [
+   "ff4253f7",
+   "ddc281d6",
+   "a8530ec5"
+  ],
   "unverified_here": [
-   {
-    "id": "ff4253f7",
-    "why": [
-     "checked-finite needs a runner (the exhaustive check, re-runnable)"
-    ]
-   },
-   {
-    "id": "ddc281d6",
-    "why": [
-     "checked-finite needs a runner (the exhaustive check, re-runnable)"
-    ]
-   },
    {
     "id": "dce151ff",
     "why": [
-     "needs a second seat in by",
-     "checked-finite needs a runner (the exhaustive check, re-runnable)"
-    ]
-   },
-   {
-    "id": "a8530ec5",
-    "why": [
-     "checked-finite needs a runner (the exhaustive check, re-runnable)"
+     "needs a second seat in by"
     ]
    }
   ]
