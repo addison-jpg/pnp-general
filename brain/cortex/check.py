@@ -66,18 +66,19 @@ def enumerate_fields(cells):
 TET = [(0,1,2),(0,1,3),(0,2,3),(1,2,3)]
 OCT = [(a, b, c) for a in (0, 1) for b in (2, 3) for c in (4, 5)]
 results = {}
-for name, F in (("tetrahedron", TET), ("octahedron", OCT)):
+FULL = "--full" in sys.argv
+EXPECT = {"tetrahedron": 4333, "octahedron": 12845921}
+for name, F in (("tetrahedron", TET), ("octahedron", OCT)) if FULL else (("tetrahedron", TET),):
     cnt, prof = enumerate_fields(complex_from_faces(F))
     for (c0, c1, c2) in prof:
         assert c0 - c1 + c2 == 2, (name, c0, c1, c2)
         assert c0 + c1 + c2 >= 2
+    assert cnt == EXPECT[name]
     results[name] = (cnt, prof)
     print(f"{name}: {cnt} discrete vector fields; every one has c0-c1+c2 = 2; "
           f"min critical cells = {min(sum(p) for p in prof)}")
-assert results["tetrahedron"][0] == TET_EXPECT if False else True
-TETN, OCTN = results["tetrahedron"][0], results["octahedron"][0]
-assert min(sum(p) for p in results["tetrahedron"][1]) == 2
-assert min(sum(p) for p in results["octahedron"][1]) == 2
+for name in results: assert min(sum(p) for p in results[name][1]) == 2
+if not FULL: print("octahedron: skipped by default (about 60 s); run with --full to enumerate all 12845921")
 
 # family: cycle graph C_n (a circle): c0 - c1 = 0 for every field
 cyc = []
@@ -163,7 +164,7 @@ for trial in range(20):
     t2, nd = line_field_defects(V, F, rng)
     assert t2 == 4, t2  # sum of strengths (each +-1/2) = 2
     dcounts.append(nd)
-assert min(dcounts) >= 4
+assert min(dcounts) >= 4 and (min(dcounts), max(dcounts)) == (4, 24)
 print(f"line fields: 20 random fields on icosphere(4) ({len(F)} triangles): every defect is +-1/2, "
       f"strengths sum to 2 every time; defects per field {min(dcounts)}..{max(dcounts)}")
 
@@ -200,8 +201,8 @@ for _ in range(8):
 mean = sum(ests) / len(ests)
 se = math.sqrt(sum((e - mean) ** 2 for e in ests) / (len(ests) - 1) / len(ests))
 assert abs(mean - math.pi) < 4 * se + 0.1, (mean, se)
+assert round(mean, 3) == 3.054 and round(se, 3) == 0.046
 print(f"random monochromatic field: pinwheels per L^2 = {mean:.3f} +- {se:.3f} (SE, 8 samples of 16L x 16L); pi = {math.pi:.3f}")
 
-json.dump if False else None
 print("PASS")
 print(json.dumps({"states": STATES, "seconds": round(time.time() - T0, 1)}))
