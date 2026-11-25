@@ -25,10 +25,10 @@ theorem bz_nonneg (b : Bool) : 0 ≤ bz b := by cases b <;> simp [bz]
 theorem bz_le_one (b : Bool) : bz b ≤ 1 := by cases b <;> simp [bz]
 
 /-- The weighted sum of the bits of `x`. -/
-def lin {m : ℕ} (w : Fin m → ℤ) (x : Fin m → Bool) : ℤ := ∑ i, w i * bz (x i)
+def linSum {m : ℕ} (w : Fin m → ℤ) (x : Fin m → Bool) : ℤ := ∑ i, w i * bz (x i)
 
 /-- The threshold function with weights `w` and threshold `t`. -/
-def thrFun {m : ℕ} (w : Fin m → ℤ) (t : ℤ) (x : Fin m → Bool) : Bool := decide (t ≤ lin w x)
+def thrFun {m : ℕ} (w : Fin m → ℤ) (t : ℤ) (x : Fin m → Bool) : Bool := decide (t ≤ linSum w x)
 
 /-- The number of true points of `f`. -/
 def chow0 {m : ℕ} (f : (Fin m → Bool) → Bool) : ℤ := ∑ x, bz (f x)
@@ -52,14 +52,14 @@ theorem chow_inj {m : ℕ} (w : Fin m → ℤ) (t : ℤ) (f : (Fin m → Bool) �
     have := congrFun h1 i
     unfold chow1 at this
     rw [this]; ring
-  have hsum : ∑ x, (bz (thrFun w t x) - bz (f x)) * (2 * lin w x - 2 * t + 1) = 0 := by
-    have e : ∀ x, (bz (thrFun w t x) - bz (f x)) * (2 * lin w x - 2 * t + 1) =
+  have hsum : ∑ x, (bz (thrFun w t x) - bz (f x)) * (2 * linSum w x - 2 * t + 1) = 0 := by
+    have e : ∀ x, (bz (thrFun w t x) - bz (f x)) * (2 * linSum w x - 2 * t + 1) =
         2 * ∑ i, w i * ((bz (thrFun w t x) - bz (f x)) * bz (x i)) -
           (2 * t - 1) * (bz (thrFun w t x) - bz (f x)) := by
       intro x
       have : ∑ i, w i * ((bz (thrFun w t x) - bz (f x)) * bz (x i)) =
-          (bz (thrFun w t x) - bz (f x)) * lin w x := by
-        unfold lin
+          (bz (thrFun w t x) - bz (f x)) * linSum w x := by
+        unfold linSum
         rw [Finset.mul_sum]
         exact Finset.sum_congr rfl fun i _ => by ring
       rw [this]; ring
@@ -70,17 +70,17 @@ theorem chow_inj {m : ℕ} (w : Fin m → ℤ) (t : ℤ) (f : (Fin m → Bool) �
       rw [← Finset.mul_sum, hDi i, mul_zero]
     rw [this]; ring
   have hnonneg : ∀ x ∈ (Finset.univ : Finset (Fin m → Bool)),
-      0 ≤ (bz (thrFun w t x) - bz (f x)) * (2 * lin w x - 2 * t + 1) := by
+      0 ≤ (bz (thrFun w t x) - bz (f x)) * (2 * linSum w x - 2 * t + 1) := by
     intro x _
     have hf0 := bz_nonneg (f x)
     have hf1 := bz_le_one (f x)
-    by_cases hg : t ≤ lin w x
+    by_cases hg : t ≤ linSum w x
     · have : bz (thrFun w t x) = 1 := by simp [thrFun, bz, hg]
       rw [this]
       exact mul_nonneg (by linarith) (by linarith)
     · have : bz (thrFun w t x) = 0 := by simp [thrFun, bz, hg]
       rw [this]
-      have hg' : lin w x ≤ t - 1 := by omega
+      have hg' : linSum w x ≤ t - 1 := by omega
       exact mul_nonneg_of_nonpos_of_nonpos (by linarith) (by linarith)
   have hzero := (Finset.sum_eq_zero_iff_of_nonneg hnonneg).mp hsum
   funext x
@@ -192,7 +192,7 @@ theorem mem_circSet {n k K : ℕ} (hk : k ≤ K) (w : Fin k → Fin n → ℤ) (
       ⟨Fintype.mem_piFinset.mpr fun j => mem_thrSet _ _, mem_thrSet _ _⟩
   · funext x
     rw [Bool.eq_iff_iff, hf x]
-    simp [thrComp, thrFun, lin, bz, Fin.sum_univ_add]
+    simp [thrComp, thrFun, linSum, bz, Fin.sum_univ_add]
 
 theorem exists_thrHard (n K : ℕ) (h : thrCount n K < 2 ^ 2 ^ n) :
     ∃ f : (Fin n → Bool) → Bool, f ∉ circSet n K := by
