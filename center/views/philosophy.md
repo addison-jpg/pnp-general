@@ -20,8 +20,10 @@
 - [checked, r=0.3] Fisher, hauntology as branching time: lost futures accumulate (lost_mono), haunting is monotone (haunted_mono), a branch point haunts (haunted_of_branch), capitalist_realism; models only cancelled pos
 - [checked, r=0.3] Minimal cuts of a weighted graph: complement symmetry (rt_compl), strong subadditivity (rt_submodular), monogamy of mutual information (rt_monogamy), so no graph has the 4-party GHZ entropy pattern (n
 - [checked, r=0.3] Seven one-NOT board rows encoded as a Fisher frame (names and statuses are data copied from the boards, not checked): refuted rows C2, C4, L5 are lost futures of the present A4-A7-A10-BottomPay and st
+- [checked-finite, r=1.0] knots.ath: philosophy/milnor.py passes: the Borromean rings have every linking number 0 and |mu(123)| = 1 (the sign depends on ring order and orientation) by two independent methods; with a fourth rin
 - [open, r=1.0] Not proved: the Coffman-Kundu-Wootters inequality (needs mixed-state concurrence), min-cut = entanglement entropy for HaPPY states, contraction of a general tensor network to the factorised form. Not 
 - [open, r=1.0] Not found: a theorem for Beauvoir's 'to will oneself free is to will others free' (a tree frame has no shared future for incomparable selves; a frame with joins loses lost_mono), a model of master and
+- [checked-finite, r=1.0] knots.ath: philosophy/milnor.py passes: the Borromean rings have every linking number 0 and mu(123) = -1 by two independent methods; with a fourth ring every triple invariant is 0; the trefoil has 9 F
 
 ## Cells
 - [DECIDED, r=0.0] unification of Fisher, Deleuze, Hegel, Camus, Beauvoir on Fisher's frame. lean/PEqualNP/Philosophy/{Hegel,Camus,Beauvoir,Unify}.lean and one-not/lean/PEqualNP/Philosophy/LevelGap.lean build, standard 

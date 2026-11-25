@@ -10,6 +10,7 @@
 - [checked-finite, r=0.0] brain/dna: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [checked-finite, r=0.0] brain/neuron: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [tested, r=0.5] Hairy ball on a model cortex: on icospheres with 42, 162 and 642 vertices, 100 random smooth functions each, the Banchoff indices of the critical points sum to 2 (the Euler characteristic) every time.
+- [checked-finite, r=1.0] neuron.ath: segmental-growth histories of a dendrite with n tips number (2n-3)!!, the rooted binary phylogenetic trees, for n=1..9; terminal growth gives (n-1)! and ordered shapes Catalan(n-1). Every 
 
 ## Fingerprints
 - [DATA, r=0.5] terminal-growth histories (n-1)!, n=1..9 seq [1, 1, 2, 6, 24, 120, 720, 5040]

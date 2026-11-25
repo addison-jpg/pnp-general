@@ -2,6 +2,7 @@
 
 ## Findings
 - [checked-finite, r=0.0] Privacy as exact combinatorics on synthetic data: k-anonymity over all 65536 four-row tables (largest k = 1, 2, 4 for 64800, 720, 16 tables) with the least-generalization search equal to brute force o
+- [checked-finite, r=1.0] privacy.ath: the equality patterns of n table rows number B(n), the Bell numbers, for n=1..8, each term equal to the sum over k of S(n,k) computed exactly; privacy/check.py passes.
 
 ## Fingerprints
 - [DATA, r=0.5] Bell numbers: equality patterns (set partitions) of n table rows, n=1..8 seq [1, 2, 5, 15, 52, 203, 877, 4140]
