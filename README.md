@@ -14,6 +14,8 @@
 
 Every verified result, with its label, evidence and the command that rechecks it: [`RESULTS.md`](RESULTS.md) (generated from the centre store).
 
+> **About the language bar:** GitHub counts asteroid (`.ath`) files as *Ruby*, because GitHub only lists a language once it is in wide use, and asteroid is new. The Ruby share in the bar is asteroid code.
+
 > Found a mistake, or a claim that reads stronger than its evidence? Please open an issue. Corrections are the most useful contribution.
 
 ## A small CPU in our gates
