@@ -41,6 +41,13 @@ Assessment (main): rational; a known proof pattern, flag algebras plus stability
 - DECIDED L2 (Sonnet): literature rows for flag algebras, hypergraph limits, flag-algebra-plus-stability results, limit theory for circuits: LITERATURE.md section L, 13 rows, search-result-only; an unopened Oxford thesis lead.
 - STOPPED L3 (container restart; partial `limits_local_witness.py` kept; reopen as OPEN) (Opus): bounded local witness for F2 (adjusted after the L1 obstacle); was: attempt a flag-algebra certificate on the smallest pattern size; list the tight limit objects. -> `one-not/research/open/limits_certificate.md`
 
+## TEAM, 2026-11-25 ~02:20 (Addison: "refactor agents, get urself a few fables, few opus, many sonnets")
+
+The machine has 4 cores and 15 GB of memory, shared by every seat. Paper seats (Fable, Opus) use almost no CPU; Lean builds and SAT do. So: one Lean build at a time per seat; SAT and search seats run one core each under `nice`, at most two at once. The other SAT seats wait for the tensor backend (T1) and start after it lands.
+- Fables: F1 the payment Hall condition (BottomPay and PHC@0, one statement); F2 KAK for U(4) and the exact L119 (9k + 3n + 1); F3 the DAG frame (joins: the real board history, Beauvoir's "willing others free").
+- Opus: O1 rule R2 (point lemma, two sets); O2 three-qubit CKW monogamy in Lean; O3 the PSPACE ⊆ P_CTC encoding.
+- Sonnets now: PaymentHall Prop (Lean), OR-only PHC@0 for monotone programs (paper), PHC@0 under point deletion, two-level saturation (QG rank 3), cost per result (prompt method), refuter DD search (one core). Queued until T1: PHC@0 enumeration, point-lemma SAT, refuter SAT cells.
+
 ## RULES
 
 - **SEAT SIZE (Addison, 2026-11-25: "some agents are too big here ... refactor with more sonnets").** A seat is one narrow task with one output file and one DECIDED line; parts become seats. Sonnet by default. Opus only for a single paper-proof attempt whose exact target is already written on the board. No Fable. An Opus that finds sub-lemmas writes each as `- OPEN (Sonnet): <exact statement> -> <file>` and stops.
