@@ -25,11 +25,25 @@ claim worlds Gup "[][][]F" = {0,1,2,3,4,5,6,7}
 claim valid IN "<>s -> []s"
 claim valid OUT "<>s -> []s"
 # Forest: one parent per node and no directed cycle give an undirected forest (a cited lemma, not checked here).
-# L3 duality stays open: a modal claim sees one relation, so asteroid cannot compare IN with the converse of OUT.
+# L3 duality: IN equals the converse of OUT, as sets of pairs (converse and claim same, asteroid/ext_modal.py).
+kripke INrev = converse OUT
+claim same IN INrev
 # L4 prune. Before the pass, some child has two parents in each direction, so pruning is needed.
 claim invalid Gup "<>s -> []s"
 claim invalid G "<>s -> []s"
-# L4 stays open in part: asteroid cannot run a sort, so "the first parent kept" and "OUT is a subset of G" are not checked.
+# L4 first parent kept: one pass is firstparent down (first parent of each child after sort), then firstparent on the converse (up).
+kripke OUT1 = firstparent G
+kripke UP1 = converse OUT1
+kripke IN1 = firstparent UP1
+kripke OUT2 = converse IN1
+claim same OUT OUT2
+claim same IN IN1
+# The last OUT pass prunes none: firstparent leaves OUT and IN as they are.
+kripke OUT3 = firstparent OUT
+claim same OUT OUT3
+kripke IN3 = firstparent IN
+claim same IN IN3
+# L4 stays open in part: "OUT is a subset of G" is not checked (asteroid has claim same, not a subset claim).
 # Spiral fixed point: a further pass prunes nothing iff every node has at most one parent both ways (lines 22 and 23).
 # The pass count (1 on this slice) is not computed by asteroid; it is written above.
 # FEED stays open: asteroid has no statement that reads vector rows from a .json file.

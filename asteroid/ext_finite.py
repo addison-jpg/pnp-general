@@ -2,6 +2,7 @@
   seq NAME = from PATH ["KEY"]              a .json list, or the entry of a fingerprints.json whose name contains KEY
   seq NAME = run "CMD" ["KEY"]              run a repo check (must exit 0), then read the fingerprints.json beside it
   seq NAME = [1, 2, 5, 15]                  a literal sequence
+  seq NAME = sorted NAME2                   the sort of NAME2: its integers in ascending order
   claim NAME = [1, 2, 5, 15]                the first terms of NAME are exactly these
   claim NAME matches NAME2 [FORM]           FORM(NAME) and NAME2 agree on their common prefix (>= 5 terms);
                                             FORM is as-is | diff | partial | plus1 (the centre's matcher forms)
@@ -258,6 +259,8 @@ def handle(line, api):
         SEQ[m.group(1)] = _from_file(os.path.join(A.ROOT, f), m.group(3), where); api["src"]["seq " + m.group(1)] = f
         A.RUNNERS.append(m.group(2))
         A.say(f"{ln}: seq {m.group(1)} = {_show(SEQ[m.group(1)])} ({len(SEQ[m.group(1)])} terms, {m.group(2)} passed; " + (f"it wrote {f})" if fresh else f"{f} is the committed copy, not written by this run)")); return True
+    if m := re.fullmatch(r"seq (\w+) = sorted (\w+)", line):     # sort: the integers of an existing seq, ascending
+        SEQ[m.group(1)] = sorted(_get(m.group(2))); A.say(f"{ln}: seq {m.group(1)} = sorted {m.group(2)} = {_show(SEQ[m.group(1)])}"); return True
     if m := re.fullmatch(r"seq (\w+) = \[([-\d,\s]*)\]", line):
         SEQ[m.group(1)] = _lit(m.group(2), where); A.say(f"{ln}: seq {m.group(1)} = {_show(SEQ[m.group(1)])}"); return True
     if m := re.fullmatch(r'check "([^"]+)"', line):

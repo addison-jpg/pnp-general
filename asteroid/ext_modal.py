@@ -6,6 +6,9 @@
   claim invalid NAME "FORMULA"         not valid: a countermodel exists (it is printed)
   claim defines NAME "FORMULA" PROP[+PROP...]   on every frame of NAME: FORMULA is valid iff the frame has PROP
   claim worlds NAME "FORMULA" = {0, 2} the worlds where FORMULA is true under NAME's valuation are exactly these
+  kripke NAME = converse R             R's worlds and val, each pair (a,b) reversed to (b,a)
+  kripke NAME = firstparent R          for each child b, keep only (a,b) with a the first parent: the first of b's parents after sort
+  claim same R S                       R and S, one frame each, are equal as sets of pairs
 FORMULA: atoms (lowercase words, e.g. p q r), T, F, ~ (not), [] (box), <> (diamond), &, |, -> and <->.
 Unary operators bind tightest, then &, then |, then -> and <-> (right associative). Parentheses as usual.
 Size limits: N <= 12 for one frame, N <= 4 for `all`, at most 3 atoms in a validity claim, and at most
@@ -136,7 +139,18 @@ def _work(K, f, n):
 
 def size(f): return 1 + sum(size(x) for x in f[1:] if isinstance(x, tuple))
 
+def _one(name, where):
+    K = _get(name, where)
+    if len(K["rels"]) != 1: raise SystemExit(f"{where}: {name} is not one frame (it has {len(K['rels'])} relations)")
+    return K
+
 def claim_expr(text, lean, api, force=False):
+    if ms := re.fullmatch(r"same (\w+) (\w+)", text):         # equality of two relations as sets of pairs
+        where = f"{api.get('script')}:{api.get('ln')}"
+        if lean: raise SystemExit(f"{where}: modal claims are exact Python checks; `by lean` is not available for them")
+        a, b = (set(pairs(_one(x, where)["rels"][0])) for x in ms.groups())
+        if a == b: return True, f"{ms.group(1)} and {ms.group(2)} are the same {len(a)} pairs"
+        return False, f"only in {ms.group(1)}: {sorted(a - b)}; only in {ms.group(2)}: {sorted(b - a)}"
     m = re.fullmatch(r'(valid|invalid) (\w+) "([^"]+)"', text)
     md = re.fullmatch(r'defines (\w+) "([^"]+)" ([\w+]+)', text)
     mw = re.fullmatch(r'worlds (\w+) "([^"]+)"\s*=\s*\{([\d,\s]*)\}', text)
@@ -177,6 +191,16 @@ def handle(line, api):
         if not 1 <= n <= MAX_ALL: raise SystemExit(f"{where}: `all` needs 1 <= N <= {MAX_ALL}")
         FRAMES[m.group(1)] = {"n": n, "rels": all_frames(n, ps), "val": None}
         A.say(f"{ln}: kripke {m.group(1)} = {len(FRAMES[m.group(1)]['rels'])} relations on {n} worlds that are {m.group(3)}"); return True
+    if m := re.fullmatch(r"kripke (\w+) = (converse|firstparent) (\w+)", line):
+        K = _one(m.group(3), where); n = K["n"]; succ = [0] * n
+        if m.group(2) == "converse":                              # (a,b) in R becomes (b,a)
+            for a, b in pairs(K["rels"][0]): succ[b] |= 1 << a
+        else:                                                     # the first parent of b: the first after sort
+            for b in range(n):
+                ps = sorted(a for a in range(n) if K["rels"][0][a] >> b & 1)
+                if ps: succ[ps[0]] |= 1 << b
+        FRAMES[m.group(1)] = {"n": n, "rels": [tuple(succ)], "val": K["val"]}
+        A.say(f"{ln}: kripke {m.group(1)} = {m.group(2)} {m.group(3)}: {n} worlds, R = {pairs(tuple(succ))}"); return True
     if m := re.fullmatch(r"kripke (\w+) = worlds (\d+) rel \[([\d\s,()]*)\](?: val (.+))?", line):
         n = int(m.group(2))
         if not 1 <= n <= MAX_ONE: raise SystemExit(f"{where}: worlds needs 1 <= N <= {MAX_ONE}")

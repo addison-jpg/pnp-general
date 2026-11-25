@@ -39,14 +39,14 @@ verify    := "verify lean" DIR ["within" SECONDS]                               
 theorem   := "theorem" FULL_NAME "from" MODULE "in" DIR                              (asteroid/ext_verify.py)
 levelmeans := "levelmeans" NAME                                                      (asteroid/ext_continuous.py)
 record    := "record" DIR ITEM WORD STRING
-seq       := "seq" NAME "=" ("from" PATH [STRING] | "run" STRING [STRING] | LIST)    (asteroid/ext_finite.py)
+seq       := "seq" NAME "=" ("from" PATH [STRING] | "run" STRING [STRING] | LIST | "sorted" NAME)    (asteroid/ext_finite.py)
 check     := "check" STRING                                                          (asteroid/ext_finite.py; STRING is "python3 -I path.py [args]")
 claim     := "claim" NAME "=" LIST | "claim" NAME "matches" NAME [FORM] | "claim formula" NAME "=" STRING ["from" INTEGER]   (ext_finite)
 FORM      := as-is | diff | partial | plus1
 frame     := "frame" STRING "reading" STRING "->" CLAIMREF "label" WORD ["reach" INTEGER] ["cost" NUMBER]   (asteroid/ext_frame.py)
 CLAIMREF  := LINE | PATH | "none"          (LINE: an earlier claim or check of this file; PATH: another .ath file)
-kripke    := "kripke" NAME "=" ("worlds" N "rel" PAIRS ["val" (ATOM SET)+] | "all" N PROP("+"PROP)*)   (asteroid/ext_modal.py)
-claim     := "claim" ("valid" | "invalid") NAME STRING | "claim defines" NAME STRING PROPS | "claim worlds" NAME STRING "=" SET   (ext_modal)
+kripke    := "kripke" NAME "=" ("worlds" N "rel" PAIRS ["val" (ATOM SET)+] | "all" N PROP("+"PROP)* | ("converse" | "firstparent") NAME)   (asteroid/ext_modal.py)
+claim     := "claim" ("valid" | "invalid") NAME STRING | "claim defines" NAME STRING PROPS | "claim worlds" NAME STRING "=" SET | "claim same" NAME NAME   (ext_modal)
 propose   := "propose" NAME STRING ["model" ("0.5B" | "1.5B")] ["n" K]                (asteroid/ext_qwen.py; K = 1..8, default 3)
 LIST      := "[" INTEGER ("," INTEGER)* "]"
 EXPR      := integers, n, + - * // ** ( ), postfix ! and !!, "C(" EXPR "," EXPR ")", "sum(" VAR "," EXPR "," EXPR "," EXPR ")"
@@ -68,6 +68,7 @@ Meaning. These lines let any level state an exact claim about an integer sequenc
 - `seq NAME = from PATH "KEY"` reads the one entry of a `fingerprints.json` whose name contains KEY. Without KEY, PATH is a `.json` list of integers. `seq NAME = [ ... ]` is a literal.
 - `seq NAME = run "CMD" "KEY"` runs CMD from the repository root. It must exit 0. The sequence is then read from the `fingerprints.json` beside the script.
 - CMD is always `python3 -I path.py [args]`, with the path inside the repository. It runs with a timeout of 900 s.
+- `seq NAME = sorted NAME2`: the sort of NAME2, its integers in ascending order.
 - `claim NAME = [ ... ]`: the first terms are exactly these.
 - `claim NAME matches NAME2 FORM`: FORM applied to NAME equals NAME2 on their common prefix. The prefix must have at least 5 terms. FORM is `as-is` (the default), `diff` (first differences), `partial` (partial sums) or `plus1`. These are the centre's matcher forms.
 - `claim formula NAME = "EXPR" from K`: term i of NAME equals EXPR at n = K + i - 1. K is 1 by default. Integers only. `//` must divide exactly, else the claim is FALSE. `0!! = (-1)!! = 1`. `C(a, b)` is 0 when b < 0 or b > a.
@@ -102,6 +103,9 @@ Meaning. These lines state exact claims of propositional modal logic on finite f
 - `claim invalid NAME "F"`: some frame, valuation and world make F false. The countermodel is printed. A false `valid` claim prints one too.
 - `claim defines NAME "F" PROPS`: on every frame of NAME, F is valid iff the frame has PROPS. With `all N any` this is the correspondence on N worlds.
 - `claim worlds NAME "F" = {...}`: under NAME's valuation, F is true at exactly these worlds.
+- `kripke NAME = converse R`: the converse of the one frame R: same worlds and val, each pair (a,b) becomes (b,a).
+- `kripke NAME = firstparent R`: for each child b, keep only the pair (a,b) where a is the first parent, the first of b's parents after sort.
+- `claim same R S`: TRUE iff the one frames R and S are equal as sets of pairs; FALSE prints the pairs in only one of them.
 - Exhaustive. No sampling. Size limits: N <= 12 for one frame, N <= 4 for `all` (65536 relations), at most 3 atoms, at most 2 000 000 frame-valuation pairs per claim, and at most 2 * 10^7 pairs times formula size per claim. All modal claims of one run share 6 * 10^7. Past a limit the claim is FALSE.
 - A check on N <= 4 worlds is `checked-finite`. The statement for every N is a theorem to cite (Kripke 1963; Blackburn, de Rijke, Venema 2001).
 - Test: `python3 -I asteroid/tests/test_modal.py`. Used in `philosophy/metaphysics/metaphysics.ath` and `culture/homestuck/timelines.ath`.

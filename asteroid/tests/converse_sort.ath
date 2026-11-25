@@ -1,0 +1,51 @@
+# converse_sort.ath: tests of converse, claim same, firstparent and sort.   Run: bin/asteroid --no-lean asteroid/tests/converse_sort.ath
+# Expected: every claim marked "want FALSE" prints FALSE; every other claim prints TRUE.
+# Positive: the converse of A is the hand-written reversal Ar.
+kripke A = worlds 4 rel [(0,1), (1,2), (2,3)] val p {0}
+kripke Ar = worlds 4 rel [(1,0), (2,1), (3,2)] val p {0}
+kripke Ac = converse A
+claim same Ac Ar
+# The converse of the converse is the relation itself.
+kripke Acc = converse Ac
+claim same Acc A
+# The converse keeps the valuation: p is still true only at world 0.
+claim worlds Ac "p" = {0}
+# Negative (want FALSE): A is not symmetric, so A and its converse differ.
+claim same A Ac
+# Edge: the empty relation is its own converse.
+kripke E = worlds 3 rel []
+kripke Ec = converse E
+claim same E Ec
+# Edge: a self-loop alone is its own converse.
+kripke S = worlds 3 rel [(1,1)]
+kripke Sc = converse S
+claim same S Sc
+# Edge (want FALSE): a self-loop plus one one-way pair is not its own converse.
+kripke L = worlds 3 rel [(1,1), (0,2)]
+kripke Lc = converse L
+claim same L Lc
+# firstparent, positive: child 3 has parents 2 and 0; after sort the first parent is 0. Child 1 has parents 0 and 1 (a self-loop); first parent 0.
+kripke P = worlds 4 rel [(2,3), (0,3), (0,1), (1,1), (0,2)]
+kripke Pf = firstparent P
+kripke Pwant = worlds 4 rel [(0,3), (0,1), (0,2)]
+claim same Pf Pwant
+# firstparent, negative (want FALSE): keeping the last parent instead is a different relation.
+kripke Plast = worlds 4 rel [(2,3), (1,1), (0,2)]
+claim same Pf Plast
+# firstparent of the empty relation is empty.
+kripke Ef = firstparent E
+claim same Ef E
+# sort: positive, with a repeated integer and a negative one.
+seq X = [3, -1, 2, 2]
+seq Xs = sorted X
+claim Xs = [-1, 2, 2, 3]
+# sort, negative (want FALSE): the sort is not the input order.
+claim Xs = [3, -1, 2, 2]
+# sort, edge: one term.
+seq One = [7]
+seq Ones = sorted One
+claim Ones = [7]
+# sort, edge (want FALSE): the sort of the empty seq is empty, and `claim NAME = []` is FALSE by SPEC (an empty list tests nothing).
+seq Z = []
+seq Zs = sorted Z
+claim Zs = []
