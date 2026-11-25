@@ -43,8 +43,16 @@ def _ints(xs, where):
 def _cmd(cmd, where):
     """`python3 -I path.py [args]`, path a file inside the repository. Returns argv with this Python."""
     p = shlex.split(cmd)
+    if len(p) == 3 and p[0] == "asteroid" and p[1] == "--no-lean" and p[2].endswith(".ath"):
+        # an .ath check: asteroid runs the file in its own process; it may not be the file doing the check
+        f = os.path.realpath(os.path.join(A.ROOT, p[2]))
+        if os.path.commonpath([os.path.realpath(A.ROOT), f]) != os.path.realpath(A.ROOT) or not os.path.isfile(f):
+            raise SystemExit(f"{where}: no such file in the repository: {p[2]}")
+        if os.path.relpath(f, os.path.realpath(A.ROOT)).replace(os.sep, "/") in WRITERS:
+            raise SystemExit(f"{where}: {p[2]} writes records or runs commands; a check may not run it")
+        return [sys.executable, "-I", "-m", "asteroid", "--no-lean", p[2]], p[2]
     if len(p) < 3 or p[0] != "python3" or p[1] != "-I" or not p[2].endswith(".py"):
-        raise SystemExit(f"{where}: CMD must be: python3 -I path.py [args]")
+        raise SystemExit(f"{where}: CMD must be: python3 -I path.py [args] or asteroid --no-lean path.ath")
     f = os.path.realpath(os.path.join(A.ROOT, p[2]))
     if os.path.commonpath([os.path.realpath(A.ROOT), f]) != os.path.realpath(A.ROOT) or not os.path.isfile(f):
         raise SystemExit(f"{where}: no such file in the repository: {p[2]}")
@@ -55,6 +63,7 @@ def _cmd(cmd, where):
 def _run(cmd, where):
     argv, path = _cmd(cmd, where)
     env = A.child_env(where)
+    if argv[2:4] == ["-m", "asteroid"]: env = dict(env, PYTHONPATH=A.ROOT)
     try: r = subprocess.run(argv, cwd=A.ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=TIMEOUT, env=env)
     except subprocess.TimeoutExpired: return False, f"timed out after {TIMEOUT} s", path, ""
     return r.returncode == 0, f"exit {r.returncode}", path, r.stdout
