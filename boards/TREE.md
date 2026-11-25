@@ -10,7 +10,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 - asteroid (the language and its tools): 7 checked · 3 tested · tested, re-checked in last 24h: 1/3
 - circuits (one-NOT and several-NOT): 48 checked · 6 tested · 6 refuted · tested, re-checked in last 24h: 0/6
 - lateral (Lawvere spine): 1 checked
-- other: 2 checked-finite · 3 tested · tested, re-checked in last 24h: 0/3
+- other: 10 checked-finite · 3 tested · tested, re-checked in last 24h: 0/3
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked · 2 checked-finite
 - quantum gravity: 13 checked
 - worlds (maps and unification; not progress on P vs NP): 9 checked
@@ -18,7 +18,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 91 checked · 4 checked-finite · 12 tested · 6 refuted
+## `./` 91 checked · 12 checked-finite · 12 tested · 6 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -52,8 +52,30 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `956856de` **open** [prompt-method] Prompting claim C7 (untested): In a regression c(s) = a + b|F(s)| + d|l(s)|, |F(s)| explains most variance; narrow Sonnet seats cost about 77-100k tokens each. Numbers: The cost per seat is consistent with the claim. The regression is not tested. Source /home/user/pnp-general/ath_prompts/measure/cost_per_result.md, line 12: plain Sonnet one-lemma seats, 13 seats, 15 lemmas, 1,165,505 tokens in total, 89,654 tokens per seat, and 77,700 per checked lemma. Line 21: a 32 s seat (C1) used 76,792 tokens and a 156 s seat (B8) used 86,424. So tokens barely track time. Line 45: across 18 seats in order the slope is +1,523 tokens per seat, r = 0.22. That is no clear trend with repo size. Line 50: heavier multi-lemma lines cost 130-200k. Source /home/user/pnp-general/at · evidence: `ath_prompts/SYNTHESIS.md` · qq-test · unverified (needs a second seat in by)
 - `7ce4c9ea` **tested** [prompt-method] Prompting claim C8 (toss-up): Slope of Sonnet tokens per checked result vs commit count is not different from 0, and C(R) stays below a fixed bound. Numbers: Source: /home/user/pnp-general/ath_prompts/measure/cost_per_result.md. The linear fit over 18 Sonnet seats in seat order gives a slope of +1,523 tokens per seat, with r = 0.22. The file says this is not distinguishable from noise at n = 18. Tokens per result by block of six seats: first 68,014, middle 125,384, last 83,884. The middle bump comes from heavier jobs: C3 at 172,838 tokens, C4 at 163,243, and Q4 at 198,002 in the last block. The late plain lemmas cost 78k-91k, against 84k-100k for the early ones, about 300 commits later. Over the window, commits went from 556 to 868 and checked find · evidence: `ath_prompts/SYNTHESIS.md` · qq-test, confirmed by qq-check · VERIFIED
 
-### `brain/` 
+### `brain/` 8 checked-finite
 - `e629ef32` **tested** [philosophy-formal] Hairy ball on a model cortex: on icospheres with 42, 162 and 642 vertices, 100 random smooth functions each, the Banchoff indices of the critical points sum to 2 (the Euler characteristic) every time. Random samples, floating point; a structural fact about sphere-shaped surfaces, not a model of the mind. · evidence: `brain/hairy.py`, `brain/BASE.md` · main · unverified (needs a second seat in by)
+
+#### `brain/complexes/` 1 checked-finite
+- `28a9c927` **checked-finite** [brain] brain/complexes: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. · evidence: `brain/complexes/check.py`, `brain/complexes/BASE.md` · main, confirmed by brain-seat2 · VERIFIED
+
+#### `brain/cortex/` 1 checked-finite
+- `3cef3bcc` **checked-finite** [brain] brain/cortex: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. · evidence: `brain/cortex/check.py`, `brain/cortex/BASE.md` · main, confirmed by brain-seat2 · VERIFIED
+
+#### `brain/dna/` 1 checked-finite
+- `d8b0058e` **checked-finite** [brain] brain/dna: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. · evidence: `brain/dna/check.py`, `brain/dna/BASE.md` · main, confirmed by brain-seat2 · VERIFIED
+
+#### `brain/membrane/` 1 checked-finite
+- `06993bb7` **checked-finite** [brain] brain/membrane: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. · evidence: `brain/membrane/check.py`, `brain/membrane/BASE.md` · main, confirmed by brain-seat2 · VERIFIED
+
+#### `brain/network/` 1 checked-finite
+- `50ff478c` **checked-finite** [brain] brain/network: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. · evidence: `brain/network/check.py`, `brain/network/BASE.md` · main, confirmed by brain-seat2 · VERIFIED
+
+#### `brain/neuron/` 2 checked-finite
+- `ed925eb4` **checked-finite** [brain] brain/neuron: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. · evidence: `brain/neuron/check.py`, `brain/neuron/BASE.md` · main, confirmed by brain-seat2 · VERIFIED
+- `4445c2b2` **checked-finite** [brain] Terminal dendrite growth gives exactly the Yule (equal-rates) phylogenetic distribution on tree shapes, and segmental growth exactly the uniform (PDA) distribution, for every unordered shape with up to 9 tips; segmental growth histories number (2n-3)!!, the count of rooted binary phylogenetic trees. Found first as a sequence match by the centre's matcher. · evidence: `brain/neuron/check.py`, `brain/neuron/BASE.md` · main, confirmed by brain-seat2 · VERIFIED
+
+#### `brain/tissue/` 1 checked-finite
+- `8f8708a6` **checked-finite** [brain] brain/tissue: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. · evidence: `brain/tissue/check.py`, `brain/tissue/BASE.md` · main, confirmed by brain-seat2 · VERIFIED
 
 ### `compbio/` 
 - `2547b029` **checked-finite** [compbio] Exact counts by exhaustive enumeration, each checked two ways: rooted binary phylogenetic trees (2n-3)!! for n<=8; RNA secondary structures with hairpin loop >= 1 (A004148) and Motzkin numbers for n<=8. · evidence: `compbio/fingerprints.py::rna_brute` · main · unverified (needs a second seat in by)

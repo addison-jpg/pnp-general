@@ -8,6 +8,7 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | program | checked | checked-finite | tested | refuted |
 |---|---|---|---|---|
 | asteroid | 7 | 0 | 3 | 0 |
+| brain | 0 | 8 | 0 | 0 |
 | circuits | 48 | 0 | 6 | 6 |
 | lateral | 1 | 0 | 0 | 0 |
 | other | 0 | 1 | 0 | 0 |
@@ -16,7 +17,7 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | prompt-method | 0 | 0 | 3 | 0 |
 | quantum-gravity | 13 | 0 | 0 | 0 |
 | worlds | 9 | 0 | 0 | 0 |
-| **all** | **91** | **4** | **12** | **6** |
+| **all** | **91** | **12** | **12** | **6** |
 
 ## asteroid
 
@@ -32,6 +33,19 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | tested | Native binary, interactive prompt (asteroid / asteroid repl): 4ST> prompt, :help :load :save :quit, circuit blocks; verdicts equal python3 -m asteroid on hello.bench. R1 reran :help and :quit on the built binary. | `one-not/lean/PEqualNP/AsteroidLang/Repl.lean`, `one-not/lean/PEqualNP/AsteroidLang/Main.lean` |  |
 | tested | Native plot phi writes SVG (101 exact Phi points) and matches Python to 0.00e+00 on hello (n=4) and first (tiny n=4, fano n=7); R1 reran native_plot_check.py on both. | `one-not/lean/PEqualNP/AsteroidLang/Plot.lean`, `one-not/research/open/native_plot_check.py` | `python3 one-not/research/open/native_plot_check.py hello.ath asteroid/examples/first.ath` |
 | tested | Python mixed slack from continuous.slack_table agrees with an independent naive implementation at all 81 + 243 states of two circuits (n = 4, 5; witness count and base at every state), and MixedStep via mixed_margin agrees with the naive check (holds, margin 0 on both); the Lean bit-parallel witn... | `asteroid/tests/test_mixed.py`, `asteroid/ext_mixed.py` |  |
+
+## brain
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | Terminal dendrite growth gives exactly the Yule (equal-rates) phylogenetic distribution on tree shapes, and segmental growth exactly the uniform (PDA) distribution, for every unordered shape with up to 9 tips; segmental growth histories number (2n-3)!!, the count of rooted binary phylogenetic tre... | `brain/neuron/check.py`, `brain/neuron/BASE.md` | `python3 -I brain/neuron/check.py` |
+| checked-finite | brain/complexes: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/complexes/check.py`, `brain/complexes/BASE.md` | `python3 -I brain/complexes/check.py` |
+| checked-finite | brain/cortex: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/cortex/check.py`, `brain/cortex/BASE.md` | `python3 -I brain/cortex/check.py` |
+| checked-finite | brain/dna: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/dna/check.py`, `brain/dna/BASE.md` | `python3 -I brain/dna/check.py` |
+| checked-finite | brain/membrane: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/membrane/check.py`, `brain/membrane/BASE.md` | `python3 -I brain/membrane/check.py` |
+| checked-finite | brain/network: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/network/check.py`, `brain/network/BASE.md` | `python3 -I brain/network/check.py` |
+| checked-finite | brain/neuron: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/neuron/check.py`, `brain/neuron/BASE.md` | `python3 -I brain/neuron/check.py` |
+| checked-finite | brain/tissue: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/tissue/check.py`, `brain/tissue/BASE.md` | `python3 -I brain/tissue/check.py` |
 
 ## circuits
 

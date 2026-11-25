@@ -1,0 +1,2 @@
+{"id": "06993bb7", "time": "2026-11-25 06:30", "who": "main", "serves": "brain", "word": "checked-finite", "statement": "brain/membrane: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.", "evidence": ["brain/membrane/check.py", "brain/membrane/BASE.md"], "by": ["main"], "runner": "python3 -I brain/membrane/check.py"}
+{"id": "06993bb7", "by": ["brain-seat2"]}

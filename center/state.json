@@ -13,8 +13,10 @@
  },
  "brain": {
   "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 8
+  },
+  "mean_radius_findings": 0.0
  },
  "circuits": {
   "cells": {

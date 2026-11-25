@@ -3,7 +3,7 @@
   "counts": {
    "checked": 91,
    "tested": 12,
-   "checked-finite": 4,
+   "checked-finite": 12,
    "refuted": 6
   },
   "verified": [
@@ -93,6 +93,14 @@
    "95f52829",
    "d85c69c0",
    "6feb4aef",
+   "3cef3bcc",
+   "8f8708a6",
+   "28a9c927",
+   "50ff478c",
+   "d8b0058e",
+   "06993bb7",
+   "ed925eb4",
+   "4445c2b2",
    "57b5bd42",
    "89fa09ba",
    "182f7509",
@@ -247,8 +255,19 @@
   ]
  },
  "brain": {
-  "counts": {},
-  "verified": [],
+  "counts": {
+   "checked-finite": 8
+  },
+  "verified": [
+   "3cef3bcc",
+   "8f8708a6",
+   "28a9c927",
+   "50ff478c",
+   "d8b0058e",
+   "06993bb7",
+   "ed925eb4",
+   "4445c2b2"
+  ],
   "unverified_here": [
    {
     "id": "e629ef32",
@@ -257,6 +276,70 @@
     ]
    }
   ]
+ },
+ "brain/complexes": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "28a9c927"
+  ],
+  "unverified_here": []
+ },
+ "brain/cortex": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "3cef3bcc"
+  ],
+  "unverified_here": []
+ },
+ "brain/dna": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "d8b0058e"
+  ],
+  "unverified_here": []
+ },
+ "brain/membrane": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "06993bb7"
+  ],
+  "unverified_here": []
+ },
+ "brain/network": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "50ff478c"
+  ],
+  "unverified_here": []
+ },
+ "brain/neuron": {
+  "counts": {
+   "checked-finite": 2
+  },
+  "verified": [
+   "ed925eb4",
+   "4445c2b2"
+  ],
+  "unverified_here": []
+ },
+ "brain/tissue": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "8f8708a6"
+  ],
+  "unverified_here": []
  },
  "compbio": {
   "counts": {},

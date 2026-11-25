@@ -11,7 +11,7 @@ cells: 6 DECIDED, 4 OPEN, 6 TAKEN
 - OPEN [?] (Addison): Open VSX is not published (needs Addison's token).  (asteroid-vscode:11)
 
 ## brain
-findings (verified): none · mean radius None
+findings (verified): 8 checked-finite · mean radius 0.0
 cells: none
 
 ## circuits
