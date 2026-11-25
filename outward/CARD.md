@@ -18,3 +18,11 @@ Turn the analogy around: the balloon is the repository itself, and the planet is
 - **Working assumption (stated, not proved):** the radius is variable, not constant. Each new result, field or citation inflates it. Tractability does not need the radius to be known, only that the surface has no edge.
 - **What this gives:** a push can be sized by its neighbourhood on the surface (which fields it touches), not by a global count. That is the same locality the centre uses: a record's radius comes from its own provenance.
 - **Labelled analogy.** It does not say how fast the balloon inflates.
+
+## Pushed out, and generalized (Addison: "push the balloon out ... can that be generalized?"; analogy)
+
+- **Out:** the surface is the set of readers and citations; its radius is what is known and citable. Still finite and boundaryless.
+- **Generalized, one number to several:** a single radius becomes a radius per axis (circuits, quantum, language, philosophy, biology), an ellipsoid rather than a sphere.
+- **Charts:** each field is a patch with its own coordinates; moving between fields is a change of chart. That is the definition of a manifold.
+- **Dimension:** each axis (time, certainty, reach, language) can be a coordinate of its own. The centre's radius is one projection of that higher-dimensional object.
+- **Caveat:** labelled analogy. It sizes reach; it measures nothing.
