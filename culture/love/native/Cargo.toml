@@ -1,0 +1,11 @@
+[package]
+name = "love-native"
+version = "0.1.0"
+edition = "2021"
+description = "Native recomputation of culture/love (stable matching, paths, stable polytope); std only"
+
+[dependencies]
+
+[profile.release]
+panic = "abort"
+overflow-checks = true
