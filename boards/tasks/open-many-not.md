@@ -13,7 +13,8 @@
 - Open: systems of several overlapping ORs, where NOT gates could let gates be shared.
 - S3(a) per-set flip lemma: proved (B1, `Open/FlipLemma.lean`, any number of NOT gates).
 - Open: **S3(b)**, flip classes across all sets ≥ base, the cross-set sharing statement in Hall form.
-- Seats now: B3 (Sonnet, SAT, running), B4 (Sonnet, several-OR partition bound, running), B5 (Opus): S3(b).
+- S3(b) reduced to the thin-basis lemma (B5, `one-not/research/open/B5_flip_hall.md`).
+- Seats now: B6 (Opus): prove the thin-basis lemma; B7 (Sonnet): SAT the thin-basis problem on Fano, two 5-sets and the next systems, longer runs.
 
 ## Lines (TAKEN / DECIDED only)
 
