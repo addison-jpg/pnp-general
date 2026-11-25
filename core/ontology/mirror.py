@@ -8,7 +8,9 @@ A mirror on worlds 0..n-1 is a relation R that is
 Checked on every relation on 1..3 worlds (2^9 = 512 at n = 3), by two encodings that must agree:
   1. the definition above, on the set of pairs;
   2. the matrix form: R equals its transpose, and every row has a 1 (a reached world can go on).
-Counts are printed: how many relations are mirrors. The empty relation counts (vacuously: nothing is reached). Reading (analogy): a mirror is the only kind of
+Counts are printed: how many relations are mirrors. The empty relation counts (vacuously: nothing is reached).
+Note (found by the attack subagent): for a reciprocal relation the second condition always holds, since x R y gives
+y R x, so y reaches x and can go on. So the mirror count equals the symmetric count; the serial clause adds nothing. Reading (analogy): a mirror is the only kind of
 relation in which being reached and being able to go on are the same condition.
 Run: python3 -I core/ontology/mirror.py   (last line is JSON)
 """
