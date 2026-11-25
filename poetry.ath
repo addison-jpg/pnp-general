@@ -1,0 +1,34 @@
+# Poetry as finite structure, with a psychoanalytic layer built as operations. See culture/poetry/README.md.
+# Every number below is recomputed by culture/poetry/check.py, by exhaustion. The psychoanalytic readings are analogy, not claims here.
+check "python3 -I culture/poetry/check.py"
+# F1 rhyme schemes are set partitions: Bell numbers, n = 1..10 lines.
+seq rhyme = run "python3 -I culture/poetry/check.py" "rhyme schemes"
+claim rhyme = [1, 2, 5, 15, 52, 203, 877, 4140, 21147, 115975]
+# F3 the sestina spiral is a single n-cycle exactly for these n <= 30 (n = 6 is Arnaut Daniel's sestina).
+seq spiral = from culture/poetry/fingerprints.json "sestina spiral"
+claim spiral = [1, 2, 3, 5, 6, 9, 11, 14, 18, 23, 26, 29, 30]
+# F4 Queneau, Cent mille milliards de poemes (1961): 10 choices on each of m lines; term 14 is 10^14.
+seq queneau = from culture/poetry/fingerprints.json "Queneau sonnets"
+claim formula queneau = "10**n" from 1
+# P2 displacement: permutations that move every element (derangements), n = 1..7.
+seq displaced = from culture/poetry/fingerprints.json "total displacements"
+claim displaced = [0, 1, 2, 9, 44, 265, 1854]
+# P4 point de capiton: chains of the code {0, 01, 11}; Jacobsthal count; 2^(n-1) read only after the fact (n >= 2); 2 fixed only by the last bit.
+seq chains = from culture/poetry/fingerprints.json "capiton chains of"
+claim formula chains = "(2**(n+1) + (-1)**n) // 3" from 1
+seq retro = from culture/poetry/fingerprints.json "after the signifier ends"
+claim retro = [0, 1, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
+seq late = from culture/poetry/fingerprints.json "fixed only at the end"
+claim late = [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+# P5 repetition: self-maps with a fixed point (a refrain), idempotent maps, connected maps, n = 1..6.
+seq refrain = from culture/poetry/fingerprints.json "refrain"
+claim formula refrain = "n**n - (n-1)**n" from 1
+seq idem = from culture/poetry/fingerprints.json "idempotent"
+claim formula idem = "sum(k, 1, n, C(n,k) * k**(n-k))" from 1
+seq conn = from culture/poetry/fingerprints.json "connected self-maps"
+claim conn = [1, 3, 17, 142, 1569, 21576]
+# P6 the anchor: schemes whose anchor (final cluster of the reading frame) is the whole poem are the atomic partitions, n = 1..8.
+seq whole = from culture/poetry/fingerprints.json "anchored as a whole"
+claim whole = [1, 1, 2, 6, 22, 92, 426, 2146]
+record culture/poetry forms checked-finite "poetry.ath: culture/poetry/check.py passes. Rhyme schemes of n lines are Bell(n), n<=10; every block profile matches n!/(prod size! prod mult!), n<=10. 135135 sonnet schemes use 7 rhymes twice; 27 keep pairs inside quatrains and couplet; 1 alternates (Shakespeare). The sestina spiral has order 6; it is one n-cycle for n in 1,2,3,5,6,9,11,14,18,23,26,29,30 (n<=30), matching the 2n+1 prime characterisation in range."
+record culture/poetry operations checked-finite "poetry.ath: condensation (kernel of a map) and rhyme scheme coincide, k,m<=5; derangements n<=7; equivalence relations = partitions n<=4, contiguity not transitive; code {0,01,11} uniquely decodable to length 12, its first word fixed only by the last bit on exactly 2 chains per length; every self-map on n<=6 points has tail+cycle<=n; anchors of the rhyme reading frame are the final cluster, a suffix, counted Bell(n-k)*atomic(k), n<=8. The psychoanalytic readings are analogy."

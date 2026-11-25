@@ -401,7 +401,7 @@ def main():
         {"name": "capiton chains fixed only at the end", "seq": late},
         {"name": "capiton chains of {0,01,11}", "seq": qtotal},
         {"name": "capiton chains fixed after the signifier ends", "seq": retro},
-        {"name": "rhyme schemes anchored as a whole (atomic partitions)", "seq": A},
+        {"name": "poems anchored as a whole (atomic partitions)", "seq": A},
     ]
     for e in fp: e["runner"] = "python3 -I culture/poetry/check.py"
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "fingerprints.json"), "w") as fh:

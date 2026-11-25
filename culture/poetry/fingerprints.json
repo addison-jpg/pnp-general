@@ -158,7 +158,7 @@
   "runner": "python3 -I culture/poetry/check.py"
  },
  {
-  "name": "rhyme schemes anchored as a whole (atomic partitions)",
+  "name": "poems anchored as a whole (atomic partitions)",
   "seq": [
    1,
    1,
