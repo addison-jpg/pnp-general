@@ -38,8 +38,17 @@ In the work, there is one *alpha* timeline. Any branch that cannot be made consi
 
 Analogies, all; `philosophy/REVIEW.md` sets the standard for not selling them as theorems.
 
+## 5. The meteor: a vessel between universes
+
+In Act 6 the trolls cross from their session to the kids' session on a meteor, a three-year trip. In canon it is a meteor, not an asteroid. It is the one object that keeps working across the boundary between two universes: it carries players and memory, and the game's rules still hold inside it.
+
+- **Formal reading: transport.** A vessel between worlds is a structure-preserving map between two models. It carries a fact proved in one world into another, provided both worlds share the structure the fact depends on. Analogy, with real instances below.
+- **Join:** the neuron and phylogenetics match (`brain/neuron/check.py`) is such a crossing: the count (2n − 3)!! and the two growth models carry exactly from one field to the other, and the check confirms the cargo arrives intact.
+- **Between foundations:** every check here lives in one universe of mathematics (Lean's classical axioms). A result whose proof uses no axiom of choice (`#print axioms` shows it) also holds in constructive mathematics; those results are the ones that make the crossing. Open: list them.
+
 ## Open, in order of value
 
 1. Encode one cited arc's loops as a timeline-labelled graph, and check closure (`checked-finite` with a runner).
 2. A toy Sburb session as a finite game: count the winning runs by exhaustion.
 3. Make the CTC join explicit: state the alpha timeline as a fixed point in the terms of `CtcReset.lean` (paper first, Lean last).
+4. List the Lean results whose axioms exclude `Classical.choice`: the results that carry across to constructive mathematics.
