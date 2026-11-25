@@ -9,7 +9,7 @@
 
 ## Current target
 
-- L-qg-116 follows from L-qg-115 (checked, C1). So the quantum side is down to L-qg-115, L-qg-119, L-qg-169.
+- L-qg-116 follows from L-qg-115 (checked, C1). So the quantum side is down to L-qg-115, L-qg-119, L-qg-169. L-qg-169 is now proved (C3, `Open/L169.lean`, checked against `Gap.L169`, standard axioms only).
 - Seats now: C2 (Opus, L-qg-119 or L-qg-115, running), C3 (Sonnet, L-qg-169, running).
 
 ## Lines (TAKEN / DECIDED only)
