@@ -65,10 +65,15 @@ def writeText (file : System.FilePath) (text : String) : IO Unit :=
 def real? (p : System.FilePath) : IO (Option System.FilePath) := do
   try return some (← IO.FS.realPath p) catch _ => return none
 
-/-- the first folder, from `dir` upwards, that holds the Lean project of asteroid -/
+/-- `dir` holds the Lean project of asteroid -/
+def isProject (dir : System.FilePath) : IO Bool := do
+  return (← (dir / "lakefile.toml").pathExists) && (← (dir / "PEqualNP" / "W951").isDir)
+
+/-- the first folder, from `dir` upwards, that holds the Lean project of asteroid, or whose
+`one-not/lean` does (the repository root: a binary in `dist/linux/` or at the root finds it) -/
 partial def findProject (dir : System.FilePath) : IO (Option System.FilePath) := do
-  if (← (dir / "lakefile.toml").pathExists) && (← (dir / "PEqualNP" / "W951").isDir) then
-    return some dir
+  if ← isProject dir then return some dir
+  if ← isProject (dir / "one-not" / "lean") then return some (dir / "one-not" / "lean")
   match dir.parent with
   | some up => if up == dir then return none else findProject up
   | none => return none
@@ -298,7 +303,7 @@ def runFile (file : String) (noProof : Bool) : IO UInt32 := do
     | some project, some (lake, _) => pure (some (⟨project, lake⟩ : Prover))
     | none, _ =>
       IO.println "note: evaluate only: no Lean project (a folder with lakefile.toml and \
-        PEqualNP/W951) above the executable, the program or the current folder \
+        PEqualNP/W951, or a repository holding one in one-not/lean) above the executable, the program or the current folder \
         (asteroid --doctor shows where it looked)"
       pure none
     | _, none =>
