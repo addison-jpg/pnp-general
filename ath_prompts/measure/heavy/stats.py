@@ -80,16 +80,19 @@ def direction(lo, hi):
     return "+" if lo > 0 else ("-" if hi < 0 else "0")
 
 
-def verdict(per_size):
-    """per_size: list of (size_label, point, lo, hi) in increasing size. Returns one of:
-    'holds at every size' (same sign, CI excludes 0 at every size),
-    'reverses' (CIs exclude 0 with opposite signs at two sizes),
-    'shrinks with size (small-model artefact)' (CI excludes 0 at the smallest size, includes 0 at the largest,
-       and |point| at the largest is below |point| at the smallest),
-    'grows with size' (the mirror case), else 'not resolved (CI includes 0)'."""
+def verdict(per_size, want="+"):
+    """per_size: list of (size_label, point, lo, hi) in increasing size; want: the sign the claim predicts.
+    Returns one of:
+    'holds at every size'  - the CI excludes 0 in the claimed direction at every size run;
+    'fails at every size (opposite direction)' - the CI excludes 0 against the claim at every size;
+    'reverses'             - CIs exclude 0 with opposite signs at two sizes;
+    'shrinks with size (small-model artefact)' - CI excludes 0 at the smallest size, includes 0 at the largest,
+                             with a smaller point estimate at the largest;
+    'grows with size'      - the mirror case; else 'not resolved (CI includes 0)'."""
     dirs = [direction(lo, hi) for _, _, lo, hi in per_size]
     if "+" in dirs and "-" in dirs: return "reverses"
-    if all(x == dirs[0] != "0" for x in dirs): return "holds at every size"
+    if all(x == want for x in dirs): return "holds at every size"
+    if all(x == dirs[0] != "0" for x in dirs): return "fails at every size (opposite direction)"
     p0, pN = per_size[0][1], per_size[-1][1]
     if dirs[0] != "0" and dirs[-1] == "0" and abs(pN) < abs(p0): return "shrinks with size (small-model artefact)"
     if dirs[0] == "0" and dirs[-1] != "0": return "grows with size"

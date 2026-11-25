@@ -152,7 +152,7 @@ A *seat* s is one agent given one board line ℓ(s). For each seat, record:
 - **The cost:** the tokens it spent, c(s), as the tools report them.
 - **The result:** r(s), one of checked, tested, refuted, obstacle (an exact missing lemma written down) or none.
 
-**Conjecture B1 (informal asks are short but dense).** For the same instruction, Addison's informal text has fewer tokens than a formal rewrite, and more information per token. The research seat's first measurement agrees: on 10 prompts, 236 Qwen2.5-0.5B tokens against 267 for the formal rewrites, at 6.0 against 4.6 nats per token (`ath_prompts/measure/results.md`).
+**Conjecture B1 (informal asks are short but dense).** For the same instruction, Addison's informal text has fewer tokens than a formal rewrite, and more information per token. The research seat's first measurement agrees: on 10 prompts, 236 Qwen2.5-0.5B tokens against 267 for the formal rewrites, at 6.0 against 4.6 nats per token (`ath_prompts/measure/results.md`). Verdict from the heavy instrument (Qwen2.5 0.5B, 1.5B, 3B and 7B 4-bit; CPU, no GPU; `ath_prompts/measure/heavy/results.md`): the density half **holds at every size**, in tokenizer-independent units too (about 2.1 against 1.4 to 1.6 bits per character, informal higher in 9 or 10 of 10 prompts at each size, Wilcoxon p ≤ 0.01). The length half is a tokenizer fact shared by all four sizes and weak per prompt (7 of 10 shorter, p = 0.11). What does NOT hold is "cheaper in total": informal costs more total bits than formal at 0.5B to 3B (+25 to +35 bits per prompt), a gap that shrinks to +16 (CI includes 0) at 7B. Short but dense, not short and cheap; part of the density is the model's unfamiliarity with the register (higher predictive entropy at every size; the excess over it shrinks at 7B). Logit lens: informal tokens become predictable later in the network than formal ones at every size.
 
 **Conjecture B2 (cost is reading).** c(s) ≈ a + b·|F(s)| + small terms. |ℓ(s)| and |p(s)| contribute little.
 
@@ -198,7 +198,7 @@ Read honestly, the narrow Sonnet seats cluster tightly: 84,000 to 100,000 tokens
 
 ### How to refute or confirm it
 
-- **B1:** more prompt pairs through the Qwen instrument (the research seat's task).
+- **B1:** done at four sizes (`ath_prompts/measure/heavy/`); next, more prompt pairs and more speakers through the same pipeline.
 - **B2 and M1:** regress c(s) on |F(s)| and |ℓ(s)| over every seat, using the tool-reported usage lines.
 - **M2 and T2:** give one fresh agent with no board line the same goal as a past Sonnet seat (for example A8's lemma), at two repository sizes, and compare the tokens.
 - **T1:** plot C(R) over the commit history, with the checked findings from `boards/tree.json` against the tokens spent.
