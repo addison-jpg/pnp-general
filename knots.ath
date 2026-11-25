@@ -1,0 +1,3 @@
+# Knots, from philosophy/milnor.py. Lacan's Borromean knot as an exact link computation.
+check "python3 -I philosophy/milnor.py"
+record philosophy philosophy checked-finite "knots.ath: philosophy/milnor.py passes: the Borromean rings have every linking number 0 and mu(123) = -1 by two independent methods; with a fourth ring every triple invariant is 0; the trefoil has 9 Fox 3-colourings. Exact integer arithmetic."

@@ -1,0 +1,8 @@
+# Privacy, from privacy/. The equality patterns of n table rows are the set partitions: Bell numbers.
+seq bell = run "python3 -I privacy/check.py" "Bell numbers"
+seq stirling5 = from privacy/fingerprints.json "Stirling"
+claim bell = [1, 2, 5, 15, 52, 203, 877, 4140]
+claim formula bell = "sum(k, 0, n, sum(j, 0, k, (-1)**j * C(k, j) * (k - j)**n) // k!)"   # B(n) = sum over k of S(n, k)
+claim stirling5 = [1, 15, 25, 10, 1, 52]                    # S(5, k) for k = 1..5, then their sum B(5) = 52
+check "python3 -I privacy/check.py"
+record privacy privacy checked-finite "privacy.ath: the equality patterns of n table rows number B(n), the Bell numbers, for n=1..8, each term equal to the sum over k of S(n,k) computed exactly; privacy/check.py passes."
