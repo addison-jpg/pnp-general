@@ -47,6 +47,10 @@ cells: 1 DECIDED, 4 STOPPED, 1 TAKEN
 findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
+## curvature
+findings (verified): none · mean radius None
+cells: none
+
 ## essays
 findings (verified): none · mean radius None
 cells: none
@@ -116,6 +120,10 @@ cells: none
 
 ## routing
 findings (verified): 1 checked-finite · mean radius 0.0
+cells: none
+
+## social
+findings (verified): none · mean radius None
 cells: none
 
 ## time

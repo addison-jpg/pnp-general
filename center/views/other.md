@@ -61,5 +61,6 @@
 - [open, r=1.0] Lacan, paranoia and the master signifier (not re-read); Eco's obsession with a plot as meaning anchored to one persecutor: reading only; no structure checked
 - [open, r=1.0] Homestuck, the meteor (culture/homestuck/BASE.md section 5): the meteor as a transport map between two sessions that keeps the rules
 - [open, r=1.0] Addison: Car Seat Headrest, High to Death and Kid War (culture/carseat/BASE.md): no formal structure yet; no check decides what a song means
+- [open, r=1.0] Addison: general relativity given upwards from quantum gravity (Cheeger, Mueller, Schrader 1984: the Regge action converges to Einstein-Hilbert, cited from memory): the 4D continuum limit is not check
 - [open, r=1.0] Fisher, Capitalist Realism 2009 (not re-read); no alternative as an absorbing class is analogy (reading), not checked: chain fact only: math/transit/social.py part a, absorption probability 1 into clo
 - [open, r=1.0] Grok incidents 2025 (NPR 2025-07-09; TechCrunch 2025-05-14, 2025-07-12; relayed, not re-read); topic intrusion as aberrant salience, Kapur 2003: reading only: filter removal as removed reality testing

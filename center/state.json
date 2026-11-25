@@ -58,6 +58,11 @@
   },
   "mean_radius_findings": 0.0
  },
+ "curvature": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "essays": {
   "cells": {},
   "findings": {},
@@ -162,6 +167,11 @@
    "checked-finite": 1
   },
   "mean_radius_findings": 0.0
+ },
+ "social": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
  },
  "time": {
   "cells": {},
