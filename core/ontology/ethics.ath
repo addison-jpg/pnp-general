@@ -1,0 +1,7 @@
+# A first formalized ethics: a deontic frame (worlds are situations, R says where an agent can move). See core/ontology/ethics.py.
+check "python3 -I core/ontology/ethics.py"
+check "python3 -I core/ontology/beauvoir.py"
+frame "core/ontology/ethics.py: deontic frames, O p as box and P p = not O not p, every relation on 1..3 worlds" reading "exact fact only: D (O p -> P p) is valid exactly on the serial frames, 1, 9, 343; D and B both valid exactly on the reciprocal and serial frames, 1, 5, 45; brute force on every valuation agrees" -> 2 label checked-finite reach 2 cost 40
+frame "core/ontology/beauvoir.py: []<>T defines successor-seriality and <>T seriality, every relation on 1..3 worlds" reading "exact fact only: <>T valid iff serial, the same condition as D in ethics.py" -> 3 label checked-finite reach 2 cost 40
+frame "Addison: ought-implies-can as axiom D, read with Beauvoir; the slogan is usually credited to Kant (from memory); Pour une morale de l'ambiguite (1947), cited from memory, not re-read" reading "ANALOGY (a reading): every situation has a permissible next situation is what ought-implies-can asks" -> none label open reach 2 cost 80
+frame "Addison: the mirror (reciprocal and serial) as the ethical frame; Beauvoir, my freedom requires the other's, cited from memory" reading "ANALOGY (a reading): B with D says what is so here stays permitted from every situation I can reach, and I can always go on" -> none label open reach 2 cost 80
