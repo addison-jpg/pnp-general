@@ -9,3 +9,4 @@
 
 ## Lines (TAKEN / DECIDED only)
 
+- A2 DONE: Open/MixedSlack.lean defines mslack and MixedStepNeg (Prop) and proves MixedStepNeg -> no_minCE; the arrow itself is unproved.

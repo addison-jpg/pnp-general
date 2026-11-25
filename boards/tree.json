@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 36,
+   "checked": 38,
    "tested": 6,
    "refuted": 5
   },
@@ -52,7 +52,9 @@
    "b35aefb4",
    "86ffd5a1",
    "015ef337",
-   "4290878b"
+   "4290878b",
+   "66d4cb88",
+   "57b5bd42"
   ],
   "unverified_here": []
  },
@@ -123,11 +125,38 @@
    }
   ]
  },
+ "lean": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "57b5bd42"
+  ],
+  "unverified_here": []
+ },
+ "lean/PEqualNP": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "57b5bd42"
+  ],
+  "unverified_here": []
+ },
+ "lean/PEqualNP/QuantumGravity": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "57b5bd42"
+  ],
+  "unverified_here": []
+ },
  "one-not": {
   "counts": {
    "tested": 5,
    "refuted": 5,
-   "checked": 29
+   "checked": 30
   },
   "verified": [
    "1b00e1bc",
@@ -168,7 +197,8 @@
    "b35aefb4",
    "86ffd5a1",
    "015ef337",
-   "4290878b"
+   "4290878b",
+   "66d4cb88"
   ],
   "unverified_here": []
  },
@@ -344,7 +374,7 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 27
+   "checked": 28
   },
   "verified": [
    "5fe90015",
@@ -373,13 +403,14 @@
    "b35aefb4",
    "86ffd5a1",
    "015ef337",
-   "4290878b"
+   "4290878b",
+   "66d4cb88"
   ],
   "unverified_here": []
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 27
+   "checked": 28
   },
   "verified": [
    "5fe90015",
@@ -408,7 +439,8 @@
    "b35aefb4",
    "86ffd5a1",
    "015ef337",
-   "4290878b"
+   "4290878b",
+   "66d4cb88"
   ],
   "unverified_here": []
  },
@@ -423,7 +455,7 @@
  },
  "one-not/lean/PEqualNP/W951": {
   "counts": {
-   "checked": 26
+   "checked": 27
   },
   "verified": [
    "30cf54bf",
@@ -451,7 +483,8 @@
    "b35aefb4",
    "86ffd5a1",
    "015ef337",
-   "4290878b"
+   "4290878b",
+   "66d4cb88"
   ],
   "unverified_here": [
    {
@@ -485,6 +518,15 @@
     ]
    }
   ]
+ },
+ "one-not/lean/PEqualNP/W951/Open": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "66d4cb88"
+  ],
+  "unverified_here": []
  },
  "one-not/tools": {
   "counts": {
