@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 44,
+   "checked": 48,
    "tested": 6,
    "refuted": 5
   },
@@ -57,7 +57,11 @@
    "66d4cb88",
    "7f3971c7",
    "b233fdbd",
+   "ba956ff0",
+   "4cea3d21",
+   "d99349da",
    "57b5bd42",
+   "89fa09ba",
    "182f7509",
    "98886641",
    "769c3ae0"
@@ -145,10 +149,11 @@
  },
  "lean": {
   "counts": {
-   "checked": 4
+   "checked": 5
   },
   "verified": [
    "57b5bd42",
+   "89fa09ba",
    "182f7509",
    "98886641",
    "769c3ae0"
@@ -157,10 +162,11 @@
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 4
+   "checked": 5
   },
   "verified": [
    "57b5bd42",
+   "89fa09ba",
    "182f7509",
    "98886641",
    "769c3ae0"
@@ -169,10 +175,11 @@
  },
  "lean/PEqualNP/QuantumGravity": {
   "counts": {
-   "checked": 4
+   "checked": 5
   },
   "verified": [
    "57b5bd42",
+   "89fa09ba",
    "182f7509",
    "98886641",
    "769c3ae0"
@@ -194,7 +201,7 @@
   "counts": {
    "tested": 5,
    "refuted": 5,
-   "checked": 33
+   "checked": 36
   },
   "verified": [
    "1b00e1bc",
@@ -239,7 +246,10 @@
    "4290878b",
    "66d4cb88",
    "7f3971c7",
-   "b233fdbd"
+   "b233fdbd",
+   "ba956ff0",
+   "4cea3d21",
+   "d99349da"
   ],
   "unverified_here": []
  },
@@ -415,7 +425,7 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 31
+   "checked": 34
   },
   "verified": [
    "0992c96e",
@@ -448,13 +458,16 @@
    "4290878b",
    "66d4cb88",
    "7f3971c7",
-   "b233fdbd"
+   "b233fdbd",
+   "ba956ff0",
+   "4cea3d21",
+   "d99349da"
   ],
   "unverified_here": []
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 30
+   "checked": 33
   },
   "verified": [
    "5fe90015",
@@ -486,7 +499,10 @@
    "4290878b",
    "66d4cb88",
    "7f3971c7",
-   "b233fdbd"
+   "b233fdbd",
+   "ba956ff0",
+   "4cea3d21",
+   "d99349da"
   ],
   "unverified_here": []
  },
@@ -501,7 +517,7 @@
  },
  "one-not/lean/PEqualNP/W951": {
   "counts": {
-   "checked": 29
+   "checked": 32
   },
   "verified": [
    "30cf54bf",
@@ -532,7 +548,10 @@
    "4290878b",
    "66d4cb88",
    "7f3971c7",
-   "b233fdbd"
+   "b233fdbd",
+   "ba956ff0",
+   "4cea3d21",
+   "d99349da"
   ],
   "unverified_here": [
    {
@@ -569,12 +588,15 @@
  },
  "one-not/lean/PEqualNP/W951/Open": {
   "counts": {
-   "checked": 3
+   "checked": 6
   },
   "verified": [
    "66d4cb88",
    "7f3971c7",
-   "b233fdbd"
+   "b233fdbd",
+   "ba956ff0",
+   "4cea3d21",
+   "d99349da"
   ],
   "unverified_here": [
    {
@@ -592,6 +614,42 @@
   "unverified_here": [
    {
     "id": "cd89cf56",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "867c04b2",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "4c0b831c",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "9e3415c9",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "f2bc194e",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "19199a60",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "0b2623a8",
     "why": [
      "needs a second seat in by"
     ]
