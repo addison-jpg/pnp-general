@@ -3,6 +3,7 @@ Run from the repository root:  python3 -I asteroid/tests/test_finite.py      (ex
 import os, re, subprocess, sys, tempfile
 sys.path.insert(0, os.getcwd())
 from asteroid import ext_finite as X
+if sys.argv[1:]: sys.exit(f"unknown arguments: {sys.argv[1:]}")
 fails = []
 def want(name, cond):
     print(("PASS " if cond else "FAIL ") + name)
@@ -16,6 +17,17 @@ want("Bell by sum", [ev("sum(k, 0, n, sum(j, 0, k, (-1)**j * C(k, j) * (k - j)**
 for bad in ("7 // 2", "(-3)!", "2 ** (0 - 1)", "m + 1", "n +", "1.5"):
     try: ev(bad, 1); want(f"rejects {bad}", False)
     except ValueError: want(f"rejects {bad}", True)
+
+for big in ("sum(k, 0, 10**12, 0)", "(10**7)!", "C(10**9, 5)", "(10**8)!!"):
+    try: ev(big, 1); want(f"bounds {big}", False)
+    except ValueError: want(f"bounds {big}", True)
+want("passed needs a PASS line", X._passed("x\nPASS\n{}") and not X._passed("FAIL a\nPASS") and not X._passed("all PASS"))
+X.SEQ["e"] = []
+want("empty formula claim is FALSE", X.claim_expr('formula e = "1 // 0"', False, {})[0] is False)
+X.SEQ["e"] = [1, 2]
+want("empty literal claim is FALSE", X.claim_expr("e = []", False, {"script": "t", "ln": 1})[0] is False)
+try: X.claim_expr("e = [1-2]", False, {"script": "t", "ln": 1}); want("bad literal is an error", False)
+except SystemExit as e: want("bad literal is an error", "not an integer" in str(e))
 
 prog = '''seq cat = [1, 1, 2, 5, 14, 42, 132]
 seq ps = [1, 2, 4, 9, 23, 65, 197]
@@ -45,4 +57,6 @@ print(r.stdout.strip()); print(r.stderr.strip()[-400:]) if r.stderr.strip() else
 want("program verdicts", got == expect)
 want("summary counts", f"claims: {expect.count(True)} true, {expect.count(False)} false" in r.stdout)
 want("exit 1 when a claim is false", r.returncode == 1)
-print(f"finite: {len(fails)} failures"); sys.exit(1 if fails else 0)
+print(f"finite: {len(fails)} failures")
+if not fails: print("PASS")
+sys.exit(1 if fails else 0)

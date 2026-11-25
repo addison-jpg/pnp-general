@@ -15,6 +15,21 @@ import asteroid.asteroid as A
 
 SEQ = {}            # name -> list of int
 TIMEOUT = 900
+LIMIT = 10**6       # largest n in n!, n!!, C(n, k), and the most terms one sum may add
+STEPS = 10**7       # most evaluation steps for one formula claim
+INT = re.compile(r"-?\d+")
+
+def _lit(body, where):
+    """The integers of a literal list. Each item must be a plain integer."""
+    xs = [x for x in body.replace(",", " ").split()]
+    bad = [x for x in xs if not INT.fullmatch(x)]
+    if bad: raise SystemExit(f"{where}: not an integer: {bad[0]}")
+    return [int(x) for x in xs]
+
+def _passed(out):
+    """A check passes only if one stdout line is exactly PASS and no line has the word FAIL."""
+    ls = [l.strip() for l in out.splitlines()]
+    return "PASS" in ls and not any("FAIL" in re.findall(r"\w+", l) for l in ls)
 
 def _ints(xs, where):
     if not isinstance(xs, list) or not all(isinstance(x, int) and not isinstance(x, bool) for x in xs):
@@ -99,15 +114,22 @@ def parse(s):
     if p.peek() is not None: raise ValueError(f"unexpected {p.peek()}")
     return a
 
-def ev(a, V):
+def _big(x, what):
+    if x > LIMIT: raise ValueError(f"{what} with {x} > {LIMIT} is too large")
+
+def ev(a, V, budget=None):
+    if budget is None: budget = [STEPS]
+    budget[0] -= 1
+    if budget[0] < 0: raise ValueError(f"more than {STEPS} steps")
+    _ev = lambda b, W=V: ev(b, W, budget)
     k = a[0]
     if k == "int": return a[1]
     if k == "var":
         if a[1] not in V: raise ValueError(f"unknown name {a[1]}")
         return V[a[1]]
-    if k == "neg": return -ev(a[1], V)
+    if k == "neg": return -_ev(a[1], V)
     if k in ("+", "-", "*", "//", "**"):
-        x, y = ev(a[1], V), ev(a[2], V)
+        x, y = _ev(a[1], V), _ev(a[2], V)
         if k == "+": return x + y
         if k == "-": return x - y
         if k == "*": return x * y
@@ -118,27 +140,31 @@ def ev(a, V):
         if abs(x) > 1 and y > 100000: raise ValueError("exponent too large")
         return x ** y
     if k == "!":
-        x = ev(a[1], V)
+        x = _ev(a[1], V)
         if x < 0: raise ValueError(f"({x})! is undefined")
+        _big(x, "n!"); budget[0] -= x
         r = 1
         for i in range(2, x + 1): r *= i
         return r
     if k == "!!":
-        x = ev(a[1], V)
+        x = _ev(a[1], V)
         if x < -1: raise ValueError(f"({x})!! is undefined")
+        _big(x, "n!!"); budget[0] -= x // 2
         r = 1
         while x > 1: r *= x; x -= 2
         return r                                   # 0!! = (-1)!! = 1
     if k == "C":
-        x, y = ev(a[1], V), ev(a[2], V)
+        x, y = _ev(a[1], V), _ev(a[2], V)
         if x < 0: raise ValueError(f"C({x}, {y}): negative top")
         if y < 0 or y > x: return 0
+        _big(x, "C(n, k)"); budget[0] -= y
         r = 1
         for i in range(y): r = r * (x - i) // (i + 1)
         return r
     if k == "sum":
-        lo, hi = ev(a[2], V), ev(a[3], V)
-        return sum(ev(a[4], {**V, a[1]: j}) for j in range(lo, hi + 1))
+        lo, hi = _ev(a[2], V), _ev(a[3], V)
+        _big(hi - lo + 1, "a sum of terms")
+        return sum(_ev(a[4], {**V, a[1]: j}) for j in range(lo, hi + 1))
     raise ValueError(k)
 
 FORMS = {"as-is": lambda s: list(s), "diff": lambda s: [b - a for a, b in zip(s, s[1:])],
@@ -158,7 +184,8 @@ def claim_expr(text, lean, api, force=False):
     if not (m1 or m2 or m3): return None
     if lean: raise SystemExit(f"{api['script']}:{api['ln']}: finite claims are exact Python checks; `by lean` is not available for them")
     if m1:
-        s, want = _get(m1.group(1)), [int(x) for x in m1.group(2).replace(",", " ").split()]
+        s, want = _get(m1.group(1)), _lit(m1.group(2), f"{api['script']}:{api['ln']}")
+        if not want: return False, "an empty list tests nothing"
         if len(s) < len(want): return False, f"{m1.group(1)} has only {len(s)} terms"
         bad = [i for i, (x, y) in enumerate(zip(s, want)) if x != y]
         return (not bad), (f"first {len(want)} terms equal" if not bad else f"term {bad[0] + 1}: {s[bad[0]]} != {want[bad[0]]}")
@@ -172,8 +199,10 @@ def claim_expr(text, lean, api, force=False):
     s, k0 = _get(m3.group(1)), int(m3.group(3) or 1)
     try:
         f = parse(m3.group(2))
+        if not s: return False, f"{m3.group(1)} has no terms, so the formula is tested on nothing"
+        budget = [STEPS]
         for i, x in enumerate(s):
-            y = ev(f, {"n": k0 + i})
+            y = ev(f, {"n": k0 + i}, budget)
             if y != x: return False, f"n={k0 + i}: formula gives {y}, sequence has {x}"
     except ValueError as e: return False, f"formula error: {e}"
     return True, f"formula equals all {len(s)} terms, n={k0}..{k0 + len(s) - 1}"
@@ -184,19 +213,22 @@ def handle(line, api):
         f = A.in_path(m.group(2)); SEQ[m.group(1)] = _from_file(f, m.group(3), where); api["src"]["seq " + m.group(1)] = os.path.relpath(f, A.ROOT) if os.path.isabs(f) else f
         A.say(f"{ln}: seq {m.group(1)} = {_show(SEQ[m.group(1)])} ({len(SEQ[m.group(1)])} terms, from {f})"); return True
     if m := re.fullmatch(r'seq (\w+) = run "([^"]+)"(?: "([^"]+)")?', line):
+        f = os.path.join(os.path.dirname(path := _cmd(m.group(2), where)[1]), "fingerprints.json")
+        fa = os.path.join(A.ROOT, f)
+        before = os.stat(fa).st_mtime_ns if os.path.isfile(fa) else None
         ok, why, path, _ = _run(m.group(2), where)
         if not ok: raise SystemExit(f"{where}: {m.group(2)} failed ({why})")
-        f = os.path.join(os.path.dirname(path), "fingerprints.json")
+        fresh = os.path.isfile(fa) and os.stat(fa).st_mtime_ns != before
         if not os.path.isfile(os.path.join(A.ROOT, f)): raise SystemExit(f"{where}: no {f} beside {path}")
         SEQ[m.group(1)] = _from_file(os.path.join(A.ROOT, f), m.group(3), where); api["src"]["seq " + m.group(1)] = f
         A.RUNNERS.append(m.group(2))
-        A.say(f"{ln}: seq {m.group(1)} = {_show(SEQ[m.group(1)])} ({len(SEQ[m.group(1)])} terms, {m.group(2)} passed, from {f})"); return True
+        A.say(f"{ln}: seq {m.group(1)} = {_show(SEQ[m.group(1)])} ({len(SEQ[m.group(1)])} terms, {m.group(2)} passed; " + (f"it wrote {f})" if fresh else f"{f} is the committed copy, not written by this run)")); return True
     if m := re.fullmatch(r"seq (\w+) = \[([-\d,\s]*)\]", line):
-        SEQ[m.group(1)] = [int(x) for x in m.group(2).replace(",", " ").split()]; A.say(f"{ln}: seq {m.group(1)} = {_show(SEQ[m.group(1)])}"); return True
+        SEQ[m.group(1)] = _lit(m.group(2), where); A.say(f"{ln}: seq {m.group(1)} = {_show(SEQ[m.group(1)])}"); return True
     if m := re.fullmatch(r'check "([^"]+)"', line):
         ok, why, path, out = _run(m.group(1), where)
-        ok = ok and "PASS" in out.split()
+        ok = ok and _passed(out)
         if ok: A.RUNNERS.append(m.group(1)); api["src"]["check " + path] = path
         api["results"].append((ln, f'check "{m.group(1)}"', ok, False))
-        A.say(f"{ln}: check {m.group(1)}: python {'TRUE' if ok else 'FALSE'} ({why}, {'printed PASS' if 'PASS' in out.split() else 'no PASS'})"); return True
+        A.say(f"{ln}: check {m.group(1)}: python {'TRUE' if ok else 'FALSE'} ({why}, {'printed PASS' if _passed(out) else 'no PASS line, or a FAIL'})"); return True
     return False

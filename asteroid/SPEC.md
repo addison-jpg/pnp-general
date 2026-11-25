@@ -66,7 +66,13 @@ Meaning. These lines let any level state an exact claim about an integer sequenc
 - `claim NAME = [ ... ]`: the first terms are exactly these.
 - `claim NAME matches NAME2 FORM`: FORM applied to NAME equals NAME2 on their common prefix. The prefix must have at least 5 terms. FORM is `as-is` (the default), `diff` (first differences), `partial` (partial sums) or `plus1`. These are the centre's matcher forms.
 - `claim formula NAME = "EXPR" from K`: term i of NAME equals EXPR at n = K + i - 1. K is 1 by default. Integers only. `//` must divide exactly, else the claim is FALSE. `0!! = (-1)!! = 1`. `C(a, b)` is 0 when b < 0 or b > a.
-- `check "CMD"`: CMD must exit 0 and print the word PASS. It counts as a claim.
+- `check "CMD"`: CMD must exit 0. One stdout line must be exactly `PASS`. No line may hold the word FAIL. It counts as a claim.
+- `seq ... run` says whether CMD wrote `fingerprints.json`. If not, the output says the file is the committed copy. Then the run vouches for the script, not for the file.
+- Empty data proves nothing. A formula claim on a sequence with no terms is FALSE. `claim NAME = []` is FALSE.
+- Each item of a literal list must be a plain integer. `[1-2]` is an error, not a crash.
+- Errors in a formula make the claim FALSE: `n!` for n < 0, `n!!` for n < -1, a negative top in `C(a, b)`, a negative exponent, an unknown name.
+- Unary minus binds looser than `**`. So `-3**2` is -9.
+- Size limits. n!, n!! and C(n, k) need n <= 10^6. One sum adds at most 10^6 terms. One claim takes at most 10^7 steps. Past a limit the claim is FALSE.
 - Each claim prints TRUE or FALSE and counts in the summary. `by lean` is not available for them.
 - Each passing `check` or `seq ... run` becomes the runner of the program's records. So `record ... checked-finite` carries a runner. The files read are cited as evidence.
 
