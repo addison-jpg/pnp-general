@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 71,
+   "checked": 70,
    "tested": 8,
    "refuted": 5
   },
@@ -87,9 +87,8 @@
    "9c7d09e2",
    "2ee8c618",
    "aff6e6b7",
-   "478ce785",
-   "80d2fd4f",
-   "2e8126de"
+   "2e8126de",
+   "957df3fd"
   ],
   "unverified_here": []
  },
@@ -176,7 +175,7 @@
  },
  "lean": {
   "counts": {
-   "checked": 12
+   "checked": 11
   },
   "verified": [
    "57b5bd42",
@@ -188,15 +187,14 @@
    "9c7d09e2",
    "2ee8c618",
    "aff6e6b7",
-   "478ce785",
-   "80d2fd4f",
-   "2e8126de"
+   "2e8126de",
+   "957df3fd"
   ],
   "unverified_here": []
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 12
+   "checked": 11
   },
   "verified": [
    "57b5bd42",
@@ -208,27 +206,38 @@
    "9c7d09e2",
    "2ee8c618",
    "aff6e6b7",
-   "478ce785",
-   "80d2fd4f",
-   "2e8126de"
+   "2e8126de",
+   "957df3fd"
   ],
   "unverified_here": []
  },
  "lean/PEqualNP/Philosophy": {
   "counts": {
-   "checked": 4
+   "checked": 3
   },
   "verified": [
    "aff6e6b7",
-   "478ce785",
-   "80d2fd4f",
-   "2e8126de"
+   "2e8126de",
+   "957df3fd"
   ],
   "unverified_here": [
    {
     "id": "66145862",
     "why": [
      "capitalist_realism not in lean/PEqualNP/Philosophy/Fisher.lean"
+    ]
+   },
+   {
+    "id": "478ce785",
+    "why": [
+     "monogamy_of_pure_pair not in lean/PEqualNP/Philosophy/BeauvoirQG.lean"
+    ]
+   },
+   {
+    "id": "80d2fd4f",
+    "why": [
+     "rt_monogamy not in lean/PEqualNP/Philosophy/BeauvoirQG.lean",
+     "schmidt_rank_le_cut not in lean/PEqualNP/Philosophy/BeauvoirQG.lean"
     ]
    }
   ]

@@ -79,3 +79,29 @@ fine: 26. overclaim: 11 (3 serious: the `no_network_has_ghz_entropies` triangle 
 ## Overall verdict
 
 The Lean is correct, builds cleanly on standard axioms, and `entropy_symm`, `pure_iff_product`, `moments_symm`, `rt_submodular` and `rt_monogamy` are faithful and non-trivial, with `entropy` a genuine von Neumann entropy and the partial traces right. The weaknesses are naming and one false sentence: "monogamy" labels what is really decoupling (`monogamy_of_pure_pair`) and MMI (`rt_monogamy`), `schmidt_rank_le_cut` has no cut in it, three results are aliases or restatements, and md Part 2 item 7 wrongly says the three-party GHZ triad cannot live on a network (a star graph realises it). The philosophy is honestly labelled as reading in the files themselves, so the mathematics is not being sold as proof of Beauvoir, though the "theorem bridges to a philosopher" feel comes from names like `barbarian_iff_beyond`, which is a definitional alias.
+
+## Status after review (2026-11-25)
+
+Original review text above is unchanged. No proof was changed; only names, docstrings and prose.
+`lake build PEqualNP.Philosophy.BeauvoirQG` passes. Renames (uses updated in `BeauvoirQG.lean`, `BEAUVOIR_QG.md`,
+`LITERATURE.md`): `monogamy_of_pure_pair` -> `pure_pair_decouples`; `rt_monogamy` -> `rt_mmi`;
+`schmidt_rank_le_cut` -> `schmidt_rank_le_bond_pow`. `findings.jsonl` is append-only: old lines 478ce785, 80d2fd4f,
+2e8126de still use the old names; superseding finding 957df3fd was added with `boards.py add`.
+
+| Row | Status |
+|---|---|
+| `entropy`, `selfState`, `reduceAC`, order theory, `moments_symm`, `schmidt_rank_symm`, `entropy_symm`, `pure_iff_product`, `couple_entropy_eq_third`, `rt_submodular`, `no_network_has_ghz_entropies` (theorem), `schmidt_rank_le_bond`, light-cone and directed lemmas, citations | No change (fine). |
+| `rt`, `cut`, `Anchored` | `rt` doc: graph analogue of RT, boundary is nodes not legs; HaPPY claim qualified. Name `rt` kept (many uses). |
+| `sum_minor_sq` doc | "squared I-concurrence". |
+| `monogamy_of_pure_pair` | Renamed `pure_pair_decouples`; doc says decoupling, not monogamy, CKW not proved. |
+| `ghz_pair_separable`, `ghz_couple_mixed` | Docs: classical correlation, not entanglement; "pair 12 and by symmetry the others". |
+| `rt_compl` | Doc: graph analogue of `S(A)=S(A^c)`. |
+| `rt_monogamy` | Renamed `rt_mmi`; doc says MMI, not CKW. |
+| `no_network_has_ghz_entropies` / md Part 2 item 7 | False claim fixed: only the four-party pattern is excluded; star graph realises three-party GHZ. |
+| `schmidt_rank_le_cut` | Renamed `schmidt_rank_le_bond_pow`; `E` is an index type; entropy clause marked not proved. |
+| `bell_bond_saturates` (vacuous) | Doc: identity has full rank, true by definition nearly; Bell reading is ours. |
+| `barbarian_iff_beyond`, `recognise_iff_not_beyond` (vacuous) | Docs and md say definitional aliases. Names kept. |
+| `causal_order_from_links` (vacuous) | Doc and md say rename of Mathlib `lt_iff_transGen_covBy`. Name kept. |
+| "Mathlib alone" | "Mathlib plus two repo files" in Lean header and md. |
+| md items 5 and 8 | "open" marked metaphor; item 8 says `Beyond` is the old model under a physics name. |
+| Not done | Epigraph/Barres sourcing and the "will oneself free" quote source: unverified, no source opened. `rt` not renamed `mincut`. |

@@ -2,7 +2,7 @@
 
 Asked for by Addison: "best route imo is to attack beauvoir specifically routed at quantum gravity set/node/edge".
 
-Lean file: [`lean/PEqualNP/Philosophy/BeauvoirQG.lean`](../lean/PEqualNP/Philosophy/BeauvoirQG.lean). It builds with Mathlib only, with no `sorry`. `#print axioms` on every theorem named below gives at most `propext`, `Classical.choice`, `Quot.sound`.
+Lean file: [`lean/PEqualNP/Philosophy/BeauvoirQG.lean`](../lean/PEqualNP/Philosophy/BeauvoirQG.lean). It builds with Mathlib plus two repo files (`Beauvoir`, `Fisher`), with no `sorry`. `#print axioms` on every theorem named below gives at most `propext`, `Classical.choice`, `Quot.sound`.
 
 This note has three parts, and the line between them is the point of the note.
 
@@ -33,7 +33,7 @@ The state is written as the amplitude matrix of the cut "(first, second) against
 | Theorem | Statement |
 |---|---|
 | `couple_entropy_eq_third` | `S(AB) = S(C)` for a pure three-party state. An instance of `entropy_symm`. |
-| `monogamy_of_pure_pair` | If the reduced state of (first, second) is pure, the reduced state of (first, third) is a product `σ ⊗ τ`. |
+| `pure_pair_decouples` | (Decoupling, not monogamy.) If the reduced state of (first, second) is pure, the reduced state of (first, third) is a product `σ ⊗ τ`. |
 | `ghz_pair_separable` | For `|000⟩ + |111⟩`, the reduced state of two parties is `|00⟩⟨00| + |11⟩⟨11|`, a sum of two product states. |
 | `ghz_couple_mixed` | For the same state, the reduced state of a pair is not pure. |
 
@@ -45,10 +45,10 @@ The state is written as the amplitude matrix of the cut "(first, second) against
 |---|---|
 | `rt_compl` | A boundary region and its complement have the same value. |
 | `rt_submodular` | `rt(A ∪ B) + rt(A ∩ B) ≤ rt(A) + rt(B)`. This is strong subadditivity for minimal cuts. |
-| `rt_monogamy` | For pairwise disjoint `A`, `B`, `C`: `rt(A) + rt(B) + rt(C) + rt(ABC) ≤ rt(AB) + rt(BC) + rt(AC)`. This is monogamy of mutual information. The proof is one inequality per edge (`edge_monogamy`, 64 cases). |
+| `rt_mmi` | For pairwise disjoint `A`, `B`, `C`: `rt(A) + rt(B) + rt(C) + rt(ABC) ≤ rt(AB) + rt(BC) + rt(AC)`. This is monogamy of mutual information (MMI), not CKW monogamy of entanglement. The proof is one inequality per edge (`edge_monogamy`, 64 cases). |
 | `no_network_has_ghz_entropies` | No weighted graph gives seven equal nonzero values for `A`, `B`, `C`, `AB`, `BC`, `AC`, `ABC`. |
-| `schmidt_rank_le_bond`, `schmidt_rank_le_cut` | If `M = L R` factors through a bond space made of `|E|` edges of dimension `D`, the Schmidt rank is at most `D^|E|`. |
-| `bell_bond_saturates` | The identity matrix (one maximally entangled pair per bond index) attains the bound. |
+| `schmidt_rank_le_bond`, `schmidt_rank_le_bond_pow` | If `M = L R` factors through a bond space, the Schmidt rank is at most its dimension; for bond index `E → Fin D` at most `D^|E|`. `E` is only an index type, not a graph cut, and "entropy at most `|E| log D`" is not proved. |
+| `bell_bond_saturates` | The identity matrix has full rank, so attains the bound. True by definition, nearly; the Bell-pair reading is ours. |
 
 ### 1d. Partial orders (causal sets)
 
@@ -59,7 +59,7 @@ The state is written as the amplitude matrix of the cut "(first, second) against
 | `spacelike_of_beyond`, `beyond_symm` | `Beyond` implies `Spacelike`, and is symmetric. Any partial order. |
 | `beyond_mono` | If `m`, `x` have no common upper bound, neither do any `m' ≥ m`, `x' ≥ x`. Any partial order. |
 | `frame_beyond_iff_spacelike` | On a Fisher frame (linear past) the two relations coincide. |
-| `barbarian_iff_beyond`, `recognise_iff_not_beyond` | On a Fisher frame, `Beauvoir.Barbarian` is `Beyond`, and `Beauvoir.Recognise` is its negation. |
+| `barbarian_iff_beyond`, `recognise_iff_not_beyond` | Definitional aliases of `Beauvoir.barbarian_iff_no_common_future`, not new results. On a Fisher frame, `Beauvoir.Barbarian` is `Beyond`, and `Beauvoir.Recognise` is its negation. |
 | `lightcone_spacelike_meet`, `lightcone_not_frame` | In `ℕ × ℕ` with the product order, `(1,0)` and `(0,1)` are spacelike and meet at `(1,1)`. So this order does not have linear past. |
 | `directed_no_beyond`, `frame_directed_total` | In a directed order nothing is `Beyond` anything. A directed Fisher frame is a chain. |
 | `causal_order_from_links` | In a locally finite order, `<` is the transitive closure of the covering relation. This is Mathlib's `lt_iff_transGen_covBy`, restated. |
@@ -72,20 +72,20 @@ Each item names the checked theorem it leans on. The step from the theorem to th
 2. **Mutual constitution.** `entropy_symm` and `moments_symm` say the two reduced states are mixed to the same degree. Read: what the self lacks when taken alone is exactly what the other lacks when taken alone. This is our reading of Hegel's mutual recognition and of Beauvoir's "opposition of self and other".
 3. **Ambiguity.** `pure_iff_product` says a party is a definite pure state on its own only if it is unrelated to the other. Read: a self in relation is not a self-sufficient thing. Calling this Beauvoir's ambiguity is our label; `Beauvoir.ambiguity` in the tree model is a different statement.
 4. **"To will oneself free is to will others free."** `UNIFY.md` recorded that the tree model has no theorem for this. If one reads entropy as openness, `entropy_symm` says the self's openness equals the other's. This is a suggestion, not a result: entropy is not freedom, and nothing in the Lean says so.
-5. **The triad of *She Came to Stay*.** Françoise, Pierre and Xavière as three subsystems. `monogamy_of_pure_pair` reads: a couple that is one closed whole leaves the third uncorrelated with either. `ghz_pair_separable` reads: in a three-way bond of GHZ type, no two share entanglement once the third is ignored. `couple_entropy_eq_third` reads: the couple is exactly as open to the third as the third is to the couple.
+5. **The triad of *She Came to Stay*.** Françoise, Pierre and Xavière as three subsystems. `pure_pair_decouples` reads: a couple that is one closed whole leaves the third uncorrelated with either. `ghz_pair_separable` reads: in a three-way bond of GHZ type, no two share entanglement once the third is ignored. `couple_entropy_eq_third` reads: the couple is exactly as open to the third as the third is to the couple (metaphor only; "open" is not defined, and item 4 disowns entropy as openness).
 6. **The epigraph.** "Each consciousness seeks the death of the other." In this model, discarding the other (the partial trace) leaves the self mixed whenever the two were entangled (`pure_iff_product`). Read: removing the other does not return the self to itself. This echoes Hegel's point that the struggle to the death defeats itself. See Part 3, item 3, for why the echo is weak.
-7. **Networks.** In holographic tensor networks the entropy of a boundary region is a minimal cut (Ryu and Takayanagi; Pastawski, Yoshida, Harlow and Preskill). Under that cited premise, `rt_compl` is `S(A) = S(B)` on nodes and edges, and `rt_monogamy` says correlations in such a network are always monogamous: what one party shares with two others separately never exceeds what it shares with them together. `no_network_has_ghz_entropies` then says the GHZ-type triangle of item 5 cannot be drawn on any such network.
-8. **The barbarians and the horizon.** `barbarian_iff_beyond` identifies the tree model's barbarian with "no common future". In a general causal set that is stricter than spacelike separation. Read: the barbarian is not merely someone elsewhere, but someone with whom no later meeting exists. `beyond_mono` is then the permanence of that separation.
+7. **Networks.** In holographic tensor networks the entropy of a boundary region is a minimal cut (Ryu and Takayanagi; Pastawski, Yoshida, Harlow and Preskill). Under that cited premise, `rt_compl` is the analogue of `S(A) = S(Aᶜ)` on nodes and edges, and `rt_mmi` says correlations in such a network obey monogamy of mutual information (not CKW monogamy): what one party shares with two others separately never exceeds what it shares with them together. `no_network_has_ghz_entropies` then says the four-party GHZ pattern (three regions plus purifier) cannot be drawn on any such network. The three-party GHZ pattern of item 5 can: a star graph with three weight-`k` edges to a centre node gives `S(A)=S(B)=S(C)=S(AB)=S(AC)=S(BC)=k`, `S(ABC)=0`.
+8. **The barbarians and the horizon.** `barbarian_iff_beyond` (a definitional alias of the old `Beauvoir` lemma, so the horizon wording adds a physics name, not a result) identifies the tree model's barbarian with "no common future". In a general causal set that is stricter than spacelike separation. Read: the barbarian is not merely someone elsewhere, but someone with whom no later meeting exists. `beyond_mono` is then the permanence of that separation.
 
 ## Part 3. What failed, what does not fit, what was not done
 
-1. **The Coffman–Kundu–Wootters inequality is not proved.** It needs the concurrence of mixed two-qubit states (Wootters' formula, through eigenvalues of `ρ ρ̃`). Only the extreme case (`monogamy_of_pure_pair`) and one state (GHZ) are checked. The W state was not checked.
+1. **The Coffman–Kundu–Wootters inequality is not proved.** It needs the concurrence of mixed two-qubit states (Wootters' formula, through eigenvalues of `ρ ρ̃`). Only the extreme case (`pure_pair_decouples`) and one state (GHZ) are checked. The W state was not checked.
 2. **Symmetric entropy cannot tell recognition from domination.** `entropy_symm` holds for every pure state of two parties. So it holds for master and slave as well as for equals. It is a constraint, not a model of recognition. It also fails as soon as a third party is present: in a three-party pure state `S(A)` and `S(B)` differ in general (standard fact, not checked here). Only `S(AB) = S(C)` survives.
 3. **A partial trace is not a death.** The partial trace ignores the other. An actual measurement or removal of the other can leave the self in a pure state. So item 6 of Part 2 supports "ignoring the other does not purify the self", and does not support a statement about killing. The ending of the novel is not modelled.
-4. **The min-cut theorems are not connected to quantum states in Lean.** `rt` is defined on graphs. That it equals an entanglement entropy for HaPPY states is cited, not proved. The only link checked is the upper bound `schmidt_rank_le_cut`, and it assumes the factorisation `M = L R` that a cut of a tensor network provides; the contraction of a general network is not formalised. The repository's stabilizer core (L-qg-140 to 149) is not used.
+4. **The min-cut theorems are not connected to quantum states in Lean.** `rt` is defined on graphs. That it equals an entanglement entropy for HaPPY states is cited, not proved. The only link checked is the upper bound `schmidt_rank_le_bond_pow`, and it assumes the factorisation `M = L R` that a cut of a tensor network provides; the contraction of a general network is not formalised. The repository's stabilizer core (L-qg-140 to 149) is not used.
 5. **Persons as boundary regions of a graph** has no support beyond the analogy. Monogamy of mutual information is a property of holographic states, not of quantum states in general, and nothing suggests relations between persons are "holographic".
 6. **Barbarian as spacelike does not survive in causal sets.** In the tree model, incomparable moments never meet (`Beauvoir.no_recognition_between_barbarians`). In a causal set with diamonds they do (`lightcone_spacelike_meet`). The tree is a causal set only of a special kind (`lightcone_not_frame`). The direction "the barbarian is the region outside one's causal past and future" therefore loses its permanence. What survives is the stricter relation `Beyond`.
-7. **Overlap.** `beyond_mono` and the diamond example are close to `Unify.permanence_iff_no_reconciliation` and `Unify.diamond_reconciles`, which hold in any partial order. The new content of section 1d is small. `causal_order_from_links` is a Mathlib lemma under a physics name.
+7. **Overlap.** `beyond_mono` and the diamond example are close to `Unify.permanence_iff_no_reconciliation` and `Unify.diamond_reconciles`, which hold in any partial order. The new content of section 1d is small. `causal_order_from_links` is a rename of Mathlib's `lt_iff_transGen_covBy`.
 8. **Local finiteness** (what makes a partial order a causal set) is used only in `causal_order_from_links`. No causal-set dynamics, sprinkling, or dimension estimate is touched.
 9. **No source was opened in this session.** The novel, the essay and the physics papers are cited from memory. The epigraph is quoted as the scholarship gives it.
 10. **"Almost the entirety of known mathematics"** is not addressed. This file uses linear algebra, finite sums and order theory.

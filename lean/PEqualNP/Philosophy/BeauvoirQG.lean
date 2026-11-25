@@ -4,7 +4,7 @@ import PEqualNP.Philosophy.Beauvoir
 # Beauvoir routed at quantum gravity's discrete structures: sets, nodes, edges (seat BQG)
 
 HONESTY. Every theorem below is a statement of finite-dimensional linear algebra, of finite sums
-over a weighted graph, or of order theory. Each is proved from Mathlib alone. The names taken from
+over a weighted graph, or of order theory. Each is proved from Mathlib plus two repo files (`Beauvoir`, `Fisher`). The names taken from
 Beauvoir, Hegel and Barrès are READINGS attached to the definitions: they are our modelling
 choices and are not proved, and nothing here claims what Beauvoir meant. Nothing here is a
 statement about physical spacetime, and nothing is about circuits. `philosophy/BEAUVOIR_QG.md`
@@ -118,7 +118,7 @@ theorem entropy_symm (M : Matrix a b ℂ) :
     key _ _ (charpoly_monic _).ne_zero]
 
 /-- A 2×2 minor of the amplitude matrix. Physics: the squared moduli of these minors sum to the
-I-concurrence (Rungta et al. 2001); for two qubits the single minor is the determinant and
+squared I-concurrence (Rungta et al. 2001); for two qubits the single minor is the determinant and
 `2 |det M|` is Wootters' concurrence. -/
 def minor (M : Matrix a b ℂ) (i i' : a) (j j' : b) : ℂ := M i j * M i' j' - M i j' * M i' j
 
@@ -227,12 +227,14 @@ def reduceAC (ψ : Matrix (a × b) c ℂ) : Matrix (a × c) (a × c) ℂ :=
 theorem couple_entropy_eq_third (ψ : Matrix (a × b) c ℂ) :
     entropy (selfState_isHermitian ψ) = entropy (otherState_isHermitian ψ) := entropy_symm ψ
 
-/-- **Monogamy, extreme case.** If the pair (first, second) is in a pure state of its own (as it
-is when the two are maximally entangled with each other), then the third is uncorrelated with
-the first: their joint state is a product `σ ⊗ τ`. Physics: the textbook fact behind
-Coffman-Kundu-Wootters; the CKW inequality itself is not proved here. Reading (ours): a couple
-that is one closed whole leaves nothing for the third. -/
-theorem monogamy_of_pure_pair (ψ : Matrix (a × b) c ℂ)
+/-- **A pure pair decouples from the third (decoupling, NOT monogamy).** If the pair (first,
+second) is in a pure state of its own, the whole state is a product `(12) ⊗ 3`, so the third is
+uncorrelated with the first: their joint state is a product `σ ⊗ τ`. This is immediate from
+`pure_iff_product`; it has no entanglement-measure content and does not use maximal
+entanglement. It is the textbook extreme case behind Coffman-Kundu-Wootters monogamy, but the
+CKW inequality itself is NOT proved here. Reading (ours): a couple that is one closed whole
+leaves nothing for the third. -/
+theorem pure_pair_decouples (ψ : Matrix (a × b) c ℂ)
     (h : (selfState ψ).trace ^ 2 = (selfState ψ * selfState ψ).trace) :
     ∃ (σ : Matrix a a ℂ) (τ : Matrix c c ℂ), reduceAC ψ = σ ⊗ₖ τ := by
   obtain ⟨u, v, rfl⟩ := (pure_iff_product ψ).1 h
@@ -250,8 +252,8 @@ def ghz : Matrix (Fin 2 × Fin 2) (Fin 2) ℂ := fun p z => if p.1 = p.2 ∧ p.2
 /-- **GHZ: the two-party reduced state is separable.** The joint state of
 the first and third parties is `|00⟩⟨00| + |11⟩⟨11|`, a mixture of two product states: classical
 correlation only. Reading (ours): the presence of the third is the death of the entanglement of
-the other two; this is the closest checked statement to the epigraph, and it is a statement about
-one state, not a law. -/
+the other two (rhetoric: the correct statement is that the two are classically correlated, not
+entangled); a statement about one state, not a law. -/
 theorem ghz_pair_separable :
     reduceAC ghz = ∑ s : Fin 2, (Matrix.single s s (1 : ℂ)) ⊗ₖ (Matrix.single s s (1 : ℂ)) := by
   ext ⟨x, z⟩ ⟨x', z'⟩
@@ -259,7 +261,8 @@ theorem ghz_pair_separable :
     simp [reduceAC, ghz, Fin.sum_univ_two, Matrix.single, Matrix.sum_apply, kroneckerMap_apply]
 
 /-- In the GHZ triad the pair (first, second) is nevertheless mixed: its state is not pure, so
-each pair is entangled with the remaining party. -/
+the pair 12 (and by symmetry the others, not proved here) is entangled with the remaining
+party. -/
 theorem ghz_couple_mixed :
     (selfState ghz).trace ^ 2 ≠ (selfState ghz * selfState ghz).trace := by
   intro h
@@ -285,9 +288,11 @@ def cut (w : V → V → ℕ) (S : V → Bool) : ℕ := ∑ x, ∑ y, if S x ≠
 def Anchored (bdy A S : V → Bool) : Prop := ∀ v, bdy v = true → S v = A v
 
 open Classical in
-/-- The Ryu-Takayanagi value of a boundary region: the least cut among bulk regions anchored on
-it. Physics: for the HaPPY code and connected boundary regions this equals the entanglement
-entropy (Pastawski et al. 2015, cited, NOT proved here). Reading: how much of the network a set
+/-- The graph analogue of the Ryu-Takayanagi value (a min-cut over node labellings anchored on
+boundary nodes; real RT is a bulk minimal surface, and in real tensor networks the boundary is
+dangling legs, so the name is an analogy). The value of a boundary region: the least cut among bulk regions anchored on
+it. Physics: for HaPPY states, on regions where the greedy-cut argument applies, this equals the
+entanglement entropy (Pastawski et al. 2015, cited, NOT proved here). Reading: how much of the network a set
 of selves shares with everyone else. -/
 noncomputable def rt (w : V → V → ℕ) (bdy A : V → Bool) : ℕ :=
   (univ.filter (Anchored bdy A)).inf' ⟨A, by simp [Anchored]⟩ (cut w)
@@ -333,7 +338,8 @@ theorem cut_compl (w : V → V → ℕ) (S : V → Bool) : cut w (fun v => !S v)
   exact Finset.sum_congr rfl fun x _ => Finset.sum_congr rfl fun y _ => edge_compl _ _ _
 
 /-- **A region and its complement have the same minimal cut.** A boundary region and its complement have the same
-Ryu-Takayanagi value: the same cut serves both. This is the network form of `entropy_symm`. -/
+Ryu-Takayanagi value: the same cut serves both. Graph analogue of `S(A) = S(Aᶜ)` for a pure global state;
+no state is involved. -/
 theorem rt_compl (w : V → V → ℕ) (bdy A : V → Bool) :
     rt w bdy (fun v => !A v) = rt w bdy A := by
   apply le_antisymm
@@ -361,14 +367,15 @@ theorem rt_submodular (w : V → V → ℕ) (bdy A B : V → Bool) :
     exact Finset.sum_le_sum fun x _ => Finset.sum_le_sum fun y _ => edge_submodular _ _ _ _ _
   omega
 
-/-- **Monogamy of mutual information for minimal cuts.** For three pairwise disjoint boundary
+/-- **Monogamy of mutual information (MMI) for minimal cuts.** This is NOT the CKW monogamy of
+entanglement; they are different notions, and MMI is violated by general quantum states. For three pairwise disjoint boundary
 regions, `S(A) + S(B) + S(C) + S(ABC) ≤ S(AB) + S(BC) + S(AC)`, that is
 `I(A:B) + I(A:C) ≤ I(A:BC)`. Physics: Hayden, Headrick and Maloney (2013) for Ryu-Takayanagi
 surfaces; the graph form is in Bao et al. (2015). General quantum states do not obey it.
 Reading (ours): on a network, what the first shares with the second and with the third
 separately never exceeds what it shares with the two together; correlation on nodes and edges is
-monogamous. -/
-theorem rt_monogamy (w : V → V → ℕ) (bdy A B C : V → Bool)
+monogamous (in the MMI sense). -/
+theorem rt_mmi (w : V → V → ℕ) (bdy A B C : V → Bool)
     (hAB : ∀ v, ¬ (A v = true ∧ B v = true)) (hBC : ∀ v, ¬ (B v = true ∧ C v = true))
     (hAC : ∀ v, ¬ (A v = true ∧ C v = true)) :
     rt w bdy A + rt w bdy B + rt w bdy C + rt w bdy (fun v => A v || B v || C v) ≤
@@ -402,7 +409,9 @@ theorem rt_monogamy (w : V → V → ℕ) (bdy A B C : V → Bool)
     exact Finset.sum_le_sum fun x _ => Finset.sum_le_sum fun y _ => edge_monogamy _ _ _ _ _ _ _
   omega
 
-/-- **The four-party GHZ pattern is on no network.** In the four-party GHZ state every nonempty
+/-- **The four-party GHZ pattern is on no network.** (The three-party GHZ pattern, six values
+`k` and `S(ABC) = 0`, does satisfy the inequality, and a star graph with three weight-`k` edges
+to a centre node realises it; this theorem does not touch it.) In the four-party GHZ state every nonempty
 proper subset of parties has the same entropy. No weighted graph, with any boundary and any
 three disjoint boundary regions, gives seven equal nonzero Ryu-Takayanagi values. Physics: GHZ
 entropies violate monogamy of mutual information (Hayden et al. 2013). -/
@@ -413,7 +422,7 @@ theorem no_network_has_ghz_entropies (w : V → V → ℕ) (bdy A B C : V → Bo
     (h4 : rt w bdy (fun v => A v || B v) = k) (h5 : rt w bdy (fun v => B v || C v) = k)
     (h6 : rt w bdy (fun v => A v || C v) = k)
     (h7 : rt w bdy (fun v => A v || B v || C v) = k) : k = 0 := by
-  have := rt_monogamy w bdy A B C hAB hBC hAC
+  have := rt_mmi w bdy A B C hAB hBC hAC
   omega
 
 /-- **An edge bounds the entanglement that crosses it.** If the amplitude matrix factors through
@@ -427,15 +436,17 @@ theorem schmidt_rank_le_bond {a b k : Type*} [Fintype a] [Fintype b] [Fintype k]
   rw [rank_self_mul_conjTranspose]
   exact (rank_mul_le_left L R).trans (rank_le_card_width L)
 
-/-- The same bound for a cut made of a set `E` of edges, each of bond dimension `D`:
-Schmidt rank at most `D ^ |E|`, so entropy at most `|E| log D`. -/
-theorem schmidt_rank_le_cut {a b E : Type*} [Fintype a] [Fintype b] [Fintype E] [DecidableEq a]
+/-- The same bound when the bond index is a function `E → Fin D` on an index type `E`: Schmidt
+rank at most `D ^ |E|`. `E` is only an index type; nothing relates it to a graph cut or to `rt`.
+The step "so entropy at most `|E| log D`" (entropy ≤ log rank) is NOT proved in this file. -/
+theorem schmidt_rank_le_bond_pow {a b E : Type*} [Fintype a] [Fintype b] [Fintype E] [DecidableEq a]
     [DecidableEq E] (D : ℕ) (L : Matrix a (E → Fin D) ℂ) (R : Matrix (E → Fin D) b ℂ) :
     (selfState (L * R)).rank ≤ D ^ Fintype.card E := by
   simpa using schmidt_rank_le_bond L R
 
-/-- The bound is attained: maximally entangled pairs along the bond give Schmidt rank equal to the
-bond dimension. Physics: one Bell pair per edge of the cut; "entanglement is the edge". -/
+/-- True by definition, nearly: the identity matrix has full rank `card k`, so it attains the
+bound. Reading (ours, not proved): after normalisation it is the amplitude matrix of one Bell
+pair per bond index. -/
 theorem bell_bond_saturates {k : Type*} [Fintype k] [DecidableEq k] :
     (selfState (1 : Matrix k k ℂ)).rank = Fintype.card k := by
   simp [selfState]
@@ -479,11 +490,13 @@ theorem frame_beyond_iff_spacelike {M : Type*} [Frame M] {m x : M} :
   ⟨spacelike_of_beyond, fun h ⟨w, h1, h2⟩ =>
     (Frame.linear_past m x w h1 h2).elim h.1 h.2⟩
 
-/-- The bridge to `Beauvoir.lean`: on a Fisher frame, `Beauvoir.Barbarian` (an incomparable
+/-- DEFINITIONAL ALIAS of `Beauvoir.barbarian_iff_no_common_future` (`Beyond` is defined as
+exactly its right side), not a new result. On a Fisher frame, `Beauvoir.Barbarian` (an incomparable
 moment) is exactly `Beyond`, and `Beauvoir.Recognise` is exactly its negation. -/
 theorem barbarian_iff_beyond {M : Type*} [Frame M] {m x : M} :
     Beauvoir.Barbarian m x ↔ Beyond m x := Beauvoir.barbarian_iff_no_common_future
 
+/-- Alias: `not_not.symm` after the previous alias; true by definition. -/
 theorem recognise_iff_not_beyond {M : Type*} [Frame M] {m x : M} :
     Beauvoir.Recognise m x ↔ ¬ Beyond m x := not_not.symm
 
@@ -513,7 +526,8 @@ theorem frame_directed_total {M : Type*} [Frame M] [IsDirected M (· ≤ ·)] (a
   obtain ⟨w, h1, h2⟩ := directed_of (· ≤ ·) a b
   exact Frame.linear_past a b w h1 h2
 
-/-- **Order from nodes and edges.** In a locally finite order (a causal set) the causal relation
+/-- **Order from nodes and edges.** RENAME of Mathlib's `lt_iff_transGen_covBy`, not a result of
+ours. In a locally finite order (a causal set) the causal relation
 is the transitive closure of its links (covering pairs). Mathlib's `lt_iff_transGen_covBy`.
 Physics: a causal set is determined by its Hasse diagram. -/
 theorem causal_order_from_links [LocallyFiniteOrder P] {x y : P} :
