@@ -1,0 +1,73 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "asteroid",
+  "scopeName": "source.asteroid",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#circuit" },
+    { "include": "#statement" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.number-sign.asteroid",
+      "match": "#.*$"
+    },
+    "circuit": {
+      "begin": "^\\s*(circuit)\\b",
+      "beginCaptures": { "1": { "name": "keyword.control.circuit.asteroid" } },
+      "end": "^\\s*(end)\\b",
+      "endCaptures": { "1": { "name": "keyword.control.circuit.asteroid" } },
+      "name": "meta.circuit.asteroid",
+      "patterns": [
+        { "include": "#comment" },
+        {
+          "match": "^\\s*([A-Za-z_][\\w']*)\\s*(=)\\s*(or|and|not)\\b",
+          "captures": {
+            "1": { "name": "variable.other.gate.asteroid" },
+            "2": { "name": "keyword.operator.assignment.asteroid" },
+            "3": { "name": "keyword.operator.gate.asteroid" }
+          }
+        },
+        { "match": "^\\s*(set)\\b", "captures": { "1": { "name": "keyword.other.set.asteroid" } } },
+        { "include": "#expression" }
+      ]
+    },
+    "statement": {
+      "patterns": [
+        { "match": "\\b(claim!?|show|let|save|plot|corpus|count|conjecture|hunt|prove|verify|theorem|levelmeans|record)(?![\\w])", "name": "keyword.control.statement.asteroid" },
+        { "include": "#expression" }
+      ]
+    },
+    "expression": {
+      "patterns": [
+        { "include": "#comment" },
+        { "include": "#string" },
+        { "match": "(?<![\\w.])\\d+/\\d+(?![\\w/.])", "name": "constant.numeric.rational.asteroid" },
+        { "include": "#path" },
+        { "match": "\\b(?:by|lean|within|from|where|in|forall|states|cubes|hist|then|if)\\b", "name": "keyword.other.asteroid" },
+        { "match": "\\b(?:load|set|end|circuit)\\b", "name": "keyword.other.asteroid" },
+        { "match": "\\b(?:and|or|not)\\b", "name": "keyword.operator.word.asteroid" },
+        { "match": "\\b(?:true|false)\\b", "name": "constant.language.boolean.asteroid" },
+        { "match": "\\b(?:checked|paper|tested|refuted|open|premise)\\b", "name": "constant.language.status.asteroid" },
+        { "match": "\\b(?:monotone|correct|hyps|theorem|mslack|mixedstep|margin|phi|slack|gates|nots|base|witness|orwitness|anyslack|flipclasses|flipslack|flip)(?=\\s*[\\(\\[]|\\b)", "name": "support.function.asteroid" },
+        { "match": "\\b\\d+/\\d+\\b|\\b\\d+(?:\\.\\d+)?\\b", "name": "constant.numeric.asteroid" },
+        { "match": "->|!=|<=|>=|<|>|=|&", "name": "keyword.operator.asteroid" },
+        { "match": "[:,]", "name": "punctuation.separator.asteroid" },
+        { "match": "[(){}\\[\\]]", "name": "punctuation.bracket.asteroid" },
+        { "match": "[A-Za-z_][\\w']*(?:\\.[A-Za-z_][\\w']*)+", "name": "entity.name.type.qualified.asteroid" },
+        { "match": "[A-Za-z_][\\w']*", "name": "variable.other.asteroid" },
+        { "match": "[^\\s]", "name": "invalid.illegal.asteroid" }
+      ]
+    },
+    "string": {
+      "name": "string.quoted.double.asteroid",
+      "begin": "\"",
+      "end": "\"|$",
+      "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.asteroid" }]
+    },
+    "path": {
+      "name": "string.unquoted.path.asteroid",
+      "match": "(?<![\\w.])[\\w.*\\-]*[/][\\w.*/\\-]*|\\b[\\w\\-]+\\.(?:bench|json|jsonl|png|lean|ath)\\b"
+    }
+  }
+}

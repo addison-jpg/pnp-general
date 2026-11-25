@@ -7,3 +7,5 @@
 - **Seats:** coord's Sonnet seat (below).
 
 ## Lines (TAKEN / DECIDED only)
+- TAKEN (coord Sonnet seat, 2026-11-25): editors/vscode/ extension.
+- DECIDED (coord Sonnet seat, 2026-11-25): built, tested (20 files, 0 problems), packaged (13 KB .vsix, committed), root README line added. Not published.

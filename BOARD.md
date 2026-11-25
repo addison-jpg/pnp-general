@@ -1,5 +1,7 @@
 # Board: P versus NP through general circuits
 
+- **TOP (Addison, 2026-11-25): .ath highlighting in VS Code is built.** `editors/vscode/asteroid-0.1.0.vsix` (install: Extensions → … → Install from VSIX); `npm test` tokenizes all 20 `.ath` files clean. Publishing to the Marketplace or Open VSX is Addison's, under QUIET. [`asteroid-vscode`](boards/tasks/asteroid-vscode.md)
+
 ## TOP: THREE LEVELS, BOTTOM TO TOP (Addison, 2026-11-25)
 
 (Addison: "we havent quite mapped something continuous to our near continuous model. 11 inputs not something i wanna see. at the bottom its variable, at the middle its absurd polynomial feild, and at the top it becomes crazy overlapping infinities that we bound and match.")
