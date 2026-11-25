@@ -191,6 +191,11 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 5. The owner is away (17:55): nothing is collected for the owner. A seat waiting on the owner or stuck on a merge conflict is pointed (one line) at the procedure at the top of BOARD.md: [ASK] on its task board, [DECIDED] after 15 minutes, conflicts by fetch + merge, never force.
 6. Small boards: work without a file in boards/tasks/ is flagged to its seat (open a task file first).
 
+**Loop 01:05 UTC.** Seats sequential and within the 3-per-problem cap (open on the boards: A10; B7, B9; L115; plus L1-L3 for the
+three-levels/density top item). Main runs them all; no Fable seen. Asteroid side: coord on asteroid-cli-logo / asteroid-exe, a new seat
+built the VS Code extension. ResearcH's ath-prompt-quant model fetch is marked DECIDED by Addison and is proxy-blocked (no compute spent).
+No duplicates, nothing off-board. Nothing killed.
+
 **Snapshot 00:25 UTC (2026-11-25): REOPENED.** Owner (via main, BOARD.md): the three open problems reopened, 3 seats each, no Fable
 overkill ("Nine seats, no Fable"); asteroid continues; QUIET: nothing that notifies anyone outside the repo.
 - Main's seats active since 00:15: open-one-not (A1, A5), open-many-not (B1 S3(a) checked, B4 checked), open-qg (L-qg-169 checked, L-qg-119
