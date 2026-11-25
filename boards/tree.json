@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 73,
+   "checked": 74,
    "tested": 8,
    "refuted": 5
   },
@@ -89,6 +89,7 @@
    "2ee8c618",
    "8008158e",
    "2e78144d",
+   "eb92517c",
    "aff6e6b7",
    "2e8126de",
    "957df3fd"
@@ -178,7 +179,7 @@
  },
  "lean": {
   "counts": {
-   "checked": 13
+   "checked": 14
   },
   "verified": [
    "57b5bd42",
@@ -191,6 +192,7 @@
    "2ee8c618",
    "8008158e",
    "2e78144d",
+   "eb92517c",
    "aff6e6b7",
    "2e8126de",
    "957df3fd"
@@ -199,7 +201,7 @@
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 13
+   "checked": 14
   },
   "verified": [
    "57b5bd42",
@@ -212,6 +214,7 @@
    "2ee8c618",
    "8008158e",
    "2e78144d",
+   "eb92517c",
    "aff6e6b7",
    "2e8126de",
    "957df3fd"
@@ -251,7 +254,7 @@
  },
  "lean/PEqualNP/QuantumGravity": {
   "counts": {
-   "checked": 10
+   "checked": 11
   },
   "verified": [
    "57b5bd42",
@@ -263,7 +266,8 @@
    "9c7d09e2",
    "2ee8c618",
    "8008158e",
-   "2e78144d"
+   "2e78144d",
+   "eb92517c"
   ],
   "unverified_here": [
    {
@@ -276,7 +280,7 @@
  },
  "lean/PEqualNP/QuantumGravity/Open": {
   "counts": {
-   "checked": 8
+   "checked": 9
   },
   "verified": [
    "182f7509",
@@ -286,7 +290,8 @@
    "9c7d09e2",
    "2ee8c618",
    "8008158e",
-   "2e78144d"
+   "2e78144d",
+   "eb92517c"
   ],
   "unverified_here": [
    {

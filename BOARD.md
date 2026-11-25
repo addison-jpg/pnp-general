@@ -47,7 +47,7 @@ The machine has 4 cores and 15 GB of memory, shared by every seat. Paper seats (
 - Fables: F1 the payment Hall condition (BottomPay and PHC@0, one statement); F2 KAK for U(4) and the exact L119 (9k + 3n + 1); F3 the DAG frame (joins: the real board history, Beauvoir's "willing others free").
 - Opus: O1 rule R2 (point lemma, two sets); O2 three-qubit CKW monogamy in Lean; O3 the PSPACE ⊆ P_CTC encoding.
 - DONE O3: PSPACE ⊆ P_CTC up to `PspaceStepEncodingLemma` (two OPEN Sonnet lines on qg-frontier) -> lean/PEqualNP/QuantumGravity/Open/PspaceCtc.lean
-- TAKEN O2: three-qubit CKW
+- DECIDED O2 (Opus): three-qubit CKW checked in full: C(ρ_AB)² + C(ρ_AC)² + 4|Det ψ| = 4 det ρ_A for every pure ψ (Wootters concurrence from the eigenvalues of ρρ̃), so τ_AB + τ_AC ≤ τ_{A|BC}, equality iff Det ψ = 0 (`ckw`, `ckw_identity`, `ckw_eq_iff`). -> `lean/PEqualNP/QuantumGravity/Open/CKW.lean`
 - TAKEN F1: payment Hall condition
 - TAKEN F3: DAG frame -> `lean/PEqualNP/Philosophy/DAG.lean`, `philosophy/DAG.md`
 - TAKEN F2: KAK and exact L119 (`lean/PEqualNP/QuantumGravity/Open/KAK.lean`)
