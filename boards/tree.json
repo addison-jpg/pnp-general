@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 68,
+   "checked": 71,
    "tested": 8,
    "refuted": 5
   },
@@ -86,7 +86,10 @@
    "02f7d0db",
    "9c7d09e2",
    "2ee8c618",
-   "aff6e6b7"
+   "aff6e6b7",
+   "478ce785",
+   "80d2fd4f",
+   "2e8126de"
   ],
   "unverified_here": []
  },
@@ -173,7 +176,7 @@
  },
  "lean": {
   "counts": {
-   "checked": 9
+   "checked": 12
   },
   "verified": [
    "57b5bd42",
@@ -184,13 +187,16 @@
    "02f7d0db",
    "9c7d09e2",
    "2ee8c618",
-   "aff6e6b7"
+   "aff6e6b7",
+   "478ce785",
+   "80d2fd4f",
+   "2e8126de"
   ],
   "unverified_here": []
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 9
+   "checked": 12
   },
   "verified": [
    "57b5bd42",
@@ -201,16 +207,22 @@
    "02f7d0db",
    "9c7d09e2",
    "2ee8c618",
-   "aff6e6b7"
+   "aff6e6b7",
+   "478ce785",
+   "80d2fd4f",
+   "2e8126de"
   ],
   "unverified_here": []
  },
  "lean/PEqualNP/Philosophy": {
   "counts": {
-   "checked": 1
+   "checked": 4
   },
   "verified": [
-   "aff6e6b7"
+   "aff6e6b7",
+   "478ce785",
+   "80d2fd4f",
+   "2e8126de"
   ],
   "unverified_here": [
    {
@@ -933,6 +945,12 @@
    },
    {
     "id": "f2146403",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "7ec00390",
     "why": [
      "needs a second seat in by"
     ]

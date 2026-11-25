@@ -365,6 +365,29 @@ memory of the text, not re-read. In-copyright works are cited, not copied. Frame
 | Camus, *Le Mythe de Sisyphe* (1942) | the absurd as the confrontation of a demand for unity with a world that does not answer; revolt | memory | `Camus.no_total_answer`, `Camus.revolt` |
 | Priest, "The Logic of Paradox", J. Philosophical Logic 8 (1979) | three-valued LP: contradictions without explosion | memory | `Hegel.lp_no_explosion` (a textbook check, not joined to the frame) |
 
+### M6. Beauvoir routed at quantum gravity's discrete structures (seat BQG, 2026-11-25)
+
+Read status: **memory** throughout. No row was opened or fetched in this session, so titles, venues
+and numbers are from the seat's memory and should be checked before being relied on. Results:
+`philosophy/BEAUVOIR_QG.md`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean`.
+
+| Source | What it gives | Status | How it applies here |
+|---|---|---|---|
+| Beauvoir, *L'Invitée* (1943; *She Came to Stay*) | the triad Françoise / Pierre / Xavière; Hegel epigraph | memory of secondary accounts; novel not opened; in copyright | reading only: `monogamy_of_pure_pair`, `ghz_pair_separable` |
+| Beauvoir, *Pour une morale de l'ambiguïté* (1947) | ambiguity; one's own freedom and that of others | memory; not re-read; in copyright | reading only: `pure_iff_product`, `entropy_symm` |
+| Nielsen and Chuang, *Quantum Computation and Quantum Information* (2000), §2.5 | Schmidt decomposition; reduced states of a pure state share nonzero eigenvalues | memory | `entropy_symm`, `moments_symm`, `schmidt_rank_symm` (proved without Schmidt, by `charpoly_mul_comm'`) |
+| Wootters, "Entanglement of formation of an arbitrary state of two qubits", Phys. Rev. Lett. 80 (1998) 2245 | concurrence; for a pure two-qubit state it is `2 |det M|` | memory | `minor`, `sum_minor_sq` |
+| Rungta, Bužek, Caves, Hillery and Milburn, "Universal state inversion and concurrence in arbitrary dimensions", Phys. Rev. A 64 (2001) 042315 | I-concurrence `√(2(1 − tr ρ²))` | memory | `sum_minor_sq`, `pure_iff_product` |
+| Coffman, Kundu and Wootters, "Distributed entanglement", Phys. Rev. A 61 (2000) 052306 | monogamy inequality for three qubits | memory | **not proved**; only the extreme case `monogamy_of_pure_pair` |
+| Greenberger, Horne and Zeilinger (1989) | the GHZ state | memory | `ghz_pair_separable`, `ghz_couple_mixed` |
+| Ryu and Takayanagi, "Holographic derivation of entanglement entropy from AdS/CFT", Phys. Rev. Lett. 96 (2006) 181602 | entropy of a boundary region = area of a minimal surface | memory | premise in prose for `rt`; not proved |
+| Pastawski, Yoshida, Harlow and Preskill, "Holographic quantum error-correcting codes", JHEP 06 (2015) 149 | tensor networks in which the entropy of a connected boundary region is a minimal cut | memory (also §I) | premise in prose; `schmidt_rank_le_cut` is the upper-bound half under an assumed factorisation |
+| Headrick and Takayanagi, "A holographic proof of the strong subadditivity of entanglement entropy", Phys. Rev. D 76 (2007) 106013 | strong subadditivity from minimal surfaces | memory | `rt_submodular` (graph form) |
+| Hayden, Headrick and Maloney, "Holographic mutual information is monogamous", Phys. Rev. D 87 (2013) 046003 | monogamy of mutual information; GHZ violates it | memory | `rt_monogamy`, `no_network_has_ghz_entropies` |
+| Bao, Nezami, Ooguri, Stoica, Sully and Walter, "The holographic entropy cone", JHEP 09 (2015) 130 | graph models: entropies as minimal cuts of weighted graphs; proofs by contraction maps | memory | the definitions `cut`, `Anchored`, `rt`; `edge_monogamy` is a contraction check |
+| Van Raamsdonk, "Building up spacetime with quantum entanglement", Gen. Rel. Grav. 42 (2010) 2323 | connectivity of space from entanglement | memory | reading only ("entanglement is the edge"): `bell_bond_saturates` |
+| Bombelli, Lee, Meyer and Sorkin, "Space-time as a causal set", Phys. Rev. Lett. 59 (1987) 521 | spacetime as a locally finite partial order | memory | `Spacelike`, `Beyond`, `causal_order_from_links` |
+
 ## J. Searched and not found (so nobody searches again)
 
 - A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`).

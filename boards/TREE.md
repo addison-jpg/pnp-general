@@ -9,13 +9,13 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 
 - asteroid (the language and its tools): 7 checked · 3 tested
 - circuits (one-NOT and several-NOT): 46 checked · 5 tested · 5 refuted
-- philosophy (formal models of readings; not mathematics of circuits): 7 checked
+- philosophy (formal models of readings; not mathematics of circuits): 10 checked
 - quantum gravity: 8 checked
 
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 68 checked · 8 tested · 5 refuted
+## `./` 71 checked · 8 tested · 5 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -39,13 +39,16 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `d23edf3b` **open** [C1, C2, C4, the sorry] Language cannot yet say: implications/hypotheses in corpus claims (sets_ok), exists-v mixed quantifiers and gain/cost of 0- and 1-steps, merge sets/pure classes/SDR/prices, negated corpus claims, a Lean form for gates>=base, fast C3_k at n>=16, kernel claims at n=14+ (see asteroid/programs/README.md) · evidence: `asteroid/programs/README.md` · main's Sonnet (programs) · unverified (needs a second seat in by)
 - `37dcef35` **checked** [the sorry, L5] The continuous form is in asteroid: for the Fano formula and a 5-input one-NOT circuit the kernel checks every cube and Lean states 0 <= Phi(p) for all p in [0,1] and 0 <= Phi(0) in the project's Phi; Phi is not monotone on the twin tree (level means 6.00 -> 8.29). · evidence: `asteroid/programs/continuous.ath`, `one-not/lean/PEqualNP/W951/Asteroid_continuous_sound.lean::fano_claim2_phi_zero`, `asteroid/ext_continuous.py` · main · VERIFIED
 
-### `lean/` 9 checked
+### `lean/` 12 checked
 
-#### `lean/PEqualNP/` 9 checked
+#### `lean/PEqualNP/` 12 checked
 
-##### `lean/PEqualNP/Philosophy/` 1 checked
+##### `lean/PEqualNP/Philosophy/` 4 checked
 - `66145862` **checked** [philosophy-formal] Fisher, hauntology as branching time: lost futures accumulate (lost_mono), haunting is monotone (haunted_mono), a branch point haunts (haunted_of_branch), capitalist_realism; models only cancelled possibility, no claim about Fisher. · evidence: `lean/PEqualNP/Philosophy/Fisher.lean::lost_mono`, `lean/PEqualNP/Philosophy/Fisher.lean::haunted_mono`, `lean/PEqualNP/Philosophy/Fisher.lean::haunted_of_branch`, `lean/PEqualNP/Philosophy/Fisher.lean::capitalist_realism` · R1 · unverified (capitalist_realism not in lean/PEqualNP/Philosophy/Fisher.lean)
 - `aff6e6b7` **checked** [philosophy-formal] Fisher frame after the review renames (supersedes 66145862, whose evidence cites the old name capitalist_realism): lost_mono, haunted_mono, haunted_of_branch, no_alternative_of_all_reachable. General order facts, read as hauntology (a cited reading). · evidence: `lean/PEqualNP/Philosophy/Fisher.lean::lost_mono`, `lean/PEqualNP/Philosophy/Fisher.lean::haunted_mono`, `lean/PEqualNP/Philosophy/Fisher.lean::haunted_of_branch`, `lean/PEqualNP/Philosophy/Fisher.lean::no_alternative_of_all_reachable` · main · VERIFIED
+- `478ce785` **checked** [philosophy-formal] Pure two-party state, any finite dimensions: S(A)=S(B) (entropy_symm), equal moments and Schmidt rank, and reduced state pure iff product (pure_iff_product, via the Lagrange identity sum_minor_sq). Three parties: a pure pair leaves the third uncorrelated (monogamy_of_pure_pair); GHZ pair state is separable. Matrix facts; the self/other reading is interpretation · evidence: `lean/PEqualNP/Philosophy/BeauvoirQG.lean::entropy_symm`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean::pure_iff_product`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean::sum_minor_sq`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean::monogamy_of_pure_pair`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean::ghz_pair_separable` · BQG · VERIFIED
+- `80d2fd4f` **checked** [philosophy-formal] Minimal cuts of a weighted graph: complement symmetry (rt_compl), strong subadditivity (rt_submodular), monogamy of mutual information (rt_monogamy), so no graph has the 4-party GHZ entropy pattern (no_network_has_ghz_entropies); Schmidt rank at most D^|cut| under an assumed factorisation (schmidt_rank_le_cut). Graph facts only: min-cut = entropy for HaPPY is cited, not proved · evidence: `lean/PEqualNP/Philosophy/BeauvoirQG.lean::rt_compl`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean::rt_submodular`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean::rt_monogamy`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean::no_network_has_ghz_entropies`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean::schmidt_rank_le_cut` · BQG · VERIFIED
+- `2e8126de` **checked** [philosophy-formal] Causal-set side: on a Fisher frame Beauvoir.Barbarian is exactly 'no common future' (barbarian_iff_beyond), which is inherited upward in any partial order (beyond_mono); in N x N spacelike points meet, so the light-cone lattice is not a Fisher frame (lightcone_not_frame). Small; overlaps Unify.permanence_iff_no_reconciliation · evidence: `lean/PEqualNP/Philosophy/BeauvoirQG.lean::barbarian_iff_beyond`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean::beyond_mono`, `lean/PEqualNP/Philosophy/BeauvoirQG.lean::lightcone_not_frame` · BQG · VERIFIED
 
 ##### `lean/PEqualNP/QuantumGravity/` 8 checked
 - `57b5bd42` **checked** [open-qg] L-qg-116 follows from L-qg-115 as a checked conditional theorem L116_of_L115 (same constant, union bound over (|S|+1)^k balls; the union bound is the existing Helpers.knill_of_ball, row L117) · evidence: `lean/PEqualNP/QuantumGravity/Open/L116OfL115.lean::L116_of_L115` · C1 · VERIFIED
@@ -206,3 +209,4 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `a9fa308e` **checked** [philosophy-formal] Levels as a projection: 'some preimage has S' and 'every preimage has S' agree for all S iff the projection is injective (collapse_iff_injective); for the finite-table-to-Phi projection at n=2 they differ for some S (level_gap, from P3's virtualOf_not_injective). Formal analogy only · evidence: `lean/PEqualNP/Philosophy/Unify.lean::collapse_iff_injective`, `one-not/lean/PEqualNP/Philosophy/LevelGap.lean::level_gap` · unify · VERIFIED
 - `f2146403` **open** [philosophy-formal] Not found: a theorem for Beauvoir's 'to will oneself free is to will others free' (a tree frame has no shared future for incomparable selves; a frame with joins loses lost_mono), a model of master and slave beyond non-recognition, and Lawvere's adjoint cylinder between the repository's levels. No text by Beauvoir titled 'The Barbarians' found; the word is Barres's, in her 1926 diary (search summaries only) · evidence: `philosophy/UNIFY.md` · unify · unverified (needs a second seat in by)
 - `47f8a89b` **checked** [philosophy-formal] Seven hand-coded one-NOT board rows as a Fisher frame, after the review renames (supersedes 8474b92a, old name board_realism). Holds for that tree only; the real history is a DAG (see boards/tasks/philosophy-formal.md). · evidence: `lean/PEqualNP/Philosophy/Unify.lean::refuted_lost_forever`, `lean/PEqualNP/Philosophy/Unify.lean::board_all_futures_extend_A4`, `lean/PEqualNP/Philosophy/Unify.lean::board_revolt` · main · VERIFIED
+- `7ec00390` **open** [philosophy-formal] Not proved: the Coffman-Kundu-Wootters inequality (needs mixed-state concurrence), min-cut = entanglement entropy for HaPPY states, contraction of a general tensor network to the factorised form. Not fitting: symmetric entropy cannot tell recognition from domination; a partial trace is not a death; barbarian-as-spacelike is not permanent in a causal set with diamonds · evidence: `philosophy/BEAUVOIR_QG.md` · BQG · unverified (needs a second seat in by)
