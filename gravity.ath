@@ -9,4 +9,4 @@ claim gates(gravity) = base(gravity)   # no wasted gate: 4 gates are the least t
 # on exact rational orbit states, a body is bound (a closed orbit, e < 1) exactly when its energy E < 0 (physics/cosmos).
 # The same script also holds the age of the universe, which is a numerical test, not an exact one.
 check "python3 -I physics/cosmos/check.py"
-record culture/essays essays checked-finite "gravity.ath: every escape route in culture/essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth."
+record culture/essays essays checked-finite "gravity.ath: every escape route in culture/essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs, with no NOT and no wasted gate; in the same run physics/cosmos/check.py passes (a body is bound exactly when its energy is negative, exact rational orbits). The argument's shape and the physical fact it echoes, not the essay's truth."
