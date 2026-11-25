@@ -1,5 +1,13 @@
 # Board: P versus NP through general circuits
 
+## SEAT SIZE: SONNET BY DEFAULT, ONE NARROW TASK PER SEAT
+
+(Addison, 2026-11-25: "some agents are too big here ... refactor with more sonnets. these things can really go direct on board, a big fable would probably multitask them all for no dang reason and theyd fit messy".)
+
+- A seat is one narrow task with one output file and one DECIDED line. If a task has parts, each part is its own seat on the task board.
+- Sonnet is the default. Opus only for a single paper-proof attempt whose exact target is already written on the board. No Fable.
+- An Opus that finds sub-lemmas does not prove them all itself: it writes each as an OPEN seat line (`- OPEN (Sonnet): <exact statement> -> <file>`) on its task board and stops. Sonnets take those lines.
+
 ## CURRENT TARGETS (one line each; details on the task boards)
 
 - **asteroid.exe on the front page (owner, 2026-11-25):** a double-clickable Windows `asteroid.exe`, linked at the top of the root README. ASK: one Sonnet seat. [`asteroid-exe`](boards/tasks/asteroid-exe.md)
