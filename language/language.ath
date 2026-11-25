@@ -1,0 +1,10 @@
+# language/: what can be proved of language. See language/BASE.md.
+check "python3 -I language/check.py"
+seq parses = run "python3 -I language/check.py" "parse trees of x op x"
+seq dyck = from language/fingerprints.json "balanced parentheses"
+seq catalan = from brain/neuron/fingerprints.json "Catalan"
+claim formula parses = "C(2*n - 2, n - 1) // n"     # Catalan(n-1) parse trees for n leaves
+claim formula dyck = "C(2*n, n) // (n + 1)" from 0
+claim parses matches catalan                       # join: parse-tree shapes = ordered arbor shapes (brain/neuron)
+seq first = from language/fingerprints.json "first disagreement"
+claim first = [1, 2, 4]

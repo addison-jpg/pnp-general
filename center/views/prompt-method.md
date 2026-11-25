@@ -4,6 +4,7 @@
 - [tested, r=0.333] Prompting claim C2 (supported): Informal bits per character exceed formal in at least 9 of 10 pairs at every model size, Wilcoxon p<0.05. Numbers: My recount from ath_prompts/measure/heavy/data/*.json
 - [tested, r=0.333] Prompting claim C8 (toss-up): Slope of Sonnet tokens per checked result vs commit count is not different from 0, and C(R) stays below a fixed bound. Numbers: Source: /home/user/pnp-general/ath_prompts
 - [tested, r=0.333] Prompting claim C1 (supported): Over matched informal/formal prompt pairs, informal token count is lower in more than half of pairs and in the pooled sum. Numbers: The source is ath_prompts/measure/re
+- [tested, r=0.5] C3 trial: 30 tasks asked informally and formally to Qwen2.5-1.5B, scored blind to register. Formal did better in all four runs (greedy 19/30 vs 23/30, McNemar p=0.34; sampled p=0.039, 0.27, 0.016; poo
 - [open, r=1.0] Prompting claim C6 (untested): Messages sent between seats per completed task fall after one-owner boards were introduced. Numbers: The repo has only two message logs. /home/user/pnp-general/one-not/t
 - [open, r=1.0] Prompting claim C5 (untested): Projects with per-task boards show fewer duplicated tasks, merge conflicts and questions to Addison per checked finding than projects without. Numbers: The repo cannot t
 - [open, r=1.0] Prompting claim C3 (untested): For the same task, informal asks yield an equal or higher success rate and at least 1 fewer correction per task than formal asks, over many trials. Numbers: The repo has

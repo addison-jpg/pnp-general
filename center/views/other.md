@@ -11,7 +11,10 @@
 - [checked-finite, r=0.667] alchemy.ath: the b = 3 alchemy circuit computes all seven nonempty unions on all 8 inputs, with 4 gates against a base of 5 (sharing, possible because the sets overlap in 2 points).
 - [checked-finite, r=0.667] gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth.
 - [checked-finite, r=1.0] Modal correspondence checked exactly on all 512 relations on 3 worlds and all 65536 on 4: T, 4, B, 5 are valid exactly on the reflexive, transitive, symmetric, euclidean frames; T and 5 together exact
+- [checked-finite, r=1.0] frames_language.ath: under E -> E+E | E*E | x every sentence with n operators has Catalan(n) parse trees, n=0..8 (chart count; explicit enumeration n<=6); the precedence grammar gives exactly 1. Parse
+- [checked-finite, r=1.0] frames_language.ath: language/check.py passes. No DFA with <= 3 states over {a,b} accepts exactly a^n b^n on the 511 strings of length <= 8; the worst first disagreement over k-state DFAs is 1, 2, 4 f
 - [checked-finite, r=1.0] Toy 7-world branching history (reflexive, transitive): []c holds exactly on the alpha branch {1,4}, ~<>[]c exactly on the doomed branches {2,3,5,6}, and the branch point is the only world where <>[]c 
+- [checked-finite, r=1.0] frames_language.ath: every student reads some book has two readings; on all 33032 models with domain size 1..3 the inverse reading implies the surface one, and they differ (smallest: one element, no s
 - [checked-finite, r=1.0] frames_time.ath: adding only passing checks never unsettles a record, all toy stores of <= 4 records and all orders of <= 4 steps (6558 cases); a failing re-check does. No poset on 1..4 worlds with an
 
 ## Cells
@@ -40,35 +43,40 @@
 
 ## Frames
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, Twin Fantasy 2011 and 2018 (carseat/BASE.md); the re-recording link is analogy (reading), not checked: Kripke fact only: two points of one directed history (0 -> 1, reflexi
+- [checked-finite, r=0.0] Montague 1973, The proper treatment of quantification in ordinary English (not re-read): scope ambiguity (language/BASE.md c): every student reads some book has two readings; they differ on a model of
 - [checked-finite, r=0.0] Addison: Lyotard's incredulity toward metanarratives as S5 (cosmos/BASE.md section 7); the link is analogy (reading), not checked: S5 has no privileged world: every world sees every other in its class
 - [checked-finite, r=0.0] Addison: postmodern history as a DAG, Lyotard 1979 (cosmos/BASE.md section 7; DAG.lean); the Lyotard link is analogy (reading), not checked: Kripke fact only: every rooted poset on 1..4 worlds is a p-
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, heaven full of people (essays/knowing.md; carseat/BASE.md): every escape route computes OR(people, ground)
+- [checked-finite, r=0.0] Addison: prove what can be proved of language; the Chomsky hierarchy (language/BASE.md a): no DFA with <= 3 states over {a,b} agrees with a^n b^n on all strings of length <= 8; each k-state DFA, k=1..
 - [checked-finite, r=0.0] Beauvoir, my freedom requires the other's, Pour une morale de l'ambiguite 1947 (not re-read); the link is analogy (reading), not checked: Kripke fact only: []<>T is valid iff every reached world reach
 - [checked-finite, r=0.0] Addison: the alpha line as Homestuck's alpha timeline, commits off it as doomed branches (homestuck/BASE.md section 1); the link is analogy (reading), not checked: the longest root-to-HEAD path is exa
 - [checked-finite, r=0.0] Beauvoir, freedom exercised forward from a situation, Pour une morale de l'ambiguite 1947 (not re-read; Beauvoir.lean); the link is analogy (reading), not checked: Kripke fact only: on reflexive-trans
+- [checked-finite, r=0.0] Beauvoir, the serious man and oppression, Pour une morale de l'ambiguite 1947 (not re-read); fascism as refusal of reciprocity is analogy (reading), not checked: Kripke fact only: on every frame on 2.
+- [checked-finite, r=0.0] Addison: grammars that count (language/BASE.md a): S -> (S)S | e generates exactly the balanced strings, Catalan(m) at length 2m for m=0..8, one parse each; S -> aSb | e one string per even length
 - [checked-finite, r=0.0] Addison: multiverse-level postmodernism (cosmos/BASE.md section 7; cosmos/invariant.py): Kripke fact only: postmodern-safe = valid on every frame of the stated class; T, 4, []<>T valid on all S4 frame
 - [checked-finite, r=0.0] gravity as inevitability (essays/knowing.md): every escape route computes OR(people, ground)
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, How to Leave Town (essays/knowing.md); the leaving link is analogy (reading), not checked: Kepler fact only: for h != 0, an orbit is bound iff E < 0, exact on the cosmos gr
 - [checked-finite, r=0.0] Beauvoir, as above; smallest case: Kripke fact only: world 0 reaches 0,1,2 and is reached by none; B is invalid, countermodel printed
+- [checked-finite, r=0.0] Deleuze and Guattari, L'Anti-Oedipe 1972; Foucault, preface to Anti-Oedipus 1977 (not re-read); microfascism as a single critical centre is analogy (reading), not checked: graph fact only: a connected
 - [checked-finite, r=0.0] Addison: the centre as a road network (routing/BASE.md): programs linked by shared evidence files: 14 components among 17 programs; most programs are unreachable from the rest
 - [checked-finite, r=0.0] Addison: which results cross to the multiverse (time/BASE.md section 5): .2 fails on some branching history and holds with no privileged world
 - [checked-finite, r=0.0] Addison: planned routes against haphazard buses (transit/BASE.md; routing/BASE.md): max hitting time / hop distance over connected n-stop graphs is n^2-3n+3 for n=2..5, the clique with one pendant sto
 - [checked-finite, r=0.0] Addison: the centre as a road network (routing/BASE.md): programs linked by shared evidence files: 16 components among 19 programs (snapshot 2026-11-25, 420 records; rerun check.py); most programs are
 - [checked-finite, r=0.0] Homestuck alchemy (homestuck/BASE.md): alchemy at b = 3 is an OR circuit that shares gates
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, I Want You to Know That I'm Awake / I Hope That You're Asleep (essays/knowing.md); the link is analogy (reading), not checked: Kripke fact only: p and ~p never hold at one 
+- [checked-finite, r=0.0] Addison: ambiguity counted exactly (language/BASE.md b): E -> E+E | E*E | x gives Catalan(n) parse trees to every sentence with n operators, n=0..8; the precedence grammar gives exactly 1
 - [checked-finite, r=0.0] Addison: sync Homestuck with Car Seat Headrest (carseat/, homestuck/level.json); the timeline and retcon link is analogy (reading), not checked: Kripke fact only: Twin Fantasy 2011 and 2018 as a 2-wor
 - [checked-finite, r=0.0] Addison: postmodern history of the universe along time, Lyotard 1979 (cosmos/BASE.md section 7): a claim crosses to every branch only if it holds in every ordering: for n <= 7, a frequency is ordering
 - [checked-finite, r=0.0] Beauvoir, reciprocity, Pour une morale de l'ambiguite 1947 and Le Deuxieme Sexe 1949 (not re-read; Beauvoir.lean); the reciprocity link is analogy (reading), not checked: Kripke fact only: B (p -> []<
 - [checked-finite, r=0.0] Addison: Car Seat Headrest as a level, dated records (carseat/BASE.md): 1 2010, 2 2010, Twin Fantasy 2011, Face to Face 2018 form a time-ordered list; the two versions are 7 years apart
 - [tested, r=0.5] Addison: settled stays settled on the real history (git log of */findings.jsonl): measured on the history: 42 versions of the findings.jsonl files, 0 records removed, 0 downgraded (confirmation lines 
+- [tested, r=0.5] Eco, Ur-Fascism 1995 (Il fascismo eterno) and Stanley, How Fascism Works 2018 (not re-read); feature names paraphrased: keyword detector, tested on 20 synthetic sentences: precision 0.91, recall 1.00,
 - [tested, r=0.5] Addison: settled stays settled on the real history (git log of */findings.jsonl): measured on the git history of every */findings.jsonl: at writing, 44 versions, 0 removed, 0 downgraded, 1 superseded 
+- [open, r=1.0] Addison: what can be proved of natural language in general: a finite fragment is all that is checked; English is not a formal language with a fixed grammar here
 - [open, r=1.0] Addison: the Google Maps algorithm (routing/BASE.md): the method Google Maps uses in production
 - [open, r=1.0] Addison: Car Seat Headrest, High to Death and Kid War (carseat/BASE.md): no formal structure yet; no check decides what a song means
 - [open, r=1.0] Lacan, paranoia and the master signifier (not re-read); Eco's obsession with a plot as meaning anchored to one persecutor: reading only; no structure checked
 - [open, r=1.0] Homestuck, the meteor (homestuck/BASE.md section 5): the meteor as a transport map between two sessions that keeps the rules
-- [open, r=1.0] Beauvoir, the serious man and oppression, Pour une morale de l'ambiguite 1947 (not re-read); fascism as refusal of reciprocity is analogy (reading), not checked: Kripke fact only: on every frame on 2.
-- [open, r=1.0] Eco, Ur-Fascism 1995 (Il fascismo eterno) and Stanley, How Fascism Works 2018 (not re-read); feature names paraphrased: keyword detector, tested on 20 synthetic sentences: precision 0.91, recall 1.00,
-- [open, r=1.0] Deleuze and Guattari, L'Anti-Oedipe 1972; Foucault, preface to Anti-Oedipus 1977 (not re-read); microfascism as a single critical centre is analogy (reading), not checked: graph fact only: a connected
 - [open, r=1.0] Fisher, Capitalist Realism 2009 (not re-read); no alternative as an absorbing class is analogy (reading), not checked: chain fact only: transit/social.py part a, absorption probability 1 into closed c
 - [open, r=1.0] Addison: Car Seat Headrest, lineage of 1, 2, Disjecta Membra, Please Pass the Milk Please (carseat/BASE.md): lineage as a DAG of re-recordings; needs dated edges, which are not on record
 - [open, r=1.0] Grok incidents 2025 (NPR 2025-07-09; TechCrunch 2025-05-14, 2025-07-12; relayed, not re-read); topic intrusion as aberrant salience, Kapur 2003: reading only: filter removal as removed reality testing

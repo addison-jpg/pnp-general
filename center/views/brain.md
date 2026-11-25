@@ -31,4 +31,5 @@
 ## Frames
 - [checked-finite, r=0.0] the hairy ball on the cortex (brain/cortex/BASE.md); the bus reading is the build's own, transit/BASE.md: exact cover time of a random walk on every connected graph up to 6 vertices is at most 2m(n-1)
 - [checked-finite, r=0.0] a neuron grows like a phylogeny (brain/neuron): segmental growth histories number (2n-3)!!, the rooted binary trees
+- [checked-finite, r=0.0] brain/neuron ordered arbor shapes as parse trees (neuron.ath): parse trees of x+...+x with n+1 leaves, operators erased, are exactly the ordered binary arbor shapes with n+1 tips, n=0..6; the counts m
 - [checked-finite, r=0.0] the hairy ball on the cortex (brain/cortex/BASE.md): discrete Morse: critical cells sum to 2 in every field on the tetrahedron

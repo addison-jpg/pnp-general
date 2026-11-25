@@ -61,6 +61,11 @@
   "findings": {},
   "mean_radius_findings": null
  },
+ "language": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "lateral": {
   "cells": {
    "DECIDED": 1,

@@ -38,3 +38,10 @@ Ranked by value.
 5. Matched runs with and without per-task boards, logging real merge conflicts, duplicate tasks and questions per checked finding (C5).
 6. Matched playful vs formal sessions, at least 10 pairs, with blind coding of corrections (C4).
 7. More C1 pairs from more speakers, formal rewrites by people blind to the hypothesis, and a second tokenizer.
+
+## Update 2026-11-25: the C3 trial (ath_prompts/measure/trial/)
+
+30 tasks, each asked informally and formally, Qwen2.5-1.5B, scoring blind to register. **Formal did better in all four runs:** greedy 19/30 vs 23/30 (exact McNemar p = 0.34); sampled 17 vs 25 (p = 0.039), 17 vs 22 (p = 0.27), 16 vs 23 (p = 0.016); pooled sign test p = 0.077.
+**Verdict: toss-up, leaning against C3** (the independent checker's correction of "contradicted": 2 of 4 runs below 0.05 uncorrected, the sampled runs reuse the same tasks, and 10 of 30 tasks were solved by every run). Limits: one small model; the informal register imitated by an agent, not Addison's own prompts; n = 30; two pairs differ in content (ar04 has a typo that changes the meaning; ar10 formal adds a word); reproducibility not shown.
+C4 proxy (a model follows a rule stated informally vs formally): 27/40 vs 28/40, p = 1.0, toss-up. C5 to C7 stay untested.
+What this says about the qual-quant method: an effect claim converted only once a real comparison was run, and the first comparison did not favour the claim. That is the method working.

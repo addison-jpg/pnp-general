@@ -51,6 +51,10 @@ cells: none
 findings (verified): none · mean radius None
 cells: none
 
+## language
+findings (verified): none · mean radius None
+cells: none
+
 ## lateral
 findings (verified): 1 checked · mean radius 0.0
 cells: 1 DECIDED, 1 OPEN
@@ -115,6 +119,20 @@ cells: 2 DECIDED, 3 OPEN, 1 STOPPED, 2 TAKEN
 
 ## Sequence matches across programs (proposals only; a seat decides join / analogy / rhyme)
 
+- triangulations of the sphere with n = 4..12 vertices, up to isomorphism (unoriented) [as is] ~ parse trees of x op x ... op x with n leaves under E -> E+E | E*E | x, n=1..9 (Catalan) [as is], 5 terms
+- triangulations of the sphere with n = 4..12 vertices, up to isomorphism (unoriented) [partial sums] ~ parse trees of x op x ... op x with n leaves under E -> E+E | E*E | x, n=1..9 (Catalan) [partial sums], 5 terms
+- triangulations of the sphere with n = 4..12 vertices, up to isomorphism (unoriented) [plus 1] ~ parse trees of x op x ... op x with n leaves under E -> E+E | E*E | x, n=1..9 (Catalan) [plus 1], 5 terms
+- triangulations of the sphere with n = 4..12 vertices, up to isomorphism (unoriented) [as is] ~ balanced parentheses of length 2m, m=0..8 (Catalan) [as is], 5 terms
+- triangulations of the sphere with n = 4..12 vertices, up to isomorphism (unoriented) [partial sums] ~ balanced parentheses of length 2m, m=0..8 (Catalan) [partial sums], 5 terms
+- triangulations of the sphere with n = 4..12 vertices, up to isomorphism (unoriented) [plus 1] ~ balanced parentheses of length 2m, m=0..8 (Catalan) [plus 1], 5 terms
+- Catalan numbers: ordered arbor shapes with n tips, n=1..9 [as is] ~ parse trees of x op x ... op x with n leaves under E -> E+E | E*E | x, n=1..9 (Catalan) [as is], 9 terms
+- Catalan numbers: ordered arbor shapes with n tips, n=1..9 [first differences] ~ parse trees of x op x ... op x with n leaves under E -> E+E | E*E | x, n=1..9 (Catalan) [first differences], 8 terms
+- Catalan numbers: ordered arbor shapes with n tips, n=1..9 [partial sums] ~ parse trees of x op x ... op x with n leaves under E -> E+E | E*E | x, n=1..9 (Catalan) [partial sums], 9 terms
+- Catalan numbers: ordered arbor shapes with n tips, n=1..9 [plus 1] ~ parse trees of x op x ... op x with n leaves under E -> E+E | E*E | x, n=1..9 (Catalan) [plus 1], 9 terms
+- Catalan numbers: ordered arbor shapes with n tips, n=1..9 [as is] ~ balanced parentheses of length 2m, m=0..8 (Catalan) [as is], 9 terms
+- Catalan numbers: ordered arbor shapes with n tips, n=1..9 [first differences] ~ balanced parentheses of length 2m, m=0..8 (Catalan) [first differences], 8 terms
+- Catalan numbers: ordered arbor shapes with n tips, n=1..9 [partial sums] ~ balanced parentheses of length 2m, m=0..8 (Catalan) [partial sums], 9 terms
+- Catalan numbers: ordered arbor shapes with n tips, n=1..9 [plus 1] ~ balanced parentheses of length 2m, m=0..8 (Catalan) [plus 1], 9 terms
 - segmental-growth histories (2n-3)!!, n=1..9 [as is] ~ rooted binary phylogenetic trees, n leaves (n>=2) [as is], 7 terms
 - segmental-growth histories (2n-3)!!, n=1..9 [first differences] ~ rooted binary phylogenetic trees, n leaves (n>=2) [first differences], 6 terms
 - segmental-growth histories (2n-3)!!, n=1..9 [plus 1] ~ rooted binary phylogenetic trees, n leaves (n>=2) [plus 1], 7 terms

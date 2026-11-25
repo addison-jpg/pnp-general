@@ -78,3 +78,22 @@ Columns: task | greedy informal ok | greedy formal ok | sampled informal (of 3) 
 - Three sampled runs are a variance estimate, not independent tasks; the paired tests treat tasks as units.
 
 Files: `harness.py`, `tasks.json`, `make_tasks.py`, `results.json` (every output), `analyze.py`, `analysis.txt`.
+
+# C4 proxy: rule-following by register (`c4_rules.py`, output `c4_analysis.txt`, `c4_results.json`)
+
+Same model, greedy, max_new_tokens 80. Ten rules, each written informally and formally, put in the system prompt; four
+user questions each; rule compliance checked automatically. Run time about 40 min (CPU shared with other processes).
+
+Informal 27/40, formal 28/40; informal-only 4, formal-only 5; exact McNemar p = 1.0000. Per rule (informal, formal):
+end with DONE 3,1; start "ok so" 3,4; no letter z 4,4; all lowercase 1,4; under 20 words 3,3; "4" for "for" 2,1;
+no lists 2,3; ALL CAPS 4,3; include "banana" 1,1; rule 9 (forbidden apology word) 4,4.
+
+Verdict on C4 proxy: toss-up. This tests whether a model follows a rule, not whether a person remembers or quotes it,
+and not correction cost. C4 itself stays untested.
+
+# Claims not testable here
+
+- C5 (boards cut duplicates, conflicts, questions): needs matched runs with and without per-task boards, logging real merge conflicts. No such arm exists in the repo.
+- C6 (messages per task fall after one-owner boards): needs a timestamped message log over a before and after switch; only 14 messages, one day.
+- C7 (cost is reading): needs per-seat logs of files read and ask length (at least 20 seats), then the regression c = a + b|F| + d|l|. Never logged.
+- C4 proper: matched playful vs formal human sessions, at least 10 pairs, blind coding of corrections.

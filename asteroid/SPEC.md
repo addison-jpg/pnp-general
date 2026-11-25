@@ -4,7 +4,7 @@ A program is a text file `NAME.ath`. Lines are read top to bottom. `#` starts a 
 
 ```
 program   := line*
-line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check | frame | dist | kripke
+line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check | frame | dist | kripke | propose
 circuit   := "circuit" NAME N NEWLINE (gate | out)* "end"
 gate      := NAME "=" ("or" | "and") WIRE WIRE  |  NAME "=" "not" WIRE
 out       := "set" POINT+ "->" WIRE
@@ -47,6 +47,7 @@ frame     := "frame" STRING "reading" STRING "->" CLAIMREF "label" WORD ["reach"
 CLAIMREF  := LINE | PATH | "none"          (LINE: an earlier claim or check of this file; PATH: another .ath file)
 kripke    := "kripke" NAME "=" ("worlds" N "rel" PAIRS ["val" (ATOM SET)+] | "all" N PROP("+"PROP)*)   (asteroid/ext_modal.py)
 claim     := "claim" ("valid" | "invalid") NAME STRING | "claim defines" NAME STRING PROPS | "claim worlds" NAME STRING "=" SET   (ext_modal)
+propose   := "propose" NAME STRING ["model" ("0.5B" | "1.5B")] ["n" K]                (asteroid/ext_qwen.py; K = 1..8, default 3)
 LIST      := "[" INTEGER ("," INTEGER)* "]"
 EXPR      := integers, n, + - * // ** ( ), postfix ! and !!, "C(" EXPR "," EXPR ")", "sum(" VAR "," EXPR "," EXPR "," EXPR ")"
 WIRE      := POINT | NAME            (a point 0 .. N-1, or an earlier gate name)
@@ -76,7 +77,7 @@ Meaning. These lines let any level state an exact claim about an integer sequenc
 - Each item of a literal list must be a plain integer. `[1-2]` is an error, not a crash.
 - Errors in a formula make the claim FALSE: `n!` for n < 0, `n!!` for n < -1, a negative top in `C(a, b)`, a negative exponent, an unknown name.
 - Unary minus binds looser than `**`. So `-3**2` is -9.
-- Size limits. n!, n!! and C(n, k) need n <= 10^6. One sum adds at most 10^6 terms. One claim takes at most 10^7 steps. Past a limit the claim is FALSE.
+- Size limits. n!, n!! and C(n, k) need n <= 10^6. One sum adds at most 10^6 terms. One claim takes at most 10^7 steps. A step on a big integer costs more: bits // 1024, and for a product, power or long division of big numbers about (bits // 1024)^2 more. No integer may pass 10^6 bits. All formula claims of one run share 3 * 10^7 steps. Past a limit the claim is FALSE.
 - Each claim prints TRUE or FALSE and counts in the summary. `by lean` is not available for them.
 - Each passing `check` or `seq ... run` becomes the runner of the program's records. So `record ... checked-finite` carries a runner. The files read are cited as evidence.
 
@@ -100,9 +101,23 @@ Meaning. These lines state exact claims of propositional modal logic on finite f
 - `claim invalid NAME "F"`: some frame, valuation and world make F false. The countermodel is printed. A false `valid` claim prints one too.
 - `claim defines NAME "F" PROPS`: on every frame of NAME, F is valid iff the frame has PROPS. With `all N any` this is the correspondence on N worlds.
 - `claim worlds NAME "F" = {...}`: under NAME's valuation, F is true at exactly these worlds.
-- Exhaustive. No sampling. Size limits: N <= 12 for one frame, N <= 4 for `all` (65536 relations), at most 3 atoms, at most 2 000 000 frame-valuation pairs per claim. Past a limit the claim is FALSE.
+- Exhaustive. No sampling. Size limits: N <= 12 for one frame, N <= 4 for `all` (65536 relations), at most 3 atoms, at most 2 000 000 frame-valuation pairs per claim, and at most 2 * 10^7 pairs times formula size per claim. All modal claims of one run share 6 * 10^7. Past a limit the claim is FALSE.
 - A check on N <= 4 worlds is `checked-finite`. The statement for every N is a theorem to cite (Kripke 1963; Blackburn, de Rijke, Venema 2001).
 - Test: `python3 -I asteroid/tests/test_modal.py`. Used in `metaphysics/metaphysics.ath` and `homestuck/timelines.ath`.
+
+## Proposals: the model guesses, asteroid decides (extension `asteroid/ext_qwen.py`)
+
+Meaning. `propose NAME "TASK"` asks a local Qwen model for up to K candidate claim lines. Asteroid then judges each one.
+- The model is Qwen2.5-0.5B-Instruct (default) or 1.5B-Instruct, run offline from the Hugging Face cache. Chat template, greedy decoding.
+- The model runs in `$ASTEROID_QWEN_PYTHON`, else the repository `.venv`, else this Python. It needs `transformers` and `torch`.
+- The prompt holds the task and the pure definition lines above the `propose` line (`seq` literal or `from`, `kripke`, `dist`).
+- Each candidate runs in an isolated scratch session: a separate process on a temporary `.ath` file with those definitions and the one candidate, under `--no-lean`, with frames sent to a temporary file.
+- Each candidate prints TRUE, FALSE, or REJECTED. A line that is not a `claim` (or is `claim!`, or `claim forall c in`) is REJECTED. So are `record`, `frame`, `check`, `seq ... run` and every other line. A missing leading `claim` before `formula`, `valid`, `invalid`, `defines` or `worlds` is added.
+- A proposal never writes a record or a frame. It never counts as a claim. It does not change the summary or the exit code.
+- Only a candidate copied into a program as a claim, and passing there, can become a result. Until then it is model output, labelled `tested` at most.
+- Model outputs are cached by a hash of (model, prompt, K) in `asteroid/out/qwen_cache.json` (or `$ASTEROID_QWEN_CACHE`). A rerun reads the cache: deterministic and cheap.
+- Without the model or `transformers`, the line prints "model unavailable" and does nothing.
+- Test (no model; the generator is mocked): `python3 -I asteroid/tests/test_qwen.py`. Demo: `language/propose_demo.ath`.
 
 ## Frames (extension `asteroid/ext_frame.py`)
 
@@ -157,6 +172,15 @@ bin/asteroid asteroid/examples/first.ath
 bin/asteroid test            # every program under asteroid/examples
 bin/asteroid test --no-lean  # Python and plots only (what GitHub Actions runs on every push)
 ```
+
+## Safety
+
+asteroid states three guarantees. Each is tested, not proved: halting in general is undecidable.
+1. Halting. Every claim halts by a size limit (above). Child runs (frame files, `check`, `seq ... run`) nest at most 3 deep and number at most 64 per top run, so a loop of files or of checks ends. A `check` or `seq ... run` script halts by its own timeout (900 s); `hunt` runs as long as its SECONDS say.
+2. No escape. `check` and `seq ... run` run only `python3 -I path.py [args]`, with path a file inside the repository after symlinks are resolved. No shell is used. Scripts that write findings or run commands (`boards.py`, `center.py`, `one-not/tools/tensor/dag.py`, `compute/funsearch/targets.py`) are refused.
+3. Checks cannot be removed. A record is written only if the run has at least one claim and every claim is TRUE. `checked` needs Lean; `checked-infinite` is refused (a run cannot give a reduction). A duplicate statement is kept, not added. A frame on a failed claim is `open`; a stronger label on a Python claim is downgraded. `$ASTEROID_FRAMES` must name a `.jsonl` file that is not a `findings.jsonl`.
+
+Test: `python3 -I asteroid/tests/test_anti_ath.py`. It writes adversarial programs into a scratch directory and runs each with `--no-lean` and a 120 s outer timeout, in three families (halting, no escape, no removal). It compares every `findings.jsonl` and `frames.jsonl` of the repository before and after. Not covered: runs with Lean (`verify lean DIR` and `theorem ... in DIR` run `lake` in DIR), `save` and `plot` paths, and `commit` lines.
 
 ## One name for each thing typed in the terminal (old -> kept)
 
