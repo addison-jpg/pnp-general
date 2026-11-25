@@ -5,7 +5,7 @@ Lemma D: PHC holds iff for every payer set J  sum_w (c_w(J) - 1) <= |E - J|.  sl
                                    on each of AG(2,2), AG(2,3), PG(2,2), PG(2,3); writes the --topk tightest BottomPay instances as SEED lines
                                    (REF1's format plus circuit, Q, D)
   neigh    --input NAME=F ...      takes the --seeds tightest SEED lines of the upstream jobs.  A seed with a circuit: --steps accepted
-                                   mutants (fano_corpus moves; correct, one NOT) at all states within distance 2 of the seed state.
+                                   mutants (fano_corpus moves; correct, one NOT) at all states within distance 2 of the seed state (1 for n > 9).
                                    A seed without one (REF1 seeds): a deeper payer-set search on the same instance.
   recheck  --input NAME=F ...      every VIOLATION line again, by other code: tensor correctness, instance rebuilt and compared,
                                    U1's matroid partition, a separate component count.  CONFIRMED lines; the summary lists them.
@@ -72,9 +72,10 @@ class Top:
         for v in self.viol: f.write(json.dumps({'VIOLATION': v}, default=str) + '\n')
         for _, _, sd in self.rows: f.write(json.dumps({'SEED': sd}, default=str) + '\n')
 
-def check_circuit(c, states, rng, top, family, src):
+def check_circuit(c, states, rng, top, family, src, deadline=None):
     W, X = wires(c)
     for Q, D in states:
+        if deadline and time.time() > deadline: return
         inst = R.bottompay_instances(c, W, X, Q, D, rng)
         if inst is not None: top.add(inst, R.check(inst, rng), family, [src, sorted(Q), sorted(D)], c, Q, D)
 
@@ -150,7 +151,7 @@ def neigh(a):
             key = json.dumps(c2['gates'])
             if key in seen or not F.correct(c2): continue
             seen.add(key); cur = c2; got += 1; mut += 1
-            check_circuit(c2, near_states(c2['n'], Q, D), rng, top, sd['family'] + '~', str(sd.get('info', [''])[0]) + '~%d' % got)
+            check_circuit(c2, near_states(c2['n'], Q, D, 2 if c2['n'] <= 9 else 1), rng, top, sd['family'] + '~', str(sd.get('info', [''])[0]) + '~%d' % got, t0 + a.budget)
     with open(a.out, 'w') as f: top.write(f)
     return {'seeds': len(mine), 'mutants': mut, 'deep_searches': deep, 'instances': top.n, 'tight_instances': top.tight, 'min_nontrivial_slack': top.lo, 'violations': len(top.viol)}
 
@@ -195,8 +196,8 @@ def recheck(a):
     return {'violations_in': len(mine), 'confirmed': good, 'rejected': bad}
 
 def selftest():
-    # two sets {0,1,2}, {3,4,5}; one payer joins all of both: deleting nothing leaves c = (1, 1), so R = {} has slack 0, fine;
-    # PHC needs rank 2 + 2 = 4 from one payer: Lemma D fails at R = {} only if components stay apart, so plant: no useful payer at all.
+    # bad: two sets of three classes, one payer joining two classes in each: at R = {} the count is 0 - (2 - 1) - (2 - 1) = -2.
+    # good: four payers, two spanning each set: slack 0 at R = {}.
     bad = {'E': [0], 'cls': [[0, 1, 2], [3, 4, 5]], 'hyp': [{'0': [0, 1]}, {'0': [3, 4]}], 'R': []}
     good = {'E': [0, 1, 2, 3], 'cls': [[0, 1, 2], [3, 4, 5]], 'hyp': [{'0': [0, 1], '1': [1, 2], '2': [], '3': []}, {'0': [], '1': [], '2': [3, 4], '3': [4, 5]}], 'R': []}
     a, na = confirm({'instance': bad}); b, nb = confirm({'instance': good})
