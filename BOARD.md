@@ -22,7 +22,7 @@
 - Task boards: [`open-one-not`](boards/tasks/open-one-not.md), [`open-many-not`](boards/tasks/open-many-not.md), [`open-qg`](boards/tasks/open-qg.md). Results are findings (`python3 -I boards.py add …`).
 - Proved means the proof checker accepted it. A failed attempt that names its exact obstacle is a result.
 
-## ONLY ASTEROID. EVERYTHING ELSE IS CLOSED.
+## ASTEROID (the 22:49 "only asteroid" close is superseded by REOPENED above: the three open problems are open again, 3 seats each)
 
 (Owner, 2026-11-24: "close all nonsense being done that isnt asteroid related. big board push".)
 
