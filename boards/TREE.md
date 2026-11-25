@@ -8,7 +8,7 @@ next to their evidence. Unverified findings are listed only at their own directo
 The root count mixes programs; read these instead. Philosophy findings never count toward the circuit results.
 
 - asteroid (the language and its tools): 7 checked · 3 tested
-- circuits (one-NOT and several-NOT): 47 checked · 5 tested · 5 refuted
+- circuits (one-NOT and several-NOT): 48 checked · 5 tested · 5 refuted
 - other: 3 checked
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked
 - quantum gravity: 13 checked
@@ -16,7 +16,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 83 checked · 8 tested · 5 refuted
+## `./` 84 checked · 8 tested · 5 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -81,7 +81,7 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `408f74ba` **checked** [P vs NP formal statement] For a body positive in the bound relation variable the lfp constructor denotes the least fixed point · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::lfp_isLeast` · language-unification · VERIFIED
 - `d4ed1a42` **open** [P vs NP formal statement] FOModelCheckingInP and the two capture theorems Fagin, ImmermanVardi are Props, unproved here; prior art: Senellart's Lean 4 descriptive-complexity library, not imported (needs lake update) · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::FOModelCheckingInP` · language-unification · unverified (needs a second seat in by)
 
-### `one-not/` 48 checked · 5 tested · 5 refuted
+### `one-not/` 49 checked · 5 tested · 5 refuted
 
 #### `one-not/data/` 2 checked · 4 tested · 2 refuted
 
@@ -120,12 +120,12 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `f4704cc4` **refuted** [C4] The witness count for any gate type falls below base with 4 NOT gates (minimal: 10 gates). · evidence: `one-not/data/witnesses/nonlocal/general_count_below_base_min.json`, `one-not/tools/kill_tests/witness_any_gate.py` · main, confirmed by main's Sonnet A · VERIFIED
 - `0736a8e5` **checked** [C4] The 10-gate circuit with 4 NOT gates is correct and has 5 witness gates, below base 6 (SearchCheck evaluator). · evidence: `asteroid/examples/many_not.ath`, `one-not/lean/PEqualNP/W951/Asteroid_many_not.lean::fano_claim4`, `one-not/data/witnesses/nonlocal/general_count_below_base_min.json`, `one-not/data/witnesses/twin_tree_f2step.json`, `one-not/data/witnesses/fano_formula.json` · trio · VERIFIED
 
-#### `one-not/lean/` 46 checked
+#### `one-not/lean/` 47 checked
 - `0992c96e` **checked** [open-many-not] OR of n inputs needs n-1 AND/OR gates with any number of free NOT gates (fan-in 2); n=4 needs at least 3 gates. Structural partition-merge proof, no enumeration. · evidence: `one-not/lean/PEqualNP/W951/Open/Or4ManyNot.lean::or_needs_gates`, `one-not/lean/PEqualNP/W951/Open/Or4ManyNot.lean::or4_needs_three_andor` · B2 · VERIFIED
 - `af8e62f4` **checked** [open-one-not] DD absorption follows from light absorption: LightAbsorb -> DDAbsorb for a one-NOT correct circuit with pairwise |S_a n S_b| <= 1 (heavy merges of DD sets disjoint from each other and from non-DD unit merges, plus arithmetic); LightAbsorb itself stays an unproved Prop. · evidence: `PEqualNP/W951/Open/DDAbsorb.lean::PEqualNP.Outside.L_meta_951_aux.F2Transfer.ddAbsorb_of_lightAbsorb` · A11 · unverified (missing PEqualNP/W951/Open/DDAbsorb.lean)
 - `18a99796` **checked** [T1] MixedCount holds for a MinCE with no NOT gate (monotone); no_minCE follows from DDAbsorb alone · evidence: `one-not/lean/PEqualNP/W951/Open/MixedCountMono.lean::mixedCount_mono` · A16 · VERIFIED
 
-##### `one-not/lean/PEqualNP/` 44 checked
+##### `one-not/lean/PEqualNP/` 45 checked
 
 ###### `one-not/lean/PEqualNP/Philosophy/` 1 checked
 - `c70b8e8f` **checked** [philosophy-formal] Formal analogy (no claim about Deleuze): finite slack table is the actual, Phi the virtual; Phi does not determine the slack table (PhiT_not_injective) and the corners Phi(0), Phi(1) do not determine Phi (corners_not_injective); limit level is a def only · evidence: `one-not/lean/PEqualNP/Philosophy/Bridge.lean::PhiT_not_injective`, `one-not/lean/PEqualNP/Philosophy/Bridge.lean::corners_not_injective` · P3 · VERIFIED
@@ -133,7 +133,7 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 ###### `one-not/lean/PEqualNP/Verify/` 1 checked
 - `5fe90015` **checked** [everything] Pure-Lean base verifier: all 4,777 theorems of the 154 modules of one-not/lean rest on propext, Classical.choice, Quot.sound only, except 21 allow-listed names that use sorryAx (no_minCE, 7 derived, 13 of a parked draft); no other axiom anywhere. · evidence: `one-not/lean/PEqualNP/Verify/All.lean`, `one-not/lean/PEqualNP/Verify/Axioms.lean::elabVerifyAxioms`, `asteroid/programs/big_check.ath` · main · VERIFIED
 
-###### `one-not/lean/PEqualNP/W951/` 42 checked
+###### `one-not/lean/PEqualNP/W951/` 43 checked
 - `30cf54bf` **checked** [L5] Along a decreasing chain of finite sets, |F 0| = |F N| + the sum of the gains. · evidence: `one-not/lean/PEqualNP/W951/ChainSum.lean::card_eq_card_add_sum_gain` · main · VERIFIED
 - `0f8afdc1` **checked** [L7] If every non-terminal cube has a strictly larger cube with slack no larger, slack is nonnegative at every cube. · evidence: `one-not/lean/PEqualNP/W951/ChainSum.lean::slack_nonneg_of_descent` · main · VERIFIED
 - `dcd62f26` **checked** [the sorry] no_minCE follows from 0 <= Phi(0) in every minimal counterexample. · evidence: `one-not/lean/PEqualNP/W951/ContinuousAttach.lean::no_minCE_of_Phi_zero_nonneg` · main · VERIFIED
@@ -168,7 +168,7 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `91f83519` **checked** [the sorry; Theorem] no_minCE implies L_meta_951 (the one-NOT bound sum (|S_i|-1) <= gates). The last link of the chain BottomPay, LightAbsorb, DDAbsorb, MixedCount, no_minCE, L_meta_951. · evidence: `one-not/lean/PEqualNP/W951/MinCE.lean::L_meta_951_of_minCE` · R1 · VERIFIED
 - `5e4b9d8d` **checked** [asteroid; the sorry] asteroid Layer 3 and the edges claim, evidence names corrected: first_ast_tiny_concrete (pointwise evaluation is the project's wires) and ok_claim0 (hypsB by decide +kernel). Replaces e793c0f4 and 6403b575 for their name checks. · evidence: `one-not/lean/PEqualNP/W951/AsteroidInstances.lean::first_ast_tiny_concrete`, `one-not/lean/PEqualNP/W951/Asteroid_edges.lean::ok_claim0` · R1 · VERIFIED
 
-###### `one-not/lean/PEqualNP/W951/Open/` 14 checked
+###### `one-not/lean/PEqualNP/W951/Open/` 15 checked
 - `66d4cb88` **checked** [the sorry] MixedStepNeg (mixed slack |F2Mix|-baseDQ has a 1- or 0-step with no larger slack at every negative state of a MinCE) is stated as a Prop; MixedStepNeg implies no_minCE, proved. · evidence: `one-not/lean/PEqualNP/W951/Open/MixedSlack.lean::no_minCE_of_MixedStepNeg` · A2 · VERIFIED
 - `7f3971c7` **checked** [the sorry] The mixed step at negative states is the count: for one gate list, a non-increasing 0- or 1-step at every negative mixed state iff mslack >= 0 at every mixed state; so MixedStepNeg iff every MinCE has mslack >= 0 at all mixed states; and the abstract descent hypothesis of no_minCE_of_mixed_descent iff 0 <= slack(empty). · evidence: `one-not/lean/PEqualNP/W951/Open/MixedStepNegIff.lean::stepNeg_iff_nonneg`, `one-not/lean/PEqualNP/W951/Open/MixedStepNegIff.lean::mixedStepNeg_iff`, `one-not/lean/PEqualNP/W951/Open/MixedStepNegIff.lean::abstract_descent_iff` · A1 · VERIFIED
 - `ccf5344b` **checked** [C4] S3(a) per-set flip lemma, any number of NOT gates: for a correct SearchCheck.Circ, a set S with output o and a zero point Z of S, |S| <= (flip classes with |D|>=2 at (S,Z), wire functions up to complement) + 1; abstract graph argument Core.core. · evidence: `one-not/lean/PEqualNP/W951/Open/FlipLemma.lean::PEqualNP.W951.FlipLemma.Concrete.flip_lemma`, `one-not/lean/PEqualNP/W951/Open/FlipLemma.lean::PEqualNP.W951.FlipLemma.Core.core` · B1 · unverified (PEqualNP.W951.FlipLemma.Concrete.flip_lemma not in one-not/lean/PEqualNP/W951/Open/FlipLemma.lean; PEqualNP.W951.FlipLemma.Core.core not in one-not/lean/PEqualNP/W951/Open/FlipLemma.lean)
@@ -184,6 +184,7 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `e0ea3129` **checked** [C4] Point lemma ingredients: sens of a gate is union, intersection or a difference of the sens of its inputs (sens_gate); a thin function has at most one sensitive point in S (sens_thin_card); sens (orS S) = S (sens_orS). The full point lemma for two sets stays open (rule R2). · evidence: `one-not/lean/PEqualNP/W951/Open/PointLemma.lean::sens_gate`, `one-not/lean/PEqualNP/W951/Open/PointLemma.lean::sens_thin_card`, `one-not/lean/PEqualNP/W951/Open/PointLemma.lean::sens_orS` · R1 · VERIFIED
 - `568f8964` **checked** [README-open] DDAbsorb at every mixed state gives 0 <= mslack; with MinCE hypotheses (plus monotone case) gives MixedStepNeg and no_minCE · evidence: `one-not/lean/PEqualNP/W951/Open/MixedCount.lean::mixedCount_of_ddAbsorb` · A15 · VERIFIED
 - `0e0a820c` **checked** [PaymentHall] PaymentHall Prop, card_ge_of_paymentHall, and bottomPay_of_paymentHall (BottomPay as PHC at 1_Q) · evidence: `one-not/lean/PEqualNP/W951/Open/PaymentHall.lean::bottomPay_of_paymentHall` · S1 · VERIFIED
+- `aff0216f` **checked** [PaymentHall] Deletion form of the payment Hall condition, necessity: disjoint payer sets joining all classes of each set give, for every set J of payers and every colouring constant on the hyperedges of J, sum over sets of (colours - 1) <= |E - J|; J empty gives the count · evidence: `one-not/lean/PEqualNP/W951/Open/PHC.lean::deletion_of_forestPay` · F1 · VERIFIED
 
 ##### `one-not/research/open/` 
 - `cd89cf56` **refuted** [the sorry] Mixed step at negative states fails without the one-NOT hypothesis: on general_count_below_base_min (4 NOT gates, n=7) with OR-only F2 mixed slack, 146 of 248 negative states have no non-increasing paying step, and 0 of 281 nonnegative states fail; so any proof must use AtMostOneNot. Obstacle: minimality gives gates' >= base' at restrictions, the step needs |F2'| >= base'. · evidence: `one-not/research/open/A1_negstates.py`, `one-not/research/open/A1_mixed_step.md`, `one-not/data/witnesses/nonlocal/general_count_below_base_min.json` · A1 · unverified (needs a second seat in by)
@@ -200,6 +201,9 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `c601b2e1` **tested** [open-one-not] A10: light absorption reduced (paper) to BOTTOM PAY: unit runs of DD sets at the bottom 1_Q (heavy atoms pre-joined) give |T_w|-[U_w empty] OR merges, each F2 with witness 1_Q (pays the bridge); light absorption follows from disjoint such payments outside the top family. BOTTOM PAY (forest/matroid-union form) holds with 0 failures at 136,843 (n<=9 all states) + 119,467 (n<=16 sampled) + 1,010,325 (switch circuits) DD states. Obstacle: bottom runs of two DD sets overlap (2,775 states n<=9) and no one-zero-point-per-set choice in {h=0} avoids it (242 states); payment needs a matching-style re-choice. No proof. · evidence: `one-not/research/open/A10_light_absorption.md`, `one-not/research/open/A10_light_attack.py`, `one-not/research/open/A10_maxY_test.py` · A10 · unverified (needs a second seat in by)
 - `8e6acfe6` **tested** [open-many-not] PHC@0 (payment Hall condition at the common point 0: the lines of a point program split into disjoint spanning forests, one per set) implies the point lemma and contains BottomPay as the instance at 1_Q; 0 failures, exhaustive over line values at base lines for two sets of sizes (2,3),(3,3),(3,4),(4,4),(3,5) shared and disjoint and tri3, star3; 0 failures on 21 stored circuits (0-6 NOT gates). The OR-only form (as in BottomPay) is refuted for free difference: 5-line program for |S|=2,|T|=4 disjoint; it held on all sampled monotone programs. · evidence: `one-not/research/open/U1_unify.md`, `one-not/research/open/U1_payment_hall.py` · U1 · unverified (needs a second seat in by)
 - `d6034ffc` **refuted** [C4] Rule R2 of B9 s3.2 (in every program with S, T among its lines, one private point deletes >= 1 line after cleanup or one private pair a in S, e in T deletes >= 2) is false: exact SAT witnesses with no redundant or dead line at (3,5) disjoint and shared with 8 lines and (4,4) disjoint with 9 lines, each re-checked by two independent cleanup counts; R2 holds (UNSAT) at every run with K <= base + 1. The point lemma is not affected (it needs R2 only below base). PHC@0 holds on the three smallest counterexamples. · evidence: `one-not/research/open/O1_r2.md`, `one-not/research/open/O1_r2_check.py`, `one-not/research/open/B11_r2_sat.py` · O1 · unverified (needs a second seat in by)
+- `7155fd70` **paper** [PaymentHall] Lemma D: PHC holds iff for every set J of payers sum_w (c_w(J) - 1) <= |E - J|, c_w(J) the number of components of the classes of w under the hyperedges of J (Rado rank formula plus matroid union, both cited); so PHC is the plain count asked for every instance with freed payers, and PHC@0 for all point programs is the class point lemma on program-generated leaves; 0 mismatches against Edmonds on 3,000 random instances · evidence: `one-not/research/open/F1_phc.md`, `one-not/research/open/F1_phc_tight.py` · F1 · unverified (needs a second seat in by)
+- `f830ec7e` **tested** [PaymentHall] Tight deletion sets of PHC: every block of the lattice of tight sets splits exactly one set (0 blocks split two) at 30,330 BottomPay instances (stored one-NOT circuits n <= 9, every state), 45,771 on 60 switch circuits, and all enumerated point programs at base and base+1 lines; class point lemma holds one line below the bound on 120 small two-set systems (exhaustive) · evidence: `one-not/research/open/F1_phc.md`, `one-not/research/open/F1_phc_tight.py`, `one-not/research/open/F1_class_point.py` · F1 · unverified (needs a second seat in by)
+- `9d28c0f9` **refuted** [PaymentHall] Peeling (from every J != E some payer can be put back with sum_w c_w dropping by at most 1) is false: 5-line point program for S = {0,1,2}, T = {0,3,4} (slack 1), 7-line program for disjoint 3-sets, and 63 BottomPay instances of stored one-NOT circuits n <= 9 (slack 2); PHC itself holds at all of them · evidence: `one-not/research/open/F1_phc.md`, `one-not/research/open/F1_phc_tight.py` · F1 · unverified (needs a second seat in by)
 
 #### `one-not/tools/` 1 tested · 3 refuted
 

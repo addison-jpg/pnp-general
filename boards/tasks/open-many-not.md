@@ -28,7 +28,13 @@
 - STOPPED S2 (Addison made S8 the priority; reopen later) (Sonnet): paper proof, OR-only PHC@0 for monotone point programs: every program of union/intersection lines over partial transversals of W (pairwise |S cap T| <= 1) with every S_w among its lines has pairwise disjoint sets E_w of union-lines, |E_w| = |S_w| - 1, each E_w a spanning forest of S_w with each line's edge inside its own value. Start with two sets. -> one-not/research/open/U1_phc_monotone.md
 - STOPPED S3 (Addison made S8 the priority; reopen later) (Sonnet): PHC@0 under point deletion (U1 §4): on the exhaustive tuples of U1 s3.1, for each program and private point u, take a PHC@0 partition of the cleaned program for (S - u, T) and test whether it extends to a partition for (S, T) by adding lines; record extendable / not, and the smallest non-extendable program. -> one-not/research/open/U1_unify.md s4
 
+- OPEN (Sonnet): SAT, class point lemma for two sets (F1 s2, s6): S, T with |S ∩ T| <= 1, partitions pi_S, pi_T, leaves = every set meeting S inside one class and T inside one class, lines A∪B, A∩B, A∖B; no program of |pi_S| + |pi_T| - 3 lines has S and T among its lines. Extend B9_two_sets.py `lemma` with a class argument and run class shapes up to 5 + 5 classes with one or two classes of size 2 (F1_class_point.py covers K <= 4 exhaustively, 120 systems, none). SAT = the class point lemma is false for free leaves; then rerun with leaves restricted to values of lines of a program. -> one-not/research/open/F1_class_point.md
+- OPEN (Sonnet): paper, class point lemma for two sets with 3 deleted lines (F1 s2 "first cases" stops at |R| = 2): in a point program with S, T among its lines and a set J of lines with exactly 3 lines outside J, c_S(J) + c_T(J) - 2 <= 3. Case analysis on which of the 3 lines are the lines S, T. -> one-not/research/open/F1_small_R.md
+- OPEN (Sonnet): tight blocks on larger systems: run `F1_phc_tight.py prog` logic (function `study`) on the PHC@0 enumeration for Fano and two 5-sets (line above) and on the O1 witnesses where R2 fails; record blocks splitting 1 set / 2 or more. A block splitting two sets would be the first tight shared payment. -> one-not/research/open/F1_phc.md s3
+
 ## Refuted / dead
+
+- Peeling (F1 s4): some line can always be put back at cost at most 1 component in total: false, 5-line program S = {0,1,2}, T = {0,3,4}: X0 = {0}∪{1,3}, X1 = X0∪{2}, X2 = X0∪{4}, T = X2∖{1}, S = X1∖{3}.
 
 - B4's partition bound does not settle the acyclic thin-basis case; it is not a bound for overlapping systems with cycles.
 - With XOR as a fifth op the point lemma is false (3,3 shared in 3 lines): any proof must use monotonicity (B9).
@@ -47,3 +53,4 @@
 - B8: `sens_gate`, `sens_thin_card`, `sens_orS`. -> `Open/PointLemma.lean`
 - B9: point lemma for two sets not proved in general; proved when min(|S|,|T|) <= 2 (tight-tree lemma, paper); exact SAT UNSAT at |S|+|T|-3 lines for every size pair with |S|+|T| <= 10; gate elimination: rule R2 implies the lemma (paper). Exact obstacle: R2. -> `one-not/research/open/B9_point_two_sets.md`, `B9_two_sets.py`
 - O1: rule R2 refuted (exact SAT, (3,5) 8 lines, (4,4) d 9 lines); PHC@0 holds on the counterexamples and is the better target. -> `one-not/research/open/O1_r2.md`
+- F1 (Fable): PHC@0 not proved. Lemma D: PHC@0 iff for every set J of lines Σ_w (c_w(J) − 1) ≤ #lines outside J; so PHC@0 for all programs = class point lemma on program-generated leaves, not a second problem above the point lemma; proved for at most 2 lines outside J; tight blocks all split one set on every enumerated program. Exact obstacle: class point lemma for two sets. -> `one-not/research/open/F1_phc.md`
