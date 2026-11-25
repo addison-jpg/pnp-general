@@ -11,7 +11,7 @@ Two things a plain Python run gets for free, done here by hand:
      read below and run with the Python inside it."""
 import os, runpy, sys
 
-PY_FLAGS = {"-I", "-E", "-s", "-S", "-B", "-u", "-O", "-OO", "-q"}
+PY_FLAGS = {"-I", "-P", "-E", "-s", "-S", "-B", "-u", "-O", "-OO", "-q"}
 
 def _python(argv):
     """`[-I] [-X opt] (-c CODE | FILE.py) ARGS`, as python3 would read it. None if argv is not that form."""
@@ -25,7 +25,9 @@ def _python(argv):
         try: exec(compile(argv[i + 1], "<string>", "exec"), {"__name__": "__main__"}); return 0
         except SystemExit as e: return 0 if e.code is None else e.code
     if argv[i].endswith(".py") and os.path.isfile(argv[i]):
-        sys.argv = argv[i:]; sys.path.insert(0, os.path.dirname(os.path.abspath(argv[i])))
+        sys.argv = argv[i:]
+        if not {"-I", "-P"} & set(argv[:i]):          # as python3: -I and -P keep the script's folder off the path
+            sys.path.insert(0, os.path.dirname(os.path.abspath(argv[i])))
         try: runpy.run_path(argv[i], run_name="__main__"); return 0
         except SystemExit as e: return 0 if e.code is None else e.code
     return None
