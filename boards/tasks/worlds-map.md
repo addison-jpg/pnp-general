@@ -32,3 +32,4 @@
 ## Lines (TAKEN / DECIDED only)
 - TAKEN W1
 - DECIDED W1 (Sonnet): map note written, every entry carries status and read status; most entries MEM or search result because en.wikipedia.org did not resolve; L6 depth/size rows not found, two other L6 items cited. -> worlds/README.md, LITERATURE.md section N
+- TAKEN W3
