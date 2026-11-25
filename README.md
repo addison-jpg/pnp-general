@@ -161,6 +161,16 @@ Nothing is installed outside this folder. Delete `.venv` to undo the setup. `bin
 
 Without Lean installed, asteroid says so and only evaluates. In that case nothing is proved. The manual is `asteroid/README.md`, and the format of `.bench` files is described in `asteroid/BENCH.md`.
 
+## asteroid as a GitHub language
+
+asteroid programs use the extension `.ath`. A TextMate grammar for them is in `editors/vscode/syntaxes/asteroid.tmLanguage.json`, and the VS Code extension (`editors/vscode/`) registers `.ath` files. Those two pieces are what a language needs before GitHub can colour it.
+
+GitHub does not add a language by itself. A language is added to the Linguist project (github-linguist/linguist), which asks for a grammar, sample files and evidence of real use on GitHub. This repository has none of the usage evidence yet, so **the language is not recognised on GitHub today**. The steps still to do: write the Linguist entry, attach samples from `asteroid/examples/`, and show usage. Whether Linguist accepts it is GitHub's decision, not this repository's.
+
+## The model layer, and a question that is open
+
+The Qwen2.5 models above have 0.49B, 1.54B and 3.09B parameters. A question worth asking is whether a smaller continuous model could carry the same semantic work. That is an **open research question**, not a result. Nothing here has trained or measured such a model. A claim would need a benchmark on the same tasks, with the parameter count, the tensor count and the error reported together. Until then it stays a question.
+
 ## Checking the proofs yourself
 
 ```bash
