@@ -11,13 +11,14 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | brain | 0 | 9 | 0 | 0 |
 | circuits | 48 | 0 | 6 | 6 |
 | lateral | 1 | 0 | 0 | 0 |
+| ontology | 0 | 4 | 0 | 0 |
 | other | 0 | 6 | 0 | 0 |
 | philosophy | 13 | 4 | 0 | 0 |
 | privacy | 0 | 2 | 0 | 0 |
 | prompt-method | 0 | 0 | 3 | 0 |
 | quantum-gravity | 13 | 0 | 0 | 0 |
 | worlds | 9 | 0 | 0 | 0 |
-| **all** | **91** | **21** | **12** | **6** |
+| **all** | **91** | **25** | **12** | **6** |
 
 ## asteroid
 
@@ -118,6 +119,15 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | label | statement | evidence | recheck |
 |---|---|---|---|
 | checked | Cantor, Russell, no computable enumeration of computable functions and Camus no_total_answer all follow from one Lawvere diagonal lemma; Mathlib already has the surjective form (classical, Lawvere 1969; Yanofsky 2003) | `lean/PEqualNP/Lateral/Cantor.lean::cantor_from_lawvere`, `lean/PEqualNP/Lateral/Halting.lean::no_computable_enumeration`, `lean/PEqualNP/Lateral/CamusInstance.lean::camus_from_lawvere` |  |
+
+## ontology
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | frames_sync.ath: B defines symmetry on all frames on 3 worlds; on 0->1 reflexive, B fails and 4 holds; []<>T defines successor-seriality on all 530 frames on 1..3 worlds, <>T seriality; 35 frames are successor-serial but not serial. | `frames_sync.ath`, `ontology/light.py`, `ontology/history.py` | `bin/asteroid --no-lean frames_sync.ath` |
+| checked-finite | frames_sync.ath: ontology/catch22.py passes. A<->B, B<->A: exactly 2 consistent outcomes (both halt, neither); one loop bound to an external death: 1 outcome per value; a loop bound to its own negation: 0. | `frames_sync.ath`, `ontology/light.py`, `ontology/history.py` | `python3 -I ontology/catch22.py` |
+| checked-finite | frames_sync.ath: ontology/history.py passes. All 24 rooted posets on 1..4 worlds (21 trees, 3 rejoining) are p-morphic images of their unravelled trees; worlds agree with their copies on 8 formulas under every valuation; .2 valid on the diamond, invalid on its unravelling. | `frames_sync.ath`, `ontology/light.py`, `ontology/history.py` | `python3 -I ontology/history.py` |
+| checked-finite | frames_sync.ath: ontology/light.py passes. de Sitter a=e^(Ht): series identities for the horizon integral exact to order 40 at H in {1,1/2,3/7,5,22/7}, proper horizon c/H; light cone equals the BFS ball on all 27476 connected labelled graphs on 1..6 vertices. | `frames_sync.ath`, `ontology/light.py`, `ontology/history.py` | `python3 -I ontology/light.py` |
 
 ## other
 

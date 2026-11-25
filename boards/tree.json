@@ -3,7 +3,7 @@
   "counts": {
    "checked": 91,
    "tested": 12,
-   "checked-finite": 21,
+   "checked-finite": 25,
    "refuted": 6
   },
   "verified": [
@@ -136,7 +136,11 @@
    "f9156a1e",
    "d6c97be6",
    "05debba4",
-   "2befeb37"
+   "2befeb37",
+   "a38f09e6",
+   "d57af9d8",
+   "d094077a",
+   "d1c86cb4"
   ],
   "unverified_here": []
  },
@@ -1329,38 +1333,20 @@
   ]
  },
  "ontology": {
-  "counts": {},
-  "verified": [],
+  "counts": {
+   "checked-finite": 4
+  },
+  "verified": [
+   "a38f09e6",
+   "d57af9d8",
+   "d094077a",
+   "d1c86cb4"
+  ],
   "unverified_here": [
-   {
-    "id": "a38f09e6",
-    "why": [
-     "checked-finite needs a runner (the exhaustive check, re-runnable)"
-    ]
-   },
-   {
-    "id": "d57af9d8",
-    "why": [
-     "checked-finite needs a runner (the exhaustive check, re-runnable)"
-    ]
-   },
-   {
-    "id": "d094077a",
-    "why": [
-     "checked-finite needs a runner (the exhaustive check, re-runnable)"
-    ]
-   },
-   {
-    "id": "d1c86cb4",
-    "why": [
-     "checked-finite needs a runner (the exhaustive check, re-runnable)"
-    ]
-   },
    {
     "id": "900eb79c",
     "why": [
-     "needs a second seat in by",
-     "checked-finite needs a runner (the exhaustive check, re-runnable)"
+     "needs a second seat in by"
     ]
    }
   ]

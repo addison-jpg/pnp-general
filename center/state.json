@@ -82,8 +82,10 @@
  },
  "ontology": {
   "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 4
+  },
+  "mean_radius_findings": 0.0
  },
  "other": {
   "cells": {

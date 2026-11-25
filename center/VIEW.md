@@ -67,7 +67,7 @@ cells: 2 DECIDED, 6 OPEN, 1 STOPPED
 - OPEN [Fable] (Fable): item 3, `Methods/Board.lean`. Design ready: a record = (dir as a list of segments, id, optional who / word / evidence, by, optional retest ok); a world  (methods-formal:21)
 
 ## ontology
-findings (verified): none · mean radius None
+findings (verified): 4 checked-finite · mean radius 0.0
 cells: none
 
 ## other
