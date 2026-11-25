@@ -41,9 +41,13 @@ and bin\\asteroid.ps1). Nothing is installed outside the repository. Below, `ast
 Python proposes, Lean decides: a `by lean` claim counts only if the generated module builds."""
 import sys, os, re, json, subprocess, shlex, operator, time, shutil, functools
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # the repository, wherever the command is typed
+FROZEN = getattr(sys, "frozen", False)   # the one-file build (asteroid/universal_exe.py): the code is inside it
+if FROZEN and os.environ.get("ASTEROID_ROOT"): ROOT = os.environ["ASTEROID_ROOT"]   # the repository it found
 CALLER_DIR = os.getcwd()
 os.chdir(ROOT)
-S = os.path.join(ROOT, "one-not/tools/search"); sys.path.insert(0, S); sys.path.insert(0, ROOT)
+S = os.path.join(ROOT, "one-not/tools/search")
+if FROZEN: sys.path += [ROOT, S]          # the modules packed in the build come first; the repository's are a fallback
+else: sys.path.insert(0, S); sys.path.insert(0, ROOT)
 import core
 from conjectures import REGISTRY
 OPS = {"=": operator.eq, "!=": operator.ne, "<": operator.lt, "<=": operator.le, ">": operator.gt, ">=": operator.ge}
@@ -361,7 +365,8 @@ def child_env(where):
 
 def run(script):
     global PROG_DIR
-    if not os.path.isfile(script): raise SystemExit(f"asteroid: no such program: {os.path.abspath(script)}")
+    if not os.path.isfile(script):                   # exit 2: the program could not be read (as the native ast)
+        print(f"asteroid: no such program: {os.path.abspath(script)}", file=sys.stderr); raise SystemExit(2)
     PROG_DIR = os.path.dirname(os.path.abspath(script))
     st = Session()
     for ln, raw in enumerate(open(script, encoding="utf-8"), 1): exec_line(st, raw, ln, script)
@@ -448,6 +453,9 @@ def main(argv):
     if not NO_LEAN and not lake() and not prompt:
         NO_LEAN = True
         print("note: Lean (the command `lake`) is not installed here, so this run is Python only: claims are evaluated, nothing is formally checked.\n      To let the Lean kernel decide: install elan, then `cd one-not/lean && lake exe cache get`.")
+    if not NO_LEAN and not prompt and not os.path.isdir(LEAN_DIR):
+        NO_LEAN = True
+        print("note: no repository with one-not/lean was found, so this run is Python only: claims are evaluated, nothing is formally checked.\n      To let the Lean kernel decide: run the program from inside a clone of the repository.")
     if argv[:1] == ["version"]: print(VERSION); return 0
     if prompt: from asteroid import repl; return repl.main()
     if argv[:1] == ["idle"]: from asteroid import idle; return idle.main(argv[1:])

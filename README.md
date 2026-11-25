@@ -1,6 +1,6 @@
 <picture><source media="(prefers-color-scheme: dark)" srcset="site/logo-dark.svg"><img alt="4STeroid (asteroid)" src="site/logo-light.svg" height="56"></picture>
 
-[![asteroid language](https://img.shields.io/badge/language-asteroid%20.ath-19B3B3)](asteroid/SPEC.md) [![VS Code](https://img.shields.io/visual-studio-marketplace/v/asteroid.asteroid?label=VS%20Code&color=3D9BD6)](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid) [![Windows](https://img.shields.io/badge/Windows-asteroid.exe%204.2%20MB-19B3B3)](https://github.com/addison-jpg/pnp-general/raw/main/asteroid.exe) [![Linux](https://img.shields.io/badge/Linux%20%2F%20Arch-4.4%20MB-3D9BD6)](dist/linux/README.md) [![proofs](https://img.shields.io/badge/proofs-Lean%204-555)](one-not/lean)
+[![asteroid language](https://img.shields.io/badge/language-asteroid%20.ath-19B3B3)](asteroid/SPEC.md) [![VS Code](https://img.shields.io/visual-studio-marketplace/v/asteroid.asteroid?label=VS%20Code&color=3D9BD6)](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid) [![ast](https://img.shields.io/badge/ast-native%20checker%2C%20Windows%20%2B%20Linux-19B3B3)](#download) [![asteroid](https://img.shields.io/badge/asteroid-universal%2C%20one%20file-3D9BD6)](#download) [![proofs](https://img.shields.io/badge/proofs-Lean%204-555)](one-not/lean)
 
 # asteroid: one language, one standard of proof, every field
 
@@ -118,7 +118,16 @@ bin/asteroid hello.ath # run one program
 bin/asteroid test      # run all of them
 ```
 
-Linux (no Python, no Lean): [`dist/linux/asteroid`](dist/linux/README.md), a 4.4 MB binary; Arch: `packaging/arch/PKGBUILD`; Windows: the same inside Arch on WSL.
+### Download
+
+Two programs, one file each, nothing to install:
+
+| | Windows | Linux (x86-64) | what it is |
+|---|---|---|---|
+| **ast** | [`ast.exe`](https://github.com/addison-jpg/pnp-general/raw/main/dist/windows/ast.exe) (4.2 MB) | [`ast`](https://github.com/addison-jpg/pnp-general/raw/main/dist/linux/ast) (4.3 MB) | the native checker, written in Lean: small and fast, no Python. Circuits, claims, the prompt, plots (SVG). Proves with Lean when it finds Lean and the repository. [`dist/windows`](dist/windows/README.md), [`dist/linux`](dist/linux/README.md) |
+| **asteroid** | [`asteroid.exe`](https://github.com/addison-jpg/pnp-general/raw/main/dist/windows/asteroid.exe) (built by CI) | [`asteroid`](https://github.com/addison-jpg/pnp-general/raw/main/dist/linux/asteroid) (45 MB) | the universal language: the full implementation, every extension (finite, prob, modal, frame, commit, ask, corpus, eureka, ...), with Python inside. Proves with Lean when it finds `lake` and the repository. |
+
+Arch: `packaging/arch/PKGBUILD` installs `ast`. Both programs take the same command line: `ast hello.ath`, `asteroid hello.ath`, `--no-proof`, `version`; with no arguments they open the prompt.
 
 VS Code highlighting for `.ath`: search **asteroid** in Extensions ([Marketplace](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid)), or install `editors/vscode/asteroid-0.1.0.vsix`.
 
@@ -126,7 +135,7 @@ VS Code highlighting for `.ath`: search **asteroid** in Extensions ([Marketplace
 
 A native binary, written in Lean and needing no Python, is built with `cd one-not/lean && lake exe cache get && lake build asteroid`. It evaluates a program and has Lean check it. Without arguments it opens the prompt, and `plot phi NAME -> FILE.svg` writes an SVG plot. See `asteroid/NATIVE.md`.
 
-Windows: download [`asteroid.exe`](https://github.com/addison-jpg/pnp-general/raw/main/asteroid.exe) (4.2 MB, nothing to install) and double-click it: it opens the asteroid prompt. Or run `asteroid.exe hello.ath` in a terminal. Windows SmartScreen will warn, because the file is not signed: click "More info", then "Run anyway".
+Windows: download `ast.exe` or `asteroid.exe` (table above) and double-click it: it opens the asteroid prompt. Or run `ast.exe hello.ath` in a terminal. Windows SmartScreen will warn, because the files are not signed: click "More info", then "Run anyway".
 
 These lines are for Git Bash on Windows, macOS and Linux. In cmd: `bin\asteroid.cmd demo`, `bin\setup.cmd`. In Windows PowerShell: `bin\asteroid.ps1 demo`, `bin\setup.ps1` (or the same `.cmd` names).
 

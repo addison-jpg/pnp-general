@@ -167,7 +167,7 @@ The machine has 4 cores and 15 GB of memory, shared by every seat. Paper seats (
 | [`qg-frontier`](boards/tasks/qg-frontier.md) | T9 | frontier survey and ranked formal targets | Q1 to Q4 |
 | [`philosophy-formal`](boards/tasks/philosophy-formal.md) | the three levels (Deleuze, Fisher) | formal model of a cited reading, bridge to Phi | P1 to P4 |
 | [`asteroid-term`](boards/tasks/asteroid-term.md) | asteroid | native asteroid on Linux (Arch) and Windows; mintty dropped | seats 1–4 done, 5 open |
-| [`asteroid-exe`](boards/tasks/asteroid-exe.md) | asteroid | double-clickable `asteroid.exe` linked from the front page | done (native, 4.2 MB) |
+| [`asteroid-exe`](boards/tasks/asteroid-exe.md) | asteroid | double-clickable `ast.exe` (native, was `asteroid.exe`) linked from the front page; universal `asteroid.exe` built by exe.yml | done (native, 4.2 MB) |
 | [`asteroid-cli-logo`](boards/tasks/asteroid-cli-logo.md) | asteroid | the 4STeroid logo as text art in the CLI | coord's Sonnet |
 | [`asteroid-vscode`](boards/tasks/asteroid-vscode.md) | asteroid | `.ath` highlighting in VS Code (published) | coord's Sonnet |
 | [`ath-prompt-quant`](boards/tasks/ath-prompt-quant.md) | `ath_prompt_method.md` | a quantitative version of one prompting claim | Sonnet |

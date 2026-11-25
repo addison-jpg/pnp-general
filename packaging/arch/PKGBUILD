@@ -1,16 +1,16 @@
-# asteroid: the native evaluator (one binary, no Python, no Lean needed to evaluate).
+# ast: the native asteroid checker (one binary, no Python, no Lean needed to evaluate). dist/linux/README.md
 # Install:  makepkg -si   (in this folder)
 # Proving claims marked `by lean` additionally needs the repository and elan/lake; evaluation does not.
-pkgname=asteroid-bin
+pkgname=ast-bin
 pkgver=0.4
 pkgrel=1
-pkgdesc="asteroid: a small language for circuits and claims about them (native evaluator)"
+pkgdesc="ast: the native checker of asteroid, a small language for circuits and claims about them"
 arch=('x86_64')
 url="https://github.com/addison-jpg/pnp-general"
 license=('MIT')
 depends=('glibc')
-provides=('asteroid')
-source=("asteroid::https://github.com/addison-jpg/pnp-general/raw/main/dist/linux/asteroid"
+provides=('ast')
+source=("ast::https://github.com/addison-jpg/pnp-general/raw/main/dist/linux/ast"
         "hello.ath::https://github.com/addison-jpg/pnp-general/raw/main/hello.ath"
         "hello.bench::https://github.com/addison-jpg/pnp-general/raw/main/hello.bench")
 sha256sums=('c31153a43c30fbfd0fa005f9f07e8f5a5b6303664e0eb9f8d872ba49ac20a9fb'
@@ -18,7 +18,7 @@ sha256sums=('c31153a43c30fbfd0fa005f9f07e8f5a5b6303664e0eb9f8d872ba49ac20a9fb'
             'SKIP')
 
 package() {
-  install -Dm755 asteroid "$pkgdir/usr/bin/asteroid"
+  install -Dm755 ast "$pkgdir/usr/bin/ast"
   install -Dm644 hello.ath "$pkgdir/usr/share/asteroid/hello.ath"
   install -Dm644 hello.bench "$pkgdir/usr/share/asteroid/hello.bench"
 }
