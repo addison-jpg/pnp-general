@@ -22,8 +22,8 @@ Take a finite structure: a Boolean function, a matching, a relation, a set of si
 |---|---|---|---|---|
 | Boolean circuit's slack, 0/1 inputs | multilinear extension Phi on [0,1]^n | 0 <= Phi(p) for all p, on the Fano formula and a 5-input one-NOT circuit | checked (Lean) | `asteroid/programs/continuous.ath`, RESULTS.md asteroid |
 | the same | the same | Phi monotone, level means nonincreasing | **refuted** on 8 of 23 witness circuits (twin trees: 6.00 -> 8.29) | RESULTS.md circuits |
-| one-to-one matchings | the stable matching polytope over Q | its corners are exactly the stable matchings | being checked (n = 2 all profiles) | `culture/love/field.py` (in review) |
-| capacity k = 1 (monogamy), 2 (polyamory) | capacity k in Q, e.g. 3/2 | integral corners do not survive at k = 3/2 | being checked | `culture/love/field.py` (in review) |
+| one-to-one matchings | the stable matching polytope over Q | its corners are exactly the stable matchings: 18 corners over all 16 profiles at n = 2; 618 corners on 481 sampled profiles at n = 3 | checked-finite (n = 2); tested (n = 3) | `culture/love/field.py` (reviewed) |
+| capacity k = 1 (monogamy), 2 (polyamory) | capacity k in Q, e.g. 3/2 | integral corners do not survive at k = 3/2 (n = 2: 18 of 25 corners fractional; n = 3: 732 of 766). Stability itself does not carry over linearly: the direct k = 2 rule admits unstable matchings on 14 of 16 profiles | checked-finite | `culture/love/field.py` (reviewed) |
 | a field on a triangulated sphere | a smooth field on the cortex | the zeros' indices sum to 2 (Poincare-Hopf) | tested (random fields), the theorem is cited | `biology/brain/hairy.py` |
 | quadrant signs, +1 or -1 | real edge weights | balance (Harary) for weights is a different notion: open | open | `culture/homestuck/quadrants/check.py` |
 
@@ -35,4 +35,4 @@ The extension does not preserve everything. Nonnegativity of the circuit slack s
 
 1. A small registry: for each finite check in the repository, its continuous extension (if any) and which of its properties have been re-checked there.
 2. The quadrants with real weights: pick the weighted balance notion (for example, the sign of every cycle's product), and check where the integer result carries over.
-3. Once `culture/love/field.py` passes review, fill its two rows with the numbers.
+3. A linear description of stability for capacity k > 1 (the comb inequalities in the literature were not tried).
