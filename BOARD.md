@@ -1,5 +1,7 @@
 # Board: P versus NP through general circuits
 
+- **NEW (Addison, 2026-11-25): a formalized emotional framework on the philosophy side**, from appraisal theory, the Quran and the Bible (open editions), and current social-work literature; proved facts are about the model only. Four seats. [`emotion-framework`](boards/tasks/emotion-framework.md)
+
 - **ASK ADDISON: tree refactor (proposal).** Root ~30 entries → 11: `asteroid/` (language, native, editors, dist), `proofs/` (both Lean projects), `research/`, `work/` (boards). Biggest single win: `AsteroidLang` → its own Mathlib-free package. Nothing moves until Addison says yes. [`tree-refactor`](boards/tasks/tree-refactor.md)
 
 Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boards/TREE.md` → this file → task boards. The text before the refactor is in git: `git show 1f3cc11:BOARD.md`.
