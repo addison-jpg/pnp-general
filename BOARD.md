@@ -1,5 +1,22 @@
 # Board: P versus NP through general circuits
 
+## TOP: THREE LEVELS, BOTTOM TO TOP (Addison, 2026-11-25)
+
+(Addison: "we havent quite mapped something continuous to our near continuous model. 11 inputs not something i wanna see. at the bottom its variable, at the middle its absurd polynomial feild, and at the top it becomes crazy overlapping infinities that we bound and match.")
+
+**Assessment (main): rational. It is a known proof pattern: flag algebras plus stability plus a finite check.**
+- **Bottom, variable (finite n):** circuits, sets, cubes. Everything checked so far lives here. Tests reach n ≤ 11 exhaustively and n ≤ 16 sampled. That is evidence, never a proof for all n.
+- **Middle, polynomial field:** densities of small patterns are polynomials (Φ(p) is degree n in p; the multilinear and three-state extensions). Tried ALONE on 2026-11-24 and closed: on the cubes, every continuous route is the count again or refuted (twin trees, Fano corpus). See [`continuous-mapping`](boards/tasks/continuous-mapping.md). In this plan the middle is only the bridge, not the proof.
+- **Top, limits ("overlapping infinities we bound and match"):** take n → ∞. A sequence of one-NOT circuits on growing set systems converges to a limit object in which the statement "gates ≥ base" becomes an inequality between pattern densities. Such inequalities are proved by finite computation (sums of squares / semidefinite programs over small patterns: Razborov's flag algebras, 2007; hypergraph limits). "Bound and match" is that: bound the density of gates not paid for, match it against the base density.
+- **What the top gives, honestly:** an asymptotic statement, gates ≥ (1 − o(1)) · base. The exact statement then needs a **stability** step (near-extremal circuits look like the known tight circuits, then repair them exactly) plus the bottom check for small n. That is the standard route to exact results for all n, and it is why the bottom stays variable.
+- **Risk:** the count is exact and integer, while limits lose o(n). If tight circuits are not stable (many unlike shapes at slack 0), the stability step fails. The Fano corpus with its 245 non-up-set tight cubes is the first place to look.
+
+**Open seats (start only when Addison says go):**
+- OPEN (Sonnet): write the density form: express |F2|, base and gates of a one-NOT circuit as sums of counts of small labelled patterns (sets, wires, the NOT gate's wire h); state "slack ≥ 0" as a linear inequality in pattern densities. -> one-not/research/open/limits_density_form.md
+- OPEN (Sonnet): literature rows (read status) for flag algebras, hypergraph limits, flag-algebra-plus-stability exact results, and any limit theory for Boolean circuits or set systems. -> LITERATURE.md
+- OPEN (Opus, after the two above): does the density inequality hold in the limit; attempt a flag-algebra certificate on the smallest pattern size; list the tight limit objects (stability candidates). -> one-not/research/open/limits_certificate.md
+
+
 ## SEAT SIZE: SONNET BY DEFAULT, ONE NARROW TASK PER SEAT
 
 (Addison, 2026-11-25: "some agents are too big here ... refactor with more sonnets. these things can really go direct on board, a big fable would probably multitask them all for no dang reason and theyd fit messy".)
