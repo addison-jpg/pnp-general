@@ -52,3 +52,7 @@ Linear fit over all 18 in order: slope +1,523 tokens per seat, r = 0.22. That is
 - Confounds: the order of seats is assumed; seat difficulty is not controlled; "checked" for C1 is a wrapper and C4 a weak form; token counts include the fixed read; the tree counts all seats, not only these 27, so tokens over the whole tree-checked delta cannot be computed (the listed seats are not all the seats).
 
 Script: ad hoc, `git show <commit>:boards/tree.json` for `counts.checked` at each commit touching it, and `git grep -c '' <commit> -- '*.lean'`; numbers above reproduce from the seat list in the task line.
+
+## Observation, not evidence (2026-11-25, late session)
+
+After all subagents were stopped, the work continued with one model writing directly: the centre, the verdict words, `homestuck/`, `zodiac/`. Addison's reading is that this is far cheaper per step. That is plausible, because every subagent re-reads its whole context from scratch, and a single seat does not. But it is untested: nobody compared token usage for this stretch against an equal number of results from the swarm period. The session's own usage figures would settle it. Until that comparison is run, this is an observation, and the top-scale claim (an unbounded ratio) remains untested.
