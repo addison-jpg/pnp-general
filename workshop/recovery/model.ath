@@ -1,0 +1,10 @@
+# model.ath: a toy model of recovery under repeated harm. A model, not a finding about any person or group.
+# States: 0 stable (p), 1 strained (q), 2 harmed (r). Edges go both ways between 0-1 and 1-2:
+# strain and harm move a state down; support moves it back up. Each state can move, so no state is stuck.
+kripke M = worlds 3 rel [(0,1), (1,2), (2,1), (1,0)] val p {0} q {1} r {2}
+# Which states can reach a stable state in one step? Only the strained state.
+claim worlds M "<>p" = {1}
+# Which states can reach a harmed state in one step? Only the strained state.
+claim worlds M "<>r" = {1}
+# Which states can reach a strained state in one step? The stable and the harmed state.
+claim worlds M "<>q" = {0,2}
