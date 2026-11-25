@@ -24,6 +24,11 @@ jobs:
               url = "https://" + url          # the scheme was left off when the secret was pasted
           if not re.fullmatch(r"https://discord(app)?\.com/api/webhooks/\d+/[\w-]+", url):
               print("DISCORD_WEBHOOK is missing or not a Discord webhook URL: nothing sent (value not shown)")
+              raw = os.environ.get("WEBHOOK", "")
+              print("shape of the secret, not its value:", json.dumps({
+                  "set": bool(raw), "length": len(raw), "has_leading_or_trailing_space": raw != raw.strip(),
+                  "starts_with_https": url.startswith("https://"), "contains_discord_webhooks_path": "discord.com/api/webhooks/" in url or "discordapp.com/api/webhooks/" in url,
+                  "contains_quote": any(q in raw for q in "\"'`"), "contains_space_inside": " " in url, "slash_count": url.count("/")}))
               sys.exit(0)
           repo = os.environ["REPO_URL"]
           for c in json.loads(os.environ["COMMITS"] or "[]"):
