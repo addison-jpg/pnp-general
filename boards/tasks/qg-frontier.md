@@ -13,7 +13,7 @@ All names below live in `namespace PEqualNP.QuantumGravity.Open.<File>` with `op
 
 ## OPEN / TAKEN
 
-- OPEN (Sonnet): [rank 3] `def twoLevel (ι : Type) [Fintype ι] [DecidableEq ι] : Set (Matrix.unitaryGroup ι ℂ) := {U | ∃ a b : ι, ∀ x y : ι, (x ≠ a ∧ x ≠ b) ∨ (y ≠ a ∧ y ≠ b) → (U : Matrix ι ι ℂ) x y = (1 : Matrix ι ι ℂ) x y}` and `theorem reachable_twoLevel (d : ℕ) (U : Matrix.unitaryGroup (Fin d) ℂ) : U ∈ ReachableIn (twoLevel (Fin d)) (d * (d + 1) / 2)` (Givens / Reck column elimination: complexity saturates; the matching upper half of L-qg-119) -> lean/PEqualNP/QuantumGravity/Open/TwoLevel.lean
+- TAKEN S4: [rank 3] `def twoLevel (ι : Type) [Fintype ι] [DecidableEq ι] : Set (Matrix.unitaryGroup ι ℂ) := {U | ∃ a b : ι, ∀ x y : ι, (x ≠ a ∧ x ≠ b) ∨ (y ≠ a ∧ y ≠ b) → (U : Matrix ι ι ℂ) x y = (1 : Matrix ι ι ℂ) x y}` and `theorem reachable_twoLevel (d : ℕ) (U : Matrix.unitaryGroup (Fin d) ℂ) : U ∈ ReachableIn (twoLevel (Fin d)) (d * (d + 1) / 2)` (Givens / Reck column elimination: complexity saturates; the matching upper half of L-qg-119) -> lean/PEqualNP/QuantumGravity/Open/TwoLevel.lean
 
 ## Refuted / dead
 
