@@ -41,7 +41,7 @@ Files are read in byte order of name (Python's `sorted(glob(...))`; like glob, n
     records containing ""word": "refuted"": 13
     ./center/shards: 31 shard files, 562 records, 0 skipped (too long)
 
-The words are what the store records. `:memory` checks none of them; a `checked` here is only a count of records that say `checked`.
+WORD may hold quotes and spaces: the 13 lines holding `"word": "refuted"` are the 13 `finding refuted` records above. The words are what the store records. `:memory` checks none of them; a `checked` here is only a count of records that say `checked`.
 
 ## Limits (fixed buffers, no allocator)
 
@@ -83,7 +83,7 @@ made-up store (edge cases): 2 shard files, 4 records, 1 skipped (too long), 3 (k
 ok: astmin's output equals the json reference, byte for byte
 ```
 
-The test can fail. Checked once by hand (2026-11-25, scratch script, not kept): eight one-line breakages of `main.rs` each made it exit 1. They were the line limit one byte short, hidden files read, files read in directory order, pairs not kept in order, a missing field shown as `?`, a last line with no newline dropped, a long line also counted as a record, and four matches shown instead of three. Four of the eight were caught only by the made-up store. The old 2,672-byte binary fails it too. Also by hand: 257 shard files and 1,025 pairs are refused, while 256 and 1,024 are read; a directory named `x.jsonl` is reported as `cannot read x.jsonl`; strace shows only read, write, openat, getdents64 and close (and exit).
+The test can fail. Checked once by hand (2026-11-25, scratch script, not kept): eight one-line breakages of `main.rs` each made it exit 1. They were the line limit one byte short, hidden files read, files read in directory order, pairs not kept in order, a missing field shown as `?`, a last line with no newline dropped, a long line also counted as a record, and four matches shown instead of three. Four of the eight were caught only by the made-up store. The old 2,672-byte binary fails it too. Also by hand: 257 shard files and 1,025 pairs are refused, while 256 and 1,024 are read; a directory named `x.jsonl` is reported as `cannot read x.jsonl`; strace shows only read, write, openat, getdents64 and close (and exit). The old hand tests still hold: lines piped together are answered one at a time; `:quit` stops before later lines; a last line without a newline is answered; a prompt line over 256 bytes is refused.
 
 ## Size
 
@@ -94,7 +94,7 @@ Measured 2026-11-25 with the build line below, stripped, statically linked, no d
 | before (prompt and echo only) | 2,672 |
 | after (with `:memory` and `:find`) | **7,704** |
 
-Of the 7,704 bytes, 3,993 are code and 1,616 are unwind tables (`.eh_frame` and its header), which fat LTO keeps even with `panic = "abort"` and `-C force-unwind-tables=no`. A two-line linker script that discards them gives 5,888 bytes (1,992 for the old program). It is not adopted, so that the build line stays the same and the two sizes compare. `:memory` on the 386 KB store takes about 2 ms, process start included.
+Of the 7,704 bytes, 3,993 are code and 1,616 are unwind tables (`.eh_frame` and its header), which fat LTO keeps even with `panic = "abort"` and `-C force-unwind-tables=no`. A two-line linker script that discards them (with `-Wl,--no-eh-frame-hdr`) gives 5,888 bytes (1,992 for the old program). It is not adopted, so that the build line stays the same and the two sizes compare. `:memory` on the 386 KB store takes about 2 ms, process start included.
 
 ## Build
 
