@@ -125,6 +125,12 @@ Negative results are kept as found. Two simulations of stated rules did not repr
 
 Nothing above settles P versus NP.
 
+## A restructuring question (open)
+
+Should the repository be reorganised as a min-max tree? The idea is related to Steinmetz's dissertation on Monte Carlo search in Go (Minnesota, 2016), which I have only from its metadata and abstracts, so I have not confirmed how close the match is.
+
+Asteroid cannot weigh this yet. Its `ask` statement understood only one of three questions in `workshop/ask/restructure.ath`. For "what is verified about tree" it found 14 verified findings and 14 `RESULTS.md` rows. That is evidence about the repository's tree-shaped results, not an answer to whether to restructure. The question stays open.
+
 ## Why this is open
 
 The project is public on purpose. Every claim names its evidence and its label, so a reader can check both.

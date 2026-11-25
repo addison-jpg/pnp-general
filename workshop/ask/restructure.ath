@@ -1,0 +1,4 @@
+# Restructuring questions for the refactor/pillars branch.
+ask "is restructuring the repository as a min-max tree worth it"
+ask "what results sit under the bus and the route"
+ask "what is verified about tree"
