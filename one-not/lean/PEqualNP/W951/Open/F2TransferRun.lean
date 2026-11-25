@@ -127,4 +127,71 @@ theorem unitMerge_card_ge_and_subset (S : Fin m → Finset (Fin n)) (Q D : Finse
 
 end Run
 
+section Count
+
+variable {n m : ℕ} (gates : List Gate) (p : ℕ) (hp : p < gates.length)
+  (hg : ∀ g ∈ gates, (g.op = GateOp.and ∨ g.op = GateOp.or ∨ g.op = GateOp.not) ∧
+    g.inputs.length ≤ 2)
+  (hU : AtMostOneNot gates) (hN : (gates[p]'hp).op = GateOp.not)
+
+omit hp hg hU hN in
+/-- Data carried by a wire of a unit merge set. -/
+theorem unitMerge_data (S : Fin m → Finset (Fin n)) (Q D : Finset (Fin n)) (w : Fin m) (i : ℕ)
+    (hi : i ∈ unitMerge gates S Q D w) :
+    val gates (Zof (S w ∪ D)) i = false ∧ ∃ u ∈ S w \ D, ∃ u' ∈ S w \ D, u ≠ u' ∧
+      val gates (upPt (canonPt Q) u) i = true ∧ val gates (upPt (canonPt Q) u') i = true := by
+  classical
+  obtain ⟨j, -, rfl, -⟩ :=
+    (runMT_mem (Zof (S w ∪ D)) (fun u => upPt (canonPt Q) u) (S w \ D) gates gates.length _).mp hi
+  obtain ⟨⟨u, hu, u', hu', h1, h2, hne⟩, -⟩ :=
+    run_recordT (Zof (S w ∪ D)) (fun u => upPt (canonPt Q) u) (S w \ D) gates gates.length j hi
+  have h0 : val gates (Zof (S w ∪ D)) (n + j) = false := by
+    have h := run_sub_DT (Zof (S w ∪ D)) (fun u => upPt (canonPt Q) u) (S w \ D) gates _ hi
+    simp only [DT, Finset.mem_filter] at h
+    exact h.2.1
+  exact ⟨h0, u, hu, u', hu', fun h => hne (h ▸ rfl), h1, h2⟩
+
+include hg hU hN in
+/-- **No-DD mixed count.** If no alive set is DD at `(Q, D)`, the mixed slack is nonnegative. -/
+theorem mslack_nonneg_of_noDD (S : Fin m → Finset (Fin n)) (Q D : Finset (Fin n))
+    (hQD : Disjoint Q D) (hov : ∀ a b, a ≠ b → (S a ∩ S b).card ≤ 1)
+    (hev : ∀ w, ∃ out : ℕ, ∀ x : Fin n → Bool,
+      val gates x out = decide (∃ u ∈ S w, x u = true))
+    (hnd : ∀ w ∈ aliveSets S Q, ¬ DDAt gates p S Q D w) :
+    0 ≤ MixedSlack.mslack gates S Q D := by
+  classical
+  have hdis : ∀ w ∈ aliveSets S Q, Disjoint Q (S w ∪ D) := fun w hw =>
+    Finset.disjoint_union_right.mpr ⟨(mem_aliveSets.mp hw).symm, hQD⟩
+  have hpair : ∀ a ∈ aliveSets S Q, ∀ b ∈ aliveSets S Q, a ≠ b →
+      Disjoint (unitMerge gates S Q D a) (unitMerge gates S Q D b) := by
+    intro a ha b hb hab
+    rw [Finset.disjoint_left]
+    intro i hia hib
+    obtain ⟨hza, u, hu, u', hu', huu, h1, h2⟩ := unitMerge_data gates S Q D a i hia
+    obtain ⟨hzb, v, hv, v', hv', hvv, h3, h4⟩ := unitMerge_data gates S Q D b i hib
+    exact hnd a ha (overlap_needs_DD gates p hp hg hU hN S a b (hov a b hab) Q D (hdis a ha)
+      (hdis b hb) i hza hzb hu hu' huu h1 h2 hv hv' hvv h3 h4).1
+  have hsub : (aliveSets S Q).biUnion (unitMerge gates S Q D) ⊆ MixedSlack.F2Mix gates S Q D := by
+    intro i hi
+    obtain ⟨w, hw, hiw⟩ := Finset.mem_biUnion.mp hi
+    obtain ⟨out, hout⟩ := hev w
+    exact (unitMerge_card_ge_and_subset gates p hp hg hU hN S Q D w (hdis w hw) (hnd w hw) out
+      hout).2 hiw
+  have hsum : ∑ w ∈ aliveSets S Q, ((S w \ D).card - 1) ≤
+      ∑ w ∈ aliveSets S Q, (unitMerge gates S Q D w).card :=
+    Finset.sum_le_sum fun w hw => by
+      obtain ⟨out, hout⟩ := hev w
+      exact (unitMerge_card_ge_and_subset gates p hp hg hU hN S Q D w (hdis w hw) (hnd w hw) out
+        hout).1
+  have hu : ∑ w ∈ aliveSets S Q, (unitMerge gates S Q D w).card =
+      ((aliveSets S Q).biUnion (unitMerge gates S Q D)).card :=
+    (Finset.card_biUnion hpair).symm
+  have hfin : baseDQ S D Q ≤ (MixedSlack.F2Mix gates S Q D).card :=
+    le_trans hsum (hu ▸ Finset.card_le_card hsub)
+  unfold MixedSlack.mslack
+  have := (Nat.cast_le (α := ℤ)).mpr hfin
+  omega
+
+end Count
+
 end PEqualNP.Outside.L_meta_951_aux.F2Transfer
