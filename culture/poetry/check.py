@@ -7,16 +7,19 @@ FORMAL LAYER (checked-finite)
   F2 block profiles: partitions with a given multiset of block sizes number n!/(prod size! * prod mult!), every profile, n <= 10.
      The sonnet: 14 lines, 7 rhymes used twice each: 135135 schemes (enumerated). 27 keep each pair inside its
      quatrain or the couplet; of those exactly 1 alternates (ABAB CDCD EFEF GG, Shakespeare). 10395 end on a couplet.
+     Petrarch's profile (4, 4, 2, 2, 2): all 1576575 schemes enumerated at n = 14, matching the formula.
   F3 the sestina spiral (Arnaut Daniel's form): next stanza takes end words in order last, first, second last, second, ...
      For n = 6 it is a single 6-cycle (order 6) with no fixed point. For n <= 30 the list of n where it is one n-cycle
      is printed and compared with: 2n+1 prime and 2 of order 2n, or of order n with n odd, mod 2n+1.
      It has a fixed point exactly when n = 1 mod 3.
   F4 Queneau, Cent mille milliards de poemes (1961): 10 choices for each of 14 lines. Product rule checked on every
-     small case (k choices, m lines, k, m <= 4); 10^14 is then arithmetic. Every combination keeps the rhyme scheme.
+     small case (k choices, m lines, k, m <= 4); 10^14 is then arithmetic. On a toy: every combination keeps the
+     scheme when each slot's variants share a rhyme, and some combination breaks it when one slot's do not.
+     Whether Queneau's book has that property is not checked here.
 PSYCHOANALYTIC LAYER (the operations and their facts are checked-finite; every psychoanalytic reading is analogy)
   P1 condensation (Freud, Die Traumdeutung, 1900): a map from k thoughts to m signifiers that is not injective.
      Its kernel is a set partition, so a rhyme scheme is exactly the condensation pattern of the line -> sound map.
-     Maps with a kernel of b blocks: m(m-1)...(m-b+1). Non-injective maps: m^k - m!/(m-k)!. k > m: all condense. k, m <= 5.
+     Maps with a given kernel of b blocks: m(m-1)...(m-b+1); over all kernels of b blocks: S(k,b) m(m-1)...(m-b+1). Non-injective maps: m^k - m!/(m-k)!. k > m: all condense. k, m <= 5.
   P2 displacement (same work): a permutation of emphasis. Intensity (the sum of weights) is kept. Total displacement
      (no element keeps its place) is a derangement: D(n) for n <= 7. The sestina spiral is a total displacement at n = 6.
   P3 metaphor and metonymy (Jakobson 1956; Lacan, L'instance de la lettre, 1957): metaphor = substitution inside a
@@ -28,11 +31,13 @@ PSYCHOANALYTIC LAYER (the operations and their facts are checked-finite; every p
      Model: signifiers are codewords, a chain is a bit string, a reading is its parse. Prefix code {0,10,11}: each
      word is fixed when it ends (delay 0). Code {0,01,11}: uniquely decodable (length <= 12, every string), not a
      prefix code, and its reversal is a prefix code: read from the end it is instant. For each length n we count the
-     chains whose first signifier is fixed only by the last bit.
+     chains whose first signifier is fixed only by the last bit. That delay is measured against chains of the SAME
+     length: the reader knows where the chain ends. With any continuation allowed the delay is unbounded: after
+     0 1^k the first word is still open, for every k (checked k <= 12).
   P5 repetition compulsion (Freud, Jenseits des Lustprinzips, 1920): every self-map of a finite set is eventually
      periodic: for every point, tail + cycle <= n. All n^n maps, n <= 6. Pure return (no tail) = permutations = n!.
      A refrain is a fixed point: maps with one: n^n - (n-1)^n. Total cyclic points: sum_k n!/(n-k)! n^(n-k).
-  P6 the anchor (governance model, Freud 1923 / Lacan 1955-56): reading frame = forward order plus rhyme echo, closed
+  P6 the anchor (this project's own definition, proposed; Freud 1923 / Lacan 1955-56 only as a reading): reading frame = forward order plus rhyme echo, closed
      reflexively and transitively. a is an anchor when every line reachable from a sees a back. Over every scheme of
      n <= 8 lines the anchors form a suffix, they are the final cluster, and the number of schemes whose anchor is the
      last k lines is Bell(n-k) * A(k), A = atomic (unsplittable) partitions. Shakespeare: the couplet. Petrarch: the
@@ -71,6 +76,27 @@ def profile_formula(n, prof):
     for size in prof: d *= math.factorial(size)
     for m in Counter(prof).values(): d *= math.factorial(m)
     return math.factorial(n) // d
+
+def by_profile(n, prof):
+    """Every set partition of range(n) with the given block sizes, each once: the block of the smallest free line first."""
+    def go(free, sizes):
+        if not free:
+            yield (); return
+        a, rest = free[0], free[1:]
+        for s in sorted(sizes):
+            if sizes[s] == 0: continue
+            sizes[s] -= 1
+            for others in itertools.combinations(rest, s - 1):
+                left = tuple(x for x in rest if x not in others)
+                for tail in go(left, sizes): yield ((a,) + others,) + tail
+            sizes[s] += 1
+    yield from go(tuple(range(n)), Counter(prof))
+
+def stirling2(k, b):
+    S = [[1]]                                        # S(0,0) = 1, by the recurrence S(n,j) = j S(n-1,j) + S(n-1,j-1)
+    for n in range(1, k + 1):
+        S.append([(j * S[n - 1][j] if j < n else 0) + (S[n - 1][j - 1] if j >= 1 else 0) for j in range(n + 1)])
+    return S[k][b] if b <= k else 0
 
 def falling(m, b):
     r = 1
@@ -122,8 +148,16 @@ def sonnet():
     assert found and local == 27 and alternating == 1 and couplet == 10395
     petrarch = profile_formula(14, (2, 2, 2, 4, 4))                    # ABBAABBA CDECDE: blocks 4, 4, 2, 2, 2
     assert petrarch == 1576575
+    pet_scheme = ((0, 3, 4, 7), (1, 2, 5, 6), (8, 11), (9, 12), (10, 13))
+    pet_enum = 0; pet_found = False
+    for p in by_profile(14, (4, 4, 2, 2, 2)):                         # enumerated, not only the formula
+        pet_enum += 1; pet_found |= p == pet_scheme
+    STATES += pet_enum
+    assert pet_found and pet_enum == petrarch
+    # a second route: choose the two 4-blocks, then match the six lines left
+    assert math.comb(14, 4) * math.comb(10, 4) // 2 * 15 == petrarch
     return {"sonnet_profile": total, "quatrain_local": local, "shakespeare": alternating, "end_couplet": couplet,
-            "petrarch_profile_by_formula": petrarch}
+            "petrarch_profile_enumerated": pet_enum}
 
 # ---------------------------------------------------------------- F3
 def spiral(n):
@@ -182,6 +216,15 @@ def queneau():
     for poem in itertools.product(*variants):
         seen = {}; s = tuple(seen.setdefault(r, len(seen)) for r, _ in poem)
         assert s == scheme
+    # the converse, so the toy tests something: let slot 2's variants carry different rhymes; some poem leaves the scheme
+    for slot in range(4):
+        bad = [list(v) for v in variants]
+        bad[slot] = [(scheme[slot], 0), (9, 1), (scheme[slot], 2)]    # one variant with a foreign rhyme 9
+        broke = False
+        for poem in itertools.product(*bad):
+            seen = {}; s = tuple(seen.setdefault(r, len(seen)) for r, _ in poem)
+            broke |= s != scheme
+        assert broke, slot
     assert 10 ** 14 == 100_000 * 1_000_000_000      # cent mille milliards
     return [10 ** m for m in range(1, 15)]
 
@@ -196,8 +239,12 @@ def condensation():
                 seen = {}; ker = tuple(seen.setdefault(x, len(seen)) for x in f)   # the rhyme scheme of f
                 by_kernel[ker] += 1
                 noninj += len(set(f)) < k
+            by_blocks = Counter()
             for ker in rgs(k):
-                assert by_kernel[ker] == falling(m, max(ker) + 1)
+                assert by_kernel[ker] == falling(m, max(ker) + 1)          # one GIVEN kernel of b blocks
+                by_blocks[max(ker) + 1] += by_kernel[ker]
+            for b in range(1, k + 1):                                    # all kernels of b blocks together
+                assert by_blocks[b] == stirling2(k, b) * falling(m, b), (k, m, b)
             assert noninj == m ** k - falling(m, k)
             if k > m: assert noninj == m ** k                         # pigeonhole: every map condenses
     return True
@@ -273,7 +320,7 @@ def capiton():
     prefix_code, quilt_code = ["0", "10", "11"], ["0", "01", "11"]
     is_prefix = lambda C: not any(a != b and b.startswith(a) for a in C for b in C)
     assert is_prefix(prefix_code) and not is_prefix(quilt_code) and is_prefix([c[::-1] for c in quilt_code])
-    only_at_end, retro, total = [], [], []
+    only_at_end, retro, total, early = [], [], [], []
     for n in range(1, 13):
         msgs = {}
         for bits in itertools.product("01", repeat=n):
@@ -292,8 +339,16 @@ def capiton():
         if n >= 2: assert lates == sorted(["0" + "1" * (n - 1), "0" + "1" * (n - 2) + "0"])   # 0 1..1 and 0 1..1 0
         only_at_end.append(len(lates))
         retro.append(sum(1 for w, f in msgs.get("q", {}).items() if delay("q", w) > len(f)))
+        early.append(sum(1 for w in msgs.get("q", {}) if delay("q", w) < n))
         total.append(len(msgs.get("q", {})))
-    return only_at_end, retro, total
+    # Unbounded delay once the length is not known: 0 1^k extends to a chain read 0 | 11 ... and to one read 01 | 11 ...
+    for k in range(13):
+        w = "0" + "1" * k
+        a, b = w + ("" if k % 2 == 0 else "1"), w + ("1" if k % 2 == 0 else "")
+        pa, pb = parses(a, quilt_code), parses(b, quilt_code)
+        assert pa and pb and pa[0][0] == "0" and pb[0][0] == "01", k  # the first word is still open after 0 1^k
+    assert [t - l for t, l in zip(total, only_at_end)] == early and all(2 * e > t for e, t in zip(early[2:], total[2:]))   # n >= 3: most chains fix it before the end
+    return only_at_end, retro, total, early
 
 # ---------------------------------------------------------------- P5
 def repetition():
@@ -385,8 +440,9 @@ def main():
     condensation();                      print("P1 condensation: kernel counts and non-injective counts hold for k, m <= 5")
     D = displacement();                  print("P2 total displacements (derangements) n = 1..7:", D)
     eqs = axes();                        print("P3 equivalence relations = paradigm partitions, n = 1..4:", eqs)
-    late, retro, qtotal = capiton()
-    print("P4 chains of {0,01,11}, n = 1..12: total", qtotal, "; first signifier fixed after it ends", retro, "; fixed only by the last bit", late)
+    late, retro, qtotal, early = capiton()
+    print("P4 chains of {0,01,11}, n = 1..12 (length known): total", qtotal, "; first signifier fixed after it ends", retro,
+          "; fixed only by the last bit", late, "; fixed before the last bit", early, "; length unknown: delay unbounded (k <= 12)")
     rep = repetition();                  print("P5 self-maps n = 1..6:", rep)
     A = anchor_layer();                  print("P6 schemes whose anchor is the whole poem (atomic partitions) n = 1..8:", A)
     print("PASS")
