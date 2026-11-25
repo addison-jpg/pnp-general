@@ -8,5 +8,5 @@ It models cited readings (DeLanda, Duffy, Smith, Plotnitsky, Lautman). It claims
 Deleuze meant, and a model is not a proof about a text.
 
 - [`PLAN.md`](PLAN.md): the ladder, the first Lean definitions, the bridge to this repository.
-- Lean code (later seats): `lean/PEqualNP/Philosophy/`, importing only Mathlib.
+- Lean code: [`lean/PEqualNP/Philosophy/Deleuze.lean`](../lean/PEqualNP/Philosophy/Deleuze.lean) (Mathlib only; more seats follow).
 - Literature with honest read status: `LITERATURE.md`, section M. Board: `boards/tasks/philosophy-formal.md`.

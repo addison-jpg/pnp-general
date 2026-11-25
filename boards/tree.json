@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 49,
+   "checked": 50,
    "tested": 6,
    "refuted": 5
   },
@@ -14,6 +14,7 @@
    "1088bc27",
    "a023c28e",
    "37dcef35",
+   "b32db1b7",
    "1b00e1bc",
    "64233838",
    "04a575bf",
@@ -185,7 +186,14 @@
    "98886641",
    "769c3ae0"
   ],
-  "unverified_here": []
+  "unverified_here": [
+   {
+    "id": "6405a770",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
  },
  "lean/PEqualNP/QuantumGravity/Open": {
   "counts": {
@@ -787,5 +795,14 @@
     ]
    }
   ]
+ },
+ "philosophy": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "b32db1b7"
+  ],
+  "unverified_here": []
  }
 }
