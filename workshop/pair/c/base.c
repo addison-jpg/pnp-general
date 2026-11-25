@@ -4,8 +4,8 @@
      :hello    run hello.ath through asteroid
      :quit     leave
    Anything else prints a short help line. Build: gcc -O2 -static -s -o base base.c
-   Expects the asteroid binary at ../../../dist/linux/asteroid relative to this program's folder,
-   or at the path in the ASTEROID environment variable. */
+   The asteroid binary is the ASTEROID environment variable, or else dist/linux/asteroid relative to the
+   CURRENT directory (run it from the repository root). big.ath and hello.ath are also read from the current directory. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,7 +27,7 @@ static int run(const char *prog, const char *program) {
 
 int main(void) {
     const char *prog = getenv("ASTEROID");
-    if (!prog || !*prog) prog = "../../../dist/linux/asteroid";
+    if (!prog || !*prog) prog = "dist/linux/asteroid";
     char line[256];
     printf("ath> (:big :hello :quit)\n");
     for (;;) {
