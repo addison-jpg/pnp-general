@@ -1,5 +1,13 @@
 # Board: P versus NP through general circuits
 
+## REOPENED: THE THREE OPEN PROBLEMS, THREE SEATS EACH
+
+(Addison, 2026-11-25: "multiply the agent working on [the general case of the one-NOT question / whether two or more NOT gates help / four statements on the quantum-gravity side] by three, but it should refactor so theres no fable overkill".)
+
+- Nine seats, no Fable. Opus for the hardest reasoning, Sonnet for Lean, search and tests. A Fable only after a smaller seat has tried and failed, with one board line saying what failed.
+- Task boards: [`open-one-not`](boards/tasks/open-one-not.md), [`open-many-not`](boards/tasks/open-many-not.md), [`open-qg`](boards/tasks/open-qg.md). Results are findings (`python3 -I boards.py add …`).
+- Proved means the proof checker accepted it. A failed attempt that names its exact obstacle is a result.
+
 ## ONLY ASTEROID. EVERYTHING ELSE IS CLOSED.
 
 (Owner, 2026-11-24: "close all nonsense being done that isnt asteroid related. big board push".)
