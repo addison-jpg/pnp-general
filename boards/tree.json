@@ -3,7 +3,7 @@
   "counts": {
    "checked": 91,
    "tested": 9,
-   "checked-finite": 3,
+   "checked-finite": 4,
    "refuted": 6
   },
   "verified": [
@@ -115,6 +115,7 @@
    "7961ecd5",
    "14e1a81a",
    "f9156a1e",
+   "d6c97be6",
    "2befeb37"
   ],
   "unverified_here": []
@@ -1158,6 +1159,15 @@
     ]
    }
   ]
+ },
+ "privacy": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "d6c97be6"
+  ],
+  "unverified_here": []
  },
  "worlds": {
   "counts": {

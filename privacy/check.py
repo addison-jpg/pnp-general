@@ -151,13 +151,15 @@ for n in range(1, 7):
     for D in range(1, 6):
         assert sum(stirling(n, k) * fall(D, k) for k in range(n + 1)) == D ** n
 # uniques via partitions: count tables with u singleton blocks equals exhaustive count
+agreed = []
 for n, D in [(4, 3), (5, 3), (4, 4)]:
     c = Counter()
     for p in setparts(n):
         c[sum(1 for b in p if len(b) == 1)] += fall(D, len(p))
     ex = uniques_dist(n, D)
     assert {u: F(m, D ** n) for u, m in c.items() if m} == {u: q for u, q in ex.items() if q}
-print("4. uniques from set partitions agree with enumeration: (4,3),(5,3),(4,4)")
+    agreed.append((n, D))
+show("4. uniques from set partitions agree with enumeration", agreed, [(4, 3), (5, 3), (4, 4)])
 show("4. Stirling S(5,k), k=1..5", [stirling(5, k) for k in range(1, 6)], [1, 15, 25, 10, 1])
 
 sec = round(time.time() - T0, 2)

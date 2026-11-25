@@ -26,7 +26,7 @@ Draw n people's values uniformly from a domain of size D. A **unique** is a pers
 
 - Checked-finite: the exact distribution of the number of uniques, by listing all D^n assignments, gives exactly this mean for all 30 pairs with n ≤ 6, D ≤ 5, D^n ≤ 20000.
 - Example n = 4, D = 3: P(0 uniques) = 7/27, P(1) = 8/27, P(2) = 4/9, mean 32/27.
-- Fact: Sweeney reported that 5-digit ZIP, sex and date of birth likely single out most of the US population (2000 working paper "Simple Demographics Often Identify People Uniquely"; search result only). Golle 2006 revisited this with 2000 census data and largely agreed; he also reports {sex, county, birth date} unique for 18% (abstract only). Their other numbers are not repeated here.
+- Fact: Sweeney reported that 5-digit ZIP, sex and date of birth likely single out most of the US population (2000 working paper "Simple Demographics Often Identify People Uniquely"; search result only). The same paper reports {county, sex, birth date} likely unique for 18% (search result only). Golle 2006 revisited this with 2000 census data. He found ZIP, sex and full birth date unique for about 63%, fewer than Sweeney's figure (abstract only). Their other numbers are not repeated here.
 
 ## 3. Differential privacy: randomized response
 
@@ -53,8 +53,8 @@ Join with compbio/ or brain/: none. No file there uses Bell or Stirling numbers.
 
 ## Sources
 
-- Sweeney, L. (2002). k-Anonymity: a model for protecting privacy. Int. J. Uncertainty, Fuzziness and Knowledge-Based Systems 10(5), 557–570. Search result only.
-- Samarati, P. (2001). Protecting respondents' identities in microdata release. IEEE TKDE 13(6), 1010–1027. Search result only.
-- Golle, P. (2006). Revisiting the uniqueness of simple demographics in the US population. WPES '06. Abstract only (via search snippet).
-- Sweeney, L. (2000). Simple demographics often identify people uniquely. Working paper. Search result only (secondary citations).
-- Dwork, C., McSherry, F., Nissim, K., Smith, A. (2006). Calibrating noise to sensitivity in private data analysis. TCC 2006, LNCS 3876, 265–284. Search result only.
+- Sweeney, L. (2002). k-Anonymity: a model for protecting privacy. Int. J. Uncertainty, Fuzziness and Knowledge-Based Systems 10(5), 557–570. Search result only; volume, issue and pages confirmed by WebSearch.
+- Samarati, P. (2001). Protecting respondents' identities in microdata release. IEEE TKDE 13(6), 1010–1027. Search result only; details confirmed by WebSearch (DBLP record).
+- Golle, P. (2006). Revisiting the uniqueness of simple demographics in the US population. Abstract only; title, year and 63% finding confirmed by WebSearch. Venue WPES '06 is from memory, not confirmed.
+- Sweeney, L. (2000). Simple demographics often identify people uniquely. Carnegie Mellon Data Privacy Working Paper 3. Search result only; the 18% county figure confirmed by WebSearch.
+- Dwork, C., McSherry, F., Nissim, K., Smith, A. (2006). Calibrating noise to sensitivity in private data analysis. TCC 2006, LNCS 3876, 265–284. Search result only; venue, volume and pages confirmed by WebSearch.

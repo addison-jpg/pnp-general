@@ -76,7 +76,7 @@
    "TAKEN": 2
   },
   "findings": {
-   "checked-finite": 1
+   "checked-finite": 2
   },
   "mean_radius_findings": 0.0
  },
@@ -89,6 +89,11 @@
    "checked-finite": 2
   },
   "mean_radius_findings": 0.0
+ },
+ "privacy": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
  },
  "prompt-method": {
   "cells": {

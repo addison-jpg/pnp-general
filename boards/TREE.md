@@ -10,7 +10,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 - asteroid (the language and its tools): 7 checked · 3 tested · tested, re-checked in last 24h: 1/3
 - circuits (one-NOT and several-NOT): 48 checked · 6 tested · 6 refuted · tested, re-checked in last 24h: 0/6
 - lateral (Lawvere spine): 1 checked
-- other: 1 checked-finite
+- other: 2 checked-finite
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked · 2 checked-finite
 - quantum gravity: 13 checked
 - worlds (maps and unification; not progress on P vs NP): 9 checked
@@ -18,7 +18,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 91 checked · 3 checked-finite · 9 tested · 6 refuted
+## `./` 91 checked · 4 checked-finite · 9 tested · 6 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -256,6 +256,9 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `7ec00390` **open** [philosophy-formal] Not proved: the Coffman-Kundu-Wootters inequality (needs mixed-state concurrence), min-cut = entanglement entropy for HaPPY states, contraction of a general tensor network to the factorised form. Not fitting: symmetric entropy cannot tell recognition from domination; a partial trace is not a death; barbarian-as-spacelike is not permanent in a causal set with diamonds · evidence: `philosophy/BEAUVOIR_QG.md` · BQG · unverified (needs a second seat in by)
 - `16674147` **checked-finite** [philosophy-formal] Lacan's Borromean knot computed as a link, in exact integer arithmetic. Three-ellipse Borromean rings: every linking number 0 and Milnor's triple number mu(RSI) = mu(SIR) = mu(IRS) = -1, by two independent methods (Magnus expansion of the longitudes; Seifert-disc triple point). Any single R-S crossing change (16 cases): lk(R,S) = +-1 and I unlinked from both. Bing double of one ring, four rings R,S,I,Sigma: every lk = 0, every mu(ijk) = 0, mu(RSI;Sigma) = +1, so each three-ring sublink is link-homotopically trivial and the four rings cannot be separated. Trefoil: 9 Fox 3-colourings against 3. Facts about links only; not a clinical claim. · evidence: `philosophy/milnor.py`, `philosophy/PSYCHOSIS.md` · main, confirmed by knot-seat2 · VERIFIED
 - `90333a01` **checked-finite** [philosophy-formal] Tree against rhizome over all 33,867 labelled graphs on at most 6 vertices: a connected graph is a tree iff every edge is a bridge; adding one edge to a tree frees exactly the edges of the cycle it closes; connected bridgeless graphs number 1, 0, 1, 10, 253, 11968 for 1..6 vertices. · evidence: `philosophy/rhizome.py`, `philosophy/PSYCHOSIS.md` · main, confirmed by knot-audit · VERIFIED
+
+### `privacy/` 1 checked-finite
+- `d6c97be6` **checked-finite** [privacy] Privacy as exact combinatorics on synthetic data: k-anonymity over all 65536 four-row tables (largest k = 1, 2, 4 for 64800, 720, 16 tables) with the least-generalization search equal to brute force on every table; the exact distribution of unique individuals matches E = n(1-1/D)^(n-1) for 30 (n, D) pairs; randomized response meets epsilon-DP with ratio p/(1-p) over all 98 neighbour pairs, and sequential composition adds exactly; Bell and Stirling numbers by enumeration. Definitions on synthetic data, not a guarantee for any real release. · evidence: `privacy/check.py`, `privacy/BASE.md` · main, confirmed by privacy-seat2 · VERIFIED
 
 ### `worlds/` 5 checked
 - `4e1d6548` **checked** [unify] The truncation trunc c f (min over B of f(B) + c|A minus B|) is the largest potential below f with increments at most c; it equals f at A iff the Edmonds/Nash-Williams inequality holds at A; if f has increments at most c it equals f everywhere (counting case). · evidence: `lean/PEqualNP/Worlds/Unify.lean::le_trunc`, `lean/PEqualNP/Worlds/Unify.lean::trunc_eq_iff`, `lean/PEqualNP/Worlds/Unify.lean::trunc_eq_of_lip` · unify (Fable) · VERIFIED
