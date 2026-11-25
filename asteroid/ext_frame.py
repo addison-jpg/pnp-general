@@ -20,7 +20,10 @@ FILE_CACHE = {}
 PAT = re.compile(r'frame "([^"]+)" reading "([^"]+)" -> (\S+) label ([\w-]+)(?: reach (\d+))?(?: cost (\d+(?:\.\d+)?))?')
 
 def frames_path():
-    return os.environ.get("ASTEROID_FRAMES") or os.path.join(A.ROOT, "frames.jsonl")
+    p = os.environ.get("ASTEROID_FRAMES") or os.path.join(A.ROOT, "frames.jsonl")
+    if not p.endswith(".jsonl") or os.path.basename(p) == "findings.jsonl":
+        raise SystemExit(f"ASTEROID_FRAMES must name a .jsonl file that is not a findings.jsonl: {p}")
+    return p
 
 def score(reach, passed, label, cost):
     return reach * (1.0 if passed else PRIOR[label]) / cost
@@ -32,7 +35,7 @@ def _run_file(p, where):
     if key in FILE_CACHE: return FILE_CACHE[key]
     depth = int(os.environ.get("ASTEROID_FRAME_DEPTH", "0"))
     if depth >= 3: raise SystemExit(f"{where}: frames nest more than 3 files deep (a loop?)")
-    env = dict(os.environ, ASTEROID_FRAME_DEPTH=str(depth + 1))
+    env = dict(A.child_env(where), ASTEROID_FRAME_DEPTH=str(depth + 1))
     try:
         r = subprocess.run([sys.executable, "-I", os.path.join(A.ROOT, "asteroid", "asteroid.py"), "--no-lean", f], cwd=A.ROOT,
                            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=TIMEOUT, env=env)

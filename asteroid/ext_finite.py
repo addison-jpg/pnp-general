@@ -19,6 +19,7 @@ LIMIT = 10**6       # largest n in n!, n!!, C(n, k), and the most terms one sum 
 STEPS = 10**7       # most evaluation steps for one formula claim
 RUN_STEPS = [3 * 10**7]   # most evaluation steps for all formula claims of one run together
 MAXBITS = 10**6     # largest integer a formula may make (bits); a step on a big integer costs 1 + bits // 1024
+WRITERS = {"boards.py", "center.py", "one-not/tools/tensor/dag.py", "compute/funsearch/targets.py"}   # they write findings or run shell commands
 INT = re.compile(r"-?\d+")
 
 def _lit(body, where):
@@ -46,11 +47,14 @@ def _cmd(cmd, where):
     f = os.path.realpath(os.path.join(A.ROOT, p[2]))
     if os.path.commonpath([os.path.realpath(A.ROOT), f]) != os.path.realpath(A.ROOT) or not os.path.isfile(f):
         raise SystemExit(f"{where}: no such file in the repository: {p[2]}")
+    if os.path.relpath(f, os.path.realpath(A.ROOT)).replace(os.sep, "/") in WRITERS:
+        raise SystemExit(f"{where}: {p[2]} writes records or runs commands; a check may not run it")
     return [sys.executable, "-I"] + p[2:], p[2]
 
 def _run(cmd, where):
     argv, path = _cmd(cmd, where)
-    try: r = subprocess.run(argv, cwd=A.ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=TIMEOUT)
+    env = A.child_env(where)
+    try: r = subprocess.run(argv, cwd=A.ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=TIMEOUT, env=env)
     except subprocess.TimeoutExpired: return False, f"timed out after {TIMEOUT} s", path, ""
     return r.returncode == 0, f"exit {r.returncode}", path, r.stdout
 

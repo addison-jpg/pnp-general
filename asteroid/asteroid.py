@@ -309,11 +309,11 @@ def exec_line(st, raw, ln, script):
             say(f"{ln}: {m.group(1)} loaded ({d['n']} inputs, {len(d['gates'])} gates)")
         elif m := re.fullmatch(r"show (\w+)", line):
             a = m.group(1); say(f"{ln}: {a}: " + ", ".join(f"{f} {F(f, a)}" for f in ("gates", "nots", "base", "witness", "orwitness", "correct")))
-        elif not re.match(r"claim!? forall c in ", line) and (m := re.fullmatch(r"claim(!?) (.+?)(\s+by lean)?", line)):
+        elif not re.match(r"claim!? forall c in ", line) and (m := re.fullmatch(r"claim(!?) (.+)", line)):
             global FORCE
-            FORCE = bool(m.group(1)); m = re.fullmatch(r"claim!? (.+?)(\s+by lean)?", line)
-            ok, detail = do_claim(m.group(1).strip(), bool(m.group(2)))
-            results.append((ln, m.group(1).strip(), ok, bool(m.group(2)))); say(f"{ln}: claim {m.group(1).strip()}: python {'TRUE' if ok else 'FALSE'} ({detail})")
+            FORCE = bool(m.group(1)); body, lean = _by_lean(m.group(2))   # no regex here: `.+?\s+` is quadratic on long lines
+            ok, detail = do_claim(body, lean)
+            results.append((ln, body, ok, lean)); say(f"{ln}: claim {body}: python {'TRUE' if ok else 'FALSE'} ({detail})")
         elif m := re.fullmatch(r"plot phi (.+?) -> (.+)", line):
             o = out_path(m.group(2)); plot_phi(m.group(1).split(), o); say(f"{ln}: wrote {o}")
         elif m := re.fullmatch(r"conjecture (\w+):\s*(.+)", line):
@@ -339,6 +339,26 @@ def exec_line(st, raw, ln, script):
         if mod not in ("numpy", "matplotlib"): raise
         SKIPPED.append(ln); say(f"{ln}: " + getattr(e, "asteroid", f"{line.split()[0]} needs {mod}: run bin/setup") + "  (line skipped)")
 
+def _by_lean(t):
+    """Split a trailing `by lean` off a claim body (the old regex `(.+?)(\\s+by lean)?`, in linear time)."""
+    t = t.strip()
+    if t.endswith("by lean") and len(t) > 7 and t[-8].isspace(): return t[:-7].strip(), True
+    return t, False
+
+NEST_DEPTH, NEST_RUNS = 3, 64   # child runs (frame files, check, seq run) nest at most 3 deep and number at most 64 per top run
+def child_env(where):
+    """The environment for one child run. Refuses past the depth or the count limit, so a loop of files or of checks halts."""
+    import tempfile, atexit
+    depth = int(os.environ.get("ASTEROID_NEST_DEPTH", "0") or 0)
+    if depth >= NEST_DEPTH: raise SystemExit(f"{where}: runs nest more than {NEST_DEPTH} deep (a loop?)")
+    f = os.environ.get("ASTEROID_NEST_RUNS")
+    if not f or not os.path.isfile(f):
+        fd, f = tempfile.mkstemp(prefix="asteroid_runs_"); os.close(fd); os.environ["ASTEROID_NEST_RUNS"] = f
+        atexit.register(lambda: os.path.exists(f) and os.remove(f))
+    with open(f, "a") as fh: fh.write("x")
+    if os.path.getsize(f) > NEST_RUNS: raise SystemExit(f"{where}: more than {NEST_RUNS} child runs in one top run")
+    return dict(os.environ, ASTEROID_NEST_DEPTH=str(depth + 1), ASTEROID_NEST_RUNS=f)
+
 def run(script):
     global PROG_DIR
     if not os.path.isfile(script): raise SystemExit(f"asteroid: no such program: {os.path.abspath(script)}")
@@ -359,6 +379,9 @@ def run(script):
     bad = [r for r in results if not r[2]]
     for d, item, word, stmt in records:
         if bad or (word == "checked" and not (L and L["ok"])): say(f"record skipped ({stmt[:40]}...): a claim failed or Lean did not build"); continue
+        if not results: say(f"record skipped ({stmt[:40]}...): the program has no claim, so nothing supports it"); continue
+        if word not in ("checked", "checked-finite", "tested", "refuted", "open", "premise", "paper"):
+            say(f"record skipped ({stmt[:40]}...): {word} is not a word a run can give (checked-infinite needs a reduction)"); continue
         import boards
         if os.path.isfile(os.path.join(d, "findings.jsonl")) and any(r.get("statement") == stmt for r in boards.load(d)): say(f"record kept ({stmt[:40]}...): already in {d}/findings.jsonl"); continue
         ev = [script] + ([f"{L['module']}::{L['theorems'][-1]}"] if L and L["ok"] else []) + list(dict.fromkeys(src.values()))
