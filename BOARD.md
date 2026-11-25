@@ -20,6 +20,7 @@ Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boar
   - uniform machines against circuits.
 - **Continuous and algebraic siblings, each open:** Blum–Shub–Smale P_ℝ vs NP_ℝ (machines computing with exact reals); Valiant's VP vs VNP; geometric complexity theory (orbit closures, representation theory). How they relate to the discrete question is itself largely open.
 - **Seat (Opus, heavy) FR1:** write `worlds/FRAMING.md`. The strongest case that the framing is wrong or arbitrary, steel-manned with sources. Then the strongest replies. Then what a "continuous" formulation looks like (BSS, VP/VNP, GCT, complexity of real computation, Smale's 17th problem), what is proved about how it relates to the discrete one, and where this repository's own continuous attempts (Φ, the limit level, flag algebras) sit. Honest read statuses. It ends with a verdict: which parts of the framing are arbitrary, and which are forced.
+- TAKEN FR1 (Opus): framing -> `worlds/FRAMING.md`
 
 
 ## MAP OF THE WORLDS (Addison, 2026-11-25: "the bounds are always multidimensional, continuous, likely infinite")
