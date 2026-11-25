@@ -7,6 +7,12 @@
   - A3 (Sonnet): search for a counterexample to the mixed step and to the step under no gate-saving rewiring, on irreducible circuits with a read NOT gate
 - **Done when:** a checked theorem, a counterexample checked twice, or the exact missing lemma written down.
 
+## Current target
+
+- **F2-transfer** (from A1): in a minimal counterexample, for each restriction (Q, D) the witness count |F2'| is at least base'. Minimality only gives gates' ≥ base', and |F2'| ≤ gates', so it points the wrong way. The proof must use the one-NOT hypothesis: without it the step fails (146 of 248 negative states at t = 4).
+- `MixedStepNeg` is **equivalent** to the full count (checked, `MixedStepNegIff.lean`). It is a restatement, not a reduction. Do not attack it as a local lemma.
+- Seats now: A3 (Sonnet, search, running), A4 (Opus): F2-transfer under one NOT gate, A5 (Sonnet): test F2-transfer at t = 1 on every stored instance and find where the NOT gate is used.
+
 ## Lines (TAKEN / DECIDED only)
 
 - A2 DONE: Open/MixedSlack.lean defines mslack and MixedStepNeg (Prop) and proves MixedStepNeg -> no_minCE; the arrow itself is unproved.

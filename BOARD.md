@@ -1,5 +1,12 @@
 # Board: P versus NP through general circuits
 
+## CURRENT TARGETS (one line each; details on the task boards)
+
+- One NOT gate, general case: the **F2-transfer** lemma, which must use the one-NOT bound. `MixedStepNeg` is a restatement of the full count, not a smaller lemma. [`open-one-not`](boards/tasks/open-one-not.md)
+- Several NOT gates: single-output OR is settled (n−1 gates, any NOT gates); open for several overlapping ORs. [`open-many-not`](boards/tasks/open-many-not.md)
+- Quantum gravity: L-qg-116 follows from L-qg-115; open are L-qg-115, L-qg-119, L-qg-169. [`open-qg`](boards/tasks/open-qg.md)
+- Coordination: read your task board before starting and after each build; write one TAKEN line when you start and one DECIDED line when you finish. Do not redo a seat already marked DECIDED.
+
 ## QUIET UNTIL ADDISON SAYS IT IS READY
 
 (Addison, 2026-11-25: "i rlly dont wanna accidentally notify the entire planet befoore its ready".)
