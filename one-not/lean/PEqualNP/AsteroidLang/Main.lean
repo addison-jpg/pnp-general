@@ -168,6 +168,67 @@ structure Tally where
   /-- where `plot` writes: the project folder, and the file for a path written in the program -/
   root : System.FilePath := "."
   outPath : String → System.FilePath := fun p => p
+  /-- the program, for messages -/
+  script : String := "program"
+
+/-- scripts a `check` may not run: they write records or run commands (as `asteroid/ext_finite.py`) -/
+def checkWriters : List String :=
+  ["boards.py", "center.py", "one-not/tools/tensor/dag.py", "workshop/compute/funsearch/targets.py"]
+
+/-- the longest a `check` may run, in seconds (as `asteroid/ext_finite.py`) -/
+def checkTimeout : Nat := 900
+
+/-- the command of `check "CMD"`, if the statement is one -/
+def checkCmd? (what : String) : Option String :=
+  match what.splitOn "\"" with
+  | ["check ", cmd, ""] => if cmd.isEmpty then none else some cmd
+  | _ => none
+
+/-- the rule of `asteroid/ext_finite.py`: one stdout line is exactly `PASS`, and no line has the
+word `FAIL` -/
+def printedPass (out : String) : Bool :=
+  let ls := (out.splitOn "\n").map fun l => l.trimAscii.toString
+  let isW (c : Char) := c.isAlphanum || c == '_'
+  let wordsOf (l : String) := (l.map fun c => if isW c then c else ' ').splitOn " "
+  ls.contains "PASS" && !ls.any fun l => (wordsOf l).contains "FAIL"
+
+/-- run `check "CMD"` as `asteroid/ext_finite.py` does: CMD is `python3 -I path.py [args]`, path a
+file inside the repository `root` and not one of `checkWriters`; it runs from `root` with a timeout.
+TRUE: exit 0, a stdout line `PASS`, no line with the word `FAIL`. Returns the verdict and the detail. -/
+def runCheck (root : System.FilePath) (where_ cmd : String) : IO (Bool × String) := do
+  let bad := fun (m : String) => (IO.userError s!"{where_}: {m}" : IO.Error)
+  let (script, rest) ← match words cmd with
+    | "python3" :: "-I" :: p :: rest =>
+      if p.endsWith ".py" then pure (p, rest) else throw (bad "CMD must be: python3 -I path.py [args]")
+    | _ => throw (bad "CMD must be: python3 -I path.py [args]")
+  let rootR ← IO.FS.realPath root
+  let some f ← real? (rootR / slashPath script) | throw (bad s!"no such file in the repository: {script}")
+  let rel := relativeTo rootR f
+  if rel == f.toString.map (fun c => if c == '\\' then '/' else c) || !(← f.pathExists) || (← f.isDir) then
+    throw (bad s!"no such file in the repository: {script}")
+  if checkWriters.contains rel then
+    throw (bad s!"{script} writes records or runs commands; a check may not run it")
+  let depth := ((← IO.getEnv "ASTEROID_NEST_DEPTH").bind String.toNat?).getD 0
+  if depth ≥ 3 then throw (bad "runs nest more than 3 deep (a loop?)")
+  let child ← IO.Process.spawn
+    { cmd := "python3", args := #["-I", script] ++ rest.toArray, cwd := some rootR,
+      env := #[("ASTEROID_NEST_DEPTH", some (toString (depth + 1)))],
+      stdin := .null, stdout := .piped, stderr := .null, setsid := true }
+  let out ← IO.asTask child.stdout.readToEnd Task.Priority.dedicated
+  let t0 ← IO.monoMsNow
+  let mut code : Option UInt32 := none
+  repeat
+    code ← child.tryWait
+    if code.isSome then break
+    if (← IO.monoMsNow) - t0 > checkTimeout * 1000 then
+      child.kill
+      return (false, s!"timed out after {checkTimeout} s, no PASS line, or a FAIL")
+    IO.sleep 100
+  let stdout := match out.get with | .ok s => s | .error _ => ""
+  let code := code.getD 1
+  let passed := printedPass stdout
+  return (code == 0 && passed,
+    s!"exit {code}, {if passed then "printed PASS" else "no PASS line, or a FAIL"}")
 
 /-- print one statement and update the tally -/
 def step (t : Tally) (l : Line) : IO Tally := do
@@ -208,6 +269,10 @@ def step (t : Tally) (l : Line) : IO Tally := do
     if what.startsWith "plot phi " then
       IO.println s!"{l.num}: {← Plot.runPlot t.env t.root t.outPath what}"
       return t
+    if let some cmd := checkCmd? what then
+      let (ok, detail) ← runCheck t.root s!"{t.script}:{l.num}" cmd
+      IO.println s!"{l.num}: check {cmd}: {if ok then "TRUE" else "FALSE"} ({detail})"
+      return { t with good := t.good + (if ok then 1 else 0), bad := t.bad + (if ok then 0 else 1) }
     let verb := (words what).headD what
     IO.println s!"{l.num}: {verb}: not in the Lean version yet"
     return { t with skipped := t.skipped + 1 }
@@ -297,7 +362,7 @@ def runFile (file : String) (noProof : Bool) : IO UInt32 := do
   let outPath := fun (p : String) =>
     let q := slashPath p
     if q.isAbsolute then q else if inRepo then root / q else progDir / q
-  let t ← lines.foldlM step { verdicts, loads, root, outPath }
+  let t ← lines.foldlM step { verdicts, loads, root, outPath, script }
   let prover ← if noProof || t.claims.isEmpty then pure none else do
     match project, ← locateLake project with
     | some project, some (lake, _) => pure (some (⟨project, lake⟩ : Prover))
