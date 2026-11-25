@@ -2,6 +2,16 @@
 
 asteroid is a small language for claims that are checked, not trusted. Programs are `.ath` files. Each claim is one plain line, and each claim is checked when the program runs.
 
+## The packet
+
+`dist/packet.tar.gz` (1.6 MB) holds everything needed to run small programs without installing anything: the native checker `ast`, `little.ath`, `big.ath`, `hello.bench`, the PowerShell terminal `base.ps1`, and `TERMINAL.md`. Unpack it and run:
+
+    ./ast little.ath --no-proof
+
+Tested from a fresh folder: 4 claims true, 0 false. The packet does not include the full `asteroid` bundle (47 MB), so `big.ath` needs that bundle; `ast` alone skips its checks. The Linux prompt was removed earlier, so the packet's terminal is the PowerShell script.
+
+Download: https://github.com/addison-jpg/pnp-general/raw/refactor/pillars/dist/packet.tar.gz
+
 ## Start here: base, the dual boot
 
 `workshop/pair/c/base` is a small static Linux prompt, written in plain C. It has four commands:
