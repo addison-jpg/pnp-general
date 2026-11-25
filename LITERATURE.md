@@ -496,6 +496,18 @@ Added 2026-11-25. Note: `worlds/FRAMING.md`. Only arXiv resolved among author pa
 | Yanofsky, "A universal approach to self-referential paradoxes, incompleteness and fixed points", Bull. Symb. Logic 9 (2003); arXiv math/0305282 | one theorem covers Cantor, Russell, halting, Godel, Tarski | memory, not opened | `lateral/README.md` |
 | Mathlib `Function.exists_fixed_point_of_surjective`, `ComputablePred.halting_problem` | surjective Lawvere; halting | source read (docstrings and statements) | `Lateral/*.lean` |
 
+## R. The hairy ball theorem and its extensions (task sphere-lit, seat S3; full map in `worlds/SPHERE_LIT.md`)
+
+| Source | Claim used | Read status | Where used |
+|---|---|---|---|
+| Poincaré, J. Math. Pures Appl. (4) 1 (1885) 167-244; Brouwer, Math. Ann. 71 (1912) 97-115; Hopf, Math. Ann. 96 (1926) 225-250 | hairy ball (S² then all even spheres); Poincaré-Hopf (index sum = χ) | MEM (not opened; originals French and German) | `worlds/SPHERE_LIT.md` rows 1-2 |
+| Milnor, Amer. Math. Monthly 85 (1978) 521-524 | analytic proofs of hairy ball and Brouwer | CITED (citation confirmed on a course page; text not opened) | `worlds/SPHERE_LIT.md` row 3 |
+| Radon 1922; Hurwitz 1898/1923; Adams, Ann. Math. 75 (1962) 603-632; Adams, Ann. Math. 72 (1960) 20-104 | ρ(n) vector fields on S^{n-1}; S¹, S³, S⁷ parallelizable; Hopf invariant one only n = 1, 2, 4, 8 | MEM | `worlds/SPHERE_LIT.md` rows 4-5 |
+| Hopf, Math. Ann. 104 (1931) 637-665; Lefschetz, Trans. AMS 28 (1926) 1-49 | Hopf fibration S³ -> S² (Bloch sphere); Lefschetz fixed point | MEM | `worlds/SPHERE_LIT.md` rows 6-7 |
+| Borsuk, Fund. Math. 20 (1933) 177-190; Sperner, Abh. Hamburg 6 (1928) 265-272; Tucker (1945); KKM, Fund. Math. 14 (1929) | Borsuk-Ulam, Sperner, Tucker, KKM | MEM | `worlds/SPHERE_LIT.md` rows 8-11 |
+| Papadimitriou, JCSS 48 (1994) 498-532; Daskalakis-Goldberg-Papadimitriou, SICOMP 39 (2009); Chen-Deng, FOCS 2006; Goldberg-Hollender, arXiv 1902.07657 | PPAD; Sperner/Brouwer/Nash/hairy ball PPAD-complete | CITED / ABS (listings only) | `worlds/SPHERE_LIT.md` rows 12-14 |
+| Mathlib grep (Brouwer, hairy, Borsuk, Lefschetz, Hopf, Octonion absent; Quaternion, sphere manifold, Banach, Knaster-Tarski, IVT present; `Sperner` = antichain theorem only) | what Lean already has | source read (grep) | `worlds/SPHERE_LIT.md` col. Mathlib |
+
 ## J. Searched and not found (so nobody searches again)
 
 - A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`); LIT1 web search 2026-11-25 also none (`LIT1_negation_limited`: verdict OPEN).
