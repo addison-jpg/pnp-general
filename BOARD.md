@@ -18,7 +18,7 @@
 **Open seats (start only when Addison says go):**
 - DECIDED (Sonnet L1): density form written, tested on 17 stored circuits: base is an exact pattern count (set sizes); |F2| is an exact sum over gates of an "exists context Z" indicator, NOT a bounded-size pattern sum (Z = 0 local form misses up to 21 of 30 gates); linear forms are one-sided (necessary pi1 >= beta, sufficient pi1 - pi2 >= beta), exact one is Σ_{j>=1} d_j >= Σ(k-1)a_k in the gate-set witness degrees. -> one-not/research/open/limits_density_form.md
 - DECIDED L2 (Sonnet): literature rows (read status) for flag algebras, hypergraph limits, flag-algebra-plus-stability exact results, and any limit theory for Boolean circuits or set systems. -> LITERATURE.md DECIDED: section L added to LITERATURE.md, 13 rows, all search-result-only; no circuit-side limit theory found, only an unopened Oxford thesis lead.
-- OPEN (Opus, after the two above): does the density inequality hold in the limit; attempt a flag-algebra certificate on the smallest pattern size; list the tight limit objects (stability candidates). -> one-not/research/open/limits_certificate.md
+- STOPPED L3 (container restart 2026-11-25; partial script limits_local_witness.py kept; reopen as OPEN to continue) (Opus): bounded local witness for F2 (task adjusted after L1 obstacle); was: does the density inequality hold in the limit; attempt a flag-algebra certificate on the smallest pattern size; list the tight limit objects (stability candidates). -> one-not/research/open/limits_certificate.md
 
 
 ## SEAT SIZE: SONNET BY DEFAULT, ONE NARROW TASK PER SEAT
