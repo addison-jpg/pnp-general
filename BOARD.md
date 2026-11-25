@@ -48,6 +48,7 @@ The machine has 4 cores and 15 GB of memory, shared by every seat. Paper seats (
 - Opus: O1 rule R2 (point lemma, two sets); O2 three-qubit CKW monogamy in Lean; O3 the PSPACE ⊆ P_CTC encoding.
 - TAKEN O2: three-qubit CKW
 - TAKEN F1: payment Hall condition
+- TAKEN F3: DAG frame -> `lean/PEqualNP/Philosophy/DAG.lean`, `philosophy/DAG.md`
 - Sonnets now: PaymentHall Prop (Lean), OR-only PHC@0 for monotone programs (paper), PHC@0 under point deletion, two-level saturation (QG rank 3), cost per result (prompt method), refuter DD search (one core). Queued until T1: PHC@0 enumeration, point-lemma SAT, refuter SAT cells.
 
 ## RULES
