@@ -29,9 +29,19 @@ All theorems here are checked by the Lean 4 proof checker. Nothing here settles 
 - Logarithmically many NOT gates are enough to simulate any circuit (a theorem of Markov and Fischer, checked here).
 - Forty-seven statements from arguments in quantum gravity about computational complexity are checked. For example, if P = NP, then every polynomial-time, length-preserving function can be inverted in polynomial time.
 
+Checked today, each in Lean with the standard axioms only:
+
+- Several NOT gates (`one-not/lean/PEqualNP/W951/Open/`). The OR of n inputs needs n − 1 AND/OR gates with any number of NOT gates (`Or4ManyNot.lean`, `or_needs_gates`). A system of ORs needs at least n − (number of components of the union graph) AND/OR gates with any number of NOT gates; this equals the NOT-free count on acyclic systems, proved here for pairwise disjoint sets and for chains (`OrSystemManyNot.lean`, `system_bound_comp`, `disjoint_bound`, `chain_bound`). The per-set flip lemma holds for any number of NOT gates (`FlipLemma.lean`, `flip_lemma`). For two sets of size at most 3, the function-level core of the flip-class count is checked (`FlipHall.lean`, `no_sole_partner`).
+- Quantum gravity (`lean/PEqualNP/QuantumGravity/Open/`). L115: every operator-norm ball of radius ε in U(2^n) has Haar measure at most (4ε)^(4^n) (`L115.lean`, `haar_small_ball`). L116 follows unconditionally (`L116OfL115.lean`). L169: P_CTC is contained in EXP (`L169.lean`, `PCTC_subset_EXP`). The CTC reset cycle, which is the core of PSPACE ⊆ P_CTC: if halting resets to the start, every Deutsch-consistent distribution is supported on the orbit of the start (`CtcReset.lean`, `reset_support_on_start_cycle`). L119 with 16 real parameters per two-qubit gate (`KnillParam.lean`, `L119_weak`). Knill's count (`ApproxCount.lean`, `approx_count_twoQubit`): almost every n-qubit unitary needs exponentially many two-qubit gates, even approximately.
+- One NOT gate. The general case reduces, by a checked chain ending in `DDAbsorb.lean`, to one named statement, `BottomPay` (`one-not/lean/PEqualNP/W951/Open/LightAbsorb.lean`). That statement is tested but not proved: no failure in 1.27 million states.
+
 ## What did not work
 
 Several natural ways to prove the general case were tried. Each one was refuted by an explicit circuit, and the circuits are kept in the repository. The strategies were: fixing one input at a time, fixing any bounded number of inputs at a time, averaging over orders of the inputs, and a counting argument that does not use minimality. The inequality the proof needs has not failed on any circuit tried, about 85,000 of them.
+
+## Philosophy (formal)
+
+`lean/PEqualNP/Philosophy/Deleuze.lean` models one cited reading of Deleuze: distinct problems can share actual solutions, and nondegenerate singular points are isolated. `lean/PEqualNP/Philosophy/Fisher.lean` models one cited reading of Fisher's hauntology as branching time. `one-not/lean/PEqualNP/Philosophy/Bridge.lean` applies the first to this project as a formal analogy: the finite slack table is the actual and Φ the virtual, and Φ is not determined by the table. These are models of cited readings. They claim nothing about what either author meant, and they are not proofs about the texts.
 
 ## asteroid
 
@@ -76,9 +86,11 @@ bin/asteroid test      # run all of them
 
 Linux (no Python, no Lean): [`dist/linux/asteroid`](dist/linux/README.md), a 4.4 MB binary; Arch: `packaging/arch/PKGBUILD`; Windows: the same inside Arch on WSL.
 
-VS Code highlighting for `.ath`: search **asteroid** in Extensions ([Marketplace](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid)).
+VS Code highlighting for `.ath`: search **asteroid** in Extensions ([Marketplace](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid)), or install `editors/vscode/asteroid-0.1.0.vsix`.
 
 `bin/asteroid` with no arguments opens the interactive prompt, `bin/asteroid idle` the window.
+
+A native binary, written in Lean and needing no Python, is built with `cd one-not/lean && lake exe cache get && lake build asteroid`. It evaluates a program and has Lean check it. Without arguments it opens the prompt, and `plot phi NAME -> FILE.svg` writes an SVG plot. See `asteroid/NATIVE.md`.
 
 Windows: download [`asteroid.exe`](asteroid.exe) and double-click it (it is the window, with Python inside; nothing to install). Windows SmartScreen will warn, because the file is not signed: click "More info", then "Run anyway".
 
@@ -98,15 +110,17 @@ This uses Lean only. It goes through every theorem of the one-NOT part and fails
 
 ## What is open
 
-- The general case of the one-NOT question, which is the claim that there is no smallest counterexample.
-- Whether two or more NOT gates help.
-- Four statements on the quantum-gravity side.
+- The general case of the one-NOT question: `BottomPay`, the one statement to which the checked chain reduces it.
+- Whether two or more NOT gates help in general. Open: the point lemma (its single-point form is only tested, on two sets of size 5 and on the Pasch configuration).
+- The exact L119, with 9k + 3n + 1 parameters; it needs the KAK decomposition of U(4), which Mathlib lacks.
+- The PSPACE encoding, that is, the full inclusion PSPACE ⊆ P_CTC beyond its reset-cycle core.
 
 ## Where things are
 
 - `one-not/` holds the one-NOT work: proofs, circuits and tests.
 - `lean/` holds the general circuits, the quantum-gravity statements and the inherited library.
 - `asteroid/` holds the language.
+- `philosophy/` holds the formal philosophy models and their plan.
 - `LITERATURE.md` lists the sources read.
 - `BOARD.md` holds the working notes.
 - [`ath_prompt_method.md`](ath_prompt_method.md) describes the way this project was prompted and coordinated: informal small asks, mirrored sessions, one board per task. It is a conjecture, not a result.
