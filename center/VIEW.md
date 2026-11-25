@@ -49,11 +49,11 @@ cells: 2 DECIDED, 6 OPEN, 1 STOPPED
 ## other
 findings (verified): none · mean radius None
 cells: 13 DECIDED, 5 OPEN, 2 STOPPED, 2 TAKEN
-- OPEN [Fable] (Fable): Lean, a parameter-dimension potential for products of two-qubit gates that is `Unify.Lip 15` (or 9), so that L119's count is literally `Unify.lip_count → `lean/PEqualNP/QuantumGravity/Open/`  (BOARD:23)
-- OPEN [Fable] (Fable): matroid union for hypergraphic ranks (converse of `Unify.unsplit_of_partition`): split condition ⟹ disjoint spanning forests; Mathlib has no matroid un → `one-not/lean/PEqualNP/W951/Open/`  (BOARD:24)
-- OPEN [Fable] (Fable): Lean, every one-string language is in `P` (`Defs/Base.lean`), to remove the hypothesis of `Unify.p_np_same_view`. -> lean/PEqualNP/Worlds/Unify.lean → `lean/PEqualNP/Worlds/Unify.lean`  (BOARD:22)
-- OPEN [Opus] (Opus): CKW realizability: every (x, y) with x + y ≤ t ≤ 1 is (τ_AB, τ_AC) of a three-qubit state with τ_{A|BC} = t (W-class states), against `CKW.ckw`. -> lean → `lean/PEqualNP/QuantumGravity/Open/CKW.lean`  (BOARD:26)
-- OPEN [Fable] (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets o → `worlds/unify_rank.py`  (BOARD:25)
+- OPEN [Fable] (Fable): Lean, a parameter-dimension potential for products of two-qubit gates that is `Unify.Lip 15` (or 9), so that L119's count is literally `Unify.lip_count → `lean/PEqualNP/QuantumGravity/Open/`  (BOARD:33)
+- OPEN [Fable] (Fable): matroid union for hypergraphic ranks (converse of `Unify.unsplit_of_partition`): split condition ⟹ disjoint spanning forests; Mathlib has no matroid un → `one-not/lean/PEqualNP/W951/Open/`  (BOARD:34)
+- OPEN [Fable] (Fable): Lean, every one-string language is in `P` (`Defs/Base.lean`), to remove the hypothesis of `Unify.p_np_same_view`. -> lean/PEqualNP/Worlds/Unify.lean → `lean/PEqualNP/Worlds/Unify.lean`  (BOARD:32)
+- OPEN [Opus] (Opus): CKW realizability: every (x, y) with x + y ≤ t ≤ 1 is (τ_AB, τ_AC) of a three-qubit state with τ_{A|BC} = t (W-class states), against `CKW.ckw`. -> lean → `lean/PEqualNP/QuantumGravity/Open/CKW.lean`  (BOARD:36)
+- OPEN [Fable] (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets o → `worlds/unify_rank.py`  (BOARD:35)
 
 ## philosophy
 findings (verified): 13 checked · mean radius 0.0
