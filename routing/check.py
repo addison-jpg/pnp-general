@@ -137,7 +137,7 @@ def main():
     t0 = time.time(); fails = []; cls = classes()
     nw = 0; pairs = 0; settle_dij = settle_a1 = settle_a2 = 0
     ch_fixed = {}; ch_all = {}   # n -> list of shortcut counts
-    worst_all = (-1, None); best_gap = (-1, None)
+    worst_all = (-1, None); best_gap = (-1, None); alt_more = 0; alt_ex = None
     for n in range(2, MAXN + 1):
         for g in sorted(cls[n]):
             m = len(g)
@@ -162,11 +162,18 @@ def main():
                         d1, k1 = search(adj, s, t, lambda v: Fr(D[v][t], 2))
                         d2, k2 = search(adj, s, t, lambda v: abs(D[0][t] - D[0][v]))
                         if not (d0 == d1 == d2 == D[s][t]): fails.append(("dist", n, wt, s, t, d0, d1, d2, D[s][t]))
-                        if k1 > k0 or k2 > k0: fails.append(("settle", n, wt, s, t, k0, k1, k2))
+                        ball = sum(1 for v in range(n) if D[s][v] <= D[s][t])
+                        if k1 > k0: fails.append(("settle d/2", n, wt, s, t, k0, k1))
+                        if k2 > ball: fails.append(("settle alt", n, wt, s, t, k2, ball))
+                        if k2 > k0:
+                            alt_more += 1
+                            if alt_ex is None: alt_ex = (n, wt, s, t, k0, k2)
                         settle_dij += k0; settle_a1 += k1; settle_a2 += k2
     print(f"(a,b) {nw} weighted connected graphs on 2..{MAXN} vertices (classes x weights in {{1,2,3}}), {pairs} ordered pairs:")
     print(f"      Dijkstra = A*(d/2) = A*(ALT, landmark 0) = Floyd-Warshall on every pair")
-    print(f"      nodes settled in total: Dijkstra {settle_dij}, A*(d/2) {settle_a1}, A*(ALT) {settle_a2}; never more than Dijkstra per query")
+    print(f"      nodes settled in total: Dijkstra {settle_dij}, A*(d/2) {settle_a1}, A*(ALT) {settle_a2}")
+    print(f"      A*(d/2) never settles more than Dijkstra. A*(ALT) never settles more than the ball d(s,v) <= d(s,t),")
+    print(f"      but settles more than Dijkstra (target popped first on ties) in {alt_more} queries; first: {alt_ex}")
     for n in sorted(ch_fixed):
         c = ch_fixed[n]; print(f"(c) n={n}: fixed order 0..n-1, shortcuts min {min(c)} max {max(c)} total {sum(c)} over {len(c)} weighted graphs; query exact")
     for n in sorted(ch_all):
@@ -189,13 +196,27 @@ def main():
                     if r > best[0]: best = (r, (g, s, t, h[s], D[s][t]))
         tbl[n] = best
         print(f"    n={n}: max H/d = {best[0]} (edges {best[1][0]}, {best[1][1]}->{best[1][2]}: H={best[1][3]}, d={best[1][4]})")
-    if tbl[2][0] != 1: fails.append(("K2 ratio", tbl[2]))
+    hit = [int(tbl[n][0]) for n in range(2, MAXN + 1)]
+    if any(tbl[n][0] != n * n - 3 * n + 3 for n in tbl): fails.append(("H/d not n^2-3n+3", hit))
+    print(f"    max H/d = n^2 - 3n + 3 = (n-1)(n-2) + 1: the clique K_(n-1) with one pendant stop, the bus at the clique")
+    print(f"    (the bridge-end time k(k-1)+1 of transit/social.py with k = n-1). The planned route is 1 move.")
+    sc = [max(ch_fixed[n]) for n in range(2, MAXN + 1)]
+    if sc != [(n - 1) * (n - 2) // 2 for n in range(2, MAXN + 1)]: fails.append(("shortcuts not C(n-1,2)", sc))
+    fp = [{"name": "routing: max over connected n-stop graphs of hitting time / hop distance, n=2..%d" % MAXN, "seq": hit, "runner": "python3 -I routing/check.py"},
+          {"name": "routing: max shortcuts of contraction in order 0..n-1, weights 1..3, n=2..%d" % MAXN, "seq": sc, "runner": "python3 -I routing/check.py"}]
+    if not fails:
+        with open(os.path.join(ROOT, "routing", "fingerprints.json"), "w", encoding="utf-8") as f:
+            f.write("[\n" + ",\n".join(" " + json.dumps(x) for x in fp) + "\n]\n")
     # (ii) centre join
     progs, adj, dist, ecc, nrec = centre()
     print(f"(ii) centre: {nrec} records, {len(progs)} programs; adjacent when sharing an evidence file")
     for p in sorted(progs, key=lambda p: (-ecc[p] if ecc[p] != INF else -10**9, p)):
         reach = sum(1 for q in progs if q in dist[p])
         print(f"    {p:16s} eccentricity {ecc[p] if ecc[p] != INF else 'inf'}  neighbours {len(adj[p])}  reaches {reach}/{len(progs)}")
+    comps = []; seen = set()
+    for p in progs:
+        if p not in seen: c = sorted(dist[p]); seen |= set(c); comps.append(c)
+    print(f"    components: {len(comps)}; " + "; ".join("{" + ", ".join(c) + "}" for c in comps if len(c) > 1) + "; the rest alone")
     for f in fails[:20]: print("FAIL", f)
     if fails: sys.exit(1)
     per_n = [len(cls[n]) for n in range(1, MAXN + 1)]
