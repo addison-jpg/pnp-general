@@ -9,3 +9,4 @@
 ## Lines (TAKEN / DECIDED only)
 - TAKEN (coord Sonnet seat, 2026-11-25): editors/vscode/ extension.
 - DECIDED (coord Sonnet seat, 2026-11-25): built, tested (20 files, 0 problems), packaged (13 KB .vsix, committed), root README line added. Not published.
+- DECIDED (coord Sonnet seat, 2026-11-25): published by Addison to the VS Code Marketplace via web upload, publisher ID `asteroid` (package.json changed to match), item `asteroid.asteroid` v0.1.0. Icon cropped to 4ST. README now points at the Marketplace.

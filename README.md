@@ -74,7 +74,7 @@ bin/asteroid hello.ath # run one program
 bin/asteroid test      # run all of them
 ```
 
-VS Code highlighting for `.ath`: download `editors/vscode/asteroid-0.1.0.vsix`, then Extensions → `…` → Install from VSIX.
+VS Code highlighting for `.ath`: search **asteroid** in Extensions ([Marketplace](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid)).
 
 `bin/asteroid` with no arguments opens the interactive prompt, `bin/asteroid idle` the window.
 

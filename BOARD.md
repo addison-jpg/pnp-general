@@ -2,7 +2,7 @@
 
 - **FILES FOR ADDISON (Addison, 2026-11-25): give a direct link, not only a file card.** When handing Addison a file (a .vsix, a logo, a PNG), commit it and give the raw GitHub link, `https://github.com/addison-jpg/pnp-general/raw/main/<path>`, which downloads in one click. File-card widgets in the chat are hard to download from.
 
-- **TOP (Addison, 2026-11-25): .ath highlighting in VS Code is built.** `editors/vscode/asteroid-0.1.0.vsix` (install: Extensions → … → Install from VSIX); `npm test` tokenizes all 20 `.ath` files clean. Publishing to the Marketplace or Open VSX is Addison's, under QUIET. [`asteroid-vscode`](boards/tasks/asteroid-vscode.md)
+- **DONE (Addison, 2026-11-25): .ath highlighting in VS Code is published** on the Marketplace as `asteroid.asteroid` (publisher ID `asteroid`), v0.1.0. Open VSX not yet (needs Addison's token). [`asteroid-vscode`](boards/tasks/asteroid-vscode.md)
 
 ## TOP: THREE LEVELS, BOTTOM TO TOP (Addison, 2026-11-25)
 
