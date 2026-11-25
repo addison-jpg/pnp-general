@@ -362,7 +362,7 @@ def run(script):
         import boards
         if os.path.isfile(os.path.join(d, "findings.jsonl")) and any(r.get("statement") == stmt for r in boards.load(d)): say(f"record kept ({stmt[:40]}...): already in {d}/findings.jsonl"); continue
         ev = [script] + ([f"{L['module']}::{L['theorems'][-1]}"] if L and L["ok"] else []) + list(dict.fromkeys(src.values()))
-        boards.add(d, "asteroid", item, word, stmt, ev, runner=" && ".join(dict.fromkeys(RUNNERS)) or None); boards.build()
+        boards.add(d, "asteroid", item, word, stmt, ev, runner=" && ".join(dict.fromkeys(RUNNERS)) or "bin/asteroid --no-lean " + os.path.relpath(script, ROOT)); boards.build()
     say(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; {len(L['theorems'])} proved" if L and L["ok"] else "")
           + (f"; {len(SKIPPED)} lines skipped (numpy or matplotlib missing: run bin/setup)" if SKIPPED else ""))
     return 1 if bad or (L and not L["ok"]) or (L and L.get("sound") and not L["sound"]["ok"]) else 0
