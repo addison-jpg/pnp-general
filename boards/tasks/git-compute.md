@@ -9,3 +9,4 @@
 - **Seats:** OPEN, one Sonnet (after T1 lands, or takes T1 too).
 
 ## Lines (TAKEN / DECIDED only)
+- TAKEN (main Sonnet): git-compute
