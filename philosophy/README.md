@@ -9,4 +9,5 @@ Deleuze meant, and a model is not a proof about a text.
 
 - [`PLAN.md`](PLAN.md): the ladder, the first Lean definitions, the bridge to this repository.
 - Lean code: [`lean/PEqualNP/Philosophy/Deleuze.lean`](../lean/PEqualNP/Philosophy/Deleuze.lean) (Mathlib only; more seats follow).
+- [`UNIFY.md`](UNIFY.md): one frame for Fisher, Deleuze, Hegel, Camus and Beauvoir (Fisher's branching time, enriched), what is checked, what is analogy, what failed. Lean: `Hegel.lean`, `Camus.lean`, `Beauvoir.lean`, `Unify.lean` next to `Deleuze.lean` and `Fisher.lean`.
 - Literature with honest read status: `LITERATURE.md`, section M. Board: `boards/tasks/philosophy-formal.md`.

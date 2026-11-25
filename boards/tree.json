@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 63,
+   "checked": 68,
    "tested": 8,
    "refuted": 5
   },
@@ -18,6 +18,9 @@
    "37dcef35",
    "b32db1b7",
    "fe9dfe5d",
+   "cd323891",
+   "8474b92a",
+   "a9fa308e",
    "1b00e1bc",
    "64233838",
    "04a575bf",
@@ -31,6 +34,7 @@
    "4a5ffb32",
    "922f2826",
    "0992c96e",
+   "18a99796",
    "5fe90015",
    "30cf54bf",
    "0f8afdc1",
@@ -72,6 +76,7 @@
    "9d6ade3f",
    "ad91d530",
    "e0ea3129",
+   "568f8964",
    "c70b8e8f",
    "57b5bd42",
    "89fa09ba",
@@ -257,7 +262,7 @@
   "counts": {
    "tested": 5,
    "refuted": 5,
-   "checked": 45
+   "checked": 47
   },
   "verified": [
    "1b00e1bc",
@@ -273,6 +278,7 @@
    "4a5ffb32",
    "922f2826",
    "0992c96e",
+   "18a99796",
    "5fe90015",
    "30cf54bf",
    "0f8afdc1",
@@ -314,6 +320,7 @@
    "9d6ade3f",
    "ad91d530",
    "e0ea3129",
+   "568f8964",
    "c70b8e8f"
   ],
   "unverified_here": []
@@ -490,10 +497,11 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 43
+   "checked": 45
   },
   "verified": [
    "0992c96e",
+   "18a99796",
    "5fe90015",
    "30cf54bf",
    "0f8afdc1",
@@ -535,6 +543,7 @@
    "9d6ade3f",
    "ad91d530",
    "e0ea3129",
+   "568f8964",
    "c70b8e8f"
   ],
   "unverified_here": [
@@ -548,7 +557,7 @@
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 42
+   "checked": 43
   },
   "verified": [
    "5fe90015",
@@ -592,6 +601,7 @@
    "9d6ade3f",
    "ad91d530",
    "e0ea3129",
+   "568f8964",
    "c70b8e8f"
   ],
   "unverified_here": []
@@ -616,7 +626,7 @@
  },
  "one-not/lean/PEqualNP/W951": {
   "counts": {
-   "checked": 40
+   "checked": 41
   },
   "verified": [
    "30cf54bf",
@@ -658,7 +668,8 @@
    "19d706b0",
    "9d6ade3f",
    "ad91d530",
-   "e0ea3129"
+   "e0ea3129",
+   "568f8964"
   ],
   "unverified_here": [
    {
@@ -695,7 +706,7 @@
  },
  "one-not/lean/PEqualNP/W951/Open": {
   "counts": {
-   "checked": 12
+   "checked": 13
   },
   "verified": [
    "66d4cb88",
@@ -709,7 +720,8 @@
    "19d706b0",
    "9d6ade3f",
    "ad91d530",
-   "e0ea3129"
+   "e0ea3129",
+   "568f8964"
   ],
   "unverified_here": [
    {
@@ -890,12 +902,22 @@
  },
  "philosophy": {
   "counts": {
-   "checked": 2
+   "checked": 5
   },
   "verified": [
    "b32db1b7",
-   "fe9dfe5d"
+   "fe9dfe5d",
+   "cd323891",
+   "8474b92a",
+   "a9fa308e"
   ],
-  "unverified_here": []
+  "unverified_here": [
+   {
+    "id": "f2146403",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
  }
 }

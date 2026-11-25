@@ -344,6 +344,27 @@ and claims nothing about what Deleuze meant.
 |---|---|---|---|
 | Fisher, *Capitalist Realism* (2009); *Ghosts of My Life* (2014); Derrida's hauntology; Berardi's "slow cancellation of the future" | hauntology = futures that were cancelled rather than realised, still exerting pressure; capitalist realism = the inability to imagine an alternative | search result only (descriptions, one Wikipedia-level summary, essays) | **No formal or modal-logic treatment of Fisher was found** (one search, "formal logic OR modal logic OR formalization"). Footing is ours to build: see philosophy/PLAN.md |
 
+### M5. Unification: Beauvoir, Hegel, Camus, Lawvere (philosophy-unification seat, 2026-11-25)
+
+Read status as in M: nothing here was read in full in this session. "memory" = cited from the seat's
+memory of the text, not re-read. In-copyright works are cited, not copied. Frame and results:
+`philosophy/UNIFY.md`.
+
+| Source | What it gives | Status | How it applies here |
+|---|---|---|---|
+| Beauvoir, *Diary of a Philosophy Student, Volume 1, 1926-27*, ed. Klaw, Le Bon de Beauvoir, Simons (Univ. of Illinois Press, 2006); French: *Cahiers de jeunesse* (2008) | reads Barrès, *Sous l'œil des barbares* (entry of 5 Oct 1926, per the editors' notes); "barbarians" = those who are not the self; 10 July 1927: "this opposition of self and other"; writers read or quoted per reviews: Kant, Bergson, Nietzsche, Schopenhauer, Barrès, Claudel, Cocteau, Gide, Alain-Fournier, Rivière, Mauriac, Goethe | search result only (publisher and Project MUSE listings, a Bookforum review as summarised, French Studies review as summarised); diary not opened; bookforum.com not reachable. NOT confirmed: Alain (the philosopher), Lagneau, a source named "Claudia" | `Beauvoir.Barbarian`, `barbarian_iff_lost` |
+| "The Barbarians" as a title by Beauvoir | **no such text found** (one search). The word is Barrès's, taken over in the 1926 diary | searched, not found | nobody need search again |
+| Barrès, *Sous l'œil des barbares* (1888), vol. 1 of *Le Culte du moi* | the barbarians are the non-self | search result only (public domain; not opened) | source of the word |
+| Simons, "Beauvoir's Early Philosophy: 1926-27" (in the volume above, 29-50) | the self / other problem predates Sartre; Bergson quoted at length | search result only | supports the dating |
+| Beauvoir, *L'Invitée* (1943; *She Came to Stay*) | epigraph from Hegel, "Chaque conscience poursuit la mort de l'autre"; ends with Françoise killing Xavière; SEP "Simone de Beauvoir": the murder destroys a particular other, not the other as such | search result only (SEP and two theses as summarised); novel not opened | `Beauvoir.each_seeks_the_death_of_the_other`, `not_every_other_dies` |
+| Beauvoir, *Pour une morale de l'ambiguïté* (1947; *The Ethics of Ambiguity*, tr. Frechtman) | facticity / transcendence; the serious man; willing others free | memory | `Beauvoir.ambiguity`, `serious_iff_not_free`; "willing others free" has no theorem (UNIFY.md, what failed) |
+| Beauvoir, *Wartime Diary* (Univ. of Illinois Press) | not verified in this session | not confirmed | not used |
+| Hegel, *Phänomenologie des Geistes* (1807), Introduction (determinate negation) and "Lordship and Bondage"; Baillie translation (1910) is public domain | a refutation has a content; the struggle to the death defeats recognition | memory | `Hegel.determinate_negation`, `Beauvoir.no_recognition_between_barbarians` |
+| Lawvere, "Unity and Identity of Opposites in Calculus and Physics", Appl. Categ. Structures 4 (1996) 167-174; nLab "adjoint modality" | adjoint cylinder: an adjoint triple whose two outer functors are full and faithful | search result only (nLab as summarised; paper not opened) | `Hegel.unity_and_identity_of_opposites` (even ⊣ half ⊣ odd on ℕ, our form) |
+| Lawvere, "Adjointness in Foundations", Dialectica 23 (1969); "Diagonal arguments and cartesian closed categories" (1969) | quantifiers as adjoints; the fixed point theorem | memory | `Unify.level_adjoints`, `Camus.lawvere_fixed_point` |
+| Camus, *Le Mythe de Sisyphe* (1942) | the absurd as the confrontation of a demand for unity with a world that does not answer; revolt | memory | `Camus.no_total_answer`, `Camus.revolt` |
+| Priest, "The Logic of Paradox", J. Philosophical Logic 8 (1979) | three-valued LP: contradictions without explosion | memory | `Hegel.lp_no_explosion` (a textbook check, not joined to the frame) |
+
 ## J. Searched and not found (so nobody searches again)
 
 - A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`).
