@@ -21,3 +21,4 @@
 
 ## Lines (TAKEN / DECIDED only)
 - TAKEN LIT1 (Sonnet): literature check on negation-limited Boolean sums (known / open / false).
+- TAKEN REF1 (Sonnet): refute PHC (Lemma D inequality) on BottomPay DD states, random one-NOT circuits on linear set systems, and two-set point programs, via git-compute. -> one-not/research/open/REF1_phc.py, REF1_phc.md
