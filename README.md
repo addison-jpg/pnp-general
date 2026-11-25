@@ -2,6 +2,14 @@
 
 [![asteroid language](https://img.shields.io/badge/language-asteroid%20.ath-19B3B3)](asteroid/SPEC.md) [![VS Code](https://img.shields.io/visual-studio-marketplace/v/asteroid.asteroid?label=VS%20Code&color=3D9BD6)](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid) [![Windows](https://img.shields.io/badge/Windows-asteroid.exe%204.2%20MB-19B3B3)](https://github.com/addison-jpg/pnp-general/raw/main/asteroid.exe) [![Linux](https://img.shields.io/badge/Linux%20%2F%20Arch-4.4%20MB-3D9BD6)](dist/linux/README.md) [![proofs](https://img.shields.io/badge/proofs-Lean%204-555)](one-not/lean)
 
+
+#RIGHT THE FUCK HERE IS WHERE TO PUT THE PACKAGED (.exe baby-ast.ath grown-ast.ath structure)
+
+thank you. just a link works
+
+everthing below this line in the readme is now trivial, reformulate entire readme. 
+
+it will all be ok :)
 # asteroid: one language, one standard of proof, every field
 
 **asteroid is a programming language and a machine-checked map of mathematics, built by Addison.** Circuit complexity, quantum gravity, cosmology, knot theory, neuroscience, biology, privacy, transit networks, modal metaphysics and philosophy are all written as `.ath` programs that run and check themselves, in one vocabulary, held to one standard.
@@ -41,7 +49,7 @@ The same folder has a SIMD variant, `cpu/simd.bench`: 4 lanes with their own ACC
 
 This project is aimed at the P versus NP problem, and it is public on purpose.
 
-A result on a question this important should not sit behind a paywall or belong to a fund. If a proof exists, people should be able to read every line of it, run the checker themselves, and build on it without asking anyone's permission. Work on this problem that is done in private, sold by subscription, or held as an asset asks the public to take its claims on trust. Mathematics does not work on trust.
+A result on a question this important should not sit behind a paywall or belong to a fund. If a proof exists, people should be able to read every line of it, run the checker themselves, and build on it without asking anyone's permission. Work on this problem that is done in private, sold by subscription, or held as an asset asks the public to take its claims on trust. Mathematics works on trust, not blind trust. 
 
 So everything here is in the open: the proofs, the circuits that broke the wrong ideas, the tools, and the working notes, mistakes included. Open work can be checked by anyone. That is the argument, and it is a political one.
 
