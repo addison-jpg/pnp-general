@@ -10,6 +10,18 @@ Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boar
 
 - **Credit, down the line (Addison, 2026-11-25: "would be nice if down the line cred goes big to philosophy with base of beauvoir as unifier"):** when the project is presented, philosophy gets prominent credit, with Simone de Beauvoir as the unifying frame (*The Ethics of Ambiguity*, *She Came to Stay*, the diary) and Deleuze, Fisher, Hegel and Camus around her. That credit is for the frame that organised the work, and it is honest about the boundary: the reviews (philosophy/REVIEW.md, REVIEW_BEAUVOIR_QG.md) show which links are theorems and which are readings.
 
+## TOP: QUESTION THE FRAMING (Addison, 2026-11-25: "we have to seriously consider that the entire framing of pnp is nonsense. it sounds awful but i havent really heard a convincing arg. it seems built on old math, with infinite bounds that are just not properly infitely ocntinious")
+
+- **main's view, stated plainly:** P vs NP is a precise statement about finite objects: for every input length n, is there a machine whose running time is bounded by a fixed polynomial in n? Its only infinity is "for all n", the same quantifier as in Goldbach. It is meaningful. What is open to serious critique is whether it is the right question.
+- **Known critiques, all mainstream:**
+  - asymptotics hide constants (galactic algorithms; Cobham–Edmonds is a modelling choice);
+  - worst case against average case (Impagliazzo's worlds; smoothed analysis);
+  - possible independence from ZFC;
+  - uniform machines against circuits.
+- **Continuous and algebraic siblings, each open:** Blum–Shub–Smale P_ℝ vs NP_ℝ (machines computing with exact reals); Valiant's VP vs VNP; geometric complexity theory (orbit closures, representation theory). How they relate to the discrete question is itself largely open.
+- **Seat (Opus, heavy) FR1:** write `worlds/FRAMING.md`. The strongest case that the framing is wrong or arbitrary, steel-manned with sources. Then the strongest replies. Then what a "continuous" formulation looks like (BSS, VP/VNP, GCT, complexity of real computation, Smale's 17th problem), what is proved about how it relates to the discrete one, and where this repository's own continuous attempts (Φ, the limit level, flag algebras) sit. Honest read statuses. It ends with a verdict: which parts of the framing are arbitrary, and which are forced.
+
+
 ## MAP OF THE WORLDS (Addison, 2026-11-25: "the bounds are always multidimensional, continuous, likely infinite")
 
 A map, not progress on P vs NP. P vs NP is one binary cut inside a landscape with many axes: time exponent, average case, non-uniformity, provability, barriers, fine-grained, and the circuit axes this repository works on. Only the hierarchy theorems' infinitely many levels are proved. [`worlds-map`](boards/tasks/worlds-map.md)
