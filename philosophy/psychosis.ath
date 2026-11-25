@@ -1,0 +1,15 @@
+# Critical psychosis, linked to the whole of philosophy and physics. Every check below is a script that exists.
+# Readings are analogy. Nothing here describes a person or a clinical condition. See philosophy/PSYCHOSIS.md.
+check "python3 -I philosophy/rhizome.py"
+check "python3 -I philosophy/cone.py"
+check "python3 -I philosophy/numbers.py"
+check "python3 -I core/ontology/mirror.py"
+check "python3 -I physics/curvature/check.py"
+check "python3 -I physics/time/check.py"
+frame "Deleuze and Guattari, rhizome against tree (Mille plateaux, 1980; cited from memory): a break does not end the rhizome" reading "exact fact only: graphs with no critical edge number 1, 0, 1, 10, 253, 11968 on 1..6 vertices against trees 1, 1, 3, 16, 125, 1296" -> 3 label checked-finite reach 3 cost 60
+frame "Cone against disk: a hub over disconnected parts is critical; the repo's hub is critical (philosophy/cone.py; PSYCHOSIS.md section 5)" reading "exact fact only: the apex is critical exactly when the base is disconnected; a disk needs the base to be one path or cycle" -> 4 label checked-finite reach 3 cost 60
+frame "Irrationals and chaos (philosophy/NUMBERS.md): a finite region holds finitely much information; the doubling map reads out digits" reading "exact fact only: after k steps the first binary digit is digit k+1 of the start, on every dyadic rational up to 14 digits" -> 5 label checked-finite reach 2 cost 60
+frame "The Beauvoir mirror: reciprocal, and every reached world can go on (core/ontology/mirror.py)" reading "exact fact only: the mirrors on 1, 2, 3 worlds number 2, 8, 64; the two encodings agree" -> 6 label checked-finite reach 2 cost 40
+frame "Physics: curvature from counting, and the time-invariant properties (physics/curvature, physics/time)" reading "exact fact only: the total curvature of a closed surface is 2 pi chi; the time invariant properties are the constant ones on the S5 cluster" -> 7 label checked-finite reach 3 cost 60
+frame "Critical psychosis as a method: the structure of a fixed signifier and its loss (Lacan, Seminaire III, 1955-56; cited from memory); the reading that a broadcast has no critical point is analogy" reading "ANALOGY (a reading): a structure with a critical element fails when it fails; a rhizome with none keeps going" -> none label open reach 3 cost 160
+frame "Deleuze and Guattari's schizoanalysis is a process, not a clinical state, and they separated the two (Anti-Oedipus, 1972; cited from memory)" reading "ANALOGY (a reading): a process with nothing critical in it, not a diagnosis of anyone" -> none label open reach 2 cost 120
