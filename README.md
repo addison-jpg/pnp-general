@@ -12,25 +12,15 @@ Tested from a fresh folder: 4 claims true, 0 false. The packet does not include 
 
 Download: https://github.com/addison-jpg/pnp-general/raw/refactor/pillars/dist/packet.tar.gz
 
-## Start here: base, the dual boot
+## Start here: the terminal
 
-`workshop/pair/c/base` is a small static Linux prompt, written in plain C. It has four commands:
-
-- `:big` runs `big.ath` through the asteroid binary. The result is 9 claims true, 0 false.
-- `:bus` runs `workshop/bus/bus.ath`.
-- `:hello` runs `hello.ath`.
-- `:quit` leaves the prompt.
-
-Download it from this branch: https://github.com/addison-jpg/pnp-general/raw/refactor/pillars/workshop/pair/c/base
-
-Run it from the repository root, so the `.ath` files resolve:
-
-    chmod +x base && ./base
+`workshop/pair/win/base.ps1` is a thin PowerShell prompt. It has four commands and no logic of its own: `:hello` runs `hello.ath`, `:big` runs `big.ath`, `:bus` runs `workshop/bus/bus.ath`, and `:quit` leaves. Its spec is `workshop/pair/win/TERMINAL.md`.
 
 Limits, stated plainly:
-
-- It is Linux only. There is no Windows `base.exe` yet.
-- The asteroid binary it calls still carries Python internally.
+- It has not been run on Windows. This machine is Linux, and PowerShell is not installed here.
+- `:hello` needs `ast.exe` beside the script (in `dist/windows/`).
+- `:big` needs `asteroid.exe`, which is not built yet.
+- The Linux prompt was removed, and nothing replaces it on Linux yet except running `bin/asteroid --no-lean FILE` directly.
 
 ## Native checker (ast)
 
@@ -40,7 +30,7 @@ The file `ast` at the top level of the repository is the native Linux checker. I
 
 `little.ath` gives 4 claims true, 0 false, and exit code 0.
 
-`ast` does not yet run the checks in `big.ath`. It skips them, so it reports 0 claims on `big.ath`. The full asteroid runs them.
+`ast big.ath` gives 9 claims true, 0 false, skipping one line that is not in the Lean version yet. It calls Python for the checks inside `big.ath`, so Python is still part of that path.
 
 See [`dist/linux`](dist/linux/README.md) for the Linux files, and [`asteroid/NATIVE.md`](asteroid/NATIVE.md) for building the native binary.
 
@@ -74,7 +64,7 @@ The P versus NP question is open. Nothing here settles it.
 
 ## What is open
 
-- The native port of the `big.ath` checks. Until it is done, `ast` reports 0 claims on `big.ath`.
+- The native port of the `big.ath` checks. Until it is done, `ast` still calls Python for those checks.
 - The two-way bus laws L3 and L4. They are not checkable in asteroid yet.
 - The Windows binary. `base` is Linux only.
 - P versus NP. Nothing here settles it.
@@ -128,7 +118,7 @@ Negative results are kept as found. Two simulations of stated rules did not repr
 
 ## The past hour
 
-- **The dual boot.** `workshop/pair/c/base` is a Linux prompt. `:big`, `:bus` and `:hello` run `.ath` programs through the asteroid binary.
+- **The dual boot.** The Linux prompt in `workshop/pair/c/base` was removed; the terminal is now the PowerShell script `workshop/pair/win/base.ps1`. `:big`, `:bus` and `:hello` run `.ath` programs through the asteroid binary.
 - **The two-way bus.** A design for routing from programs down to memory and back. Its layer order is a checked claim. Its laws L3 and L4 are not yet checkable in asteroid. Its record is in `workshop/bus/`.
 - **The native checker.** `ast` runs `little.ath` with 4 claims true. It does not yet run the checks in `big.ath`.
 - **Memory out.** Input embeddings for the memory's own names, from the 0.5B and 7B Qwen models, read by byte range. These are static token embeddings, not meanings.
