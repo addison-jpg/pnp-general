@@ -89,7 +89,10 @@ claim forall cubes slack(hello) >= 0 by lean  # the count behind the theorem, at
 plot phi hello -> asteroid/out/hello.png
 ```
 
+`alchemy.ath` is the second example: an alchemy tree (items built by union) as a circuit. It reports gates 4 < base 5: one gate is reused, which only works because two of its sets share two points. That is exactly why the one-NOT theorem assumes every two sets share at most one.
+
 ```
+bin/asteroid alchemy.ath   # gates 4 < base 5: sharing when sets overlap in 2 points
 bin/asteroid demo      # start here: a tiny built-in program. Needs only Python 3.9 or newer, no setup
 bin/setup              # once, for plots: numpy and matplotlib in a private environment inside this folder (.venv)
 bin/asteroid hello.ath # run one program
