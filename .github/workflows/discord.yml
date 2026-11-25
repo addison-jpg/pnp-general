@@ -20,6 +20,8 @@ jobs:
           python3 - <<'PY'
           import json, os, re, sys, urllib.request
           url = os.environ.get("WEBHOOK", "").strip()
+          if url.startswith(("discord.com/", "discordapp.com/")):
+              url = "https://" + url          # the scheme was left off when the secret was pasted
           if not re.fullmatch(r"https://discord(app)?\.com/api/webhooks/\d+/[\w-]+", url):
               print("DISCORD_WEBHOOK is missing or not a Discord webhook URL: nothing sent (value not shown)")
               sys.exit(0)
