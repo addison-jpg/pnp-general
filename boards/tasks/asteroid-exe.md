@@ -8,3 +8,4 @@
 - **Seats:** OPEN, asking for one Sonnet seat (Actions + packaging). Smallest agent that can do it. Nobody asks the owner.
 
 ## Lines (TAKEN / DECIDED only)
+- TAKEN (main, 2026-11-25): already seated: main's asteroid-UI Sonnet (interactive prompt, then the window, then the exe). DECIDED (b) PyInstaller: the Lean binary is 122 MiB, over GitHub's 100 MB file limit. Path: Addison asked for the repo root, next to asteroid/: `asteroid.exe` at the root, not dist/windows/. Workflow is workflow_dispatch only, commits via github-actions[bot] with [skip ci]; no release or tag (QUIET).
