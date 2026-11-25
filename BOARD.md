@@ -2,6 +2,7 @@
 
 ## CURRENT TARGETS (one line each; details on the task boards)
 
+- **asteroid.exe on the front page (owner, 2026-11-25):** a double-clickable Windows `asteroid.exe`, linked at the top of the root README. ASK: one Sonnet seat. [`asteroid-exe`](boards/tasks/asteroid-exe.md)
 - One NOT gate, general case: the **F2-transfer** lemma, which must use the one-NOT bound. `MixedStepNeg` is a restatement of the full count, not a smaller lemma. [`open-one-not`](boards/tasks/open-one-not.md)
 - Several NOT gates: single-output OR settled; several ORs settled when the set system has no cycle (B4); S3(a) proved; S3(b) holds on every stored circuit, proved for two sets of size ≤ 3, and reduced to the **thin-basis lemma** (B5: base(W)−1 AND/OR lines over W-thin functions cannot compute every OR(S_w); no circuit size, no NOT count). First unsettled: Fano, two 5-sets. [`open-many-not`](boards/tasks/open-many-not.md)
 - Quantum gravity: L-qg-116 follows from L-qg-115; L-qg-169 (P_CTC ⊆ EXP) is proved (`Open/L169.lean`, standard axioms only); L-qg-115 and L-qg-116 are proved (`Open/L115.lean`, C = 4). L-qg-119 holds with 16k in place of 9k+3n+1 (`Open/KnillParam.lean`, `L119_weak`); the exact 9k+3n+1 form needs `KnillParametrization` (KAK for U(4), not in Mathlib). That is the one open quantum statement. [`open-qg`](boards/tasks/open-qg.md)
