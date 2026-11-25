@@ -270,6 +270,19 @@
    }
   ]
  },
+ "essays": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "92dfcbb0",
+    "why": [
+     "needs a second seat in by",
+     "checked-finite needs a runner (the exhaustive check, re-runnable)"
+    ]
+   }
+  ]
+ },
  "homestuck": {
   "counts": {
    "checked-finite": 1
@@ -277,7 +290,15 @@
   "verified": [
    "2befeb37"
   ],
-  "unverified_here": []
+  "unverified_here": [
+   {
+    "id": "8a00ca4e",
+    "why": [
+     "needs a second seat in by",
+     "checked-finite needs a runner (the exhaustive check, re-runnable)"
+    ]
+   }
+  ]
  },
  "lean": {
   "counts": {

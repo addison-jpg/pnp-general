@@ -58,8 +58,12 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 ### `compbio/` 
 - `2547b029` **checked-finite** [compbio] Exact counts by exhaustive enumeration, each checked two ways: rooted binary phylogenetic trees (2n-3)!! for n<=8; RNA secondary structures with hairpin loop >= 1 (A004148) and Motzkin numbers for n<=8. · evidence: `compbio/fingerprints.py::rna_brute` · main · unverified (needs a second seat in by)
 
+### `essays/` 
+- `92dfcbb0` **checked-finite** [essays] gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth. · evidence: `gravity.ath`, `/home/user/pnp-general/gravity.bench` · asteroid · unverified (needs a second seat in by; checked-finite needs a runner (the exhaustive check, re-runnable))
+
 ### `homestuck/` 1 checked-finite
 - `2befeb37` **checked-finite** [homestuck] Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A model of combination, not the comic's recipe. · evidence: `homestuck/alchemy.py::reachable_counts` · haiku, confirmed by fable · VERIFIED
+- `8a00ca4e` **checked-finite** [homestuck] alchemy.ath: the b = 3 alchemy circuit computes all seven nonempty unions on all 8 inputs, with 4 gates against a base of 5 (sharing, possible because the sets overlap in 2 points). · evidence: `alchemy.ath`, `/home/user/pnp-general/alchemy_b3.bench` · asteroid · unverified (needs a second seat in by; checked-finite needs a runner (the exhaustive check, re-runnable))
 
 ### `lean/` 25 checked
 

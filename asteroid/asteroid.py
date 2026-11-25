@@ -326,7 +326,7 @@ def exec_line(st, raw, ln, script):
                 subprocess.Popen(cmd, stdout=open(log, "wb"), stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, **detach)
                 say(f"{ln}: hunt started in the background, log {log}")
             else: say(f"{ln}: " + subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace").stdout.strip().splitlines()[-1])
-        elif m := re.fullmatch(r'record (\S+) (\S+) (\w+) "(.+)"', line): st.records.append(m.groups())
+        elif m := re.fullmatch(r'record (\S+) (\S+) ([\w-]+) "(.+)"', line): st.records.append(m.groups())
         else:
             import glob, importlib
             api = API; api.update({"env": env, "src": src, "lean_claims": lean_claims, "results": results, "core": core, "F": F, "ln": ln, "script": script, "extra_lean": EXTRA_LEAN})
@@ -359,6 +359,7 @@ def run(script):
     for d, item, word, stmt in records:
         if bad or (word == "checked" and not (L and L["ok"])): say(f"record skipped ({stmt[:40]}...): a claim failed or Lean did not build"); continue
         import boards
+        if os.path.isfile(os.path.join(d, "findings.jsonl")) and any(r.get("statement") == stmt for r in boards.load(d)): say(f"record kept ({stmt[:40]}...): already in {d}/findings.jsonl"); continue
         ev = [script] + ([f"{L['module']}::{L['theorems'][-1]}"] if L and L["ok"] else []) + list(dict.fromkeys(src.values()))
         boards.add(d, "asteroid", item, word, stmt, ev); boards.build()
     say(f"claims: {len(results) - len(bad)} true, {len(bad)} false" + (f"; {len(L['theorems'])} proved" if L and L["ok"] else "")
