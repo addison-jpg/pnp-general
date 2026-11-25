@@ -12,6 +12,6 @@
 - **ath side:** if cheap, an ath surface for declaring a cell with its axes and its prover/refuter pair, e.g. `claim X over (size, nots) pair prover:F1 refuter:REF1`. It compiles to the Lean definitions or to findings records. Coordinate with the asteroid owner's files; don't edit `eval_sound`.
 
 ## Seats
-- Fable (main), TAKEN at dispatch. -> lean/PEqualNP/Methods/*.lean, methods/README.md
+- Fable (main), TAKEN at dispatch. TAKEN (main Fable), 2026-11-25. -> lean/PEqualNP/Methods/*.lean, methods/README.md
 
 ## Lines (TAKEN / DECIDED only)
