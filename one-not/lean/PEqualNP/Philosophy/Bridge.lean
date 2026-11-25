@@ -18,8 +18,10 @@ Levels:
   decides `no_minCE`;
 * virtual = polynomial: `Phi gates S`, one continuous function on `[0,1]` that the finite table
   determines and that is actualised again at its corners (`Phi_zero`, `PhiT_one`);
-* non-resemblance: the corners do not determine `Phi` (`corners_not_injective`) and `Phi` does not
-  determine the table (`PhiT_not_injective`), as `distinct_problems_same_actual` in P2;
+* two non-injectivity facts, for arbitrary integer tables on `Fin 2`: the corners do not determine
+  the polynomial (`corners_not_injective`) and the polynomial does not determine the table
+  (`PhiT_not_injective`). Both are non-injectivity of a forgetful map; they share no structure
+  with `distinct_problems_same_actual` in P2 beyond that. `actual` is restated here but unused;
 * limit  = a named open target, `LimitTarget` (no proof). See BOARD.md, "TOP: THREE LEVELS".
 -/
 
@@ -81,7 +83,8 @@ theorem Phi_one {n m : ℕ} (gates : List Gate) (S : Fin m → Finset (Fin n)) :
 /-- The virtual object attached to a table, as a P2 problem on `ℝ` (the field is `Φ`). -/
 noncomputable def virtualOf {n : ℕ} (t : Finset (Fin n) → ℤ) : Problem ℝ := ⟨PhiT t⟩
 
-/-- The actualisation at the corners: the two integers the polynomial meets the finite level in. -/
+/-- Evaluation at the two corners `0` and `1` (equal to `t ∅` and `t univ`, by `corners_virtualOf`;
+read as the "actualisation" at the corners, a naming only). The values are cast to `ℝ`. -/
 noncomputable def corners (P : Problem ℝ) : ℝ × ℝ := (P.field 0, P.field 1)
 
 theorem corners_virtualOf {n : ℕ} (t : Finset (Fin n) → ℤ) :
@@ -122,9 +125,9 @@ theorem PhiT_tOne (p : ℝ) : PhiT tOne p = p * (1 - p) := by
 
 theorem PhiT_tZero (p : ℝ) : PhiT tZero p = 0 := by simp [PhiT, tZero]
 
-/-- **The virtual does not determine the actual table.** Two different slack tables with the same
-polynomial `Φ` (so the same values at every `p`, and the same corners). The finite level carries
-information the continuous level forgets. -/
+/-- Two different integer tables on `Fin 2` have the same polynomial (so the same values at every
+`p`). These are arbitrary tables, not slack tables of any circuit; not shown: that this happens for
+slack tables. (`Φ` is determined by the table, `Phi_eq_PhiT`; the converse fails here.) -/
 theorem PhiT_not_injective :
     tAnti ≠ tZero ∧ PhiT tAnti = PhiT tZero := by
   refine ⟨?_, funext fun p => by rw [PhiT_tAnti, PhiT_tZero]⟩
@@ -132,14 +135,14 @@ theorem PhiT_not_injective :
   have := congrFun h {0}
   simp [tAnti, tZero] at this
 
-/-- The same, as problems in P2's sense: one virtual problem, two different tables. -/
+/-- The same, as `Problem`s: `virtualOf` is not injective on tables over `Fin 2`. -/
 theorem virtualOf_not_injective : ¬ Function.Injective (virtualOf (n := 2)) := fun h =>
   PhiT_not_injective.1 (h (by
     show (⟨PhiT tAnti⟩ : Problem ℝ) = ⟨PhiT tZero⟩
     rw [PhiT_not_injective.2]))
 
-/-- **The actual corners do not determine the virtual.** Two problems with the same corner values
-(`Φ(0)`, `Φ(1)`, the values `no_minCE` sees at the ends) but different polynomials. -/
+/-- Two tables on `Fin 2` with equal values at both corners but different polynomials (`tOne` is
+again an arbitrary table). Whether `no_minCE` sees only the corners is not checked here. -/
 theorem corners_not_injective :
     corners (virtualOf tOne) = corners (virtualOf tZero) ∧ virtualOf tOne ≠ virtualOf tZero := by
   refine ⟨?_, ?_⟩
@@ -154,7 +157,8 @@ theorem corners_not_injective :
 
 /-! ### The limit level: a named open target (statement only) -/
 
-/-- OPEN, NOT PROVED. The asymptotic statement of BOARD.md "TOP: THREE LEVELS" in the notation of
+/-- OPEN, NOT PROVED. A placeholder: if `MinCE` is never satisfiable for large `n` (which the
+project hopes to prove), this statement is vacuously true. The asymptotic statement of BOARD.md "TOP: THREE LEVELS" in the notation of
 `Phi`: for every `ε > 0` there is `N` such that every minimal counterexample on `n ≥ N` points has
 `Φ(0) ≥ -ε · base`. (The exact, all-`n` statement `0 ≤ Φ(0)` is `no_minCE_of_Phi_zero_nonneg`'s
 hypothesis; passing from this asymptotic form to it is the stability step of the plan.) -/

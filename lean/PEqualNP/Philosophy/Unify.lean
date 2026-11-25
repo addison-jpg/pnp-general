@@ -11,17 +11,18 @@ They say nothing about circuits, and nothing here bears on P versus NP. The boar
 the names and the recorded status of seven board rows as data; it does not check those rows.
 
 The frame. A search is a tree of decisions (`Hegel.Path`), which is a Fisher frame with a first
-moment. In it:
-* Fisher: a refuted or abandoned route is a lost future, and stays lost (`Fisher.lost_mono`);
-* Deleuze: the past of the present is one chain (the actual), the whole tree is the virtual, and
-  the chain does not determine the tree (`actual_does_not_determine_virtual`);
-* Hegel: a lost route parts from the present at one determinate decision
+moment. The labels below are ours, not the writers':
+* Fisher: a refuted or abandoned route is a `Lost` moment, and stays lost (`Fisher.lost_mono`);
+* Deleuze (a second, unrelated use of "actual/virtual", not the zero-set model of `Deleuze.lean`):
+  the past of the present is one chain, the tree is the whole; same past length does not fix
+  the tree (`same_past_length_different_haunting`);
+* Hegel: a lost route parts from the present at one pair of decisions
   (`Hegel.determinate_negation`);
-* Beauvoir: that parting point was a free moment, the lost route is the present's "barbarian",
-  and the two cannot recognise each other inside a tree (`Beauvoir.barbarian_iff_lost`);
-* Camus: while there is always another decision to take, the present starts an endless ascent
-  that carries every ghost with it (`Camus.revolt`, `Camus.revolt_keeps_ghosts`).
-All of this is one theorem, `unified`. The second result, `permanence_iff_no_reconciliation`, is
+* Beauvoir: that parting point is a `Free` moment, and the lost route is the present's `Barbarian`
+  (our name for an incomparable moment), with no common future (`Beauvoir.barbarian_iff_lost`);
+* Camus: with no maximal element, the present starts an endless strict ascent along which lost
+  stays lost (`Camus.revolt`, `Camus.revolt_keeps_ghosts`).
+`unified` bundles six consequences of `Lost m f`. The second result, `permanence_iff_no_reconciliation`, is
 the price: in any partial order, loss is permanent exactly when lost pairs never meet again.
 
 Sources are listed in the four imported files and in LITERATURE.md, section M5. Prose:
@@ -46,7 +47,7 @@ theorem path_absurd (α : Type*) [Nonempty α] : Absurd (Path α) := by
 
 /-! ### 2. The unifying theorem -/
 
-/-- **One lost route, five readings.** Let `f` be lost at the present `m` in a tree of decisions.
+/-- **One lost route, six consequences** (the labels are ours). Let `f` be lost at the present `m` in a tree of decisions.
 1. (Fisher, hauntology) `f` is lost at every later moment.
 2. (Hegel, determinate negation) `m` and `f` share a part `a` and then differ by one pair of
    distinct decisions.
@@ -82,10 +83,8 @@ def LostP (m f : P) : Prop := (∃ m', m' ≤ m ∧ m' ≤ f) ∧ ¬ m ≤ f ∧
 /-- On a Fisher frame the two notions agree. -/
 theorem lostP_iff_lost {M : Type*} [Frame M] {m f : M} : LostP m f ↔ Lost m f := Iff.rfl
 
-/-- **Permanence if and only if no reconciliation.** In any partial order: lost futures stay
-lost for ever exactly when no lost pair ever meets again in a later moment. Reading: Fisher's
-irreversible cancellation and Hegel's recognition (Beauvoir's shared future) are the two sides of
-one condition, and a world cannot have both. -/
+/-- In any partial order, `lost_mono` holds iff no lost pair has a common upper bound. Calling
+the latter "recognition" (Hegel, Beauvoir) is our label, not their account. -/
 theorem permanence_iff_no_reconciliation :
     (∀ m m' f : P, m ≤ m' → LostP m f → LostP m' f) ↔
       (∀ a b : P, LostP a b → ¬ ∃ w, a ≤ w ∧ b ≤ w) := by
@@ -96,10 +95,9 @@ theorem permanence_iff_no_reconciliation :
     refine ⟨⟨a, ham.trans hmm', haf⟩, fun h => hmf (hmm'.trans h), fun h => ?_⟩
     exact hno m f ⟨⟨a, ham, haf⟩, hmf, hfm⟩ ⟨m', hmm', h⟩
 
-/-- A world with a join: in the four-point diamond the two middle points lose each other, are
-reconciled at the top, and the loss is undone there. Reading: a history with merges (the
-repository's own commit history has them, and the board has a REOPENED section) is not a Fisher
-frame, and its lost routes can come back. -/
+/-- A four-point example (`Bool × Bool`): the two middle points are lost to each other, are
+joined at the top, and the loss is undone there. So an order with joins is not a Fisher frame and
+lost pairs can meet again. -/
 theorem diamond_reconciles :
     LostP ((true, false) : Bool × Bool) (false, true) ∧
       ((true, false) : Bool × Bool) ≤ (true, true) ∧
@@ -109,7 +107,7 @@ theorem diamond_reconciles :
 
 end Price
 
-/-! ### 4. Deleuze: the actual does not determine the virtual -/
+/-! ### 4. Same past length, different trees (our second use of "actual/virtual") -/
 
 theorem unit_total : ∀ l₁ l₂ : List Unit, l₁ <+: l₂ ∨ l₂ <+: l₁
   | [], _ => Or.inl List.nil_prefix
@@ -118,13 +116,10 @@ theorem unit_total : ∀ l₁ l₂ : List Unit, l₁ <+: l₂ ∨ l₂ <+: l₁
     (unit_total s t).imp (fun h => List.cons_prefix_cons.2 ⟨rfl, h⟩)
       (fun h => List.cons_prefix_cons.2 ⟨rfl, h⟩)
 
-/-- **Same actual, different virtual.** Two presents whose pasts have the same shape (a chain of
-the same length; by `Path.le_iff_take` the past of a path is its initial segments), one in a world
-with nothing to choose and one in a world with a choice. The first is not haunted and the second
-is. Reading: Deleuze's non-resemblance of actual and virtual (as in `Deleuze.lean` and in the
-Bridge file's `corners_not_injective`): the line that was actualised does not tell which tree it
-was drawn from. -/
-theorem actual_does_not_determine_virtual :
+/-- A one-step history exists in a linear world (`Path Unit`, not haunted) and in a branching
+world (`Path Bool`, haunted). "Same past" is only equal length. This is not the non-resemblance
+of `Deleuze.lean` and not a model of Deleuze. -/
+theorem same_past_length_different_haunting :
     ∃ (m : Path Unit) (m' : Path Bool),
       m.steps.length = m'.steps.length ∧ ¬ Haunted m ∧ Haunted m' := by
   refine ⟨⟨[()]⟩, ⟨[true]⟩, rfl, ?_, ⟨⟨[false]⟩, lost_iff_other.2 ⟨by decide, by decide⟩⟩⟩
@@ -146,11 +141,9 @@ theorem level_adjoints (f : X → Y) :
       GaloisConnection (Set.preimage f) (Set.kernImage f) :=
   ⟨Set.image_preimage, Set.preimage_kernImage⟩
 
-/-- **The two images agree exactly when the projection forgets nothing.** Reading (Beauvoir's
-ambiguity, between the levels): identifying what may hold above with what must hold above is
-legitimate only for an injective projection. The Bridge file proves that the repository's
-projection from the finite slack table to the polynomial `Φ` is not injective
-(`virtualOf_not_injective`), so there the two never merge. -/
+/-- Generic: `f '' S ⊆ kernImage f S` for all `S` iff `f` is injective. No Beauvoir label is
+claimed; Beauvoir's ambiguity is not about functions. The Bridge file shows non-injectivity of
+`virtualOf` on arbitrary integer tables on `Fin 2` (`virtualOf_not_injective`). -/
 theorem collapse_iff_injective (f : X → Y) :
     (∀ S : Set X, f '' S ⊆ Set.kernImage f S) ↔ Function.Injective f := by
   constructor
@@ -160,8 +153,7 @@ theorem collapse_iff_injective (f : X → Y) :
   · rintro hf S y ⟨x, hx, rfl⟩ x' e
     exact hf e ▸ hx
 
-/-- So a projection that forgets leaves a real gap: some property that may hold above without
-having to. -/
+/-- A non-injective map has some `S` whose image is not inside its kernel image. -/
 theorem ambiguity_of_levels (f : X → Y) (hf : ¬ Function.Injective f) :
     ∃ S : Set X, ¬ f '' S ⊆ Set.kernImage f S := by
   by_contra h
@@ -224,14 +216,15 @@ theorem refuted_lost (r : Row) (h : verdict r = .refuted) : Lost present (route 
     | exact absurd h (by decide)
     | exact ⟨by decide, by decide⟩
 
-/-- **`lost_mono` on the board.** However the search continues from here, every refuted row stays
-a lost future: it is never the present again and never ahead. It also never leaves the frame
-(`Hegel.trichotomy`), which is the formal side of keeping refuted rows with their witnesses. -/
+/-- Encoding check: in this chosen tree, `lost_mono` applied to the listed refuted rows. Holds for
+the hand-coded seven-row tree only. The real one-NOT history is a DAG, not a tree: the lifted
+MUL / LiftSDR was built from refuted real-merge forms, which is a reconciliation, and by
+`permanence_iff_no_reconciliation` a tree forbids that. -/
 theorem refuted_lost_forever (r : Row) (h : verdict r = .refuted) {m : Path Row}
     (hm : present ≤ m) : Lost m (route r) :=
   lost_mono hm (refuted_lost r h)
 
-/-- The present of the search is haunted. -/
+/-- In the chosen tree, the present has a lost route (`C2`). -/
 theorem present_haunted : Haunted present := ⟨route .C2, refuted_lost .C2 rfl⟩
 
 /-- Each refuted row parts from the present at a determinate decision. -/
@@ -240,23 +233,24 @@ theorem refuted_determinate (r : Row) (h : verdict r = .refuted) :
       (⟨a.steps ++ [x]⟩ : Path Row) ≤ present ∧ (⟨a.steps ++ [y]⟩ : Path Row) ≤ route r :=
   determinate_negation (refuted_lost r h)
 
-/-- **Capitalist realism on the board.** From the present, every reachable future passes through
-`A4`: no alternative to that route is imaginable from here. Each refuted row is such an
-alternative; it was possible from an earlier moment and is now lost. -/
-theorem board_realism :
+/-- Encoding check: with the chosen tree, every future reachable from the present extends `A4`
+(`present` has `A4` as a prefix), and the refuted rows do not. Holds by the definition of `route`;
+nothing about the actual board can fail it. Hand-coded seven-row tree only; the real history is a
+DAG with reconciliations (see `refuted_lost_forever`). -/
+theorem board_all_futures_extend_A4 :
     ¬ Possible present (fun f => ¬ route .A4 ≤ f) ∧
       ∀ r, verdict r = .refuted →
         (∃ m', m' ≤ present ∧ Possible m' (fun f => ¬ route .A4 ≤ f)) ∧ Haunted present := by
   have hP : ∀ f, Reachable present f → route .A4 ≤ f := fun f hf =>
     le_trans (show route .A4 ≤ present by decide) hf
-  obtain ⟨h1, h2⟩ := capitalist_realism (P := fun f => route .A4 ≤ f) hP
+  obtain ⟨h1, h2⟩ := no_alternative_of_all_reachable (P := fun f => route .A4 ≤ f) hP
   refine ⟨h1, fun r hr => h2 (route r) (refuted_lost r hr) ?_⟩
   cases r <;> first
     | exact absurd hr (by decide)
     | decide
 
-/-- The board's present is not final: the search can always take another step, and every refuted
-row is lost along the whole of any continuation (Camus on the board). -/
+/-- In the chosen tree the present can always be extended, and the refuted rows stay lost along
+the extension. -/
 theorem board_revolt :
     ∃ s : ℕ → Path Row, s 0 = present ∧ StrictMono s ∧
       ∀ r, verdict r = .refuted → ∀ n, Lost (s n) (route r) := by

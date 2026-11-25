@@ -8,15 +8,17 @@ HONESTY. This file models a cited reading and claims nothing about what Fisher m
 Readings followed: Mark Fisher, *Ghosts of My Life* (2014): hauntology, "the slow cancellation of the
 future" (after Berardi), futures that were possible, exert pressure, and are no longer reachable.
 Mark Fisher, *Capitalist Realism* (2009): "it is easier to imagine the end of the world than the
-end of capitalism". Source of the word: Derrida, *Specters of Marx* (1993). The model captures only
-the modal half (cancelled possibility), not the affective or ideological half.
+end of capitalism" (Fisher, after Jameson and Zizek). Source of the word: Derrida, *Specters of
+Marx* (1993). The model captures only the modal half (cancelled possibility), not the affective
+or ideological half. Pressure and slowness are not modelled: cancellation here is instantaneous
+at a branch point and is a static fact about an order.
 A lost future is read, as a remark and not a result, as a Deleuzian virtual no longer actualisable.
 -/
 
 namespace PEqualNP.Philosophy.Fisher
 
 /-- A branching-time frame: moments with a partial order (earlier-than) whose past is linear
-(the predecessors of any moment form a chain). Histories are the maximal chains. -/
+(the predecessors of any moment form a chain). (`IsHistory` below defines histories as maximal chains; no theorem uses it.) -/
 class Frame (M : Type*) extends PartialOrder M where
   linear_past : ∀ a b c : M, a ≤ c → b ≤ c → a ≤ b ∨ b ≤ a
 
@@ -28,14 +30,16 @@ def IsHistory (h : Set M) : Prop := IsChain (· ≤ ·) h ∧ ∀ c : Set M, IsC
 /-- Future `f` is reachable from `m`: it lies above `m`. -/
 def Reachable (m f : M) : Prop := m ≤ f
 
-/-- Fisher's lost future: `f` was reachable from some earlier moment `m' ≤ m`, yet is neither
-reachable from `m` nor already past (a past moment is not a lost future). -/
+/-- A modal definition read as Fisher's lost future: an untaken branch. `f` was reachable from some earlier moment `m' ≤ m`, yet is neither
+reachable from `m` nor already past (a past moment is not a lost future). It cannot tell a lost
+political future from an unchosen lunch: any branching makes a moment `Haunted`. -/
 def Lost (m f : M) : Prop := (∃ m', m' ≤ m ∧ Reachable m' f) ∧ ¬ Reachable m f ∧ ¬ f ≤ m
 
-/-- Hauntology: the present is haunted by lost futures. -/
+/-- Some lost future exists at `m` (read as hauntology in Fisher; any branching suffices). -/
 def Haunted (m : M) : Prop := ∃ f, Lost m f
 
-/-- (1) Cancellation is irreversible: lost futures accumulate. Uses linearity of the past. -/
+/-- (1) Lost futures accumulate: once lost, lost at every later moment. Uses linearity of the
+past; irreversibility is built into the static order, not derived. -/
 theorem lost_mono {m m' f : M} (h : m ≤ m') (hl : Lost m f) : Lost m' f := by
   obtain ⟨⟨a, ha, haf⟩, hn, hp⟩ := hl
   refine ⟨⟨a, ha.trans h, haf⟩, fun hr => hn (h.trans hr), fun hf => ?_⟩
@@ -62,10 +66,11 @@ theorem haunted_of_branch' {m₀ b₁ b₂ m : M} (h1 : m₀ ≤ b₁) (h2 : m�
 /-- Possibly-`P` in the future-modal sense: some reachable future satisfies `P`. -/
 def Possible (m : M) (P : M → Prop) : Prop := ∃ f, Reachable m f ∧ P f
 
-/-- (3) Capitalist realism as a modal claim. If from `m` every reachable future satisfies `P`
-("only `P` is imaginable"), then `¬P` is not possible from `m`; and if `¬P` held at a lost future
-`g`, the alternative was possible from an earlier moment and is now lost. -/
-theorem capitalist_realism {m : M} {P : M → Prop}
+/-- (3) `∀ → ¬∃¬` for reachable futures, plus an unfolding of `Lost`. If every reachable future
+satisfies `P`, then `¬P` is not possible from `m`; and if `¬P` held at a lost future `g`, the
+alternative was possible from an earlier moment. `P` is an arbitrary predicate; this does not model
+ideology or imagination, and is read as Fisher's *Capitalist Realism* only by us. -/
+theorem no_alternative_of_all_reachable {m : M} {P : M → Prop}
     (hP : ∀ f, Reachable m f → P f) :
     ¬ Possible m (fun f => ¬ P f) ∧
       ∀ g, Lost m g → ¬ P g →
@@ -74,7 +79,7 @@ theorem capitalist_realism {m : M} {P : M → Prop}
   obtain ⟨⟨m', hm', hr⟩, _⟩ := hg
   exact ⟨m', hm', g, hr, hn⟩
 
-/-- In a linear frame nothing is lost. -/
+/-- In a linear frame nothing is lost (a trivial fact; does not use `linear_past`). -/
 theorem not_lost_of_total (htot : ∀ a b : M, a ≤ b ∨ b ≤ a) (m f : M) : ¬ Lost m f := by
   rintro ⟨_, hn, hp⟩
   rcases htot m f with c | c

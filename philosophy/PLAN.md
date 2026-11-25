@@ -50,7 +50,9 @@ Use a general manifold only if the first four go through.
 3. `Actualises v γ` and the *plurality* lemma: one problem has distinct actualisations that differ
    (for `v x = x`, `γ t = exp t` and `γ t = 2 exp t`), and the problem fixes them up to the initial
    condition (Mathlib's `ExistUnique`). Reading: Duffy 2006 (one differential, many integral
-   curves), Badiou's challenge (actual determined by virtual). This is the non-trivial content.
+   curves), Badiou's challenge (actual determined by virtual). This was the planned non-trivial
+   content; it was NOT built (`Deleuze.lean` has only `Trajectory.const`, and the delivered
+   theorems are the simpler ones).
 4. `Intensity v x` := `‖v x‖`, a degree attached to a point of the virtual that vanishes exactly on
    the singularities. Reading: DeLanda ("a science of the virtual is a science of intensities") only
    as a *crude* choice; this is the weakest of the five and should be labelled as a model decision.

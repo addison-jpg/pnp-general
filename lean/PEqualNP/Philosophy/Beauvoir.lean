@@ -51,8 +51,9 @@ def transcendence (m : M) : Set M := Set.Ici m
 theorem facticity_isChain (m : M) : IsChain (· ≤ ·) (facticity m) :=
   fun a ha b hb _ => Frame.linear_past a b m ha hb
 
-/-- **Ambiguity.** The present is the one moment that is both given and open, and it is the only
-thing the two sides share: neither side contains the other's content. -/
+/-- `Iic m ∩ Ici m = {m}` (antisymmetry). A general fact about partial orders; the labels
+facticity and transcendence, and the name "ambiguity", are ours and do not recover Beauvoir's
+account of the human being as both. -/
 theorem ambiguity (m : M) : facticity m ∩ transcendence m = {m} := by
   ext x
   simp only [facticity, transcendence, Set.mem_inter_iff, Set.mem_Iic, Set.mem_Ici,
@@ -61,15 +62,16 @@ theorem ambiguity (m : M) : facticity m ∩ transcendence m = {m} := by
 
 /-! ### 2. Freedom and seriousness -/
 
-/-- A situation is free when it opens at least two futures that exclude each other. Reading: a
-choice is real only if something else could be chosen (our modelling choice). -/
+/-- `Free` is our definition: a moment opens at least two exclusive futures. It is not Beauvoir's
+account of freedom (which is not indeterminism). -/
 def Free (m : M) : Prop := ∃ f g, m ≤ f ∧ m ≤ g ∧ ¬ f ≤ g ∧ ¬ g ≤ f
 
-/-- The serious attitude: the future is read as already given, one line like the past. Reading:
-Beauvoir's "serious man", who treats values as ready-made things. -/
+/-- `Serious` is our definition: the future is one chain. Beauvoir's "serious man" treats values
+as ready-made; that is not the same as a linearly ordered future. -/
 def Serious (m : M) : Prop := IsChain (· ≤ ·) (transcendence m)
 
-/-- Seriousness is exactly the denial of freedom: it reads transcendence as more facticity. -/
+/-- `Serious` is defined as the negation of `Free` up to De Morgan; this iff unfolds those two
+definitions and is not Beauvoir's account of either. -/
 theorem serious_iff_not_free (m : M) : Serious m ↔ ¬ Free m := by
   constructor
   · rintro hs ⟨f, g, hf, hg, hfg, hgf⟩
@@ -82,37 +84,35 @@ theorem serious_iff_not_free (m : M) : Serious m ↔ ¬ Free m := by
     by_contra hc
     exact hn ⟨f, g, hf, hg, fun h => hc (Or.inl h), fun h => hc (Or.inr h)⟩
 
-/-- **No free act without a ghost.** Whichever of two exclusive futures is taken, the other is
-lost from then on. This is Fisher's `haunted_of_branch`, read from the side of the one who
-chooses. -/
+/-- Whichever of two exclusive futures is taken, the other is lost from then on: Fisher's
+`haunted_of_branch`, stated from the branch point. -/
 theorem free_act_haunts {m : M} (h : Free m) :
     ∃ f g, m ≤ f ∧ m ≤ g ∧ (∀ m', f ≤ m' → Lost m' g) ∧ (∀ m', g ≤ m' → Lost m' f) := by
   obtain ⟨f, g, hf, hg, hfg, hgf⟩ := h
   exact ⟨f, g, hf, hg, fun _ hm => haunted_of_branch hf hg hfg hgf hm,
     fun _ hm => haunted_of_branch hg hf hgf hfg hm⟩
 
-/-- **Every ghost is the trace of a freedom.** A haunted present has a free moment in its past:
-the place where the lost future and the present parted. -/
+/-- A haunted present has a `Free` moment in its past: where the lost future and the present
+parted. -/
 theorem haunted_past_free {m : M} (h : Haunted m) : ∃ a, a ≤ m ∧ Free a := by
   obtain ⟨f, ⟨a, ham, haf⟩, hmf, hfm⟩ := h
   exact ⟨a, ham, m, f, ham, haf, hmf, hfm⟩
 
-/-- In a serious world nothing is ever lost and nobody is haunted. -/
+/-- If every moment is `Serious`, no moment is `Haunted`. -/
 theorem serious_world_unhaunted (hs : ∀ a : M, Serious a) (m : M) : ¬ Haunted m := fun h =>
   let ⟨a, _, ha⟩ := haunted_past_free h
   (serious_iff_not_free a).1 (hs a) ha
 
 /-! ### 3. The barbarians -/
 
-/-- A barbarian, relative to a self `m`: one who is not me, was never me, and whom I cannot
-become. Reading: Barrès's "barbares" as the young Beauvoir takes them over, those who are not the
-self (confirmed only as far as the header says). Reading "not me" as "not me at any time of my
-line" is our modelling step. -/
+/-- A rename of `Other`: neither past nor possible future of `m`. The word follows Barrès's
+"barbares" as the young Beauvoir takes them over (confirmed only as far as the header says).
+Modelling another person as an unchosen branch of one timeline is our decision, and it settles by
+fiat a question Beauvoir treats philosophically. -/
 def Barbarian (m x : M) : Prop := Other m x
 
-/-- The opposition of self and other is mutual: I am the barbarian of my barbarian. Reading:
-Hegel's recognition scene in its barest form, and Beauvoir's 1927 "opposition of self and
-other". -/
+/-- `Other` is symmetric. (Our label: the 1927 "opposition of self and other"; nothing more of
+Hegel's or Beauvoir's account is modelled.) -/
 theorem barbarian_symm {m x : M} (h : Barbarian m x) : Barbarian x m := other_symm h
 
 /-- A self is never its own barbarian, nor is its past or its possible future. -/
@@ -122,46 +122,45 @@ theorem not_barbarian_self (m : M) : ¬ Barbarian m m := fun h => h.1 le_rfl
 theorem barbarian_iff_no_common_future {m x : M} : Barbarian m x ↔ ¬ ∃ h, m ≤ h ∧ x ≤ h :=
   other_iff_no_common_future
 
-/-- **The barbarians are one's own lost futures.** In a frame with a first moment, the one who is
-not me is exactly a future that was open to an earlier me and is now cancelled. So the other is
-made of what the self gave up, which is the formal part of the reading "the hatred of the
-barbarians is a relation to oneself". -/
+/-- In a frame with a first moment, `Other` and `Lost` coincide (both mean incomparable). So in
+this model other persons are unchosen branches of the self's own timeline; that is a modelling
+decision, and the reading "hatred of the barbarians is self-hatred" is unconfirmed and not
+modelled. -/
 theorem barbarian_iff_lost [OrderBot M] {m x : M} : Barbarian m x ↔ Lost m x :=
   lost_iff_other.symm
 
-/-- Each barbarian marks a moment of the self's own past that was free. -/
+/-- Each `Barbarian` has a `Free` moment in the self's past (where the two parted). -/
 theorem barbarian_past_free [OrderBot M] {m x : M} (h : Barbarian m x) : ∃ a, a ≤ m ∧ Free a :=
   haunted_past_free ⟨x, barbarian_iff_lost.1 h⟩
 
-/-- Being a barbarian is settled by position alone: it is the same whatever is true at `x`
-("even if you might be right", as the diary is quoted). In the model, any property at all may
-hold at a barbarian. -/
-theorem barbarian_whatever_is_right {m x : M} (h : Barbarian m x) (Right : M → Prop) :
+/-- Holds by definition: `Barbarian m x` is a statement about order position only, so `(P → Q) ∧
+(¬P → Q)` given `Q` for any predicate `Right`. Kept only to record that the model's `Barbarian`
+does not depend on any property at `x` (the diary's "even if you might be right"). -/
+theorem barbarian_independent_of_any_predicate {m x : M} (h : Barbarian m x) (Right : M → Prop) :
     (Right x → Barbarian m x) ∧ (¬ Right x → Barbarian m x) := ⟨fun _ => h, fun _ => h⟩
 
 /-! ### 4. *She Came to Stay*: each consciousness seeks the death of the other -/
 
-/-- **The epigraph, in the frame.** Between a self and its barbarian, every continuation of the
-one is a world from which the other is cancelled, and this holds in both directions. Reading: the
-Hegel epigraph of *L'Invitée*; the two consciousnesses are Françoise and Xavière. -/
-theorem each_seeks_the_death_of_the_other [OrderBot M] {m x : M} (h : Barbarian m x) :
+/-- `lost_mono` applied twice: between a self and its barbarian, every continuation of one has
+the other `Lost`, both ways. "Death" here is only "becoming `Lost`" (incomparable); nothing in the
+model kills anyone. Named as the epigraph of *L'Invitée* only by us. -/
+theorem lost_both_ways [OrderBot M] {m x : M} (h : Barbarian m x) :
     (∀ m', m ≤ m' → Lost m' x) ∧ (∀ x', x ≤ x' → Lost x' m) :=
   ⟨fun _ hm => lost_mono hm (barbarian_iff_lost.1 h),
     fun _ hx => lost_mono hx (barbarian_iff_lost.1 (barbarian_symm h))⟩
 
-/-- A particular other, not the other as such: whoever lies on my own line shares a future with
-me, and nothing of the kind follows for them. Reading: the SEP remark on the novel's ending. -/
+/-- Comparable moments have a common upper bound. (Our label: a particular other, not the other
+as such, after the SEP remark on the novel's ending.) -/
 theorem not_every_other_dies {m x : M} (h : m ≤ x ∨ x ≤ m) : ∃ w, m ≤ w ∧ x ≤ w :=
   coactual_iff_comparable.2 h
 
-/-- Recognition between two selves: a moment that holds both. Reading: Hegel's mutual
-recognition, in its barest form (our modelling choice). -/
+/-- `Recognise` is our label for "a common future": a moment above both. It is not Hegel's mutual
+acknowledgement of self-consciousnesses. -/
 def Recognise (m x : M) : Prop := ∃ w, m ≤ w ∧ x ≤ w
 
-/-- **The struggle defeats itself.** In a branching frame, barbarians cannot recognise each
-other: recognition would need a common moment, and linear past forbids one. So the frame that
-makes loss permanent is the frame in which the opposition of self and other has no resolution;
-`Unify.lean` shows that a frame with joins resolves it and gives up permanence. -/
+/-- Incomparable moments have no common upper bound (by `linear_past`). Hegel's argument that a
+fight to the death destroys the recognition it seeks is not modelled. `Unify.lean` shows that a
+frame with joins gives up permanence of loss. -/
 theorem no_recognition_between_barbarians {m x : M} (h : Barbarian m x) : ¬ Recognise m x :=
   barbarian_iff_no_common_future.1 h
 

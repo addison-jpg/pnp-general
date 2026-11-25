@@ -5,15 +5,16 @@ import PEqualNP.Philosophy.Bridge
 
 HONESTY. A formal analogy, like `Bridge.lean`. It claims nothing about Beauvoir or Deleuze, and
 it proves nothing about circuits: the statement is about arbitrary integer tables on the cubes of
-`Fin 2`.
+`Fin 2`. The label "Beauvoir's ambiguity" was removed after review: Beauvoir's ambiguity is not
+about functions.
 
 `collapse_iff_injective` is restated from `lean/PEqualNP/Philosophy/Unify.lean` (the source), in
 identical form, because that file lives in the separate `lean/` Lake project.
 
-Reading: Beauvoir's ambiguity (the refusal to identify the two sides of a situation), between the
-levels. Along the projection from the finite table to its polynomial, "some table with this
-polynomial has property `S`" and "every table with this polynomial has property `S`" are
-different statements for some `S`, because the projection forgets (`virtualOf_not_injective`).
+Content: a generic fact (`image ⊆ kernImage` for all `S` iff injective). Along the projection
+from an integer table on `Fin 2` to its polynomial, "some table with this polynomial has property
+`S`" and "every table with this polynomial has property `S`" are different statements for some
+`S`, because `virtualOf` is not injective (`virtualOf_not_injective`).
 -/
 
 namespace PEqualNP.Philosophy.Bridge
@@ -28,9 +29,9 @@ theorem collapse_iff_injective {X Y : Type*} (f : X → Y) :
   · rintro hf S y ⟨x, hx, rfl⟩ x' e
     exact hf e ▸ hx
 
-/-- **The levels do not collapse.** There is a property of slack-style tables on two points that
-may hold at a polynomial without having to: possibility and necessity at the polynomial level
-come apart. -/
+/-- For some set `S` of integer tables on `Fin 2`, the image of `S` under `virtualOf` is not inside
+its kernel image. Generic, from non-injectivity of `virtualOf` on arbitrary tables; no claim
+about slack tables of circuits. -/
 theorem level_gap :
     ∃ S : Set (Finset (Fin 2) → ℤ), ¬ virtualOf (n := 2) '' S ⊆ Set.kernImage virtualOf S := by
   by_contra h

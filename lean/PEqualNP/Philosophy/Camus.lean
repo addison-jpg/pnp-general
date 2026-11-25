@@ -34,7 +34,7 @@ theorem lawvere_fixed_point {A B : Type*} (φ : A → A → B) (hφ : Function.S
   obtain ⟨a, ha⟩ := hφ (fun x => g (φ x x))
   exact ⟨φ a a, (congrFun ha a).symm⟩
 
-/-- **The demand cannot be met.** A total answer would assign to each moment a verdict on every
+/-- **The demand cannot be met (Cantor/Lawvere on `M → M → Prop`).** A total answer would assign to each moment a verdict on every
 moment, so that every question about moments is some moment's verdict. Negation has no fixed
 point, so no such assignment exists. Reading: Camus's demand for unity, modelled as a demand for
 self-coverage; the model choice is ours. -/
@@ -44,7 +44,8 @@ theorem no_total_answer (M : Type*) : ¬ ∃ φ : M → M → Prop, Function.Sur
   have hnb : ¬ b := fun x => (hb.mpr x) x
   exact hnb (hb.mp hnb)
 
-/-- A demand that always asks for more has no resting point. -/
+/-- A one-line lemma: if `m < D m` for all `m`, then `D m ≠ m`. It holds by irreflexivity of `<`;
+kept only as the arithmetic behind the phrase "a demand that always asks for more". -/
 theorem demand_no_fixed_point {M : Type*} [Preorder M] (D : M → M) (h : ∀ m, m < D m) (m : M) :
     D m ≠ m := fun e => absurd (h m) (by rw [e]; exact lt_irrefl m)
 
@@ -55,37 +56,34 @@ variable {M : Type*} [Frame M]
 /-- An absurd world: no moment is final. -/
 def Absurd (M : Type*) [Frame M] : Prop := ∀ m : M, ¬ IsMax m
 
-/-- **Revolt.** In an absurd world every moment begins an endless strictly ascending history.
-Reading: Sisyphus continues; there is always a next step and never a last one. -/
+/-- No maximal element gives an infinite strict chain: from any `m` there is a strictly
+increasing `ℕ`-sequence starting at `m` (dependent choice). A general fact about orders; read as
+"revolt" in our reading of Camus, whose revolt is a lucid stance, not an infinite chain. -/
 theorem revolt (h : Absurd M) (m : M) : ∃ s : ℕ → M, s 0 = m ∧ StrictMono s := by
   choose next hnext using fun x : M => not_isMax_iff.1 (h x)
   refine ⟨fun n => next^[n] m, rfl, strictMono_nat_of_lt_succ fun n => ?_⟩
   rw [Function.iterate_succ_apply']
   exact hnext _
 
-/-- Revolt does not undo loss: along any continuation, what was lost stays lost (Fisher's
-`lost_mono`), so the ascent of Sisyphus carries its ghosts with it. -/
+/-- Along any strictly increasing sequence, what was lost stays lost (Fisher's `lost_mono`). -/
 theorem revolt_keeps_ghosts {s : ℕ → M} (hs : StrictMono s) {f : M} (hl : Lost (s 0) f) (n : ℕ) :
     Lost (s n) f :=
   lost_mono (hs.monotone (Nat.zero_le n)) hl
 
 /-! ### 3. Reductions that close, and reductions that do not -/
 
-/-- A chain of reductions: statement `n + 1` implies statement `n`. If any stage is ever proved,
-the first statement is proved. Reading: the board's chain A4 → A7 → A10 → BottomPay, where each
-arrow is a checked implication and the last statement is open. -/
+/-- Induction over `ℕ`: if statement `n + 1` implies statement `n` for all `n`, any proved stage
+gives the first statement. The board chain A4 → A7 → A10 → BottomPay is not encoded here; the
+status of its arrows comes from the boards, not from this lemma. -/
 theorem chain_closes {P : ℕ → Prop} (red : ∀ n, P (n + 1) → P n) : ∀ n, P n → P 0
   | 0, h => h
   | n + 1, h => chain_closes red n (red n h)
 
-/-- So an open first statement means every later stage is open too: the rock is the same rock at
-every height. -/
+/-- Contrapositive: if the first statement is not proved, no stage is. -/
 theorem open_all_the_way {P : ℕ → Prop} (red : ∀ n, P (n + 1) → P n) (h0 : ¬ P 0) (n : ℕ) :
     ¬ P n := fun h => h0 (chain_closes red n h)
 
-/-- The finite level is where the absurd stops: no sequence of natural numbers strictly descends
-for ever. Reading: the repository's bottom level argues by a minimal counterexample; a reduction
-that lowers a size must close. -/
+/-- Well-foundedness of `ℕ`: no sequence of natural numbers strictly descends for ever. -/
 theorem no_infinite_descent : ¬ ∃ f : ℕ → ℕ, StrictAnti f := by
   rintro ⟨f, hf⟩
   have key : ∀ n, f n + n ≤ f 0 := by

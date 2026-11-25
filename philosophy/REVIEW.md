@@ -87,3 +87,68 @@ does not cover that, because the claim is made by the theorem name and the bold 
 ## Overall verdict
 
 The Lean is correct and compiles, and every file carries an honest top-of-file disclaimer, but the interpretive weight sits in theorem names and bold doc lines (`capitalist_realism`, `each_seeks_the_death_of_the_other`, `unity_and_identity_of_opposites`, `unified`), and those claims are not supported: nearly all of them are one-line order, list or set facts that would be provable without any philosophy. Three statements are outright wrong or empty: root README.md says "Φ is not determined by the table" (it is, by `rfl`), `barbarian_whatever_is_right` and `realize_mem` say nothing, and the "Beauvoir's ambiguity", "Hegel's determinate negation" and "Deleuze's actual/virtual in the tree" labels are the author's, not the texts'. Keep the theorems, rename them for their mathematical content, and move the philosophical readings into clearly marked "our reading" remarks.
+
+## Status after review (2026-11-25)
+
+Original review text above is unchanged. This section records what was done on each row. Rule applied:
+a doc comment now says what the theorem shows ("a general fact about X; read as Y in [source]"), and
+philosophical labels are marked as ours. No proof was changed. "Renamed" lists every use that was updated;
+all of `lake build` for the six `lean/` modules and the Bridge and LevelGap modules passes.
+`BeauvoirQG` files are not touched here (another seat).
+
+| # | Status |
+|---|---|
+| 1 | Header fixed: sections 2-4 live in a normed space, finite dimension only in section 4. |
+| 2 | `realize_mem` kept; doc now says it holds by definition and is a foil, nothing models resemblance. |
+| 3 | No change (fine). |
+| 4 | Doc on `Trajectory.const` notes `Trajectory` is otherwise unused. |
+| 5 | `actual_smul` doc rewritten: rescaling by c != 0 keeps the zero set; Bergson gloss labelled as our reading. |
+| 6 | `distinct_problems_same_actual` doc: only one invariant is shown equal; non-resemblance of kind not modelled. |
+| 7 | `actual_not_injective` doc: generic many-to-one fact. |
+| 8 | `Nondegenerate` doc: inverse function theorem hypothesis; Smith's differential not modelled. |
+| 9 | `nondegenerate_isolated` doc: standard fact; "differenciation" is our reading. |
+| 10 | `not_linearEquiv_of_dimension_ne` doc: bare vector spaces; "difference in kind" dropped. |
+| 11 | `extensive`/`intensive` docs: sum versus mean; D&R ch. 5 not modelled; empty-set convention stated. |
+| 12 | Fisher header: attribution "(Fisher, after Jameson and Zizek)"; pressure and slowness stated as not modelled. |
+| 13 | `Lost`/`Haunted` docs: modal definition of an untaken branch; cannot tell a lost political future from an unchosen lunch. |
+| 14 | `lost_mono` doc: irreversibility is built into the static order. |
+| 15 | No change (fine). |
+| 16 | Renamed `capitalist_realism` to `no_alternative_of_all_reachable` (use in `Unify.lean` updated); doc says it is `forall -> not exists not` plus unfolding `Lost`, does not model ideology. `findings.jsonl` (append-only log) still cites the old name. |
+| 17 | Doc notes it is trivial and does not use `linear_past`. |
+| 18 | `IsHistory` kept; doc says no theorem uses it. |
+| 19 | Bridge header rewritten: two non-injectivity facts, no shared structure with P2 beyond that; `actual` restated but unused. |
+| 20 | No change (fine). |
+| 21 | `corners` doc: evaluation at two points, naming only, values cast to R. |
+| 22 | `PhiT_not_injective` doc: arbitrary integer tables on `Fin 2`, not slack tables; states Phi is determined by the table. |
+| 23 | `corners_not_injective` doc: arbitrary table `tOne`; `no_minCE` claim dropped. |
+| 24 | `LimitTarget` doc: placeholder, vacuously true if no large `MinCE` exists. |
+| 25 | Already correct in root README at the time of this pass (it states Phi is a function of the table). No change. |
+| 26 | `philosophy/README.md` rewritten: only the Deleuze rung is built. |
+| 27 | `philosophy/README.md` updated (other files listed; Bridge and LevelGap import project code). |
+| 28 | `PLAN.md`: plurality lemma marked as not built. |
+| 29 | No change (fine). |
+| 30 | `UNIFY.md` and `Unify.lean` header: `unified` bundles six consequences of `Lost m f`; labels are ours. |
+| 31 | `UNIFY.md` table and `Unify.lean`: marked as a second, unrelated use of actual/virtual, not `Deleuze.lean`. |
+| 32 | Sentence about counterexample files deleted. |
+| 33 | `permanence_iff_no_reconciliation` doc: order-theoretic lemma; "recognition" is our label; "main new statement" removed. |
+| 34 | Beauvoir label removed from `collapse_iff_injective` (Unify.lean), `UNIFY.md`, `LevelGap.lean` header and docs. |
+| 35 | `UNIFY.md`: non-injectivity stated only for arbitrary integer tables on `Fin 2` (n = 2). |
+| 36 | Renamed `actual_does_not_determine_virtual` to `same_past_length_different_haunting`; doc says it is not Deleuze's non-resemblance. |
+| 37 | Commit/board sentence deleted from `diamond_reconciles` doc. |
+| 38 | `Unify.lean` section 6: "capitalist realism on the board" removed; `board_realism` renamed `board_all_futures_extend_A4`; docs say encoding check, hand-coded seven-row tree only. Coordinator addition: the real one-NOT history is a DAG with reconciliations (lifted MUL / LiftSDR from refuted real-merge forms), which a tree forbids; recorded in `Unify.lean` and under "Only analogy" in `UNIFY.md`. |
+| 39 | `no_total_answer` doc: Cantor/Lawvere; model choice is ours (kept). |
+| 40 | `demand_no_fixed_point` kept; doc says it is a one-line lemma from irreflexivity. |
+| 41 | `revolt` doc: no maximal element gives an infinite strict chain; Camus's revolt not modelled. |
+| 42 | `chain_closes` and `no_infinite_descent` docs: induction and well-foundedness; board chain not encoded. |
+| 43 | `determinate_negation` doc: lost routes share a longest common prefix; the Hegel label is our reading; section header relabelled. |
+| 44 | `sublate` docs: removal of one element; explicitly not Aufhebung. |
+| 45 | `witness_domain_adjoint` doc: contraposition for sets. |
+| 46 | Renamed `unity_and_identity_of_opposites` to `even_odd_embeddings_with_half`; doc points to the adjunction lemmas, calls it a toy. |
+| 47 | Board sentence dropped from `lp_no_explosion` doc. |
+| 48 | `facticity_isChain`/`ambiguity` docs: antisymmetry fact; labels ours. |
+| 49 | `Free`, `Serious`, `serious_iff_not_free` docs: our definitions, De Morgan, not Beauvoir's accounts. |
+| 50 | `Barbarian` and `barbarian_iff_lost` docs: other persons modelled as unchosen branches (our decision); self-hatred reading flagged unconfirmed. `UNIFY.md` likewise. |
+| 51 | Renamed `barbarian_whatever_is_right` to `barbarian_independent_of_any_predicate`; doc says it holds by definition and why it is kept. |
+| 52 | Renamed `each_seeks_the_death_of_the_other` to `lost_both_ways`; doc says "death" is only becoming `Lost`. |
+| 53 | `no_recognition_between_barbarians` kept (name used by `Unify`); doc says incomparable moments have no common upper bound, Hegel's argument not modelled; `Recognise` flagged as our label. |
+| 54 | `level_gap` doc rewritten as a generic image/kernel-image fact at n = 2 on arbitrary tables; Beauvoir label removed. Coordinator addition: `UNIFY.md` says "n = 2 only" wherever it appears and no longer uses wording that can be read as polynomial-time. |

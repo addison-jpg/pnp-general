@@ -119,7 +119,7 @@ theorem le_iff_take {p m : Path α} : p ≤ m ↔ ∃ k, p.steps = m.steps.take 
 
 end Path
 
-/-! ### 3. Determinate negation -/
+/-! ### 3. Lost routes diverge at one point (our label: determinate negation) -/
 
 /-- Two lists, neither a prefix of the other, part at a first point of difference. -/
 theorem diverge {α : Type*} : ∀ l₁ l₂ : List α, ¬ l₁ <+: l₂ → ¬ l₂ <+: l₁ →
@@ -135,10 +135,11 @@ theorem diverge {α : Type*} : ∀ l₁ l₂ : List α, ¬ l₁ <+: l₂ → ¬ 
       exact ⟨x :: a, x', y', s', t', hne, by simp [e1], by simp [e2]⟩
     · exact ⟨[], x, y, s, t, hxy, rfl, rfl⟩
 
-/-- **Determinate negation.** A lost route is not nothing. If `f` is lost at `m`, the two share a
-common part `a` and then differ by one determinate pair of decisions `x ≠ y`: the present took
-`x` where the lost route took `y`. Reading: Hegel, *Phenomenology*, Introduction (the result of a
-negation keeps a content, namely that from which it results). -/
+/-- Lost routes share a longest common prefix and then differ. If `f` is lost at `m`, the two
+share a common part `a` and then differ by one pair of decisions `x ≠ y`: the present took `x`
+where the lost route took `y`. This is a fact about two lists, neither a prefix of the other.
+Calling it "determinate negation" (Hegel, *Phenomenology*, Introduction) is our reading; Hegel's
+notion concerns the content of a refuted standpoint, not a branch point in a tree. -/
 theorem determinate_negation {α : Type*} {m f : Path α} (h : Lost m f) :
     ∃ (a : Path α) (x y : α), x ≠ y ∧ a ≤ m ∧ a ≤ f ∧
       (⟨a.steps ++ [x]⟩ : Path α) ≤ m ∧ (⟨a.steps ++ [y]⟩ : Path α) ≤ f := by
@@ -152,8 +153,7 @@ theorem determinate_negation {α : Type*} {m f : Path α} (h : Lost m f) :
   · refine Path.le_def.2 ⟨t, ?_⟩
     simp [e2]
 
-/-- The point of difference is unique: the determinate content of a negation is a function of
-the two routes, not a choice. -/
+/-- The point of first difference of two lists is unique. -/
 theorem determinate_negation_unique {α : Type*} {a a' : List α} {x y x' y' : α}
     {s t s' t' : List α} (hne : x ≠ y) (hne' : x' ≠ y')
     (e1 : a ++ x :: s = a' ++ x' :: s') (e2 : a ++ y :: t = a' ++ y' :: t') : a = a' := by
@@ -179,16 +179,16 @@ section Sublation
 
 variable {X : Type*}
 
-/-- The sublated domain: a universal claim over `D` refuted at `c` continues as the claim over
-`D` without `c`. Reading: Hegel's Aufhebung (cancel and preserve), applied to the board's practice
-(a refuted row keeps its counterexample file, and the next statement excludes it). -/
+/-- Remove one element `c` from a set `D`. Read, by us, as a claim over `D` refuted at `c`
+continuing over `D` without `c`. This is not Hegel's Aufhebung: that preserves the negated moment
+in a higher unity, while here the counterexample is deleted from the domain. -/
 def sublate (D : Set X) (c : X) : Set X := D \ {c}
 
-/-- Cancelled: the new domain is strictly smaller. -/
+/-- Removing a member makes the set strictly smaller. -/
 theorem sublate_ssubset {D : Set X} {c : X} (hc : c ∈ D) : sublate D c ⊂ D :=
   ⟨Set.sdiff_subset, fun h => (h hc).2 rfl⟩
 
-/-- Preserved: nothing but the counterexample is given up. -/
+/-- Removing one element: everything else is unchanged (re-inserting it restores the set). -/
 theorem sublate_preserves {D : Set X} {c : X} (hc : c ∈ D) : insert c (sublate D c) = D := by
   ext x
   simp only [sublate, Set.mem_insert_iff, Set.mem_sdiff, Set.mem_singleton_iff]
@@ -201,18 +201,16 @@ theorem sublate_preserves {D : Set X} {c : X} (hc : c ∈ D) : insert c (sublate
     · exact Or.inl hx
     · exact Or.inr ⟨h, hx⟩
 
-/-- Determined: the sublated domain is the greatest subdomain that avoids the counterexample, so
-the refutation fixes the next statement and leaves no choice. -/
+/-- `D \ {c}` is the greatest subset of `D` that avoids `c`. -/
 theorem sublate_greatest {D D' : Set X} {c : X} (h : D' ⊆ D) (hc : c ∉ D') : D' ⊆ sublate D c :=
   fun _ hx => ⟨h hx, fun hxc => hc (hxc ▸ hx)⟩
 
-/-- An archive of counterexamples `W` leaves the live domain `D \ W`; a larger archive leaves a
-smaller live domain. -/
+/-- A larger removed set leaves a smaller remainder `D \ W`. -/
 theorem live_antitone (D : Set X) {W W' : Set X} (h : W ⊆ W') : D \ W' ⊆ D \ W :=
   Set.sdiff_subset_sdiff_right h
 
-/-- Negation as an adjunction with itself (Lawvere's reading of opposites, in its smallest
-case): a set of witnesses refutes a domain exactly when the domain avoids the witnesses. -/
+/-- Contraposition for sets: `W ⊆ Dᶜ ↔ D ⊆ Wᶜ`. (One can say complement is self-adjoint; no
+claim is made that this is Lawvere's reading of opposites.) -/
 theorem witness_domain_adjoint (W D : Set X) : W ⊆ Dᶜ ↔ D ⊆ Wᶜ :=
   Set.subset_compl_comm
 
@@ -232,10 +230,12 @@ theorem half_odd_adjoint : GaloisConnection (fun m : ℕ => m / 2) (fun n : ℕ 
   show m / 2 ≤ n ↔ m ≤ 2 * n + 1
   omega
 
-/-- **An adjoint cylinder on `(ℕ, ≤)`.** `even ⊣ half ⊣ odd`; both outer maps are embeddings
-(identity: each is a copy of `ℕ`, and `half` undoes both); their images are disjoint
-(opposition). Reading: Lawvere 1996, as reported; this `ℕ` form is ours and is checked here. -/
-theorem unity_and_identity_of_opposites :
+/-- Even and odd embeddings of `ℕ` with `half` as a common retraction: `2n/2 = n`,
+`(2n+1)/2 = n`, both maps injective, images disjoint. The adjunctions are the separate lemmas
+`even_half_adjoint` and `half_odd_adjoint`; full-and-faithfulness is not stated here. A toy
+instance of the shape of Lawvere's adjoint cylinder (1996, as reported on nLab); it relates to
+Hegel only by our labelling. -/
+theorem even_odd_embeddings_with_half :
     (∀ n : ℕ, (2 * n) / 2 = n) ∧ (∀ n : ℕ, (2 * n + 1) / 2 = n) ∧
       Function.Injective (fun n : ℕ => 2 * n) ∧ Function.Injective (fun n : ℕ => 2 * n + 1) ∧
       ∀ n k : ℕ, 2 * n ≠ 2 * k + 1 := by
@@ -265,9 +265,9 @@ def LP.designated : LP → Prop
 
 instance : DecidablePred LP.designated := fun v => by cases v <;> unfold LP.designated <;> infer_instance
 
-/-- A contradiction can hold without everything holding. Reading: Priest's LP as a model of
-dialectical contradiction (contested: see LITERATURE.md M1). Board reading: a board may carry a
-claim and its refutation side by side without every row becoming true. -/
+/-- A contradiction can be designated without everything being designated. Reading: Priest's LP as a model of
+dialectical contradiction (contested: see LITERATURE.md M1). A three-valued truth-table check;
+it is not connected to the frame or to any board. -/
 theorem lp_no_explosion :
     ∃ A B : LP, LP.designated (LP.and A (LP.neg A)) ∧ ¬ LP.designated B :=
   ⟨.b, .f, by decide, by decide⟩
