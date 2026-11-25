@@ -1,0 +1,13 @@
+# Raw Windows commands as bus records. Pure .ath: no Python, no shell.
+# Each record is one method: the exact PowerShell text, and its bus direction (OUT: program to memory; IN: memory back up).
+# None of these commands was run here. This machine is Linux. The Windows path is untested, so every record is open.
+# asteroid refuses a record without a claim, so the program holds one literal true claim.
+claim 2 = 2
+record workshop/windows bus open "Windows method OUT, start the terminal (PowerShell, in the unpacked packet folder): .\ast.exe little.ath --no-proof. Not run on Windows; untested."
+record workshop/windows bus open "Windows method OUT, run the hello program: .\ast.exe hello.ath --no-proof. Not run on Windows; untested."
+record workshop/windows bus open "Windows method OUT, run the bus program: .\ast.exe --no-lean workshop\bus\bus.ath. Not run on Windows; untested."
+record workshop/windows bus open "Windows method OUT, start the dispatcher terminal: powershell -ExecutionPolicy Bypass -File workshop\pair\win\base.ps1. Not run on Windows; untested."
+record workshop/windows bus open "Windows method OUT, show the engine version: .\ast.exe version. Not run on Windows; untested."
+record workshop/windows bus open "Windows method IN, read the last exit code after a run: Write-Output $LASTEXITCODE. Not run on Windows; untested."
+record workshop/windows bus open "Windows method IN, read bus memory back up: Get-Content workshop\bus\findings.jsonl -Tail 3. Not run on Windows; untested."
+record workshop/windows bus open "Windows method IN, read these Windows records back up: Get-Content workshop\windows\findings.jsonl. Not run on Windows; untested."
