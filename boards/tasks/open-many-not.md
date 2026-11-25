@@ -22,3 +22,4 @@
 - B4 TAKEN: OR-system partition bound (gates >= n - components) in Open/OrSystemManyNot.lean
 - B5 TAKEN: S3(b) flip-class Hall condition across sets (attack on t4/t5/t6/C4w, then proof or exact missing lemma); one-not/research/open/B5_flip_hall.md, Open/FlipHall.lean
 - B4 DECIDED: proved (Open/OrSystemManyNot.lean): any number of NOT gates, gates >= n - comp(union graph); equals base for disjoint sets and chains {i,i+1} (hyperforests); no information beyond base-below for cyclic/overlapping systems. Not a bound for overlapping systems with cycles.
+- B3 (2026-11-25): SAT done, 224 systems (n<=6) UNSAT for t=2,3 at base-1; no hit. See one-not/research/open/B3_sat_manynot.md
