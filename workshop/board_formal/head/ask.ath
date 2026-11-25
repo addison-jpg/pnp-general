@@ -1,0 +1,3 @@
+# Questions to asteroid about the small-head backprop plan. Asks are questions, not claims.
+ask "is numpy too messy for a small linear head trained by gradient descent in this sandbox"
+ask "what does a small head over stored Qwen embedding rows need: rows, labels, a held-out split"

@@ -1,0 +1,24 @@
+h4_contracts.txt (H4 slot: contract proposals for universal.ath and formalization.ath)
+Seat: written by the lead. No helper ran: this session has no Agent tool, so H4 was not spawned. No second seat.
+Neither file is in the repo. Source for the role of each: workshop/gnn_plan/PLAN.md sections 0, 4.7, 6.
+Every item below: proposal, open.
+
+universal.ath  (proposal, open)
+- input: one label per board node (262 today), each an index into the six labels
+  (0 checked, 1 checked-finite, 2 tested, 3 refuted, 4 analogy, 5 open), in the board's node order;
+  in PLAN.md step 4.7 these come from the GNN's combinatorial labels.
+- output: one claim per node, TRUE when the input label equals the board's own label for that node,
+  then the asteroid summary "N true, M false"; exit 0 only when M = 0. No record line: it changes no node.
+- check: feed it the board's own labels (the identity input); it must print 262 true, 0 false
+  (or the node count of that day); then change one label and it must print exactly 1 false.
+
+formalization.ath  (proposal, open)
+- input: one node (id, label, claim, evidence paths) whose label is tested or open, and the prompt that asked for it,
+  taken from the prompt set (research-seat.md, assumed).
+- output: an asteroid program for that node: its claim as asteroid claims, plus a proposed label that is
+  checked-finite only when every claim runs TRUE with a runner, and otherwise the node's old label (never an upgrade without a run).
+- check: run it on a node that is already checked-finite (for example 5e8f4f17, big.ath in core/universes):
+  the program it writes must give 0 false and propose checked-finite; run it on a refuted node: the program must give at least 1 false.
+
+Open for both: whether formalization.ath is one file or a folder (PLAN.md section 6); whether labels should be a
+finite non-binary alphabet (PLAN.md 4.6); the user has not confirmed either contract.

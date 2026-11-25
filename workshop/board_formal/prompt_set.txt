@@ -1,0 +1,19 @@
+prompt_set.txt (H3 slot)
+Seat: written by the lead. No helper was spawned: this session had no Agent tool, so H3 did not run. No second seat.
+
+The phrase "discrete prompting set" does not occur in the repo. Directory listed: workshop/ath_prompts
+(ATTACK.md, SYNTHESIS.md, research-seat.md, findings.jsonl, attack/, invisible/, measure/, us/). There is no workshop/prompts.
+
+Taken as the discrete prompting set: workshop/ath_prompts/research-seat.md, section "## Prompts, in order".
+- 13 entries: 11 typed or pasted, 2 option clicks ([choice]). The file's own "Counts" section says 13 (11 + 2).
+- 1 of the 11 is pasted text written by another session (05:28), so 10 are typed by Addison.
+- The measured subset: workshop/ath_prompts/measure/measure.py FORMAL has 10 keys
+  (00:43, 00:44, 05:12, 05:40, 05:45, 06:19, 06:32, 06:43, 06:48, 06:59); with the preferences block, 11 pairs.
+  measure/heavy/data.py reads the same section (B1: "Addison's 10 typed prompts").
+
+Two further finite prompt sets (register trials):
+- workshop/ath_prompts/measure/trial/tasks.json: 30 tasks (12 num, 13 contains, 5 py), each with an informal and a formal ask: 60 asks.
+- workshop/ath_prompts/measure/trial/tasks_claude.json: 42 tasks (20 num, 15 contains, 7 py) = the 30 above plus h01..h12: 84 asks.
+
+Files: workshop/ath_prompts/research-seat.md, workshop/ath_prompts/measure/measure.py, workshop/ath_prompts/measure/heavy/data.py,
+workshop/ath_prompts/measure/trial/tasks.json, workshop/ath_prompts/measure/trial/tasks_claude.json.

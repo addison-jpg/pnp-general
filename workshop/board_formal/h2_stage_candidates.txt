@@ -1,0 +1,16 @@
+h2_stage_candidates.txt (H2 slot: candidates for stage three of the little, big, little chain)
+Seat: written by the lead. No helper ran: this session has no Agent tool, so H2 was not spawned. No second seat.
+Search: files that name big.ath (grep -l 'big\.ath'): 19 files, of which these name a program that runs or reads after it.
+No file in the repo says "stage three" or names a little, big, little chain.
+
+Candidates, one line each
+1. workshop/bus/bus.ath - CHOSEN. Third command of the terminal (workshop/pair/win/TERMINAL.md, base.ps1: hello -> big -> bus); 8 lines, pure .ath, no Python (little); its route graph has big.ath as a program node whose OUT edges go down to memory (workshop/bus/laws.ath world 0), so it takes big.ath's output as input in design. Label: assumed.
+2. workshop/bus/laws.ath - the bus laws L1..L4 checked on a slice with big.ath as world 0; a check on the bus, not a program in the terminal order; 49 lines.
+3. philosophy/cone.py - reads the universe map big.ath runs and treats big.ath as the apex; a .py file, not a .ath stage.
+4. workshop/pair/pair.ath - frames that run hello.ath and big.ath as children; it is the caller of both, not a stage after big.
+5. workshop/little/attempt.ath - little.ath's four claims plus new ones; little, but it does not read or cite big.ath.
+6. workshop/route/bigmb.ath - "big" and "little" there are two language models, not asteroid stages.
+
+Why 1 over the rest: it is the only candidate that is (a) a .ath program, (b) placed after big.ath in a stated order, (c) small,
+and (d) fed by big.ath's edges in its own design. Weak point: the order is a terminal menu, not a stated pipeline, and the
+"takes big.ath's output" link is a design reading of the bus README, not a run. Label of the choice: assumed, to be confirmed by the user.

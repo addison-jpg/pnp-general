@@ -1,0 +1,41 @@
+h1_board_counts.txt (H1 slot: count board nodes by label and seat)
+Seat: written by the lead. No helper ran: this session has no Agent tool, so H1 was not spawned. No second seat.
+Method: every findings.jsonl under the repo (58 files, skipping .git .lake __pycache__ node_modules), merged per
+directory by id the way boards.py load() does (later lines override, "by" lists are united), counted with jq.
+Totals cross-checked against boards/tree.json (generated board). Snapshot 2026-11-25.
+
+Nodes
+- nodes: 262 (262 distinct ids)
+- directories on the board (keys of boards/tree.json): 71
+- findings.jsonl files: 58
+
+Nodes by label (the "word" field)
+- checked 100
+- checked-finite 58
+- tested 51
+- open 35
+- refuted 13
+- paper 5
+- analogy 0      (analogy is not a board word in boards.py WORDS)
+- sum 262
+
+Nodes by seat
+- every node has a "who": 262 of 262
+- distinct "who" values: 76
+- with a second seat (a name in "by" other than "who"): 52
+- without a second seat: 210
+- by label, second seat / none:
+  checked 0 / 100, checked-finite 34 / 24, tested 12 / 39, open 0 / 35, refuted 6 / 7, paper 0 / 5
+- top writers: asteroid 58, main 29, main's Fable 28, main's research agent (beyond-one-not) 11, R1 10
+
+Verified by boards.py (boards/tree.json)
+- root "." verified ids: 141; root counts: checked 91, checked-finite 32, tested 12, refuted 6 (sum 141)
+- unverified entries summed over all directories: 121
+- 141 + 121 = 262
+
+Nodes for the chain's stages
+- big.ath: 2 nodes in core/universes (42704262, 5e8f4f17), both checked-finite
+- workshop/bus/bus.ath (stage three candidate, see h2): 2 nodes in workshop/bus (17a62daf checked-finite, a991242d open)
+- little.ath: 0 nodes
+
+Open: no second seat for any count here.

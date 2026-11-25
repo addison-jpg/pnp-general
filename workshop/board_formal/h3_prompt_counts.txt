@@ -1,0 +1,21 @@
+h3_prompt_counts.txt (H3 slot: count the prompt set and the two trial sets)
+Seat: written by the lead. No helper ran: this session has no Agent tool, so H3 was not spawned. No second seat.
+
+Prompt set (default): workshop/ath_prompts/research-seat.md, section "## Prompts, in order".
+Label of the choice: assumed, to be confirmed by the user.
+- entries (lines starting "- " in that section): 13
+- option clicks ([choice]): 2
+- typed or pasted: 11 (the file's own "Counts" section says 13 = 11 + 2)
+- pasted (05:28, written by another session): 1, so typed by Addison: 10
+- measured subset: workshop/ath_prompts/measure/measure.py has 10 distinct "HH:MM" keys
+
+Trial set 1: workshop/ath_prompts/measure/trial/tasks.json
+- tasks: 30 (kinds: num 12, contains 13, py 5)
+- every task has an informal and a formal ask: 30 of 30, so asks: 60
+
+Trial set 2: workshop/ath_prompts/measure/trial/tasks_claude.json
+- tasks: 42 (kinds: num 20, contains 15, py 7)
+- ids shared with tasks.json: 30; new ids: h01..h12 (12)
+- every task has an informal and a formal ask: 42 of 42, so asks: 84
+
+Method: jq on both .json files; grep on research-seat.md and measure.py. Counts are integers taken by reading; open: no second seat.

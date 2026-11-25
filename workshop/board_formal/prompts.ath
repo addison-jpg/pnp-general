@@ -1,0 +1,38 @@
+# prompts.ath: step 2, the discrete prompting set, as integer claims asteroid parses.
+# Run:   bin/asteroid --no-lean workshop/board_formal/prompts.ath
+# The prompt set: workshop/ath_prompts/research-seat.md, section "## Prompts, in order".
+# Label of that choice: assumed, to be confirmed by the user.
+# Counts were read with jq and grep (h3_prompt_counts.txt) and are written here as integers: asteroid cannot read a
+# list of strings or a JSON list of objects, so the claims check the arithmetic between counts, not the files.
+# No record line: a record would write a node into a findings.jsonl.
+
+# --- the prompt set: 13 prompts, indexed 1..13 in file order ---
+#  1 05:12  2 05:28 (pasted)  3 05:40  4 05:45  5 06:19  6 06:32  7 06:43  8 06:48  9 06:59
+# 10 [choice]  11 [choice]  12 00:43  13 00:44
+seq research = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+claim formula research = "n"                  # indices 1..13, no gap, no repeat
+seq size = [13]
+claim formula size = "11 + 2"                 # 11 typed or pasted + 2 option clicks (the file's "Counts" says 13)
+seq typed = [11]
+claim formula typed = "10 + 1"                # 10 typed by Addison + 1 pasted (05:28)
+seq measured = [10]
+claim formula measured = "13 - 2 - 1"         # measure.py has 10 keys: the set less the 2 clicks and the 1 paste
+claim 10 <= 13                                # the measured subset is inside the prompt set
+
+# --- trial set 1: measure/trial/tasks.json ---
+seq qwen = [30]
+claim formula qwen = "12 + 13 + 5"            # kinds: num 12, contains 13, py 5
+seq qwenasks = [60]
+claim formula qwenasks = "30 * 2"             # every task has an informal and a formal ask
+
+# --- trial set 2: measure/trial/tasks_claude.json ---
+seq haiku = [42]
+claim formula haiku = "30 + 12"               # the 30 ids of tasks.json plus h01..h12
+claim formula haiku = "20 + 15 + 7"           # kinds: num 20, contains 15, py 7
+seq haikuasks = [84]
+claim formula haikuasks = "42 * 2"            # every task has an informal and a formal ask
+claim 30 <= 42                                # trial set 1 is inside trial set 2 (all 30 ids shared)
+
+# --- all three sets together ---
+seq allasks = [157]
+claim formula allasks = "13 + 60 + 84"        # prompts in the three finite sets, counted with repeats

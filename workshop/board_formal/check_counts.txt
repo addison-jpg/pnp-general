@@ -1,0 +1,6 @@
+check_counts.txt (H4 slot)
+Seat: written by the lead. NOT an independent check: no helper was spawned (this session had no Agent tool), so H4 did not run
+and these counts have no second seat.
+
+bin/asteroid --no-lean workshop/board_formal/prompts.ath   -> claims: 27 true, 0 false (two runs, same result)
+bin/asteroid --no-lean workshop/board_formal/board.ath     -> not run: board.ath was not written (Part 1 stopped: chain stage 3 not found)

@@ -1,0 +1,46 @@
+# board.ath: step 1, the board as a formal structure (nodes, labels, seats) and the little, big, little chain.
+# Run:   bin/asteroid --no-lean workshop/board_formal/board.ath
+# Every count is an integer read from h1_board_counts.txt (jq over the 58 findings.jsonl files, cross-checked with
+# boards/tree.json). asteroid cannot read tree.json, so the claims check the arithmetic between counts, not the files.
+# Stage three = workshop/bus/bus.ath is ASSUMED (h2_stage_candidates.txt), to be confirmed by the user.
+# No record line: a record would write a node into a findings.jsonl.
+
+# --- labels: the brief's six, as indices, plus the board's own word "paper" ---
+# 0 checked, 1 checked-finite, 2 tested, 3 refuted, 4 analogy, 5 open
+seq labels = [0, 1, 2, 3, 4, 5]
+claim formula labels = "n - 1"                       # six labels, indices 0..5, no gap
+seq bylabel = [100, 58, 51, 13, 0, 35]               # node counts per label, in the order above
+claim bylabel = [100, 58, 51, 13, 0, 35]
+seq nodes = [262]
+claim formula nodes = "100 + 58 + 51 + 13 + 0 + 35 + 5"   # all 262 nodes: the six labels plus 5 paper
+# The brief's label set covers every node: expected FALSE (5 nodes are labelled paper, which is not one of the six).
+claim formula nodes = "100 + 58 + 51 + 13 + 0 + 35"
+
+# --- verified by boards.py, and unverified ---
+seq verified = [141]
+claim formula verified = "91 + 32 + 12 + 6"          # root counts: checked, checked-finite, tested, refuted
+claim formula nodes = "141 + 121"                    # verified + unverified entries = all nodes
+claim 91 <= 100                                      # verified checked within all checked
+claim 32 <= 58                                       # verified checked-finite within all checked-finite
+claim 12 <= 51                                       # verified tested within all tested
+claim 6 <= 13                                        # verified refuted within all refuted
+
+# --- seats ---
+claim formula nodes = "52 + 210"                     # with a second seat + without one
+seq second = [52]
+claim formula second = "0 + 34 + 12 + 6 + 0 + 0"     # by label: checked, checked-finite, tested, refuted, open, paper
+seq noseat = [210]
+claim formula noseat = "100 + 24 + 39 + 7 + 35 + 5"  # the same order
+claim 76 <= 262                                      # 76 distinct writers (who), each with at least one node
+
+# --- the chain: little.ath (0) -> big.ath (1) -> workshop/bus/bus.ath (2, assumed) ---
+# atoms: l = a little stage, b = a big stage, s = the start
+kripke chain = worlds 3 rel [(0,1), (1,2)] val l {0,2} b {1} s {0}
+claim worlds chain "l -> []b" = {0,1,2}              # after a little stage comes a big one, or nothing
+claim worlds chain "b -> []l" = {0,1,2}              # after the big stage comes a little one
+claim worlds chain "[][][]F" = {0,1,2}               # the chain has no path of 3 steps: it has exactly three stages
+claim worlds chain "<><>T" = {0}                      # only the start reaches a stage two steps on
+claim valid chain "<>p -> []p"                        # one next stage at most (as in workshop/bus/laws.ath)
+# nodes per stage on the board: little.ath 0, big.ath 2, bus.ath 2
+seq stagenodes = [0, 2, 2]
+claim stagenodes = [0, 2, 2]

@@ -1,0 +1,13 @@
+chain_stages.txt (H1 slot)
+Seat: written by the lead. No helper was spawned: this session had no Agent tool, so H1 did not run. No second seat.
+
+The chain (little, big, little), stages as found:
+1. stage 1, little: little.ath (repo root, 10 lines). Loads hello.bench; 4 claims (correct, gates = base, hyps, forall cubes slack >= 0) and one plot.
+2. stage 2, big: big.ath (repo root, 16 lines). 9 `check` lines (core/universes/network.py, biology/brain/*, culture/*), one record into core/universes (checked-finite).
+3. stage 3, little again: NOT FOUND.
+
+Search done: grep over the repo for little/big/little, "little, big, little", three-stage, chain, pipeline, little_big, big_little.
+No file names a little-big-little chain or a third stage. README.md names little.ath and big.ath together only as the contents of dist/packet.tar.gz.
+Candidates seen and not taken (a guess would be needed to call either one stage 3):
+- workshop/little/attempt.ath: little.ath's four claims plus new claims; it does not cite big.ath or any order.
+- workshop/route/bigmb.ath with bigmb_littlemb.json: "big" and "little" there are two language models (Qwen 3B and 0.5B), not asteroid stages.
