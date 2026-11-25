@@ -1,0 +1,8 @@
+h2_open.txt: every open stage contract in WORKFLOW.md section 3. Written by the lead: no Agent tool, so no helper ran.
+
+(c) GNN over the board: open; edge set and number of output units not fixed.
+(f) labels to universal.ath: open until the user defines universal.ath's contract.
+(g) universal.ath's own Qwen-large: open until the user defines universal.ath's contract.
+
+Open contracts: 3.
+Not a contract but open: the threshold rule for stage (d).

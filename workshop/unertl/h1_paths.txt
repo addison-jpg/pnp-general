@@ -1,0 +1,9 @@
+h1_paths.txt: which named check paths exist. Written by the lead: no Agent tool, so no helper ran.
+Method: test -e on each path, 2026-11-25.
+
+workshop/unertl/checks/a_board_in.ath   missing
+workshop/unertl/checks/b_rows.ath       missing
+workshop/unertl/checks/e_labels.ath     missing
+workshop/unertl/checks/                 missing (directory)
+
+Exist: 0 of 3.
