@@ -1,0 +1,4 @@
+[
+ {"name": "triangulations of the sphere with n = 4..12 vertices, up to isomorphism (unoriented)", "seq": [1, 1, 2, 5, 14, 50, 233, 1249, 7595], "runner": "python3 -I brain/membrane/check.py"},
+ {"name": "Caspar-Klug triangulation numbers T = h^2 + hk + k^2 (distinct, ascending)", "seq": [1, 3, 4, 7, 9, 12, 13, 16, 19, 21, 25, 27], "runner": "python3 -I brain/membrane/check.py"}
+]

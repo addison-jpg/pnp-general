@@ -1,5 +1,5 @@
 """Membranes and cages: Euler characteristic checks inside the cell.
-Run from repo root: python3 -I brain/membrane/check.py   (add --n11 to also enumerate n = 11)
+Run from repo root: python3 -I brain/membrane/check.py   (add --n12 to also enumerate n = 12)
 """
 import sys, time, json, math, cmath
 from collections import deque
@@ -46,7 +46,8 @@ def canon(faces):
 def flips(faces):
     fs = set(faces)
     nxt = rotation(faces)
-    for (a, b, c) in faces:
+    for f in faces:
+      for (a, b, c) in (f, f[1:] + f[:1], f[2:] + f[:2]):
         if a < b:
             d = nxt[b][a]  # face (b,a,d)
             if d in nxt[c] or len(nxt[a]) <= 3 or len(nxt[b]) <= 3: continue
@@ -64,6 +65,7 @@ def norm(g):
     return frozenset(out)
 
 def start(n):
+    if n == 4: return norm([(0, 1, 2), (0, 2, 3), (0, 3, 1), (1, 3, 2)])
     # bipyramid over an (n-2)-gon: poles 0,1; rim 2..n-1
     r = list(range(2, n)); fs = []
     for i in range(len(r)):
@@ -99,9 +101,9 @@ def check_tri(faces, V=None):
         assert k == len(d)
     return V, E, F
 
-NMAX = 11 if "--n11" in sys.argv else 10
+NMAX = 12
 if "--quick" in sys.argv: NMAX = 9
-EXPECT = {4: 1, 5: 1, 6: 2, 7: 5, 8: 14, 9: 50, 10: 233, 11: 1249}
+EXPECT = {12: 7595, 4: 1, 5: 1, 6: 2, 7: 5, 8: 14, 9: 50, 10: 233, 11: 1249}
 counts = []
 for n in range(4, NMAX + 1):
     ts = enumerate_tri(n)
@@ -131,8 +133,9 @@ def subdivide(faces, h):
 
 def sqrt3(faces):
     """kis every face then flip every old edge: T -> 3T."""
-    nxt = rotation(faces); out = []
-    cen = {f: ("c", f) for f in faces}
+    faces = relabel(faces); out = []
+    base = 1 + max(v for f in faces for v in f)
+    cen = {f: base + i for i, f in enumerate(sorted(faces))}
     fid = {}
     for f in faces:
         a, b, c = f
