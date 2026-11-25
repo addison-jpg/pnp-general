@@ -18,6 +18,9 @@ claim worlds Gup "(r -> []q) & (q -> []p) & (p -> []F)" = {0,1,2,3,4,5,6,7}
 # L2 tree. No path of 3 steps, so no directed cycle.
 claim worlds OUT "[][][]F" = {0,1,2,3,4,5,6,7}
 claim worlds IN "[][][]F" = {0,1,2,3,4,5,6,7}
+# Before pruning, G and Gup have no path of 3 steps either, so pruning is not what removes cycles.
+claim worlds G "[][][]F" = {0,1,2,3,4,5,6,7}
+claim worlds Gup "[][][]F" = {0,1,2,3,4,5,6,7}
 # One parent per node. A parent in OUT is a successor in IN, so: at most one successor in IN, and the same the other way.
 claim valid IN "<>s -> []s"
 claim valid OUT "<>s -> []s"
