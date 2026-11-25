@@ -12,6 +12,8 @@
 - **Computed exactly, and checked by a second, independent implementation:** a cross-field match found by machine (neuron dendrite growth models give exactly the phylogenetic tree models, `brain/neuron/check.py`), exact privacy combinatorics (`privacy/check.py`), and the Milnor invariants of the Borromean rings and their Bing double (`philosophy/milnor.py`).
 - **Not claimed:** anything about P versus NP being settled or near.
 
+Every verified result, with its label, evidence and the command that rechecks it: [`RESULTS.md`](RESULTS.md) (generated from the centre store).
+
 > Found a mistake, or a claim that reads stronger than its evidence? Please open an issue. Corrections are the most useful contribution.
 
 ## A small CPU in our gates

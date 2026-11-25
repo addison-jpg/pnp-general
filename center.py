@@ -33,7 +33,7 @@ def program(path):
                       ("refuter", "circuits"), ("flagship", "circuits"), ("one-not", "circuits"), ("open-one", "circuits"),
                       ("open-many", "circuits"), ("open-qg", "quantum-gravity"), ("qg-", "quantum-gravity"),
                       ("hypercomplex", "worlds"), ("model-in", "compute"), ("git-compute", "compute"),
-                      ("ath-prompt", "prompt-method"), ("ath_prompt", "prompt-method"), ("brain", "brain"), ("ontology", "ontology")]:
+                      ("ath-prompt", "prompt-method"), ("ath_prompt", "prompt-method"), ("brain", "brain"), ("ontology", "ontology"), ("privacy", "privacy"), ("compbio", "compbio")]:
         if key in p: return name
     return "other"
 
