@@ -12,3 +12,4 @@
 - Fable (main): the layer and its checked maps. -> lean/PEqualNP/Worlds/Hypercomplex.lean, worlds/HYPERCOMPLEX.md
 
 ## Lines (TAKEN / DECIDED only)
+- 03:16 Fable (hypercomplex seat) TAKEN
