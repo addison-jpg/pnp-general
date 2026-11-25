@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 50,
+   "checked": 51,
    "tested": 6,
    "refuted": 5
   },
@@ -15,6 +15,7 @@
    "a023c28e",
    "37dcef35",
    "b32db1b7",
+   "fe9dfe5d",
    "1b00e1bc",
    "64233838",
    "04a575bf",
@@ -798,10 +799,11 @@
  },
  "philosophy": {
   "counts": {
-   "checked": 1
+   "checked": 2
   },
   "verified": [
-   "b32db1b7"
+   "b32db1b7",
+   "fe9dfe5d"
   ],
   "unverified_here": []
  }
