@@ -11,6 +11,11 @@
   },
   "mean_radius_findings": 0.095
  },
+ "brain": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "circuits": {
   "cells": {
    "DECIDED": 9,
@@ -80,7 +85,8 @@
    "DECIDED": 2
   },
   "findings": {
-   "checked": 13
+   "checked": 13,
+   "checked-finite": 2
   },
   "mean_radius_findings": 0.0
  },

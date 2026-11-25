@@ -33,7 +33,7 @@ def program(path):
                       ("refuter", "circuits"), ("flagship", "circuits"), ("one-not", "circuits"), ("open-one", "circuits"),
                       ("open-many", "circuits"), ("open-qg", "quantum-gravity"), ("qg-", "quantum-gravity"),
                       ("hypercomplex", "worlds"), ("model-in", "compute"), ("git-compute", "compute"),
-                      ("ath-prompt", "prompt-method"), ("ath_prompt", "prompt-method")]:
+                      ("ath-prompt", "prompt-method"), ("ath_prompt", "prompt-method"), ("brain", "brain"), ("ontology", "ontology")]:
         if key in p: return name
     return "other"
 
@@ -92,7 +92,7 @@ def read_fingerprints():
         if "/.lake/" in f or f.startswith("center/"): continue
         for e in json.load(open(f)):
             out.append({"kind": "fingerprint", "id": hashlib.sha256((f + e["name"]).encode()).hexdigest()[:8],
-                        "program": program(f) if program(f) != "other" else os.path.dirname(f), "text": e["name"],
+                        "program": program(f) if program(f) != "other" else os.path.dirname(f).replace("/", "-"), "text": e["name"],
                         "seq": e["seq"], "runner": e.get("runner"), "radius": 0.5, "state": "DATA", "schema": SCHEMA})
     return out
 

@@ -10,6 +10,10 @@ cells: 6 DECIDED, 4 OPEN, 6 TAKEN
 - OPEN [?] seat 5, `corpus`, `hunt`/`search`, `mixed`, the rest of the term language (NATIVE.md "What remains" 1-3).  (asteroid-term:28)
 - OPEN [?] (Addison): Open VSX is not published (needs Addison's token).  (asteroid-vscode:11)
 
+## brain
+findings (verified): none · mean radius None
+cells: none
+
 ## circuits
 findings (verified): 48 checked, 6 refuted, 6 tested · mean radius 0.033
 cells: 9 DECIDED, 15 OPEN, 8 STOPPED, 2 TAKEN
@@ -64,7 +68,7 @@ cells: 13 DECIDED, 5 OPEN, 2 STOPPED, 2 TAKEN
 - OPEN [Fable] (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets o → `worlds/unify_rank.py`  (BOARD:35)
 
 ## philosophy
-findings (verified): 13 checked · mean radius 0.0
+findings (verified): 13 checked, 2 checked-finite · mean radius 0.0
 cells: 2 DECIDED
 
 ## prompt-method
@@ -87,4 +91,6 @@ cells: 2 DECIDED, 3 OPEN, 1 STOPPED, 2 TAKEN
 
 ## Sequence matches across programs (proposals only; a seat decides join / analogy / rhyme)
 
-- none yet
+- segmental-growth histories (2n-3)!!, n=1..9 [as is] ~ rooted binary phylogenetic trees, n leaves (n>=2) [as is], 7 terms
+- segmental-growth histories (2n-3)!!, n=1..9 [first differences] ~ rooted binary phylogenetic trees, n leaves (n>=2) [first differences], 6 terms
+- segmental-growth histories (2n-3)!!, n=1..9 [plus 1] ~ rooted binary phylogenetic trees, n leaves (n>=2) [plus 1], 7 terms

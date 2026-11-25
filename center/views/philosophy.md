@@ -2,9 +2,11 @@
 
 ## Findings
 - [checked, r=0.0] Candidate for Beauvoir's 'to will oneself free is to will others free' (our weak reading): a move closes off no form open to the self iff it breaks no shared future with any other state; content is co
+- [checked-finite, r=0.0] Lacan's Borromean knot computed as a link, in exact integer arithmetic. Three-ellipse Borromean rings: every linking number 0 and Milnor's triple number mu(RSI) = mu(SIR) = mu(IRS) = -1, by two indepe
 - [checked, r=0.0] Causal-set side: on a Fisher frame Beauvoir.Barbarian is exactly 'no common future' (barbarian_iff_beyond), which is inherited upward in any partial order (beyond_mono); in N x N spacelike points meet
 - [checked, r=0.0] Seven hand-coded one-NOT board rows as a Fisher frame, after the review renames (supersedes 8474b92a, old name board_realism). Holds for that tree only; the real history is a DAG (see boards/tasks/phi
 - [checked, r=0.0] States of an event structure with binary conflict (Nielsen-Plotkin-Winskel; textbook facts): a loss between states is permanent iff they clash, else undone at the union; a clashing branch has a greate
+- [checked-finite, r=0.0] Tree against rhizome over all 33,867 labelled graphs on at most 6 vertices: a connected graph is a tree iff every edge is a bridge; adding one edge to a tree frees exactly the edges of the cycle it cl
 - [checked, r=0.0] Supersedes 478ce785, 80d2fd4f, 2e8126de after independent review. Renames: monogamy_of_pure_pair is now pure_pair_decouples (decoupling of a pure pair, not CKW monogamy); rt_monogamy is now rt_mmi (mo
 - [checked, r=0.0] Levels as a projection: 'some preimage has S' and 'every preimage has S' agree for all S iff the projection is injective (collapse_iff_injective); for the finite-table-to-Phi projection at n=2 they di
 - [checked, r=0.0] Fisher frame after the review renames (supersedes 66145862, whose evidence cites the old name capitalist_realism): lost_mono, haunted_mono, haunted_of_branch, no_alternative_of_all_reachable. General 
@@ -18,9 +20,7 @@
 - [checked, r=0.3] Fisher, hauntology as branching time: lost futures accumulate (lost_mono), haunting is monotone (haunted_mono), a branch point haunts (haunted_of_branch), capitalist_realism; models only cancelled pos
 - [checked, r=0.3] Minimal cuts of a weighted graph: complement symmetry (rt_compl), strong subadditivity (rt_submodular), monogamy of mutual information (rt_monogamy), so no graph has the 4-party GHZ entropy pattern (n
 - [checked, r=0.3] Seven one-NOT board rows encoded as a Fisher frame (names and statuses are data copied from the boards, not checked): refuted rows C2, C4, L5 are lost futures of the present A4-A7-A10-BottomPay and st
-- [checked-finite, r=1.0] Lacan's Borromean knot computed as a link, in exact integer arithmetic. Three-ellipse Borromean rings: every linking number 0 and Milnor's triple number mu(RSI) = mu(SIR) = mu(IRS) = -1, by two indepe
 - [open, r=1.0] Not proved: the Coffman-Kundu-Wootters inequality (needs mixed-state concurrence), min-cut = entanglement entropy for HaPPY states, contraction of a general tensor network to the factorised form. Not 
-- [checked-finite, r=1.0] Tree against rhizome over all 33,867 labelled graphs on at most 6 vertices: a connected graph is a tree iff every edge is a bridge; adding one edge to a tree frees exactly the edges of the cycle it cl
 - [open, r=1.0] Not found: a theorem for Beauvoir's 'to will oneself free is to will others free' (a tree frame has no shared future for incomparable selves; a frame with joins loses lost_mono), a model of master and
 
 ## Cells
