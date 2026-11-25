@@ -99,6 +99,32 @@ These are static token embeddings. They are not meanings.
 
 A smaller model doing the same semantic work is an open question, not a result.
 
+## The natural sciences, as mapped
+
+Counts come from `RESULTS.md`: verified findings only. Each one names its evidence and can be rerun.
+
+| field | what is verified | what it is | limits |
+|---|---|---|---|
+| Circuit complexity | 48 checked (Lean), 6 tested, 6 refuted | Boolean circuits: gate counts, the one-NOT question, refuted lemma candidates kept as counterexamples | the open question is still open |
+| Quantum computing and gravity | 13 checked (Lean) | gate-count bounds (KAK, Knill), complexity of closed timelike curves | quantum computation near gravity, not general relativity |
+| Physics: curvature | 1 checked-finite | discrete Gauss-Bonnet on all 218 closed triangulated surfaces with up to 6 vertices, plus an icosahedron and a torus | a sphere's total curvature, not a derivation of Einstein's equation |
+| Physics: cosmology and time | 1 and 4 checked-finite | an exact cosmology check, and the time-frame checks (S5, the git DAG) | toy models, labelled as such |
+| Physics: black holes | scaling laws (typed in); two negative simulations | radius, temperature, entropy and evaporation time scale with exact powers of mass, as cited formulas | the exponents are typed in, not derived; the discrete evaporation rule gives exponent 0, not 3 |
+| Biology: brain | 10 checked-finite | exact counts for neurons, complexes, cortex and networks (tree and growth counts) | structure only, not function |
+| Biology: genomics and privacy | 1 and 3 checked-finite | compbio counts; privacy equality patterns and Bell numbers | counts, not biology |
+| Biology: specialized species | not verified | fly connectome, mouse, dolphin and great-ape papers, from abstracts only | cited, not checked |
+
+Negative results are kept as found. Two simulations of stated rules did not reproduce black-hole scaling, and they stay in the repository.
+
+## The past hour
+
+- **The dual boot.** `workshop/pair/c/base` is a Linux prompt. `:big`, `:bus` and `:hello` run `.ath` programs through the asteroid binary.
+- **The two-way bus.** A design for routing from programs down to memory and back. Its layer order is a checked claim. Its laws L3 and L4 are not yet checkable in asteroid. Its record is in `workshop/bus/`.
+- **The native checker.** `ast` runs `little.ath` with 4 claims true. It does not yet run the checks in `big.ath`.
+- **Memory out.** Input embeddings for the memory's own names, from the 0.5B and 7B Qwen models, read by byte range. These are static token embeddings, not meanings.
+
+Nothing above settles P versus NP.
+
 ## Why this is open
 
 The project is public on purpose. Every claim names its evidence and its label, so a reader can check both.
