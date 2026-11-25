@@ -33,7 +33,7 @@ Checked today, each in Lean with the standard axioms only:
 
 - Several NOT gates (`one-not/lean/PEqualNP/W951/Open/`). The OR of n inputs needs n − 1 AND/OR gates with any number of NOT gates (`Or4ManyNot.lean`, `or_needs_gates`). A system of ORs needs at least n − (number of components of the union graph) AND/OR gates with any number of NOT gates; this equals the NOT-free count on acyclic systems, proved here for pairwise disjoint sets and for chains (`OrSystemManyNot.lean`, `system_bound_comp`, `disjoint_bound`, `chain_bound`). The per-set flip lemma holds for any number of NOT gates (`FlipLemma.lean`, `flip_lemma`). For two sets of size at most 3, the function-level core of the flip-class count is checked (`FlipHall.lean`, `no_sole_partner`).
 - Quantum gravity (`lean/PEqualNP/QuantumGravity/Open/`). L115: every operator-norm ball of radius ε in U(2^n) has Haar measure at most (4ε)^(4^n) (`L115.lean`, `haar_small_ball`). L116 follows unconditionally (`L116OfL115.lean`). L169: P_CTC is contained in EXP (`L169.lean`, `PCTC_subset_EXP`). The CTC reset cycle, which is the core of PSPACE ⊆ P_CTC: if halting resets to the start, every Deutsch-consistent distribution is supported on the orbit of the start (`CtcReset.lean`, `reset_support_on_start_cycle`). L119 with 16 real parameters per two-qubit gate (`KnillParam.lean`, `L119_weak`). Knill's count (`ApproxCount.lean`, `approx_count_twoQubit`): almost every n-qubit unitary needs exponentially many two-qubit gates, even approximately.
-- One NOT gate. The general case reduces to one named statement, `BottomPay` (`one-not/lean/PEqualNP/W951/Open/LightAbsorb.lean`). Most of the chain is checked in Lean: `BottomPay` → `LightAbsorb` → `DDAbsorb`, the count with no DD set, and `MixedStepNeg` → `no_minCE`. One link is on paper only, combining `DDAbsorb` with the no-DD count into the count at every mixed state. `BottomPay` is tested but not proved: no failure in 1.27 million states.
+- One NOT gate. The general case reduces to one named statement, `BottomPay` (`one-not/lean/PEqualNP/W951/Open/LightAbsorb.lean`), and every link of the reduction is checked in Lean: `BottomPay` → `LightAbsorb` → `DDAbsorb` → the count at every mixed state (`Open/MixedCount.lean`; the no-NOT case in `Open/MixedCountMono.lean`) → `no_minCE` (`no_minCE_of_ddAbsorb`). `BottomPay` itself is tested but not proved: no failure in 1.27 million states.
 
 ## What did not work
 
@@ -110,7 +110,7 @@ This uses Lean only. It goes through every theorem of the one-NOT part and fails
 
 ## What is open
 
-- The general case of the one-NOT question: `BottomPay`, plus one paper-only link of the chain that leads to it (see above).
+- The general case of the one-NOT question: `BottomPay`, the one statement the checked chain reduces it to.
 - Whether two or more NOT gates help in general. Open: the point lemma (its single-point form is only tested, on two sets of size 5 and on the Pasch configuration).
 - The exact L119, with 9k + 3n + 1 parameters; it needs the KAK decomposition of U(4), which Mathlib lacks.
 - The PSPACE encoding, that is, the full inclusion PSPACE ⊆ P_CTC beyond its reset-cycle core.
