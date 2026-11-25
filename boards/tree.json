@@ -3,7 +3,7 @@
   "counts": {
    "checked": 91,
    "tested": 12,
-   "checked-finite": 12,
+   "checked-finite": 16,
    "refuted": 6
   },
   "verified": [
@@ -27,6 +27,8 @@
    "47f8a89b",
    "16674147",
    "90333a01",
+   "f74fc7f7",
+   "4279fc5a",
    "1b00e1bc",
    "64233838",
    "04a575bf",
@@ -101,6 +103,7 @@
    "06993bb7",
    "ed925eb4",
    "4445c2b2",
+   "26399549",
    "57b5bd42",
    "89fa09ba",
    "182f7509",
@@ -127,6 +130,7 @@
    "14e1a81a",
    "f9156a1e",
    "d6c97be6",
+   "05debba4",
    "2befeb37"
   ],
   "unverified_here": []
@@ -256,7 +260,7 @@
  },
  "brain": {
   "counts": {
-   "checked-finite": 8
+   "checked-finite": 9
   },
   "verified": [
    "3cef3bcc",
@@ -266,7 +270,8 @@
    "d8b0058e",
    "06993bb7",
    "ed925eb4",
-   "4445c2b2"
+   "4445c2b2",
+   "26399549"
   ],
   "unverified_here": [
    {
@@ -324,20 +329,14 @@
  },
  "brain/neuron": {
   "counts": {
-   "checked-finite": 2
+   "checked-finite": 3
   },
   "verified": [
    "ed925eb4",
-   "4445c2b2"
+   "4445c2b2",
+   "26399549"
   ],
-  "unverified_here": [
-   {
-    "id": "26399549",
-    "why": [
-     "needs a second seat in by"
-    ]
-   }
-  ]
+  "unverified_here": []
  },
  "brain/tissue": {
   "counts": {
@@ -385,7 +384,6 @@
    {
     "id": "92dfcbb0",
     "why": [
-     "needs a second seat in by",
      "checked-finite needs a runner (the exhaustive check, re-runnable)"
     ]
    }
@@ -402,7 +400,6 @@
    {
     "id": "8a00ca4e",
     "why": [
-     "needs a second seat in by",
      "checked-finite needs a runner (the exhaustive check, re-runnable)"
     ]
    }
@@ -1302,7 +1299,7 @@
  "philosophy": {
   "counts": {
    "checked": 5,
-   "checked-finite": 2
+   "checked-finite": 4
   },
   "verified": [
    "b32db1b7",
@@ -1311,7 +1308,9 @@
    "a9fa308e",
    "47f8a89b",
    "16674147",
-   "90333a01"
+   "90333a01",
+   "f74fc7f7",
+   "4279fc5a"
   ],
   "unverified_here": [
    {
@@ -1331,36 +1330,18 @@
     "why": [
      "needs a second seat in by"
     ]
-   },
-   {
-    "id": "f74fc7f7",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "4279fc5a",
-    "why": [
-     "needs a second seat in by"
-    ]
    }
   ]
  },
  "privacy": {
   "counts": {
-   "checked-finite": 1
+   "checked-finite": 2
   },
   "verified": [
-   "d6c97be6"
+   "d6c97be6",
+   "05debba4"
   ],
-  "unverified_here": [
-   {
-    "id": "05debba4",
-    "why": [
-     "needs a second seat in by"
-    ]
-   }
-  ]
+  "unverified_here": []
  },
  "worlds": {
   "counts": {
