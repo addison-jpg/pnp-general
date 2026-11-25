@@ -1,0 +1,5 @@
+# pair: the small and big programs, run as children of one program. Run from the repo root:
+#   bin/asteroid --no-lean workshop/pair/pair.ath
+# Each frame's claim reference is another .ath file, which asteroid runs and must exit 0.
+frame "baby: hello.ath, the small program" reading "a child run: hello.ath must exit 0" -> hello.ath label checked-finite reach 1 cost 40
+frame "big: big.ath, the repository as one brain" reading "a child run: big.ath must exit 0" -> big.ath label checked-finite reach 1 cost 80
