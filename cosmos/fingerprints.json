@@ -1,0 +1,20 @@
+[
+ {
+  "name": "position of universe 2k in ordering B of the measure toy, k=1..12",
+  "seq": [
+   3,
+   6,
+   9,
+   12,
+   15,
+   18,
+   21,
+   24,
+   27,
+   30,
+   33,
+   36
+  ],
+  "runner": "python3 -I cosmos/check.py"
+ }
+]

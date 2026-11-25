@@ -1,0 +1,16 @@
+# Cosmos, from cosmos/. Friedmann, orbits, and a toy of the multiverse measure problem.
+check "python3 -I cosmos/check.py"
+seq posB = run "python3 -I cosmos/check.py" "ordering B"
+claim posB = [3, 6, 9, 12, 15, 18]
+claim formula posB = "3*n"                                  # universe 2n sits at place 3n in ordering B
+# The same six universes 1..6, cut off two ways. Each cutoff is a finite uniform distribution.
+dist cutA = {1: 1/6, 2: 1/6, 3: 1/6, 4: 1/6, 5: 1/6, 6: 1/6}   # ordering A, first 6: 1 2 3 4 5 6
+dist cutB = {1: 1/6, 3: 1/6, 2: 1/6, 5: 1/6, 7: 1/6, 4: 1/6}   # ordering B, first 6: 1 3 2 5 7 4
+claim prob cutA (2, 4, 6) = 1/2
+claim prob cutB (2, 4) = 1/3
+claim expect cutA = 7/2
+claim expect cutB = 11/3
+dist coin = {H: 1/2, T: 1/2}
+dist two = coin * coin
+claim prob two (H.H, T.T) = 1/2
+record cosmos cosmos checked-finite "cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; cosmos/check.py passes."

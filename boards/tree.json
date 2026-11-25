@@ -377,6 +377,18 @@
    }
   ]
  },
+ "cosmos": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "5b49d0e3",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
  "essays": {
   "counts": {},
   "verified": [],
