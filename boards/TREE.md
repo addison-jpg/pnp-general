@@ -8,14 +8,14 @@ next to their evidence. Unverified findings are listed only at their own directo
 The root count mixes programs; read these instead. Philosophy findings never count toward the circuit results.
 
 - asteroid (the language and its tools): 7 checked · 3 tested
-- circuits (one-NOT and several-NOT): 46 checked · 5 tested · 5 refuted
+- circuits (one-NOT and several-NOT): 47 checked · 5 tested · 5 refuted
 - philosophy (formal models of readings; not mathematics of circuits): 9 checked
 - quantum gravity: 8 checked
 
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 70 checked · 8 tested · 5 refuted
+## `./` 71 checked · 8 tested · 5 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -65,7 +65,7 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `9c7d09e2` **checked** [T9; L-qg-119] Knill count for the continuous two-qubit gate set, rank 1a to 1c: operator norm of a gate matrix bounded by its entry sum, an entry-grid net of the two-qubit gates of size (n+1)^2 (C/delta)^32, and the approximate count of reachable unitaries. · evidence: `lean/PEqualNP/QuantumGravity/Open/GateNet.lean::opNorm_gateMat_le`, `lean/PEqualNP/QuantumGravity/Open/GateNet.lean::twoQubitGates_net`, `lean/PEqualNP/QuantumGravity/Open/ApproxCount.lean::approx_count_twoQubit` · R1 · VERIFIED
 - `2ee8c618` **checked** [L-qg-119] L119 at 15k+1: if 15k+1 < 4^n then the products of at most k two-qubit gates are Haar-null (one global phase instead of one per gate). Cover lemma: every unitary is exp(i alpha) times a Cayley chart of a trace-zero skew matrix (spectral theorem plus an intermediate-value step on a sum of cotangents). Axioms: propext, Classical.choice, Quot.sound. · evidence: `lean/PEqualNP/QuantumGravity/Open/KnillParam15.lean::L119_fifteen`, `lean/PEqualNP/QuantumGravity/Open/KnillParam15.lean::exists_trace_chart` · Q4 · VERIFIED
 
-### `one-not/` 47 checked · 5 tested · 5 refuted
+### `one-not/` 48 checked · 5 tested · 5 refuted
 
 #### `one-not/data/` 2 checked · 4 tested · 2 refuted
 
@@ -104,12 +104,12 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `f4704cc4` **refuted** [C4] The witness count for any gate type falls below base with 4 NOT gates (minimal: 10 gates). · evidence: `one-not/data/witnesses/nonlocal/general_count_below_base_min.json`, `one-not/tools/kill_tests/witness_any_gate.py` · main, confirmed by main's Sonnet A · VERIFIED
 - `0736a8e5` **checked** [C4] The 10-gate circuit with 4 NOT gates is correct and has 5 witness gates, below base 6 (SearchCheck evaluator). · evidence: `asteroid/examples/many_not.ath`, `one-not/lean/PEqualNP/W951/Asteroid_many_not.lean::fano_claim4`, `one-not/data/witnesses/nonlocal/general_count_below_base_min.json`, `one-not/data/witnesses/twin_tree_f2step.json`, `one-not/data/witnesses/fano_formula.json` · trio · VERIFIED
 
-#### `one-not/lean/` 45 checked
+#### `one-not/lean/` 46 checked
 - `0992c96e` **checked** [open-many-not] OR of n inputs needs n-1 AND/OR gates with any number of free NOT gates (fan-in 2); n=4 needs at least 3 gates. Structural partition-merge proof, no enumeration. · evidence: `one-not/lean/PEqualNP/W951/Open/Or4ManyNot.lean::or_needs_gates`, `one-not/lean/PEqualNP/W951/Open/Or4ManyNot.lean::or4_needs_three_andor` · B2 · VERIFIED
 - `af8e62f4` **checked** [open-one-not] DD absorption follows from light absorption: LightAbsorb -> DDAbsorb for a one-NOT correct circuit with pairwise |S_a n S_b| <= 1 (heavy merges of DD sets disjoint from each other and from non-DD unit merges, plus arithmetic); LightAbsorb itself stays an unproved Prop. · evidence: `PEqualNP/W951/Open/DDAbsorb.lean::PEqualNP.Outside.L_meta_951_aux.F2Transfer.ddAbsorb_of_lightAbsorb` · A11 · unverified (missing PEqualNP/W951/Open/DDAbsorb.lean)
 - `18a99796` **checked** [T1] MixedCount holds for a MinCE with no NOT gate (monotone); no_minCE follows from DDAbsorb alone · evidence: `one-not/lean/PEqualNP/W951/Open/MixedCountMono.lean::mixedCount_mono` · A16 · VERIFIED
 
-##### `one-not/lean/PEqualNP/` 43 checked
+##### `one-not/lean/PEqualNP/` 44 checked
 
 ###### `one-not/lean/PEqualNP/Philosophy/` 1 checked
 - `c70b8e8f` **checked** [philosophy-formal] Formal analogy (no claim about Deleuze): finite slack table is the actual, Phi the virtual; Phi does not determine the slack table (PhiT_not_injective) and the corners Phi(0), Phi(1) do not determine Phi (corners_not_injective); limit level is a def only · evidence: `one-not/lean/PEqualNP/Philosophy/Bridge.lean::PhiT_not_injective`, `one-not/lean/PEqualNP/Philosophy/Bridge.lean::corners_not_injective` · P3 · VERIFIED
@@ -117,7 +117,7 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 ###### `one-not/lean/PEqualNP/Verify/` 1 checked
 - `5fe90015` **checked** [everything] Pure-Lean base verifier: all 4,777 theorems of the 154 modules of one-not/lean rest on propext, Classical.choice, Quot.sound only, except 21 allow-listed names that use sorryAx (no_minCE, 7 derived, 13 of a parked draft); no other axiom anywhere. · evidence: `one-not/lean/PEqualNP/Verify/All.lean`, `one-not/lean/PEqualNP/Verify/Axioms.lean::elabVerifyAxioms`, `asteroid/programs/big_check.ath` · main · VERIFIED
 
-###### `one-not/lean/PEqualNP/W951/` 41 checked
+###### `one-not/lean/PEqualNP/W951/` 42 checked
 - `30cf54bf` **checked** [L5] Along a decreasing chain of finite sets, |F 0| = |F N| + the sum of the gains. · evidence: `one-not/lean/PEqualNP/W951/ChainSum.lean::card_eq_card_add_sum_gain` · main · VERIFIED
 - `0f8afdc1` **checked** [L7] If every non-terminal cube has a strictly larger cube with slack no larger, slack is nonnegative at every cube. · evidence: `one-not/lean/PEqualNP/W951/ChainSum.lean::slack_nonneg_of_descent` · main · VERIFIED
 - `dcd62f26` **checked** [the sorry] no_minCE follows from 0 <= Phi(0) in every minimal counterexample. · evidence: `one-not/lean/PEqualNP/W951/ContinuousAttach.lean::no_minCE_of_Phi_zero_nonneg` · main · VERIFIED
@@ -152,7 +152,7 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `91f83519` **checked** [the sorry; Theorem] no_minCE implies L_meta_951 (the one-NOT bound sum (|S_i|-1) <= gates). The last link of the chain BottomPay, LightAbsorb, DDAbsorb, MixedCount, no_minCE, L_meta_951. · evidence: `one-not/lean/PEqualNP/W951/MinCE.lean::L_meta_951_of_minCE` · R1 · VERIFIED
 - `5e4b9d8d` **checked** [asteroid; the sorry] asteroid Layer 3 and the edges claim, evidence names corrected: first_ast_tiny_concrete (pointwise evaluation is the project's wires) and ok_claim0 (hypsB by decide +kernel). Replaces e793c0f4 and 6403b575 for their name checks. · evidence: `one-not/lean/PEqualNP/W951/AsteroidInstances.lean::first_ast_tiny_concrete`, `one-not/lean/PEqualNP/W951/Asteroid_edges.lean::ok_claim0` · R1 · VERIFIED
 
-###### `one-not/lean/PEqualNP/W951/Open/` 13 checked
+###### `one-not/lean/PEqualNP/W951/Open/` 14 checked
 - `66d4cb88` **checked** [the sorry] MixedStepNeg (mixed slack |F2Mix|-baseDQ has a 1- or 0-step with no larger slack at every negative state of a MinCE) is stated as a Prop; MixedStepNeg implies no_minCE, proved. · evidence: `one-not/lean/PEqualNP/W951/Open/MixedSlack.lean::no_minCE_of_MixedStepNeg` · A2 · VERIFIED
 - `7f3971c7` **checked** [the sorry] The mixed step at negative states is the count: for one gate list, a non-increasing 0- or 1-step at every negative mixed state iff mslack >= 0 at every mixed state; so MixedStepNeg iff every MinCE has mslack >= 0 at all mixed states; and the abstract descent hypothesis of no_minCE_of_mixed_descent iff 0 <= slack(empty). · evidence: `one-not/lean/PEqualNP/W951/Open/MixedStepNegIff.lean::stepNeg_iff_nonneg`, `one-not/lean/PEqualNP/W951/Open/MixedStepNegIff.lean::mixedStepNeg_iff`, `one-not/lean/PEqualNP/W951/Open/MixedStepNegIff.lean::abstract_descent_iff` · A1 · VERIFIED
 - `ccf5344b` **checked** [C4] S3(a) per-set flip lemma, any number of NOT gates: for a correct SearchCheck.Circ, a set S with output o and a zero point Z of S, |S| <= (flip classes with |D|>=2 at (S,Z), wire functions up to complement) + 1; abstract graph argument Core.core. · evidence: `one-not/lean/PEqualNP/W951/Open/FlipLemma.lean::PEqualNP.W951.FlipLemma.Concrete.flip_lemma`, `one-not/lean/PEqualNP/W951/Open/FlipLemma.lean::PEqualNP.W951.FlipLemma.Core.core` · B1 · unverified (PEqualNP.W951.FlipLemma.Concrete.flip_lemma not in one-not/lean/PEqualNP/W951/Open/FlipLemma.lean; PEqualNP.W951.FlipLemma.Core.core not in one-not/lean/PEqualNP/W951/Open/FlipLemma.lean)
@@ -167,6 +167,7 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `ad91d530` **checked** [C4] S3(b) Hall core in Lean: no sole partner for two sets of size >= 3 with |S∩T| <= 1, constancy on a face, dset of an OR bounded. Used by the paper reduction of S3(b) to the thin-basis lemma. · evidence: `one-not/lean/PEqualNP/W951/Open/FlipHall.lean::no_sole_partner`, `one-not/lean/PEqualNP/W951/Open/FlipHall.lean::const_on_face`, `one-not/lean/PEqualNP/W951/Open/FlipHall.lean::dset_orS_le` · R1 · VERIFIED
 - `e0ea3129` **checked** [C4] Point lemma ingredients: sens of a gate is union, intersection or a difference of the sens of its inputs (sens_gate); a thin function has at most one sensitive point in S (sens_thin_card); sens (orS S) = S (sens_orS). The full point lemma for two sets stays open (rule R2). · evidence: `one-not/lean/PEqualNP/W951/Open/PointLemma.lean::sens_gate`, `one-not/lean/PEqualNP/W951/Open/PointLemma.lean::sens_thin_card`, `one-not/lean/PEqualNP/W951/Open/PointLemma.lean::sens_orS` · R1 · VERIFIED
 - `568f8964` **checked** [README-open] DDAbsorb at every mixed state gives 0 <= mslack; with MinCE hypotheses (plus monotone case) gives MixedStepNeg and no_minCE · evidence: `one-not/lean/PEqualNP/W951/Open/MixedCount.lean::mixedCount_of_ddAbsorb` · A15 · VERIFIED
+- `0e0a820c` **checked** [PaymentHall] PaymentHall Prop, card_ge_of_paymentHall, and bottomPay_of_paymentHall (BottomPay as PHC at 1_Q) · evidence: `one-not/lean/PEqualNP/W951/Open/PaymentHall.lean::bottomPay_of_paymentHall` · S1 · VERIFIED
 
 ##### `one-not/research/open/` 
 - `cd89cf56` **refuted** [the sorry] Mixed step at negative states fails without the one-NOT hypothesis: on general_count_below_base_min (4 NOT gates, n=7) with OR-only F2 mixed slack, 146 of 248 negative states have no non-increasing paying step, and 0 of 281 nonnegative states fail; so any proof must use AtMostOneNot. Obstacle: minimality gives gates' >= base' at restrictions, the step needs |F2'| >= base'. · evidence: `one-not/research/open/A1_negstates.py`, `one-not/research/open/A1_mixed_step.md`, `one-not/data/witnesses/nonlocal/general_count_below_base_min.json` · A1 · unverified (needs a second seat in by)
