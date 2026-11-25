@@ -6,6 +6,12 @@ The higher level gist is: quantum/gravity relativity maps onto the relativity ba
 
 > Please do not push to this repository. Pull it, read it, run it. If you find a mistake, open an issue.
 
+## A small CPU in our gates
+
+Addison's project theme, as a machine: a 4-bit accumulator CPU (PC, ACC, a 16-word ROM, eight instructions) whose next-state logic is one `.bench` circuit in `cpu/`. It has 443 gates, 238 AND, 190 OR and 15 NOT; the straightforward design used 45 NOT gates, and negations pushed to the inputs cut them to 15. The repository checks that logarithmically many NOT gates suffice (Markov and Fischer); see `cpu/README.md`.
+
+    bin/asteroid run-cpu cpu/cpu.bench --steps 24
+
 ## Why this is open
 
 This project is aimed at the P versus NP problem, and it is public on purpose.
@@ -33,7 +39,7 @@ Checked today, each in Lean with the standard axioms only:
 
 - Several NOT gates (`one-not/lean/PEqualNP/W951/Open/`). The OR of n inputs needs n − 1 AND/OR gates with any number of NOT gates (`Or4ManyNot.lean`, `or_needs_gates`). A system of ORs needs at least n − (number of components of the union graph) AND/OR gates with any number of NOT gates; this equals the NOT-free count on acyclic systems, proved here for pairwise disjoint sets and for chains (`OrSystemManyNot.lean`, `system_bound_comp`, `disjoint_bound`, `chain_bound`). The per-set flip lemma holds for any number of NOT gates (`FlipLemma.lean`, `flip_lemma`). For two sets of size at most 3, the function-level core of the flip-class count is checked (`FlipHall.lean`, `no_sole_partner`).
 - Quantum gravity (`lean/PEqualNP/QuantumGravity/Open/`). L115: every operator-norm ball of radius ε in U(2^n) has Haar measure at most (4ε)^(4^n) (`L115.lean`, `haar_small_ball`). L116 follows unconditionally (`L116OfL115.lean`). L169: P_CTC is contained in EXP (`L169.lean`, `PCTC_subset_EXP`). The CTC reset cycle, which is the core of PSPACE ⊆ P_CTC: if halting resets to the start, every Deutsch-consistent distribution is supported on the orbit of the start (`CtcReset.lean`, `reset_support_on_start_cycle`). L119 with 16 real parameters per two-qubit gate (`KnillParam.lean`, `L119_weak`). Knill's count (`ApproxCount.lean`, `approx_count_twoQubit`): almost every n-qubit unitary needs exponentially many two-qubit gates, even approximately.
-- One NOT gate. The general case reduces to one named statement, `BottomPay` (`one-not/lean/PEqualNP/W951/Open/LightAbsorb.lean`), and every link of the reduction is checked in Lean: `BottomPay` → `LightAbsorb` → `DDAbsorb` → the count at every mixed state (`Open/MixedCount.lean`; the no-NOT case in `Open/MixedCountMono.lean`) → `no_minCE` (`no_minCE_of_ddAbsorb`). `BottomPay` itself is tested but not proved: no failure in 1.27 million states.
+- One NOT gate. The general case reduces to one named statement, `BottomPay` (`one-not/lean/PEqualNP/W951/Open/LightAbsorb.lean`), and every link of the reduction is checked in Lean: `BottomPay` → `LightAbsorb` → `DDAbsorb` → the count at every mixed state (`Open/MixedCount.lean`; the no-NOT case in `Open/MixedCountMono.lean`) → `no_minCE` (`no_minCE_of_ddAbsorb`). `BottomPay` itself is OPEN: tested, not proved (no failure in 1.27 million states). Until it is proved, the one-NOT theorem `L_meta_951` keeps its one allow-listed hole (`no_minCE`), and the one-NOT question is not settled.
 
 ## What did not work
 

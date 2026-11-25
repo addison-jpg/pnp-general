@@ -72,6 +72,19 @@ def build():
             mark = "VERIFIED" if not r["why_not"] else "unverified (" + "; ".join(r["why_not"]) + ")"
             out.append(f"- `{r['id']}` **{r['word']}** [{r['serves']}] {r['statement']} · evidence: " + ", ".join(f"`{e}`" for e in r["evidence"]) + f" · {r['who']}" + (", confirmed by " + ", ".join(b for b in r['by'] if b != r['who']) if [b for b in r['by'] if b != r['who']] else "") + f" · {mark}")
         out.append("")
+    def program(d):
+        dl = d.lower()
+        if "philosoph" in dl: return "philosophy (formal models of readings; not mathematics of circuits)"
+        if "quantumgravity" in dl: return "quantum gravity"
+        if "asteroid" in dl or dl.startswith("bin") or dl.startswith("site"): return "asteroid (the language and its tools)"
+        if dl.startswith("one-not"): return "circuits (one-NOT and several-NOT)"
+        return "other"
+    split = collections.defaultdict(collections.Counter)
+    for r in node["."]["up"]: split[program(r["dir"])][r["word"]] += 1
+    head = ["## Root counts by program", "", "The root count mixes programs; read these instead. Philosophy findings never count toward the circuit results.", ""]
+    head += [f"- {p}: " + " · ".join(f"{c[w]} {w}" for w in WORDS if c[w]) for p, c in sorted(split.items())]
+    head += ["", "Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.", ""]
+    out[5:5] = head
     open("boards/TREE.md", "w").write("\n".join(out))
     tot = collections.Counter(r["word"] for r in node["."]["up"])
     print("nodes", len(node), "| verified at the root:", dict(tot), "| unverified:", sum(len(v["unverified_here"]) for v in tree.values()))

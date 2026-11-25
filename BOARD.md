@@ -5,6 +5,13 @@ Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boar
 - **TOP NOW (Addison, 2026-11-25): asteroid on plain Linux (Arch, most basic) and Windows with the native backend: less Python, no matplotlib, minimal Lean. mintty dropped (Addison).** Done: 4.4 MB Linux binary (`dist/linux`, Arch PKGBUILD) and 4.2 MB native `asteroid.exe`. Open: seat 5 (corpus, hunt/search, mixed, rest of the term language natively). [`asteroid-term`](boards/tasks/asteroid-term.md)
 - **FILES FOR ADDISON (2026-11-25): give a direct link, not only a file card.** Commit the file (a .vsix, a logo, a PNG) and give `https://github.com/addison-jpg/pnp-general/raw/main/<path>`.
 
+
+## COMPUTE IS THE BOTTLENECK (Addison, 2026-11-25: "that cpu is the issue that will fix everything")
+
+- The full pure-Lean verifier (`lean/PEqualNP/Verify/All.lean`, about 1,630 imports) has not finished once in this session. One run passed the lock wait but was stopped at the one-hour background limit, then a container restart killed the next. The circuit-side verifier (`one-not/lean`, 18,633 jobs) did finish once (2026-11-25, with the five new Open modules).
+- Agents' Lean builds share one machine and one build lock; each waits on the others. SAT seats (B7, B11) and Lean builds compete for the same cores.
+- Wanted: more cores or a dedicated build machine; a CI job that runs both verifiers on push to main and reports the time; and a rule that only one full verifier build runs at a time. Until then, check new modules one by one with `#print axioms` (as done for the quantum-gravity files).
+
 ## CURRENT STATE (formal style, one line per program; every claim is a finding in [`boards/TREE.md`](boards/TREE.md) or a task board)
 
 - **one-NOT** ([`open-one-not`](boards/tasks/open-one-not.md)). Checked chain: `BottomPay → LightAbsorb → DDAbsorb → MixedCount → no_minCE → L_meta_951` (`LightAbsorb.lean`, `DDAbsorb.lean`, `MixedStepNegIff.lean`, `MinCE.lean`; the step DDAbsorb + no-DD count ⇒ MixedCount is paper, A4 note §2). Open: **BottomPay**, a Hall condition on the bottom forests of DD sets (0 failures at about 1.27 million DD states; bottom runs of two DD sets overlap, so a matroid-union re-choice is needed). `no_minCE` is NOT proved; the general one-NOT theorem is NOT proved.
