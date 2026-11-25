@@ -11,17 +11,30 @@ Leibniz-style compossibility, and Fisher has none. The top two rungs are ours to
 
 | Rung | Concept | Reading it follows | Mathlib structure |
 |---|---|---|---|
+| A. Aristotle (the foil) | potentiality (dunamis) to actuality (energeia), Metaphysics Θ: the possible is a pre-image of the real and *resembles* it; realisation adds existence to a given form. Deleuze (Difference and Repetition, ch. 4, as reported by Smith and Duffy) opposes the virtual, which is real and does not resemble its actualisations, to the possible | Aristotle, Metaphysics Θ (not opened: memory, to be cited from a translation); Deleuze via the readings in LITERATURE.md M2 | a relation `Realises : Possible → Real → Prop` that is *resemblance-preserving* (an injection, the possible is a subset of the real); the virtual model is the contrast: actuals are not copies of the virtual |
 | 0. Mereology | parthood is a partial order; sums; atomless regions | Leśniewski, Leonard-Goodman; Clarke 1981 for connection (models are Boolean algebras) | `PartialOrder`, `CompleteLattice`, `CompleteBooleanAlgebra` |
 | 1. Spinoza | substance (maximal), attributes, modes (parts of substance), "in" and "conceived through"; expression of substance in modes | Jarrett 1978 and later Prover9, Coq, Agda, Lean pieces (they needed implicit axioms); Duffy 2006 reads expression through the differential | a `CompleteLattice` with a top (substance) plus a family of sublattices (attributes); modes = elements below the top |
 | 2. Leibniz | monads as complete concepts; compossibility; a world is a maximal compossible set; the differential as genetic element | SEP "Leibniz's Modal Metaphysics" (definition of compossibility); Duffy, Smith 2005 for the calculus | a symmetric relation on a type, worlds = maximal cliques (`SimpleGraph.IsClique`); no Monadology formalisation exists, so this is hand-made |
 | 3. Deleuze | multiplicity = manifold with a metric; difference = differential relation dy/dx; virtual = problem = vector field with singularities; actual = solution = integral curve; intensity | DeLanda 2002 ch. 1 (manifolds, vector fields, singularities, basins); Plotnitsky (Riemann); Smith 2006 (problematics vs axiomatics); Lautman (problem/solution) | `IsRiemannianManifold`, `TangentSpace`, `ContMDiff`, `IsMIntegralCurve`, `deriv`, `mfderiv` (all present in the project's Mathlib checkout) |
 
-Rungs 0-2 are context and check that the encoding style works; P2 does not need to finish them. The
+Rung A is the contrast case (possible / real, resemblance) that makes non-resemblance a statement. Rungs 0-2 are context and check that the encoding style works; P2 does not need to finish them. The
 Badiou objection is the test the rung-3 model must pass: if the virtual is only an image of the
 actual it is a simulacrum, and the actual must not be a blur or a tear away from it. In the model:
 actuals must be *determined by* the virtual (solutions of the field) without a second ground.
 
-## The first Lean definitions for P2 (write in this order)
+## What P2 is building (coordinator, 2026-11-25), and how it reads this ladder
+
+`lean/PEqualNP/Philosophy/Deleuze.lean` is being written in parallel, so the plan follows it:
+(1) Aristotle's possible and its realisation (rung A, the foil); (2) problem = vector field;
+(3) actual = singular points of the field (the zeros, "actual" as the places where the problem
+resolves); (4) non-resemblance: `V` and `2V` have the same actual, so the actual does not
+copy the virtual; (5) nondegenerate solutions are isolated (inverse function theorem); (6)
+multiplicity as dimension. The definitions list below is the earlier P1 sketch, in which the actual is
+an integral curve; the two are both in the literature reading (DeLanda: singularities organise the
+field; trajectories are drawn to them), so P2's choice (actual = singular points) is the
+singularity half and integral curves are the dynamical half. Where they differ, P2's file wins.
+
+## The first Lean definitions for P2 (P1 sketch; superseded where it differs from the above)
 
 Work on a finite-dimensional normed space `E` first (`ℝ`, `ℝ²`): it keeps every definition checkable
 with `deriv` and `HasDerivAt`, and the manifold version is a generalisation to state, not to prove.
