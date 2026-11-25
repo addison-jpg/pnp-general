@@ -163,6 +163,8 @@ Without Lean installed, asteroid says so and only evaluates. In that case nothin
 
 **One centralized store.** `math/qwen/semantic_rows.json` holds the 896-dimensional input-embedding vectors of 19 of the repository's terms, read exactly from the Qwen2.5 0.5B weights by `math/qwen/embeddings.py`. These are static input embeddings: one vector per token, the same in every context. They are not contextual meanings, and treating them as meaning is a reading, not a result. A term that is not a single token ("rhizome") is recorded as absent, not guessed.
 
+**Nearest matches are weak.** `math/qwen/nearest.py` matches each stored term to its nearest recorded terms by exact cosine. The check passes (symmetry, self-match, no ties), but the values are small, about 0.13 to 0.27, and the nearest pairs do not look like meanings ("camp" lands near "ontology"). So the static input embeddings do not carry the repository's semantic structure by themselves. Matching without an exact copy, as in Steinmetz and Gini's opening-book clusters, needs contextual vectors and a benchmark; that is the open part.
+
 ## asteroid as a GitHub language
 
 asteroid programs use the extension `.ath`. A TextMate grammar for them is in `editors/vscode/syntaxes/asteroid.tmLanguage.json`, and the VS Code extension (`editors/vscode/`) registers `.ath` files. Those two pieces are what a language needs before GitHub can colour it.
