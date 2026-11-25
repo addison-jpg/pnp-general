@@ -92,7 +92,7 @@ VS Code highlighting for `.ath`: search **asteroid** in Extensions ([Marketplace
 
 A native binary, written in Lean and needing no Python, is built with `cd one-not/lean && lake exe cache get && lake build asteroid`. It evaluates a program and has Lean check it. Without arguments it opens the prompt, and `plot phi NAME -> FILE.svg` writes an SVG plot. See `asteroid/NATIVE.md`.
 
-Windows: download [`asteroid.exe`](asteroid.exe) and double-click it (it is the window, with Python inside; nothing to install). Windows SmartScreen will warn, because the file is not signed: click "More info", then "Run anyway".
+Windows: download [`asteroid.exe`](https://github.com/addison-jpg/pnp-general/raw/main/asteroid.exe) (4.2 MB, nothing to install) and double-click it: it opens the asteroid prompt. Or run `asteroid.exe hello.ath` in a terminal. Windows SmartScreen will warn, because the file is not signed: click "More info", then "Run anyway".
 
 These lines are for Git Bash on Windows, macOS and Linux. In cmd: `bin\asteroid.cmd demo`, `bin\setup.cmd`. In Windows PowerShell: `bin\asteroid.ps1 demo`, `bin\setup.ps1` (or the same `.cmd` names).
 
