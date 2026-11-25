@@ -161,6 +161,8 @@ Nothing is installed outside this folder. Delete `.venv` to undo the setup. `bin
 
 Without Lean installed, asteroid says so and only evaluates. In that case nothing is proved. The manual is `asteroid/README.md`, and the format of `.bench` files is described in `asteroid/BENCH.md`.
 
+**One centralized store.** `math/qwen/semantic_rows.json` holds the 896-dimensional input-embedding vectors of 19 of the repository's terms, read exactly from the Qwen2.5 0.5B weights by `math/qwen/embeddings.py`. These are static input embeddings: one vector per token, the same in every context. They are not contextual meanings, and treating them as meaning is a reading, not a result. A term that is not a single token ("rhizome") is recorded as absent, not guessed.
+
 ## asteroid as a GitHub language
 
 asteroid programs use the extension `.ath`. A TextMate grammar for them is in `editors/vscode/syntaxes/asteroid.tmLanguage.json`, and the VS Code extension (`editors/vscode/`) registers `.ath` files. Those two pieces are what a language needs before GitHub can colour it.
