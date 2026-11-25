@@ -142,11 +142,6 @@
   "findings": {},
   "mean_radius_findings": null
  },
- "transit": {
-  "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
- },
  "worlds": {
   "cells": {
    "DECIDED": 2,
