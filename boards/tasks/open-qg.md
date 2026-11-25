@@ -16,3 +16,4 @@
 
 - C1 (Sonnet): L-qg-116 from L-qg-115 checked: `PEqualNP.QuantumGravity.Open.L116_of_L115` in lean/PEqualNP/QuantumGravity/Open/L116OfL115.lean (wraps existing L117 / Helpers.knill_of_ball; builds). L-qg-115 itself still open.
 - C3 (Sonnet): L-qg-169 CHECKED in full: `PEqualNP.QuantumGravity.Open.L169.PCTC_subset_EXP : PCTC ⊆ EXP` in lean/PEqualNP/QuantumGravity/Open/L169.lean (builds; no sorry). Machine = iterGrow of a packed-state step over expPad(pairB x (un m)); N ≥ 2^m steps land on a cycle.
+- C2 [DECIDED] L-qg-119: checked conditional `L119_of_knillParametrization : KnillParametrization → Gap.L119` in `lean/PEqualNP/QuantumGravity/Open/L119.lean`; the Haar-null half (`haar_null_of_image`) is proved. Missing lemma: `KnillParametrization` (KAK form of two-qubit gates, not in Mathlib). L-qg-115 not attempted (needs Haar = chart volume comparison).
