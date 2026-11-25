@@ -205,6 +205,9 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `f2dd6892` **tested** [C4] On the any-gate witness family with 4 NOT gates (general_count_below_base_t4) Phi < 0 on [0,1), 69 mixed states are negative and the mixed step fails at 40 of 529 states with positive base. · evidence: `one-not/tools/search/continuous.py::slack_table`, `one-not/data/witnesses/nonlocal/general_count_below_base_t4.json` · main's Fable · unverified (needs a second seat in by)
 - `32b2d9b4` **tested** [C2] Hill climbing against MixedStep over all mixed states (n ≤ 6: 207,536 mutations, n ≤ 7: 88,907 mutations) found 0 counterexamples; finding nothing proves nothing. · evidence: `one-not/tools/search/continuous.py::cmd_hunt` · main's Fable · unverified (needs a second seat in by)
 
+##### `one-not/tools/tensor/` 
+- `b9ae400b` **tested** [refuter-951] Bit-sliced NumPy backend (truth tables, slack at every cube, mixed slack at all 3^n states, DD states) equals the slow evaluators exactly on 114 stored circuits (t4/t5/t6 witnesses included) and random n<=8; 3x to 38x faster, n=25 cube slack fits in 15 GB. · evidence: `one-not/tools/tensor/test_tensor.py` · claude-t1 · unverified (needs a second seat in by)
+
 ### `philosophy/` 5 checked
 - `b32db1b7` **checked** [philosophy-formal] Model of a cited Deleuze reading: distinct problems share actual solutions; nondegenerate singular points are isolated (inverse function theorem) · evidence: `lean/PEqualNP/Philosophy/Deleuze.lean::nondegenerate_isolated`, `lean/PEqualNP/Philosophy/Deleuze.lean::distinct_problems_same_actual` · P2 · VERIFIED
 - `fe9dfe5d` **checked** [philosophy-formal] Hauntology as branching time: lost futures accumulate (lost_mono), branching haunts every later moment (haunted_of_branch), capitalist realism as a modal claim (capitalist_realism); no axioms; models a cited reading of Fisher only · evidence: `lean/PEqualNP/Philosophy/Fisher.lean` · P4 · VERIFIED
