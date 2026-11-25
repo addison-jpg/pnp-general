@@ -10,10 +10,11 @@ argument); and a made-up one written here with center.py's json.dumps call, hold
 a record of exactly LINE bytes, one of LINE + 1, an empty line, a last line with no newline, a hidden
 file, a file that is not .jsonl, a non-ASCII word, a record with no word. Exit 1 on any difference."""
 import collections, difflib, glob, json, os, re, subprocess, sys, tempfile
+from pathlib import Path
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
-LINE = int(re.search(r"const LINE: usize = (\d+);", open(os.path.join(HERE, "src", "main.rs")).read())[1])
+LINE = int(re.search(r"const LINE: usize = (\d+);", Path(HERE, "src", "main.rs").read_text())[1])
 BIN = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.environ.get("CARGO_TARGET_DIR", os.path.join(HERE, "target")), "release", "astmin")
 
 def reference(root, shown, finds):
@@ -21,7 +22,7 @@ def reference(root, shown, finds):
     files = sorted(glob.glob(os.path.join(root, "center", "shards", "*.jsonl")))
     recs, skipped = [], 0
     for f in files:
-        for line in open(f, "rb").read().split(b"\n"):
+        for line in Path(f).read_bytes().split(b"\n"):
             if len(line) > LINE: skipped += 1
             elif line: recs.append((line, json.loads(line)))
     head = b"%s/center/shards: %d shard files, %d records, %d skipped (too long)\n" % (shown, len(files), len(recs), skipped)
@@ -55,13 +56,13 @@ ok = check("store, root as argument", REPO, [REPO], "/", REPO.encode(), finds)
 ok &= check("store, current directory", REPO, [], REPO, b".", finds)
 with tempfile.TemporaryDirectory() as d:
     os.makedirs(os.path.join(d, "center", "shards"))
-    put = lambda name, text: open(os.path.join(d, "center", "shards", name), "w", encoding="utf-8").write(text)
-    put("b.jsonl", rec(LINE, id="b1", kind="finding", program="made-up", word="tested") + "\n"
-        + rec(LINE + 1, id="b2", kind="finding", program="made-up", word="tested") + "\n\n" + rec(id="b3", kind="cell", program="made-up"))
+    put = lambda name, text: Path(d, "center", "shards", name).write_text(text, encoding="utf-8")
+    fits, too_long = (rec(n, id=i, kind="finding", program="made-up", word="tested") for n, i in ((LINE, "b1"), (LINE + 1, "b2")))
+    assert (len(fits.encode()), len(too_long.encode())) == (LINE, LINE + 1)
+    put("b.jsonl", fits + "\n" + too_long + "\n\n" + rec(id="b3", kind="cell", program="made-up"))  # an empty line; no final newline
     put("a.jsonl", rec(id="a1", kind="frame", program="made-up", word="réfuté") + "\n" + rec(id="a2", kind="finding", program="made-up", word="tested") + "\n")
     put(".hidden.jsonl", rec(id="h1", kind="finding", program="hidden", word="checked") + "\n")
     put("notes.txt", rec(id="n1", kind="finding", program="notes", word="checked") + "\n")
-    assert [len(rec(LINE, id="b1", kind="finding", program="made-up", word="tested").encode()), len(rec(LINE + 1, id="b2", kind="finding", program="made-up", word="tested").encode())] == [LINE, LINE + 1]
     ok &= check("made-up store (edge cases)", d, [d], "/", d.encode(), [b"made-up", "réfuté".encode(), b"hidden", b"b2"])
 print("ok: astmin's output equals the json reference, byte for byte" if ok else "MISMATCH: astmin's output differs from the json reference")
 sys.exit(0 if ok else 1)
