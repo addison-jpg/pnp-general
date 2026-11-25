@@ -1,0 +1,3 @@
+# The repository's route forest. A spanning forest, not a minimum one.
+claim 2 = 2
+record workshop/steinmetz steinmetz-tree open "The route forest in workshop/route/route.py has 354 edges and 9 components. It is a spanning forest. It is not a minimum spanning forest. No claim of minimality is made."
