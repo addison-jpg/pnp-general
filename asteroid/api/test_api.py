@@ -13,6 +13,7 @@ rows = [{"kind": "finding", "id": "a1", "program": "brain", "word": "checked-fin
 open(os.path.join(r, "center", "shards", "s.jsonl"), "w").write("\n".join(json.dumps(x) for x in rows) + "\n")
 open(os.path.join(r, "frames.jsonl"), "w").write("\n".join(json.dumps(x) for x in [{"claim": "a", "score": 1, "status": "OPEN"}, {"claim": "b", "score": 3, "status": "OPEN"}, {"claim": "c", "score": 9, "status": "TRUE"}]) + "\n")
 for f in ("gravity.ath", "hello.ath"): open(os.path.join(r, f), "w").write("")
+open(os.path.join(r, "first_light.ath"), "w").write('check "x"\ncommit "m" push\n')
 env = {"REPO_DIR": r}
 rt = lambda m, p, q=None, b=b"", h=None, e=env: api.route(m, p, q or {}, b, h or {}, e)
 check("health", rt("GET", "/health") == (200, {"ok": True}))
@@ -22,6 +23,7 @@ check("frames sorted by score, status filter", [x["claim"] for x in rt("GET", "/
 check("programs exclude hello.ath", rt("GET", "/programs")[1] == ["gravity.ath"])
 check("check refuses a path", rt("POST", "/check", b=b'{"program":"../x.ath"}')[0] == 400)
 check("check refuses hello.ath", rt("POST", "/check", b=b'{"program":"hello.ath"}')[0] == 400)
+check("check refuses a program that commits", rt("POST", "/check", b=b'{"program":"first_light.ath"}')[0] == 400)
 check("check refuses bad json", rt("POST", "/check", b=b"{")[0] == 400)
 e2 = dict(env, API_KEY="k")
 check("check needs the key when API_KEY is set", rt("POST", "/check", b=b'{"program":"gravity.ath"}', e=e2)[0] == 401)

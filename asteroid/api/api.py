@@ -20,8 +20,13 @@ LOCK = threading.Lock()
 
 def repo(env=os.environ): return env.get("REPO_DIR", os.getcwd())
 
+def _commits(r, f):
+    """True if the program has a commit statement: /check must never make asteroid commit."""
+    try: return any(l.strip().startswith("commit") for l in open(os.path.join(r, f), encoding="utf-8"))
+    except OSError: return True
+
 def programs(r):
-    return sorted(f for f in os.listdir(r) if f.endswith(".ath") and f != "hello.ath")
+    return sorted(f for f in os.listdir(r) if f.endswith(".ath") and f != "hello.ath" and not _commits(r, f))
 
 def records(r):
     out = []
