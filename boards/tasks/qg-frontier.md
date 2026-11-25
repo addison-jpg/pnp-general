@@ -8,3 +8,4 @@
   - Note: the repository's L115 and L119 are the counting core of the "most unitaries need exponential complexity" argument, so linear growth of complexity is a natural next target.
 
 ## Lines (TAKEN / DECIDED only)
+- Q1 (Opus) [TAKEN Q1]: frontier survey -> LITERATURE.md §I rows + ranked OPEN (Sonnet) targets here + lean/PEqualNP/QuantumGravity/FRONTIER.md
