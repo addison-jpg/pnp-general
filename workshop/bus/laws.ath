@@ -1,0 +1,31 @@
+# bus_laws.ath: the bus laws L1 to L4 checked on one real slice of the route graph.   Run: bin/asteroid --no-lean bus_laws.ath
+# The full graph (363 nodes) is past the 12-world limit of a Kripke frame. So the laws are checked on one real slice.
+# Slice (snapshot 2026-11-25), induced from the route graph. Worlds in sorted order inside each layer:
+# P: 0 big.ath, 1 neuron.ath.  E: 2 biology/brain/cortex (a checked file), 3 biology/brain/neuron (a checked file).
+# M: 4 shards/brain, 5 shards/compbio, 6 shards/transit, 7 shards/universes.   Atoms: p = P, q = E, r = M.
+# G: every slice edge, pointed down. Gup: the same edges, pointed up.
+kripke G = worlds 8 rel [(0,2), (0,3), (1,3), (2,4), (2,6), (2,7), (3,4), (3,5), (3,7)] val p {0,1} q {2,3} r {4,5,6,7}
+kripke Gup = worlds 8 rel [(2,0), (3,0), (3,1), (4,2), (6,2), (7,2), (4,3), (5,3), (7,3)] val p {0,1} q {2,3} r {4,5,6,7}
+# One spiral pass (OUT, IN, OUT) on the slice, by L4. OUT pruned (1,3) (3,4) (3,7). IN pruned (0,3) (2,6) (2,7). Last OUT pruned none.
+# OUT: the kept edges, pointed down. IN: the same edges, pointed up.
+kripke OUT = worlds 8 rel [(0,2), (2,4), (3,5)] val p {0,1} q {2,3} r {4,5,6,7}
+kripke IN = worlds 8 rel [(2,0), (4,2), (5,3)] val p {0,1} q {2,3} r {4,5,6,7}
+# L1 layer order: down is P->E or E->M, up is M->E or E->P; nothing skips a layer.
+claim worlds G "(p -> []q) & (q -> []r) & (r -> []F)" = {0,1,2,3,4,5,6,7}
+claim worlds OUT "(p -> []q) & (q -> []r) & (r -> []F)" = {0,1,2,3,4,5,6,7}
+claim worlds IN "(r -> []q) & (q -> []p) & (p -> []F)" = {0,1,2,3,4,5,6,7}
+# L2 tree. No path of 3 steps, so no directed cycle.
+claim worlds OUT "[][][]F" = {0,1,2,3,4,5,6,7}
+claim worlds IN "[][][]F" = {0,1,2,3,4,5,6,7}
+# One parent per node. A parent in OUT is a successor in IN, so: at most one successor in IN, and the same the other way.
+claim valid IN "<>s -> []s"
+claim valid OUT "<>s -> []s"
+# Forest: one parent per node and no directed cycle give an undirected forest (a cited lemma, not checked here).
+# L3 duality stays open: a modal claim sees one relation, so asteroid cannot compare IN with the converse of OUT.
+# L4 prune. Before the pass, some child has two parents in each direction, so pruning is needed.
+claim invalid Gup "<>s -> []s"
+claim invalid G "<>s -> []s"
+# L4 stays open in part: asteroid cannot run a sort, so "the first parent kept" and "OUT is a subset of G" are not checked.
+# Spiral fixed point: a further pass prunes nothing iff every node has at most one parent both ways (lines 22 and 23).
+# The pass count (1 on this slice) is not computed by asteroid; it is written above.
+# FEED stays open: asteroid has no statement that reads vector rows from a .json file.
