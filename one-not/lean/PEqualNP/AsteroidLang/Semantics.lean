@@ -102,12 +102,17 @@ with a real witness -/
 def SlackAll (C : SearchCheck.Circ) : Prop :=
   ∀ Q : Finset (Fin C.n), baseDQ C.setFin ∅ Q ≤ (F2 C.toGates C.setFin Q).card
 
+/-- `true` exactly on the NOT operation -/
+def isNotOp : GateOp → Bool
+  | .not => true
+  | _ => false
+
 /-- the value of a count, in the project's definitions; `none` for the counts that have no
 statement here yet -/
 noncomputable def semFunc (f : Func) (C : SearchCheck.Circ) : Option Int :=
   match f with
   | .gates => some (C.toGates.length : Int)
-  | .nots => some ((C.toGates.countP fun g => decide (g.op = GateOp.not)) : Int)
+  | .nots => some ((C.toGates.countP fun g => isNotOp g.op) : Int)
   | .base => some ((∑ w, ((C.setFin w).card - 1) : Nat) : Int)
   | .orwitness => some ((F2 C.toGates C.setFin ∅).card : Int)
   | .slack => some (((F2 C.toGates C.setFin ∅).card : Int) - ((∑ w, ((C.setFin w).card - 1) : Nat) : Int))
@@ -186,15 +191,23 @@ theorem range_filter_getD_length {α : Type} (l : List α) (p : α → Bool) (d 
   | cons x xs ih =>
     rw [List.length_cons, List.range_succ_eq_map, List.filter_cons, List.filter_map,
       List.countP_cons]
-    simp only [Function.comp_def, List.getD_cons_succ, List.getD_cons_zero, List.length_map]
+    simp only [Function.comp_def, List.getD_cons_succ, List.getD_cons_zero]
     split <;> simp_all
+
+theorem isNotOp_toGate (g : SearchCheck.Gate) : isNotOp g.toGate.op = decide (2 ≤ g.op) := by
+  rcases g with ⟨op, a, b⟩
+  match op with
+  | 0 => simp [SearchCheck.Gate.toGate, isNotOp]
+  | 1 => simp [SearchCheck.Gate.toGate, isNotOp]
+  | k + 2 => simp [SearchCheck.Gate.toGate, isNotOp]
 
 /-- the evaluator's NOT count is the number of NOT gates of the project gate list -/
 theorem nots_bridge (C : Core.Circ) :
-    C.nots = (CoreEq.toProject C).toGates.countP fun g => decide (g.op = GateOp.not) := by
-  simp only [Core.Circ.nots, Core.notCount, range_filter_getD_length, CoreEq.toProject,
-    SearchCheck.Circ.toGates, List.map_map, List.countP_map]
-  exact List.countP_congr fun g _ => by simp [Function.comp_def, SearchCheck.toGate_not_iff]
+    C.nots = (CoreEq.toProject C).toGates.countP fun g => isNotOp g.op := by
+  have h := range_filter_getD_length C.gates (fun g : Core.Gate => decide (2 ≤ g.op)) ⟨0, 0, 0⟩
+  rw [Core.Circ.nots, Core.notCount, h]
+  simp only [CoreEq.toProject, SearchCheck.Circ.toGates, List.map_map, List.countP_map]
+  exact List.countP_congr fun g _ => by simp [Function.comp_def, isNotOp_toGate]
 
 theorem func_sem {env : Env} {name : String} {C : Core.Circ} (h : env.circ? name = some C)
     (f : Func) (v : Int) (hv : semFunc f (CoreEq.toProject C) = some v) : f.eval C = v := by
