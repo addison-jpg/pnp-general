@@ -8,6 +8,10 @@ OUTPUT(ab)
 OUTPUT(ac)
 OUTPUT(bc)
 OUTPUT(abc)
+#@ or ab = a b
+#@ or ac = a c
+#@ or bc = b c
+#@ or abc = a b c
 ab = OR(a, b)
 ac = OR(a, c)
 bc = OR(b, c)
