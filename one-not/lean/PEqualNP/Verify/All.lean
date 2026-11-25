@@ -72,6 +72,8 @@ import PEqualNP.W951.Asteroid_continuous
 import PEqualNP.W951.Asteroid_continuous_sound
 import PEqualNP.W951.Asteroid_corpus
 import PEqualNP.W951.Asteroid_corpus_sound
+import PEqualNP.W951.Asteroid_demo
+import PEqualNP.W951.Asteroid_demo_sound
 import PEqualNP.W951.Asteroid_edges
 import PEqualNP.W951.Asteroid_edges_sound
 import PEqualNP.W951.Asteroid_first

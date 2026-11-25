@@ -17,3 +17,4 @@
 
 - B2 DECIDED: proved in Lean (Open/Or4ManyNot.lean): OR of n inputs needs n-1 AND/OR gates with any number of NOT gates (free); OR4 needs 3. Structural, no enumeration.
 - [B1] DONE: S3(a) per-set flip lemma proved in Lean, any number of NOT gates (one-not/lean/PEqualNP/W951/Open/FlipLemma.lean::Concrete.flip_lemma). S3(b) (sharing across sets) stays open.
+- B4 TAKEN: OR-system partition bound (gates >= n - components) in Open/OrSystemManyNot.lean
