@@ -14,4 +14,6 @@ One function, `app.handle(body, headers)`, that answers Discord's signed slash-c
 ## Run it
 Needs `pynacl` (`pip install pynacl`). Environment: `DISCORD_PUBLIC_KEY` (hex, from the Developer Portal) and `REPO_DIR` (a checkout of this repo). Put `app.handle` behind any HTTPS host (a small WSGI/ASGI wrapper, a serverless function, or a tunnel). In the portal, set the Interactions Endpoint URL to that address; Discord pings it to verify. Register `/status` and `/check` once with the bot token (kept out of the repo).
 
-Tests: `python3 -I asteroid/discord/test_app.py` (needs `pynacl`).
+Start it with `python3 -I asteroid/discord/server.py` (listens on `$PORT`, default 8080; POST `/interactions`).
+
+Tests: `python3 -I asteroid/discord/test_app.py` and `python3 -I asteroid/discord/test_server.py` (need `pynacl`).
