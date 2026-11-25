@@ -1,0 +1,2 @@
+{"name": "tiny_sweep", "entry": "one-not/tools/tensor/lemmad.py", "args": ["sweep", "--top", "300", "--topk", "5", "--planes", "3"], "needs": ["tiny_slack"], "shards": 2, "output": "tiny_sweep.jsonl",
+ "requirements": ["numpy>=2.0", "python-sat"]}

@@ -1,0 +1,9 @@
+{
+  "name": "lemmad_sweep",
+  "entry": "one-not/tools/tensor/lemmad.py",
+  "args": ["sweep", "--top", "4000", "--topk", "20", "--planes", "40"],
+  "needs": ["fano_slack"],
+  "shards": 10,
+  "output": "lemmad_sweep.jsonl",
+  "requirements": ["numpy>=2.0", "python-sat"]
+}

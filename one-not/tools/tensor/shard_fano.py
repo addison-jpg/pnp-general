@@ -2,11 +2,12 @@
 The corpus is rebuilt deterministically by one-not/tools/fano/fano_corpus.py (fixed seeds; it is not stored), or read with --corpus FILE.jsonl.
 Circuit j belongs to shard j % N.  One JSON line per circuit: slack min / argmin / count of negative cubes / sum / crc32 of the int32 slack array.
     python3 -I one-not/tools/tensor/shard_fano.py --shard 0 --of 20 --out out.jsonl [--corpus FILE] [--limit K] [--verify M]
+Slack tables go through cache.py (kind slack_any) when $COMPUTE_CACHE is set; the output file is the same either way.
 --verify M re-checks M random (circuit, cube) pairs against the slow core.slack and exits 1 on a mismatch."""
 import os, sys, json, zlib, random, argparse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
 sys.path.insert(0, HERE); sys.path.insert(0, os.path.join(ROOT, 'one-not', 'tools', 'search')); sys.path.insert(0, os.path.join(ROOT, 'one-not', 'tools', 'fano'))
-import bits
+import bits, cache
 
 def load(path):
     if path: return [json.loads(l) for l in open(path, encoding='utf-8')]
@@ -28,10 +29,10 @@ def main():
     corp = load(a.corpus); print('corpus', len(corp), flush=True)
     if a.limit: corp = corp[:a.limit]
     mine = [(j, c) for j, c in enumerate(corp) if j % a.of == a.shard]
-    rng = random.Random(a.shard); bad = 0; checks = []
+    rng = random.Random(a.shard); bad = 0; checks = []; lo = 0; neg = 0
     with open(a.out, 'w') as f:
         for j, c in mine:
-            s = bits.slack_cubes(c, any_gate=True)
+            s = cache.get('slack_any', c, lambda: bits.slack_cubes(c, any_gate=True)); lo = min(lo, int(s.min())); neg += int((s < 0).any())
             f.write(json.dumps({'j': j, 'src': c['src'], 'ess': c['ess'], 'gates': len(c['gates']), 'min': int(s.min()), 'argmin': int(s.argmin()),
                                 'neg': int((s < 0).sum()), 'sum': int(s.sum()), 'crc': zlib.crc32(s.astype('<i4').tobytes())}, separators=(',', ':')) + '\n')
             if a.verify and len(checks) < a.verify and rng.random() < 0.5: checks.append((c, int(rng.randrange(1 << c['n'])), s))
@@ -41,5 +42,6 @@ def main():
             if core.slack(c, Q) != int(s[Q]): bad += 1; print('MISMATCH', c['src'], Q, core.slack(c, Q), int(s[Q]))
         print('verified', len(checks), 'samples,', bad, 'mismatches')
     print('shard', a.shard, 'of', a.of, ':', len(mine), 'circuits', flush=True)
+    print('SUMMARY ' + json.dumps({'circuits': len(mine), 'min_slack': lo, 'circuits_with_negative_slack': neg, 'verify_mismatches': bad}), flush=True)
     sys.exit(1 if bad else 0)
 main()

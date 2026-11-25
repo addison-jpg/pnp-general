@@ -1,16 +1,23 @@
-# Compute jobs on GitHub runners (boards/tasks/git-compute.md). A job spec (JSON) names a Python entry point in the repo, its args,
-# a shard count N (<= 20) and an output file name. The workflow runs the entry as `python3 -I ENTRY ARGS --shard i --of N --out PATH`
-# on N ubuntu-latest jobs, uploads each shard's output as an artifact, then merges the shards (concatenated in shard order) into one artifact.
-# Trigger: Actions > compute > Run workflow with `spec` = a path in the repo (e.g. compute/specs/fano_slack.json), or push to a compute/** branch
-# (spec at compute/job.json on that branch). Read-only: no push, no release, no tag, no PR, no comment (QUIET).
+# Compute jobs on GitHub runners (boards/tasks/git-compute.md; one-not/tools/tensor/README.md, "Structure between jobs").
+# A job spec (JSON) names a Python entry point in the repo, its args, a shard count N (<= 20) and an output file name; it may name
+# other specs it `needs`. The workflow plans the DAG (at most 4 levels), runs each level after the one below it, each spec as N shard
+# jobs plus a merge (compute-job.yml), and hands every merged output to the specs that need it. One spec with no needs runs as before
+# (artifacts `shard-i` and `merged`). Trigger: Actions > compute > Run workflow with `spec` = a path in the repo, or push to a
+# compute/** branch (spec at compute/job.json on that branch).
+# Writes: only the last job, `publish`, has a write token, and it pushes one commit to the `compute-cache` branch (cache packs and
+# results), never to main. No release, no tag, no PR, no comment (QUIET).
 name: compute
 on:
   workflow_dispatch:
     inputs:
       spec:
-        description: path to a job spec in the repo
+        description: path to a job spec in the repo (its `needs` are run first)
         required: true
         default: compute/specs/fano_slack.json
+      runner:
+        description: runs-on label of the shard jobs (a GPU runner goes here; paid runners are the owner's decision)
+        required: false
+        default: ubuntu-latest
   push:
     branches: ['compute/**']
 permissions:
@@ -19,73 +26,108 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.p.outputs.matrix }}
-      shards: ${{ steps.p.outputs.shards }}
-      spec: ${{ steps.p.outputs.spec }}
+      l0: ${{ steps.p.outputs.l0 }}
+      l1: ${{ steps.p.outputs.l1 }}
+      l2: ${{ steps.p.outputs.l2 }}
+      l3: ${{ steps.p.outputs.l3 }}
     steps:
       - uses: actions/checkout@v4
       - id: p
         env:
           SPEC_IN: ${{ github.event_name == 'workflow_dispatch' && inputs.spec || 'compute/job.json' }}
-        run: |
-          python3 - <<'PY'
-          import json, os, re
-          spec = os.path.normpath(os.environ['SPEC_IN'])
-          assert not spec.startswith(('..', '/')) and spec.endswith('.json') and os.path.isfile(spec), 'bad spec path ' + spec
-          j = json.load(open(spec))
-          n = j['shards']; assert isinstance(n, int) and 1 <= n <= 20, 'shards must be 1..20'
-          e = os.path.normpath(j['entry']); assert e.endswith('.py') and not e.startswith(('..', '/')) and os.path.isfile(e), 'bad entry ' + e
-          assert all(isinstance(x, str) for x in j.get('args', [])), 'args must be strings'
-          assert re.fullmatch(r'[A-Za-z0-9._-]+', j['output']), 'output must be a plain file name'
-          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-              f.write('matrix=' + json.dumps({'shard': list(range(n))}) + '\n')
-              f.write('shards=%d\n' % n)
-              f.write('spec=' + spec + '\n')
-          PY
-  shard:
+        run: python3 -I one-not/tools/tensor/dag.py plan "$SPEC_IN"
+  l0:
     needs: plan
-    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: { python-version: '3.12' }
-      - name: Run shard ${{ matrix.shard }} of ${{ needs.plan.outputs.shards }}
-        env:
-          SPEC: ${{ needs.plan.outputs.spec }}
-          SHARD: ${{ matrix.shard }}
-          OF: ${{ needs.plan.outputs.shards }}
-        run: |
-          python3 - <<'PY'
-          import json, os, subprocess, sys
-          j = json.load(open(os.environ['SPEC']))
-          subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-q'] + j.get('requirements', ['numpy>=2.0']))
-          os.makedirs('shards', exist_ok=True)
-          cmd = [sys.executable, '-I', j['entry']] + j.get('args', []) + ['--shard', os.environ['SHARD'], '--of', os.environ['OF'], '--out', 'shards/%s.part' % os.environ['SHARD']]
-          print(cmd, flush=True); sys.exit(subprocess.call(cmd))
-          PY
-      - uses: actions/upload-artifact@v4
-        with:
-          name: shard-${{ matrix.shard }}
-          path: shards/${{ matrix.shard }}.part
-  merge:
-    needs: [plan, shard]
+      matrix: { job: '${{ fromJSON(needs.plan.outputs.l0) }}' }
+    uses: ./.github/workflows/compute-job.yml
+    with:
+      spec: ${{ matrix.job.spec }}
+      name: ${{ matrix.job.name }}
+      matrix: ${{ matrix.job.matrix }}
+      shards: ${{ matrix.job.shards }}
+      prefix: ${{ matrix.job.prefix }}
+      needs: ${{ matrix.job.needs }}
+      runner: ${{ inputs.runner || 'ubuntu-latest' }}
+  l1:
+    needs: [plan, l0]
+    if: needs.plan.outputs.l1 != '[]'
+    strategy:
+      fail-fast: false
+      matrix: { job: '${{ fromJSON(needs.plan.outputs.l1) }}' }
+    uses: ./.github/workflows/compute-job.yml
+    with:
+      spec: ${{ matrix.job.spec }}
+      name: ${{ matrix.job.name }}
+      matrix: ${{ matrix.job.matrix }}
+      shards: ${{ matrix.job.shards }}
+      prefix: ${{ matrix.job.prefix }}
+      needs: ${{ matrix.job.needs }}
+      runner: ${{ inputs.runner || 'ubuntu-latest' }}
+  l2:
+    needs: [plan, l1]
+    if: needs.plan.outputs.l2 != '[]'
+    strategy:
+      fail-fast: false
+      matrix: { job: '${{ fromJSON(needs.plan.outputs.l2) }}' }
+    uses: ./.github/workflows/compute-job.yml
+    with:
+      spec: ${{ matrix.job.spec }}
+      name: ${{ matrix.job.name }}
+      matrix: ${{ matrix.job.matrix }}
+      shards: ${{ matrix.job.shards }}
+      prefix: ${{ matrix.job.prefix }}
+      needs: ${{ matrix.job.needs }}
+      runner: ${{ inputs.runner || 'ubuntu-latest' }}
+  l3:
+    needs: [plan, l2]
+    if: needs.plan.outputs.l3 != '[]'
+    strategy:
+      fail-fast: false
+      matrix: { job: '${{ fromJSON(needs.plan.outputs.l3) }}' }
+    uses: ./.github/workflows/compute-job.yml
+    with:
+      spec: ${{ matrix.job.spec }}
+      name: ${{ matrix.job.name }}
+      matrix: ${{ matrix.job.matrix }}
+      shards: ${{ matrix.job.shards }}
+      prefix: ${{ matrix.job.prefix }}
+      needs: ${{ matrix.job.needs }}
+      runner: ${{ inputs.runner || 'ubuntu-latest' }}
+  publish:
+    # The only job with a write token. It appends one commit to the compute-cache branch: new cache packs and the result records.
+    needs: [l0, l1, l2, l3]
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
-        with: { pattern: shard-*, path: parts }
-      - name: Merge in shard order
-        env:
-          SPEC: ${{ needs.plan.outputs.spec }}
-          OF: ${{ needs.plan.outputs.shards }}
+        continue-on-error: true
+        with: { pattern: cache-new-*, path: art/cache }
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: { pattern: '*merged', path: art/merged }
+      - name: Commit packs and results to compute-cache (never main, never forced)
         run: |
-          mkdir -p merged
-          OUT=merged/$(python3 -c "import json,os;print(json.load(open(os.environ['SPEC']))['output'])")
-          : > "$OUT"
-          for i in $(seq 0 $((OF-1))); do cat "parts/shard-$i/$i.part" >> "$OUT"; done
-          wc -l "$OUT"; sha256sum "$OUT"
-      - uses: actions/upload-artifact@v4
-        with: { name: merged, path: merged/ }
+          set -e
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          mkdir -p art
+          for try in 1 2 3 4 5; do
+            rm -rf br; mkdir br
+            if git fetch -q --depth 1 origin compute-cache 2>/dev/null; then
+              git worktree add -q --detach br FETCH_HEAD
+            else
+              git worktree add -q --detach br HEAD
+              (cd br && git checkout -q --orphan "cc-$try" && git rm -rfq . && printf 'Content-addressed compute cache and job results (written by compute.yml; see one-not/tools/tensor/README.md on main).\n' > README)
+            fi
+            python3 -I one-not/tools/tensor/dag.py publish art br
+            cd br; git add -A .
+            if git diff --cached --quiet; then echo 'nothing new'; exit 0; fi
+            git commit -q -m "compute run $GITHUB_RUN_ID: cache packs and results"
+            if git push -q origin HEAD:refs/heads/compute-cache; then echo pushed; exit 0; fi
+            cd ..; git worktree remove --force br; sleep $((try * 7))
+          done
+          echo 'could not push to compute-cache'; exit 1

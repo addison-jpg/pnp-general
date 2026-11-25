@@ -1,0 +1,16 @@
+{
+  "name": "lemmad_recheck",
+  "entry": "one-not/tools/tensor/lemmad.py",
+  "args": ["recheck"],
+  "needs": ["lemmad_neigh"],
+  "shards": 1,
+  "output": "lemmad_recheck.jsonl",
+  "requirements": ["numpy>=2.0", "python-sat"],
+  "finding": {
+    "dir": "one-not/tools/tensor",
+    "serves": "flagship-payment-hall",
+    "statement": "Refuter loop for Lemma D on BottomPay instances (fano_slack -> lemmad_sweep -> lemmad_neigh -> lemmad_recheck, compute.yml DAG): {violations_in} violations reached the independent recheck job, {rejected} rejected, the rest confirmed and filed separately. Tested, not proved.",
+    "evidence": ["one-not/tools/tensor/lemmad.py", "compute/specs/lemmad_recheck.json"],
+    "runner": "python3 -I one-not/tools/tensor/lemmad.py selftest"
+  }
+}

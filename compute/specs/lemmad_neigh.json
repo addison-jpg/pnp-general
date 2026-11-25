@@ -1,0 +1,9 @@
+{
+  "name": "lemmad_neigh",
+  "entry": "one-not/tools/tensor/lemmad.py",
+  "args": ["neigh", "--seeds", "40", "--steps", "150"],
+  "needs": ["lemmad_sweep"],
+  "shards": 10,
+  "output": "lemmad_neigh.jsonl",
+  "requirements": ["numpy>=2.0", "python-sat"]
+}

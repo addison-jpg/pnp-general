@@ -1,0 +1,73 @@
+# One spec of a compute DAG: N shards, then a merge. Called by compute.yml only (workflow_call); read-only.
+# A shard reads the cache (the compute-cache branch plus the packs of earlier jobs of this run), runs the entry through
+# one-not/tools/tensor/dag.py, and uploads its part, its summary and the cache entries it had to compute.
+name: compute-job
+on:
+  workflow_call:
+    inputs:
+      spec: { type: string, required: true }
+      name: { type: string, required: true }
+      matrix: { type: string, required: true }
+      shards: { type: number, required: true }
+      prefix: { type: string, default: '' }
+      needs: { type: string, default: '' }
+      runner: { type: string, default: ubuntu-latest }
+permissions:
+  contents: read
+jobs:
+  shard:
+    runs-on: ${{ inputs.runner }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(inputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Read the cache branch
+        run: |
+          mkdir -p cc/packs
+          if git fetch -q --depth 1 origin compute-cache 2>/dev/null && git cat-file -e FETCH_HEAD:packs 2>/dev/null; then
+            git archive FETCH_HEAD packs | tar -x -C cc
+          fi
+          ls cc/packs | wc -l
+      - name: Cache entries of earlier jobs of this run
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: { pattern: cache-new-*, path: cc/packs, merge-multiple: true }
+      - name: Merged outputs of the specs this one needs
+        if: inputs.needs != ''
+        uses: actions/download-artifact@v4
+        with: { pattern: '*-merged', path: inputs }
+      - name: Run shard ${{ matrix.shard }} of ${{ inputs.shards }}
+        env:
+          SPEC: ${{ inputs.spec }}
+          SHARD: ${{ matrix.shard }}
+          OF: ${{ inputs.shards }}
+          COMPUTE_CACHE: ${{ github.workspace }}/cc
+        run: python3 -I one-not/tools/tensor/dag.py run "$SPEC" --shard "$SHARD" --of "$OF"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.prefix }}shard-${{ matrix.shard }}
+          path: |
+            shards/${{ matrix.shard }}.part
+            shards/${{ matrix.shard }}.summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cache-new-${{ inputs.name }}-${{ matrix.shard }}
+          path: cc/new/*.pack
+          if-no-files-found: ignore
+  merge:
+    needs: shard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { pattern: '${{ inputs.prefix }}shard-*', path: parts }
+      - name: Merge in shard order
+        env:
+          SPEC: ${{ inputs.spec }}
+          PREFIX: ${{ inputs.prefix }}
+        run: python3 -I one-not/tools/tensor/dag.py merge "$SPEC" --parts parts --prefix "$PREFIX" --run "$GITHUB_RUN_ID"
+      - uses: actions/upload-artifact@v4
+        with: { name: '${{ inputs.prefix }}merged', path: merged/ }

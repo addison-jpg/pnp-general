@@ -1,0 +1,1 @@
+{"name": "tiny_slack", "entry": "one-not/tools/tensor/shard_fano.py", "args": ["--limit", "3000"], "shards": 2, "output": "tiny_slack.jsonl"}
