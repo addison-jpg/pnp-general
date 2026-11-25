@@ -60,8 +60,10 @@
    "STOPPED": 2,
    "TAKEN": 2
   },
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
  },
  "philosophy": {
   "cells": {

@@ -10,6 +10,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 - asteroid (the language and its tools): 7 checked · 3 tested · tested, re-checked in last 24h: 1/3
 - circuits (one-NOT and several-NOT): 48 checked · 6 tested · 6 refuted · tested, re-checked in last 24h: 0/6
 - lateral (Lawvere spine): 1 checked
+- other: 1 checked-finite
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked
 - quantum gravity: 13 checked
 - worlds (maps and unification; not progress on P vs NP): 9 checked
@@ -17,7 +18,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 91 checked · 9 tested · 6 refuted
+## `./` 91 checked · 1 checked-finite · 9 tested · 6 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -40,6 +41,9 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `a023c28e` **checked** [T6, C4, Theorem] ladder.ath: rung 0 (2 circuits without NOT) count>=0 and gates>=base in the kernel; the 4 many-NOT files all have witness<base and gates>=base; 10 Python claims, 6 Lean theorems, 15 s · evidence: `asteroid/programs/ladder.ath`, `one-not/lean/PEqualNP/W951/Asteroid_ladder.lean::M_0_claim0` · main's Sonnet (programs) · VERIFIED
 - `d23edf3b` **open** [C1, C2, C4, the sorry] Language cannot yet say: implications/hypotheses in corpus claims (sets_ok), exists-v mixed quantifiers and gain/cost of 0- and 1-steps, merge sets/pure classes/SDR/prices, negated corpus claims, a Lean form for gates>=base, fast C3_k at n>=16, kernel claims at n=14+ (see asteroid/programs/README.md) · evidence: `asteroid/programs/README.md` · main's Sonnet (programs) · unverified (needs a second seat in by)
 - `37dcef35` **checked** [the sorry, L5] The continuous form is in asteroid: for the Fano formula and a 5-input one-NOT circuit the kernel checks every cube and Lean states 0 <= Phi(p) for all p in [0,1] and 0 <= Phi(0) in the project's Phi; Phi is not monotone on the twin tree (level means 6.00 -> 8.29). · evidence: `asteroid/programs/continuous.ath`, `one-not/lean/PEqualNP/W951/Asteroid_continuous_sound.lean::fano_claim2_phi_zero`, `asteroid/ext_continuous.py` · main · VERIFIED
+
+### `homestuck/` 1 checked-finite
+- `2befeb37` **checked-finite** [homestuck] Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A model of combination, not the comic's recipe. · evidence: `homestuck/alchemy.py::reachable_counts` · haiku, confirmed by fable · VERIFIED
 
 ### `lean/` 25 checked
 

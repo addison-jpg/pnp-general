@@ -3,7 +3,8 @@
   "counts": {
    "checked": 91,
    "tested": 9,
-   "refuted": 6
+   "refuted": 6,
+   "checked-finite": 1
   },
   "verified": [
    "8d76417d",
@@ -111,7 +112,8 @@
    "dde7834a",
    "7961ecd5",
    "14e1a81a",
-   "f9156a1e"
+   "f9156a1e",
+   "2befeb37"
   ],
   "unverified_here": []
  },
@@ -195,6 +197,15 @@
     ]
    }
   ]
+ },
+ "homestuck": {
+  "counts": {
+   "checked-finite": 1
+  },
+  "verified": [
+   "2befeb37"
+  ],
+  "unverified_here": []
  },
  "lean": {
   "counts": {

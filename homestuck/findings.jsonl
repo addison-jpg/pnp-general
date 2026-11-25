@@ -1,0 +1,2 @@
+{"id": "2befeb37", "time": "2026-11-25 03:38", "who": "haiku", "serves": "homestuck", "word": "checked-finite", "statement": "Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A model of combination, not the comic's recipe.", "evidence": ["homestuck/alchemy.py::reachable_counts"], "by": ["haiku"], "runner": "python3 -I homestuck/alchemy.py 3 3"}
+{"id": "2befeb37", "by": ["fable"]}
