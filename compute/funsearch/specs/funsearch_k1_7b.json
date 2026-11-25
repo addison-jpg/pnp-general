@@ -1,0 +1,5 @@
+{"name": "funsearch_k1_7b", "entry": "compute/funsearch/entry.py",
+ "args": ["search", "--target", "k1:small", "--proposer", "gguf", "--model", "Qwen/Qwen2.5-7B-Instruct-GGUF", "--gguf-pattern", "qwen2.5-7b-instruct-q4_k_m*",
+          "--threads", "4", "--minutes", "40", "--batch", "2", "--islands", "2", "--max-new", "320"],
+ "shards": 4, "output": "funsearch_k1_7b.jsonl",
+ "requirements": ["--extra-index-url", "https://abetlen.github.io/llama-cpp-python/whl/cpu", "llama-cpp-python", "huggingface_hub", "numpy>=2.0"]}

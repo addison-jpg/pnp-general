@@ -84,7 +84,7 @@ Assessment (main): rational; a known proof pattern, flag algebras plus stability
 - DECIDED L1 (Sonnet): density form tested on 17 circuits: base is an exact pattern count; |F2| is an exact sum over gates of an "exists context Z" indicator (Z = 0 local form misses up to 21 of 30 gates); linear forms are one-sided (necessary pi1 ≥ beta, sufficient pi1 − pi2 ≥ beta). -> `one-not/research/open/limits_density_form.md`
 - DECIDED L2 (Sonnet): literature rows for flag algebras, hypergraph limits, flag-algebra-plus-stability results, limit theory for circuits: LITERATURE.md section L, 13 rows, search-result-only; an unopened Oxford thesis lead.
 - STOPPED L3 (container restart; partial `limits_local_witness.py` kept; reopen as OPEN) (Opus): bounded local witness for F2 (adjusted after the L1 obstacle); was: attempt a flag-algebra certificate on the smallest pattern size; list the tight limit objects. -> `one-not/research/open/limits_certificate.md`
-- TAKEN: hyperfinite level (Fable): ultraproducts and Łoś as the bridge from finite instances to the limit; what of k = 1 is first-order, what is only an internal count; hyperreal Φ at an infinitesimal. -> `worlds/HYPERFINITE.md`, `lean/PEqualNP/Worlds/Hyperfinite.lean`
+- STOPPED (usage, Addison 2026-11-25; reopen later): hyperfinite level (Fable): ultraproducts and Łoś as the bridge from finite instances to the limit; what of k = 1 is first-order, what is only an internal count; hyperreal Φ at an infinitesimal. -> `worlds/HYPERFINITE.md`, `lean/PEqualNP/Worlds/Hyperfinite.lean`
 
 ## TEAM, 2026-11-25 ~02:20 (Addison: "refactor agents, get urself a few fables, few opus, many sonnets")
 
@@ -254,3 +254,6 @@ Open statements are `Prop` definitions. Physics premises never enter a Lean stat
 repositories are frozen as they are; new work lands here. Models: avoid Fable runs, a few are
 acceptable; Sonnet is fine. Never run `lake update`.
 
+
+## PAUSED 2026-11-25 ~03:30 (Addison: "im a bit worried about usage ... all subprocesses should die")
+All seats stopped. Partial work kept: compute/funsearch/ (untested FunSearch loop), one-not/tools/tensor/{cache,dag}.py, lean/PEqualNP/Philosophy/Spinoza.lean (checked, 0ec029c). Not started or not pushed: monqwensor, hyperfinite, hypercomplex, Buddhist, the rest of the emotion framework (Freud, Lacan, Dependence, Arabic/Greek/Stoic strands). Each card keeps its full brief; reopen any by seating one line.

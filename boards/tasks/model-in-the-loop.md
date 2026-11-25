@@ -11,8 +11,8 @@
 - **Compute:** this machine (4 cores, no GPU) for development; git-compute runners (4 vCPU, 16 GB) for runs; a GPU runner is Addison's decision. Weights are never committed.
 
 ## Seats
-- TAKEN (main Fable): design and build the loop. -> compute/funsearch/
-- TAKEN: monqwensor (Fable): the connection finder under the whole repo (index, candidates, generated board). -> compute/monqwensor/
+- STOPPED (usage; reopen later): design and build the loop; partial code in compute/funsearch/ (untested). -> compute/funsearch/
+- STOPPED (usage; reopen later; nothing pushed): monqwensor (Fable): the connection finder under the whole repo (index, candidates, generated board). -> compute/monqwensor/
 
 ## Lines (TAKEN / DECIDED only)
-- TAKEN (main Fable): FunSearch loop (Qwen proposer, sandboxed proposals, tensor scoring, islands database, target registry generated from the repo, independent recheck before any finding). -> compute/funsearch/
+- STOPPED (usage; reopen later): FunSearch loop (Qwen proposer, sandboxed proposals, tensor scoring, islands database, target registry generated from the repo, independent recheck before any finding). -> compute/funsearch/

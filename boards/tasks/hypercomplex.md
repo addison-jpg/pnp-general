@@ -9,7 +9,7 @@
 - **Honest limits:** a common language, not a proof engine. Hurwitz's theorem: the only normed division algebras are ℝ, ℂ, ℍ and the octonions 𝕆, so "field" holds only for ℝ and ℂ; ℍ is a skew field and 𝕆 is not associative. Philosophy is not in scope unless a structure there is genuinely algebraic.
 
 ## Seats
-- Fable (main): the layer and its checked maps. -> lean/PEqualNP/Worlds/Hypercomplex.lean, worlds/HYPERCOMPLEX.md
+- STOPPED (usage; reopen later; nothing pushed) Fable: the layer and its checked maps. -> lean/PEqualNP/Worlds/Hypercomplex.lean, worlds/HYPERCOMPLEX.md
 
 ## Lines (TAKEN / DECIDED only)
 - 03:16 Fable (hypercomplex seat) TAKEN
