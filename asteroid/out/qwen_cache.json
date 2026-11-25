@@ -1,0 +1,8 @@
+{
+ "b96749ab0133cbf43338cc98b455c8ca2777fffb38da01ac62abfbfc3cf8eece": {
+  "k": 3,
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "task": "a closed formula for the sequence catalan, 1, 1, 2, 5, 14, 42, 132 (term i is at n = i)",
+  "text": "valid FORMES \"Catalan\""
+ }
+}
