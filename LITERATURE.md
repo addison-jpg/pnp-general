@@ -388,6 +388,21 @@ and numbers are from the seat's memory and should be checked before being relied
 | Van Raamsdonk, "Building up spacetime with quantum entanglement", Gen. Rel. Grav. 42 (2010) 2323 | connectivity of space from entanglement | memory | reading only ("entanglement is the edge"): `bell_bond_saturates` |
 | Bombelli, Lee, Meyer and Sorkin, "Space-time as a causal set", Phys. Rev. Lett. 59 (1987) 521 | spacetime as a locally finite partial order | memory | `Spacelike`, `Beyond`, `causal_order_from_links` |
 
+## N. Worlds map (task worlds-map, seat W1)
+
+Added by seat W1, 2026-11-25. A map, not progress on P vs NP. Entries in `worlds/README.md`. en.wikipedia.org was not reachable; nothing was opened in full.
+
+| Source | What it gives | Status | Note |
+|---|---|---|---|
+| Hartmanis and Stearns, Trans. AMS 117 (1965) 285-306; Stearns, Hartmanis, Lewis (1965); Hennie and Stearns (1966) | time and space hierarchy theorems: infinitely many strict levels | MEM | `worlds/README.md` |
+| Impagliazzo, "A personal view of average-case complexity", IEEE Structure in Complexity Theory (1995) | the five worlds | search result (secondary summaries) | `worlds/README.md` |
+| Karp and Lipton, STOC 1980 | NP in P/poly implies PH collapses to level 2 | MEM | `worlds/README.md` |
+| Aaronson, "Is P versus NP formally independent?", BEATCS 81 (2003) | independence from ZFC discussed | search result | `worlds/README.md` |
+| Aaronson and Wigderson, STOC 2008; ACM TOCT 1(1) 2009 | algebrization barrier | ABS (via search) | `worlds/README.md` |
+| Impagliazzo and Paturi, CCC 1999; JCSS 62 (2001) | ETH, SETH | search result | `worlds/README.md` |
+| Levin, Probl. Inf. Transm. 9 (1973); Ladner, JACM 22 (1975) | universal search (galactic P = NP); intermediate degrees if P != NP | MEM | `worlds/README.md` |
+| Razborov, Dokl. Akad. Nauk SSSR 281 (1985); Tardos, Combinatorica 8 (1988) | monotone CLIQUE bound; monotone vs general gap | MEM | `worlds/README.md` |
+
 ## J. Searched and not found (so nobody searches again)
 
 - A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`).
