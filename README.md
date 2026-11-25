@@ -4,7 +4,12 @@
 
 # pnp-general (by addison-jpg)
 
-The higher level gist is: quantum/gravity relativity maps onto the relativity barrier to P/NP, and can help bypass it.
+**One machine-checked map across fields that usually never meet: circuit complexity, quantum gravity, knot theory, biology and philosophy, stated in one vocabulary and checked by one standard.** Every result is labelled by how it was checked; nothing is sold on trust.
+
+- **Proved in Lean (standard axioms only):** PSPACE ⊆ P_CTC ⊆ EXP for closed timelike curves; the exact Knill gate count for two-qubit circuits via the KAK decomposition; the three-qubit CKW entanglement inequality; NOT-gate lower bounds for OR systems with any number of NOT gates.
+- **Refuted, with the counterexample in the repo:** the point lemma for general set families (AG(2,8): 261 lines against a base of 448).
+- **Computed exactly:** Lacan's Borromean knot as a real link, by two independent methods (Milnor invariants and Seifert surfaces), with his "sinthome" as a fourth ring that provably holds three rings that fall apart alone.
+- **Not claimed:** anything about P versus NP being settled or near.
 
 > Please do not push to this repository. Pull it, read it, run it. If you find a mistake, open an issue.
 
