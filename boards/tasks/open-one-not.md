@@ -20,3 +20,4 @@
 - 2026-11-25 A4 (Opus) TAKEN: F2-transfer under one NOT gate (where the NOT gate enters under restriction; attack on stored instances first). Note will be one-not/research/open/A4_f2_transfer.md
 - 2026-11-25 A5 (Sonnet) TAKEN: test F2-transfer at t = 1 on every stored one-NOT instance and random irreducible one-NOT circuits; record NOT alive/killed vs gates' - |F2'|. Files: one-not/research/open/A5_transfer_t1.py, A5_transfer_t1.md
 - 2026-11-25 A5 (Sonnet) DECIDED: F2-transfer |F2'| >= base' holds at every restriction (1,353,627 with base' > 0) of 3,263 one-NOT circuits, n 4..10, 0 failures (tested, checked twice); tight in both NOT-alive and NOT-killed states, so no NOT-use shows up in the data. Note: one-not/research/open/A5_transfer_t1.md
+- A3 (2026-11-25): mixed-step search on irreducible read-NOT circuits, no counterexample, 0 negative-slack states reached; see one-not/research/open/A3_mixed_search.md

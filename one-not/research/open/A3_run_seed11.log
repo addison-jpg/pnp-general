@@ -1,0 +1,1 @@
+{"runs": 1850, "irr": 22, "tested": 9, "states": 164025, "pos": 53841, "neg": 0, "minsl": 0, "worst": 0, "direct": 0, "fails": 0, "seed": 11, "nmax": 10, "secs": 1000, "by_n": {"9": 8, "8": 1}}
