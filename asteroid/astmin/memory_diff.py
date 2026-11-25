@@ -31,7 +31,7 @@ def reference(root, shown, finds):
     for word in finds:
         hits = [r for line, r in recs if word in line]
         out += b"4ST> " + b"".join(b"  id %s  program %s\n" % (r.get("id", "-").encode(), r.get("program", "-").encode()) for r in hits[:3])
-        out += b'%d records contain "%s"\n' % (len(hits), word) + head
+        out += b'records containing "%s": %d\n' % (word, len(hits)) + head
     return out + b"4ST> \n", f"{len(files)} shard files, {len(recs)} records, {skipped} skipped (too long), {len(pairs)} (kind, word) pairs"
 
 def check(name, root, args, cwd, shown, finds):

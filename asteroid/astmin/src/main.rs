@@ -33,7 +33,7 @@ fn exit(code: usize) -> ! { unsafe { sys(60, code, 0, 0); } loop {} }
 struct Pair { off: usize, len: usize, n: usize }
 struct Tally {
     files: usize, total: usize, skipped: usize, found: usize, np: usize, nt: usize, full: bool,
-    pairs: [Pair; PAIRS],
+    pairs: [Pair; PAIRS], // kept in key order, which is (kind, word) order because the zero byte sorts first
     text: [u8; TEXT], // the pairs' keys: kind, a zero byte, word (json.dumps never writes a raw zero byte)
     key: [u8; LINE + 2],
 }
@@ -83,10 +83,10 @@ unsafe extern "C" fn start(sp: *const usize) -> ! {
 fn answer(st: &mut St, root: &[u8], t: &[u8]) -> bool {
     if t == b":quit" { return true; }
     if t == b":memory" {
-        if scan(st, root, b"") { memory(&mut st.t, root); }
+        if scan(st, root, b"") { memory(&st.t, root); }
     } else if t.len() > 6 && starts(t, b":find ") {
         if scan(st, root, &t[6..]) {
-            num(st.t.found, 0); write(b" records contain \""); write(&t[6..]); write(b"\"\n");
+            write(b"records containing \""); write(&t[6..]); write(b"\": "); num(st.t.found, 0); write(b"\n");
             summary(&st.t, root);
         }
     } else if starts(t, b":") {
@@ -97,14 +97,9 @@ fn answer(st: &mut St, root: &[u8], t: &[u8]) -> bool {
     false
 }
 
-fn memory(t: &mut Tally, root: &[u8]) {
+fn memory(t: &Tally, root: &[u8]) {
     if t.full { write(b"refused: more than 1024 distinct (kind, word) pairs, or 65536 bytes of their text\n"); return; }
     summary(t, root);
-    // Insertion sort by key, which is (kind, word) order because the zero byte sorts first.
-    for i in 1..t.np {
-        let mut j = i;
-        while j > 0 && lt(key(t, j), key(t, j - 1)) { t.pairs.swap(j, j - 1); j -= 1; }
-    }
     for i in 0..t.np {
         let k = key(t, i);
         let z = pos(k, 0).unwrap_or(0);
@@ -184,14 +179,14 @@ fn record(t: &mut Tally, l: &[u8], long: bool, needle: &[u8]) {
         for part in [field(l, b"\"kind\": \""), b"\0", field(l, b"\"word\": \"")] {
             for &c in part { t.key[kl] = c; kl += 1; }
         }
-        let key = &t.key[..kl];
-        for i in 0..t.np {
-            let p = t.pairs[i];
-            if eq(&t.text[p.off..p.off + p.len], key) { t.pairs[i].n += 1; return; }
-        }
+        let new = &t.key[..kl];
+        let mut i = 0; // the pair's place in key order
+        while i < t.np && lt(key(t, i), new) { i += 1; }
+        if i < t.np && eq(key(t, i), new) { t.pairs[i].n += 1; return; }
         if t.np == PAIRS || t.nt + kl > TEXT { t.full = true; return; }
-        t.text[t.nt..t.nt + kl].copy_from_slice(key);
-        t.pairs[t.np] = Pair { off: t.nt, len: kl, n: 1 };
+        t.text[t.nt..t.nt + kl].copy_from_slice(new);
+        t.pairs.copy_within(i..t.np, i + 1);
+        t.pairs[i] = Pair { off: t.nt, len: kl, n: 1 };
         t.np += 1;
         t.nt += kl;
     } else if at(l, needle).is_some() {
