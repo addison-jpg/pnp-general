@@ -15,6 +15,10 @@ Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boar
 The target: for Boolean sums with pairwise |S_a ∩ S_b| ≤ 1, every circuit with at most k NOT gates needs at least Σ(|S_w| − 1) gates. k = 1 is `no_minCE`, via the checked chain to `BottomPay`; general k is the point lemma. One condition, PHC, would unify both. PHC is not proved: F1 reduced it to Lemma D and found the exact obstacle, the class point lemma for two sets. A standalone result in negation-limited circuit complexity; no implication for P vs NP is claimed. [`flagship-payment-hall`](boards/tasks/flagship-payment-hall.md)
 - TAKEN: cross-program unification (Fable): what joins circuits, quantum gravity, logic/language and philosophy as theorems, what is only analogy, what fails. -> `worlds/UNIFY_ALL.md`, `lean/PEqualNP/Worlds/Unify.lean`
 
+## MODEL IN THE LOOP (Addison: "a structure that supercedes the tensor gpu ... BIIG qwens weights integrated into operations")
+
+FunSearch-style search. Qwen proposes programs (circuits, payer sets, set families), the tensor backend scores them exactly, and the best go back into the prompt. Aimed at the k = 1 flagship: a counterexample to BottomPay, or tight cases that suggest a proof. The model guesses; only the evaluator or Lean decides. [`model-in-the-loop`](boards/tasks/model-in-the-loop.md)
+
 ## METHODS, FORMAL (Fable; Addison approved)
 
 Addison's methods as checked definitions: forced prover/refuter pairs, multidimensional bounds as Pareto frontiers, the board's propagation semantics, levels as projections, refuted forms lifted in a DAG. An ath surface where cheap. Results about the method, not about circuits. [`methods-formal`](boards/tasks/methods-formal.md)
