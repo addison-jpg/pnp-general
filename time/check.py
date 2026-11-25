@@ -142,7 +142,7 @@ want("forward step (only passing checks): settled stays settled; %d (store, orde
 bad = step({0: True}, (0, False))
 want("with a failing re-check allowed, a settled record is lost (counterexample {0:T} -> {0:F})", bad[0] is False)
 
-removed = down = versions = 0; ex = []
+removed = down = versions = superseded = 0; ex = []; pserv = {}
 for f in sorted(glob.glob(os.path.join(ROOT, "*", "findings.jsonl"))):
     rel = os.path.relpath(f, ROOT)
     revs = git("rev-list", "--reverse", "HEAD", "--", rel).split()
@@ -150,22 +150,26 @@ for f in sorted(glob.glob(os.path.join(ROOT, "*", "findings.jsonl"))):
     for r in revs:
         try: txt = git("show", "%s:%s" % (r, rel))
         except subprocess.CalledProcessError: txt = ""
-        cur = {}
+        cur, serv = {}, {}
         for line in txt.splitlines():
             try:
                 d = json.loads(line)
-                if "word" in d: cur[d.get("id")] = d["word"]
+                if "word" in d: cur[d.get("id")] = d["word"]; serv[d.get("id")] = d.get("serves")
             except Exception: pass
         versions += 1
         if prev is not None:
             for k, w in prev.items():
                 if k not in cur:
-                    removed += 1; ex.append((rel, r[:7], k, "removed"))
+                    rep = [j for j in cur if serv[j] == pserv.get(k) and j not in prev and RANK.get(cur[j], 1) >= RANK.get(w, 1)]
+                    if rep:
+                        superseded += 1; ex.append((rel, r[:7], k, "superseded by a rerun (same serves, word not lower)"))
+                    else:
+                        removed += 1; ex.append((rel, r[:7], k, "removed"))
                 elif RANK.get(cur[k], 1) < RANK.get(w, 1):
                     down += 1; ex.append((rel, r[:7], k, "%s -> %s" % (w, cur[k])))
-        prev = cur
-print("  history (tested): %d versions of findings.jsonl walked; records removed %d, downgraded %d"
-      % (versions, removed, down))
+        prev, pserv = cur, serv
+print("  history (tested): %d versions of findings.jsonl walked; records superseded %d, removed %d, downgraded %d"
+      % (versions, superseded, removed, down))
 seen = {}
 for rel, r, k, what in ex:
     seen.setdefault((rel, r), []).append((k, what))
