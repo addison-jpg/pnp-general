@@ -5,10 +5,13 @@ Hall: for every nonempty subfamily W, |U_{w in W} C(w)| >= sum_{w in W} (|S_w| -
 Usage: python3 -I B5_flip_hall.py FILE.json ...   (prints the least Hall margin per circuit)."""
 import json, sys, itertools
 
+def var(n, i):
+    """truth table of input i: bit x is bit i of x (periodic block of 2^(i+1) bits, upper half ones)"""
+    N = 1 << n; h = 1 << i; blk = ((1 << h) - 1) << h
+    return blk * (((1 << N) - 1) // ((1 << (2 * h)) - 1))
+
 def tables(n, G):
-    N = 1 << n; M = (1 << N) - 1; w = []
-    for i in range(n):
-        w.append(sum(1 << x for x in range(N) if x >> i & 1))
+    N = 1 << n; M = (1 << N) - 1; w = [var(n, i) for i in range(n)]
     for g in G:
         op = g[0]
         if op == 'not': w.append(M ^ w[g[1]])
@@ -27,7 +30,7 @@ def classes_of_set(n, S, w, M):
     """bit-parallel: diff_u has bit Z set iff Z has bit u = 0 and t(Z + e_u) != t(Z); a class qualifies iff two diff_u meet on
     the zero points of S."""
     N = 1 << n
-    zero = [M ^ sum(1 << x for x in range(N) if x >> u & 1) for u in range(n)]
+    zero = [M ^ var(n, u) for u in range(n)]
     zS = M
     for u in S: zS &= zero[u]
     out = set()

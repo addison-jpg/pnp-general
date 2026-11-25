@@ -61,9 +61,18 @@ every wire, every zero point) and the least Hall margin over all subfamilies.
 | ess_rand_clean_744 | 5 | 9 | 1 | 5 | 1, 3, 1, 3 | 6 | 2 | 0 |
 | see_gap_n5 | 5 | 11 | 1 | 5 | 2, 5, 2 | 7 | 2 | 1 |
 | tri_all_5593 | 6 | 15 | 1 | 8 | 6 ×4 | 14 | 6 | 4 |
-| other 9 files in `one-not/data/witnesses/` (n ≤ 9) | | | 0–1 | | | | | ≥ 2 |
+| other 10 files in `one-not/data/witnesses/` (n ≤ 9) | | | 0–1 | | | | | ≥ 2 |
 
-TWIN_TREES_PLACEHOLDER
+Larger stored circuits (one NOT gate each, the refuted-step rows), all subfamilies:
+
+| circuit | n | sets | base | classes | Hall min |
+|---|---:|---:|---:|---:|---:|
+| twin_tree_and2 / _or2 / _maj3 | 14 | 5 | 15 | 21 | 5 |
+| twin_tree_e0 | 14 | 5 | 15 | 23 | 5 |
+| twin_tree_f2step / twin_tree_N_f2step | 14 | 5 | 15 | 21 | 5 |
+| twin_tree_k5_c3 | 22 | 7 | 25 | 35 | 6 |
+| match_c_k7 / match_s_k7 | 16 | 11 | 23 | 40 | 0 (at a pair) |
+| match_c_k11 (n = 24), match_c_k16 (n = 34) | | | | | not run (n = 24 did not finish in 10 min; 34 too large) |
 
 The C4w break (witness count 5 < base 6 at t = 4) does not carry over to flip classes: the falling
 merges that the witness count misses are exactly counted as classes, and the two sets share none.
@@ -114,13 +123,15 @@ Controls: with `base(W)` lines (`--control`) every family tested is SAT (two3, d
 | dis3 (6; +1) | 012, 345 | 3 | all UNSAT |
 | two43 (6; +1) | 0123, 045 | 3 | all UNSAT |
 | dis43 (7) | 0123, 456 | 3 | all UNSAT |
+| dis44 (8) | 0123, 4567 | 3 | all UNSAT (1.6 s) |
 | star44 (7; +1), the t = 4 break | 0123, 0456 | 3 | all UNSAT (3.6 s) |
 | tri3 (6) | 013, 124, 025 | 7 | all UNSAT |
 | star3 (7) | 012, 034, 056 | 7 | all UNSAT |
 | tri4 (6) | 0134, 125, 02 | 6 | all UNSAT |
 | q4 (6) | 0123, 045, 14, 25 | 12 | all UNSAT |
-| Pasch (6) | 012, 034, 135, 245 | 15 | PASCH_PLACEHOLDER |
-MORE_PLACEHOLDER
+| Pasch (6) | 012, 034, 135, 245 | 15 | all UNSAT (full family 213 s); control SAT on all 15 |
+| star5 (9), two 5-sets | 01234, 05678 | 3 | single sets UNSAT; the pair did not finish at the time of writing |
+| Fano (7), up to relabelling | 7 lines | — | queued after star5, not finished |
 
 So on each of these systems **every** circuit, with any number of NOT gates and of any size, has at least
 `base` flip classes (hence at least `base` AND/OR gates), on every subsystem. For star44 this extends the
