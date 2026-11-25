@@ -1,0 +1,1064 @@
+{
+ "kind": "culture",
+ "note": "Agent-produced tag table. Not reviewed by a person. A tag is a proposed structural label for a row; the row's own label (label, label_word) is what the repo records for the claim, not for the tag.",
+ "proposed_vocabulary": {
+  "status": "proposed, not adopted",
+  "tags": [
+   {
+    "definition": "no system holds a total judge of itself (Lawvere, Cantor)",
+    "tag": "diagonal"
+   },
+   {
+    "definition": "least edge weight separating a region of a weighted graph",
+    "tag": "min-cut"
+   },
+   {
+    "definition": "every world reaches some world, so no dead end",
+    "tag": "seriality"
+   }
+  ]
+ },
+ "rows": [
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/BASE.md",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "Twin Fantasy (Mirror to Mirror), 2011",
+   "new_tags_proposed": [],
+   "reading": "a self-map: a work mapped to itself; known only by oneself",
+   "tags": [
+    "self-map-vs-other-map"
+   ]
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/BASE.md",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "Twin Fantasy (Face to Face), 2018",
+   "new_tags_proposed": [],
+   "reading": "a map to another: from the self to a reader",
+   "tags": [
+    "self-map-vs-other-map"
+   ]
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/BASE.md; culture/carseat/check.py",
+   "label": "analogy; the dated list and 7-year gap are checked-finite",
+   "label_word": "analogy",
+   "name": "the Twin Fantasy pair",
+   "new_tags_proposed": [],
+   "reading": "re-recording as a map between two versions of one work; 7-year gap",
+   "tags": [
+    "two-versions"
+   ]
+  },
+  {
+   "corpus": "carseat",
+   "file": "frames_meta.ath; frames_sync.ath; frames.jsonl",
+   "label": "analogy; the Kripke fact is checked-finite",
+   "label_word": "analogy",
+   "name": "Twin Fantasy 2011 to 2018 as a directed history",
+   "new_tags_proposed": [],
+   "reading": "two worlds, one way: B fails (no way back), 4 holds",
+   "tags": [
+    "asymmetric-relation",
+    "modal-S4"
+   ]
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/check.py; level.json",
+   "label": "checked-finite (search-sourced dates)",
+   "label_word": "checked-finite",
+   "name": "dated records (1, 2, Twin Fantasy x2)",
+   "new_tags_proposed": [],
+   "reading": "years never decrease in release order",
+   "tags": []
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/BASE.md; frames_sync.ath",
+   "label": "open; the quoted line is unchecked",
+   "label_word": "open",
+   "name": "\"High to Death\"",
+   "new_tags_proposed": [],
+   "reading": "anger narrowing to a point that sheds a skin",
+   "tags": []
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/BASE.md; frames_sync.ath",
+   "label": "analogy; the Kepler bound-orbit fact is checked-finite",
+   "label_word": "analogy",
+   "name": "How to Leave Town",
+   "new_tags_proposed": [],
+   "reading": "leaving town as escape velocity: E < 0 is bound",
+   "tags": [
+    "escape-velocity"
+   ]
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/BASE.md; frames_sync.ath",
+   "label": "analogy; the 2-branch Kripke fact is checked-finite",
+   "label_word": "analogy",
+   "name": "\"I Want You to Know That I'm Awake / I Hope That You're Asleep\"",
+   "new_tags_proposed": [],
+   "reading": "two opposite maps held at once: both p and not-p reachable from the root",
+   "tags": [
+    "branching-tree",
+    "self-map-vs-other-map"
+   ]
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/BASE.md; gravity.ath; frames.ath",
+   "label": "checked-finite for the argument's shape only, not the essay's truth",
+   "label_word": "checked-finite",
+   "name": "heaven full of people",
+   "new_tags_proposed": [],
+   "reading": "every escape route computes OR(people, ground)",
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/BASE.md; culture/carseat/check.py; frames.ath",
+   "label": "open in BASE.md and check.py (holds by construction; no real prover/refuter pair). CONFLICT: frames.ath and frames.jsonl label it checked-finite",
+   "label_word": "open",
+   "name": "\"tybee island horse ghosts\"",
+   "new_tags_proposed": [],
+   "reading": "a drone and its reversal heard at once: a claim checked forward and reversed, prover and refuter",
+   "tags": [
+    "two-versions",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/BASE.md; frames_sync.ath",
+   "label": "open",
+   "label_word": "open",
+   "name": "\"Kid War\"",
+   "new_tags_proposed": [],
+   "reading": "brought by Addison; no structure on record",
+   "tags": []
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/BASE.md; level.json; frames_sync.ath",
+   "label": "analogy (BASE.md); open in frames (no dated edges)",
+   "label_word": "analogy",
+   "name": "lineage: 1, 2, Disjecta Membra, Please Pass the Milk Please",
+   "new_tags_proposed": [],
+   "reading": "a tree of works; where versions rejoin, a DAG",
+   "tags": [
+    "branching-tree",
+    "dag-rejoining"
+   ]
+  },
+  {
+   "corpus": "carseat",
+   "file": "culture/carseat/level.json",
+   "label": "open (not proved)",
+   "label_word": "open",
+   "name": "every later re-recording (infinity family)",
+   "new_tags_proposed": [],
+   "reading": "each re-recording adds a node and arrow, so the lineage stays a DAG",
+   "tags": [
+    "dag-rejoining"
+   ]
+  },
+  {
+   "corpus": "essays",
+   "file": "culture/essays/knowing.md; culture/carseat/BASE.md",
+   "label": "analogy (prose); no check of this part",
+   "label_word": "analogy",
+   "name": "Knowing Yourself and Knowing Others: mirror and monomania",
+   "new_tags_proposed": [],
+   "reading": "the mirror answers only in your own voice; understanding runs one way",
+   "tags": [
+    "self-map-vs-other-map",
+    "asymmetric-relation"
+   ]
+  },
+  {
+   "corpus": "essays",
+   "file": "culture/essays/knowing.md; culture/essays/findings.jsonl",
+   "label": "checked-finite (gravity.ath, finding 92dfcbb0, argument shape only)",
+   "label_word": "checked-finite",
+   "name": "heaven full of people / hell is other people (Sartre) / face to face",
+   "new_tags_proposed": [],
+   "reading": "escape routes all fall back to others; face to face is the whole thing",
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "corpus": "essays",
+   "file": "culture/essays/knowing.md",
+   "label": "analogy (prose); no check",
+   "label_word": "analogy",
+   "name": "the lineage as first situation (Beauvoir)",
+   "new_tags_proposed": [],
+   "reading": "a lineage handed to you, not chosen",
+   "tags": [
+    "branching-tree"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 1, 6; level.json",
+   "label": "join with Lean results on closed-timelike-curve consistency (CtcReset.lean, L169.lean; level.json says checked-infinite); the comic link is analogy",
+   "label_word": "join",
+   "name": "alpha timeline and doomed timelines",
+   "new_tags_proposed": [],
+   "reading": "the surviving history is a fixed point of the time-step map; others are iterates that miss it",
+   "tags": [
+    "fixed-point",
+    "branching-tree"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/timelines.ath; findings.jsonl 749fdc6d; frames_meta.ath",
+   "label": "checked-finite on the toy; toy chosen by the repo, not data from the comic",
+   "label_word": "checked-finite",
+   "name": "alpha as a modal formula",
+   "new_tags_proposed": [],
+   "reading": "[]c holds on exactly the alpha branch, ~<>[]c on the doomed ones, in a 7-world toy",
+   "tags": [
+    "modal-S4",
+    "branching-tree"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 1",
+   "label": "join (Lean theorem); comic link analogy",
+   "label_word": "join",
+   "name": "doomed branches as lost futures",
+   "new_tags_proposed": [],
+   "reading": "once lost, a future stays lost (Fisher.lean lost_mono)",
+   "tags": [
+    "branching-tree"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 1, 6; level.json",
+   "label": "join (Lean theorem); comic link analogy",
+   "label_word": "join",
+   "name": "Act 6 retcon",
+   "new_tags_proposed": [],
+   "reading": "branches rejoin, so loss is not permanent (DAG.lean)",
+   "tags": [
+    "dag-rejoining"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 1",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "the million dead Daves",
+   "new_tags_proposed": [],
+   "reading": "brute-force search: candidate histories tried and discarded",
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 2",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "Terezi",
+   "new_tags_proposed": [],
+   "reading": "lookahead over a branching frame before choosing",
+   "tags": [
+    "branching-tree"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 2",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "Vriska",
+   "new_tags_proposed": [],
+   "reading": "reweights the distribution over histories",
+   "tags": []
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 2",
+   "label": "join through sec 1; arc encoding open",
+   "label_word": "join",
+   "name": "Dave and Aradia loops",
+   "new_tags_proposed": [],
+   "reading": "loops must close consistently",
+   "tags": [
+    "fixed-point"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 2",
+   "label": "open",
+   "label_word": "open",
+   "name": "character-relation graph with timeline labels",
+   "new_tags_proposed": [],
+   "reading": "every loop in it must close",
+   "tags": [
+    "fixed-point",
+    "dag-rejoining"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 3, 6",
+   "label": "analogy; toy session open",
+   "label_word": "analogy",
+   "name": "Sburb / Sgrub",
+   "new_tags_proposed": [],
+   "reading": "finite game with a win condition; a dead session cannot reach it",
+   "tags": [
+    "game"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 3",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "Jack Noir",
+   "new_tags_proposed": [],
+   "reading": "a transition the spec did not allow",
+   "tags": []
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 3; math/lateral/",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "Lord English / Caliborn",
+   "new_tags_proposed": [
+    "diagonal"
+   ],
+   "reading": "no total judge of oneself; handled from outside (Lawvere diagonal)",
+   "tags": []
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/alchemy.py; alchemy.ath; findings.jsonl 2befeb37, 8a00ca4e",
+   "label": "checked-finite (a model, not the comic's recipe)",
+   "label_word": "checked-finite",
+   "name": "alchemy",
+   "new_tags_proposed": [],
+   "reading": "items as subsets, combining is union; reachable count saturates at 2^b - 1; b = 3 circuit shares gates (4 < 5)",
+   "tags": [
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 5; frames.ath; frames.jsonl",
+   "label": "analogy in BASE.md; open in frames (no map written down). The neuron/phylogeny crossing is the checked instance",
+   "label_word": "analogy",
+   "name": "the meteor",
+   "new_tags_proposed": [],
+   "reading": "a vessel between two sessions keeps the rules",
+   "tags": [
+    "transport-map"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/BASE.md sec 4",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "hauntology (Fisher), Beauvoir, Camus",
+   "new_tags_proposed": [],
+   "reading": "doomed selves haunt the alpha; players defined through others; a game played though unescapable",
+   "tags": [
+    "branching-tree",
+    "mutual-binding"
+   ]
+  },
+  {
+   "corpus": "homestuck",
+   "file": "culture/homestuck/level.json; frames_meta.ath",
+   "label": "analogy (arrow in level.json)",
+   "label_word": "analogy",
+   "name": "Homestuck with Car Seat Headrest sync",
+   "new_tags_proposed": [],
+   "reading": "timeline and retcon vs two-version history",
+   "tags": [
+    "two-versions",
+    "dag-rejoining"
+   ]
+  },
+  {
+   "corpus": "lifeisstrange",
+   "file": "culture/lifeisstrange/BASE.md sec 1",
+   "label": "join with the same Lean files as Homestuck; analogy",
+   "label_word": "join",
+   "name": "Max: the doomed-history problem",
+   "new_tags_proposed": [],
+   "reading": "one agent searches histories, keeps one",
+   "tags": [
+    "fixed-point",
+    "branching-tree"
+   ]
+  },
+  {
+   "corpus": "lifeisstrange",
+   "file": "culture/lifeisstrange/BASE.md sec 1, Open 2",
+   "label": "open (to be checked by exhaustion; not done)",
+   "label_word": "open",
+   "name": "the forced fork at the ending",
+   "new_tags_proposed": [],
+   "reading": "every rewind path reaches the same binary fork",
+   "tags": [
+    "branching-tree",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "corpus": "lifeisstrange",
+   "file": "culture/lifeisstrange/BASE.md sec 2",
+   "label": "open (no contest encoded)",
+   "label_word": "open",
+   "name": "Chloe: argument without rewind",
+   "new_tags_proposed": [],
+   "reading": "dialogue contest as an attack graph (Dung argumentation)",
+   "tags": [
+    "game"
+   ]
+  },
+  {
+   "corpus": "lifeisstrange",
+   "file": "culture/lifeisstrange/BASE.md sec 2, 4",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "Max against Chloe; game against prequel",
+   "new_tags_proposed": [],
+   "reading": "a tree with undo against one irreversible line; with the DAG correction, a ladder of time models",
+   "tags": [
+    "branching-tree",
+    "dag-rejoining"
+   ]
+  },
+  {
+   "corpus": "lifeisstrange",
+   "file": "culture/lifeisstrange/BASE.md sec 3",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "Arcadia Bay barbarians",
+   "new_tags_proposed": [],
+   "reading": "the self defined against others who seem to threaten it",
+   "tags": [
+    "symmetric-relation"
+   ]
+  },
+  {
+   "corpus": "lifeisstrange",
+   "file": "culture/lifeisstrange/BASE.md sec 3",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "the Prescotts (Fisher)",
+   "new_tags_proposed": [],
+   "reading": "from inside, no alternative appears reachable",
+   "tags": [
+    "absorbing-class"
+   ]
+  },
+  {
+   "corpus": "zodiac",
+   "file": "culture/zodiac/BASE.md sec 1, Open 1",
+   "label": "open (to be checked by exhaustion; no runner yet); structure claim is a fact by the Chinese remainder theorem",
+   "label_word": "open",
+   "name": "the twelve signs",
+   "new_tags_proposed": [],
+   "reading": "cyclic group Z/12; element x modality determines the sign (Z/12 = Z/4 x Z/3)",
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "corpus": "zodiac",
+   "file": "culture/zodiac/BASE.md sec 1",
+   "label": "open (structure stated, no check)",
+   "label_word": "open",
+   "name": "Homestuck troll zodiac",
+   "new_tags_proposed": [],
+   "reading": "inverse system Z/12 <- Z/24 <- ...; limit profinite",
+   "tags": [
+    "transport-map"
+   ]
+  },
+  {
+   "corpus": "zodiac",
+   "file": "culture/zodiac/BASE.md sec 2, Open 3",
+   "label": "open (offset per century not computed); astronomy is a fact, cited",
+   "label_word": "open",
+   "name": "precession of the equinoxes",
+   "new_tags_proposed": [],
+   "reading": "tropical signs drift about one sign against constellations over ~25,800 years",
+   "tags": []
+  },
+  {
+   "corpus": "zodiac",
+   "file": "culture/zodiac/BASE.md sec 3, Open 2",
+   "label": "open (planned check against a published table; not written)",
+   "label_word": "open",
+   "name": "computus (date of Easter)",
+   "new_tags_proposed": [],
+   "reading": "solar and lunar cycles by modular arithmetic",
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "corpus": "zodiac",
+   "file": "culture/zodiac/BASE.md sec 3",
+   "label": "recorded as belief; not formalized",
+   "label_word": "unlabelled",
+   "name": "astrology as belief",
+   "new_tags_proposed": [],
+   "reading": "controlled tests found no predictive power (Carlson 1985)",
+   "tags": []
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "lean/PEqualNP/Philosophy/Beauvoir.lean; philosophy/UNIFY.md; REVIEW.md",
+   "label": "Lean theorem checked (Beauvoir.ambiguity); the name 'ambiguity' is ours, analogy",
+   "label_word": "unlabelled",
+   "name": "ambiguity: past and future meet in the present",
+   "new_tags_proposed": [],
+   "reading": "facticity and transcendence meet at one point (antisymmetry)",
+   "tags": [
+    "asymmetric-relation"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "Beauvoir.lean; philosophy/UNIFY.md",
+   "label": "Lean iff checked (serious_iff_not_free, De Morgan); not Beauvoir's accounts, analogy",
+   "label_word": "unlabelled",
+   "name": "Free and Serious",
+   "new_tags_proposed": [],
+   "reading": "Free = two incompatible futures; Serious = futures form a chain",
+   "tags": [
+    "branching-tree"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "Beauvoir.lean; philosophy/UNIFY.md",
+   "label": "Lean checked (haunted_past_free, free_act_haunts); label ours, analogy",
+   "label_word": "unlabelled",
+   "name": "every ghost traces a freedom",
+   "new_tags_proposed": [],
+   "reading": "Haunted and Free are one fact seen from after and from before",
+   "tags": [
+    "branching-tree"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "Beauvoir.lean; philosophy/UNIFY.md",
+   "label": "Lean checked (barbarian_symm, barbarian_iff_lost); modelling persons as branches is our decision, analogy",
+   "label_word": "unlabelled",
+   "name": "the barbarians (Barres, in Beauvoir's diary)",
+   "new_tags_proposed": [],
+   "reading": "the other is an incomparable moment, equal to a lost future in a rooted frame",
+   "tags": [
+    "branching-tree",
+    "symmetric-relation"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "Beauvoir.lean; philosophy/UNIFY.md; REVIEW.md",
+   "label": "Lean checked (lost_both_ways, no_recognition_between_barbarians); the novel's ending is not modelled",
+   "label_word": "unlabelled",
+   "name": "each consciousness seeks the death of the other (epigraph, She Came to Stay)",
+   "new_tags_proposed": [],
+   "reading": "'death' is only becoming Lost; no common future means no recognition",
+   "tags": [
+    "branching-tree",
+    "asymmetric-relation"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "Unify.lean; philosophy/UNIFY.md",
+   "label": "Lean checked (permanence_iff_no_reconciliation, diamond_reconciles); reading analogy",
+   "label_word": "unlabelled",
+   "name": "permanence against reconciliation",
+   "new_tags_proposed": [],
+   "reading": "a tree keeps loss permanent; joins undo it",
+   "tags": [
+    "dag-rejoining",
+    "branching-tree"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "philosophy/DAG.md; DAG.lean",
+   "label": "Lean checked (keeps_own_open_iff_keeps_shared_futures); both readings ours and weaker than hers",
+   "label_word": "unlabelled",
+   "name": "to will oneself free is to will others free (Lean version)",
+   "new_tags_proposed": [],
+   "reading": "a move closes nothing open to oneself iff it keeps every shared future",
+   "tags": [
+    "dag-rejoining",
+    "mutual-binding"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "philosophy/UNIFY.md",
+   "label": "open (failed attempt, recorded)",
+   "label_word": "open",
+   "name": "to will oneself free is to will others free (tree version)",
+   "new_tags_proposed": [],
+   "reading": "no non-trivial theorem found; trees cannot state a shared open future",
+   "tags": [
+    "dag-rejoining",
+    "symmetric-relation"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "BeauvoirQG.lean; philosophy/BEAUVOIR_QG.md",
+   "label": "Lean checked (entropy_symm, moments_symm, schmidt_rank_symm); reading is interpretation",
+   "label_word": "unlabelled",
+   "name": "self and other as two tensor factors",
+   "new_tags_proposed": [],
+   "reading": "equal entropy and spectra on both sides of a pure state",
+   "tags": [
+    "symmetric-relation",
+    "mutual-binding"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "BeauvoirQG.lean; philosophy/BEAUVOIR_QG.md",
+   "label": "Lean checked (pure_iff_product); the Beauvoir label is ours",
+   "label_word": "unlabelled",
+   "name": "ambiguity as non-product state",
+   "new_tags_proposed": [],
+   "reading": "a party is pure alone only if the joint state is a product",
+   "tags": [
+    "mutual-binding"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "BeauvoirQG.lean; philosophy/BEAUVOIR_QG.md",
+   "label": "Lean checked (couple_entropy_eq_third, pure_pair_decouples, ghz_pair_separable); metaphor only",
+   "label_word": "unlabelled",
+   "name": "the triad in She Came to Stay",
+   "new_tags_proposed": [],
+   "reading": "three parties: couple vs third; GHZ pair separable",
+   "tags": [
+    "mutual-binding"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "philosophy/BEAUVOIR_QG.md part 2.6, part 3.3",
+   "label": "Lean checked (pure_iff_product); a partial trace is not a death, so the link is weak",
+   "label_word": "unlabelled",
+   "name": "discarding the other leaves the self mixed",
+   "new_tags_proposed": [],
+   "reading": "partial trace of an entangled pair",
+   "tags": [
+    "information-loss"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "BeauvoirQG.lean; philosophy/BEAUVOIR_QG.md",
+   "label": "Lean checked on graphs (rt_submodular, rt_mmi); persons as regions is analogy, link to quantum states cited not proved",
+   "label_word": "unlabelled",
+   "name": "persons as boundary regions of a tensor network",
+   "new_tags_proposed": [
+    "min-cut"
+   ],
+   "reading": "minimal-cut value of a region; strong subadditivity and monogamy of mutual information",
+   "tags": []
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "BeauvoirQG.lean; philosophy/BEAUVOIR_QG.md",
+   "label": "Lean checked (beyond_symm, beyond_mono, lightcone_spacelike_meet); wording is a rename, small content",
+   "label_word": "unlabelled",
+   "name": "barbarian as beyond the horizon",
+   "new_tags_proposed": [],
+   "reading": "no common upper bound; in causal sets stricter than spacelike; diamonds rejoin",
+   "tags": [
+    "symmetric-relation",
+    "dag-rejoining"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "frames_sync.ath; core/ontology/beauvoir.py; frames.jsonl",
+   "label": "analogy; Kripke fact checked-finite (not re-read source)",
+   "label_word": "analogy",
+   "name": "reciprocity as symmetry (B axiom)",
+   "new_tags_proposed": [],
+   "reading": "B valid exactly on symmetric frames on 3 worlds",
+   "tags": [
+    "symmetric-relation"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "frames_sync.ath; frames.jsonl",
+   "label": "analogy; Kripke fact checked-finite",
+   "label_word": "analogy",
+   "name": "my freedom requires the other's (seriality)",
+   "new_tags_proposed": [
+    "seriality"
+   ],
+   "reading": "[]<>T valid iff every reached world reaches something; 35 frames separate it from seriality",
+   "tags": []
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "frames_time.ath; frames.jsonl",
+   "label": "analogy; Kripke and poset fact checked-finite (242 posets)",
+   "label_word": "analogy",
+   "name": "freedom exercised forward from a situation",
+   "new_tags_proposed": [],
+   "reading": "B fails on reflexive-transitive frames; no poset with an edge is symmetric",
+   "tags": [
+    "modal-S4",
+    "asymmetric-relation"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "philosophy/ANTIFASCISM.md; frames_antifascism.ath",
+   "label": "analogy; checked-finite on 66064 frames",
+   "label_word": "analogy",
+   "name": "the serious man and oppression (anti-fascism)",
+   "new_tags_proposed": [],
+   "reading": "a class that reaches all and is reached by none breaks B",
+   "tags": [
+    "asymmetric-relation"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "frames_antifascism.ath",
+   "label": "analogy; checked-finite",
+   "label_word": "analogy",
+   "name": "same, smallest case",
+   "new_tags_proposed": [],
+   "reading": "world 0 reaches 0,1,2, reached by none; B invalid",
+   "tags": [
+    "asymmetric-relation"
+   ]
+  },
+  {
+   "corpus": "beauvoir",
+   "file": "culture/homestuck/BASE.md sec 4",
+   "label": "analogy",
+   "label_word": "analogy",
+   "name": "Homestuck: each player defined through others",
+   "new_tags_proposed": [],
+   "reading": "freedom exercised in a fixed situation",
+   "tags": [
+    "mutual-binding"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames.ath; frames_antifascism.ath; core/ontology/SOURCES.md",
+   "label": "analogy; chain fact checked-finite in frames.ath (50978 chains). CONFLICT: frames_antifascism.ath lists the same reading as open",
+   "label_word": "analogy",
+   "name": "Fisher, capitalist realism",
+   "new_tags_proposed": [],
+   "reading": "no alternative as a closed class of a Markov chain; absorbs with probability 1",
+   "tags": [
+    "absorbing-class"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames.ath; core/ontology/SOURCES.md",
+   "label": "analogy; two-clique fact checked-finite",
+   "label_word": "analogy",
+   "name": "Granovetter weak ties",
+   "new_tags_proposed": [],
+   "reading": "no bridge gives infinite cover time; one bridge makes it finite",
+   "tags": [
+    "bridge",
+    "random-walk"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames.ath; core/ontology/SOURCES.md",
+   "label": "bound checked-finite on graphs up to 6 vertices; bus reading is the build's own, analogy",
+   "label_word": "unlabelled",
+   "name": "buses on the hairy ball",
+   "new_tags_proposed": [],
+   "reading": "buses haphazard but progress; cover time at most 2m(n-1); index sum 2 is a cite",
+   "tags": [
+    "random-walk",
+    "sphere-index"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "core/ontology/SOURCES.md",
+   "label": "open",
+   "label_word": "open",
+   "name": "more buses reach the edge of the balloon",
+   "new_tags_proposed": [],
+   "reading": "k walkers on the centre's link graph",
+   "tags": [
+    "random-walk"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames.ath; frames_sync.ath; frames_meta.ath",
+   "label": "analogy; ordering fact (n <= 7) and p-morphism fact checked-finite",
+   "label_word": "analogy",
+   "name": "Lyotard, postmodern history of the universe",
+   "new_tags_proposed": [],
+   "reading": "a claim crosses to every ordering only if ordering-independent; rejoining histories look like trees to modal formulas",
+   "tags": [
+    "ordering-dependence",
+    "dag-rejoining",
+    "modal-S4"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_time.ath; philosophy/metaphysics/BASE.md",
+   "label": "analogy; Kripke fact checked-finite",
+   "label_word": "analogy",
+   "name": "Lyotard, incredulity toward metanarratives",
+   "new_tags_proposed": [],
+   "reading": "S5 has no privileged world",
+   "tags": [
+    "modal-S5"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_time.ath",
+   "label": "analogy; checked-finite",
+   "label_word": "analogy",
+   "name": "multiverse-level postmodernism",
+   "new_tags_proposed": [],
+   "reading": "postmodern-safe means valid on every frame of the class; T, 4 on S4; B and .2 on S5 only",
+   "tags": [
+    "modal-S4",
+    "modal-S5"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_meta.ath; philosophy/metaphysics/BASE.md",
+   "label": "analogy; axiom 5 valid on S5 frames, checked-finite",
+   "label_word": "analogy",
+   "name": "Lewis, indexical actuality",
+   "new_tags_proposed": [],
+   "reading": "no world privileged; every world sees every world",
+   "tags": [
+    "modal-S5"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames.ath; frames_meta.ath",
+   "label": "toy part checked-finite (cosmos.ath); merged philosophical frame open",
+   "label_word": "unlabelled",
+   "name": "measure problem as a missing anchor (Lacan and Deleuze)",
+   "new_tags_proposed": [],
+   "reading": "in the cosmos toy the ordering alone decides the frequency",
+   "tags": [
+    "ordering-dependence",
+    "modal-S5"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_sync.ath; core/ontology/SOURCES.md",
+   "label": "analogy; Boolean fact checked-finite",
+   "label_word": "analogy",
+   "name": "Mobius Double Reacharound virus (~ATH)",
+   "new_tags_proposed": [],
+   "reading": "A halts iff B halts, and back: exactly two consistent outcomes",
+   "tags": [
+    "mutual-binding",
+    "fixed-point",
+    "halting-vs-lifetime"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_sync.ath; frames_time.ath",
+   "label": "open (no check that asteroid always halts)",
+   "label_word": "open",
+   "name": ".ath mirrors ~ATH; a time step halts",
+   "new_tags_proposed": [],
+   "reading": "~ATH loops till a death; asteroid halts via size limits",
+   "tags": [
+    "halting-vs-lifetime"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_time.ath",
+   "label": "git fact checked-finite",
+   "label_word": "unlabelled",
+   "name": "local big bang as the repo history",
+   "new_tags_proposed": [],
+   "reading": "one root, a DAG with merges; longest path computed",
+   "tags": [
+    "dag-rejoining"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_time.ath",
+   "label": "analogy; the path is exact, naming it alpha is a reading",
+   "label_word": "analogy",
+   "name": "alpha line as the Homestuck alpha timeline",
+   "new_tags_proposed": [],
+   "reading": "longest root-to-HEAD path called alpha",
+   "tags": [
+    "dag-rejoining",
+    "fixed-point"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_time.ath",
+   "label": "order fact checked-finite; reading open",
+   "label_word": "unlabelled",
+   "name": "multiverse big bang as initial object",
+   "new_tags_proposed": [],
+   "reading": "level preorder has no least element; 5 joins needed",
+   "tags": []
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_time.ath",
+   "label": "toy checked-finite; history measured (tested, 0 removed)",
+   "label_word": "unlabelled",
+   "name": "moving forward is a round of checks",
+   "new_tags_proposed": [],
+   "reading": "adding only passing checks never unsettles a record",
+   "tags": []
+  },
+  {
+   "corpus": "frames",
+   "file": "frames.ath; philosophy/PSYCHOSIS.md",
+   "label": "analogy; knots.ath checked-finite",
+   "label_word": "analogy",
+   "name": "Lacan, the Borromean knot",
+   "new_tags_proposed": [],
+   "reading": "three rings, every pair unlinked, triple invariant 1",
+   "tags": [
+    "linking-invariant"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames.ath; frames_antifascism.ath",
+   "label": "analogy; graph counts checked-finite",
+   "label_word": "analogy",
+   "name": "Deleuze and Guattari, rhizome against tree",
+   "new_tags_proposed": [],
+   "reading": "tree = every edge a bridge; rhizome has no critical part",
+   "tags": [
+    "bridge",
+    "critical-part"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_antifascism.ath; philosophy/ANTIFASCISM.md",
+   "label": "analogy; checked-finite (18 stars)",
+   "label_word": "analogy",
+   "name": "microfascism as a single critical centre",
+   "new_tags_proposed": [],
+   "reading": "connected graph with all edges critical and touching one vertex is a star",
+   "tags": [
+    "critical-part"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_antifascism.ath",
+   "label": "open (reading only)",
+   "label_word": "open",
+   "name": "Grok incidents 2025",
+   "new_tags_proposed": [],
+   "reading": "topic intrusion as aberrant salience; one upstream change as a single critical part",
+   "tags": [
+    "salience-shift",
+    "critical-part"
+   ]
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_antifascism.ath",
+   "label": "open",
+   "label_word": "open",
+   "name": "Lacan, paranoia and Eco's plot",
+   "new_tags_proposed": [],
+   "reading": "all meaning anchored to one persecutor",
+   "tags": []
+  },
+  {
+   "corpus": "frames",
+   "file": "frames_antifascism.ath",
+   "label": "tested (precision 0.91, recall 1.00 on 20 synthetic sentences); never checked",
+   "label_word": "tested",
+   "name": "Eco and Stanley feature list",
+   "new_tags_proposed": [],
+   "reading": "keyword detector for human review",
+   "tags": []
+  },
+  {
+   "corpus": "frames",
+   "file": "core/ontology/SOURCES.md; frames.ath",
+   "label": "open (name only echoes fixed-point)",
+   "label_word": "open",
+   "name": "Stirner's fixed ideas",
+   "new_tags_proposed": [],
+   "reading": "fixed idea in Stirner, Esquirol, Janet; no structure stated",
+   "tags": []
+  },
+  {
+   "corpus": "frames",
+   "file": "core/ontology/SOURCES.md; frames.ath",
+   "label": "open",
+   "label_word": "open",
+   "name": "time as socially constructed",
+   "new_tags_proposed": [],
+   "reading": "time as a coordinate; fundamental or not is contested",
+   "tags": []
+  }
+ ],
+ "source_sha256": "df7c8568a4097b549174f1f0c1bcae12132ce825eed3d8da655d881f32112106",
+ "status": "proposed tags, unreviewed"
+}

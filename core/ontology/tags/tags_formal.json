@@ -1,0 +1,1246 @@
+{
+ "kind": "formal",
+ "note": "Agent-produced tag table. Not reviewed by a person. A tag is a proposed structural label for a row; the row's own label (label, label_word) is what the repo records for the claim, not for the tag.",
+ "proposed_vocabulary": {
+  "status": "proposed, not adopted",
+  "tags": [
+   {
+    "definition": "no system holds a total judge of itself (Lawvere, Cantor)",
+    "tag": "diagonal"
+   },
+   {
+    "definition": "least edge weight separating a region of a weighted graph",
+    "tag": "min-cut"
+   },
+   {
+    "definition": "every world reaches some world, so no dead end",
+    "tag": "seriality"
+   }
+  ]
+ },
+ "rows": [
+  {
+   "file": "physics/cosmos/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Flat Friedmann: a=t^p with p=2/(3(1+w)) for 112 rational w; q=(1+3w)/2; de Sitter series to order 40",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "physics/cosmos/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Bound iff e^2<1 iff E<0 on 1944 rational orbit states (368 bound, 32 parabolic, 1376 open, 168 radial)",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "escape-velocity",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "physics/cosmos/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Measure toy: frequency of \"even\" is 1/2 in ordering A and 1/3 in ordering B (N<=3000)",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "ordering-dependence",
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "physics/cosmos/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "A property has the same frequency at every cutoff in every ordering iff it holds everywhere or nowhere (n<=7)",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "ordering-dependence",
+    "transport-map",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "physics/cosmos/BASE.md",
+   "label": "open",
+   "label_word": "open",
+   "name": "Which measure is the right one for the multiverse",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "ordering-dependence"
+   ]
+  },
+  {
+   "file": "physics/time/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Repo git history is a DAG with merges, one root, acyclic, longest path confirmed by edge relaxation",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "dag-rejoining"
+   ]
+  },
+  {
+   "file": "physics/time/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Preorders on 1..4 elements: 1,4,29,355; with a least element 1,3,16,145; least element unique up to iso",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "transport-map",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "physics/time/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "The real ontology (8 levels, 14 join pairs) has no least element, so no origin propagates everywhere",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "transport-map"
+   ]
+  },
+  {
+   "file": "physics/time/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Forward steps never turn a verified record unverified (all stores of 1..4 records, 6558 cases)",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "ordering-dependence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "physics/time/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "No poset on 1..4 worlds with an edge is symmetric (242 posets)",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "asymmetric-relation",
+    "modal-S4",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "physics/time/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "On all 34 S4 and 8 S5 frames on 1..3 worlds: T, 4, []<>T, no-contradiction valid on both; B, 5, .2 fail on S4 and hold on S5",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "modal-S4",
+    "modal-S5",
+    "symmetric-relation",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "core/ontology/light.py",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "de Sitter horizon proper distance is c/H at every t (series to order 40); light cone equals BFS ball on connected graphs up to 6 vertices",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "physics/time/BASE.md",
+   "label": "open",
+   "label_word": "open",
+   "name": "Does asteroid always halt (every claim has a size limit, nothing tests it)",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "halting-vs-lifetime"
+   ]
+  },
+  {
+   "file": "core/ontology/history.py",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Rooted posets on 1..4 worlds (21 trees, 3 rejoining) are p-morphic images of their unravelled trees; \"tree\" is not modally definable; .2 holds on the diamond, fails on its unravelling",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "branching-tree",
+    "dag-rejoining",
+    "modal-S4",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "core/ontology/catch22.py",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "A<->B and B<->A has exactly 2 consistent outcomes (both halt or neither); a loop bound to an external death has 1; a loop bound to its own negation has 0",
+   "new_tags_proposed": [],
+   "pillar": "physics",
+   "reading": null,
+   "tags": [
+    "fixed-point",
+    "mutual-binding",
+    "halting-vs-lifetime",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "math/language/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "No DFA with k<=3 states accepts a^n b^n on 511 strings; worst first error 1,2,4; pumping argument for all k",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "exhaustive-check",
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "math/language/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Ambiguity: E->E+E/E*E/x gives Catalan(n) parses (n<=8); precedence grammar gives exactly 1 parse",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "ordering-dependence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "math/language/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Montague fragment on 33032 models: inverse scope implies surface for \"every..some\"; readings per pattern 1,1,2,2",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "ordering-dependence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "math/language/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Catalan parse trees equal ordered binary arbor shapes (n<=6), a join with biology",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "branching-tree",
+    "transport-map"
+   ]
+  },
+  {
+   "file": "math/language/BASE.md",
+   "label": "tested",
+   "label_word": "tested",
+   "name": "A small Qwen proposed 9 formulas and none passed asteroid",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "math/routing/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Dijkstra, A* (halved distance, one-landmark ALT) and contraction hierarchies equal Floyd-Warshall on 106932 weighted graphs",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "math/routing/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "A* with ALT can settle more nodes than Dijkstra (12431 queries); halved heuristic never does",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "math/routing/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Largest hitting time over hop distance is n^2-3n+3 (clique K_(n-1) plus pendant stop), n=2..5",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "random-walk",
+    "bridge",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "math/transit/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Exact cover time of a simple random walk is at most 2m(n-1) on all connected graphs with 2..6 vertices",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "random-walk",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "math/transit/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Every sink-free digraph on 1..4 states (50978) has a closed class that absorbs with probability 1; one edge out of a closed class breaks it in 77260 cases",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "absorbing-class",
+    "random-walk",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "math/transit/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Two cliques K_k: no bridge gives infinite cover time, one bridge finite (hit time k(k-1)+1), two bridges less",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "bridge",
+    "random-walk"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Cantor, Russell, no computable enumeration of computable functions and Camus all follow from one Lawvere diagonal lemma",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "fixed-point"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Diagonal and counting: flipped diagonal needs one private point per device; halving names a missed function",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Milnor's two elementary steps for the hairy ball: //x+tw//=//x//sqrt(1+t^2); sqrt(1+t^2)^n is no polynomial for odd n (annulus and volume steps not formalised)",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "sphere-index"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "For a positive body the lfp constructor denotes the least fixed point; P=NP iff FO(LFP)=ESO, given Fagin and Immerman-Vardi as hypotheses",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "fixed-point"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Payment Hall condition is necessary for monotone unit-increment rank functions; truncation is the largest potential below f with bounded increments",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Rank of three parallel payers is submodular, violates monogamy of mutual information, and is the min-cut of no weighted network",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "asymmetric-relation"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Views embed in families of properties; if every one-string language is in P then P and NP induce the same view",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "transport-map"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Exact L-qg-115/116/119: operator-norm balls in U(2^n) have Haar measure <= (4 eps)^(4^n); products of k two-qubit gates are Haar-null when 15k+1<4^n",
+   "new_tags_proposed": [],
+   "pillar": "math",
+   "reading": null,
+   "tags": [
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "biology/brain/BASE.md",
+   "label": "tested",
+   "label_word": "tested",
+   "name": "Hairy ball on cortex: 200 random fields per size on icospheres, index sum 2 every run, at least 6 critical points",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "sphere-index",
+    "critical-part"
+   ]
+  },
+  {
+   "file": "biology/brain/cortex/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Discrete hairy ball: every discrete vector field on the tetrahedron boundary (4333) and octahedron (12845921, with --full) has alternating critical count 2",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "sphere-index",
+    "critical-part",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/brain/cortex/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Discrete fields on the cycle C_n number Lucas L_2n-2 (n=3..10)",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/brain/cortex/BASE.md",
+   "label": "tested",
+   "label_word": "tested",
+   "name": "20 random line fields on a sphere: all defects +-1/2, strengths sum to 2; pinwheel density 3.054 vs pi",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "sphere-index"
+   ]
+  },
+  {
+   "file": "biology/brain/membrane/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Sphere triangulations n=4..12 number 1,1,2,5,14,50,233,1249,7595; all satisfy sum(6-degree)=12; icosahedral cages have 12 pentagons",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "sphere-index",
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/brain/membrane/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Two spheres joined by N pores have chi=2-2(N-1), N=1..8",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "sphere-index"
+   ]
+  },
+  {
+   "file": "biology/brain/tissue/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Closed sheet with 3 cells per corner: sum(6-sides)=12; Gibson chain stationary shares exact; direct simulation does not match the chain",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "sphere-index",
+    "random-walk",
+    "two-versions"
+   ]
+  },
+  {
+   "file": "biology/brain/tissue/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Neural tube closure: plate chi=1, tube 0, capped 2 on square grids m=3..8, n=1..8",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "sphere-index"
+   ]
+  },
+  {
+   "file": "biology/brain/neuron/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Dendrite arbors: shapes number Catalan (ordered) and Wedderburn-Etherington (unordered), n<=9",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "branching-tree",
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Terminal growth gives Yule and segmental growth gives PDA tree distributions; histories number (n-1)! and (2n-3)!!",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "branching-tree",
+    "two-versions",
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/brain/neuron/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "The two growth models differ by expected asymmetry and Strahler order, n=4..9",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "two-versions",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/brain/neuron/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Every segment of every arbor (94 shapes, n<=9) is critical",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "critical-part",
+    "branching-tree",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/brain/network/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Digraphs up to iso: 1,3,16,218,9608,1540944; directed flag complex Betti numbers and Euler-Poincare hold on all 4165 labelled digraphs, n<=4",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "asymmetric-relation",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/brain/network/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Every arc is critical iff the digraph is an oriented tree (n<=4)",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "critical-part",
+    "branching-tree",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/brain/complexes/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Necklaces and bracelets for n=4,5,6, k<=7 match Burnside (218504 words); GABA-A ceiling 495235",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/brain/complexes/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Dscam1 chance two neurons share no isoform is C(N-m,m)/C(N,m); fails for small N",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "information-loss"
+   ]
+  },
+  {
+   "file": "biology/brain/dna/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Lk=n for ribbon with n turns (n=-6..6); a strand passage changes lk by 1, a duplex passage by 2; T(2,2k) needs k passages",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "linking-invariant",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/brain/dna/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Kinetoplast chainmail: matrix of /lk/ equals adjacency (13 hexagons, 42 rings)",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "linking-invariant"
+   ]
+  },
+  {
+   "file": "biology/brain/dna/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Borromean rings by DNA: pairwise lk 0, mu(123)=-1",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "linking-invariant",
+    "critical-part"
+   ]
+  },
+  {
+   "file": "biology/privacy/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "k-anonymity on all 65536 four-row tables: largest k is 1, 2 or 4; generalising never lowers k; BFS equals brute force",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "information-loss",
+    "exhaustive-check",
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "biology/privacy/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Expected uniques n(1-1/D)^(n-1) exactly for 30 (n,D) pairs; randomized response loss p/(1-p), composition multiplies",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "information-loss",
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/privacy/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Row-equality patterns number Bell(n), n=1..8; Stirling identity holds n<=6, D<=5",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "biology/compbio/BASE.md",
+   "label": "tested",
+   "label_word": "tested",
+   "name": "Rooted binary phylogenetic trees (2n-3)!!, RNA structures A004148, Motzkin",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "counting-sequence",
+    "branching-tree"
+   ]
+  },
+  {
+   "file": "core/universes/BASE.md",
+   "label": "tested",
+   "label_word": "tested",
+   "name": "Universes as neurons: 17 universes, 3 connections, 14 isolated, one critical edge (circuits to compute)",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "critical-part",
+    "bridge"
+   ]
+  },
+  {
+   "file": "biology/compbio/BASE.md",
+   "label": "open",
+   "label_word": "open",
+   "name": "Whether the compbio matcher finds a real join",
+   "new_tags_proposed": [],
+   "pillar": "biology",
+   "reading": null,
+   "tags": [
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "philosophy/PSYCHOSIS.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Borromean rings (Lacan's R,S,I): every lk 0, mu(RSI)=mu(SIR)=mu(IRS)=-1 by two methods",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "linking-invariant",
+    "critical-part",
+    "mutual-binding"
+   ]
+  },
+  {
+   "file": "philosophy/PSYCHOSIS.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Changing one R-S crossing locks R and S (lk=+-1, 16 cases); with a fourth ring Sigma every triple mu is 0 and mu(RSI Sigma)=+1; trefoil has 9 Fox 3-colourings",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "linking-invariant",
+    "critical-part"
+   ]
+  },
+  {
+   "file": "philosophy/PSYCHOSIS.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Tree vs rhizome over 33867 graphs: tree iff every edge is a bridge; adding an edge frees the cycle; no-bridge graphs 1,0,1,10,253,11968",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "bridge",
+    "critical-part",
+    "counting-sequence",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "philosophy/PSYCHOSIS.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Lacan vs Deleuze-Guattari differ as every part critical vs no part critical (a reading built on the two checks)",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "critical-part"
+   ]
+  },
+  {
+   "file": "philosophy/PSYCHOSIS.md",
+   "label": "open",
+   "label_word": "open",
+   "name": "Foreclosure as a chain with a missing anchor; fixed points of a signifier chain with and without an anchor",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "fixed-point"
+   ]
+  },
+  {
+   "file": "philosophy/ANTIFASCISM.md",
+   "label": "open",
+   "label_word": "open",
+   "name": "Aberrant salience (Kapur 2003) as a model",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "salience-shift"
+   ]
+  },
+  {
+   "file": "philosophy/ANTIFASCISM.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "On all 66064 frames on 2..4 worlds, B fails at every member of the 2100 classes where one class reaches all and is reached by none",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "asymmetric-relation",
+    "symmetric-relation",
+    "modal-S4",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "philosophy/ANTIFASCISM.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "A connected graph with all edges at one vertex and all critical is a star (18 stars, 3..6 vertices)",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "critical-part",
+    "bridge",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "philosophy/ANTIFASCISM.md",
+   "label": "tested",
+   "label_word": "tested",
+   "name": "Keyword detector: TP 10, FP 1, FN 0, TN 9 on 20 synthetic sentences; 0 of 429 records flagged",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "salience-shift"
+   ]
+  },
+  {
+   "file": "philosophy/ANTIFASCISM.md",
+   "label": "open",
+   "label_word": "open",
+   "name": "\"No alternative\" (Fisher) as an absorbing class; Lacan paranoia and Grok incidents as plot-obsession",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "absorbing-class",
+    "salience-shift"
+   ]
+  },
+  {
+   "file": "philosophy/metaphysics/BASE.md",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "T, 4, B, 5, S5 correspond to reflexive, transitive, symmetric, euclidean, equivalence frames; all 512 relations on 3 worlds, 65536 on 4; axiom 5 is the one S4/S5 difference",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "modal-S4",
+    "modal-S5",
+    "symmetric-relation",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "core/ontology/beauvoir.py",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "[]<>T is valid iff successors are serial; serial implies successor-serial, not the converse (frames on 1..3 worlds)",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "mutual-binding",
+    "asymmetric-relation",
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Beauvoir weak reading: a move keeps the self's forms open iff it breaks no shared future with any other state",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "self-map-vs-other-map",
+    "mutual-binding"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "In any partial order a lost future is later still lost or in the past; loss permanent iff no common later state (event structures with conflict)",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "dag-rejoining",
+    "branching-tree",
+    "asymmetric-relation"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Fisher frame: lost futures accumulate (lost_mono); branching haunts every later moment",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "branching-tree",
+    "modal-S4"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Ten one-NOT board rows as data: history is not a tree, lost_mono fails, refuted claims never return",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "dag-rejoining",
+    "branching-tree"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Levels as a projection: some-preimage and every-preimage agree iff projection is injective; Phi does not determine the slack table",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "information-loss",
+    "transport-map"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Causal-set side: Barbarian iff no common future, inherited upward in any partial order",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "asymmetric-relation",
+    "self-map-vs-other-map"
+   ]
+  },
+  {
+   "file": "core/ontology/qualquant.py",
+   "label": "checked-finite",
+   "label_word": "checked-finite",
+   "name": "Qual-quant types frames as structure/effect/contested; 10 of 11 frames converted to checks (time)",
+   "new_tags_proposed": [],
+   "pillar": "philosophy",
+   "reading": null,
+   "tags": [
+    "two-versions"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Kernel-decided correctness and slack>=0 on 15 witness circuits (n<=9), 30 theorems",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "exhaustive-check",
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Mixed slack >=0 at all 3^5=243 mixed states of a one-NOT circuit, all 81 of a smaller one",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "one-not/README.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "No minimal counterexample if the certificate game (U-game) on lifted outputs is won; no_minCE remains the one open placeholder",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "game"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Lean bridge: the executable's checkers on a circuit equal the project's checkers (hypsB_bridge, eval_sound)",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "bridge",
+    "transport-map"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Chain sum and maximum principle: a descent at negative states gives slack>=0 everywhere",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "ordering-dependence"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "OR of n inputs needs n-1 gates with any number of free NOTs; system of ORs needs n minus components gates",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "refuted",
+   "label_word": "refuted",
+   "name": "With 4 NOT gates the witness count falls below base (5 < 6, minimal 10 gates)",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "refuted",
+   "label_word": "refuted",
+   "name": "Level means of slack are not nonincreasing on 8 of 23 witness circuits (twin trees: 6 < 8.29)",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "ordering-dependence",
+    "branching-tree"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "refuted",
+   "label_word": "refuted",
+   "name": "Point lemma false for general families: AG(2,8) without verticals, 261 lines vs base 448",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "refuted",
+   "label_word": "refuted",
+   "name": "Monotone path of the multilinear extension from corner 0 does not exist on twin trees (8 of 176994 cubes)",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "ordering-dependence",
+    "branching-tree"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "tested",
+   "label_word": "tested",
+   "name": "No correct circuit with <=2 NOT gates beats base on six small systems (exact SAT)",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Pure-Lean verifier: 4777 theorems rest on three standard axioms except 21 allow-listed",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "exhaustive-check"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "PSPACE is in P_CTC (reset-to-start: Deutsch-consistent states supported on the cycle through start); P_CTC inside EXP",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "fixed-point",
+    "halting-vs-lifetime"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "Every unitary of Fin d is a product of at most d(d+1)/2 two-level unitaries",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "counting-sequence"
+   ]
+  },
+  {
+   "file": "RESULTS.md",
+   "label": "checked",
+   "label_word": "checked",
+   "name": "CKW monogamy for three qubits, full",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "mutual-binding",
+    "symmetric-relation"
+   ]
+  },
+  {
+   "file": "one-not/README.md",
+   "label": "open",
+   "label_word": "open",
+   "name": "Full no_minCE (one NOT gate saves nothing on (1,1)-disjoint sums)",
+   "new_tags_proposed": [],
+   "pillar": "computation",
+   "reading": null,
+   "tags": [
+    "game"
+   ]
+  }
+ ],
+ "source_sha256": "9c59cbdfffcd705dc077b8edf035aa857682b791a28acd10017ba8eed74e268a",
+ "status": "proposed tags, unreviewed"
+}
