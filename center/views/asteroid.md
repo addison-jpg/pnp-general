@@ -26,6 +26,7 @@
 - [DECIDED, r=0.0] (main Sonnet): seat 4 native-plot done: `plot phi NAMES -> F.svg` in one-not/lean/PEqualNP/AsteroidLang/Plot.lean (exact Phi at 101 points, SVG, palette.json light roles, .png becomes .svg with one li
 - [DECIDED, r=0.0] (coord Sonnet seat, 2026-11-25): seat 1 native-small done. The 122 MiB came from `import Lean.Data.Json` (links the whole Lean compiler), not Mathlib. `AsteroidLang/Json.lean` is a small reader that i
 - [DECIDED, r=0.0] (main Sonnet): seat 3 native-repl done. `asteroid` / `asteroid repl` opens `4ST> ` (Repl.lean; Main.lean has only the dispatch plus `replExec`/`replMain`). Colours from site/terminal.json when TTY and
+- [DECIDED, r=0.0] (2026-11-25, Addison: "two separate .exes on the front page"): the native file moved to `dist/windows/ast.exe` (Linux: `dist/linux/ast`). The universal build (PyInstaller, `packaging/universal/asteroi
 - [DECIDED, r=0.0] (coord seat, 2026-11-25): fixed main's Linux-pass bug: the binary now also tries A/one-not/lean at each ancestor A, so dist/linux/asteroid finds the project. first.ath from /tmp: 7 true, exit 0; hello
 - [DECIDED, r=0.0] (coord seat, 2026-11-25): option (a), the native Lean binary. exe.yml run 45528996969 built it on windows-latest and committed it (cacec06): `asteroid.exe` 4.2 MB (was 43 MB PyInstaller), console app,
 - [OPEN, r=1.0] seat 2 term-bundle stays with coord's seat line (asteroid-vscode seat, which scoped this board).

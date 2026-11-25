@@ -2,3 +2,4 @@
 
 ## Findings
 - [checked-finite, r=0.667] gravity.ath: every escape route in culture/essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth.
+- [checked-finite, r=1.0] gravity.ath: every escape route in culture/essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs, with no NOT and no wasted gate; in the same run 

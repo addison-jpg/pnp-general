@@ -1,7 +1,7 @@
 {
  "asteroid": {
   "cells": {
-   "DECIDED": 6,
+   "DECIDED": 7,
    "OPEN": 4,
    "TAKEN": 6
   },

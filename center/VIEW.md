@@ -4,7 +4,7 @@ Records live in `center/shards/<program>.jsonl`. Radius 0 = settled (Lean, or a 
 
 ## asteroid
 findings (verified): 7 checked, 3 tested · mean radius 0.095
-cells: 6 DECIDED, 4 OPEN, 6 TAKEN
+cells: 7 DECIDED, 4 OPEN, 6 TAKEN
 - OPEN [?] seat 2 term-bundle stays with coord's seat line (asteroid-vscode seat, which scoped this board).  (asteroid-term:27)
 - OPEN [?] no seat has written a TAKEN line yet; `asteroid/logo_art.py` does not exist. Seat: coord's Sonnet seat (see Seats above).  (asteroid-cli-logo:12)
 - OPEN [?] seat 5, `corpus`, `hunt`/`search`, `mixed`, the rest of the term language (NATIVE.md "What remains" 1-3).  (asteroid-term:28)
