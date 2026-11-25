@@ -20,5 +20,5 @@
 - OPEN (Sonnet) P4, cheap, Fisher: hauntology as a branching-time modal structure, futures that were possible and are no longer reachable. A small Lean file or a note, only if P1 finds a cheap footing.
 
 ## Lines (TAKEN / DECIDED only)
-- P1 (Sonnet) [TAKEN P1]: literature section in LITERATURE.md, then philosophy/PLAN.md and philosophy/README.md
+- P1 (Sonnet) DECIDED: LITERATURE.md section M (about 25 rows, none read in full; philarchive and tu-dresden fetches blocked) and philosophy/PLAN.md: ladder mereology, Spinoza, Leibniz, Deleuze (vector field = virtual, integral curve = actual), five Lean definitions for P2 (Problem, Solution, plurality lemma, Intensity, optional Expression), Fisher gets a thin branching-time footing for P4. -> philosophy/PLAN.md
 - P2 (Sonnet) [TAKEN P2]: lean/PEqualNP/Philosophy/Deleuze.lean
