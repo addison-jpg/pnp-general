@@ -5,6 +5,7 @@ Run `python3 -I culture/love/check.py` (about 3 s) or `bin/asteroid --no-lean lo
 Paths from any matching: `python3 -I culture/love/paths.py` (about 30 s).
 Fractional matchings over Q: `python3 -I culture/love/field.py` (about 30 s).
 Tests: `python3 -I culture/love/test_love.py`.
+Native (Rust) recomputation and its differential against the Python: `python3 -I culture/love/native_diff.py [--new]` (about 10 s; with `--new` about 50 s). See "Native" below.
 
 ## What it models
 
@@ -21,7 +22,7 @@ A matching is stable when nothing blocks it.
 
 ## Facts (checked-finite: exact, every profile, n <= 3)
 
-n=4 is not run. It has 24^8 profiles, about 1.1e11. The bound is n <= 3.
+In this table the bound is n <= 3. n=4 has 24^8 profiles, about 1.1e11; it is done at k=1 only, natively, by symmetry (see "Native").
 
 | n | profiles | matchings k=1 | matchings k=2 | unique stable k=1 | unique stable k=2 | most stable k=1 | most stable k=2 |
 |---|---|---|---|---|---|---|---|
@@ -105,8 +106,8 @@ On n=2 the method is asserted equal to a brute force over every square tight sub
    On a 0/1 point this says the pair does not block.
    Every vertex is integral, and the vertices are exactly the stable matchings found by brute force in `check.py`.
    n=2: all 16 profiles, 18 vertices in all (checked-finite).
-   n=3: profiles number 0, 97, 194, ... in `check.profiles(3)` order, 481 of 46656, 618 vertices in all (tested, sampled).
-   All 46656 would take about 20 minutes (estimated from 27 ms per profile), over the time budget.
+   n=3 in Python: profiles number 0, 97, 194, ... in `check.profiles(3)` order, 481 of 46656, 618 vertices in all (tested, sampled).
+   n=3 natively: all 46656 profiles (checked-finite, see "Native"): every vertex integral, vertices = stable matchings, 60324 in all.
 2. Capacity k as a rational number. The direct k-version, k x_ij + (better for i) + (better for j) >= k,
    is not exact. Every stable matching satisfies it. But at k=2 unstable matchings satisfy it too:
    14 of 16 profiles at n=2 (checked-finite), 466 of the 481 sampled at n=3 (tested).
@@ -135,6 +136,55 @@ Birkhoff says a doubly stochastic weight matrix is a mixture of one-to-one wirin
 `biology/brain/network` models unweighted directed graphs only. It says nothing about weights.
 So the step from fields to neurons is analogy. Whether real synaptic weights rank, match or stabilise this way is open.
 
+## Native: the same model in Rust, checked against the Python
+
+`culture/love/native/` is a Rust crate (std only, no crates). It recomputes, from the same definitions as the Python:
+profile and matching counts, unique and most stable matchings at k=1 and k=2, the paths-to-stability table,
+the k=1 stable polytope (double description, exact rationals: an i64 fraction with i128 intermediates; overflow aborts),
+the direct k=2 inequality count and the b-matching polytopes. On n=2 the double description is asserted equal to a brute force.
+`native_diff.py` builds it (output in `$CARGO_TARGET_DIR`, never in the repository), runs it, and compares every number with the
+Python fingerprints and with the stable totals `check.py` prints. A mismatch fails. The Python is the reference.
+
+### Differential (checked-finite: Python and Rust agree on every number)
+
+| sequence | Python = Rust |
+|---|---|
+| preference profiles, n=1..3 | 1, 16, 46656 |
+| matchings k=1 / k=2, n=1..3 | 2, 7, 34 / 2, 16, 265 |
+| unique stable k=1 / k=2, n=1..3 | 1, 14, 34080 / 1, 16, 40128 |
+| most stable k=1 / k=2, n=1..3 | 1, 2, 3 / 1, 1, 2 |
+| stable matchings summed k=1 / k=2, n=1..3 | 1, 18, 60324 / 1, 16, 53184 |
+| longest shortest path k=1 / k=2 | 1, 2, 4 / 1, 4, 6 |
+| profiles with a cycle k=1 / k=2 | 0, 2, 27492 / 0, 0, 11136 |
+| starts that cannot reach stability k=1 / k=2 | 0, 0, 0 / 0, 0, 0 |
+| stable polytope vertices, n=2 all, n=3 every 97th | 18, 618 |
+| direct k=2 inequality admits unstable points, n=2..3 | 14, 466 |
+| b-matching vertices k=1 / 3/2 (fractional) / 2, n=2..3 | 7, 34 / 25 (18), 766 (732) / 16, 265 |
+
+The Birkhoff part of `field.py` is not recomputed natively.
+
+### New numbers (only after the differential passes)
+
+1. The k=1 stable polytope on all 46656 n=3 profiles (checked-finite). Every vertex is integral and the vertices are
+   exactly the stable matchings: 60324 vertices in all; 34080 profiles have 1 vertex, 11484 have 2, 1092 have 3. About 5 s, 2 threads.
+2. n=4 at k=1 (checked-finite, by symmetry). Relabelling A and relabelling B (576 maps) act on profiles. The code takes one
+   representative of the A-side lists per orbit, then one representative of the B-side lists under that one's stabiliser,
+   and weights each by its orbit size. It asserts the weights sum to (4!)^8 = 110075314176. The same code on n=1..3
+   (1, 5, 1300 orbits) is asserted equal to the direct counts. n=4: 191108196 orbits, about 35 s on 2 threads.
+
+| n=4, k=1 | value |
+|---|---|
+| profiles | 110075314176 |
+| profiles with a unique stable matching | 65867261184 (about 59.8%) |
+| most stable matchings on one profile | 10 |
+| stable matchings summed over profiles | 163661617152 |
+| profiles with 1, 2, ..., 10 stable matchings | 65867261184, 35927285472, 7303612896, 861578352, 111479616, 3478608, 581472, 36432, 0, 144 |
+
+No n=4 profile has exactly 9 stable matchings. One profile with 10 (the A lists are the rows of a Latin square; the B lists are the same rows in reverse order):
+a0: 0 1 2 3, a1: 1 0 3 2, a2: 2 3 0 1, a3: 3 2 1 0; b0: 3 2 1 0, b1: 2 3 0 1, b2: 1 0 3 2, b3: 0 1 2 3.
+The Python reference recounts that profile and gets 10. That the most for n=4 is 10 agrees with the literature as remembered
+(cited from memory, not re-read). n=4 at k=2 and n=5 are not run.
+
 ## Sources (cited, not re-read here)
 
 - Stable marriage and deferred acceptance: Gale and Shapley 1962. Cited from memory.
@@ -158,9 +208,8 @@ Whether those things really rank each other is open.
 
 ## Open
 
-- n=4 and above: not run.
+- n=4 at k=2, n=4 paths and polytope, and n >= 5: not run. n=4 at k=1 is done natively (unique and most stable only).
 - Paths at k=2 beyond n=3: whether every start can reach stability.
-- The k=1 stable polytope on all 46656 n=3 profiles: only a sample of 481 is run.
 - A linear description of stability for k > 1 (the direct one fails; comb-type inequalities from the literature are not tried here).
 - Whether neurons' weights behave like any of this.
 - Whether the pursuit rule is good advice for a person: not a question this model can answer.
