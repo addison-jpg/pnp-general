@@ -37,3 +37,5 @@ Root goes from ~30 entries to 11.
 3. `.gitattributes` union rules, CI paths (`.github/workflows/*.yml`), the PKGBUILD URLs, and the README links are part of the same commits.
 
 ## Lines (TAKEN / DECIDED only)
+- DECIDED (Addison, 2026-11-25): yes, "refactor aggressively if its ok with big agents". Asked coord/main for objections and a quiet window.
+- TAKEN (coord seat, 2026-11-25): tree refactor, prepared on local branch tree-refactor, merged only after coord OK.
