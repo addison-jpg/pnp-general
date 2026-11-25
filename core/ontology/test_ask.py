@@ -217,12 +217,13 @@ with tempfile.TemporaryDirectory() as fx:
     code, t = ans("What is OPEN about time?", fx)
     want("what is open about WORD: open frame, unverified findings, open module; no decided cell", code == 0
          and "[open] frame OPEN: Time as a social construct" in t and "[open] finding physics/time/b2" in t and "[tested] finding physics/time/b3" in t
-         and "[open] module core/ontology/loose.py" in t and "c2" not in t and "brain/f1" not in t and "twochain" not in t and labels_ok(t), t)
+         and "[open] module core/ontology/loose.py" in t and "c2" not in t and "brain/f1" not in t and "[open] module core/ontology/twochain.py" in t and labels_ok(t), t)
     code, t = ans("what connects beauvoir and time", fx)
     want("what connects: the shared tag is [proposed]", code == 0 and "[proposed] shared tags (1): branching-tree" in t and labels_ok(t), t)
     want("what connects: the shared finding and RESULTS.md row keep their labels", "[checked-finite] finding physics/time/b1" in t and "[checked-finite] RESULTS.md physics" in t, t)
-    want("what connects: the in-between module keeps its stated label and says it is off the board",
-         "[checked-finite] module core/ontology/twochain.py: One primitive: the 2-chain. (label as stated in its docstring; not on the board, no second seat)" in t, t)
+    want("what connects: an off-board module prints [open]; its stated word is only in the note",
+         "[open] module core/ontology/twochain.py: One primitive: the 2-chain. (its docstring states checked-finite; not on the board, no second seat, so not verified)" in t
+         and "[checked-finite] module core/ontology/twochain.py" not in t, t)
     want("a module is read, never run (its body would write a file)", not os.path.exists(os.path.join(fx, "core", "ontology", "RAN")))
     want("ask.py itself is not read as a module", "module core/ontology/ask.py" not in ans("explain time", fx)[1])
     code, t = ans("explain board", fx)
@@ -312,7 +313,7 @@ with tempfile.TemporaryDirectory() as fx:
         want(f"model: smuggled '{smug[:40]}' is refused (exit 2), not run", code == 2 and "not in the grammar" in t and not os.path.exists("/tmp/ask_pwned2"), t)
     code, t = ask.answer_model("is anything tying beauvoir to time", fx, gen("What connects Beauvoir and time?"))
     want("model: a new form is proposed, canonicalised and answered from data, labels kept", code == 0
-         and t.startswith("[proposed] model proposed: what connects beauvoir and time") and "[checked-finite] module core/ontology/twochain.py" in t and labels_ok(t), t)
+         and t.startswith("[proposed] model proposed: what connects beauvoir and time") and "[open] module core/ontology/twochain.py" in t and labels_ok(t), t)
     code, t = ask.answer_model("what is proved about time", fx, gen("what is verified about time"))
     want("model: the answer to a proposed query is the same as the plain query's", code == 0 and t.split("\n", 1)[1] == ans("what is verified about time", fx)[1], t)
     for smug in ["what connects time and $(id)", "show findings about time\"; import os; os.system('id')#", "what is open about ../../etc/passwd",
@@ -342,6 +343,57 @@ with tempfile.TemporaryDirectory() as fx:
     for f in ("cli_cache.json",):
         pp = os.path.abspath(os.path.join(fx, "..", f))
         if os.path.exists(pp): os.remove(pp)
+
+# ---- label repairs: no path prints a label stronger than the verify rule gives
+RULE_BOARD = [   # in core/ontology/findings.jsonl of the second fixture
+    {"id": "a1", "who": "main", "by": ["main", "r"], "word": "checked-finite", "runner": "python3 -I core/ontology/light.py",
+     "evidence": ["core/ontology/light.py", "core/ontology/hist.py"], "statement": "light passes"},
+    {"id": "z9", "who": "main", "by": ["main", "r"], "word": "checked-finite", "runner": "python3 -I core/ontology/hist.py",
+     "evidence": ["core/ontology/hist.py"], "statement": "hist passes"},
+    {"id": "q1", "who": "main", "by": ["main"], "word": "checked-finite", "runner": "python3 -I core/ontology/qq.py",
+     "evidence": ["core/ontology/qq.py"], "statement": "qq passes, one seat only"},
+]
+RULE_FRAMES = [
+    {"source": "zeta reading of a poem", "reading": "a poem as a series", "claim": "none", "label": "checked", "score": 0.01, "status": "TRUE"},
+    {"source": "eta reading", "reading": "an infinite claim", "claim": "none", "label": "checked-infinite", "score": 0.01, "status": "TRUE"},
+    {"source": "qq method", "reading": "frames measured", "claim": "rule.ath:2", "label": "checked-finite", "score": 0.01, "status": "TRUE"},
+    {"source": "light frame", "reading": "a horizon", "claim": "rule.ath:3", "label": "checked-finite", "score": 0.01, "status": "TRUE"},
+    {"source": "escape frame", "reading": "out of root", "claim": "../outside.ath:1", "label": "checked-finite", "score": 0.01, "status": "TRUE"},
+]
+with tempfile.TemporaryDirectory() as fy:
+    o = os.path.join(fy, "core", "ontology"); os.makedirs(o); os.makedirs(os.path.join(fy, "center", "shards"))
+    with open(os.path.join(o, "findings.jsonl"), "w") as fh:
+        for r in RULE_BOARD: fh.write(json.dumps(r) + "\n")
+    with open(os.path.join(fy, "frames.jsonl"), "w") as fh:
+        for r in RULE_FRAMES: fh.write(json.dumps(r) + "\n")
+    with open(os.path.join(fy, "center", "shards", "c.jsonl"), "w") as fh:
+        fh.write(json.dumps({"kind": "finding", "program": "c", "id": "nowhy", "word": "checked", "text": "a centre claim with no why_not field"}) + "\n")
+        fh.write(json.dumps({"kind": "finding", "program": "c", "id": "nullwhy", "word": "checked-finite", "why_not": None, "text": "a centre claim with why_not null"}) + "\n")
+    open(os.path.join(fy, "rule.ath"), "w").write('# rule\ncheck "python3 -I core/ontology/qq.py"\ncheck "python3 -I core/ontology/light.py"\n')
+    for name, doc in {"light.py": "Light.", "hist.py": "History.", "qq.py": "QQ.", "byhand.py": "By hand.\n\nClaim (checked, by hand): x."}.items():
+        open(os.path.join(o, name), "w").write('"""' + doc + '"""\n')
+    D = ask.load(fy)
+    mods = {m["file"]: ask.fmt_module(m) for m in D["modules"]}
+    want("repair: a docstring 'Claim (checked, by hand)' off the board prints [open], never [checked]",
+         mods["core/ontology/byhand.py"].startswith("[open] module") and "docstring states checked" in mods["core/ontology/byhand.py"], mods)
+    want("repair: a module cites the finding whose runner it is (hist.py -> z9, not a1)",
+         "board finding z9" in mods["core/ontology/hist.py"] and "a1" not in mods["core/ontology/hist.py"] and "board finding a1" in mods["core/ontology/light.py"], mods)
+    fr = {r["source"]: ask.fmt_frame(r) for r in D["frames"]}
+    want("repair: a TRUE frame recorded checked prints [checked-finite], capped, never [checked]",
+         fr["zeta reading of a poem"].startswith("[checked-finite] frame TRUE") and "capped at checked-finite" in fr["zeta reading of a poem"], fr)
+    want("repair: a TRUE frame recorded checked-infinite is capped too", fr["eta reading"].startswith("[checked-finite]"), fr)
+    want("repair: a frame whose check line has an unverified board finding prints [open] and names it",
+         fr["qq method"].startswith("[open] frame TRUE") and "board finding q1" in fr["qq method"], fr)
+    want("repair: a frame whose check has a verified board finding keeps checked-finite and names it",
+         fr["light frame"].startswith("[checked-finite]") and "board finding a1 for this check is verified" in fr["light frame"], fr)
+    want("repair: a frame claim path that leaves the root is not read", fr["escape frame"].startswith("[checked-finite]") and "board finding" not in fr["escape frame"], fr)
+    code, t = ask.answer("status", fy)
+    want("repair: status never prints a [checked] frame count", "[checked] " not in "\n".join(l for l in t.splitlines() if "frames labelled" in l)
+         and "[checked-finite] 1 frames labelled checked (" in t, t)
+    cf = {f["id"]: f for f in D["findings"] if f.get("src") == "center"}
+    want("repair: a centre finding with no why_not field is not verified", not ask.verified(cf["nowhy"]) and not ask.verified(cf["nullwhy"]), cf)
+    want("repair: it prints [open], not [checked]", ask.fmt_finding(cf["nowhy"]).startswith("[open] finding c/nowhy"), ask.fmt_finding(cf["nowhy"]))
+    want("repair: verified still holds for an empty why_not list", ask.verified({"word": "tested", "why_not": []}))
 
 # ---- the real repo: a query changes no file there
 def git_state():
@@ -377,6 +429,11 @@ mine = {os.path.normpath(f["program"]) + "/" + f["id"]: f["why_not"] for f in as
 theirs = {os.path.normpath(k): v for k, v in json.loads(r.stdout or "{}").items()}
 want("real repo: the why_not of every board finding equals boards.verified (same rule, root-relative)", r.returncode == 0 and len(mine) > 100 and mine == theirs,
      [(k, mine.get(k), theirs.get(k)) for k in sorted(set(mine) | set(theirs)) if mine.get(k) != theirs.get(k)][:5] or r.stderr)
+_R = ask.load(REPO)
+want("real repo: no module line prints a label its board finding does not give (asymmetry.py is open)",
+     all(not ask.fmt_module(m).startswith("[checked") or m["board"] for m in _R["modules"]), [ask.fmt_module(m) for m in _R["modules"] if not m["board"]][:3])
+want("real repo: no frame line prints [checked] or [checked-infinite]",
+     not any(ask.fmt_frame(r).startswith(("[checked]", "[checked-infinite]")) for r in _R["frames"]))
 want("real repo: the verified count equals the RESULTS.md total", (lambda D: sum(1 for f in D["findings"] if ask.verified(f)) == len(D["results"]))(ask.load(REPO)))
 want("real repo: git status (with ignored files) is the same before and after", git_state() == g0)
 want("real repo: no file under core, center, asteroid, nor frames.jsonl, changed (size and mtime)", tree_stat() == s0)

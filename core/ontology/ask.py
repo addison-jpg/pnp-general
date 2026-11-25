@@ -231,7 +231,9 @@ def modules(root, findings):
         except (OSError, SyntaxError, ValueError): continue
         rel = os.path.relpath(p, root).replace(os.sep, "/")
         m = re.search(r"Claim \((checked-infinite|checked-finite|checked|tested|refuted|open)\b", doc)
-        board = [f for f in findings if rel in str(f.get("runner") or "") or any(str(e).partition("::")[0] == rel for e in f.get("evidence") or [])]
+        runs = lambda f: rel in str(f.get("runner") or "")
+        board = [f for f in findings if runs(f) or any(str(e).partition("::")[0] == rel for e in f.get("evidence") or [])]
+        board.sort(key=lambda f: (not runs(f), not verified(f), str(f.get("id"))))   # its own runner first, then verified, then id
         out.append({"kind": "module", "file": rel, "doc": doc, "summary": doc.strip().split("\n")[0] if doc.strip() else name,
                     "stated": m.group(1) if m else None, "board": board})
     return out
@@ -241,8 +243,10 @@ VERIFIED_WORDS = CHECKED + ("tested", "refuted")   # the words RESULTS.md lists 
 
 
 def verified(f):
-    """The repo's rule (boards.py, results.py): no why_not, and a word RESULTS.md lists. A verified tested finding stays tested."""
-    return f.get("word") in VERIFIED_WORDS and not f.get("why_not")
+    """The repo's rule (boards.py, results.py): an empty why_not list, and a word RESULTS.md lists. A verified tested finding
+    stays tested. A missing or malformed why_not is not verified."""
+    w = f.get("why_not")
+    return f.get("word") in VERIFIED_WORDS and isinstance(w, (list, tuple)) and len(w) == 0
 
 
 def load(root):
@@ -255,9 +259,27 @@ def load(root):
     nodes = [r for r in center if r.get("kind") not in ("finding", "frame")]
     nodes.sort(key=lambda r: (str(r.get("kind")), str(r.get("program")), str(r.get("id"))))
     tdir = os.path.join(root, "core", "ontology", "tags")
+    frames = _jsonl(os.path.join(root, "frames.jsonl"))
+    for r in frames: r["_check"] = frame_check(root, r, board)
     return {"shards": len(shards), "findings": findings, "nodes": nodes, "results": results_rows(root),
-            "modules": modules(root, findings), "frames": _jsonl(os.path.join(root, "frames.jsonl")),
+            "modules": modules(root, findings), "frames": frames,
             "culture": _json(os.path.join(tdir, "tags_culture.json")), "formal": _json(os.path.join(tdir, "tags_formal.json"))}
+
+
+def frame_check(root, r, board):
+    """The board finding for a frame's claim. A claim 'FILE.ath:N' whose line N is check "CMD" matches the board
+    finding whose runner is CMD. None if there is no such line or finding. The file must stay inside root."""
+    m = re.fullmatch(r"([^:\x00]+\.ath):(\d{1,6})", str(r.get("claim") or ""))
+    p = m and _inside(root, m.group(1))
+    if not p: return None
+    try:
+        with open(p, encoding="utf-8", errors="replace") as fh: lines = fh.read(MAXREAD).splitlines()
+    except OSError: return None
+    n = int(m.group(2))
+    c = re.fullmatch(r'\s*check\s+"([^"]+)"\s*', lines[n - 1]) if 1 <= n <= len(lines) else None
+    if not c: return None
+    hits = sorted((f for f in board if str(f.get("runner") or "").strip() == c.group(1).strip()), key=lambda f: (not verified(f), str(f.get("id"))))
+    return hits[0] if hits else None
 
 
 def rows_of(d):
@@ -296,11 +318,28 @@ def fmt_finding(f):
     return f"[{lab}] finding {f.get('program')}/{f.get('id')}: {clean(f.get('text', ''), 150)} ({note}; {second_seat(f)}; {where})"
 
 
+FRAME_CAP = ("checked", "checked-infinite")   # asteroid/SPEC.md: a frame supports at most checked-finite
+
+
+def frame_label(w):
+    """A recorded frame label, capped as asteroid/SPEC.md caps it. A frame is a reading: never checked."""
+    w = str(w or "open")
+    return "checked-finite" if w in FRAME_CAP else (w if w in HONEST else "open")
+
+
 def fmt_frame(r):
-    lab = str(r.get("label") or "open")
-    if r.get("status") != "TRUE" or lab not in HONEST: lab = "open"
+    rec = str(r.get("label") or "open")
+    lab, notes = frame_label(rec), []
+    if r.get("status") != "TRUE": lab = "open"
+    elif rec in FRAME_CAP: notes.append(f"recorded as {rec}, capped at checked-finite: a frame is a reading")
+    f = r.get("_check")
+    if f and lab != "open":
+        flab, fnote = f_label(f)
+        if not verified(f): lab = "open"; notes.append(f"board finding {f.get('id')} for this check: [{flab}] {fnote}")
+        else: notes.append(f"board finding {f.get('id')} for this check is verified")
     return (f"[{lab}] frame {r.get('status')}: {clean(r.get('source', ''), 70)} -> {clean(r.get('reading', ''), 90)} "
-            f"(claim {clean(r.get('claim'), 40)}, score {r.get('score')}; as recorded in frames.jsonl)")
+            f"(claim {clean(r.get('claim'), 40)}, score {r.get('score')}; as recorded in frames.jsonl"
+            + "".join("; " + clean(x, 160) for x in notes) + ")")
 
 
 def fmt_result(r):
@@ -323,14 +362,14 @@ def fmt_node(r):
 
 
 def m_label(m):
-    """(label, note). The board finding wins; else the docstring's stated label, said to be off the board; else open."""
+    """(label, note). The board finding wins (its own runner first). Off the board the module is open: a stated label is
+    only reported in the note, never printed as the bracket label."""
     if m["board"]:
-        f = sorted(m["board"], key=lambda f: (not verified(f), str(f.get("id"))))[0]
+        f = m["board"][0]   # modules() puts the finding whose runner is this module first
         lab, note = f_label(f)
         return lab, f"board finding {f.get('id')}, {note}"
-    if m["stated"] in HONEST:
-        lab = m["stated"]
-        return lab, f"label as stated in its docstring; not on the board, no second seat"
+    if m["stated"] in HONEST:   # the author's word is reported, not adopted: off the board it is open
+        return "open", f"its docstring states {m['stated']}; not on the board, no second seat, so not verified"
     return "open", "no label stated and no board finding"
 
 
@@ -368,7 +407,8 @@ def a_status(D):
     for r in D["frames"]: fr.setdefault(str(r.get("label") or "open"), []).append(r)
     for w in sorted(fr):
         t = sum(1 for r in fr[w] if r.get("status") == "TRUE")
-        out.append(f"[{w if w in HONEST else 'open'}] {len(fr[w])} frames labelled {clean(w, 20)} ({t} TRUE, {len(fr[w]) - t} OPEN)")
+        out.append(f"[{frame_label(w)}] {len(fr[w])} frames labelled {clean(w, 20)} ({t} TRUE, {len(fr[w]) - t} OPEN)"
+                   + (" (capped at checked-finite: a frame is a reading)" if w in FRAME_CAP else ""))
     if not D["frames"]: out.append("[open] no frames.jsonl found: no frames to count")
     rs = {}
     for r in D["results"]: rs[r["label"]] = rs.get(r["label"], 0) + 1

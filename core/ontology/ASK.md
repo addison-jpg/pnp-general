@@ -58,7 +58,7 @@ Three parts, each with its own labels.
 
 1. Shared tags. The tag rows each word points at: its corpus or pillar, a tag of that name, or a row whose text mentions it. The tags both sets carry are listed. These lines are `[proposed]`.
 2. Shared text. Findings, RESULTS.md rows, frames and center nodes whose text mentions both words. Each keeps its own label.
-3. In-between results. Modules in `core/ontology` whose docstring mentions both words, such as the 2-chain theorem in `asymmetry.py`.
+3. In-between results. Modules in `core/ontology` whose docstring mentions both words, such as the 2-chain claim in `asymmetry.py`. That claim is on no board and has no second seat, so it prints as `[open]`.
 
 A shared tag or a shared word is not a link that was checked. It is a pointer.
 
@@ -66,13 +66,16 @@ A shared tag or a shared word is not a link that was checked. It is a pointer.
 
 Every answer line starts with a label in brackets. Nothing is upgraded.
 
-- A finding prints with its recorded word, and says if it is verified. Verified means no `why_not` and a word RESULTS.md lists (`checked`, `checked-finite`, `checked-infinite`, `tested`, `refuted`). This is the rule of `boards.py` and `results.py`. A verified tested finding stays `[tested]`.
+- A finding prints with its recorded word, and says if it is verified. Verified means an empty `why_not` list and a word RESULTS.md lists (`checked`, `checked-finite`, `checked-infinite`, `tested`, `refuted`). This is the rule of `boards.py` and `results.py`. A verified tested finding stays `[tested]`.
 - A finding recorded as checked that is not verified prints as `[open]` and says why. Other unverified findings keep their word and say "not verified" and why.
 - A finding line names its second seat, or says there is none. A Lean check needs none.
 - A RESULTS.md row prints with its row label.
 - A frame prints with its label if it is TRUE. An OPEN frame is `[open]`.
+- A frame is a reading. It is capped at `[checked-finite]`, as `asteroid/SPEC.md` caps it. A frame recorded as `checked` or `checked-infinite` says it was capped.
+- If a frame's claim is a `check "CMD"` line and a board finding has CMD as its runner, the frame takes no stronger label than that finding. If the finding is not verified, the frame prints as `[open]` and names it.
+- A finding with no `why_not` field is not verified.
 - A center cell is `[open]`. A DECIDED cell says it is a board decision, not a result. A fingerprint is `[open]`: it is data, not a claim.
-- A module takes the label of its board finding if it has one. Else it takes the label its docstring states (`Claim (checked-finite, ...)`), and the line says it is not on the board and has no second seat. Else it is `[open]`.
+- A module takes the label of its board finding if it has one. The finding whose runner is the module comes first. Else the module is `[open]`. A label its docstring states (`Claim (checked-finite, ...)`) is named in the note, with "not on the board, no second seat". It is never the bracket label.
 - A row from a tag table prints as `[proposed]`. Its own label is shown as `row label: ...` and is never moved to the front.
 - A count line, or a line that says nothing was found, is `[open]`.
 
@@ -123,6 +126,6 @@ Ten loose questions, one run each, 2026-11-25, on a shared CPU. Label: tested (o
 - The verified rule is recomputed from the files. It does not re-run any check.
 - RESULTS.md is read as written. It can be older than the boards.
 - Frames count as TRUE only as recorded in `frames.jsonl`. The interface does not re-run them.
-- A module's stated label is the author's. It is not on the board and has no second seat unless a board finding names the module.
+- A module's stated label is the author's. It is reported, not adopted. The module is `[open]` unless a board finding names it.
 - A 0.5B model often writes a line that does not parse. That counts as a failed proposal. It is not worked around.
 - Tests: `python3 -I core/ontology/test_ask.py`.
