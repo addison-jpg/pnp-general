@@ -502,6 +502,24 @@
    }
   ]
  },
+ "culture/social": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "7de7173e",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "e596ac08",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
  "lean": {
   "counts": {
    "checked": 25
