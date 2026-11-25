@@ -32,7 +32,7 @@ Kim M. Unertl (Vanderbilt University Medical Center, Department of Biomedical In
 | reporting guidance for qualitative work (8) | the label rule: every claim says what checked it and how far | reading |
 | pragmatic workflow principles (10) | Addison's "cheap methods first": trade rigour for cost on purpose, and say so in the label | reading |
 
-**Keystone species, computed** (from `center/shards`, 2026-11-25): on the map of 24 universes and 8 lateral links, the universes whose removal splits a connected piece are **asteroid, brain, circuits, philosophy and transit**. Every other universe is a leaf or isolated. This is exact for the current map; the map changes as findings are added (`philosophy/cone.py`).
+**Keystone species, computed** (from `center/shards`, 2026-11-25): on the map of 24 universes and 8 lateral links, the universes whose removal splits a connected piece are **asteroid, brain, circuits, philosophy and transit**. Every other universe is a leaf or isolated. This is exact for the current map; the map changes as findings are added (`philosophy/cone.py`). The map after the joins in `core/ontology/joins/` is measured in `core/ontology/SOCIOLOGY.md`; sociology's own readings are there too.
 
 ## Why her work is the right high level
 

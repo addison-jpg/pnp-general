@@ -21,3 +21,8 @@ Research that matters to many people should be open: its data, its code, its fai
 - Some data must stay closed: anything that identifies a person, especially health data. Openness of method and of aggregate results is compatible with that; this repository holds no personal data.
 - "Open" is not "true". An open claim can still be wrong. Openness only makes the error findable.
 - This file is an argument. Its graph step (4) is checked; everything else is a reading of cited texts, most of them not re-read here.
+
+## See also
+
+- `core/ontology/joins/postmodern.ath`: postmodern-safe, S5 and the disk as checked frames; the Lyotard reading stays analogy.
+- `core/ontology/joins/`: lateral links between universes, each with a computed shared fact. `core/ontology/SOCIOLOGY.md` has the map before and after.
