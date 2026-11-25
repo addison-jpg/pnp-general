@@ -123,11 +123,12 @@ def parse(s):
 def _big(x, what):
     if x > LIMIT: raise ValueError(f"{what} with {x} > {LIMIT} is too large")
 
-def _bits(r, budget):
-    """Charge a result by its size: big integers cost more steps. Past MAXBITS the claim is FALSE."""
+def _bits(r, budget, mul=False):
+    """Charge a result by its size: big integers cost more steps (k = bits // 1024: k for a sum or a small factor,
+    k * k // 8 more for a product of two big numbers or a power). Past MAXBITS the claim is FALSE."""
     b = abs(r).bit_length() if isinstance(r, int) else 0
     if b > MAXBITS: raise ValueError(f"a number with more than {MAXBITS} bits")
-    budget[0] -= b >> 10
+    budget[0] -= (b >> 10) + (((b >> 10) ** 2) >> 3 if mul else 0)
     if budget[0] < 0: raise ValueError(f"more than {STEPS} steps")
     return r
 
@@ -148,14 +149,15 @@ def ev(a, V, budget=None):
         if k == "-": return _bits(x - y, budget)
         if k == "*":
             if abs(x).bit_length() + abs(y).bit_length() > MAXBITS + 1: raise ValueError(f"a number with more than {MAXBITS} bits")
-            return _bits(x * y, budget)
+            return _bits(x * y, budget, min(abs(x), abs(y)).bit_length() > 64)
         if k == "//":
+            _bits(x, budget, abs(y).bit_length() > 64)                       # charge the division by the size of x
             if y == 0 or x % y: raise ValueError(f"{x} // {y} is not exact")
             return x // y
         if y < 0: raise ValueError(f"{x} ** {y}: negative exponent")
         if abs(x) > 1 and y > 100000: raise ValueError("exponent too large")
         if abs(x) > 1 and (abs(x).bit_length() - 1) * y > MAXBITS: raise ValueError(f"a number with more than {MAXBITS} bits")
-        return _bits(x ** y, budget)
+        return _bits(x ** y, budget, True)
     if k == "!":
         x = _ev(a[1], V)
         if x < 0: raise ValueError(f"({x})! is undefined")

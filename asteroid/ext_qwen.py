@@ -23,7 +23,11 @@ SYSTEM = ("You write lines of the asteroid language. Output only candidate lines
           '  claim formula SEQ = "EXPR" [from K]     EXPR uses n, integers, + - * // ** ( ), n!, n!!, C(a, b)\n'
           "  claim SEQ = [1, 2, 5]\n"
           '  claim valid FRAMES "FORMULA"   claim invalid FRAMES "FORMULA"   claim defines FRAMES "FORMULA" PROPS\n'
-          "Modal formulas use atoms p q, ~, [], <>, &, |, ->. PROPS: reflexive transitive symmetric euclidean serial joined by +.\n")
+          "Modal formulas use atoms p q, ~, [], <>, &, |, ->. PROPS: reflexive transitive symmetric euclidean serial joined by +.\n"
+          "Examples (other tasks):\n"
+          '  claim formula squares = "n**2"\n'
+          '  claim formula evens = "2*n" from 0\n'
+          '  claim defines all3 "[]p -> p" reflexive\n')
 
 def cache_path(): return os.environ.get("ASTEROID_QWEN_CACHE") or os.path.join(HERE, "out", "qwen_cache.json")
 
@@ -94,6 +98,7 @@ def context(script, ln):
 def judge(defs, cand):
     """Run one candidate in an isolated scratch session. Returns 'TRUE', 'FALSE' or 'REJECTED: why'."""
     c = re.sub(r"\s+by lean\s*$", "", cand.split("#", 1)[0].strip())
+    if re.match(r"(formula|valid|invalid|defines|worlds) ", c): c = "claim " + c      # a missing verb is added, nothing else
     if not CLAIM.fullmatch(c): return "REJECTED: not a claim line"
     with tempfile.TemporaryDirectory() as d:
         f = os.path.join(d, "proposal.ath")

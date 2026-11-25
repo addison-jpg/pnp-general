@@ -4,3 +4,4 @@ let gravity = load gravity.bench
 show gravity
 claim correct(gravity)            # every escape route is bound: it returns to people or ground, on all 4 inputs
 record essays essays checked-finite "gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth."
+commit

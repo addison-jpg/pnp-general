@@ -1,4 +1,10 @@
 {
+ "6295ef50504ca6f8b0229208cd1af3e33ec91879e6622e32de338a4f5b5cd6e9": {
+  "k": 3,
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "task": "a modal formula valid exactly on symmetric frames, written as claim defines all3 FORMULA symmetric",
+  "text": "valid kripke all3 seq segmental"
+ },
  "b96749ab0133cbf43338cc98b455c8ca2777fffb38da01ac62abfbfc3cf8eece": {
   "k": 3,
   "model": "Qwen/Qwen2.5-0.5B-Instruct",
@@ -10,5 +16,11 @@
   "model": "Qwen/Qwen2.5-0.5B-Instruct",
   "task": "a closed formula for the sequence segmental, 1, 1, 3, 15, 105, 945 (term i is at n = i)",
   "text": "valid FRAMES \"segmental-growth\""
+ },
+ "c7ddb9b015cfd43b6282b99a403593b3f6536c8e9d89d96c0dc3c42b1eb69efb": {
+  "k": 3,
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "task": "a closed formula for the sequence catalan, 1, 1, 2, 5, 14, 42, 132 (term i is at n = i)",
+  "text": "catalan = 1\ncatalan = 1\ncatalan = 2"
  }
 }
