@@ -29,6 +29,13 @@ Readings from Addison, labelled as his:
 - In *I Saw the TV Glow*, a death comes from repressing who you are. This is a widely discussed reading of the film as a trans allegory. It is a reading, not a fact about the film or its makers.
 - Addison reports a Ray Blanchard reference in *Camp Miasma*. This is Addison's report. It is NOT verified here.
 
+Two sources on *Camp Miasma* itself (read from search excerpts only, not in full):
+
+- Independent Magazine, "Don't Watch Yourself, Watch the Movie: Teenage Sex and Death at Camp Miasma" (20 May 2026). This is an article title, not a film. Its excerpts describe the third act as blurring film and reality.
+- A MUBI program note, "If It Gets Too Real: Jane Schoenbrun on Teenage Sex and Death at Camp Miasma". Schoenbrun says the film is about entering the movie as a way of entering oneself, and that the slasher genre was the right vehicle for it.
+
+No release or streaming listing was found for the film, so none is claimed here.
+
 ## 3. Ray Blanchard (facts, cited from memory)
 
 Ray Blanchard is a sexologist. His typology of trans women includes the term "autogynephilia" (1989). Julia Serano criticised the typology strongly in *Whipping Girl* (2007) and in later papers. The typology is contested, and trans scholars widely reject it. This file does not endorse it. It does not apply it to Schoenbrun or to anyone else.
