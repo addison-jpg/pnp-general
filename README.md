@@ -123,7 +123,7 @@ This uses Lean only. It goes through every theorem of the one-NOT part and fails
 ## What is open
 
 - The general case of the one-NOT question: `BottomPay`, the one statement the checked chain reduces it to.
-- Whether two or more NOT gates help in general. Open: the point lemma (its single-point form is only tested, on two sets of size 5 and on the Pasch configuration).
+- One NOT gate on Boolean sums (k = 1): `BottomPay`, above. Nothing is claimed for two or more NOT gates: the general point lemma is refuted (AG(2,8), `one-not/data/witnesses/point_lemma_AG2_8.txt`), and at scale NOT gates do help on these sums (Wegener 1987, §6.7).
 - The PSPACE encoding, that is, the full inclusion PSPACE ⊆ P_CTC beyond its reset-cycle core.
 
 ## Where things are

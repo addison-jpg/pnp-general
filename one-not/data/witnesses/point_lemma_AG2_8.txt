@@ -1,0 +1,1 @@
+q=8 points=64 sets=64 base=448 lines=261 BELOW base (point lemma fails here)
