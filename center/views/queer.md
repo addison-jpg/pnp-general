@@ -4,6 +4,7 @@
 - [checked-finite, r=1.0] queer.ath: with the two sides removed (roommates), 0 of 1, 2 of 8 and 48 of 1296 profiles (n = 2, 3, 4) have no stable matching, while the two-sided model has one on all 46656 n=3 profiles; with k two
 
 ## Frames
+- [checked-finite, r=0.0] Gale and Shapley 1962 (College Admissions and the Stability of Marriage; a roommates instance with no stable matching) and Irving 1985 (an algorithm for it) (both cited from memory): checked-finite, r
 - [checked-finite, r=0.0] Fausto-Sterling, Sexing the Body (2000; cited from memory): sex as several traits: checked-finite, traits.py: with k two-valued traits there are 2^k combinations and 2 are aligned; any one trait label
 - [checked-finite, r=0.0] Gale and Shapley 1962 (College Admissions and the Stability of Marriage; a roommates instance with no stable matching) and Irving 1985 (an algorithm for it) (both cited from memory): checked-finite, r
 - [open, r=1.0] Butler, Gender Trouble (1990; cited from memory): sex is constructed as gender, so sex/gender is not a categorical distinction: ANALOGY (a reading): the love model's two sides are a binary built into 

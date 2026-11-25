@@ -24,5 +24,5 @@ Research that matters to many people should be open: its data, its code, its fai
 
 ## See also
 
-- `core/ontology/joins/postmodern.ath`: postmodern-safe, S5 and the disk as checked frames; the Lyotard reading stays analogy.
-- `core/ontology/joins/`: lateral links between universes, each with a computed shared fact. `core/ontology/SOCIOLOGY.md` has the map before and after.
+- `core/ontology/joins/postmodern.ath`: postmodern-safe, S5 and the cone facts as checked frames. A free hub is not yet a disk. The Lyotard reading stays analogy.
+- `core/ontology/joins/`: lateral links between universes. Each record has a shared fact computed from both sides; candidates without one are open frames. `core/ontology/SOCIOLOGY.md` has the map before and after.

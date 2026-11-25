@@ -8,21 +8,24 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | program | checked | checked-finite | tested | refuted |
 |---|---|---|---|---|
 | asteroid | 7 | 0 | 3 | 0 |
-| brain | 0 | 9 | 0 | 0 |
+| brain | 0 | 10 | 0 | 0 |
 | circuits | 48 | 0 | 6 | 6 |
+| compbio | 0 | 1 | 0 | 0 |
 | cosmos | 0 | 1 | 0 | 0 |
+| curvature | 0 | 1 | 0 | 0 |
 | homestuck | 0 | 1 | 0 | 0 |
 | lateral | 1 | 0 | 0 | 0 |
 | ontology | 0 | 4 | 0 | 0 |
 | philosophy | 13 | 4 | 0 | 0 |
-| privacy | 0 | 2 | 0 | 0 |
+| privacy | 0 | 3 | 0 | 0 |
 | prompt-method | 0 | 0 | 3 | 0 |
 | quantum-gravity | 13 | 0 | 0 | 0 |
 | routing | 0 | 1 | 0 | 0 |
-| time | 0 | 3 | 0 | 0 |
+| social | 0 | 1 | 0 | 0 |
+| time | 0 | 4 | 0 | 0 |
 | transit | 0 | 1 | 0 | 0 |
 | worlds | 9 | 0 | 0 | 0 |
-| **all** | **91** | **26** | **12** | **6** |
+| **all** | **91** | **32** | **12** | **6** |
 
 ## asteroid
 
@@ -51,6 +54,7 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | checked-finite | biology/brain/network: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `biology/brain/network/check.py`, `biology/brain/network/BASE.md` | `python3 -I biology/brain/network/check.py` |
 | checked-finite | biology/brain/neuron: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `biology/brain/neuron/check.py`, `biology/brain/neuron/BASE.md` | `python3 -I biology/brain/neuron/check.py` |
 | checked-finite | biology/brain/tissue: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `biology/brain/tissue/check.py`, `biology/brain/tissue/BASE.md` | `python3 -I biology/brain/tissue/check.py` |
+| checked-finite | core/ontology/joins/brain_curvature.ath: on the icospheres of biology/brain/hairy.py (subdivision 0..3: 12, 42, 162, 642 vertices) chi = 2 three ways, exact: V - E + F, the deficit sum of physics/curvature/check.py over 2 pi, and the Banchoff index sum with hairy.py's link rule for 3 fixed intege... | `core/ontology/joins/brain_curvature.ath`, `biology/brain/hairy.py`, `physics/curvature/check.py` | `python3 -I biology/brain/hairy.py && python3 -I physics/curvature/check.py && python3 -I core/ontology/joins/euler.py` |
 | checked-finite | neuron.ath: segmental-growth histories of a dendrite with n tips number (2n-3)!!, the rooted binary phylogenetic trees, for n=1..9; terminal growth gives (n-1)! and ordered shapes Catalan(n-1). Every term checked exactly against the formula, and biology/brain/neuron/check.py passes. | `neuron.ath`, `biology/brain/neuron/fingerprints.json`, `biology/brain/neuron/check.py` | `python3 -I biology/brain/neuron/check.py` |
 
 ## circuits
@@ -118,11 +122,23 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | tested | The one-point step holds at every cube on 12 of 12 irreducible circuits whose NOT gate is read. | `one-not/tools/search/irreducible.py` |  |
 | tested | With exactly 2 NOT gates, neither feeding the other, the minimum circuit size is base + 3 on tri3, star3 and tri4 (UNSAT at base + 1, base + 2) and above base + 2 on q4 and Pasch: on these systems NOT gates cost gates, never save them. | `one-not/tools/kill_tests/c4t_sat.py`, `one-not/data/c4g/t2_runs.log` |  |
 
+## compbio
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | core/ontology/joins/compbio_brain.ath: rooted binary phylogenetic trees with n leaves (biology/compbio/fingerprints.json, n = 2..8) and segmental-growth histories with n tips (biology/brain/neuron/fingerprints.json, n = 1..9) both equal (2n-2)!/(2^(n-1)(n-1)!) = (2n-3)!! term by term; biology/bra... | `core/ontology/joins/compbio_brain.ath`, `biology/brain/neuron/check.py`, `biology/compbio/fingerprints.json` | `python3 -I biology/brain/neuron/check.py` |
+
 ## cosmos
 
 | label | statement | evidence | recheck |
 |---|---|---|---|
 | checked-finite | cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; physics/cosmos/check.py passes. | `cosmos.ath`, `physics/cosmos/check.py`, `physics/cosmos/fingerprints.json` | `python3 -I physics/cosmos/check.py` |
+
+## curvature
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | core/ontology/joins/curvature_philosophy.ath: for d = 3..12 the cone over a d-cycle (philosophy/cone.py is_disk) is a disk with the apex inside, and the apex is a fan of d equilateral triangles whose deficit (physics/curvature/check.py) is 0 exactly when d = 6. Both checks pass in the same run. | `core/ontology/joins/curvature_philosophy.ath`, `physics/curvature/check.py`, `philosophy/cone.py` | `python3 -I physics/curvature/check.py && python3 -I philosophy/cone.py && python3 -I core/ontology/joins/fan.py` |
 
 ## homestuck
 
@@ -172,6 +188,7 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | label | statement | evidence | recheck |
 |---|---|---|---|
 | checked-finite | Privacy as exact combinatorics on synthetic data: k-anonymity over all 65536 four-row tables (largest k = 1, 2, 4 for 64800, 720, 16 tables) with the least-generalization search equal to brute force on every table; the exact distribution of unique individuals matches E = n(1-1/D)^(n-1) for 30 (n,... | `biology/privacy/check.py`, `biology/privacy/BASE.md` | `python3 -I biology/privacy/check.py` |
+| checked-finite | core/ontology/joins/privacy_poetry.ath: equality patterns of n table rows (biology/privacy/fingerprints.json) and rhyme schemes of n lines (culture/poetry/fingerprints.json) agree on all 8 common terms, the Bell numbers 1, 2, 5, 15, 52, 203, 877, 4140; biology/privacy/check.py and culture/poetry/... | `core/ontology/joins/privacy_poetry.ath`, `biology/privacy/check.py`, `culture/poetry/check.py` | `python3 -I biology/privacy/check.py && python3 -I culture/poetry/check.py` |
 | checked-finite | privacy.ath: the equality patterns of n table rows number B(n), the Bell numbers, for n=1..8, each term equal to the sum over k of S(n,k) computed exactly; biology/privacy/check.py passes. | `privacy.ath`, `biology/privacy/fingerprints.json`, `biology/privacy/check.py` | `python3 -I biology/privacy/check.py` |
 
 ## prompt-method
@@ -206,10 +223,17 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 |---|---|---|---|
 | checked-finite | frames_routing.ath: math/routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierarchies (fixed order; every order for n<=4) give the Floyd-Warshall distance for every pair. A... | `frames_routing.ath`, `math/routing/check.py` | `python3 -I math/routing/check.py` |
 
+## social
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | core/ontology/joins/social_philosophy.ath: on every connected labelled graph on 1..6 vertices, every bridge of philosophy/rhizome.py (an edge whose loss disconnects) is a local bridge of culture/social/weakties.py (endpoints share no neighbour), and not conversely (65759 local-bridge edges, 28907... | `core/ontology/joins/social_philosophy.ath`, `culture/social/weakties.py`, `philosophy/rhizome.py` | `python3 -I culture/social/weakties.py && python3 -I philosophy/rhizome.py && python3 -I core/ontology/joins/bridges.py` |
+
 ## time
 
 | label | statement | evidence | recheck |
 |---|---|---|---|
+| checked-finite | core/ontology/joins/time_poetry.ath: by brute force over every relation on 1..4 worlds, S5 frames (reflexive, transitive, symmetric) number 1, 2, 5, 15 and S4 frames 1, 4, 29, 355; the S5 counts equal the rhyme schemes of culture/poetry/fingerprints.json, and 1 + 2 + 5 = 8 and 1 + 4 + 29 = 34 are... | `core/ontology/joins/time_poetry.ath`, `physics/time/check.py`, `core/ontology/joins/s5.py` | `python3 -I physics/time/check.py && python3 -I core/ontology/joins/s5.py` |
 | checked-finite | frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
 | checked-finite | frames_time.ath: physics/time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxation. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
 | checked-finite | frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder from */level.json join arrows has no least element. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |

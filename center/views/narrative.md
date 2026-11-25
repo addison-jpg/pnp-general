@@ -2,9 +2,9 @@
 
 ## Frames
 - [checked-finite, r=0.0] Dostoevsky, Notes from Underground 1864 against the Crystal Palace; A Writer's Diary 1873-1881, a public journal, with antisemitic and nationalist passages (cited from memory); the link is analogy: th
-- [checked-finite, r=0.0] Kafka, diaries 1910-1923; day work 1908-1922 at the Workers' Accident Insurance Institute, Prague (cited from memory); Star and Strauss 1999 and Unertl (core/ontology/WORKFLOW.md) on invisible work; t
-- [checked-finite, r=0.0] Addison: the individual story propagating up to a universe of individuals: a universe is a multiset of constructed stories; its type counts add over members (every 2-multiset of stories of length <= 3
-- [checked-finite, r=0.0] Beauvoir, Pour une morale de l'ambiguite 1947 (not re-read); lethargy as a reached world that cannot go on; the link is analogy (reading), not checked: Kripke fact only: []<>T holds exactly on success
-- [checked-finite, r=0.0] Kleinman 1988, The Illness Narratives; Charon 2006, Narrative Medicine (both cited from memory); the link is analogy (reading), not checked: a story as a finite sequence of states is a reading of what
 - [checked-finite, r=0.0] Frank 1995, The Wounded Storyteller: restitution, chaos and quest narratives (cited from memory): all 9840 constructed stories of length 1..8 over well, ill, changed: restitution 3^(n-1)-3, quest 2*3^
+- [checked-finite, r=0.0] Kafka, diaries 1910-1923; day work 1908-1922 at the Workers' Accident Insurance Institute, Prague (cited from memory); Star and Strauss 1999 and Unertl (core/ontology/WORKFLOW.md) on invisible work; t
+- [checked-finite, r=0.0] Kleinman 1988, The Illness Narratives; Charon 2006, Narrative Medicine (both cited from memory); the link is analogy (reading), not checked: a story as a finite sequence of states is a reading of what
+- [checked-finite, r=0.0] Beauvoir, Pour une morale de l'ambiguite 1947 (cited from memory); lethargy as a reached world that cannot go on; the link is analogy (reading), not checked: Kripke fact only: []<>T holds exactly on s
+- [checked-finite, r=0.0] Addison: the individual story propagating up to a universe of individuals: a universe is a multiset of constructed stories; its type counts add over members by definition (not checked, nothing to chec
 - [checked-finite, r=0.0] Anais Nin, diaries published from 1966; her racist and exoticizing portrayals of people of colour, documented by critics (cited from memory); Morrison 1992 and Said 1978 (cited from memory); the link 

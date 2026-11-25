@@ -4,5 +4,5 @@
 - [checked-finite, r=1.0] culture/race/race.ath: every 2x2 table of nonnegative integers with total N <= 12 (1820 tables): 819 margin classes, 506 with more than one table, the largest has 7 (margins 6 and 6, N = 12); the Frec
 
 ## Frames
-- [checked-finite, r=0.0] Du Bois 1903, The Souls of Black Folk: double consciousness, looking at oneself through the eyes of others (cited from memory): a one-way gaze (one side sees, is not seen back as it sees) is a non-sym
-- [checked-finite, r=0.0] Crenshaw 1989, Demarginalizing the Intersection of Race and Sex, University of Chicago Legal Forum: a Black woman's claim can fall between a race claim and a sex claim (cited from memory): the counts 
+- [checked-finite, r=0.0] asymmetry.py: every preorder on 1 to 4 worlds (389) is non-symmetric exactly when it maps onto the 2-chain: the 2-chain: one world sees, the other is not seen back as it sees
+- [checked-finite, r=0.0] race.py: margins do not fix the joint; every 2x2 table of nonnegative integers with total N <= 12: 1820 tables fall into 819 margin classes, 506 hold more than one table, the largest holds 7 (margins 

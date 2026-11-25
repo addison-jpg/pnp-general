@@ -14,7 +14,7 @@
  "brain": {
   "cells": {},
   "findings": {
-   "checked-finite": 9
+   "checked-finite": 10
   },
   "mean_radius_findings": 0.0
  },
@@ -39,8 +39,10 @@
  },
  "compbio": {
   "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
  },
  "compute": {
   "cells": {
@@ -60,8 +62,10 @@
  },
  "curvature": {
   "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
  },
  "essays": {
   "cells": {},
@@ -144,7 +148,7 @@
  "privacy": {
   "cells": {},
   "findings": {
-   "checked-finite": 2
+   "checked-finite": 3
   },
   "mean_radius_findings": 0.0
  },
@@ -185,13 +189,15 @@
  },
  "social": {
   "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
  },
  "time": {
   "cells": {},
   "findings": {
-   "checked-finite": 3
+   "checked-finite": 4
   },
   "mean_radius_findings": 0.0
  },

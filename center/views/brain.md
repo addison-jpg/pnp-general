@@ -7,11 +7,11 @@
 - [checked-finite, r=0.0] biology/brain/cortex: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [checked-finite, r=0.0] Terminal dendrite growth gives exactly the Yule (equal-rates) phylogenetic distribution on tree shapes, and segmental growth exactly the uniform (PDA) distribution, for every unordered shape with up t
 - [checked-finite, r=0.0] biology/brain/network: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
+- [checked-finite, r=0.0] core/ontology/joins/brain_curvature.ath: on the icospheres of biology/brain/hairy.py (subdivision 0..3: 12, 42, 162, 642 vertices) chi = 2 three ways, exact: V - E + F, the deficit sum of physics/curv
 - [checked-finite, r=0.0] biology/brain/tissue: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [checked-finite, r=0.0] biology/brain/dna: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [checked-finite, r=0.0] biology/brain/neuron: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [tested, r=0.5] Hairy ball on a model cortex: on icospheres with 42, 162 and 642 vertices, 100 random smooth functions each, the Banchoff indices of the critical points sum to 2 (the Euler characteristic) every time.
-- [checked-finite, r=1.0] core/ontology/joins/brain_curvature.ath: on the icospheres of biology/brain/hairy.py (subdivision 0..3: 12, 42, 162, 642 vertices) chi = 2 three ways, exact: V - E + F, the deficit sum of physics/curv
 
 ## Fingerprints
 - [DATA, r=0.5] Forman discrete vector fields on the cycle graph C_n, n = 3..10 (= Lucas L_2n - 2) seq [16, 45, 121, 320, 841, 2205, 5776, 15125]

@@ -11,7 +11,7 @@ cells: 7 DECIDED, 4 OPEN, 6 TAKEN
 - OPEN [?] (Addison): Open VSX is not published (needs Addison's token).  (asteroid-vscode:11)
 
 ## brain
-findings (verified): 9 checked-finite · mean radius 0.0
+findings (verified): 10 checked-finite · mean radius 0.0
 cells: none
 
 ## carseat
@@ -36,7 +36,7 @@ cells: 9 DECIDED, 15 OPEN, 8 STOPPED, 2 TAKEN
 - … 3 more in the shard
 
 ## compbio
-findings (verified): none · mean radius None
+findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
 ## compute
@@ -48,7 +48,7 @@ findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
 ## curvature
-findings (verified): none · mean radius None
+findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
 ## essays
@@ -108,7 +108,7 @@ findings (verified): none · mean radius None
 cells: none
 
 ## privacy
-findings (verified): 2 checked-finite · mean radius 0.0
+findings (verified): 3 checked-finite · mean radius 0.0
 cells: none
 
 ## prompt-method
@@ -135,11 +135,11 @@ findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
 ## social
-findings (verified): none · mean radius None
+findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
 ## time
-findings (verified): 3 checked-finite · mean radius 0.0
+findings (verified): 4 checked-finite · mean radius 0.0
 cells: none
 
 ## transit
