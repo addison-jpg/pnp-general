@@ -137,6 +137,115 @@ theorem heavyMerge_card_ge_and_subset (S : Fin m → Finset (Fin n)) (Q D : Fins
     have : x ∉ S w ∪ D := Finset.disjoint_left.mp hw hx
     simp [Zof, this]
 
+open Classical in
+/-- **Light absorption** (hypothesis, not a theorem): the light atoms of the DD sets are paid for by
+`F2Mix` wires outside the unit merges of non-DD sets and the heavy merges of DD sets. -/
+def LightAbsorb (S : Fin m → Finset (Fin n)) (Q D : Finset (Fin n)) : Prop :=
+  ∑ w ∈ (aliveSets S Q).filter (DDAt gates p S Q D),
+    ((S w \ D).card - (heavyAt gates p S Q D w).card -
+      (if heavyAt gates p S Q D w = ∅ then 1 else 0)) ≤
+    (MixedSlack.F2Mix gates S Q D \
+      (((aliveSets S Q).filter (fun w => ¬ DDAt gates p S Q D w)).biUnion
+          (unitMerge gates S Q D) ∪
+        ((aliveSets S Q).filter (DDAt gates p S Q D)).biUnion (heavyMerge gates p S Q D))).card
+
+open Classical in
+/-- **DD absorption** (target): the DD sets' `|S w \ D| - 1` is covered by `F2Mix` wires outside the
+unit merges of non-DD sets. -/
+def DDAbsorb (S : Fin m → Finset (Fin n)) (Q D : Finset (Fin n)) : Prop :=
+  ∑ w ∈ (aliveSets S Q).filter (DDAt gates p S Q D), ((S w \ D).card - 1) ≤
+    (MixedSlack.F2Mix gates S Q D \
+      ((aliveSets S Q).filter (fun w => ¬ DDAt gates p S Q D w)).biUnion
+        (unitMerge gates S Q D)).card
+
+include hg hU hN in
+/-- **Light absorption implies DD absorption.** -/
+theorem ddAbsorb_of_lightAbsorb (S : Fin m → Finset (Fin n)) (Q D : Finset (Fin n))
+    (hQD : Disjoint Q D) (hov : ∀ a b, a ≠ b → (S a ∩ S b).card ≤ 1)
+    (hev : ∀ w, ∃ out : ℕ, ∀ x : Fin n → Bool,
+      val gates x out = decide (∃ u ∈ S w, x u = true))
+    (hL : LightAbsorb gates p S Q D) : DDAbsorb gates p S Q D := by
+  classical
+  have hdis : ∀ w ∈ aliveSets S Q, Disjoint Q (S w ∪ D) := fun w hw =>
+    Finset.disjoint_union_right.mpr ⟨(mem_aliveSets.mp hw).symm, hQD⟩
+  set DDs := (aliveSets S Q).filter (DDAt gates p S Q D) with hDDs
+  set Ns := (aliveSets S Q).filter (fun w => ¬ DDAt gates p S Q D w) with hNs
+  set N := Ns.biUnion (unitMerge gates S Q D) with hNdef
+  set H := DDs.biUnion (heavyMerge gates p S Q D) with hHdef
+  have hDDa : ∀ w ∈ DDs, w ∈ aliveSets S Q := fun w hw => (Finset.mem_filter.mp hw).1
+  have hNa : ∀ w ∈ Ns, w ∈ aliveSets S Q := fun w hw => (Finset.mem_filter.mp hw).1
+  have hHsub : H ⊆ MixedSlack.F2Mix gates S Q D := by
+    intro i hi
+    obtain ⟨w, hw, hiw⟩ := Finset.mem_biUnion.mp hi
+    obtain ⟨out, hout⟩ := hev w
+    exact (heavyMerge_card_ge_and_subset gates p hp hg hU hN S Q D w (hdis w (hDDa w hw)) out
+      hout).2 hiw
+  have hpair : ∀ a ∈ DDs, ∀ b ∈ DDs, a ≠ b →
+      Disjoint (heavyMerge gates p S Q D a) (heavyMerge gates p S Q D b) := by
+    intro a ha b hb hab
+    rw [Finset.disjoint_left]
+    intro i hia hib
+    obtain ⟨hza, u, hu, u', hu', huu, h1, h2⟩ := heavyMerge_data gates p S Q D a i hia
+    obtain ⟨hzb, -⟩ := heavyMerge_data gates p S Q D b i hib
+    exact heavy_overlap_false gates p hp hg hU hN S a b (hov a b hab) Q D (hdis b (hDDa b hb)) i
+      hzb (Finset.mem_filter.mp hu).1 (Finset.mem_filter.mp hu').1 huu h1 h2
+      (Finset.mem_filter.mp hu).2 (Finset.mem_filter.mp hu').2
+  have hHN : Disjoint H N := by
+    rw [Finset.disjoint_left]
+    intro i hiH hiN
+    obtain ⟨a, ha, hia⟩ := Finset.mem_biUnion.mp hiH
+    obtain ⟨b, hb, hib⟩ := Finset.mem_biUnion.mp hiN
+    have hab : a ≠ b := by
+      rintro rfl
+      exact (Finset.mem_filter.mp hb).2 (Finset.mem_filter.mp ha).2
+    obtain ⟨-, u, hu, u', hu', huu, h1, h2⟩ := heavyMerge_data gates p S Q D a i hia
+    obtain ⟨hzb, -⟩ := unitMerge_data gates S Q D b i hib
+    exact heavy_overlap_false gates p hp hg hU hN S a b (hov a b hab) Q D (hdis b (hNa b hb)) i
+      hzb (Finset.mem_filter.mp hu).1 (Finset.mem_filter.mp hu').1 huu h1 h2
+      (Finset.mem_filter.mp hu).2 (Finset.mem_filter.mp hu').2
+  have hHcard : ∑ w ∈ DDs, ((heavyAt gates p S Q D w).card - 1) ≤ H.card := by
+    rw [hHdef, Finset.card_biUnion hpair]
+    exact Finset.sum_le_sum fun w hw => by
+      obtain ⟨out, hout⟩ := hev w
+      exact (heavyMerge_card_ge_and_subset gates p hp hg hU hN S Q D w (hdis w (hDDa w hw)) out
+        hout).1
+  have hsplit : H.card + (MixedSlack.F2Mix gates S Q D \ (N ∪ H)).card ≤
+      (MixedSlack.F2Mix gates S Q D \ N).card := by
+    rw [← Finset.card_union_of_disjoint]
+    · apply Finset.card_le_card
+      intro i hi
+      rcases Finset.mem_union.mp hi with h | h
+      · exact Finset.mem_sdiff.mpr ⟨hHsub h, fun hN' => Finset.disjoint_left.mp hHN h hN'⟩
+      · exact Finset.mem_sdiff.mpr ⟨(Finset.mem_sdiff.mp h).1, fun hN' =>
+          (Finset.mem_sdiff.mp h).2 (Finset.mem_union_left _ hN')⟩
+    · rw [Finset.disjoint_left]
+      intro i hiH hi2
+      exact (Finset.mem_sdiff.mp hi2).2 (Finset.mem_union_right _ hiH)
+  have hpt : ∀ w ∈ DDs, (S w \ D).card - 1 ≤ ((heavyAt gates p S Q D w).card - 1) +
+      ((S w \ D).card - (heavyAt gates p S Q D w).card -
+        (if heavyAt gates p S Q D w = ∅ then 1 else 0)) := by
+    intro w _
+    have hle : (heavyAt gates p S Q D w).card ≤ (S w \ D).card :=
+      Finset.card_le_card (Finset.filter_subset _ _)
+    by_cases h0 : heavyAt gates p S Q D w = ∅
+    · rw [h0]; simp
+    · have : 1 ≤ (heavyAt gates p S Q D w).card := Finset.card_pos.mpr
+        (Finset.nonempty_iff_ne_empty.mpr h0)
+      simp only [h0, ite_false]
+      omega
+  have hsum : ∑ w ∈ DDs, ((S w \ D).card - 1) ≤ ∑ w ∈ DDs, ((heavyAt gates p S Q D w).card - 1) +
+      ∑ w ∈ DDs, ((S w \ D).card - (heavyAt gates p S Q D w).card -
+        (if heavyAt gates p S Q D w = ∅ then 1 else 0)) := by
+    rw [← Finset.sum_add_distrib]
+    exact Finset.sum_le_sum hpt
+  unfold DDAbsorb
+  have hL' : ∑ w ∈ DDs, ((S w \ D).card - (heavyAt gates p S Q D w).card -
+        (if heavyAt gates p S Q D w = ∅ then 1 else 0)) ≤
+      (MixedSlack.F2Mix gates S Q D \ (N ∪ H)).card := hL
+  have hfin : ∑ w ∈ DDs, ((S w \ D).card - 1) ≤ (MixedSlack.F2Mix gates S Q D \ N).card := by
+    omega
+  convert hfin
+
 end Heavy
 
 end PEqualNP.Outside.L_meta_951_aux.F2Transfer

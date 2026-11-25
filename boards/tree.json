@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 48,
+   "checked": 49,
    "tested": 6,
    "refuted": 5
   },
@@ -60,6 +60,7 @@
    "ba956ff0",
    "4cea3d21",
    "d99349da",
+   "0b7b8fdd",
    "57b5bd42",
    "89fa09ba",
    "182f7509",
@@ -201,7 +202,7 @@
   "counts": {
    "tested": 5,
    "refuted": 5,
-   "checked": 36
+   "checked": 37
   },
   "verified": [
    "1b00e1bc",
@@ -249,7 +250,8 @@
    "b233fdbd",
    "ba956ff0",
    "4cea3d21",
-   "d99349da"
+   "d99349da",
+   "0b7b8fdd"
   ],
   "unverified_here": []
  },
@@ -425,7 +427,7 @@
  },
  "one-not/lean": {
   "counts": {
-   "checked": 34
+   "checked": 35
   },
   "verified": [
    "0992c96e",
@@ -461,13 +463,21 @@
    "b233fdbd",
    "ba956ff0",
    "4cea3d21",
-   "d99349da"
+   "d99349da",
+   "0b7b8fdd"
   ],
-  "unverified_here": []
+  "unverified_here": [
+   {
+    "id": "af8e62f4",
+    "why": [
+     "missing PEqualNP/W951/Open/DDAbsorb.lean"
+    ]
+   }
+  ]
  },
  "one-not/lean/PEqualNP": {
   "counts": {
-   "checked": 33
+   "checked": 34
   },
   "verified": [
    "5fe90015",
@@ -502,7 +512,8 @@
    "b233fdbd",
    "ba956ff0",
    "4cea3d21",
-   "d99349da"
+   "d99349da",
+   "0b7b8fdd"
   ],
   "unverified_here": []
  },
@@ -517,7 +528,7 @@
  },
  "one-not/lean/PEqualNP/W951": {
   "counts": {
-   "checked": 32
+   "checked": 33
   },
   "verified": [
    "30cf54bf",
@@ -551,7 +562,8 @@
    "b233fdbd",
    "ba956ff0",
    "4cea3d21",
-   "d99349da"
+   "d99349da",
+   "0b7b8fdd"
   ],
   "unverified_here": [
    {
@@ -588,7 +600,7 @@
  },
  "one-not/lean/PEqualNP/W951/Open": {
   "counts": {
-   "checked": 6
+   "checked": 7
   },
   "verified": [
    "66d4cb88",
@@ -596,7 +608,8 @@
    "b233fdbd",
    "ba956ff0",
    "4cea3d21",
-   "d99349da"
+   "d99349da",
+   "0b7b8fdd"
   ],
   "unverified_here": [
    {
@@ -656,6 +669,18 @@
    },
    {
     "id": "bed3e7a3",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "02893a43",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "3a099149",
     "why": [
      "needs a second seat in by"
     ]
