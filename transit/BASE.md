@@ -29,3 +29,5 @@ Source: Addison, social applications of the buses (ontology/SOURCES.md). Run: `p
 Reading (Fisher). A closed class is a reading of capitalist realism: once the bus is in, no way out is reachable. `lean/PEqualNP/Philosophy/Fisher.lean` reads lost futures as unreachable states. An analogy, not a theorem about society.
 
 Reading (Granovetter). A weak tie is a bridge. Without one, the network is not accessible: cover time is infinite. One bridge makes it finite. A second shortens it. An analogy; tie strength is not modelled.
+
+Note (from the independent review): that every finite chain has a closed class and is absorbed with probability 1 is a standard theorem; the enumeration confirms it, it is not a new result. The new parts are the exact bridge times, h = k(k-1)+1 from the bridge end.
