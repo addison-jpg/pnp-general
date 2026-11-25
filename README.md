@@ -145,6 +145,8 @@ Two programs, one file each, nothing to install:
 | **ast** | [`ast.exe`](https://github.com/addison-jpg/pnp-general/raw/main/dist/windows/ast.exe) (4.2 MB) | [`ast`](https://github.com/addison-jpg/pnp-general/raw/main/dist/linux/ast) (4.3 MB) | the native checker, written in Lean: small and fast, no Python. Circuits, claims, the prompt, plots (SVG). Proves with Lean when it finds Lean and the repository. [`dist/windows`](dist/windows/README.md), [`dist/linux`](dist/linux/README.md) |
 | **asteroid** | [`asteroid.exe`](https://github.com/addison-jpg/pnp-general/raw/main/dist/windows/asteroid.exe) (built by CI) | [`asteroid`](https://github.com/addison-jpg/pnp-general/raw/main/dist/linux/asteroid) (45 MB) | the universal language: the full implementation, every extension (finite, prob, modal, frame, commit, ask, corpus, eureka, ...), with Python inside. Proves with Lean when it finds `lake` and the repository. |
 
+The links point at `main`. Until branch `refactor/pillars` is merged, `main` has no `dist/linux/ast` and no `dist/windows` folder, and its `dist/linux/asteroid` is the old 4.3 MB native checker, not the 45 MB universal program. Until then, take the files from `refactor/pillars`.
+
 Arch: `packaging/arch/PKGBUILD` installs `ast`. Both programs take the same command line: `ast hello.ath`, `asteroid hello.ath`, `--no-proof`, `version`; with no arguments they open the prompt.
 
 VS Code highlighting for `.ath`: search **asteroid** in Extensions ([Marketplace](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid)), or install `editors/vscode/asteroid-0.1.0.vsix`.

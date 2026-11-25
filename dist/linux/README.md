@@ -29,7 +29,7 @@ Rebuild: `cd one-not/lean && lake build asteroid && strip -o ../../dist/linux/as
 
 The code is inside the binary. The data (`.bench` files, findings, `frames.jsonl`, `one-not/lean`) is the repository's: it is searched upwards from the program's folder, the current folder and the binary's folder. Found: the run reads and writes there, as `python3 -m asteroid` does, and `by lean` claims are proved when `lake` is found. Not found: the run evaluates only and says so in one line; `frames.jsonl` then goes to a temporary folder unless `ASTEROID_FRAMES` names a file.
 
-Evidence: `python3 asteroid/tests/test_universal_exe.py` runs the root programs, `asteroid/tests/notgate.ath`, five examples, an `ask` line, a `propose` line, `version`, a missing program and `core/ontology/ask.py --model` through both `python3 -m asteroid --no-lean` and this binary, and checks that the exit codes and the claim lines are identical. Proving with Lean through this binary was not tested (no Lean where it was built).
+Evidence: `python3 asteroid/tests/test_universal_exe.py` runs the root programs, `asteroid/tests/notgate.ath`, five examples, an `ask` line, a `propose` line, `version`, a missing program and `core/ontology/ask.py --model` through both `python3 -m asteroid --no-lean` and this binary, and checks that the exit codes and the claim lines are identical. Proving with Lean through this binary was tested once, on `hello.ath` inside the repository, with `lake` on PATH: `claims: 4 true, 0 false; 3 proved`, exit 0.
 
 Rebuild, from the repository root, in a fresh virtual environment outside the repository:
 
@@ -39,4 +39,4 @@ python3 -m venv /tmp/v && /tmp/v/bin/pip install pyinstaller numpy matplotlib
 cp /tmp/out/asteroid dist/linux/asteroid
 ```
 
-Both are built by `.github/workflows/exe.yml` (run by hand; it commits them here).
+Both are built by `.github/workflows/exe.yml` (run by hand; it commits them here). The `asteroid` here now (47,188,944 bytes, commit 17716b0) was built locally with the lines above, not by the workflow.
