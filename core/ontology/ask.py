@@ -47,7 +47,7 @@ GRAMMAR = """Grammar (case does not matter; the, a, an, please are ignored):
   what is TAG
   explain WORD                   findings and frames whose text mentions WORD"""
 
-EXAMPLES = ["status", "how many results are verified", "show open frames", "show frames about time",
+EXAMPLES = ["status", "how many results are verified", "show open frames", "show open frames about time", "show frames", "show frames about time",
             "which results use exhaustive-check", "which works use branching-tree", "what links beauvoir and physics",
             "list tags", "list corpora", "list pillars", "what is fixed-point", "explain asymmetry"]
 
