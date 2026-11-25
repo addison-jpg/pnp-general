@@ -4,6 +4,7 @@
 - [checked, r=0.0] Candidate for Beauvoir's 'to will oneself free is to will others free' (our weak reading): a move closes off no form open to the self iff it breaks no shared future with any other state; content is co
 - [checked-finite, r=0.0] Lacan's Borromean knot computed as a link, in exact integer arithmetic. Three-ellipse Borromean rings: every linking number 0 and Milnor's triple number mu(RSI) = mu(SIR) = mu(IRS) = -1, by two indepe
 - [checked, r=0.0] Causal-set side: on a Fisher frame Beauvoir.Barbarian is exactly 'no common future' (barbarian_iff_beyond), which is inherited upward in any partial order (beyond_mono); in N x N spacelike points meet
+- [checked-finite, r=0.0] knots.ath: philosophy/milnor.py passes: the Borromean rings have every linking number 0 and |mu(123)| = 1 (the sign depends on ring order and orientation) by two independent methods; with a fourth rin
 - [checked, r=0.0] Seven hand-coded one-NOT board rows as a Fisher frame, after the review renames (supersedes 8474b92a, old name board_realism). Holds for that tree only; the real history is a DAG (see boards/tasks/phi
 - [checked, r=0.0] States of an event structure with binary conflict (Nielsen-Plotkin-Winskel; textbook facts): a loss between states is permanent iff they clash, else undone at the union; a clashing branch has a greate
 - [checked-finite, r=0.0] Tree against rhizome over all 33,867 labelled graphs on at most 6 vertices: a connected graph is a tree iff every edge is a bridge; adding one edge to a tree frees exactly the edges of the cycle it cl
@@ -14,16 +15,15 @@
 - [checked, r=0.0] Formal analogy (no claim about Deleuze): finite slack table is the actual, Phi the virtual; Phi does not determine the slack table (PhiT_not_injective) and the corners Phi(0), Phi(1) do not determine 
 - [checked, r=0.0] One frame (models of cited readings, no claim about the authors or circuits): in a tree of decisions a lost route is at once Fisher-lost for ever, Hegel-determinate (one definite point of difference),
 - [checked, r=0.0] DAG frame (order theory, readings ours): in any partial order a lost future is later either still lost or part of the past, never ahead again (lost_or_past); a loss is permanent iff the two have no co
+- [checked-finite, r=0.0] knots.ath: philosophy/milnor.py passes: the Borromean rings have every linking number 0 and mu(123) = -1 by two independent methods; with a fourth ring every triple invariant is 0; the trefoil has 9 F
 - [checked, r=0.0] Ten one-NOT board rows encoded as DATA (encoding checked, rows not): the history is not a tree, lost_mono fails on it, refuted claims never return, and the salvage of each refuted branch is exactly it
 - [checked, r=0.0] Hauntology as branching time: lost futures accumulate (lost_mono), branching haunts every later moment (haunted_of_branch), capitalist realism as a modal claim (capitalist_realism); no axioms; models 
 - [checked, r=0.3] Pure two-party state, any finite dimensions: S(A)=S(B) (entropy_symm), equal moments and Schmidt rank, and reduced state pure iff product (pure_iff_product, via the Lagrange identity sum_minor_sq). Th
 - [checked, r=0.3] Fisher, hauntology as branching time: lost futures accumulate (lost_mono), haunting is monotone (haunted_mono), a branch point haunts (haunted_of_branch), capitalist_realism; models only cancelled pos
 - [checked, r=0.3] Minimal cuts of a weighted graph: complement symmetry (rt_compl), strong subadditivity (rt_submodular), monogamy of mutual information (rt_monogamy), so no graph has the 4-party GHZ entropy pattern (n
 - [checked, r=0.3] Seven one-NOT board rows encoded as a Fisher frame (names and statuses are data copied from the boards, not checked): refuted rows C2, C4, L5 are lost futures of the present A4-A7-A10-BottomPay and st
-- [checked-finite, r=1.0] knots.ath: philosophy/milnor.py passes: the Borromean rings have every linking number 0 and |mu(123)| = 1 (the sign depends on ring order and orientation) by two independent methods; with a fourth rin
 - [open, r=1.0] Not proved: the Coffman-Kundu-Wootters inequality (needs mixed-state concurrence), min-cut = entanglement entropy for HaPPY states, contraction of a general tensor network to the factorised form. Not 
 - [open, r=1.0] Not found: a theorem for Beauvoir's 'to will oneself free is to will others free' (a tree frame has no shared future for incomparable selves; a frame with joins loses lost_mono), a model of master and
-- [checked-finite, r=1.0] knots.ath: philosophy/milnor.py passes: the Borromean rings have every linking number 0 and mu(123) = -1 by two independent methods; with a fourth ring every triple invariant is 0; the trefoil has 9 F
 
 ## Cells
 - [DECIDED, r=0.0] unification of Fisher, Deleuze, Hegel, Camus, Beauvoir on Fisher's frame. lean/PEqualNP/Philosophy/{Hegel,Camus,Beauvoir,Unify}.lean and one-not/lean/PEqualNP/Philosophy/LevelGap.lean build, standard 
@@ -33,3 +33,7 @@
 - [DATA, r=0.5] labelled trees, n vertices (n>=1) seq [1, 1, 3, 16, 125, 1296]
 - [DATA, r=0.5] connected labelled graphs, n vertices (n>=1) seq [1, 1, 4, 38, 728, 26704]
 - [DATA, r=0.5] connected labelled graphs with no critical edge (bridgeless), n vertices (n>=1) seq [1, 0, 1, 10, 253, 11968]
+
+## Frames
+- [checked-finite, r=0.0] Lacan, the Borromean knot (philosophy/PSYCHOSIS.md): the three rings: every linking number 0, triple invariant 1
+- [checked-finite, r=0.0] Deleuze and Guattari, rhizome against tree (philosophy/rhizome.py): a tree is a connected graph whose every edge is a bridge; bridgeless graphs counted to 6 vertices

@@ -1,0 +1,2 @@
+{"id": "aa819857", "kind": "fingerprint", "program": "cosmos", "radius": 0.5, "runner": "python3 -I cosmos/check.py", "schema": 1, "seq": [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36], "state": "DATA", "text": "position of universe 2k in ordering B of the measure toy, k=1..12"}
+{"by": [], "id": "5ec568ab", "kind": "level", "program": "cosmos", "radius": 1.0, "retests": [], "schema": 1, "text": "Flat FLRW universe, Kepler orbits, and the measure problem", "who": null, "word": "open"}

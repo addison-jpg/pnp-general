@@ -12,4 +12,6 @@ frame "gravity as inevitability (essays/knowing.md)" reading "every escape route
 frame "Homestuck alchemy (homestuck/BASE.md)" reading "alchemy at b = 3 is an OR circuit that shares gates" -> alchemy.ath label checked-finite reach 2 cost 80
 frame "Homestuck, the meteor (homestuck/BASE.md section 5)" reading "the meteor as a transport map between two sessions that keeps the rules" -> none label open reach 2 cost 160
 frame "prompting claims C3 to C6 (ath_prompts/SYNTHESIS.md)" reading "informal asks succeed as well with fewer corrections; boards cut duplicates and messages" -> none label open reach 3 cost 240
-frame "the hairy ball on the cortex (brain/cortex/BASE.md); the bus reading is the build's own, transit/BASE.md" reading "exact cover time of a random walk on every connected graph up to 6 vertices is at most 2m(n-1) (Aleliunas et al. 1979); index sum 2 is a cite" -> 5 label checked-finite reach 2 cost 80
+frame "Addison: buses on the hairy ball (ontology/SOURCES.md)" reading "exact cover time of a random walk on every connected graph up to 6 vertices is at most 2m(n-1) (Aleliunas et al. 1979); index sum 2 is a cite" -> 5 label checked-finite reach 2 cost 80
+frame "Addison: time as socially constructed (ontology/SOURCES.md)" reading "relativity: time is a coordinate; whether it is fundamental is contested" -> none label open reach 1 cost 160
+frame "Addison: Stirner's fixed ideas (ontology/SOURCES.md)" reading "the fixed idea in Stirner (1844) and in psychiatry: Esquirol's monomania, Janet's idee fixe" -> none label open reach 1 cost 160

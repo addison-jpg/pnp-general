@@ -11,7 +11,7 @@ cells: 6 DECIDED, 4 OPEN, 6 TAKEN
 - OPEN [?] (Addison): Open VSX is not published (needs Addison's token).  (asteroid-vscode:11)
 
 ## brain
-findings (verified): 8 checked-finite · mean radius 0.0
+findings (verified): 9 checked-finite · mean radius 0.0
 cells: none
 
 ## circuits
@@ -39,6 +39,10 @@ cells: none
 findings (verified): none · mean radius None
 cells: 1 DECIDED, 4 STOPPED, 1 TAKEN
 
+## cosmos
+findings (verified): none · mean radius None
+cells: none
+
 ## homestuck
 findings (verified): none · mean radius None
 cells: none
@@ -58,6 +62,10 @@ cells: 2 DECIDED, 6 OPEN, 1 STOPPED
 - OPEN [Fable] (Fable): for item 5, one more edge as data (coord): "refuted → restrict". The general point lemma (several-NOT) was refuted by AG(2,8) (`one-not/data/witnesses/  (methods-formal:26)
 - OPEN [Fable] (Fable): item 3, `Methods/Board.lean`. Design ready: a record = (dir as a list of segments, id, optional who / word / evidence, by, optional retest ok); a world  (methods-formal:21)
 
+## ontology
+findings (verified): none · mean radius None
+cells: none
+
 ## other
 findings (verified): 1 checked-finite · mean radius 0.0
 cells: 13 DECIDED, 5 OPEN, 2 STOPPED, 2 TAKEN
@@ -68,11 +76,11 @@ cells: 13 DECIDED, 5 OPEN, 2 STOPPED, 2 TAKEN
 - OPEN [Fable] (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets o → `worlds/unify_rank.py`  (BOARD:35)
 
 ## philosophy
-findings (verified): 13 checked, 2 checked-finite · mean radius 0.0
+findings (verified): 13 checked, 4 checked-finite · mean radius 0.0
 cells: 2 DECIDED
 
 ## privacy
-findings (verified): 1 checked-finite · mean radius 0.0
+findings (verified): 2 checked-finite · mean radius 0.0
 cells: none
 
 ## prompt-method

@@ -2,7 +2,7 @@
  "id": "cosmos",
  "ladder": "cosmos",
  "name": "Flat FLRW universe, Kepler orbits, and the measure problem",
- "scale_m": [1e3, 4.4e26],
+ "scale_m": null,
  "carriers": ["differential equation", "orbit", "rational number"],
  "invariants": ["energy sign", "count"],
  "moves": ["scaling"],

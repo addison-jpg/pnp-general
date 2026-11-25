@@ -2,6 +2,7 @@
 
 ## Findings
 - [checked-finite, r=0.0] brain/membrane: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
+- [checked-finite, r=0.0] neuron.ath: segmental-growth histories of a dendrite with n tips number (2n-3)!!, the rooted binary phylogenetic trees, for n=1..9; terminal growth gives (n-1)! and ordered shapes Catalan(n-1). Every 
 - [checked-finite, r=0.0] brain/complexes: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [checked-finite, r=0.0] brain/cortex: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [checked-finite, r=0.0] Terminal dendrite growth gives exactly the Yule (equal-rates) phylogenetic distribution on tree shapes, and segmental growth exactly the uniform (PDA) distribution, for every unordered shape with up t
@@ -10,7 +11,6 @@
 - [checked-finite, r=0.0] brain/dna: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [checked-finite, r=0.0] brain/neuron: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md.
 - [tested, r=0.5] Hairy ball on a model cortex: on icospheres with 42, 162 and 642 vertices, 100 random smooth functions each, the Banchoff indices of the critical points sum to 2 (the Euler characteristic) every time.
-- [checked-finite, r=1.0] neuron.ath: segmental-growth histories of a dendrite with n tips number (2n-3)!!, the rooted binary phylogenetic trees, for n=1..9; terminal growth gives (n-1)! and ordered shapes Catalan(n-1). Every 
 
 ## Fingerprints
 - [DATA, r=0.5] terminal-growth histories (n-1)!, n=1..9 seq [1, 1, 2, 6, 24, 120, 720, 5040]
@@ -27,3 +27,8 @@
 - [DATA, r=0.5] triangulations of the sphere with n = 4..12 vertices, up to isomorphism (unoriented) seq [1, 1, 2, 5, 14, 50, 233, 1249]
 - [DATA, r=0.5] Forman discrete vector fields on the cycle graph C_n, n = 3..10 (= Lucas L_2n - 2) seq [16, 45, 121, 320, 841, 2205, 5776, 15125]
 - [DATA, r=0.5] segmental-growth histories (2n-3)!!, n=1..9 seq [1, 1, 3, 15, 105, 945, 10395, 135135]
+
+## Frames
+- [checked-finite, r=0.0] the hairy ball on the cortex (brain/cortex/BASE.md); the bus reading is the build's own, transit/BASE.md: exact cover time of a random walk on every connected graph up to 6 vertices is at most 2m(n-1)
+- [checked-finite, r=0.0] a neuron grows like a phylogeny (brain/neuron): segmental growth histories number (2n-3)!!, the rooted binary trees
+- [checked-finite, r=0.0] the hairy ball on the cortex (brain/cortex/BASE.md): discrete Morse: critical cells sum to 2 in every field on the tetrahedron

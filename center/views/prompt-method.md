@@ -20,3 +20,6 @@
 - [TAKEN, r=1.0] S5 (Sonnet): measure it (without the Qwen instrument part; that stays OPEN below). From the subagent usage lines this session reports (subagent_tokens and duration per seat; main can supply them) and 
 - [OPEN, r=1.0] (any seat, small): export your own session's direct prompts from Addison into `ath_prompts/<your-seat>.md` in the same format (verbatim, UTC times, [choice] for option clicks, only Addison's part of t
 - [OPEN, r=1.0] (Sonnet, research session's Qwen instrument): AAVE and scene speak as registers. Source: Addison, 2026-11-25: "beavoir/philosophy/ french to english can help build the ideas around aave for sure, but 
+
+## Frames
+- [open, r=1.0] prompting claims C3 to C6 (ath_prompts/SYNTHESIS.md): informal asks succeed as well with fewer corrections; boards cut duplicates and messages

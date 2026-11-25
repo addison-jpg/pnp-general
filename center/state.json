@@ -14,7 +14,7 @@
  "brain": {
   "cells": {},
   "findings": {
-   "checked-finite": 8
+   "checked-finite": 9
   },
   "mean_radius_findings": 0.0
  },
@@ -46,6 +46,11 @@
   "findings": {},
   "mean_radius_findings": null
  },
+ "cosmos": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "homestuck": {
   "cells": {},
   "findings": {},
@@ -70,6 +75,11 @@
   "findings": {},
   "mean_radius_findings": null
  },
+ "ontology": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "other": {
   "cells": {
    "DECIDED": 13,
@@ -88,14 +98,14 @@
   },
   "findings": {
    "checked": 13,
-   "checked-finite": 2
+   "checked-finite": 4
   },
   "mean_radius_findings": 0.0
  },
  "privacy": {
   "cells": {},
   "findings": {
-   "checked-finite": 1
+   "checked-finite": 2
   },
   "mean_radius_findings": 0.0
  },

@@ -4,7 +4,7 @@ A program is a text file `NAME.ath`. Lines are read top to bottom. `#` starts a 
 
 ```
 program   := line*
-line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check | frame
+line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check | frame | dist
 circuit   := "circuit" NAME N NEWLINE (gate | out)* "end"
 gate      := NAME "=" ("or" | "and") WIRE WIRE  |  NAME "=" "not" WIRE
 out       := "set" POINT+ "->" WIRE
@@ -77,6 +77,16 @@ Meaning. These lines let any level state an exact claim about an integer sequenc
 - Size limits. n!, n!! and C(n, k) need n <= 10^6. One sum adds at most 10^6 terms. One claim takes at most 10^7 steps. Past a limit the claim is FALSE.
 - Each claim prints TRUE or FALSE and counts in the summary. `by lean` is not available for them.
 - Each passing `check` or `seq ... run` becomes the runner of the program's records. So `record ... checked-finite` carries a runner. The files read are cited as evidence.
+
+## Exact probability (extension `asteroid/ext_prob.py`)
+
+Meaning. These lines state exact claims about finite distributions. Integers and fractions only.
+- `dist NAME = {OUT: P, ...}`: OUT is a word or an integer. P is an integer or a/b, at least 0. The P must sum to exactly 1, or the line is an error.
+- `dist NAME = A * B`: the product of two distributions (independent pair). An outcome is written `x.y`.
+- `claim prob NAME (OUT, ...) = F`: the event's probability is exactly F. An outcome NAME does not have makes the claim FALSE.
+- `claim expect NAME = F`: the mean is exactly F. Every outcome must be an integer, else FALSE.
+- Infinite distributions are not supported. A limit over cutoffs is a separate, written argument.
+- Test: `python3 -I asteroid/tests/test_prob.py`.
 
 ## Frames (extension `asteroid/ext_frame.py`)
 

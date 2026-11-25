@@ -2,8 +2,9 @@
 
 ## Findings
 - [checked-finite, r=0.0] Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A
-- [checked-finite, r=1.0] alchemy.ath: the b = 3 alchemy circuit computes all seven nonempty unions on all 8 inputs, with 4 gates against a base of 5 (sharing, possible because the sets overlap in 2 points).
-- [checked-finite, r=1.0] gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth.
+- [checked-finite, r=0.667] alchemy.ath: the b = 3 alchemy circuit computes all seven nonempty unions on all 8 inputs, with 4 gates against a base of 5 (sharing, possible because the sets overlap in 2 points).
+- [checked-finite, r=0.667] gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth.
+- [checked-finite, r=1.0] cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; cosmos/check.py passes.
 
 ## Cells
 - [DECIDED, r=0.0] O2 (Opus): three-qubit CKW checked in full: C(ρ_AB)² + C(ρ_AC)² + 4|Det ψ| = 4 det ρ_A for every pure ψ (Wootters concurrence from the eigenvalues of ρρ̃), so τ_AB + τ_AC ≤ τ_{A|BC}, equality iff Det 
@@ -28,3 +29,8 @@
 - [STOPPED, r=1.0] L3 (container restart; partial `limits_local_witness.py` kept; reopen as OPEN) (Opus): bounded local witness for F2 (adjusted after the L1 obstacle); was: attempt a flag-algebra certificate on the sma
 - [STOPPED, r=1.0] (usage, Addison 2026-11-25; reopen later): hyperfinite level (Fable): ultraproducts and Łoś as the bridge from finite instances to the limit; what of k = 1 is first-order, what is only an internal cou
 - [OPEN, r=1.0] (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets one line serves. -> worlds/unify_rank.py
+
+## Frames
+- [checked-finite, r=0.0] gravity as inevitability (essays/knowing.md): every escape route computes OR(people, ground)
+- [checked-finite, r=0.0] Homestuck alchemy (homestuck/BASE.md): alchemy at b = 3 is an OR circuit that shares gates
+- [open, r=1.0] Homestuck, the meteor (homestuck/BASE.md section 5): the meteor as a transport map between two sessions that keeps the rules

@@ -1,6 +1,6 @@
 # Transit: the bus network on the hairy ball
 
-Source: the hairy ball idea is in `brain/cortex/BASE.md`. The bus reading is this build's own. No earlier doc shows Addison brought buses. Idea: buses wander a network drawn on the hairy ball. How long until a bus has been to every stop?
+Source: the hairy ball idea is in `brain/cortex/BASE.md`. The bus idea is Addison's (ontology/SOURCES.md). Idea: buses wander a network drawn on the hairy ball. How long until a bus has been to every stop?
 
 Model. A bus at a stop moves to a neighbouring stop chosen uniformly at random (a simple random walk). The cover time is the expected number of moves until every stop is visited.
 

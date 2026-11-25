@@ -8,16 +8,16 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | program | checked | checked-finite | tested | refuted |
 |---|---|---|---|---|
 | asteroid | 7 | 0 | 3 | 0 |
-| brain | 0 | 8 | 0 | 0 |
+| brain | 0 | 9 | 0 | 0 |
 | circuits | 48 | 0 | 6 | 6 |
 | lateral | 1 | 0 | 0 | 0 |
 | other | 0 | 1 | 0 | 0 |
-| philosophy | 13 | 2 | 0 | 0 |
-| privacy | 0 | 1 | 0 | 0 |
+| philosophy | 13 | 4 | 0 | 0 |
+| privacy | 0 | 2 | 0 | 0 |
 | prompt-method | 0 | 0 | 3 | 0 |
 | quantum-gravity | 13 | 0 | 0 | 0 |
 | worlds | 9 | 0 | 0 | 0 |
-| **all** | **91** | **12** | **12** | **6** |
+| **all** | **91** | **16** | **12** | **6** |
 
 ## asteroid
 
@@ -46,6 +46,7 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | checked-finite | brain/network: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/network/check.py`, `brain/network/BASE.md` | `python3 -I brain/network/check.py` |
 | checked-finite | brain/neuron: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/neuron/check.py`, `brain/neuron/BASE.md` | `python3 -I brain/neuron/check.py` |
 | checked-finite | brain/tissue: the exact, exhaustive checks in check.py pass (each claim and its label is listed in BASE.md); independently rechecked and repaired, with remaining open items listed in BASE.md. | `brain/tissue/check.py`, `brain/tissue/BASE.md` | `python3 -I brain/tissue/check.py` |
+| checked-finite | neuron.ath: segmental-growth histories of a dendrite with n tips number (2n-3)!!, the rooted binary phylogenetic trees, for n=1..9; terminal growth gives (n-1)! and ordered shapes Catalan(n-1). Every term checked exactly against the formula, and brain/neuron/check.py passes. | `neuron.ath`, `brain/neuron/fingerprints.json`, `brain/neuron/check.py` | `python3 -I brain/neuron/check.py` |
 
 ## circuits
 
@@ -143,12 +144,15 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | checked | Ten one-NOT board rows encoded as DATA (encoding checked, rows not): the history is not a tree, lost_mono fails on it, refuted claims never return, and the salvage of each refuted branch is exactly its material (pure classes, merge sets), which lies under the lifted target. The split of a refuted... | `lean/PEqualNP/Philosophy/DAG.lean::history_not_tree`, `lean/PEqualNP/Philosophy/DAG.lean::lost_mono_fails_on_history`, `lean/PEqualNP/Philosophy/DAG.lean::refuted_never_returns` |  |
 | checked-finite | Lacan's Borromean knot computed as a link, in exact integer arithmetic. Three-ellipse Borromean rings: every linking number 0 and Milnor's triple number mu(RSI) = mu(SIR) = mu(IRS) = -1, by two independent methods (Magnus expansion of the longitudes; Seifert-disc triple point). Any single R-S cro... | `philosophy/milnor.py`, `philosophy/PSYCHOSIS.md` | `python3 -I philosophy/milnor.py` |
 | checked-finite | Tree against rhizome over all 33,867 labelled graphs on at most 6 vertices: a connected graph is a tree iff every edge is a bridge; adding one edge to a tree frees exactly the edges of the cycle it closes; connected bridgeless graphs number 1, 0, 1, 10, 253, 11968 for 1..6 vertices. | `philosophy/rhizome.py`, `philosophy/PSYCHOSIS.md` | `python3 -I philosophy/rhizome.py` |
+| checked-finite | knots.ath: philosophy/milnor.py passes: the Borromean rings have every linking number 0 and mu(123) = -1 by two independent methods; with a fourth ring every triple invariant is 0; the trefoil has 9 Fox 3-colourings. Exact integer arithmetic. | `knots.ath`, `philosophy/milnor.py` | `python3 -I philosophy/milnor.py` |
+| checked-finite | knots.ath: philosophy/milnor.py passes: the Borromean rings have every linking number 0 and \|mu(123)\| = 1 (the sign depends on ring order and orientation) by two independent methods; with a fourth ring every triple invariant is 0; the trefoil has 9 Fox 3-colourings. Exact integer arithmetic. | `knots.ath`, `philosophy/milnor.py` | `python3 -I philosophy/milnor.py` |
 
 ## privacy
 
 | label | statement | evidence | recheck |
 |---|---|---|---|
 | checked-finite | Privacy as exact combinatorics on synthetic data: k-anonymity over all 65536 four-row tables (largest k = 1, 2, 4 for 64800, 720, 16 tables) with the least-generalization search equal to brute force on every table; the exact distribution of unique individuals matches E = n(1-1/D)^(n-1) for 30 (n,... | `privacy/check.py`, `privacy/BASE.md` | `python3 -I privacy/check.py` |
+| checked-finite | privacy.ath: the equality patterns of n table rows number B(n), the Bell numbers, for n=1..8, each term equal to the sum over k of S(n,k) computed exactly; privacy/check.py passes. | `privacy.ath`, `privacy/fingerprints.json`, `privacy/check.py` | `python3 -I privacy/check.py` |
 
 ## prompt-method
 
