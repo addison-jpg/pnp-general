@@ -18,6 +18,7 @@
 - F1 (Fable), the proof side: first pass DECIDED (above); the next proof attempt targets the class point lemma for two sets.
 - OPEN (Sonnet) LIT1: literature check on negation-limited Boolean sums. Cover Markov 1958; Amano–Maruoka; Morizumi; Jukna, *Boolean Function Complexity* (the negation-limited chapter); Mehlhorn and Pippenger on monotone Boolean sums. Question: is the k-NOT statement known, open or false? This must be answered before any novelty claim. -> research note `one-not/research/open/LIT1_negation_limited.md`, plus LITERATURE.md rows.
 - OPEN (Sonnet) REF1: the refuter lane pointed at PHC first, run on git-compute (`.github/workflows/compute.yml`) with the tensor backend: random and targeted payer sets on stored and generated instances, checking Lemma D's inequality. -> `one-not/research/open/REF1_phc.md`
+  - Routing: REF1 records findings with `boards.py add ... --runner "<cmd>"` by default (tensor backend, `boards.py retest`); SAT cells keep SAT.
 
 ## Lines (TAKEN / DECIDED only)
 - TAKEN LIT1 (Sonnet): literature check on negation-limited Boolean sums (known / open / false).

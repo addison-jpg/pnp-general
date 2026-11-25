@@ -14,3 +14,5 @@
 {"id": "0898a92f", "time": "2026-11-25 01:48", "who": "main-sonnet", "serves": "asteroid-term seat 4", "word": "tested", "statement": "Native plot phi writes SVG (101 exact Phi points) and matches Python to 0.00e+00 on hello (n=4) and first (tiny n=4, fano n=7); R1 reran native_plot_check.py on both.", "evidence": ["one-not/lean/PEqualNP/AsteroidLang/Plot.lean", "one-not/research/open/native_plot_check.py"], "by": ["main-sonnet"]}
 {"id": "0898a92f", "by": ["R1"]}
 {"id": "fb772b9e", "by": ["R1"]}
+{"id": "0898a92f", "runner": "python3 one-not/research/open/native_plot_check.py hello.ath asteroid/examples/first.ath"}
+{"id": "0898a92f", "retest": {"time": "2026-11-25 02:53", "ok": true, "states": null, "seconds": 0.31, "speedup": null}}

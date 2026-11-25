@@ -11,7 +11,15 @@ its subtree, counted by word. Unverified findings stay at their leaf.
 
   python3 -I boards.py                 rebuild boards/TREE.md and boards/tree.json
   python3 -I boards.py add DIR WHO SERVES WORD "STATEMENT" EVIDENCE [EVIDENCE ...]
+  python3 -I boards.py add ... --runner "CMD"   optional "runner" field (see below)
   python3 -I boards.py confirm ID WHO  add WHO to "by" (a second seat reran or reread it)
+  python3 -I boards.py retest [DIR|ID] [--timeout S]   rerun the runners of `tested` findings, append a retest record
+A finding may carry "runner": a shell command, run from the repository root, that re-checks it with the tensor backend,
+exits 0 on pass and prints {"states": N, "seconds": s, "speedup": x?} on its last stdout line (missing fields are
+tolerated; seconds then is wall time). `retest` runs it single-core under nice (default timeout 600 s) and appends
+{"id", "retest": {"time", "ok", "states", "seconds", "speedup"}}. A failed or timed-out rerun makes the finding stale
+(listed in verified()). A rerun never changes the word: `tested` stays `tested`, only Lean gives `checked`.
+This file imports only the standard library; the tensor code is imported only inside runner commands.
 Run from the repository root. `findings.jsonl` files merge by union (append only): no conflicts."""
 import json, os, sys, time, hashlib, collections
 WORDS = ["checked", "paper", "tested", "refuted", "open", "premise"]
@@ -42,6 +50,8 @@ def verified(r):
     if r.get("word") == "checked":
         if not any(e.partition("::")[0].endswith(".lean") for e in r.get("evidence", [])): why.append("checked needs a .lean file")
     elif not [b for b in r.get("by", []) if b != r.get("who")]: why.append("needs a second seat in by")
+    rt = r.get("retest")
+    if rt and not rt.get("ok"): why.append("stale: last retest failed " + str(rt.get("time")))
     return why
 
 def build():
@@ -82,19 +92,56 @@ def build():
     split = collections.defaultdict(collections.Counter)
     for r in node["."]["up"]: split[program(r["dir"])][r["word"]] += 1
     head = ["## Root counts by program", "", "The root count mixes programs; read these instead. Philosophy findings never count toward the circuit results.", ""]
-    head += [f"- {p}: " + " · ".join(f"{c[w]} {w}" for w in WORDS if c[w]) for p, c in sorted(split.items())]
+    now = time.time(); rec = collections.defaultdict(lambda: [0, 0])
+    for r in node["."]["up"]:
+        if r["word"] != "tested": continue
+        x = rec[program(r["dir"])]; x[1] += 1
+        rt = r.get("retest")
+        try: fresh = rt and rt.get("ok") and now - __import__("calendar").timegm(time.strptime(rt["time"], "%Y-%m-%d %H:%M")) < 86400
+        except Exception: fresh = False
+        x[0] += bool(fresh)
+    head += [f"- {p}: " + " · ".join(f"{c[w]} {w}" for w in WORDS if c[w]) + (f" · tested, re-checked in last 24h: {rec[p][0]}/{rec[p][1]}" if rec[p][1] else "") for p, c in sorted(split.items())]
     head += ["", "Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.", ""]
     out[5:5] = head
     open("boards/TREE.md", "w").write("\n".join(out))
     tot = collections.Counter(r["word"] for r in node["."]["up"])
     print("nodes", len(node), "| verified at the root:", dict(tot), "| unverified:", sum(len(v["unverified_here"]) for v in tree.values()))
 
-def add(d, who, serves, word, statement, evidence):
+def add(d, who, serves, word, statement, evidence, runner=None):
     assert word in WORDS, WORDS
     rid = hashlib.sha1((statement + d).encode()).hexdigest()[:8]
     r = {"id": rid, "time": time.strftime("%Y-%m-%d %H:%M", time.gmtime()), "who": who, "serves": serves, "word": word,
          "statement": statement, "evidence": evidence, "by": [who]}
+    if runner: r["runner"] = runner
     open(os.path.join(d, "findings.jsonl"), "a").write(json.dumps(r, ensure_ascii=False) + "\n"); print(rid)
+
+def retest(target=None, timeout=600):
+    import subprocess, signal
+    n = 0
+    for d in leaves():
+        sub = target is None or (os.path.isdir(target) and (d + os.sep).startswith(os.path.normpath(target) + os.sep) or os.path.normpath(target) == ".")
+        for r in load(d):
+            if not (r.get("word") == "tested" and r.get("runner")): continue
+            if not (sub if os.path.isdir(target or ".") else r["id"] == target): continue
+            env = dict(os.environ, OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1", NUMEXPR_NUM_THREADS="1")
+            core = sorted(os.sched_getaffinity(0))[:1] if hasattr(os, "sched_getaffinity") else None
+            pre = (lambda: os.sched_setaffinity(0, core)) if core else None
+            t0 = time.time(); ok = False; out = ""
+            p = subprocess.Popen(["nice", "-n", "19", "sh", "-c", r["runner"]], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+                                 env=env, start_new_session=True, preexec_fn=pre)
+            try: out, _ = p.communicate(timeout=timeout); ok = p.returncode == 0
+            except subprocess.TimeoutExpired:
+                os.killpg(p.pid, signal.SIGKILL); p.communicate()
+            secs = round(time.time() - t0, 2); info = {}
+            try:
+                last = [l for l in out.strip().splitlines() if l.strip()][-1]
+                info = json.loads(last); info = info if isinstance(info, dict) else {}
+            except Exception: pass
+            rec = {"time": time.strftime("%Y-%m-%d %H:%M", time.gmtime()), "ok": ok, "states": info.get("states"),
+                   "seconds": info.get("seconds", secs), "speedup": info.get("speedup")}
+            open(os.path.join(d, "findings.jsonl"), "a").write(json.dumps({"id": r["id"], "retest": rec}) + "\n")
+            print(r["id"], "ok" if ok else "FAILED", rec); n += 1
+    print("retested", n)
 
 def confirm(rid, who):
     for d in leaves():
@@ -105,6 +152,13 @@ def confirm(rid, who):
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if a[:1] == ["add"]: add(a[1], a[2], a[3], a[4], a[5], a[6:])
+    if a[:1] == ["add"]:
+        run = None
+        if "--runner" in a: i = a.index("--runner"); run = a[i + 1]; a = a[:i] + a[i + 2:]
+        add(a[1], a[2], a[3], a[4], a[5], a[6:], run)
+    elif a[:1] == ["retest"]:
+        to = 600
+        if "--timeout" in a: i = a.index("--timeout"); to = float(a[i + 1]); a = a[:i] + a[i + 2:]
+        retest(a[1] if len(a) > 1 else None, to)
     elif a[:1] == ["confirm"]: confirm(a[1], a[2])
     build()

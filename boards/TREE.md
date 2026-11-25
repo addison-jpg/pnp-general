@@ -7,8 +7,8 @@ next to their evidence. Unverified findings are listed only at their own directo
 
 The root count mixes programs; read these instead. Philosophy findings never count toward the circuit results.
 
-- asteroid (the language and its tools): 7 checked · 3 tested
-- circuits (one-NOT and several-NOT): 48 checked · 5 tested · 5 refuted
+- asteroid (the language and its tools): 7 checked · 3 tested · tested, re-checked in last 24h: 1/3
+- circuits (one-NOT and several-NOT): 48 checked · 5 tested · 5 refuted · tested, re-checked in last 24h: 0/5
 - other: 4 checked
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked
 - quantum gravity: 13 checked

@@ -22,3 +22,5 @@
 - DECIDED T1 (Sonnet): tensor backend (exact equality with the slow evaluators on 114 stored circuits; 3x to 38x faster; n=25 cube slack fits in 15 GB; GPU paths untested). One module, `one-not/tools/tensor/`: bit-sliced truth tables (uint64 words, one array op per gate), slack at all cubes, and the mixed slack at all 3^n states, as array programs. NumPy first; the same code via `torch` or `jax.numpy` if a GPU is present (auto-detect, never required). Cross-check against the existing slow evaluators on the stored corpus (exact equality), then benchmark against `A14_bottom_hall.py` and the A5 transfer test. -> one-not/tools/tensor/, one-not/tools/tensor/BENCH.md
 
 ## Lines (TAKEN / DECIDED only)
+
+- ROUTING (Addison): REF1 and refuter seats record findings with `boards.py add ... --runner "<cmd>"` by default (tensor backend, rerun by `boards.py retest`); SAT cells keep SAT.

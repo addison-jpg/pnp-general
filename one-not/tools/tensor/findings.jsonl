@@ -1,1 +1,3 @@
 {"id": "b9ae400b", "time": "2026-11-25 02:22", "who": "claude-t1", "serves": "refuter-951", "word": "tested", "statement": "Bit-sliced NumPy backend (truth tables, slack at every cube, mixed slack at all 3^n states, DD states) equals the slow evaluators exactly on 114 stored circuits (t4/t5/t6 witnesses included) and random n<=8; 3x to 38x faster, n=25 cube slack fits in 15 GB.", "evidence": ["one-not/tools/tensor/test_tensor.py"], "by": ["claude-t1"]}
+{"id": "b9ae400b", "runner": "python3 -I one-not/tools/tensor/test_tensor.py"}
+{"id": "b9ae400b", "retest": {"time": "2026-11-25 02:53", "ok": true, "states": null, "seconds": 9.97, "speedup": null}}
