@@ -1,5 +1,12 @@
 # Board: P versus NP through general circuits
 
+## QUIET UNTIL ADDISON SAYS IT IS READY
+
+(Addison, 2026-11-25: "i rlly dont wanna accidentally notify the entire planet befoore its ready".)
+
+- Full speed on the work. Pushing commits to main is fine.
+- Nothing that notifies anyone outside this repo: no issues, PRs, comments, releases, tags, `@name` mentions, and no posts or requests to outside sites. Addison announces; agents never do.
+
 ## REOPENED: THE THREE OPEN PROBLEMS, THREE SEATS EACH
 
 (Addison, 2026-11-25: "multiply the agent working on [the general case of the one-NOT question / whether two or more NOT gates help / four statements on the quantum-gravity side] by three, but it should refactor so theres no fable overkill".)
