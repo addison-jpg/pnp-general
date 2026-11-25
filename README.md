@@ -2,6 +2,23 @@
 
 [![asteroid language](https://img.shields.io/badge/language-asteroid%20.ath-19B3B3)](asteroid/SPEC.md) [![VS Code](https://img.shields.io/visual-studio-marketplace/v/asteroid.asteroid?label=VS%20Code&color=3D9BD6)](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid) [![ast](https://img.shields.io/badge/ast-native%20checker%2C%20Windows%20%2B%20Linux-19B3B3)](#download) [![asteroid](https://img.shields.io/badge/asteroid-universal%2C%20one%20file-3D9BD6)](#download) [![proofs](https://img.shields.io/badge/proofs-Lean%204-555)](one-not/lean)
 
+## Start here: `base`, the dual boot
+
+`workshop/pair/c/base` is a small static Linux prompt. It has no Python of its own and runs the asteroid binary for you:
+
+- `:big` runs `big.ath` (the repository as one brain, 9 claims)
+- `:bus` runs `workshop/bus/bus.ath` (the two-way bus record)
+- `:hello` runs `hello.ath`
+- `:quit` leaves
+
+Download it from this branch: https://github.com/addison-jpg/pnp-general/raw/refactor/pillars/workshop/pair/c/base
+
+Run it from the repository root, so the `.ath` files resolve:
+
+    chmod +x base && ./base
+
+`base` is a Linux program. There is no Windows `base.exe` yet. The asteroid binary it calls still carries Python internally, so this is not a pure-native build.
+
 # asteroid: one language, one standard of proof, every field
 
 **asteroid is a programming language and a machine-checked map of mathematics, built by Addison.** Circuit complexity, quantum gravity, cosmology, knot theory, neuroscience, biology, privacy, transit networks, modal metaphysics and philosophy are all written as `.ath` programs that run and check themselves, in one vocabulary, held to one standard.
