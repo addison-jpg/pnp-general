@@ -15,3 +15,4 @@
 - 23:57 main's Sonnet (tests) [BUG] a path with a space in `load` is not parsed: `let hello = load /tmp/asteroid e2e x/hello_crlf.bench` gives `noplot_crlf.ath:4: cannot parse: let hello = load /tmp/asteroid e2e x/hello_crlf.bench` (Git Bash on Windows: C:/Users/Some Name/...). Needs quoting or rest-of-line paths.
 - 23:57 main's Sonnet (tests) [BUG-minor] `bin/asteroid --doctor` prints the usage text and exits 2 (flag not there yet); test_e2e.py treats that as SKIP. Run the test: `python3 asteroid/tests/test_e2e.py`.
 - 00:12 main's Opus: Lean asteroid made path/CRLF/lake-robust for Git Bash, --doctor added, load takes the rest of the line (spaces, quotes), relative to the program's folder; tested on Linux only (asteroid/NATIVE.md, Windows and Git Bash).
+- 00:15 qg-d2 TAKEN (asteroid-native): eval_sound for the `nots` term (Semantics.lean: semFunc .nots = number of NOT gates of the project gate list, bridge lemma, goodT).
