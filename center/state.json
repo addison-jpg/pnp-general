@@ -53,18 +53,22 @@
  },
  "cosmos": {
   "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
  },
- "culture-homestuck": {
+ "essays": {
   "cells": {},
   "findings": {},
   "mean_radius_findings": null
  },
  "homestuck": {
   "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
  },
  "language": {
   "cells": {},
@@ -81,12 +85,7 @@
   },
   "mean_radius_findings": 0.0
  },
- "math-language": {
-  "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
- },
- "math-routing": {
+ "love": {
   "cells": {},
   "findings": {},
   "mean_radius_findings": null
@@ -114,10 +113,8 @@
    "STOPPED": 2,
    "TAKEN": 2
   },
-  "findings": {
-   "checked-finite": 7
-  },
-  "mean_radius_findings": 0.0
+  "findings": {},
+  "mean_radius_findings": null
  },
  "philosophy": {
   "cells": {
@@ -129,7 +126,7 @@
   },
   "mean_radius_findings": 0.0
  },
- "physics-cosmos": {
+ "poetry": {
   "cells": {},
   "findings": {},
   "mean_radius_findings": null
@@ -161,10 +158,26 @@
  },
  "routing": {
   "cells": {},
-  "findings": {},
-  "mean_radius_findings": null
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
  },
  "time": {
+  "cells": {},
+  "findings": {
+   "checked-finite": 3
+  },
+  "mean_radius_findings": 0.0
+ },
+ "transit": {
+  "cells": {},
+  "findings": {
+   "checked-finite": 1
+  },
+  "mean_radius_findings": 0.0
+ },
+ "universes": {
   "cells": {},
   "findings": {},
   "mean_radius_findings": null

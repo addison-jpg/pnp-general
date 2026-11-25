@@ -36,6 +36,8 @@ def program(path):
                       ("hypercomplex", "worlds"), ("model-in", "compute"), ("git-compute", "compute"),
                       ("ath-prompt", "prompt-method"), ("ath_prompt", "prompt-method"), ("brain", "brain"), ("ontology", "ontology"), ("privacy", "privacy"), ("compbio", "compbio")]:
         if key in p: return name
+    m = re.match(r"(?:\./)?(?:physics|culture|math|biology|core|workshop)/([^/]+)", p)   # pillar folders: name by sub-folder
+    if m: return m.group(1)
     return "other"
 
 def radius(rec):

@@ -44,15 +44,15 @@ findings (verified): none · mean radius None
 cells: 1 DECIDED, 4 STOPPED, 1 TAKEN
 
 ## cosmos
-findings (verified): none · mean radius None
+findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
-## culture-homestuck
+## essays
 findings (verified): none · mean radius None
 cells: none
 
 ## homestuck
-findings (verified): none · mean radius None
+findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
 ## language
@@ -64,11 +64,7 @@ findings (verified): 1 checked · mean radius 0.0
 cells: 1 DECIDED, 1 OPEN
 - OPEN [Fable] (Fable under the revised seat rule; low priority, idle compute): the asteroid Tarski instance. Gödel-number asteroid claims (Stmt) as data that claims can menti → `one-not/lean/PEqualNP/Lateral/AsteroidTarski.lean`  (lateral-diagonal:20)
 
-## math-language
-findings (verified): none · mean radius None
-cells: none
-
-## math-routing
+## love
 findings (verified): none · mean radius None
 cells: none
 
@@ -87,7 +83,7 @@ findings (verified): 4 checked-finite · mean radius 0.0
 cells: none
 
 ## other
-findings (verified): 7 checked-finite · mean radius 0.0
+findings (verified): none · mean radius None
 cells: 13 DECIDED, 5 OPEN, 2 STOPPED, 2 TAKEN
 - OPEN [Fable] (Fable): Lean, a parameter-dimension potential for products of two-qubit gates that is `Unify.Lip 15` (or 9), so that L119's count is literally `Unify.lip_count → `lean/PEqualNP/QuantumGravity/Open/`  (BOARD:33)
 - OPEN [Fable] (Fable): matroid union for hypergraphic ranks (converse of `Unify.unsplit_of_partition`): split condition ⟹ disjoint spanning forests; Mathlib has no matroid un → `one-not/lean/PEqualNP/W951/Open/`  (BOARD:34)
@@ -99,7 +95,7 @@ cells: 13 DECIDED, 5 OPEN, 2 STOPPED, 2 TAKEN
 findings (verified): 13 checked, 4 checked-finite · mean radius 0.0
 cells: 2 DECIDED
 
-## physics-cosmos
+## poetry
 findings (verified): none · mean radius None
 cells: none
 
@@ -119,10 +115,18 @@ findings (verified): 13 checked · mean radius 0.0
 cells: none
 
 ## routing
-findings (verified): none · mean radius None
+findings (verified): 1 checked-finite · mean radius 0.0
 cells: none
 
 ## time
+findings (verified): 3 checked-finite · mean radius 0.0
+cells: none
+
+## transit
+findings (verified): 1 checked-finite · mean radius 0.0
+cells: none
+
+## universes
 findings (verified): none · mean radius None
 cells: none
 
@@ -152,3 +156,11 @@ cells: 2 DECIDED, 3 OPEN, 1 STOPPED, 2 TAKEN
 - segmental-growth histories (2n-3)!!, n=1..9 [as is] ~ rooted binary phylogenetic trees, n leaves (n>=2) [as is], 7 terms
 - segmental-growth histories (2n-3)!!, n=1..9 [first differences] ~ rooted binary phylogenetic trees, n leaves (n>=2) [first differences], 6 terms
 - segmental-growth histories (2n-3)!!, n=1..9 [plus 1] ~ rooted binary phylogenetic trees, n leaves (n>=2) [plus 1], 7 terms
+- Bell numbers: equality patterns (set partitions) of n table rows, n=1..8 [as is] ~ rhyme schemes of n lines (Bell numbers) [as is], 8 terms
+- Bell numbers: equality patterns (set partitions) of n table rows, n=1..8 [first differences] ~ rhyme schemes of n lines (Bell numbers) [first differences], 7 terms
+- Bell numbers: equality patterns (set partitions) of n table rows, n=1..8 [partial sums] ~ rhyme schemes of n lines (Bell numbers) [partial sums], 8 terms
+- Bell numbers: equality patterns (set partitions) of n table rows, n=1..8 [plus 1] ~ rhyme schemes of n lines (Bell numbers) [plus 1], 8 terms
+- alchemy items at saturation, b base items [first differences] ~ capiton chains fixed after the signifier ends [as is], 5 terms
+- alchemy items at saturation, b base items [first differences] ~ capiton chains fixed after the signifier ends [first differences], 5 terms
+- alchemy items at saturation, b base items [plus 1] ~ capiton chains fixed after the signifier ends [as is], 6 terms
+- alchemy items at saturation, b base items [plus 1] ~ capiton chains fixed after the signifier ends [first differences], 6 terms

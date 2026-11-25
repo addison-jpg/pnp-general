@@ -10,13 +10,17 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | asteroid | 7 | 0 | 3 | 0 |
 | brain | 0 | 9 | 0 | 0 |
 | circuits | 48 | 0 | 6 | 6 |
+| cosmos | 0 | 1 | 0 | 0 |
+| homestuck | 0 | 1 | 0 | 0 |
 | lateral | 1 | 0 | 0 | 0 |
 | ontology | 0 | 4 | 0 | 0 |
-| other | 0 | 7 | 0 | 0 |
 | philosophy | 13 | 4 | 0 | 0 |
 | privacy | 0 | 2 | 0 | 0 |
 | prompt-method | 0 | 0 | 3 | 0 |
 | quantum-gravity | 13 | 0 | 0 | 0 |
+| routing | 0 | 1 | 0 | 0 |
+| time | 0 | 3 | 0 | 0 |
+| transit | 0 | 1 | 0 | 0 |
 | worlds | 9 | 0 | 0 | 0 |
 | **all** | **91** | **26** | **12** | **6** |
 
@@ -114,6 +118,18 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | tested | The one-point step holds at every cube on 12 of 12 irreducible circuits whose NOT gate is read. | `one-not/tools/search/irreducible.py` |  |
 | tested | With exactly 2 NOT gates, neither feeding the other, the minimum circuit size is base + 3 on tri3, star3 and tri4 (UNSAT at base + 1, base + 2) and above base + 2 on q4 and Pasch: on these systems NOT gates cost gates, never save them. | `one-not/tools/kill_tests/c4t_sat.py`, `one-not/data/c4g/t2_runs.log` |  |
 
+## cosmos
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; physics/cosmos/check.py passes. | `cosmos.ath`, `physics/cosmos/check.py`, `physics/cosmos/fingerprints.json` | `python3 -I physics/cosmos/check.py` |
+
+## homestuck
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A model of combination, not the comic's recipe. | `culture/homestuck/alchemy.py::reachable_counts` | `python3 -I culture/homestuck/alchemy.py 3 3` |
+
 ## lateral
 
 | label | statement | evidence | recheck |
@@ -128,18 +144,6 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | checked-finite | frames_sync.ath: core/ontology/catch22.py passes. A<->B, B<->A: exactly 2 consistent outcomes (both halt, neither); one loop bound to an external death: 1 outcome per value; a loop bound to its own negation: 0. | `frames_sync.ath`, `core/ontology/light.py`, `core/ontology/history.py` | `python3 -I core/ontology/catch22.py` |
 | checked-finite | frames_sync.ath: core/ontology/history.py passes. All 24 rooted posets on 1..4 worlds (21 trees, 3 rejoining) are p-morphic images of their unravelled trees; worlds agree with their copies on 8 formulas under every valuation; .2 valid on the diamond, invalid on its unravelling. | `frames_sync.ath`, `core/ontology/light.py`, `core/ontology/history.py` | `python3 -I core/ontology/history.py` |
 | checked-finite | frames_sync.ath: core/ontology/light.py passes. de Sitter a=e^(Ht): series identities for the horizon integral exact to order 40 at H in {1,1/2,3/7,5,22/7}, proper horizon c/H; light cone equals the BFS ball on all 27476 connected labelled graphs on 1..6 vertices. | `frames_sync.ath`, `core/ontology/light.py`, `core/ontology/history.py` | `python3 -I core/ontology/light.py` |
-
-## other
-
-| label | statement | evidence | recheck |
-|---|---|---|---|
-| checked-finite | Alchemy model: items are subsets of b base items, combining is union; the number of distinct items reachable within depth d saturates at 2^b - 1. Exact for b=3 ([3,6,7,7]) and b=4 ([4,10,15,15,15]). A model of combination, not the comic's recipe. | `culture/homestuck/alchemy.py::reachable_counts` | `python3 -I culture/homestuck/alchemy.py 3 3` |
-| checked-finite | cosmos.ath: in the measure toy, the first 6 universes in ordering A are half even and in ordering B a third even, exactly; universe 2n is at place 3n in ordering B for n=1..12; physics/cosmos/check.py passes. | `cosmos.ath`, `physics/cosmos/check.py`, `physics/cosmos/fingerprints.json` | `python3 -I physics/cosmos/check.py` |
-| checked-finite | frames.ath: math/transit/social.py passes. Every sink-free chain on 1..4 states has a closed class, absorbs with probability 1, and 77260 single edges out of a closed class to a state reaching back all break it. Two cliques K_k (k=2..5): one bridge makes cover time finite; hitting time from the b... | `frames.ath`, `philosophy/rhizome.py`, `biology/brain/cortex/check.py` | `python3 -I philosophy/rhizome.py && python3 -I biology/brain/cortex/check.py && python3 -I math/transit/check.py && python3 -I math/transit/social.py` |
-| checked-finite | frames_routing.ath: math/routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierarchies (fixed order; every order for n<=4) give the Floyd-Warshall distance for every pair. A... | `frames_routing.ath`, `math/routing/check.py` | `python3 -I math/routing/check.py` |
-| checked-finite | frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
-| checked-finite | frames_time.ath: physics/time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxation. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
-| checked-finite | frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder from */level.json join arrows has no least element. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
 
 ## philosophy
 
@@ -195,6 +199,26 @@ exists, and anything but a Lean proof has a second, independent seat. Labels: **
 | checked | P_CTC is inside EXP (PCTC ⊆ EXP), via a padded bounded-iteration machine for the register map | `lean/PEqualNP/QuantumGravity/Open/L169.lean::PCTC_subset_EXP` |  |
 | checked | Reset-to-start trick behind PSPACE in P_CTC: if a step map halts from every configuration, every Deutsch-consistent state of the reset map is supported on the cycle through start. | `lean/PEqualNP/QuantumGravity/Open/CtcReset.lean::reset_support_on_start_cycle` |  |
 | checked | Two-level saturation: every unitary of Fin d is a product of at most d(d+1)/2 unitaries that are the identity outside a 2x2 block (Givens column elimination plus d phases). Axioms: propext, Classical.choice, Quot.sound. | `lean/PEqualNP/QuantumGravity/Open/TwoLevel.lean::reachable_twoLevel` |  |
+
+## routing
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | frames_routing.ath: math/routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierarchies (fixed order; every order for n<=4) give the Floyd-Warshall distance for every pair. A... | `frames_routing.ath`, `math/routing/check.py` | `python3 -I math/routing/check.py` |
+
+## time
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
+| checked-finite | frames_time.ath: physics/time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxation. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
+| checked-finite | frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder from */level.json join arrows has no least element. | `frames_time.ath`, `physics/time/check.py` | `python3 -I physics/time/check.py` |
+
+## transit
+
+| label | statement | evidence | recheck |
+|---|---|---|---|
+| checked-finite | frames.ath: math/transit/social.py passes. Every sink-free chain on 1..4 states has a closed class, absorbs with probability 1, and 77260 single edges out of a closed class to a state reaching back all break it. Two cliques K_k (k=2..5): one bridge makes cover time finite; hitting time from the b... | `frames.ath`, `philosophy/rhizome.py`, `biology/brain/cortex/check.py` | `python3 -I philosophy/rhizome.py && python3 -I biology/brain/cortex/check.py && python3 -I math/transit/check.py && python3 -I math/transit/social.py` |
 
 ## worlds
 

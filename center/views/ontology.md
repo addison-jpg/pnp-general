@@ -9,7 +9,6 @@
 
 ## Frames
 - [checked-finite, r=0.0] Addison: a local big bang propagates to a multiverse big bang (core/ontology/SOURCES.md): order fact only: a local origin reaches every level iff it is an initial (least) element; preorders on 1..4 el
-- [checked-finite, r=0.0] Addison: a Homestuck ontology (culture/homestuck/BASE.md sections 6 and 7); the alpha and doomed timeline link is analogy (reading), not checked: Kripke fact only: in the 7-world toy, []c holds at {1,
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, tybee island horse ghosts (core/ontology/SOURCES.md): one drone played forward and reversed at once: a claim checked in both directions (prover and refuter, reader and writ
 - [checked-finite, r=0.0] Addison: the qual-quant method, generalized (core/ontology/QUALQUANT.md): measured on this repo's frames, n small: structure frames close at 31/37, contested at 0 of 4, effect at 0 of 1 (n = 42); part
 - [checked-finite, r=0.0] Addison: the multiverse big bang in this ontology (*/level.json): the level preorder from join arrows has no least element; the cheapest fix needs 4 new verified joins
