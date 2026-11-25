@@ -1,0 +1,33 @@
+# pipeline.ath: the finite order of the pipeline. Run: bin/asteroid --no-lean workshop/mobius/checks/pipeline.ath
+# Spec: workshop/mobius/SPEC.md, sections (b) and (c). No frame, no record: this file only states claims.
+#
+# Stops in pipeline order (a design choice written in SPEC.md, not read from running code):
+# 0 coordinator (baby.ath; not yet in the repo), 1 bus workshop/bus/bus.ath, 2 bus workshop/bus/laws.ath, 3 bus workshop/bus/general.ath.
+# Each push goes from one stop to the next. P points forward (output), Pin points back (input).
+kripke P = worlds 4 rel [(0,1), (1,2), (2,3)]
+kripke Pin = worlds 4 rel [(1,0), (2,1), (3,2)]
+
+# O1. The stop sequence, by index, is 0, 1, 2, 3: term i equals i - 1, so it is strictly increasing and has no repeated stop.
+seq order = [0, 1, 2, 3]
+claim formula order = "n - 1"
+# O2. No walk of 4 pushes exists, so the order has no cycle: no stop is visited twice.
+claim worlds P "[][][][]F" = {0,1,2,3}
+claim worlds Pin "[][][][]F" = {0,1,2,3}
+# O3. A walk of 3 pushes exists from the coordinator, so with O2 it visits all 4 stops once, in order.
+claim worlds P "<><><>T" = {0}
+# O4. Each stop has at most one output and at most one input.
+claim valid P "<>s -> []s"
+claim valid Pin "<>s -> []s"
+# O5. Exactly the stops 0, 1, 2 have an output, and exactly the stops 1, 2, 3 have an input.
+# So each push (an edge) has one input stop and one output stop, and the inner stops have one of each.
+claim worlds P "<>T" = {0,1,2}
+claim worlds Pin "<>T" = {1,2,3}
+
+# Pushes along one bus as a path with no gap. Push k covers the parameter interval [k, k + 1], k = 0..m - 1.
+# The gap between push k and push k + 1 is start(k + 1) - end(k) = (k + 1) - (k + 1).
+# O6. For m = 1..8 pushes, the sum of squared gaps is 0 (with m = 1 the sum is empty).
+seq gaps = [0, 0, 0, 0, 0, 0, 0, 0]
+claim formula gaps = "sum(k, 0, n - 2, ((k + 1) - (k + 1))**2)"
+# O7. The m pushes cover length m: the sum of the push lengths (end - start = 1) is m, for m = 1..8.
+seq cover = [1, 2, 3, 4, 5, 6, 7, 8]
+claim formula cover = "sum(k, 0, n - 1, (k + 1) - k)"

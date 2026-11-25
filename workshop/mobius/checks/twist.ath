@@ -1,0 +1,37 @@
+# twist.ath: the twist (x, 0) ~ (1 - x, 1) on a finite grid of the two ends of [0,1] x [0,1].
+# Run: bin/asteroid --no-lean workshop/mobius/checks/twist.ath
+# Spec: workshop/mobius/SPEC.md, section (a). No frame, no record: this file only states claims.
+#
+# Grid x = k/5, k = 0..5. Worlds 0..5 are the points (k/5, 0) on the bottom end.
+# Worlds 6..11 are the points (k/5, 1) on the top end: world 6 + k.
+# The twist joins (k/5, 0) with (1 - k/5, 1) = ((5 - k)/5, 1), that is world k with world 11 - k.
+# The relation holds both directions of each identification.
+# Atoms: a = bottom end, b = top end, l = left half (k <= 2) on either end.
+kripke T = worlds 12 rel [(0,11), (11,0), (1,10), (10,1), (2,9), (9,2), (3,8), (8,3), (4,7), (7,4), (5,6), (6,5)] val a {0,1,2,3,4,5} b {6,7,8,9,10,11} l {0,1,2,6,7,8}
+# Control: the untwisted cylinder joins (k/5, 0) with (k/5, 1), world k with world 6 + k.
+kripke C = worlds 12 rel [(0,6), (6,0), (1,7), (7,1), (2,8), (8,2), (3,9), (9,3), (4,10), (10,4), (5,11), (11,5)] val a {0,1,2,3,4,5} b {6,7,8,9,10,11} l {0,1,2,6,7,8}
+
+# T1. Each end point has at most one partner (the twist is a function).
+claim valid T "<>s -> []s"
+# T2. Each end point has a partner (the function is total on the two ends).
+claim valid T "<>T"
+# T3. Twisting twice returns to the start. With T1 and T2 this says T composed with T is the identity: an involution.
+claim valid T "s -> [][]s"
+# T4. The identification is symmetric.
+claim valid T "s -> []<>s"
+# T5. The twist swaps the two ends, so no end point is its own partner (a 2-cycle, never a fixed point).
+claim worlds T "(a -> []b) & (b -> []a)" = {0,1,2,3,4,5,6,7,8,9,10,11}
+# T6. The twist sends the left half to the right half and back: the finite shadow of the half twist.
+claim worlds T "(l -> []~l) & (~l -> []l)" = {0,1,2,3,4,5,6,7,8,9,10,11}
+# T7. Control: the cylinder keeps each half. So T6 is what separates the strip from the cylinder on this grid.
+claim worlds C "l -> []l" = {0,1,2,3,4,5,6,7,8,9,10,11}
+claim worlds C "l -> []~l" = {3,4,5,9,10,11}
+
+# The same involution on a larger grid, by exact integer sums. Grid x = k/N with N = 1000.
+# T8. f(k) = N - k. Sum over k of (f(f(k)) - k)^2 is 0, so f(f(k)) = k at every one of the 1001 grid points.
+seq zero = [0]
+claim formula zero = "sum(k, 0, 1000, ((1000 - (1000 - k)) - k)**2)"
+# T9. The number of k in 0..N with f(k) = k, for N = 0..9. It is 1 for even N (k = N/2, the midline x = 1/2) and 0 for odd N.
+# 0**0 = 1 and 0**m = 0 for m > 0, so 0**((N - 2k)**2) is 1 exactly when N - k = k.
+seq fixed = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+claim formula fixed = "sum(k, 0, n, 0**((n - 2*k)**2))" from 0
