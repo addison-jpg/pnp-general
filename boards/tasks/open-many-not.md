@@ -11,7 +11,9 @@
 
 - Single output is settled (B2): OR of n inputs needs n−1 AND/OR gates with any number of NOT gates.
 - Open: systems of several overlapping ORs, where NOT gates could let gates be shared.
-- Seats now: B1 (Opus, flip lemma, running), B3 (Sonnet, SAT, running), B4 (Sonnet): extend B2's partition argument to systems of several ORs, any number of NOT gates; prove the strongest true bound.
+- S3(a) per-set flip lemma: proved (B1, `Open/FlipLemma.lean`, any number of NOT gates).
+- Open: **S3(b)**, flip classes across all sets ≥ base, the cross-set sharing statement in Hall form.
+- Seats now: B3 (Sonnet, SAT, running), B4 (Sonnet, several-OR partition bound, running), B5 (Opus): S3(b).
 
 ## Lines (TAKEN / DECIDED only)
 
