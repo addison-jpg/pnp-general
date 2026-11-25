@@ -20,3 +20,4 @@
 - OPEN (Sonnet) REF1: the refuter lane pointed at PHC first, run on git-compute (`.github/workflows/compute.yml`) with the tensor backend: random and targeted payer sets on stored and generated instances, checking Lemma D's inequality. -> `one-not/research/open/REF1_phc.md`
 
 ## Lines (TAKEN / DECIDED only)
+- TAKEN LIT1 (Sonnet): literature check on negation-limited Boolean sums (known / open / false).
