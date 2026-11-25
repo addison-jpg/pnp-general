@@ -3,9 +3,9 @@
 Layers: programs (.ath files), evidence (files a program or record cites), memory (centre shards).
 Edges: program -> evidence it names; evidence -> the shard that holds a record citing it. All weights 1.
 Minimum spanning forest by Kruskal (exact). Standard library only.
-Run: python3 -I workshop/route/route.py   (last line is JSON)
+Run: python3 -I workshop/route/route.py [--core]   (--core drops the culture/ superstructure; last line is JSON)
 """
-import glob, json, os, re, time
+import glob, json, os, re, sys, time
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def find(p, x):
@@ -15,11 +15,13 @@ def find(p, x):
 
 def main():
     t0 = time.time()
+    core = "--core" in sys.argv   # detach the culture superstructure: no culture/ programs or evidence
     edges = []
     for f in sorted(glob.glob(os.path.join(ROOT, "*.ath"))):
         pr = os.path.basename(f)
         text = open(f, encoding="utf-8", errors="replace").read()
         for ref in set(re.findall(r"([\w./-]+\.(?:py|ath|bench|json|lean|md))", text)):
+            if core and ref.startswith("culture/"): continue
             if os.path.exists(os.path.join(ROOT, ref)):
                 edges.append((("P", pr), ("E", ref)))
     for shard in sorted(glob.glob(os.path.join(ROOT, "center", "shards", "*.jsonl"))):
@@ -29,6 +31,7 @@ def main():
                 continue
             for ev in json.loads(line).get("evidence") or []:
                 ref = str(ev).split("::")[0]
+                if core and ref.startswith("culture/"): continue
                 if os.path.exists(os.path.join(ROOT, ref)):
                     edges.append((("E", ref), ("M", sname)))
     nodes = {n for e in edges for n in e}
