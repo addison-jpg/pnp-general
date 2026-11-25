@@ -1,7 +1,7 @@
 # The edges: the NOT-gate fix (flip, flipclasses, flipslack), hyps, implication, `and`, and the Theorem as one claim (ext_edges.py).
 # README items: Theorem, C4, C4w, T6.
-corpus W = one-not/data/witnesses/*.json where n <= 9
-corpus N = one-not/data/witnesses/nonlocal/general_count_below_base_*.json
+corpus W = research/one-not/data/witnesses/*.json where n <= 9
+corpus N = research/one-not/data/witnesses/nonlocal/general_count_below_base_*.json
 
 # 1. flip classes as first-class functions, cross-checked against the registry conjecture "C4 count (flip classes)".
 claim forall c in W: flipslack(c) = margin["C4 count (flip classes)"](c)
@@ -71,6 +71,6 @@ claim forall c in W: theorem(c)
 claim forall c in N: theorem(c)                         # vacuous where nots >= 2
 claim theorem(ok) by lean
 claim theorem(twonot)                                   # hypotheses fail: vacuous, Python only
-let x = load one-not/data/witnesses/ess_rand_clean_744.json
+let x = load research/one-not/data/witnesses/ess_rand_clean_744.json
 claim theorem(x) by lean
 claim hyps(x) and correct(x) and gates(x) >= base(x) by lean

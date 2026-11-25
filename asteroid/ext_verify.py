@@ -3,8 +3,8 @@
 Classical.choice, Quot.sound, except `sorryAx` for the names listed after `allowing`). asteroid only starts it
 and reads its one summary line.
 
-  verify lean PROJECT_DIR [within SECONDS]     e.g.  verify lean one-not/lean
-  theorem FULL.NAME from MODULE in PROJECT_DIR e.g.  theorem SearchCheck.correctB_sound_project from PEqualNP.W951.AsteroidSound in one-not/lean
+  verify lean PROJECT_DIR [within SECONDS]     e.g.  verify lean proofs/w951
+  theorem FULL.NAME from MODULE in PROJECT_DIR e.g.  theorem SearchCheck.correctB_sound_project from PEqualNP.W951.AsteroidSound in proofs/w951
 """
 import re, os, subprocess, glob, time
 from asteroid import asteroid as A

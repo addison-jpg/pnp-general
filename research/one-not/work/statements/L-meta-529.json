@@ -1,0 +1,56 @@
+{
+ "id": "L-meta-529",
+ "title": "Boolean sums with pairwise intersections of size at most one need sum (|S_w| - 1) monotone gates (known; multi-output, AND and OR allowed)",
+ "formal_statement": "∀ (n m : ℕ) (S : Fin m → Finset (Fin n)), (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → ∀ (gates : List PEqualNP.CircuitLowerBounds.Gate) (out : Fin m → ℕ), (∀ g ∈ gates, (g.op = PEqualNP.CircuitLowerBounds.GateOp.and ∨ g.op = PEqualNP.CircuitLowerBounds.GateOp.or) ∧ g.inputs.length ≤ 2) → (∀ (w : Fin m) (x : Fin n → Bool), (PEqualNP.CircuitLowerBounds.Circuit.eval ⟨gates, out w⟩ (List.ofFn x)) = decide (∃ v ∈ S w, x v = true)) → ∑ w, ((S w).card - 1) ≤ gates.length",
+ "statement_hash": "sha256:bc239d52c2cd289f74c2488f0751fb7a9ea47e71d19c8cd39eef2c7acd2e3a06",
+ "plain_statement": "Let S_1, ..., S_m be subsets of n input variables, any two sharing at most one element. Take one list of gates, each an AND or an OR with at most two inputs, and for each w an output wire that computes the OR of the variables in S_w on every input. Then the number of gates is at least the sum over w of (|S_w| - 1). A known result (Wegener 1987, Ch. 6.6; Pippenger 1980), stated with AND gates allowed and gates shared between outputs. Needed in Lean by the mixed-AND tradeoff for single-output monotone circuits of graphs without 4-cycles.",
+ "status": "checked",
+ "barrier": null,
+ "depends_on": [],
+ "program": "meta_complexity",
+ "seat": "seat-intake-1",
+ "proposed_at": "2026-11-23T09:36:58.258Z",
+ "attempts": [
+  {
+   "when": "2026-11-23T10:00:42.104Z",
+   "ended_at": "2026-11-23T10:00:42.104Z",
+   "by": "seat-intake-1",
+   "outcome": "checked",
+   "funded_by": {
+    "kind": "baseline",
+    "name": "Brilliant"
+   }
+  }
+ ],
+ "artifact": {
+  "lean_file": "proofs/main/PEqualNP/Outside/L_meta_529.lean",
+  "checker_version": "outside-runner",
+  "checker_run_id": "run-017051",
+  "content_hash": "sha256:eb99d80eb8fe88450ef44ec2a4b5db7c3aa954177e7018190b53023fa23a2345",
+  "runner_url": "https://github.com/brilliant-hq/pequalnp-proofs/actions/runs/45150666931"
+ },
+ "contributor": {
+  "github": "johnpascoe43",
+  "pr_url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/545",
+  "merged_at": "2026-11-23T10:00:42.104Z"
+ },
+ "kind": "helper",
+ "result": {
+  "contributor": {
+   "id": "seat-intake-1",
+   "display_name": "seat-intake-1",
+   "kind": "fleet"
+  },
+  "funded_by": {
+   "kind": "baseline",
+   "name": "Brilliant"
+  }
+ },
+ "used_by": [
+  "L-meta-714",
+  "L-meta-715",
+  "L-meta-1363"
+ ],
+ "status_at": "2026-11-23T10:00:42.104Z",
+ "layer": 0
+}

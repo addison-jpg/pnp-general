@@ -1,0 +1,140 @@
+# Dead ends for `no_minCE`: check here before starting a route
+
+Names of codes: `research/names.py` (readable tree: `research/NAMES.md`) at the repo root. Combined 2026-11-24 (owner: "dead ends can be combined"). Seven families; every original row is kept, word for word, under its family. The wording of a row is its source's, so read the source for the exact statement. Add a row to the family it belongs to whenever a kill test fails. coord and research own this file.
+
+## The seven dead ends in one table
+
+| Family | What is dead | Rows |
+|---|---|---|
+| A. Class chosen without looking at the other sets | Every rule that picks the class of a set without looking at the other sets fails. Killers: cx1 to cx3, cxr, cxT2, cxT4, cxe3, ADV3, the fixh16 family. | 19 |
+| B. Rule fixing the world of a set | No rule about which world a set uses (mixed points, heavy points, cross-world disjointness) holds as a general law. Killers: ADV4, cxe3, Pasch s = 14, ess_rand_clean#744. | 8 |
+| C. Counting over pure classes for all correct circuits | Over pure classes every counting target is false for general correct circuits. Killers: cxMU_dd (and clean2, clean2_DD), tri_all#5593, cx44_1_junk. | 9 |
+| D. Counting over real merge sets without minimality | For real merge sets M_z(w) the count, the price form and every structural shortcut are false without minimality. Killers: STAR4, STAR4b, cxr, the selector path. The lifted forms are not affected. | 15 |
+| E. Induction one input at a time for all correct circuits | No induction that sets one input at a time survives for all correct circuits. Killers: FANO-FORMULA (x_v := 0), PAPPUS-JUNK (UC), TWIN-TREE (F2), MATCH-C (F2, F4, F5 at a non-local cube; reducible by R6, see the open list); MATCH-C(k) also kills every k-point step with k fixed. The count itself has no counterexample. | 6 |
+| F. Local or memoryless argument | Local or memoryless arguments stall at the 3rd and later merge gates of sets of size ≥ 4; weight ≤ k relaxations fail for every fixed k. | 4 |
+| G. Method from outside circuits | No gate count comes from Fourier or influence bounds, series, or physics maps. | 3 |
+
+## A. Class chosen without looking at the other sets
+
+Every rule that picks the class of a set without looking at the other sets fails. Killers: cx1 to cx3, cxr, cxT2, cxT4, cxe3, ADV3, the fixh16 family.
+
+| Route | Status | Witness or reason | Source |
+|---|---|---|---|
+| Canonical Hall; two-world Hall (= the fixed 1/2-1/2 coin rule) | refuted | canonical Hall: w8 cx1 (n = 9), cx2 (n = 7 sunflower {0,1,4},{0,2,5},{0,3,6}, s = 18: a family's counted union 5 < demand 6), cx3; coin rule: w9/tw/cxtw3c (n = 9, s = 34). CAVEAT: cxtw3c has a Theorem-X zero-set family, so it lies OUTSIDE the MinCE case | `research/one-not/board/agents/front-status.md`; front HANDOFF §3 |
+| R* (z = z_{S_w}, unit atoms, K = all) | refuted | w8b/cxr ('inner-product' junk design); (the coin rule is row 1; 'cxE' as an R* witness unconfirmed by front) | `front-status.md`; front |
+| Π* | refuted | cxP1 to cxP6 | `front-status.md` |
+| ★ | refuted | cxstar5 | `front-status.md` |
+| Relative sandwich, restricted reading | refuted | cxT4 | `front-status.md` |
+| Whole-class S-repay; whole-class lifted charging | refuted | v2whole_cx; cxT2, cxT4 | `front-status.md`; SORRY_DISSECTION §20 |
+| Every circuit-independent zero-point distribution tried (uniform, biased, h-adapted) | refuted | cxrb(k), cxU_8_4 (n = 20) | SORRY_DISSECTION §20 |
+| Fixed two-point menu `{0, top_w}` | refuted | ADV3 (ESSENTIAL, verified by front and front-612): load 1.2 | `research/one-not/research/support-b/fable_worlds.md`; BOARD.md 09:40 |
+| Canonical start: world-0 interval classes (zero point `top_w`, minterm atoms) for sets with `h(top_w) = 1` | refuted | 13 of 62 circuits, e.g. cx44_0, cxT2, cxe3, cxtw3 | `research/one-not/tools/kill_tests/canon.py` |
+| Interval classes at extreme points only (world 0 and world 1), merge sets or matching form | refuted | cxT2, cxe3 (also hard4, cxstar5, cxP3 without plain points for split sets) | `kill_tests/fam.py`, `match.py` |
+| World-pure PLAIN zero points (`z`, `z + e_u`) for sets through a heavy point | refuted | cxe3: every plain SDR uses mixed points for at least two of the three sets through the heavy point. NOT a dead end for interval classes: pure classes I0 / I1 give an SDR on all 62 (`kill_tests/ext.py`) | `kill_tests/probe.py` |
+| One-set induction: a fixed order of the sets in which every partial disjoint choice extends | refuted | fixh16 family; best order (latest output first) fails on 9 of 62 | `kill_tests/order.py` |
+| World 1 only (class I1 for every set) | refuted | 15 of 62, e.g. cfgI, cxT2, cx1 | `kill_tests/ext.py` |
+| World 0 for sets with `h(top_w) = 1`, world 1 for the others (no choice of world) | refuted | 7 of 62: cx44_0, cx44_1, cxT2, cxe3, cxP4, cxtw3, cxtw3c | `kill_tests/ext.py` |
+| Choice-free private classes `P(w)` = OR gates with `real g ≤ o_w` and two atoms `e_u` (pairwise disjoint for free) | too small | 69 of 273 sets have fewer than `d_w` such gates; cx1, cx2, cx3 have none | `kill_tests/private.py` |
+| CANON: choice-free selection (I1 at top_w for h(top_w) = 0; for type A the I1 class coinciding with an I0 class); also 'all type-A in I0' / 'all type-A in I1' | refuted | type-A sets can have I1 and I0 classes with no coinciding class: smallest named.jsonl:12 (n = 5, s = 14, h = x0, w0 = {1,2,3,4}: I1 {7,8,9} at Z = ∅, I0 {15,16,17}); full pass (12:05): Q1 fails on 26,007/32,408 essential and 10,198/30,055 inessential corpus circuits and 2,053/2,224 ladder circuits, always because the I1 and I0 classes differ, never because I0 is missing; where Q1 holds, CANON's classes are disjoint (6,401 + 19,857 + 171). Uniform world rules ('all type-A in I0' / 'in I1') have no disjoint choice on 137 / 1,093 essential circuits. A genuine per-set world choice is needed (the h = x_p case itself is a theorem: NotVarF2 8f42cf5 muF2_of_notVar; the refutation concerns the CANON rule only) | scaffold via desktop Coord 11:58 |
+| 'Every set has EXACTLY ONE I1 class' (D-maximal Z, atoms e_u) | refuted | 5,847 of 179,613 sets have 2 (all type-A, never 3+; non-type-A always exactly 1); smallest ess_k4e_clean#2721 (n = 4, set {1,3}, Z = {0} vs {2}); wide-validity I1 up to 4 classes, pure classes up to 4 per set | pnp-subproblem 12:40 (asked by coord 11:46), `agents/pnp-subproblem-puresdr-check.md` |
+| Type-B-only test systems; Rado instead of Hall | refuted / no gain | K4, h = Th_2, s = 41, excess 9; B8(1) | front |
+| Gap-G and Two-World at FUNCTION level (choice depending only on (sets, h)) | refuted | K4, h minterms {02,12,03,13,23}; 9/1162 (graph, h) at n = 4 | front |
+
+## B. Rule fixing the world of a set
+
+No rule about which world a set uses (mixed points, heavy points, cross-world disjointness) holds as a general law. Killers: ADV4, cxe3, Pasch s = 14, ess_rand_clean#744.
+
+| Route | Status | Witness or reason | Source |
+|---|---|---|---|
+| Plain NoMixedPrice (no mixed zero points for any set) | refuted | 62,256 failures: split sets have no world-0 or world-1 zero point | BOARD.md, 09:20 scaffold |
+| Pinned heavy split, first version (B pinned at own z_{S_b}) | refuted | 320 essential circuits, B-B collisions; smallest ess_k4e_clean:248, g10 = x3 ∨ (x0 ∧ x1). (Heavy split v2, B floating over z_v = 1, SURVIVES; menu {e_v, z_{S_b}} suffices; common base e_v alone FAILS on c.jsonl#264; integral star-at-0 FAILS) | `agents/qg-d2-nomixed.md` Round 3 |
+| No-mixed with the weak world-1 definition h(z restricted to S) = 0 | fails | 1,043 circuits | `agents/qg-d2-nomixed.md` Round 2 |
+| Heavy-star rules for PureSDR: 'exactly one' / 'at least one' / 'at most one' world-0 set through each heavy point | refuted | 'exactly' / 'at least one': unsatisfiable on ~66k corpus circuits (first: cxT2, both pure SDRs); 'at most one' (exists-SDR form): fails on 5 circuits, smallest K4-e s = 12, and Pasch s = 14 (unique pure SDR, 2 world-0 sets through heavy point 4; `research/one-not/data/witnesses/pasch_s14_heavy_atmostone.json`) | scaffold 10:44, 10:46 (full corpus) |
+| As general laws: 'shared 3rd+ merges never downstream of the NOT', 'no mixed conflicts', 'staircase disjointness' | refuted | ADV4 | `research/one-not/research/support-b/fable_worlds.md` (b3, C3) |
+| S1(g) for MERGE SETS without (i) + (ii); N-dependence of cross-world gates from clean + live + essential alone | false | CrossWorld.lean cx1/cx2; 155 / 60 circuits, all s - base >= 5; Lean cx3_counterexample | CrossWorld.lean, CrossWorldCex.lean |
+| D1: cross-world disjointness at every I1 point (K_1(w; Z) ∩ K_0(v; m) = ∅ for all I1 points Z and m avoiding S_w) | refuted | 4 collisions in 31,587 circuits; hand-verified n = 4 witness (Z = {2} ≠ top_w, shared gate x0 ∨ w7). D at Z = top_w (CanonOneNot) unaffected; collision kind (iii) open; LEAN: `CanonD1.not_D1Stmt` (decide-checked n = 5); repair D1' (+ Z ∩ S_v = ∅): 0 collisions on 33,632 corpus tuples but FAILS on an n = 5 circuit with dead gates, so a fix needs s < base (`D_hyp_fails`: no world-0 atom lies below (Z, 1)) | research-desktop 11:41, `research/one-not/board/agents/research-desktop-lemmaD1-killtest.md`, `kill_tests/d1_full/` |
+| F2 step split 'heavy alive point exists ⇒ some HEAVY v satisfies the F2 step' (F6) | refuted | 4 / 21,418 failures, all h = x_p with one heavy point (a light v works each time); smallest ess_rand_clean#744 (n = 5, s = 9, base 5, h = x_2; `research/one-not/data/witnesses/ess_rand_clean_744.json`). The light step must also cover light v when heavy points exist | front A2 12:50 |
+
+## C. Counting over pure classes for all correct circuits
+
+Over pure classes every counting target is false for general correct circuits. Killers: cxMU_dd (and clean2, clean2_DD), tri_all#5593, cx44_1_junk.
+
+| Route | Status | Witness or reason | Source |
+|---|---|---|---|
+| PureSDR / MU / STAR-SEP / STAR-COUNT over PURE classes (I1 oneAt, I0 zero / zeroAt) for ALL correct circuits | false in general | cxMU_dd (n = 7, s = 36, base 6, h = x1 ∨ x4, correct, clean, both sets DD): every pure class of {0,1,2,3} is {7,8,26}, of {0,4,5,6} is {9,10,26}; |U(all)| = 5 < 6. NOT a 951 counterexample (s ≫ base): over pure classes these targets can hold for a MinCE only via s < base. Lifted classes (LiftSDR / MUL) hold there (|U| = 7) | front A1 12:20, checked by coord; `research/one-not/data/witnesses/cxMU_dd.json` |
+| LOOSENESS lemma (front A4 part 1: after fixing the free classes, every arc-consistent class extends), with Lean and widened menus | refuted | tri_all#5593 (Pasch, h = x4 ∨ x5, `research/one-not/data/witnesses/tri_all_5593.json`): class {g6, g8} of {0,3,4} meets all three classes of {1,3,5} (g8 = x3 ∨ h merges in world 1 for both) | front B 12:20 |
+| PEEL (front B; research's E2 version, research-typeA-increment.md §3) | refuted | over Lean menus: the cxMU_* barriers; over GP menus: Pasch s = 14, cxT2; E2 version (I1 maximal Z + I0 at top_w): holds on 19,895 corpus circuits, fails on cxMU_dd / clean2 / clean2_DD (|U_E2| = base − 1, research re-check) | front B / C 12:17-12:20; research |
+| STAR-SEP (SDR form) over Menu1 and over Menu2; per-point STAR-SEP rules; the V-COUNT route | refuted | Menu1: cxMU_dd; Menu2: cx44_1_junk; per-point rules: ess_rand#529, selector path; V-COUNT: 35,396 / 44,090 | front A2 12:23, `agents/front-A2-final-1223.md` |
+| INC_N (type-A zero points avoiding ALL free points, so the free sets drop out of the increment) | refuted | 68 corpus circuits, deficit 1, K4-e graph systems (e.g. front-archive chk/k.jsonl:3074); zero points meeting free sets are needed | research 12:22, `agents/research-typeA-increment.md` §4 |
+| Graph systems (all |S_w| = 2) as the first case of the PureSDR / Hall lane | vacuous | no MinCE is a graph system: m distinct output gates + the NOT gate give s ≥ m + 1 > base (MinCE.has4); Hall there is a model problem only | front 11:38 |
+| Heredity step (a2): after `x_v := 1` outside `V(F)`, every valid I1 class of the restricted instance equals a valid pure class of the original | refuted as stated | 1,160 of 18,210 restricted I1 classes on 65 small circuits (950 on sets of size ≥ 3). Smallest with a set of size ≥ 3: `scaffold-951__payment__ce3` (n = 8, 34 gates), F = {0,3,5},{1,3,7}, set {1,3,7}, class {11, 39}. Graph-system witness: `fixh16_forced` 0 (n = 4), F = {0,1},{0,3}, set {0,3}, class {8}. Cause: restricted atoms are `{u} ∪ O`, original atoms are `{u}`. Repair: allow I1 atoms `{u} ∪ A` with `A ⊆ Z` (valid by GM); then it holds by construction. Restricted I0 classes are original I0 classes by definition. | `kill_tests/heredity.py` |
+| Heredity step (a3): a Hall-deficient F forces `s_res < base_F` by counting menu gates | not as stated | in 475 of 903 restricted families the restricted circuit keeps live gates outside every restricted pure menu (AND gates, gates before the NOT); in 135 of 903 the NOT gate becomes constant | `kill_tests/heredity.py` |
+| Research (b) read literally ("an atom choice for u avoiding S_v") for the common point `u ∈ S_w ∩ S_v` | wrong reading | the formula `h(¬((S_w ∪ S_v) \ {u}))` equals "some minterm meets `S_w` and `S_v` inside `{u}` only" on 2,619 of 2,619 triples; it equals the literal reading on 1,753 of 1,753 triples with `u ∉ S_v` but on only 322 of 866 with `u` common | `kill_tests/heredity.py` |
+
+## D. Counting over real merge sets without minimality
+
+For real merge sets M_z(w) the count, the price form and every structural shortcut are false without minimality. Killers: STAR4, STAR4b, cxr, the selector path. The lifted forms are not affected.
+
+| Route | Status | Witness or reason | Source |
+|---|---|---|---|
+| "3rd and later merge gates of different sets of size ≥ 4 are disjoint" | refuted | cxr, gate 14 | BOARD.md, referee B |
+| Charging the 3rd and later merge gates of each set of size ≥ 4 inside that set's OWN merge gates (merge-tree support; fractional, gate capacity 1) | refuted | cxU6, cxU8, cxU_6_4, cxU_8_4, cxP2 (max flow below the demand); feasible on all other 334 of 339 tested; support "own output cone minus every set's first two merges" feasible on all 339 | pnp-subproblem referee B 09:30, cross-checked by research (0 disagreements), `research/tools/referee_b/README.md` |
+| CU alone gives MergePrice | refuted | `cu_counterexample` (Lean) | BOARD.md, 10:15 |
+| 0/1 (single-gate) prices suffice for the dual | not valid | the dual objective is concave in the price; layer-cake gap | referee angle 1; `research-concave-dual.md` |
+| L-greedy-avoid ('any avoiding choices are pairwise disjoint') | fails without repair | 18,875 circuits; smallest n = 4, s = 9 (gate x2 ∨ (x0 ∧ x3)) | BOARD.md, 10 UTC synthesis |
+| Classical hypergraph Hall (Haxell, Aharoni-Haxell) for MergeSDR | conditions fail | research | BOARD.md, 10 UTC synthesis |
+| {M_z(w)} as matroid base families (free integrality, K-Rado => MergeFrac) | false | 13/19 named, 135/163 support-B circuits | research-charging §d; front |
+| 'Merge sets of different sets at a COMMON zero point are disjoint' | refuted | 178 / 24,108 coincidences, e.g. chk/c#1174 (L-avoid concerns universal merges only) | front A2 12:31 |
+| UC as the family for the point step | refuted | pappus_junk_gain: UC gain 5 < 6, F2 6 = 6 tight (`research/one-not/data/witnesses/pappus_junk_gain`) | front, final pass |
+| F1 for LIGHT v | false | cxMU_clean2, Q = ∅, v = 2; 764/7,299 graph and 5,504/62,660 non-graph | front, final pass |
+| heavy F2 step counting only v-gates, \|S\| ≥ 3 | insufficient | cxMU_clean2, v = 1; 26,057/28,560 | front, final pass |
+| Free-candidate lemma; research's no-chain lemma; single-flip repair L-flip | fail | cxT2 / cxT4; 2,454 circuits; 24 fixh16 K4 circuits | scaffold / research, 09:50 |
+| Unbounded loose LAugment as an easier target | not easier | equivalent to MergeSDR (Lean mergeSDR_iff_avoid_augmentLoose) | Augment.lean |
+| LAugment_k (and L-descent2) for ALL correct one-NOT circuits, any fixed k | refuted | 'selector path' (scaffold's Fable, verified by scaffold, front, desktop Coord): pair sets e_1..e_L, selector y in none, h = x_y, junk gates g_j = (x_y & OR(e_j)) \| (N & OR(e_{j+1})); options of e_j = {g_{j-1}, g_j}, needed group size min(c, L - c), unbounded. Essential + clean instance K4 edges + y, n = 5, s = 50 (base 6), k* = 3. NOT a 951 counterexample; MergeSDR and PureSDR hold there. LAugmentK is usable only under MinCE (s < base); bounded local exchange for PureSDR fails the same way | scaffold 10:52; desktop Coord 10:53 |
+| Proving L-avoid through zero points `z ⊇ S_w' \ S_w` | unnecessary and harder | gates in U(w') need not be monotone there; the zero point `0` works for every set (Lean `lAvoid`) | scaffold 10:35; `Augment.lean` |
+| Price inequality / MergeSDR / MergeFrac / MU for REAL merge sets `M_z(w)` (unit atoms `z + e_u`) for ALL correct one-NOT circuits | false in general | STAR4b (n = 4, sets {0,u}, h = MAJ(x1,x2,x3), 14 gates, `research/one-not/data/witnesses/star4b_threshold.json`; also the 47-gate star4.json): every real merge set is {13} or {14}, union 2 < base 3, t* = 1.5 (threshold crossing: gate 13 is 0, 1, 0 at t = 0, 1, 2). star4.json (s = 47): Σ_w m_w = 3 > |K| = 2 for K = {g, g'}; its NOT is inessential (R5'); the F2 count (6, step OK) and lifted MUL (+8) survive; verified by lane (a) Fable, desktop Coord, scaffold, `research/one-not/research/coord-desktop/kgate/`. Lifted form holds there; the 'NOT dead ends' line 'MergeSDR 0 failures' is corpus data only | `agents/fable-global-price.md` §2, `kill_tests/global_price.py --menus real` |
+| 'No gate is ever double counted' | refuted | doubles in essential circuits, always x_c ∨ h | front |
+| Full (non-cone) D counting; full-D ChargeOK; clean-only ChargeOK | refuted | 3 counterexamples | front w7 |
+| P2 acyclic forcing with labels monotone in GATE INDEX order | refuted | fixh16_clean#20: forcing path {02}-{12}-{23}-{13} through gates 5, 13, 8 | referee (desktop Coord) 10:30, `research/one-not/board/agents/coord-desktop-referee-plan.md` |
+
+## E. Induction one input at a time for all correct circuits
+
+No induction that sets one input at a time survives for all correct circuits. Killers: FANO-FORMULA (x_v := 0), PAPPUS-JUNK (UC), TWIN-TREE (F2), MATCH-C (F2, F4, F5 at a non-local cube; reducible by R6, see the open list); MATCH-C(k) also kills every k-point step with k fixed. The count itself has no counterexample.
+
+| Route | Status | Witness or reason | Source |
+|---|---|---|---|
+| MU by point deletion `x_v := 0` for the count-set union UC (any rule for choosing v) | refuted | FANO-FORMULA (monotone formula, unused NOT, 17 gates, |UC| = base = 14): gain 2 < deg 3 at all 7 points, because a gate that becomes a copy of an earlier gate stays counted; also scaffold_certs.json:2. `x_v := 1` is good at some point on all 28,706 tested sub-instances; 'every light point is good' fails (JUNK, v = 0) | `kill_tests/mu_light.py`, `agents/fable-mu-induction.md` |
+| LIGHT-COUNT; the gain hypothesis of `muc_of_gainOne_pts` (x_v := 1 for UC(∅,Q)); the combined `base_le_UC` hypothesis (x_v := 1 or x_v := 0) | refuted | PAPPUS-JUNK (n = 9, 66 gates, sets = Pappus 9_3, light at Q = D = ∅): x_v := 1 gains 5 < 6 and x_v := 0 gains ≤ 2 < 3 at EVERY v (MU holds, 20 ≥ 18). Paper proof for x := 1; also refutes the rules 'least h-influence' (JUNK2), uniform averaging, per-set averaging; repair 'face 1 needs h = 0 at the atoms' breaks MU (hard4) | `agents/opus-light-count.md`, `research/data/witnesses/pappus_junk_gain.json`, `kill_tests/light_cex.py` |
+| The F2 STEP (x_v := 1 gains ≥ cost(v) at some v, family F2 of real witnesses) for ALL correct one-NOT circuits; with it SEE+K3, REROUTE, ABSORB, the cone certificate (D)+(S), LIGHT-STAR, every rule for v | refuted | TWIN-TREE (n = 14, 28 gates, base 15, |F2| = 21): gain < cost at all 14 points at Q = ∅, paper proof; TWIN-TREE-N (30 gates): the same with the NOT read, R2 / R3 / R4 / R5' true, only R+ false (5 junk edges). The count |F2(Q)| ≥ base(Q) holds at every Q. In both witnesses the NOT gate reads one input, so every cube is CubeLocal and closed in Lean (CubeF2.lean:353). Still open, no witness: GainF2 at cubes where the NOT input depends on ≥ 2 inputs | `agents/fable-f2-step.md`, `research/data/witnesses/twin_tree_f2step.json`, `twin_tree_N_f2step.json`, `kill_tests/f2_cex_check.py` |
+| GainF2 at NON-LOCAL cubes (NOT input depends on ≥ 2 inputs) from the local MinCE facts R1-R5' and R+; the same step for F1, F4, F5 (cone-restricted) | refuted | MATCH-C k = 7 (n = 16, 55 gates, base 23, h = OR of 14 inputs; R1, R2, R3, R4, R5', R+ all true): gain < cost at all 16 points at Q = ∅ for F1, F2, F4, F5; paper proof for F2, F5 and all k ≥ 7. Count holds at all 59,706 cubes; U-game won. Four n = 14 variants of TWIN-TREE-N with h = OR2 / AND2 / MAJ3 fail for F1, F2 only. Still alive: the count at every cube; the step with gates < base in the hypothesis, and the step among R6-irreducible circuits (MATCH-C is R6-reducible: its NOT may read x_{u_0} ∨ x_{a_0} instead of h, freeing the h tree; `MinCE.no_rewire`, `agents/cTAHG-ddcore.md` §4) | `agents/fable-f2-nonlocal.md`, `research/data/witnesses/nonlocal/match_c_k7.json`, `kill_tests/f2_nonlocal_check.py`, `f2_rplus_all.py` |
+| The k-point step C3_k for any fixed k (some path of at most k points from Q with Σ (gain − cost) ≥ 0 at its end, i.e. some D, \|D\| ≤ k, with smaller base and slack(Q ∪ D) ≤ slack(Q)), for all correct circuits and with every fact of L2 except `MinCE.no_rewire`; also 'the average over all chains of every prefix sum is ≥ 0' | refuted | MATCH-C(k) at Q = ∅ (non-local): every D with 1 ≤ \|D\| = j ≤ k has slack(D) − slack(∅) ≥ k − 5 − 2⌈log₂ k⌉ − j(5 + 2⌈log₂(k/j)⌉), paper; needed number of points > n/64 for n ≥ 130 (paper), = ⌊n/8⌋ for 16 ≤ n ≤ 46 (tested). C3_2: `Cex.matchedTwinTreesWithA22InputNOTInput` (n = 24, two programs + certificate) and `Cex.twinTreesWithFiveLeafPairs` (n = 22, two programs); C3_3: `Cex.matchedTwinTreesWithA32InputNOTInput` (n = 34, one program + independent witness certificate). C3_2 holds at all 176,962 cubes of the 21 older witnesses and 74,318 corpus cubes. Averaged prefixes: negative on 8 of 21 witnesses. Still alive: C2 and C3_k among circuits with no gate-saving rewiring (0 failures on 2,155 rewire-irreducible circuits, 2,485,766 cubes; all depth 1); with no bound on k the step is the count | `agents/fable-chain-sum.md`, `research/data/witnesses/nonlocal/match_c_k11.json`, `match_c_k16.json`, `twin_tree_k5_c3.json`, `kill_tests/c3_tab.py`, `c3_dnf.py`, `c3_cert.py`, `c3_matchc_lemma.py`, `c3_norewire_corpus.py` |
+| Plan 'one zero point per set through v, Lemma M runs pairwise disjoint and leaving' | refuted | no v on 3 of 23,406 instances, first cx44_1_junk at Q = ∅ | `kill_tests/f2x_single.py` |
+| GE as an easier local target (∃ v: x_v := 1 with full simplification eliminates ≥ cost(v) gates) | NOT refuted, NOT circular: the inductive (gate-elimination) form of 951; weaker than the F2 step on data (holds on MATCH-C where the F2 step fails) but its margin must count EXACTLY (qg-d2 withdrew 'circular', 14:00) | GE is the inductive gate-elimination form of 951: elim1(v) − cost(v) = slack(C) − slack(C_v), so on all 2,112 tight corpus circuits the best margin is exactly s − base, and at a MinCE MinCE.elim_lt gives every margin ≤ −δ < 0. Holds on all 46,097 corpus circuits. Only a size-free structural collapse argument would make it pay; keep ElimStep (no_minCE_of_elimStep) as the clean top-level reduction | cTAHG / qg-d2 / desktop Coord 14:00, `agents/cTAHG-slack.md`, `agents/qg-d2-elim.md` |
+| C4w(t): the witness count for a gate of ANY type, |witness(∅)| ≥ base, with t ≥ 4 NOT gates | refuted | sets {0,1,2,3}, {0,4,5,6}, base 6: 67 gates, 4 NOT gates, 5 witness gates (`research/one-not/data/witnesses/nonlocal/general_count_below_base_t4.json`; t = 5: 52 gates; t = 6: 65 gates). Found by mutation search, confirmed by `witness_any_gate.py`'s functions. Not found for t = 2, 3. The gate count #gates ≥ base is NOT refuted for any t | `research/one-not/tools/search/hunt.py`, 2026-11-24 |
+
+## F. Local or memoryless argument
+
+Local or memoryless arguments stall at the 3rd and later merge gates of sets of size ≥ 4; weight ≤ k relaxations fail for every fixed k.
+
+| Route | Status | Witness or reason | Source |
+|---|---|---|---|
+| Gate-by-gate elimination with a memoryless potential | fails | increments above 1 | coord, s_fable S4 |
+| Per-world bounds (R6); per-cube multi-base K_{2,2}; fixed class lists; weight ≤ k relaxations for EVERY fixed k | refuted | see source; research Fable W: AG(2,25) at k = 2, 12,370 < base 15,600 | `research/one-not/board/paper951.md` §2 to §4 |
+| Local point rules (p, q, r, a, s, b and later rounds) as the whole proof | stall | regress at the 3rd and later merge gates of sets of size ≥ 4 | `paper951.md` §3 |
+| Per-read substitution of N; Wegener-style local top-down AND elimination with the NOT; first-kill-AND injection; variable-fixing induction | refuted / fails | per-read substitution false at base + 5; fan-out < degree | front |
+
+## G. Method from outside circuits
+
+No gate count comes from Fourier or influence bounds, series, or physics maps.
+
+| Route | Status | Witness or reason | Source |
+|---|---|---|---|
+| Fourier / influence bounds (few negations) | no gate-count consequence | influence does not see size | pnp-general issue 11 |
+| Infinite series, martingales on Cantor space, zeta-type sums | no route | no coherence between input lengths; parity and IP are linear size | pnp-general issue 12 |
+| Physics maps (closed timelike curves, low-degree amplitudes, holographic complexity) | no route past the barriers | rows L-lib-061/062, 065/076, 086 | `research/one-not/PIPELINE.md` §3 |
+
+## NOT dead ends (open or supported; do not list as refuted)
+Current as of 2026-11-24 16:00: 951 is checked in Lean when the U-game on the lifted outputs is won (`UGame.lean`); open are the circuits that lose it, and the F2 step among R6-irreducible circuits (MATCH-C is reducible by R6). Earlier text of this section follows unchanged.
+
+Heavy-point exclusion: superseded — the point induction counts F2 (no_minCE_of_gainF2_or_local, 983c3ee); standalone heavy lane refuted (F6) (842/842 essential clean circuits at s - base = 4 have a heavy unit); heavy split v2;
+refined no-mixed form; StrongCU / ChainPick; MergeSDR (0 failures on 75,619; kernel-checked on 35); L-avoid is PROVED (Lean `lAvoid`); L-augment_2 (= LAugmentK 2) ONLY under MinCE (false in general, row above); official target since ~12:27: the LIFTED forms MUL / LiftSDR (0 failures; kernel-checked on the barrier suite); PureSDR / MU over pure classes are sufficient but FALSE for general correct circuits (cxMU_dd); UC-MU holds everywhere tested but its point induction is dead (FANO-FORMULA, PAPPUS-JUNK); candidate counted family F2 (real witnesses) under test.

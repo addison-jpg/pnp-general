@@ -8,7 +8,7 @@ page.
 ## Build and run
 
 ```
-cd one-not/lean && lake exe cache get && lake build asteroid
+cd asteroid/native && lake build
 lake exe asteroid ../../hello.ath              # evaluate, then prove
 lake exe asteroid ../../hello.ath --no-proof   # evaluate only
 ```
@@ -24,14 +24,14 @@ The same commands, in Git Bash, from the repository folder. Lean comes from elan
 (`~/.elan/bin`, `%USERPROFILE%\.elan\bin`); no Python is needed.
 
 ```
-cd one-not/lean && lake exe cache get && lake build asteroid && cd ../..
-one-not/lean/.lake/build/bin/asteroid.exe hello.ath             # the built binary, run directly
-one-not/lean/.lake/build/bin/asteroid.exe hello.ath --no-proof  # evaluate only
-one-not/lean/.lake/build/bin/asteroid.exe --doctor hello.ath    # where it looked, what it found
+cd asteroid/native && lake build && cd ../..
+asteroid/native/.lake/build/bin/asteroid.exe hello.ath             # the built binary, run directly
+asteroid/native/.lake/build/bin/asteroid.exe hello.ath --no-proof  # evaluate only
+asteroid/native/.lake/build/bin/asteroid.exe --doctor hello.ath    # where it looked, what it found
 ```
 
-`lake build asteroid` puts one binary at `one-not/lean/.lake/build/bin/asteroid` (`asteroid.exe` on
-Windows). It can be run from any folder, or put on PATH (`export PATH="$PWD/one-not/lean/.lake/build/bin:$PATH"`, then
+`lake build` in `asteroid/native` (its own package, no Mathlib) puts one binary at `asteroid/native/.lake/build/bin/asteroid` (`asteroid.exe` on
+Windows). It can be run from any folder, or put on PATH (`export PATH="$PWD/asteroid/native/.lake/build/bin:$PATH"`, then
 `asteroid hello.ath`); `lake exe asteroid` is the same program.
 
 - **The project** (the folder with `lakefile.toml` and `PEqualNP/W951`) is searched upwards from the
@@ -82,8 +82,8 @@ conversion, and building the 122 MiB binary with the Windows toolchain.
 | claims agreed | | 23 of 23 in 3 programs (verdict and detail text) |
 | run, evaluate only | 0.1 to 0.6 s | about 0.9 s (`lake exe` start included) |
 | run with proofs, hello / first / notgate | 16.8 / 8.8 / 9.4 s | 12.7 / 7.7 / 9.8 s |
-| build | none | 23 s for the executable with Mathlib unpacked by `lake exe cache get`; 1 s when nothing changed |
-| binary | | 6.3 MB (`.lake/build/bin/asteroid`); 4.4 MB stripped (`dist/linux/asteroid`). Was 122 MiB until 2026-11-25 |
+| build | none | about 50 s from a clean clone (no Mathlib; `asteroid/native` is its own package); 1 s when nothing changed |
+| binary | | 6.3 MB (`.lake/build/bin/asteroid`); 4.4 MB stripped (`asteroid/dist/linux/asteroid`). Was 122 MiB until 2026-11-25 |
 
 Differences in the text: the Python line reads `claim …: python TRUE (…)`, the Lean line `claim …: TRUE
 (…)`; a claim without a Lean form says `evaluated only` in Lean and `Python only` in Python.
@@ -108,7 +108,7 @@ The 122 MiB binary of before came from `import Lean.Data.Json`, which links the 
 
 ## What is proved about asteroid
 
-All in `one-not/lean/PEqualNP/AsteroidLang/Semantics.lean`; none uses `sorry` or `native_decide`, all
+All in `proofs/w951/PEqualNP/AsteroidLang/Semantics.lean`; none uses `sorry` or `native_decide`, all
 rest on `propext`, `Classical.choice`, `Quot.sound` only. `denote` is the meaning of a claim in the
 project's own definitions; `eval_sound` is about `Expr.eval`, the function the executable runs.
 

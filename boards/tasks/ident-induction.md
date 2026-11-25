@@ -8,7 +8,7 @@
   MinCE => `no_minCE`. Variant IDENT+: also delete the outputs of colliding sets D, needing freed gates >= 1 + d(D).
 - **Why new:** every dead induction (DEAD_ENDS family E) restricts an input to a CONSTANT; identification moves
   along the diagonal x_u = x_v (not a subcube) and always drops base by exactly 1.
-- **Data (tested, not checked):** one-not/research/front612-lateral/. Plain IDENT 9,089 / 9,089 where an admissible
+- **Data (tested, not checked):** research/one-not/research/front612-lateral/. Plain IDENT 9,089 / 9,089 where an admissible
   pair exists; 18,899 circuits have none (dense systems: K4, fixh16, triples). IDENT+ 18,899 / 18,899, but 16,894 of
   those are plain output deletion (excluded for MinCE); identification is needed on 2,005.
 - **Minimal-like test (done):** only 8 corpus circuits are rewire-irreducible with the NOT read; IDENT+ holds on all 8, genuinely (identification needed) on 3; the other 5 violate MinCE.outDel, so they are uninformative. No counterexample among outDel-respecting circuits; evidence thin (3).

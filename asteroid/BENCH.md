@@ -2,7 +2,7 @@
 
 Every circuit in this repository is a `.bench` file. This page is the specification: the grammar, the
 meaning of a file, and the one addition asteroid makes. Two readers implement it and are compared on
-every file: `one-not/lean/PEqualNP/AsteroidLang/Bench.lean` (Lean) and `asteroid/ext_bench.py` (Python).
+every file: `asteroid/native/AsteroidLang/Bench.lean` (Lean) and `asteroid/ext_bench.py` (Python).
 
 ## Origin
 
@@ -18,7 +18,7 @@ translator; the `INPUT(…)` / `OUTPUT(…)` / `name = GATE(…)` text form is t
 circulate today, and its definition is the behaviour of the tools that read it: ABC (`read_bench`,
 `write_bench`), Atalanta, and the parser library lorina. This page is the grammar asteroid uses. Where practice
 varies, the choice made here is marked *asteroid's choice*. Read status of every source:
-`LITERATURE.md`, section "Circuit file formats".
+`research/LITERATURE.md`, section "Circuit file formats".
 
 ## Grammar
 
@@ -70,7 +70,7 @@ other `#@` line is an error; the directive word `or` is lower case.
 ## Semantics
 
 A file denotes a circuit `(n, sets, gates, outs)`, the `Circ` of `SearchCheck.lean` and the JSON
-dictionary of `one-not/tools/search/core.py`.
+dictionary of `research/one-not/tools/search/core.py`.
 
 - **Inputs.** `n` is the number of `INPUT` lines. Inputs are numbered 0, 1, … in order of appearance.
 - **Wires.** Wire `i < n` is input `i`; wire `n + k` is gate `k`.
@@ -127,7 +127,7 @@ z = OR(a, u)
 - **AIGER** (A. Biere, "The AIGER And-Inverter Graph (AIG) Format Version 20071012", FMV Reports
   07/1, Johannes Kepler University Linz, 2007). The only gate is AND and negation is a free bit on
   every edge, so the number of NOT gates is not a property of an AIGER file. asteroid exports to
-  AIGER (`AsteroidLang.Bench.toAag`) and does not read it; see `notes/aiger.md`.
+  AIGER (`AsteroidLang.Bench.toAag`) and does not read it; see `research/notes/aiger.md`.
 - **BLIF** (University of California, Berkeley, "Berkeley Logic Interchange Format (BLIF)", 1992,
   distributed with SIS). A gate is a `.names` block, a truth-table cover with any number of inputs,
   so "one gate" has no fixed cost and a negation can sit inside any cover.

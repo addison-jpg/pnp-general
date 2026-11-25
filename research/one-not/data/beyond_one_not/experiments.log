@@ -1,0 +1,34 @@
+$ python3 -I research/one-not/tools/beyond_one_not/experiments.py local 40 1
+local lemma | corpus: 18 correct circuits with n <= 8 | failures 0 | least margin 0
+local lemma | random walk seed 1, 40 s, <= 6 NOT gates: 39363 correct circuits | failures 0 | least margin 0 | by number of NOT gates {0: 718, 1: 1606, 2: 1595, 3: 2252, 4: 4064, 5: 9420, 6: 19708}
+$ python3 -I research/one-not/tools/beyond_one_not/experiments.py worlds 1 0 1
+file | NOT gates | faces correct everywhere / 2^t | live NOT patterns | gates - base | repeated functions
+  cx44_1_junk.json | 1 | 0 / 2 | 2 | 53 | 11
+  cxMU_clean2.json | 1 | 0 / 2 | 2 | 24 | 0
+  cxMU_clean2_DD.json | 1 | 0 / 2 | 2 | 27 | 0
+  cxMU_dd.json | 1 | 0 / 2 | 2 | 30 | 0
+  ess_rand_clean_744.json | 1 | 0 / 2 | 2 | 4 | 0
+  fano_formula.json | 1 | 2 / 2 | 2 | 3 | 0
+  junk.json | 1 | 2 / 2 | 2 | 5 | 0
+  general_count_below_base_min.json | 4 | 0 / 16 | 8 | 4 | 0
+  general_count_below_base_t4.json | 4 | 0 / 16 | 8 | 61 | 48
+  general_count_below_base_t5.json | 5 | 0 / 32 | 8 | 46 | 36
+  general_count_below_base_t6.json | 6 | 0 / 64 | 8 | 59 | 41
+  pasch_s14_heavy_atmostone.json | 1 | 0 / 2 | 2 | 6 | 3
+  see_gap_n5.json | 1 | 2 / 2 | 2 | 6 | 3
+  star4.json | 1 | 2 / 2 | 2 | 44 | 20
+  star4b_threshold.json | 1 | 2 / 2 | 2 | 11 | 0
+  tri_all_5593.json | 1 | 0 / 2 | 2 | 7 | 0
+$ python3 -I research/one-not/tools/beyond_one_not/experiments.py worlds 60 1 1
+worlds | exactly 1 NOT gates | seed 1 | 60 s | 415658 mutations | circuits met with exactly 1 NOT gates: {'other': 163230, 'no face correct, no repeated function': 10744}
+  least (gates - base) among circuits with NO correct face and no repeated function: 4 (n = 5, 9 gates, base 5, all gates read: True); most live NOT patterns seen 2 of 2; saved research/one-not/data/beyond_one_not/essential_t1_seed1.json
+$ python3 -I research/one-not/tools/beyond_one_not/experiments.py worlds 80 2 1
+worlds | exactly 2 NOT gates | seed 1 | 80 s | 475456 mutations | circuits met with exactly 2 NOT gates: {'other': 132375, 'no face correct, no repeated function': 10976}
+  least (gates - base) among circuits with NO correct face and no repeated function: 6 (n = 5, 11 gates, base 5, all gates read: True); most live NOT patterns seen 4 of 4; saved research/one-not/data/beyond_one_not/essential_t2_seed1.json
+$ python3 -I research/one-not/tools/beyond_one_not/experiments.py worlds 80 3 1
+worlds | exactly 3 NOT gates | seed 1 | 80 s | 409887 mutations | circuits met with exactly 3 NOT gates: {'other': 120119, 'no face correct, no repeated function': 13431}
+  least (gates - base) among circuits with NO correct face and no repeated function: 3 (n = 7, 9 gates, base 6, all gates read: True); most live NOT patterns seen 8 of 8; saved research/one-not/data/beyond_one_not/essential_t3_seed1.json
+$ python3 -I research/one-not/tools/beyond_one_not/experiments.py notfree 30 2 1
+notfree: binary gates >= base | max NOT 2 | seed 1 | 477525 mutations, 40933 kept | counterexamples 0 | least margin 0 (n = 7, 6 gates, 0 NOT)
+$ python3 -I research/one-not/tools/beyond_one_not/experiments.py notfree 30 3 1
+notfree: binary gates >= base | max NOT 3 | seed 1 | 504203 mutations, 47018 kept | counterexamples 0 | least margin 0 (n = 7, 8 gates, 2 NOT)

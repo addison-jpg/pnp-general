@@ -1,0 +1,24 @@
+# asteroid: the native evaluator (one binary, no Python, no Lean needed to evaluate).
+# Install:  makepkg -si   (in this folder)
+# Proving claims marked `by lean` additionally needs the repository and elan/lake; evaluation does not.
+pkgname=asteroid-bin
+pkgver=0.4
+pkgrel=1
+pkgdesc="asteroid: a small language for circuits and claims about them (native evaluator)"
+arch=('x86_64')
+url="https://github.com/addison-jpg/pnp-general"
+license=('MIT')
+depends=('glibc')
+provides=('asteroid')
+source=("asteroid::https://github.com/addison-jpg/pnp-general/raw/main/asteroid/dist/linux/asteroid"
+        "hello.ath::https://github.com/addison-jpg/pnp-general/raw/main/hello.ath"
+        "hello.bench::https://github.com/addison-jpg/pnp-general/raw/main/hello.bench")
+sha256sums=('e5364b68583b559b0b360e3b44b0a1e7180daa9c4f25dc604058fb52996cd697'
+            'SKIP'
+            'SKIP')
+
+package() {
+  install -Dm755 asteroid "$pkgdir/usr/bin/asteroid"
+  install -Dm644 hello.ath "$pkgdir/usr/share/asteroid/hello.ath"
+  install -Dm644 hello.bench "$pkgdir/usr/share/asteroid/hello.bench"
+}

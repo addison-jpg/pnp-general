@@ -49,9 +49,9 @@ WORD      := checked | paper | tested | refuted | open | premise
 - A **circuit** has N inputs (points). `set I J K -> W` says: the wire W must compute the OR of the inputs I, J, K.
 - `base(c)` = sum over the sets of (size − 1). `witness(c)` = gates of any type that are 0 at a zero point of a set and 1 at two of its atoms; `orwitness(c)` = the same for OR gates only. `slack(c)` = `orwitness(c)` − `base(c)`; `anyslack` uses `witness`. A **cube** is a set of points fixed to 1; `slack` at a cube counts only the sets that avoid it.
 - `corpus W = GLOB` loads every circuit of every matching `.json` (one circuit) or `.jsonl` (one per line, bare or under the key `circuit`) file; files that are not circuits, are incorrect, or break the `where` limits are skipped and counted in the printed line. `claim forall c in W: EXPR` evaluates EXPR with `c` replaced by each circuit, in Python, and prints one summary line (TRUE on all, or FALSE with the first failing files); it is true only if it holds on all. With `by lean` each circuit is registered under a generated name `W_<i>` and one Lean claim per circuit goes into the one module; refused above 40 circuits, or above n = 8 for `forall cubes`. `count c in W: EXPR` prints how many satisfy EXPR. `plot hist FUNC W -> F.png` histograms FUNC(c).
-- `margin["name"](c)` is the margin of a conjecture in `one-not/tools/search/conjectures.py`; below 0 means a counterexample.
+- `margin["name"](c)` is the margin of a conjecture in `research/one-not/tools/search/conjectures.py`; below 0 means a counterexample.
 
-## Mixed states (extension `asteroid/ext_mixed.py`; Lean: `one-not/lean/PEqualNP/W951/AsteroidMixed.lean`)
+## Mixed states (extension `asteroid/ext_mixed.py`; Lean: `proofs/w951/PEqualNP/W951/AsteroidMixed.lean`)
 
 - A **mixed state** (Q, R): disjoint sets of points, the points of Q fixed to 1 and those of R fixed to 0. There are 3^n states.
 - The sets of the restricted problem are S_w ∖ R for the w with S_w ∩ Q = ∅ and |S_w ∖ R| ≥ 2 (**alive**). `base(Q, R)` = sum over alive w of (|S_w ∖ R| − 1).
@@ -62,20 +62,20 @@ WORD      := checked | paper | tested | refuted | open | premise
 
 ## prove (extension `asteroid/ext_eureka.py`)
 
-`prove "P" by T` writes `theorem asteroid_prove : P := by T` into a scratch module (import Mathlib) and runs `lake env lean` in `one-not/lean`. Accepted = true claim, rejected = false claim (exit code 1). Skipped without effect under `--no-lean` or without `lake`. T is one of decide, omega, simp, aesop, norm_num, rfl, simp_arith, trivial, `decide +kernel`. It is a stand-in; no tool called Eureka was found (`EUREKA.md`).
+`prove "P" by T` writes `theorem asteroid_prove : P := by T` into a scratch module (import Mathlib) and runs `lake env lean` in `proofs/w951`. Accepted = true claim, rejected = false claim (exit code 1). Skipped without effect under `--no-lean` or without `lake`. T is one of decide, omega, simp, aesop, norm_num, rfl, simp_arith, trivial, `decide +kernel`. It is a stand-in; no tool called Eureka was found (`EUREKA.md`).
 
 ## Engines
 
 | Step | Engine |
 |---|---|
 | every `claim` is evaluated when its line is read | Python |
-| every `claim … by lean` that Python found true is written as a theorem into `one-not/lean/PEqualNP/W951/Asteroid_<program>.lean` and built once at the end, each theorem by `decide +kernel` | Lean |
+| every `claim … by lean` that Python found true is written as a theorem into `proofs/w951/PEqualNP/W951/Asteroid_<program>.lean` and built once at the end, each theorem by `decide +kernel` | Lean |
 | `plot` | matplotlib |
 | `hunt … &` | a background Python process |
 
 Lean forms: `correct`, `witness`, `orwitness`, `slack` against an integer (or `base` for the two counts), and `forall cubes slack ≥ 0`.
 
-What a Lean form says about the project's circuits (`Circuit.eval`, `F2`, `baseDQ`): `one-not/lean/PEqualNP/W951/AsteroidSound.lean` (`correctB_sound_project`) and `AsteroidSound2.lean` (`card_F2_eq_orWitnessAt`, `slackNonnegAll_sound`); table in `README.md`, section "What the Lean theorems mean". Not covered: `witness`.
+What a Lean form says about the project's circuits (`Circuit.eval`, `F2`, `baseDQ`): `proofs/w951/PEqualNP/W951/AsteroidSound.lean` (`correctB_sound_project`) and `AsteroidSound2.lean` (`card_F2_eq_orWitnessAt`, `slackNonnegAll_sound`); table in `README.md`, section "What the Lean theorems mean". Not covered: `witness`.
 
 ## Result of a run
 

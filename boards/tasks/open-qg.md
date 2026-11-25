@@ -19,7 +19,7 @@
 
 ## Decided (one line each; the file holds the proof)
 
-- C1: L-qg-116 from L-qg-115, checked (wraps L117 / `Helpers.knill_of_ball`). -> `lean/PEqualNP/QuantumGravity/Open/L116OfL115.lean::L116_of_L115`
+- C1: L-qg-116 from L-qg-115, checked (wraps L117 / `Helpers.knill_of_ball`). -> `proofs/main/PEqualNP/QuantumGravity/Open/L116OfL115.lean::L116_of_L115`
 - C3: L-qg-169 CHECKED in full, `PCTC ⊆ EXP` (machine = iterGrow of a packed-state step over expPad(pairB x (un m)); N ≥ 2^m steps land on a cycle; standard axioms only). -> `Open/L169.lean::PCTC_subset_EXP`
 - C2: conditional `L119_of_knillParametrization : KnillParametrization → Gap.L119`; Haar-null half `haar_null_of_image` proved (images of lower-dimensional differentiable maps are Haar-null, via the Cayley chart). -> `Open/L119.lean`
 - C5 (Opus): L-qg-115 CHECKED, `haar_small_ball : Gap.L115` (C = 4); Fubini over C2's Cayley chart; standard axioms only. -> `Open/L115.lean`

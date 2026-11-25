@@ -1,12 +1,12 @@
 """Cross-check of asteroid/ext_mixed.py: the direct naive mixed slack / MixedStep against continuous.py, on two small circuits.
 Run from the repository root:  python3 -I asteroid/tests/test_mixed.py"""
 import sys, os, json
-sys.path.insert(0, os.getcwd()); sys.path.insert(0, os.path.join(os.getcwd(), "one-not/tools/search"))
+sys.path.insert(0, os.getcwd()); sys.path.insert(0, os.path.join(os.getcwd(), "research/one-not/tools/search"))
 import asteroid.asteroid as A      # sets up sys.path for core / continuous
 from asteroid import ext_mixed as X
 circuits = {
   "tiny": {"n": 4, "sets": [[0, 1, 2], [2, 3]], "gates": [["or", 0, 1], ["or", 4, 2], ["or", 2, 3]], "outs": [5, 6]},
-  "ess_rand_clean_744": json.load(open("one-not/data/witnesses/ess_rand_clean_744.json")),
+  "ess_rand_clean_744": json.load(open("research/one-not/data/witnesses/ess_rand_clean_744.json")),
 }
 for name, c in circuits.items():
     c = {k: c[k] for k in ("n", "sets", "gates", "outs")}; n = c["n"]; w = X._tables(c); bad = 0; states = 0

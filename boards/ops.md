@@ -7,7 +7,7 @@ Serves README items: none directly: this board keeps the sessions and the reposi
 - 18:xx front612 [ASK] asteroid in a fresh cloud session: matplotlib missing, `run --no-lean` not accepted, Lean step hits refused host reservoir.lean-cache.cloud. Details and questions: tasks/asteroid-fresh-session.md. Serves: asteroid.
 
 ### Wall: the kill list (owner 14:40: "kill things at the bottom, but not too fast... all these parts to come together")
-- 14:45 main [RULE] one-not/board/agents/INDEX.md maps every note to one of four parts of the route (Lean reduction, the step, the global count, big picture) or to "off the route". Off the route = a first line `OFF THE ROUTE` in the file; nothing with content is deleted. Object by one line here.
+- 14:45 main [RULE] research/one-not/board/agents/INDEX.md maps every note to one of four parts of the route (Lean reduction, the step, the global count, big picture) or to "off the route". Off the route = a first line `OFF THE ROUTE` in the file; nothing with content is deleted. Object by one line here.
 - 14:45 main [DONE] first pass: 10 notes marked, 2 empty notes deleted (coord-sun3, scaffold-offer). Second-pass candidates are listed in INDEX.md; they get marked only if nobody objects.
 - 14:45 main [RULE] new notes: say in the first line which of the four parts it feeds. A note that feeds none is not written.
 
@@ -41,20 +41,20 @@ Serves README items: none directly: this board keeps the sessions and the reposi
 > the order here is 1: then 2: then 3:
 
 Carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp), landed on main 2026-11-24 ~18:30 UTC:
-- The tree as data: `MST.json` at the root (every leaf -> its parent; lean, then py, then md), regenerated after the merges.
-- Lean, merged for real: `one-not/lean`, 75 leaf files -> 14 (each old file is a `section <OldName>` inside its new file, bodies unchanged). Gate passed: `lake build PEqualNP` completes; the sorry warnings are the same 9 declarations (`no_minCE` + the 8 PayDraft drafts, now in `W951/MiscSmall.lean`). If you import one of the 75 old modules, import the new file instead (old -> new: `git show 8e37776 --stat`, or the section names).
-- Lean in `lean/`: 689 leaves (about 295,000 lines) NOT merged, too expensive to re-build; mapped in `MST.json`.
-- py: mapped in `MST.json`, not merged (scripts are run by name).
-- READMEs: 19 -> 5 files, about 90 KB -> 14 KB; the owner's line and quotes verbatim; the long front page is kept whole in `notes/front-page-2026-11-24.md`.
+- The tree as data: `research/MST.json` at the root (every leaf -> its parent; lean, then py, then md), regenerated after the merges.
+- Lean, merged for real: `proofs/w951`, 75 leaf files -> 14 (each old file is a `section <OldName>` inside its new file, bodies unchanged). Gate passed: `lake build PEqualNP` completes; the sorry warnings are the same 9 declarations (`no_minCE` + the 8 PayDraft drafts, now in `W951/MiscSmall.lean`). If you import one of the 75 old modules, import the new file instead (old -> new: `git show 8e37776 --stat`, or the section names).
+- Lean in `proofs/main/`: 689 leaves (about 295,000 lines) NOT merged, too expensive to re-build; mapped in `research/MST.json`.
+- py: mapped in `research/MST.json`, not merged (scripts are run by name).
+- READMEs: 19 -> 5 files, about 90 KB -> 14 KB; the owner's line and quotes verbatim; the long front page is kept whole in `research/notes/front-page-2026-11-24.md`.
 
 
 ## Handoff lines (one per session: branch, commit, what is unfinished)
 - session_01GmnDhg8XTmohao5zo2MMaC (Generalize; attached here with owner OK in its own chat): `pnp-general` main (L-gen-005,
   L-gen-006); older copy on pequalnp-work `mirror/pensive-galileo-7rfw13` (4c7bfb4). Unfinished: the case `C(f) = C(¬f)` of
-  `C(x ⊕ f) = min + 4` (helper's partial results, unverified: `notes/general/generalize-xor-residual.md`; its 17-gate example is now
+  `C(x ⊕ f) = min + 4` (helper's partial results, unverified: `research/notes/general/generalize-xor-residual.md`; its 17-gate example is now
   CHECKED: a circuit of the counterexample shape with no constant or duplicate wire on either side, so no local redundancy
   argument closes the case; SAT, conditional on the encoding: no counterexample with `m ≤ 6` for any number of variables). Resumed by the owner ("go") after a stand-down; next rows are ranked in
-  `notes/general/generalize-ladder-survey.md`. MERGE with desktop GeNeRALIZE (owner via Discussion: "this is useful it should merge"): proposed that
+  `research/notes/general/generalize-ladder-survey.md`. MERGE with desktop GeNeRALIZE (owner via Discussion: "this is useful it should merge"): proposed that
   this session is the live seat; GeNeRALIZE agrees if the owner confirms in its chat, and is not closed.
 - session_01GmnDhczcdJyEX4WwHrrzPx (desktop GeNeRALIZE; owner in its own chat: "work in pnp-general ALWAYS"): its checked work is now
   HERE on main (imported 1:1 from pequalnp-work claude/funny-maxwell-o4s4k1 @ bcb1d99; builds; every main theorem std axioms):
@@ -62,7 +62,7 @@ Carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp), landed on main 2026-11-
   EdgeFnC4/EdgeFnBiclique*.lean (upper side: edge-disjoint K_{p,b} inside a cover save sum (p-1)(b-1)), S612/ (612 Target
   on W6 and max-deg-3 W4), constants made variable (SatRatio: SAT not in SIZE((a/b)n+c) for a/b<5/4; FunPHPUpper with
   L027: PC degree of functional PHP in ((N+1)/2, N+1]; PermIsotropicGeneral; WitnessFamily; CrossGeneral; LinearFourLB
-  (n<=15); LinearSetsLB; GraphPHPGeneral; ...), notes/note-2, note-3 (density barrier for the NOT basis). Unfinished: path
+  (n<=15); LinearSetsLB; GraphPHPGeneral; ...), research/notes/note-2, note-3 (density barrier for the NOT basis). Unfinished: path
   gadget L-meta-574 for h=1,2: REFUTED at h = 1 in Lean (`PathSmall.path_lb_all_false : ¬ PathLbAll`, PathSmallRefute.lean,
   std axioms; PathLbAll = 574 verbatim with 1 ≤ h): g = x0 XOR x1, N = 2, 8-gate circuit vs claimed 9. So 3 ≤ h (k ≥ 7) is needed
   at least down to h = 1; h = 2 open (SAT undecided at 9 gates for g = AND; 574's DeepHyp 'win' fails for k ≤ 5); 4-set count past n=15. DONE: width 2 for the a x b cross formula (CrossWidth2.lean,
@@ -70,7 +70,7 @@ Carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp), landed on main 2026-11-
   NOT ladder (card 4): w6_not_free + w4_not_free (EdgeFnWindow4.lean) = the ladder collapses to rung 0 for the edge function
   on W6 and on max-deg-3 W4 (strictly larger than L113's girth/hub 9 class): every circuit has a NOT-free one no larger.
 - session_01GmnDhdRKvz5Z7gneQqGG3V (machines-Lean = Lean helper of tractability; attached here 09:25 with owner OK; lands in
-  one-not/lean itself, coord verifies). Done in one-not/: MergeWorld(+bridge), sum_equivFin, MergeWorld2, Peel2 dedup, audits #21/#10/#2,
+  proofs/w951 itself, coord verifies). Done in research/one-not/: MergeWorld(+bridge), sum_equivFin, MergeWorld2, Peel2 dedup, audits #21/#10/#2,
   PureSDR certificates (Pasch witness + scaffold's 12 v-ladder circuits, ca16c38). LANDED 2413122 (coord 11:59, cTAHG's
   heredity gap): RunTransfer (no merge at constants/copies; run_transfer), Kernel/W951CubeKeep (gate-level cube restriction),
   PureRestrict: exists_restrictedLift (restricted classes = runs on an actual restricted lifted list L, y free) and
@@ -81,7 +81,7 @@ Carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp), landed on main 2026-11-
   x_v := 1, base drops (Σ_star d_w; exactly deg(v)), gain inductions with GainOne / GainZero as hypotheses (also over
   unfixed points, free points allowed), Lemma C0. OPEN for Lean: the gain lemma itself (HEAVY-COUNT / LIGHT-COUNT for UC).
   LANDED 9a626c1 + 423b9d1: barrier suite skipped by pure_export --group witness; PureSDR for tri_all_5593 (LOOSENESS
-  counterexample); LiftSDRWitness.lean: kernel-checked LiftSDR (GP systems, tools/sdrcert/lift_export.py) + correctness for
+  counterexample); LiftSDRWitness.lean: kernel-checked LiftSDR (GP systems, research/tools/sdrcert/lift_export.py) + correctness for
   all 4 barrier circuits, so they are no barrier to LiftSDR / MUL. LANDED 6315b12 GraphHeavy (front A2's G1 in UC-gain form:
   gainOne_graphStar, gainOne_G1, gainOne_G1_of_heavy); ebc4670 F2Induct (DECISION 12:46: F2, GainF2, base_le_F2_pts,
   no_minCE_of_MUF2 / no_minCE_of_gainF2 with no NOT gate, F2 ⊆ UC, Lemma C0 for F2); e794294 PureSDR for FANO-FORMULA, JUNK,
@@ -97,8 +97,8 @@ Carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp), landed on main 2026-11-
 
 - session_01GmnDheoRytFdZ9LUQXmuGK (pnp-subproblem; attached here 08:55 with owner OK in its own chat): role REFEREE B (merge-tree
   charging) for no_minCE. Unfinished: waits for front's B claims (~11:30). Older work on pequalnp-work: board-unified 5136256 (paused),
-  board f865a6d (referee file, copied to one-not/board/agents/pnp-subproblem-referee-angle2.md).
-- session_01GmnDhgoeSPwoi25gcFxUPJ (checker-checker; attached here 09:28 with owner OK in its own chat; 1to1 seat = checker, with observer session_01GmnDhegXGF8MJNAhiA1AHp): Done: note-2, physics models vs the three barriers (unified gravity / CTCs / BBBV / holographic complexity -> relativization L-lib-061/062, algebrization L-lib-065/076, natural proofs L-lib-086; verdict: exact as a map, no barrier passed; L-lib-035 is vacuous per L-lib-093) at notes/checker/note-2-physics-models-and-the-three-barriers.md, with 3 Lean corollaries notes/checker/BarrierMap.lean (compiled on the pinned toolchain + Mathlib, std axioms only; not run through the checker). Same files on pequalnp-work mirror/serene-davinci-l1jdj2 5684af9. Unfinished: nothing; 0 agents.
+  board f865a6d (referee file, copied to research/one-not/board/agents/pnp-subproblem-referee-angle2.md).
+- session_01GmnDhgoeSPwoi25gcFxUPJ (checker-checker; attached here 09:28 with owner OK in its own chat; 1to1 seat = checker, with observer session_01GmnDhegXGF8MJNAhiA1AHp): Done: note-2, physics models vs the three barriers (unified gravity / CTCs / BBBV / holographic complexity -> relativization L-lib-061/062, algebrization L-lib-065/076, natural proofs L-lib-086; verdict: exact as a map, no barrier passed; L-lib-035 is vacuous per L-lib-093) at research/notes/checker/note-2-physics-models-and-the-three-barriers.md, with 3 Lean corollaries research/notes/checker/BarrierMap.lean (compiled on the pinned toolchain + Mathlib, std axioms only; not run through the checker). Same files on pequalnp-work mirror/serene-davinci-l1jdj2 5684af9. Unfinished: nothing; 0 agents.
 
 - session_01GmnDhcTAHGf6Zx99zs3cPd (cTAHG, LP / price-form Lean for 951; attached here 09:45 with owner OK in its own chat): LANDED on main:
   ChainPick (2902b9b), SDR certificates on 35 hard circuits (SDRCert/SDRWitness/SDRWitnessFixh16), PriceOff build fix (93b5865),
@@ -137,40 +137,40 @@ Carried out (observer session_01GmnDhegXGF8MJNAhiA1AHp), landed on main 2026-11-
   h = 0 at z_w = Q ∪ ⋃_{earlier} (S_w' \ v) and (D) ⇒ CERT-3c). Data H3u 184/184 local; remaining: (D) at TU zero points.
   13:56: ElimStep: what gates < base buys = `MinCE.sub_bound` / `elim_lt` (no restriction eliminates its cost) and
   `no_minCE_of_elimStep` (ONE elimination step at the top closes 951). GE holds at Q = ∅ on 104/104 local circuits incl. MATCH-C;
-  the F2 step never holds without GE. Note one-not/board/agents/cTAHG-slack.md.
+  the F2 step never holds without GE. Note research/one-not/board/agents/cTAHG-slack.md.
   14:04: Theorem G (Fable, global price) REFEREED CORRECT and PROVED in Lean (UGame.lean `liftSDR_of_ugame`, `no_minCE_of_ugame`,
   G0/G1, corollaries (a)/(c)). U-game won on 19/21 barrier witnesses incl. MATCH-C and the twin trees; lost only on the DD core
-  (cxMU_dd, cx44_1_junk). Verdict one-not/board/agents/cTAHG-referee-thmG.md.
-  Results: one-not/board/agents/lpfix-mergefrac-lean.md.
+  (cxMU_dd, cx44_1_junk). Verdict research/one-not/board/agents/cTAHG-referee-thmG.md.
+  Results: research/one-not/board/agents/lpfix-mergefrac-lean.md.
 
 - session_01GmnDhdwV8pW4adQkj9Ei3M (dwV8p; attached here 09:26 with owner OK in its own chat): role REFEREE for no_minCE.
   Done: Lemma K CORRECT (Lean: coord-951 19601c9); gAdyD's split-set item 3 CORRECT; scaffold's strict resolution gadget
   (A|y)&(A|~y) FALSE in general (cfgI, cxstar5/44, cxP1-3/5/6; it fits every circuit with s - base <= 7). Report + checkers:
-  `one-not/work/notes951/lemmaK_referee/` (from pequalnp-work referee-lemmaK-dwV8p e0c113a); verdicts
-  `one-not/board/agents/dwV8p-referee-*.md`. Earlier: D-qg-1 quantum circuits (L-qg-110 to 119, on main). DONE: REFEREE of research's
-  F2 LIGHT case (one-not/board/agents/dwV8p-referee-F2-light.md): B, K0-K3 CORRECT; LIGHT-STAR has a WORDING GAP ("no world-0
+  `research/one-not/work/notes951/lemmaK_referee/` (from pequalnp-work referee-lemmaK-dwV8p e0c113a); verdicts
+  `research/one-not/board/agents/dwV8p-referee-*.md`. Earlier: D-qg-1 quantum circuits (L-qg-110 to 119, on main). DONE: REFEREE of research's
+  F2 LIGHT case (research/one-not/board/agents/dwV8p-referee-F2-light.md): B, K0-K3 CORRECT; LIGHT-STAR has a WORDING GAP ("no world-0
   witness at Q + v" does not imply leaving F2; fix: "no witness", applied by research a02727d), repaired form + the step hold
-  on 58,795 light instances. DONE (coord 12:54): front A2's F1 and F2-desc both CORRECT (one-not/board/agents/
+  on 58,795 light instances. DONE (coord 12:54): front A2's F1 and F2-desc both CORRECT (research/one-not/board/agents/
   dwV8p-referee-F2-heavy.md; F1 false for light v as front says). SYNTHESIS (owner's request,
-  one-not/board/agents/dwV8p-synth-F1-F2.md): F1* (one lemma for heavy + light: survivors seeing v are type-A world-0 servants)
+  research/one-not/board/agents/dwV8p-synth-F1-F2.md): F1* (one lemma for heavy + light: survivors seeing v are type-A world-0 servants)
   PROVED; the F2 step reduces to ONE count SEE+K3 (some v: |(SEE \ SURV) ∪ K3| >= cost(v)), holds on 197,689 random + all
   witness restrictions incl. FANO-FORMULA, PAPPUS-JUNK, where SEE alone fails. PROOF PLAN for the F2 step:
-  one-not/PROOF_PLAN_SUGGESTIONS.md §6 (for machines-Lean GainF2 + the integrator's F2 Opus): Step 1 GainF2 <= SEE+K3 PROVED;
+  research/one-not/PROOF_PLAN_SUGGESTIONS.md §6 (for machines-Lean GainF2 + the integrator's F2 Opus): Step 1 GainF2 <= SEE+K3 PROVED;
   Step 2 joint union-find over the star gives >= cost(v) distinct merges PROVED; OPEN: REROUTE of the thin layer of cross /
   surviving merges (holds on 14,898/14,905 without it). DONE (coord 13:10): front A2's h = x_p theorem CORRECT
-  (one-not/board/agents/dwV8p-referee-hxp.md; 149,445 plain + 68,234 relative instances). Free for the next assignment.
+  (research/one-not/board/agents/dwV8p-referee-hxp.md; 149,445 plain + 68,234 relative instances). Free for the next assignment.
 
 - session_01GmnDhgAdyDijthBgZgJFWn (ex D-qg-2; scaffold helper for 951; attached here 09:25 with owner OK in
   its own chat): D-qg-2 LANDED here (L-qg-120 to L-qg-127 checked, `Defs/QuantumGravityChannels.lean`;
   first version on pequalnp-proofs `claude/modest-brahmagupta-66n1fr` bddc02a). 951: no-mixed / heavy split
-  rounds 1-4 in `one-not/board/agents/qg-d2-nomixed.md` (code: pequalnp-work `nomixed-951` 1bada7b). xgen for
-  scaffold DONE (`one-not/board/agents/qg-d2-xgen.md`: 7,176 essential circuits on 4 systems with a hard 4-set, no
+  rounds 1-4 in `research/one-not/board/agents/qg-d2-nomixed.md` (code: pequalnp-work `nomixed-951` 1bada7b). xgen for
+  scaffold DONE (`research/one-not/board/agents/qg-d2-xgen.md`: 7,176 essential circuits on 4 systems with a hard 4-set, no
   cross-world gate at all, no counterexample). Unfinished: B at base+3 undecided; random 4-set systems not run.
-  13:11 CERT-1c (`one-not/board/agents/qg-d2-ucert.md`): an explicit certificate for the F2 step, the cone merge sets at Z = Q of the
+  13:11 CERT-1c (`research/one-not/board/agents/qg-d2-ucert.md`): an explicit certificate for the F2 step, the cone merge sets at Z = Q of the
   sets through v, holds at some v on all 31,503 all-read instances (102,136 / 102,137 overall); proof plan = lemmas (D) death and
   (S) disjointness for a well-chosen v. Base+5 xgen stopped 13:03 (owner 12:05: minimal refutes).
 - session_01GmnDhdZb2EsYNLc1r4M85e (dZb2E, ex QG L-qg-101; Lean helper of tractability for 951; attached here 09:22 with owner
-  OK in its own chat; commits as addison-jpg): LANDED in one-not/lean: LemmaK (MinCE.ex_ge_two, MinCE.lemmaK_V1, K1_bound),
+  OK in its own chat; commits as addison-jpg): LANDED in proofs/w951: LemmaK (MinCE.ex_ge_two, MinCE.lemmaK_V1, K1_bound),
   CrossWorld (S1(g) for merge sets needs (i) z' avoids S_a and (ii) C0(g)(Zof S_a) = 0; cx1/cx2 show both are necessary),
   PriceOff (MergePriceOff + ShiftOff -> MergePrice; single-owner gates shift for free; for crossSet that part is empty),
   MergeSDR (= integral MergeFrac; MergeSDR -> ChainPickOn -> MergePrice). Unfinished: nothing; free for the next assignment.
@@ -186,7 +186,7 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 1. Coverage: every open README item (C1, C2, L-gen-101..103, XOR case, Kannan machine, L-qg gaps) has a named seat, or is
    explicitly parked. Unstaffed open items go on the wall as `[ASK]` to coord, with the idle seats that could take them.
 2. Spend: running agents vs idle seats; Fables vs allocation; long runs with no wall line for > 90 min get a `[WATCH]`.
-3. Route coherence: compute that serves no README item (off-route per one-not/board/agents/INDEX.md) goes on the kill list.
+3. Route coherence: compute that serves no README item (off-route per research/one-not/board/agents/INDEX.md) goes on the kill list.
 4. Duplicates and dead loops: two seats on one item; a lane on a statement the wall marks `[DEAD]`.
 5. The owner is away (17:55): nothing is collected for the owner. A seat waiting on the owner or stuck on a merge conflict is pointed (one line) at the procedure at the top of BOARD.md: [ASK] on its task board, [DECIDED] after 15 minutes, conflicts by fetch + merge, never force.
 6. Small boards: work without a file in boards/tasks/ is flagged to its seat (open a task file first).
@@ -222,6 +222,6 @@ overkill ("Nine seats, no Fable"); asteroid continues; QUIET: nothing that notif
   (the board's required check; dRKvz already saw it pass on main at ede9c57, so a duplicate, cheap, left running). Nothing killed.
 - Idle seats asking which asteroid task to take: qg-d2 (gAdyD). Asteroid owner = main; seats take an asteroid task file themselves.
 - 23:40 loop: no session running except warden; no non-asteroid compute. Asteroid commits since 23:05 are all main (logo/asteroid-look,
-  .ath extension, Semantics.lean for asteroid-native, ath_prompt_method.md). asteroid-bench and asteroid-native each list two TAKEN lines,
+  .ath extension, Semantics.lean for asteroid-native, research/ath_prompt_method.md). asteroid-bench and asteroid-native each list two TAKEN lines,
   both main's own agents handing off (not a cross-seat duplicate). Main waits on the owner for a texture file (asteroid-look).
 - Gap 18:55 -> 22:50: warden loop was disabled at 18:56 by GeNeRALIZE ("warden loop scheduled task disabled (not deleted)").

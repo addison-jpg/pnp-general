@@ -1,6 +1,6 @@
 {
   "name": "fano_slack",
-  "entry": "one-not/tools/tensor/shard_fano.py",
+  "entry": "research/one-not/tools/tensor/shard_fano.py",
   "args": [],
   "shards": 20,
   "output": "fano_slack.jsonl",

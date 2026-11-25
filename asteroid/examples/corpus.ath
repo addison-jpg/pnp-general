@@ -1,6 +1,6 @@
 # asteroid corpus: one claim over many circuits.
 # Every witness circuit with at most 9 inputs (incorrect or non-circuit files are skipped and counted).
-corpus W = one-not/data/witnesses/*.json where n <= 9
+corpus W = research/one-not/data/witnesses/*.json where n <= 9
 claim forall c in W: correct(c) by lean
 claim forall c in W: slack(c) >= 0 by lean
 claim forall c in W: witness(c) >= base(c)
@@ -9,6 +9,6 @@ count c in W: nots(c) = 0
 plot hist slack W -> asteroid/out/slack_hist.png
 
 # The nonlocal files: witness(c) >= base(c) is FALSE for general_count_below_base_*; shown with count.
-corpus N = one-not/data/witnesses/nonlocal/*.json where n <= 9
+corpus N = research/one-not/data/witnesses/nonlocal/*.json where n <= 9
 count c in N: witness(c) >= base(c)
 count c in N: witness(c) < base(c)

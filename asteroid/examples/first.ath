@@ -15,7 +15,7 @@ claim slack(tiny) = 0 by lean
 claim forall cubes slack(tiny) >= 0 by lean
 
 # the same question on the Fano formula (7 inputs, 17 gates, tight: slack 0)
-let fano = load one-not/data/witnesses/fano_formula.json
+let fano = load research/one-not/data/witnesses/fano_formula.json
 claim slack(fano) = 0 by lean
 claim forall cubes slack(fano) >= 0 by lean
 plot phi tiny fano -> asteroid/out/first.png

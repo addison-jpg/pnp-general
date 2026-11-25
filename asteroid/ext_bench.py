@@ -3,7 +3,7 @@
   let NAME = load FILE.bench        read a circuit
   save NAME -> FILE.bench           write a circuit (inputs x0 x1 ..., gates g0 g1 ...)
 
-This is the same reader as the Lean module one-not/lean/PEqualNP/AsteroidLang/Bench.lean, function for
+This is the same reader as the Lean module asteroid/native/AsteroidLang/Bench.lean, function for
 function: parse, print_netlist, to_circ, of_circ. A netlist is a dict
 {"name": str, "inputs": [str], "outputs": [str], "gates": [[signal, OP, [operand]]], "ors": [[output, [input]]]}.
 

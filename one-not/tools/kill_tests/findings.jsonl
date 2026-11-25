@@ -1,2 +1,0 @@
-{"id": "98a42596", "time": "2026-11-24 19:35", "who": "main's Fable (chain sum)", "serves": "L5, continuous-mapping idea 1", "word": "refuted", "statement": "Level means of slack are NOT nonincreasing on the twin trees: the mean slack over one-point cubes exceeds slack of the empty cube by 2.29 (so 'monotone level means' cannot prove 0 <= Phi(0) for all correct circuits).", "evidence": ["one-not/tools/kill_tests/c3_avg.py", "one-not/board/agents/fable-chain-sum.md"], "by": ["main's Fable (chain sum)"]}
-{"id": "98a42596", "by": ["up-C4"]}

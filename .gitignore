@@ -12,7 +12,7 @@
 .pnp/
 __pycache__/
 
-# heavy generated search output (see one-not/PIPELINE.md)
+# heavy generated search output (see research/one-not/PIPELINE.md)
 artifacts/
 __pycache__/
 boards/tree.json

@@ -1,10 +1,10 @@
 # Boards and append-only records: git keeps BOTH sides' lines instead of raising a conflict.
 BOARD.md merge=union
 boards/** merge=union
-LITERATURE.md merge=union
-one-not/DEAD_ENDS.md merge=union
-one-not/board/agents/INDEX.md merge=union
-NAMES.md merge=union
+research/LITERATURE.md merge=union
+research/one-not/DEAD_ENDS.md merge=union
+research/one-not/board/agents/INDEX.md merge=union
+research/NAMES.md merge=union
 **/findings.jsonl merge=union
 boards/TREE.md merge=union
 # asteroid (.ath) is not a GitHub Linguist language (Linguist adds one only after ~200 repositories use it), so the
@@ -12,8 +12,8 @@ boards/TREE.md merge=union
 # linguist-detectable=false keeps them out of the bar, where they showed as a confusing "Ruby".
 *.ath linguist-language=Ruby linguist-detectable=false
 # Generated files (each says so at its top): collapsed in diffs.
-NAMES.md linguist-generated
-MST.json linguist-generated
+research/NAMES.md linguist-generated
+research/MST.json linguist-generated
 
 # Launchers: the sh scripts must keep LF (Git Bash on Windows), the Windows scripts keep CRLF. Git never converts them.
 bin/asteroid text eol=lf

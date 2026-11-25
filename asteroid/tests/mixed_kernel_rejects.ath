@@ -1,5 +1,5 @@
 # The kernel must REJECT this: mslack(e, {}, {}) is 1 (6 witness gates, base 5), not 2. Expected result: Lean FAILED, exit 1.
 # Run: python3 -m asteroid run asteroid/tests/mixed_kernel_rejects.ath ; then delete the generated module
-# one-not/lean/PEqualNP/W951/Asteroid_mixed_kernel_rejects.lean (and its build products).
-let e = load one-not/data/witnesses/ess_rand_clean_744.json
+# proofs/w951/PEqualNP/W951/Asteroid_mixed_kernel_rejects.lean (and its build products).
+let e = load research/one-not/data/witnesses/ess_rand_clean_744.json
 claim! mslack(e, {}, {}) = 2 by lean

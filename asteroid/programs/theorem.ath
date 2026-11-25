@@ -1,7 +1,7 @@
 # The Theorem (L_meta_951), on data. README items: Theorem, D1, D5, D8, L1, L5, T3, T4.
 # Statement: a correct circuit with at most one NOT gate has gates(c) >= base(c) = sum over sets of (|S| - 1).
 # Here: every witness circuit with n <= 9 (the circuits the project searched; incorrect ones are skipped).
-corpus W = one-not/data/witnesses/*.json where n <= 9
+corpus W = research/one-not/data/witnesses/*.json where n <= 9
 claim forall c in W: correct(c) by lean            # hypothesis of the Theorem: the outputs compute the ORs
 conjecture theorem: gates(c) >= base(c)            # the Theorem itself
 conjecture count: slack(c) >= 0                    # D5/D8: |witness(empty cube)| >= base (the count behind it)
@@ -29,7 +29,7 @@ claim theorem(w)
 claim gates(w) >= base(w)
 claim forall cubes slack(w) >= 0 by lean           # D8: the count at every cube; with L5/L7 this is the whole Theorem for w
 # the Fano formula: tight, 7 inputs
-let fano = load one-not/data/witnesses/fano_formula.json
+let fano = load research/one-not/data/witnesses/fano_formula.json
 claim gates(fano) >= base(fano)
 claim forall cubes slack(fano) >= 0 by lean
 # WISH: claim forall c in W: nots(c) <= 1 -> gates(c) >= base(c)   (an implication, so the hypothesis of the Theorem is part of the claim)

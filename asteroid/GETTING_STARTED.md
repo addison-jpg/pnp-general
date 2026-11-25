@@ -163,7 +163,7 @@ Close Git Bash and open it again so that `lake` is on the PATH. Then fetch the p
 is several GB and you do it once:
 
 ```bash
-cd one-not/lean && lake exe cache get && cd ../..
+cd proofs/w951 && lake exe cache get && cd ../..
 ```
 
 Run the first program again:

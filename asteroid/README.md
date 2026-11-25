@@ -1,6 +1,6 @@
-<picture><source media="(prefers-color-scheme: dark)" srcset="../site/logo-dark.svg"><img alt="4STeroid (asteroid)" src="../site/logo-light.svg" height="56"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="site/logo-dark.svg"><img alt="4STeroid (asteroid)" src="site/logo-light.svg" height="56"></picture>
 
-*The logo is lettered in two fan-made fonts: "4ST" in the style of Terezi Pyrope (her capitals, A as 4) and "eroid" in the style of Vriska Serket, from* Homestuck, *Andrew Hussie's webcomic (2009 to 2016), a story in which most of the characters write code and the plot runs on game rules and timelines. Thanks to Hussie, to the Homestuck: Beyond Canon team (Addison loved the existentialist Dirk monologues), and to the makers of the fonts terezzzzzzz and Arachnidsgrip1. Details: [`site/LOGO.md`](../site/LOGO.md).*
+*The logo is lettered in two fan-made fonts: "4ST" in the style of Terezi Pyrope (her capitals, A as 4) and "eroid" in the style of Vriska Serket, from* Homestuck, *Andrew Hussie's webcomic (2009 to 2016), a story in which most of the characters write code and the plot runs on game rules and timelines. Thanks to Hussie, to the Homestuck: Beyond Canon team (Addison loved the existentialist Dirk monologues), and to the makers of the fonts terezzzzzzz and Arachnidsgrip1. Details: [`asteroid/site/LOGO.md`](site/LOGO.md).*
 
 # asteroid
 
@@ -10,8 +10,8 @@ simple, framework"; "please call it asteroid").
 
 | Engine | Does | Built on |
 |---|---|---|
-| Python | evaluates every claim at once, searches, runs background jobs | `one-not/tools/search` |
-| Lean | brute force in the kernel: a `by lean` claim becomes a theorem proved by `decide +kernel` | `one-not/lean/PEqualNP/W951/Asteroid.lean`, `SearchCheck.lean` |
+| Python | evaluates every claim at once, searches, runs background jobs | `research/one-not/tools/search` |
+| Lean | brute force in the kernel: a `by lean` claim becomes a theorem proved by `decide +kernel` | `proofs/w951/PEqualNP/W951/Asteroid.lean`, `SearchCheck.lean` |
 | matplotlib | pictures | `asteroid/out/*.png` |
 
 An object is written once; asteroid sends the same object to all three.
@@ -28,11 +28,11 @@ claim correct(tiny) by lean
 claim slack(tiny) = 0 by lean
 claim forall cubes slack(tiny) >= 0 by lean
 
-let fano = load one-not/data/witnesses/fano_formula.json
+let fano = load research/one-not/data/witnesses/fano_formula.json
 claim forall cubes slack(fano) >= 0 by lean
 plot phi tiny fano -> asteroid/out/first.png
 hunt "C4 count (flip classes)" 20 4 1 &
-record one-not/data/witnesses C2 checked "…"
+record research/one-not/data/witnesses C2 checked "…"
 ```
 
 ```bash
@@ -94,10 +94,10 @@ c = OR(x2, x3)
 
 The one addition is the comment directive `#@ or b = x0 x1 x2`: the output `b` must compute the OR
 of those inputs. The grammar, the meaning of a file and the sources are in [`BENCH.md`](BENCH.md).
-The reader and writer are a Lean module (`one-not/lean/PEqualNP/AsteroidLang/Bench.lean`); the Python
+The reader and writer are a Lean module (`asteroid/native/AsteroidLang/Bench.lean`); the Python
 reader (`ext_bench.py`) follows the same grammar, and `python3 -I asteroid/tests/test_bench.py`
 compares the two on every `.bench` file of the repository. Every witness circuit under
-`one-not/data/witnesses/` has its `.bench` file next to the JSON file.
+`research/one-not/data/witnesses/` has its `.bench` file next to the JSON file.
 
 ## The language
 
@@ -125,7 +125,7 @@ compares the two on every `.bench` file of the repository. Every witness circuit
 | `record DIR ITEM WORD "STATEMENT"` | a finding in the board tree; skipped if a claim is false or Lean did not build |
 
 Python proposes, Lean decides: a `by lean` claim counts only when the generated module
-`one-not/lean/PEqualNP/W951/Asteroid_<script>.lean` builds. Lean forms exist for `correct`, `witness`,
+`proofs/w951/PEqualNP/W951/Asteroid_<script>.lean` builds. Lean forms exist for `correct`, `witness`,
 `orwitness`, `slack` (at the empty cube), `forall cubes slack ≥ 0`, `hyps`, `theorem`, and the mixed forms.
 
 ## Runs so far
@@ -149,7 +149,7 @@ Axioms of the generated theorems: `propext` only.
 
 A `by lean` theorem is a statement about asteroid's bit tables. These theorems, proved once for every circuit
 (axioms `propext`, `Classical.choice`, `Quot.sound`), turn it into a statement about the project's circuits
-(`Defs/CircuitLowerBounds.lean`: `Circuit.eval`). Files `one-not/lean/PEqualNP/W951/AsteroidSound.lean` and
+(`Defs/CircuitLowerBounds.lean`: `Circuit.eval`). Files `proofs/w951/PEqualNP/W951/AsteroidSound.lean` and
 `AsteroidSound2.lean`. `C.toGates` is the circuit as a gate list of the project, `C.setFin w` is set number `w`
 as a `Finset (Fin n)`, `maskOf Q` is the cube `Q` as a bit mask.
 
@@ -187,7 +187,7 @@ type) and about mixed slack have no soundness theorem yet and stay statements ab
 
 ## Cheap theorems on top (AsteroidCheap.lean)
 
-Short theorems (`one-not/lean/PEqualNP/W951/AsteroidCheap.lean`, `AsteroidCheapMixed.lean`), each connecting two
+Short theorems (`proofs/w951/PEqualNP/W951/AsteroidCheap.lean`, `AsteroidCheapMixed.lean`), each connecting two
 things already proved. Axioms of every one: `propext`, `Classical.choice`, `Quot.sound`. None uses the open
 statement `no_minCE`; where it appears it is a hypothesis.
 
@@ -204,7 +204,7 @@ statement `no_minCE`; where it appears it is a hypothesis.
 | `baseMixed_zero`, `hasWitnessMixedNaive_zero`, `mslackVal_zero`, `mslackGe_zero` (AsteroidCheapMixed) | at `r = 0` the mixed base is the base, the naive mixed witness test is `hasWitnessAt`, and, given the kernel check `naiveAgrees C`, `mslack` at `(q, 0)` is `slack` at `q` |
 
 Not done: the bit-parallel mixed witness test is tied to
-the naive one only per circuit (`naiveAgrees`). Notes: `one-not/board/agents/fable-cheap-proofs.md`.
+the naive one only per circuit (`naiveAgrees`). Notes: `research/one-not/board/agents/fable-cheap-proofs.md`.
 
 ## The continuous form in asteroid
 
@@ -226,7 +226,7 @@ asteroid drives the proofs; it is not what vouches for them. The verdict comes f
 build on any axiom besides `propext`, `Classical.choice`, `Quot.sound` (a named allow-list may use `sorryAx`).
 
 ```bash
-cd one-not/lean && lake build PEqualNP.Verify.All        # no Python, no asteroid
+cd proofs/w951 && lake build PEqualNP.Verify.All        # no Python, no asteroid
 ```
 
 ```bash
@@ -235,7 +235,7 @@ bin/asteroid asteroid/programs/big_check.ath  # the same, started from asteroid,
 
 | Project | Modules | Theorems | Standard axioms only | Allowed `sorryAx` | Other axioms |
 |---|---|---|---|---|---|
-| `one-not/lean` | 154 | 4,777 | 4,756 | 21 (the open `no_minCE`, 7 theorems derived from it, 13 of a parked draft) | 0 |
+| `proofs/w951` | 154 | 4,777 | 4,756 | 21 (the open `no_minCE`, 7 theorems derived from it, 13 of a parked draft) | 0 |
 | `lean` (main project, 1,631 modules) | `PEqualNP/Verify/All.lean` is written; the full build has not been run to the end here | | | none allowed | |
 
 ## What is not there yet

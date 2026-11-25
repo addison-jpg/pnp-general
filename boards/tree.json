@@ -185,7 +185,83 @@
    }
   ]
  },
- "lean": {
+ "proofs": {
+  "counts": {
+   "checked": 68
+  },
+  "verified": [
+   "0992c96e",
+   "18a99796",
+   "5fe90015",
+   "30cf54bf",
+   "0f8afdc1",
+   "dcd62f26",
+   "8c7680a6",
+   "cd81c248",
+   "c079ce11",
+   "81ae3ec3",
+   "c6da3456",
+   "3671b9f4",
+   "64defb2f",
+   "b293d3f3",
+   "4617c228",
+   "c011de04",
+   "c324f5f5",
+   "0d85fe20",
+   "3bdca250",
+   "5ac59d84",
+   "34f4f915",
+   "620c867b",
+   "cd97a6ec",
+   "8ab74f39",
+   "9421c6de",
+   "b35aefb4",
+   "86ffd5a1",
+   "015ef337",
+   "4290878b",
+   "91f83519",
+   "5e4b9d8d",
+   "66d4cb88",
+   "7f3971c7",
+   "b233fdbd",
+   "ba956ff0",
+   "4cea3d21",
+   "d99349da",
+   "0b7b8fdd",
+   "f6f61745",
+   "19d706b0",
+   "9d6ade3f",
+   "ad91d530",
+   "e0ea3129",
+   "568f8964",
+   "0e0a820c",
+   "c70b8e8f",
+   "57b5bd42",
+   "89fa09ba",
+   "182f7509",
+   "98886641",
+   "769c3ae0",
+   "02f7d0db",
+   "9c7d09e2",
+   "2ee8c618",
+   "8008158e",
+   "2e78144d",
+   "eb92517c",
+   "af4035dc",
+   "a70f6fd8",
+   "53be30e1",
+   "408f74ba",
+   "aff6e6b7",
+   "2e8126de",
+   "957df3fd",
+   "dde7834a",
+   "7961ecd5",
+   "14e1a81a",
+   "f9156a1e"
+  ],
+  "unverified_here": []
+ },
+ "proofs/main": {
   "counts": {
    "checked": 22
   },
@@ -215,7 +291,7 @@
   ],
   "unverified_here": []
  },
- "lean/PEqualNP": {
+ "proofs/main/PEqualNP": {
   "counts": {
    "checked": 22
   },
@@ -245,7 +321,7 @@
   ],
   "unverified_here": []
  },
- "lean/PEqualNP/Philosophy": {
+ "proofs/main/PEqualNP/Philosophy": {
   "counts": {
    "checked": 7
   },
@@ -262,25 +338,25 @@
    {
     "id": "66145862",
     "why": [
-     "capitalist_realism not in lean/PEqualNP/Philosophy/Fisher.lean"
+     "capitalist_realism not in proofs/main/PEqualNP/Philosophy/Fisher.lean"
     ]
    },
    {
     "id": "478ce785",
     "why": [
-     "monogamy_of_pure_pair not in lean/PEqualNP/Philosophy/BeauvoirQG.lean"
+     "monogamy_of_pure_pair not in proofs/main/PEqualNP/Philosophy/BeauvoirQG.lean"
     ]
    },
    {
     "id": "80d2fd4f",
     "why": [
-     "rt_monogamy not in lean/PEqualNP/Philosophy/BeauvoirQG.lean",
-     "schmidt_rank_le_cut not in lean/PEqualNP/Philosophy/BeauvoirQG.lean"
+     "rt_monogamy not in proofs/main/PEqualNP/Philosophy/BeauvoirQG.lean",
+     "schmidt_rank_le_cut not in proofs/main/PEqualNP/Philosophy/BeauvoirQG.lean"
     ]
    }
   ]
  },
- "lean/PEqualNP/QuantumGravity": {
+ "proofs/main/PEqualNP/QuantumGravity": {
   "counts": {
    "checked": 12
   },
@@ -307,7 +383,7 @@
    }
   ]
  },
- "lean/PEqualNP/QuantumGravity/Open": {
+ "proofs/main/PEqualNP/QuantumGravity/Open": {
   "counts": {
    "checked": 10
   },
@@ -327,12 +403,12 @@
    {
     "id": "ad6e91ac",
     "why": [
-     "PEqualNP.QuantumGravity.Open.CtcReset.reset_support_on_start_cycle not in lean/PEqualNP/QuantumGravity/Open/CtcReset.lean"
+     "PEqualNP.QuantumGravity.Open.CtcReset.reset_support_on_start_cycle not in proofs/main/PEqualNP/QuantumGravity/Open/CtcReset.lean"
     ]
    }
   ]
  },
- "lean/PEqualNP/Worlds": {
+ "proofs/main/PEqualNP/Worlds": {
   "counts": {
    "checked": 3
   },
@@ -350,25 +426,11 @@
    }
   ]
  },
- "one-not": {
+ "proofs/w951": {
   "counts": {
-   "tested": 5,
-   "refuted": 5,
-   "checked": 48
+   "checked": 46
   },
   "verified": [
-   "1b00e1bc",
-   "64233838",
-   "04a575bf",
-   "255631be",
-   "7dbb073c",
-   "4825af69",
-   "f4704cc4",
-   "0736a8e5",
-   "98a42596",
-   "c7512878",
-   "4a5ffb32",
-   "922f2826",
    "0992c96e",
    "18a99796",
    "5fe90015",
@@ -416,9 +478,246 @@
    "0e0a820c",
    "c70b8e8f"
   ],
+  "unverified_here": [
+   {
+    "id": "af8e62f4",
+    "why": [
+     "missing PEqualNP/W951/Open/DDAbsorb.lean"
+    ]
+   }
+  ]
+ },
+ "proofs/w951/PEqualNP": {
+  "counts": {
+   "checked": 44
+  },
+  "verified": [
+   "5fe90015",
+   "30cf54bf",
+   "0f8afdc1",
+   "dcd62f26",
+   "8c7680a6",
+   "cd81c248",
+   "c079ce11",
+   "81ae3ec3",
+   "c6da3456",
+   "3671b9f4",
+   "64defb2f",
+   "b293d3f3",
+   "4617c228",
+   "c011de04",
+   "c324f5f5",
+   "0d85fe20",
+   "3bdca250",
+   "5ac59d84",
+   "34f4f915",
+   "620c867b",
+   "cd97a6ec",
+   "8ab74f39",
+   "9421c6de",
+   "b35aefb4",
+   "86ffd5a1",
+   "015ef337",
+   "4290878b",
+   "91f83519",
+   "5e4b9d8d",
+   "66d4cb88",
+   "7f3971c7",
+   "b233fdbd",
+   "ba956ff0",
+   "4cea3d21",
+   "d99349da",
+   "0b7b8fdd",
+   "f6f61745",
+   "19d706b0",
+   "9d6ade3f",
+   "ad91d530",
+   "e0ea3129",
+   "568f8964",
+   "0e0a820c",
+   "c70b8e8f"
+  ],
   "unverified_here": []
  },
- "one-not/data": {
+ "proofs/w951/PEqualNP/Philosophy": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "c70b8e8f"
+  ],
+  "unverified_here": []
+ },
+ "proofs/w951/PEqualNP/Verify": {
+  "counts": {
+   "checked": 1
+  },
+  "verified": [
+   "5fe90015"
+  ],
+  "unverified_here": []
+ },
+ "proofs/w951/PEqualNP/W951": {
+  "counts": {
+   "checked": 42
+  },
+  "verified": [
+   "30cf54bf",
+   "0f8afdc1",
+   "dcd62f26",
+   "8c7680a6",
+   "cd81c248",
+   "c079ce11",
+   "81ae3ec3",
+   "c6da3456",
+   "3671b9f4",
+   "64defb2f",
+   "b293d3f3",
+   "4617c228",
+   "c011de04",
+   "c324f5f5",
+   "0d85fe20",
+   "3bdca250",
+   "5ac59d84",
+   "34f4f915",
+   "620c867b",
+   "cd97a6ec",
+   "8ab74f39",
+   "9421c6de",
+   "b35aefb4",
+   "86ffd5a1",
+   "015ef337",
+   "4290878b",
+   "91f83519",
+   "5e4b9d8d",
+   "66d4cb88",
+   "7f3971c7",
+   "b233fdbd",
+   "ba956ff0",
+   "4cea3d21",
+   "d99349da",
+   "0b7b8fdd",
+   "f6f61745",
+   "19d706b0",
+   "9d6ade3f",
+   "ad91d530",
+   "e0ea3129",
+   "568f8964",
+   "0e0a820c"
+  ],
+  "unverified_here": [
+   {
+    "id": "e793c0f4",
+    "why": [
+     "first_ast_tiny_concrete not in proofs/w951/PEqualNP/W951/AsteroidSound.lean"
+    ]
+   },
+   {
+    "id": "3c831627",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "b33eef97",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "8e96673f",
+    "why": [
+     "needs a second seat in by"
+    ]
+   },
+   {
+    "id": "6403b575",
+    "why": [
+     "SearchCheck.Asteroid_edges.ok_claim0 not in proofs/w951/PEqualNP/W951/Asteroid_edges.lean"
+    ]
+   }
+  ]
+ },
+ "proofs/w951/PEqualNP/W951/Open": {
+  "counts": {
+   "checked": 14
+  },
+  "verified": [
+   "66d4cb88",
+   "7f3971c7",
+   "b233fdbd",
+   "ba956ff0",
+   "4cea3d21",
+   "d99349da",
+   "0b7b8fdd",
+   "f6f61745",
+   "19d706b0",
+   "9d6ade3f",
+   "ad91d530",
+   "e0ea3129",
+   "568f8964",
+   "0e0a820c"
+  ],
+  "unverified_here": [
+   {
+    "id": "ccf5344b",
+    "why": [
+     "PEqualNP.W951.FlipLemma.Concrete.flip_lemma not in proofs/w951/PEqualNP/W951/Open/FlipLemma.lean",
+     "PEqualNP.W951.FlipLemma.Core.core not in proofs/w951/PEqualNP/W951/Open/FlipLemma.lean"
+    ]
+   }
+  ]
+ },
+ "research": {
+  "counts": {
+   "checked": 7,
+   "tested": 5,
+   "refuted": 5
+  },
+  "verified": [
+   "b32db1b7",
+   "fe9dfe5d",
+   "cd323891",
+   "a9fa308e",
+   "47f8a89b",
+   "1b00e1bc",
+   "64233838",
+   "04a575bf",
+   "255631be",
+   "7dbb073c",
+   "4825af69",
+   "f4704cc4",
+   "0736a8e5",
+   "98a42596",
+   "c7512878",
+   "4a5ffb32",
+   "922f2826"
+  ],
+  "unverified_here": []
+ },
+ "research/one-not": {
+  "counts": {
+   "tested": 5,
+   "refuted": 5,
+   "checked": 2
+  },
+  "verified": [
+   "1b00e1bc",
+   "64233838",
+   "04a575bf",
+   "255631be",
+   "7dbb073c",
+   "4825af69",
+   "f4704cc4",
+   "0736a8e5",
+   "98a42596",
+   "c7512878",
+   "4a5ffb32",
+   "922f2826"
+  ],
+  "unverified_here": []
+ },
+ "research/one-not/data": {
   "counts": {
    "tested": 4,
    "refuted": 2,
@@ -436,7 +735,7 @@
   ],
   "unverified_here": []
  },
- "one-not/data/beyond_one_not": {
+ "research/one-not/data/beyond_one_not": {
   "counts": {},
   "verified": [],
   "unverified_here": [
@@ -508,7 +807,7 @@
    }
   ]
  },
- "one-not/data/c4g": {
+ "research/one-not/data/c4g": {
   "counts": {
    "tested": 4
   },
@@ -545,7 +844,7 @@
    }
   ]
  },
- "one-not/data/scaffold": {
+ "research/one-not/data/scaffold": {
   "counts": {},
   "verified": [],
   "unverified_here": [
@@ -557,7 +856,7 @@
    }
   ]
  },
- "one-not/data/witnesses": {
+ "research/one-not/data/witnesses": {
   "counts": {
    "refuted": 2,
    "checked": 2
@@ -577,7 +876,7 @@
    }
   ]
  },
- "one-not/data/witnesses/nonlocal": {
+ "research/one-not/data/witnesses/nonlocal": {
   "counts": {
    "refuted": 1,
    "checked": 1
@@ -588,249 +887,7 @@
   ],
   "unverified_here": []
  },
- "one-not/lean": {
-  "counts": {
-   "checked": 46
-  },
-  "verified": [
-   "0992c96e",
-   "18a99796",
-   "5fe90015",
-   "30cf54bf",
-   "0f8afdc1",
-   "dcd62f26",
-   "8c7680a6",
-   "cd81c248",
-   "c079ce11",
-   "81ae3ec3",
-   "c6da3456",
-   "3671b9f4",
-   "64defb2f",
-   "b293d3f3",
-   "4617c228",
-   "c011de04",
-   "c324f5f5",
-   "0d85fe20",
-   "3bdca250",
-   "5ac59d84",
-   "34f4f915",
-   "620c867b",
-   "cd97a6ec",
-   "8ab74f39",
-   "9421c6de",
-   "b35aefb4",
-   "86ffd5a1",
-   "015ef337",
-   "4290878b",
-   "91f83519",
-   "5e4b9d8d",
-   "66d4cb88",
-   "7f3971c7",
-   "b233fdbd",
-   "ba956ff0",
-   "4cea3d21",
-   "d99349da",
-   "0b7b8fdd",
-   "f6f61745",
-   "19d706b0",
-   "9d6ade3f",
-   "ad91d530",
-   "e0ea3129",
-   "568f8964",
-   "0e0a820c",
-   "c70b8e8f"
-  ],
-  "unverified_here": [
-   {
-    "id": "af8e62f4",
-    "why": [
-     "missing PEqualNP/W951/Open/DDAbsorb.lean"
-    ]
-   }
-  ]
- },
- "one-not/lean/PEqualNP": {
-  "counts": {
-   "checked": 44
-  },
-  "verified": [
-   "5fe90015",
-   "30cf54bf",
-   "0f8afdc1",
-   "dcd62f26",
-   "8c7680a6",
-   "cd81c248",
-   "c079ce11",
-   "81ae3ec3",
-   "c6da3456",
-   "3671b9f4",
-   "64defb2f",
-   "b293d3f3",
-   "4617c228",
-   "c011de04",
-   "c324f5f5",
-   "0d85fe20",
-   "3bdca250",
-   "5ac59d84",
-   "34f4f915",
-   "620c867b",
-   "cd97a6ec",
-   "8ab74f39",
-   "9421c6de",
-   "b35aefb4",
-   "86ffd5a1",
-   "015ef337",
-   "4290878b",
-   "91f83519",
-   "5e4b9d8d",
-   "66d4cb88",
-   "7f3971c7",
-   "b233fdbd",
-   "ba956ff0",
-   "4cea3d21",
-   "d99349da",
-   "0b7b8fdd",
-   "f6f61745",
-   "19d706b0",
-   "9d6ade3f",
-   "ad91d530",
-   "e0ea3129",
-   "568f8964",
-   "0e0a820c",
-   "c70b8e8f"
-  ],
-  "unverified_here": []
- },
- "one-not/lean/PEqualNP/Philosophy": {
-  "counts": {
-   "checked": 1
-  },
-  "verified": [
-   "c70b8e8f"
-  ],
-  "unverified_here": []
- },
- "one-not/lean/PEqualNP/Verify": {
-  "counts": {
-   "checked": 1
-  },
-  "verified": [
-   "5fe90015"
-  ],
-  "unverified_here": []
- },
- "one-not/lean/PEqualNP/W951": {
-  "counts": {
-   "checked": 42
-  },
-  "verified": [
-   "30cf54bf",
-   "0f8afdc1",
-   "dcd62f26",
-   "8c7680a6",
-   "cd81c248",
-   "c079ce11",
-   "81ae3ec3",
-   "c6da3456",
-   "3671b9f4",
-   "64defb2f",
-   "b293d3f3",
-   "4617c228",
-   "c011de04",
-   "c324f5f5",
-   "0d85fe20",
-   "3bdca250",
-   "5ac59d84",
-   "34f4f915",
-   "620c867b",
-   "cd97a6ec",
-   "8ab74f39",
-   "9421c6de",
-   "b35aefb4",
-   "86ffd5a1",
-   "015ef337",
-   "4290878b",
-   "91f83519",
-   "5e4b9d8d",
-   "66d4cb88",
-   "7f3971c7",
-   "b233fdbd",
-   "ba956ff0",
-   "4cea3d21",
-   "d99349da",
-   "0b7b8fdd",
-   "f6f61745",
-   "19d706b0",
-   "9d6ade3f",
-   "ad91d530",
-   "e0ea3129",
-   "568f8964",
-   "0e0a820c"
-  ],
-  "unverified_here": [
-   {
-    "id": "e793c0f4",
-    "why": [
-     "first_ast_tiny_concrete not in one-not/lean/PEqualNP/W951/AsteroidSound.lean"
-    ]
-   },
-   {
-    "id": "3c831627",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "b33eef97",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "8e96673f",
-    "why": [
-     "needs a second seat in by"
-    ]
-   },
-   {
-    "id": "6403b575",
-    "why": [
-     "SearchCheck.Asteroid_edges.ok_claim0 not in one-not/lean/PEqualNP/W951/Asteroid_edges.lean"
-    ]
-   }
-  ]
- },
- "one-not/lean/PEqualNP/W951/Open": {
-  "counts": {
-   "checked": 14
-  },
-  "verified": [
-   "66d4cb88",
-   "7f3971c7",
-   "b233fdbd",
-   "ba956ff0",
-   "4cea3d21",
-   "d99349da",
-   "0b7b8fdd",
-   "f6f61745",
-   "19d706b0",
-   "9d6ade3f",
-   "ad91d530",
-   "e0ea3129",
-   "568f8964",
-   "0e0a820c"
-  ],
-  "unverified_here": [
-   {
-    "id": "ccf5344b",
-    "why": [
-     "PEqualNP.W951.FlipLemma.Concrete.flip_lemma not in one-not/lean/PEqualNP/W951/Open/FlipLemma.lean",
-     "PEqualNP.W951.FlipLemma.Core.core not in one-not/lean/PEqualNP/W951/Open/FlipLemma.lean"
-    ]
-   }
-  ]
- },
- "one-not/research/open": {
+ "research/one-not/research/open": {
   "counts": {},
   "verified": [],
   "unverified_here": [
@@ -920,7 +977,7 @@
    }
   ]
  },
- "one-not/tools": {
+ "research/one-not/tools": {
   "counts": {
    "refuted": 3,
    "tested": 1
@@ -933,7 +990,7 @@
   ],
   "unverified_here": []
  },
- "one-not/tools/kill_tests": {
+ "research/one-not/tools/kill_tests": {
   "counts": {
    "refuted": 1
   },
@@ -942,7 +999,7 @@
   ],
   "unverified_here": []
  },
- "one-not/tools/search": {
+ "research/one-not/tools/search": {
   "counts": {
    "tested": 1,
    "refuted": 2
@@ -1009,7 +1066,7 @@
    }
   ]
  },
- "one-not/tools/tensor": {
+ "research/one-not/tools/tensor": {
   "counts": {},
   "verified": [],
   "unverified_here": [
@@ -1021,7 +1078,7 @@
    }
   ]
  },
- "philosophy": {
+ "research/philosophy": {
   "counts": {
    "checked": 5
   },
@@ -1036,7 +1093,7 @@
    {
     "id": "8474b92a",
     "why": [
-     "board_realism not in lean/PEqualNP/Philosophy/Unify.lean"
+     "board_realism not in proofs/main/PEqualNP/Philosophy/Unify.lean"
     ]
    },
    {

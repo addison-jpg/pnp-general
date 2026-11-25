@@ -1,6 +1,6 @@
 # The ladder (section 7): rung 0 (no NOT gate) against rung 1 and the many-NOT files. README items: T6, C4, C4w, Theorem.
 # Rung 0: Wegener and Mehlhorn. The count is tight or positive and gates >= base.
-corpus M = one-not/data/witnesses/*.json where nots <= 0
+corpus M = research/one-not/data/witnesses/*.json where nots <= 0
 claim forall c in M: correct(c) by lean
 claim forall c in M: slack(c) >= 0 by lean
 claim forall c in M: gates(c) >= base(c)
@@ -8,7 +8,7 @@ count c in M: gates(c) = base(c)
 count c in M: slack(c) = 0
 
 # Many NOT gates: the any-gate witness count falls below base (C4w, refuted), the gate count does not (C4g, open).
-corpus N = one-not/data/witnesses/nonlocal/general_count_below_base_*.json
+corpus N = research/one-not/data/witnesses/nonlocal/general_count_below_base_*.json
 claim forall c in N: correct(c)
 count c in N: nots(c) >= 4
 count c in N: witness(c) < base(c)
@@ -18,7 +18,7 @@ claim forall c in N: margin["C4 count (flip classes)"](c) >= 0     # the repaire
 claim forall c in N: margin["Theorem: gates >= base"](c) >= 0
 
 # The smallest one, in the kernel: 4 NOT gates, witness count 5 < base 6, and still 10 >= 6 gates.
-let x = load one-not/data/witnesses/nonlocal/general_count_below_base_min.json
+let x = load research/one-not/data/witnesses/nonlocal/general_count_below_base_min.json
 claim correct(x) by lean
 claim witness(x) < base(x) by lean
 claim gates(x) >= base(x)

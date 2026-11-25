@@ -1,6 +1,6 @@
-<picture><source media="(prefers-color-scheme: dark)" srcset="site/logo-dark.svg"><img alt="4STeroid (asteroid)" src="site/logo-light.svg" height="56"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="asteroid/site/logo-dark.svg"><img alt="4STeroid (asteroid)" src="asteroid/site/logo-light.svg" height="56"></picture>
 
-[![asteroid language](https://img.shields.io/badge/language-asteroid%20.ath-19B3B3)](asteroid/SPEC.md) [![VS Code](https://img.shields.io/visual-studio-marketplace/v/asteroid.asteroid?label=VS%20Code&color=3D9BD6)](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid) [![Windows](https://img.shields.io/badge/Windows-asteroid.exe%204.2%20MB-19B3B3)](https://github.com/addison-jpg/pnp-general/raw/main/asteroid.exe) [![Linux](https://img.shields.io/badge/Linux%20%2F%20Arch-4.4%20MB-3D9BD6)](dist/linux/README.md) [![proofs](https://img.shields.io/badge/proofs-Lean%204-555)](one-not/lean)
+[![asteroid language](https://img.shields.io/badge/language-asteroid%20.ath-19B3B3)](asteroid/SPEC.md) [![VS Code](https://img.shields.io/visual-studio-marketplace/v/asteroid.asteroid?label=VS%20Code&color=3D9BD6)](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid) [![Windows](https://img.shields.io/badge/Windows-asteroid.exe%204.2%20MB-19B3B3)](https://github.com/addison-jpg/pnp-general/raw/main/asteroid.exe) [![Linux](https://img.shields.io/badge/Linux%20%2F%20Arch-4.4%20MB-3D9BD6)](asteroid/dist/linux/README.md) [![proofs](https://img.shields.io/badge/proofs-Lean%204-555)](proofs/w951)
 
 # pnp-general (by addison-jpg)
 
@@ -10,13 +10,13 @@ The higher level gist is: quantum/gravity relativity maps onto the relativity ba
 
 ## A small CPU in our gates
 
-Addison's project theme, as a machine: a 4-bit accumulator CPU (PC, ACC, a 16-word ROM, eight instructions) whose next-state logic is one `.bench` circuit in `cpu/`. It has 443 gates, 238 AND, 190 OR and 15 NOT; the straightforward design used 45 NOT gates, and negations pushed to the inputs cut them to 15. The repository checks that logarithmically many NOT gates suffice (Markov and Fischer); see `cpu/README.md`.
+Addison's project theme, as a machine: a 4-bit accumulator CPU (PC, ACC, a 16-word ROM, eight instructions) whose next-state logic is one `.bench` circuit in `research/cpu/`. It has 443 gates, 238 AND, 190 OR and 15 NOT; the straightforward design used 45 NOT gates, and negations pushed to the inputs cut them to 15. The repository checks that logarithmically many NOT gates suffice (Markov and Fischer); see `research/cpu/README.md`.
 
-    bin/asteroid run-cpu cpu/cpu.bench --steps 24
+    bin/asteroid run-cpu research/cpu/cpu.bench --steps 24
 
-The same folder has a SIMD variant, `cpu/simd.bench`: 4 lanes with their own ACC and a mask bit, one shared PC and decoder, branching as predication (877 gates, 31 NOT; linear in the lane count). It is the SIMT idea behind GPUs at toy scale, not a GPU.
+The same folder has a SIMD variant, `research/cpu/simd.bench`: 4 lanes with their own ACC and a mask bit, one shared PC and decoder, branching as predication (877 gates, 31 NOT; linear in the lane count). It is the SIMT idea behind GPUs at toy scale, not a GPU.
 
-    bin/asteroid run-cpu cpu/simd.bench --init 3,7,0,12 --steps 14
+    bin/asteroid run-cpu research/cpu/simd.bench --init 3,7,0,12 --steps 14
 
 ## Why this is open
 
@@ -43,9 +43,9 @@ All theorems here are checked by the Lean 4 proof checker. Nothing here settles 
 
 Checked today, each in Lean with the standard axioms only:
 
-- Several NOT gates (`one-not/lean/PEqualNP/W951/Open/`). The OR of n inputs needs n − 1 AND/OR gates with any number of NOT gates (`Or4ManyNot.lean`, `or_needs_gates`). A system of ORs needs at least n − (number of components of the union graph) AND/OR gates with any number of NOT gates; this equals the NOT-free count on acyclic systems, proved here for pairwise disjoint sets and for chains (`OrSystemManyNot.lean`, `system_bound_comp`, `disjoint_bound`, `chain_bound`). The per-set flip lemma holds for any number of NOT gates (`FlipLemma.lean`, `flip_lemma`). For two sets of size at most 3, the function-level core of the flip-class count is checked (`FlipHall.lean`, `no_sole_partner`).
-- Quantum gravity (`lean/PEqualNP/QuantumGravity/Open/`). L115: every operator-norm ball of radius ε in U(2^n) has Haar measure at most (4ε)^(4^n) (`L115.lean`, `haar_small_ball`). L116 follows unconditionally (`L116OfL115.lean`). L169: P_CTC is contained in EXP (`L169.lean`, `PCTC_subset_EXP`). The CTC reset cycle, which is the core of PSPACE ⊆ P_CTC: if halting resets to the start, every Deutsch-consistent distribution is supported on the orbit of the start (`CtcReset.lean`, `reset_support_on_start_cycle`). With it, PSPACE ⊆ P_CTC (`PspaceMachine.lean`, `PSPACE_subset_PCTC`, through `PspaceCtc.lean` and `PspaceClock.lean`), so PSPACE ⊆ P_CTC ⊆ EXP. PSPACE is the repository's own definition (`Library/Evasion/SpaceDraft.lean`, on Mathlib's `Turing.FinTM2`); its faithfulness has not been reviewed independently. The other direction, P_CTC ⊆ PSPACE (needed for Aaronson–Watrous's P_CTC = PSPACE), is not in the repository. L119 with 16 real parameters per two-qubit gate (`KnillParam.lean`, `L119_weak`), and with 15k + 1 (`KnillParam15.lean`, `L119_fifteen`). Every unitary on d levels is a product of at most d(d+1)/2 two-level unitaries (`TwoLevel.lean`). Coffman–Kundu–Wootters monogamy for three qubits (`CKW.lean`, `ckw`). Knill's count (`ApproxCount.lean`, `approx_count_twoQubit`): almost every n-qubit unitary needs exponentially many two-qubit gates, even approximately.
-- One NOT gate. The general case reduces to one named statement, `BottomPay` (`one-not/lean/PEqualNP/W951/Open/LightAbsorb.lean`), and every link of the reduction is checked in Lean: `BottomPay` → `LightAbsorb` → `DDAbsorb` → the count at every mixed state (`Open/MixedCount.lean`; the no-NOT case in `Open/MixedCountMono.lean`) → `no_minCE` (`no_minCE_of_ddAbsorb`). `BottomPay` itself is OPEN: tested, not proved (no failure in 1.27 million states). Until it is proved, the one-NOT theorem `L_meta_951` keeps its one allow-listed hole (`no_minCE`), and the one-NOT question is not settled.
+- Several NOT gates (`proofs/w951/PEqualNP/W951/Open/`). The OR of n inputs needs n − 1 AND/OR gates with any number of NOT gates (`Or4ManyNot.lean`, `or_needs_gates`). A system of ORs needs at least n − (number of components of the union graph) AND/OR gates with any number of NOT gates; this equals the NOT-free count on acyclic systems, proved here for pairwise disjoint sets and for chains (`OrSystemManyNot.lean`, `system_bound_comp`, `disjoint_bound`, `chain_bound`). The per-set flip lemma holds for any number of NOT gates (`FlipLemma.lean`, `flip_lemma`). For two sets of size at most 3, the function-level core of the flip-class count is checked (`FlipHall.lean`, `no_sole_partner`).
+- Quantum gravity (`proofs/main/PEqualNP/QuantumGravity/Open/`). L115: every operator-norm ball of radius ε in U(2^n) has Haar measure at most (4ε)^(4^n) (`L115.lean`, `haar_small_ball`). L116 follows unconditionally (`L116OfL115.lean`). L169: P_CTC is contained in EXP (`L169.lean`, `PCTC_subset_EXP`). The CTC reset cycle, which is the core of PSPACE ⊆ P_CTC: if halting resets to the start, every Deutsch-consistent distribution is supported on the orbit of the start (`CtcReset.lean`, `reset_support_on_start_cycle`). With it, PSPACE ⊆ P_CTC (`PspaceMachine.lean`, `PSPACE_subset_PCTC`, through `PspaceCtc.lean` and `PspaceClock.lean`), so PSPACE ⊆ P_CTC ⊆ EXP. PSPACE is the repository's own definition (`Library/Evasion/SpaceDraft.lean`, on Mathlib's `Turing.FinTM2`); its faithfulness has not been reviewed independently. The other direction, P_CTC ⊆ PSPACE (needed for Aaronson–Watrous's P_CTC = PSPACE), is not in the repository. L119 with 16 real parameters per two-qubit gate (`KnillParam.lean`, `L119_weak`), and with 15k + 1 (`KnillParam15.lean`, `L119_fifteen`). Every unitary on d levels is a product of at most d(d+1)/2 two-level unitaries (`TwoLevel.lean`). Coffman–Kundu–Wootters monogamy for three qubits (`CKW.lean`, `ckw`). Knill's count (`ApproxCount.lean`, `approx_count_twoQubit`): almost every n-qubit unitary needs exponentially many two-qubit gates, even approximately.
+- One NOT gate. The general case reduces to one named statement, `BottomPay` (`proofs/w951/PEqualNP/W951/Open/LightAbsorb.lean`), and every link of the reduction is checked in Lean: `BottomPay` → `LightAbsorb` → `DDAbsorb` → the count at every mixed state (`Open/MixedCount.lean`; the no-NOT case in `Open/MixedCountMono.lean`) → `no_minCE` (`no_minCE_of_ddAbsorb`). `BottomPay` itself is OPEN: tested, not proved (no failure in 1.27 million states). Until it is proved, the one-NOT theorem `L_meta_951` keeps its one allow-listed hole (`no_minCE`), and the one-NOT question is not settled.
 
 ## What did not work
 
@@ -53,7 +53,7 @@ Several natural ways to prove the general case were tried. Each one was refuted 
 
 ## Philosophy (formal)
 
-`lean/PEqualNP/Philosophy/Deleuze.lean` models one cited reading of Deleuze: distinct problems can share actual solutions, and nondegenerate singular points are isolated. `lean/PEqualNP/Philosophy/Fisher.lean` models one cited reading of Fisher's hauntology as branching time. `one-not/lean/PEqualNP/Philosophy/Bridge.lean` sets this project beside the first as a formal analogy. Φ is a function of the slack table (`Phi_eq_PhiT`, by definition), but different tables can give the same Φ (`PhiT_not_injective`, shown for small arbitrary tables, not yet for tables of real circuits), and the corner values do not determine Φ. Further files (`Unify`, `Hegel`, `Camus`, `Beauvoir`) and an independent review of all of them, `philosophy/REVIEW.md`, are in `philosophy/`. The review finds that most of the checked theorems are general facts about orders and sets, and that the link to each philosopher is interpretation. These are models of cited readings. They claim nothing about what the authors meant, and they are not proofs about the texts.
+`proofs/main/PEqualNP/Philosophy/Deleuze.lean` models one cited reading of Deleuze: distinct problems can share actual solutions, and nondegenerate singular points are isolated. `proofs/main/PEqualNP/Philosophy/Fisher.lean` models one cited reading of Fisher's hauntology as branching time. `proofs/w951/PEqualNP/Philosophy/Bridge.lean` sets this project beside the first as a formal analogy. Φ is a function of the slack table (`Phi_eq_PhiT`, by definition), but different tables can give the same Φ (`PhiT_not_injective`, shown for small arbitrary tables, not yet for tables of real circuits), and the corner values do not determine Φ. Further files (`Unify`, `Hegel`, `Camus`, `Beauvoir`) and an independent review of all of them, `research/philosophy/REVIEW.md`, are in `research/philosophy/`. The review finds that most of the checked theorems are general facts about orders and sets, and that the link to each philosopher is interpretation. These are models of cited readings. They claim nothing about what the authors meant, and they are not proofs about the texts.
 
 ## asteroid
 
@@ -96,13 +96,13 @@ bin/asteroid hello.ath # run one program
 bin/asteroid test      # run all of them
 ```
 
-Linux (no Python, no Lean): [`dist/linux/asteroid`](dist/linux/README.md), a 4.4 MB binary; Arch: `packaging/arch/PKGBUILD`; Windows: the same inside Arch on WSL.
+Linux (no Python, no Lean): [`asteroid/dist/linux/asteroid`](asteroid/dist/linux/README.md), a 4.4 MB binary; Arch: `asteroid/packaging/arch/PKGBUILD`; Windows: the same inside Arch on WSL.
 
-VS Code highlighting for `.ath`: search **asteroid** in Extensions ([Marketplace](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid)), or install `editors/vscode/asteroid-0.1.0.vsix`.
+VS Code highlighting for `.ath`: search **asteroid** in Extensions ([Marketplace](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid)), or install `asteroid/editors/vscode/asteroid-0.1.0.vsix`.
 
 `bin/asteroid` with no arguments opens the interactive prompt, `bin/asteroid idle` the window.
 
-A native binary, written in Lean and needing no Python, is built with `cd one-not/lean && lake exe cache get && lake build asteroid`. It evaluates a program and has Lean check it. Without arguments it opens the prompt, and `plot phi NAME -> FILE.svg` writes an SVG plot. See `asteroid/NATIVE.md`.
+A native binary, written in Lean and needing no Python, is built with `cd asteroid/native && lake build` (no Mathlib; seconds). It evaluates a program and has Lean check it. Without arguments it opens the prompt, and `plot phi NAME -> FILE.svg` writes an SVG plot. See `asteroid/NATIVE.md`.
 
 Windows: download [`asteroid.exe`](https://github.com/addison-jpg/pnp-general/raw/main/asteroid.exe) (4.2 MB, nothing to install) and double-click it: it opens the asteroid prompt. Or run `asteroid.exe hello.ath` in a terminal. Windows SmartScreen will warn, because the file is not signed: click "More info", then "Run anyway".
 
@@ -115,10 +115,10 @@ Without Lean installed, asteroid says so and only evaluates. In that case nothin
 ## Checking the proofs yourself
 
 ```bash
-cd one-not/lean && lake exe cache get && lake build PEqualNP.Verify.All
+cd proofs/w951 && lake exe cache get && lake build PEqualNP.Verify.All
 ```
 
-This uses Lean only. It goes through every theorem of the one-NOT part and fails if any of them rests on anything beyond the three standard axioms, apart from a short list of theorems that depend on the one unproved statement. The larger Lean project under `lean/` has not been run through this check yet.
+This uses Lean only. It goes through every theorem of the one-NOT part and fails if any of them rests on anything beyond the three standard axioms, apart from a short list of theorems that depend on the one unproved statement. The larger Lean project under `proofs/main/` has not been run through this check yet.
 
 ## What is open
 
@@ -129,14 +129,14 @@ This uses Lean only. It goes through every theorem of the one-NOT part and fails
 
 ## Where things are
 
-- `one-not/` holds the one-NOT work: proofs, circuits and tests.
-- `lean/` holds the general circuits, the quantum-gravity statements and the inherited library.
+- `research/one-not/` holds the one-NOT work: proofs, circuits and tests.
+- `proofs/main/` holds the general circuits, the quantum-gravity statements and the inherited library.
 - `asteroid/` holds the language.
-- `philosophy/` holds the formal philosophy models and their plan.
-- `LITERATURE.md` lists the sources read.
+- `research/philosophy/` holds the formal philosophy models and their plan.
+- `research/LITERATURE.md` lists the sources read.
 - `BOARD.md` holds the working notes.
-- [`ath_prompt_method.md`](ath_prompt_method.md) describes the way this project was prompted and coordinated: informal small asks, mirrored sessions, one board per task. It is a conjecture, not a result.
-- [`site/LOGO.md`](site/LOGO.md) credits the logo lettering: fan-made fonts in the style of Terezi Pyrope and Vriska Serket, characters of *Homestuck* by Andrew Hussie, with thanks to the *Homestuck: Beyond Canon* team.
+- [`research/ath_prompt_method.md`](research/ath_prompt_method.md) describes the way this project was prompted and coordinated: informal small asks, mirrored sessions, one board per task. It is a conjecture, not a result.
+- [`asteroid/site/LOGO.md`](asteroid/site/LOGO.md) credits the logo lettering: fan-made fonts in the style of Terezi Pyrope and Vriska Serket, characters of *Homestuck* by Andrew Hussie, with thanks to the *Homestuck: Beyond Canon* team.
 
 ## License
-MIT; see [`LICENSE.md`](LICENSE.md). Exception: files taken or derived from [`brilliant-hq/pequalnp-proofs`](https://github.com/brilliant-hq/pequalnp-proofs) remain under the Apache License 2.0; see [`LICENSE-APACHE`](LICENSE-APACHE). These are the upstream Lean library under `lean/PEqualNP/` (`CircuitLowerBounds`, `Defs`, `Gct`, `Library`, `MetaComplexity`, `Outside`, `ProofComplexity`, `Search`), the copy of `Defs` in `one-not/lean/PEqualNP/Defs/`, upstream files modified here (e.g. `lean/PEqualNP.lean`, `lean/PEqualNP/Defs.lean`, `lean/CheckLemma.lean`, `one-not/lean/PEqualNP.lean`, `one-not/lean/PEqualNP/Defs.lean`), `tools/build.sh`, `one-not/tools/build.sh` and `notes/note-1-edge-function-exact-size.md` (with its copy in `one-not/notes/`). New work in this repository is by addison-jpg and contributors.
+MIT; see [`LICENSE.md`](LICENSE.md). Exception: files taken or derived from [`brilliant-hq/pequalnp-proofs`](https://github.com/brilliant-hq/pequalnp-proofs) remain under the Apache License 2.0; see [`LICENSE-APACHE`](LICENSE-APACHE). These are the upstream Lean library under `proofs/main/PEqualNP/` (`CircuitLowerBounds`, `Defs`, `Gct`, `Library`, `MetaComplexity`, `Outside`, `ProofComplexity`, `Search`), the copy of `Defs` in `proofs/w951/PEqualNP/Defs/`, upstream files modified here (e.g. `proofs/main/PEqualNP.lean`, `proofs/main/PEqualNP/Defs.lean`, `proofs/main/CheckLemma.lean`, `proofs/w951/PEqualNP.lean`, `proofs/w951/PEqualNP/Defs.lean`), `research/tools/build.sh`, `research/one-not/tools/build.sh` and `research/notes/note-1-edge-function-exact-size.md` (with its copy in `research/one-not/notes/`). New work in this repository is by addison-jpg and contributors.

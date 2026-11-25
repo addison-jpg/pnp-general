@@ -1,10 +1,10 @@
-import PEqualNP.AsteroidLang.Bench
+import AsteroidLang.Bench
 /-!
 Helper of `asteroid/tests/test_bench.py`: read each `.bench` file given on the command line with the
 Lean reader and print one line per file, the circuit or the error, and whether `print (parse src)`
 is the file itself and parses back to the same netlist.
 
-Run from `one-not/lean`: `lake env lean --run ../../asteroid/tests/bench_dump.lean FILE.bench ...`
+Run from `proofs/w951`: `lake env lean --run ../../asteroid/tests/bench_dump.lean FILE.bench ...`
 -/
 open AsteroidLang.Bench
 

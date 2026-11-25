@@ -7,11 +7,11 @@ Serves README items: T6, T7; gaps L-gen-101 to 103. Rules, names and the other b
 ## Wall T7: XOR extension
 - 19:2x main [BIG] PRIORITY row 3 (main board): README D9 / C4(t): the witness count for a variable number t of NOT gates. [ASK] state C4(t) against `BoolSumNot t` (General/BoolSum.lean): is C4(t) the same statement as BoolSumNot t, stronger, or weaker? At t = ⌈log₂(n+1)⌉ it is a bound for all circuits (T6): say what is known there for (1,1)-disjoint sums.
 - 13:30 Generalize (session_01GmnDhg8XTmohao5zo2MMaC) [PROVED] L-gen-005/006: C(x ⊕ f) >= max + 3, = min + 4 when C(f) != C(¬f) (General/XorExtension.lean). OPEN: C(f) = C(¬f) = m, truth in {m+3, m+4}.
-- 13:30 Generalize [TESTED] SAT, f free, residual shape: no counterexample with m <= 6 for any number of variables (conditional on the encoding and the hand-derived residual shape; notes/general/generalize-xor-residual.md §3). m = 7 needs r = 10: estimated 3 h (k = 5) to 15 h (k = 7), not measured.
+- 13:30 Generalize [TESTED] SAT, f free, residual shape: no counterexample with m <= 6 for any number of variables (conditional on the encoding and the hand-derived residual shape; research/notes/general/generalize-xor-residual.md §3). m = 7 needs r = 10: estimated 3 h (k = 5) to 15 h (k = 7), not measured.
 - 13:30 Generalize [DEAD] purely local redundancy for the open case: checked 17-gate residual-shape circuit with no constant or duplicate wire on either side. A proof must use optimality of C(f) and C(¬f).
 - 13:30 Generalize [LEAN] XorIterate.lean: k fresh XOR variables, max + 3k <= C <= min + 4k (eaeb045). k = 2 is open even when C(f) != C(¬f); min + 4k for all k follows from the open case by induction.
-- 13:30 Generalize [ASK] one Fable here is on the open case (owner-approved); output lands in notes/general/generalize-open-case.md or General/XorOpenCase.lean.
-- 13:44 Generalize helper [TESTED] open case NOT proved, NOT refuted (notes/general/generalize-open-case.md). Hand proofs (UNVERIFIED): a counterexample has output outside {H1, H2} and, in frame A, a NOT gate on a path from H1 to the output; invariant H1 AND H2 = 0 on side 0, H1 OR H2 = 1 on side 1 (also SAT-checked small). SAT: no counterexample with m = 7 for f on 4 variables (65 classes); every tested residual-shape circuit has at least min + 5 gates. Remaining core: both shape gates pass NOT gates (XOR-like use).
+- 13:30 Generalize [ASK] one Fable here is on the open case (owner-approved); output lands in research/notes/general/generalize-open-case.md or General/XorOpenCase.lean.
+- 13:44 Generalize helper [TESTED] open case NOT proved, NOT refuted (research/notes/general/generalize-open-case.md). Hand proofs (UNVERIFIED): a counterexample has output outside {H1, H2} and, in frame A, a NOT gate on a path from H1 to the output; invariant H1 AND H2 = 0 on side 0, H1 OR H2 = 1 on side 1 (also SAT-checked small). SAT: no counterexample with m = 7 for f on 4 variables (65 classes); every tested residual-shape circuit has at least min + 5 gates. Remaining core: both shape gates pass NOT gates (XOR-like use).
 
 
 ## Wall T6, T7: ladder top, Kannan, edge function
@@ -20,7 +20,7 @@ Serves README items: T6, T7; gaps L-gen-101 to 103. Rules, names and the other b
 - 13:17 GeNeRALIZE [LEAN] Kannan uniform half REDUCED: `kannan_uniform_of_check : CheckLinTime k → ∃ L ∈ SigmaP 3, ∀ c, L ∉ SIZE(c n^k + c)` (KL = lex-first hard truth table, `mem_KL_iff` exact ∃∀∀∃). ONE GAP `CheckLinTime k` = a TM2 machine for circuit evaluation at 2^m points + lex compare, linear time; est. thousands of machine lines. [ASK] anyone with machine combinators in hand: this is the only missing piece for Kannan's Σ3 form.
 - 13:17 GeNeRALIZE [DEAD] L-meta-574 with 1 ≤ h: REFUTED in Lean at h = 1 (`PathSmall.path_lb_all_false`; g = x0 XOR x1: 8 gates vs claimed 9). h = 2 open.
 - 13:17 GeNeRALIZE [PROVED] NOT ladder collapses to rung 0 for the edge function on W6 (any degree) and on max-deg-3 W4: `w6_not_free`, `w4_not_free`; exact |E|+tau-1 with NOT gates counted (EdgeFnWindow*.lean). Upper side: edge-disjoint K_{p,b} inside a cover save Σ(p-1)(b-1) (`biclique_family_upper`); any 4-cycle breaks exactness (`c4_free_of_exact`).
-- 13:17 GeNeRALIZE [BIG] density barrier (notes/note-3): "C4-free ⇒ C(f_G) = |E|+tau-1" WITH NOT gates on dense C4-free graphs (projective-plane incidence, |E| ~ n^1.5) would be a superlinear general lower bound: gate elimination per vertex is linear by construction, so the edge-function route to L-gen-103 needs a new idea exactly at density n^(1+eps). Monotone (L-meta-612) is not blocked.
+- 13:17 GeNeRALIZE [BIG] density barrier (research/notes/note-3): "C4-free ⇒ C(f_G) = |E|+tau-1" WITH NOT gates on dense C4-free graphs (projective-plane incidence, |E| ~ n^1.5) would be a superlinear general lower bound: gate elimination per vertex is linear by construction, so the edge-function route to L-gen-103 needs a new idea exactly at density n^(1+eps). Monotone (L-meta-612) is not blocked.
 - 13:17 GeNeRALIZE [PROVED] constants -> variables (std axioms): SAT ∉ SIZE((a/b)n+c) for every a/b < 5/4 (`sat_ratio`); functional PHP PC degree in ((N+1)/2, N+1] for all m > N (`funPHP_upper` + L027); perm level sets 2 dim W ≤ n² ∀ n ≥ 2; GCT witness family ∀ q ≥ 4; a×b cross formula width 1/2, ≤ 2ab+b+2 lines; L-lib-130 over any field.
 
 - 13:17 GeNeRALIZE [BIG] filled the 6 'not assessed' cells of BIGPICTURE.md §3 (drafts, one-line reasons, same logic as the union-find row: inside-the-circuit => no relativization; Boolean points + monotone semantics => not algebrizing; one explicit sparse family => not large => not natural). Referee please check.
@@ -33,11 +33,11 @@ Serves README items: T6, T7; gaps L-gen-101 to 103. Rules, names and the other b
 
 
 ## Subboard: general circuits (L-gen)
-Files: `lean/PEqualNP/Defs/General.lean`, `lean/PEqualNP/General/`. Cards: the targets and ladder above.
+Files: `proofs/main/PEqualNP/Defs/General.lean`, `proofs/main/PEqualNP/General/`. Cards: the targets and ladder above.
 - Generalize (session_01GmnDhg8XTmohao5zo2MMaC), card rank 4 (exact sizes by gate elimination, NOT gates counted): rows
   L-gen-005, L-gen-006, L-gen-007 CHECKED (XOR with a fresh input; 007: a negated fresh input costs 1 or 2 gates, tool
-  `restrict_one` = one gate saved on either side; proof `lean/PEqualNP/General/XorExtension.lean`, no minimality
+  `restrict_one` = one gate saved on either side; proof `proofs/main/PEqualNP/General/XorExtension.lean`, no minimality
   assumption: count the gates that are redundant after `x := c`). OPEN: `C(x ⊕ f) = min + 4` when `C(f) = C(¬f)`; a
   counterexample must have one fixed circuit shape (hand argument), and SAT finds none for every `f` on <= 3 variables and
-  every 4-variable `f` with `C(f) = C(¬f) <= 5`. Note + evidence: `notes/general/generalize-xor-extension.md`,
-  `tools/xor-extension/`.
+  every 4-variable `f` with `C(f) = C(¬f) <= 5`. Note + evidence: `research/notes/general/generalize-xor-extension.md`,
+  `research/tools/xor-extension/`.

@@ -3,7 +3,7 @@
   claim forall states mslack(NAME) >= 0 [by lean]       all 3^n states (Q, R)
   claim forall states mixedstep(NAME) [by lean]         MixedStep at every state with positive base
   (claim! forces the claim to Lean even when Python says false.)
-Definitions are in asteroid/SPEC.md; Lean side: one-not/lean/PEqualNP/W951/AsteroidMixed.lean.
+Definitions are in asteroid/SPEC.md; Lean side: proofs/w951/PEqualNP/W951/AsteroidMixed.lean.
 Python uses continuous.slack_table / continuous.mixed_margin; `direct_*` below is an independent, naive implementation
 used to cross-check (every single-state claim is checked against it; asteroid/tests/test_mixed.py does whole circuits)."""
 import re, operator

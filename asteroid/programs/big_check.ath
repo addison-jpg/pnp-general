@@ -1,17 +1,17 @@
 # THE BIG CHECK. The verdict comes from pure Lean (PEqualNP/Verify/Axioms.lean, `#verify_axioms`): every theorem of
 # every module of the one-NOT project rests on propext, Classical.choice, Quot.sound only, except the 21 names on
 # the allow-list (the open statement no_minCE with what is derived from it, and a parked draft), which may use sorryAx.
-# asteroid only starts the build and reads its summary line. Without asteroid:  cd one-not/lean && lake build PEqualNP.Verify.All
-verify lean one-not/lean
+# asteroid only starts the build and reads its summary line. Without asteroid:  cd proofs/w951 && lake build PEqualNP.Verify.All
+verify lean proofs/w951
 
 # the theorems the front page cites, one by one
-theorem PEqualNP.Outside.L_meta_951_aux.no_minCE_of_ugame from PEqualNP.Verify.All in one-not/lean
-theorem PEqualNP.Outside.L_meta_951_aux.no_minCE_of_gainF2_or_cubeLocal from PEqualNP.Verify.All in one-not/lean
-theorem PEqualNP.Outside.L_meta_951_aux.no_minCE_of_Phi_zero_nonneg from PEqualNP.Verify.All in one-not/lean
-theorem PEqualNP.Outside.L_meta_951_aux.no_minCE_of_MUF2 from PEqualNP.Verify.All in one-not/lean
-theorem PEqualNP.Outside.L_meta_951_aux.ChainSum.slack_nonneg_of_descent from PEqualNP.Verify.All in one-not/lean
-theorem SearchCheck.correctB_sound_project from PEqualNP.Verify.All in one-not/lean
-theorem SearchCheck.slackNonnegAll_sound from PEqualNP.Verify.All in one-not/lean
-theorem SearchCheck.card_F2_eq_orWitnessAt from PEqualNP.Verify.All in one-not/lean
-theorem SearchCheck.not_minCE_of_slackGe from PEqualNP.Verify.All in one-not/lean
-theorem SearchCheck.not_LMeta951Stmt_of_hunt_hit from PEqualNP.Verify.All in one-not/lean
+theorem PEqualNP.Outside.L_meta_951_aux.no_minCE_of_ugame from PEqualNP.Verify.All in proofs/w951
+theorem PEqualNP.Outside.L_meta_951_aux.no_minCE_of_gainF2_or_cubeLocal from PEqualNP.Verify.All in proofs/w951
+theorem PEqualNP.Outside.L_meta_951_aux.no_minCE_of_Phi_zero_nonneg from PEqualNP.Verify.All in proofs/w951
+theorem PEqualNP.Outside.L_meta_951_aux.no_minCE_of_MUF2 from PEqualNP.Verify.All in proofs/w951
+theorem PEqualNP.Outside.L_meta_951_aux.ChainSum.slack_nonneg_of_descent from PEqualNP.Verify.All in proofs/w951
+theorem SearchCheck.correctB_sound_project from PEqualNP.Verify.All in proofs/w951
+theorem SearchCheck.slackNonnegAll_sound from PEqualNP.Verify.All in proofs/w951
+theorem SearchCheck.card_F2_eq_orWitnessAt from PEqualNP.Verify.All in proofs/w951
+theorem SearchCheck.not_minCE_of_slackGe from PEqualNP.Verify.All in proofs/w951
+theorem SearchCheck.not_LMeta951Stmt_of_hunt_hit from PEqualNP.Verify.All in proofs/w951

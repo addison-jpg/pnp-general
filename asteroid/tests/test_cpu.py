@@ -1,5 +1,5 @@
-"""cpu/cpu.bench against a pure-Python interpreter of the same instruction set.
-Runs the demo (cpu/cpu.asm, 30 steps) and 40 random programs of 30 steps. Standard library only.
+"""research/cpu/cpu.bench against a pure-Python interpreter of the same instruction set.
+Runs the demo (research/cpu/cpu.asm, 30 steps) and 40 random programs of 30 steps. Standard library only.
    python3 asteroid/tests/test_cpu.py     (exit code 1 on any mismatch)"""
 import os, random, subprocess, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -42,7 +42,7 @@ for t in range(40):
     if a != b: bad += 1; print("simd random", t, "FAIL", a, b)
 print("simd random", "PASS" if bad == nb else "FAIL", "40 programs, every step equal to the reference")
 # the subcommand, as typed
-p = subprocess.run([os.path.join(ROOT, "bin", "asteroid"), "run-cpu", "cpu/cpu.bench", "--steps", "30"], cwd=ROOT, capture_output=True, text=True)
+p = subprocess.run([os.path.join(ROOT, "bin", "asteroid"), "run-cpu", "research/cpu/cpu.bench", "--steps", "30"], cwd=ROOT, capture_output=True, text=True)
 last = p.stdout.strip().splitlines()[-1] if p.stdout.strip() else ""
 ok = p.returncode == 0 and last == "step 30: PC= 4 ACC= 0"; bad += not ok
 print("command ", "PASS" if ok else "FAIL", last or p.stderr[-200:])

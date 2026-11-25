@@ -7,8 +7,8 @@
 - **Statement:** Three small seats, no new mathematics:
   - **A, records:** every finding that waits for a second seat is rerun from its evidence and confirmed or corrected; stale lines in the asteroid docs are fixed against the code.
   - **B, language:** the cheap WISH items: `hyps(c)` (the Theorem's other hypotheses, with its Lean checker `hypsB`), an `if … then …` form in claims, the NOT-gate fix (the flip-classes count as a first-class function, so that claims about many NOT gates do not silently use the one-NOT count).
-  - **C, Lean:** pin `LMeta951Stmt` to `L_meta_951`, move the example instances out of `AsteroidSound*.lean`, the short corollaries listed in `one-not/board/agents/fable-cheap-proofs.md`.
-- **Done when:** `python3 -m asteroid test` and `cd one-not/lean && lake build PEqualNP.Verify.All` both pass after each seat's commit.
+  - **C, Lean:** pin `LMeta951Stmt` to `L_meta_951`, move the example instances out of `AsteroidSound*.lean`, the short corollaries listed in `research/one-not/board/agents/fable-cheap-proofs.md`.
+- **Done when:** `python3 -m asteroid test` and `cd proofs/w951 && lake build PEqualNP.Verify.All` both pass after each seat's commit.
 - **Seats:** three small agents of main.
 
 ## Lines (TAKEN / DECIDED only)

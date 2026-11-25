@@ -9,8 +9,8 @@ DARK = {"background": "#141413", "surface": "#1d1d1b", "text": "#ecebe6", "muted
         "proved": "#7fbf8a", "refuted": "#e58a80", "open": "#d9a650", "codeBackground": "#0f0f0e", "codeText": "#e6e5e0",
         "logo": "#19B3B3", "logo_alt": "#3D9BD6"}
 def palette():
-    """The dark colours of site/palette.json (the built-in copy is used when that file is not beside the code, as in the Windows .exe)."""
-    for p in (os.path.join(os.path.dirname(HERE), "site", "palette.json"), os.path.join(HERE, "palette.json")):
+    """The dark colours of asteroid/site/palette.json (the built-in copy is used when that file is not beside the code, as in the Windows .exe)."""
+    for p in (os.path.join(HERE, "site", "palette.json"), os.path.join(HERE, "palette.json")):
         try: return {**DARK, **json.load(open(p, encoding="utf-8"))["dark"]}
         except Exception: pass
     return dict(DARK)

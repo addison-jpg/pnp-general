@@ -1,8 +1,8 @@
 # Task: tree-refactor (PROPOSAL, needs Addison's yes before any move)
 
 - **Serves:** a stranger opening the front page of the repository (Addison, 2026-11-25: "also suggest serious git tree refactor if helpful").
-- **Problem:** the root has about 30 entries (asteroid, two Lean projects, research folders, boards, generated files, launchers, binaries). A reader cannot tell the language from the research from the working files. The asteroid Lean code sits at `one-not/lean/PEqualNP/AsteroidLang`, inside a research folder named after one result.
-- **Status:** proposal only. Nothing moves until Addison says yes on this board. Then one integrating seat does it in one sitting while no other seat is pushing (79 files name `one-not/lean` alone).
+- **Problem:** the root has about 30 entries (asteroid, two Lean projects, research folders, boards, generated files, launchers, binaries). A reader cannot tell the language from the research from the working files. The asteroid Lean code sits at `proofs/w951/PEqualNP/AsteroidLang`, inside a research folder named after one result.
+- **Status:** proposal only. Nothing moves until Addison says yes on this board. Then one integrating seat does it in one sitting while no other seat is pushing (79 files name `proofs/w951` alone).
 
 ## Proposed root
 
@@ -12,23 +12,23 @@ asteroid.exe  hello.ath  hello.bench        front page: download and first progr
 asteroid/                                    the language, all of it
   SPEC.md  BENCH.md  NATIVE.md  examples/  programs/  tests/
   python/       today asteroid/*.py (front end, extensions, repl, idle)
-  native/       today one-not/lean/PEqualNP/AsteroidLang (own Lean package, no Mathlib)
-  editors/vscode/   today editors/vscode
-  dist/linux/   packaging/arch/   bin/ (launchers)
-  site/         logo, palette, terminal colours
+  native/       today proofs/w951/PEqualNP/AsteroidLang (own Lean package, no Mathlib)
+  asteroid/editors/vscode/   today asteroid/editors/vscode
+  asteroid/dist/linux/   asteroid/packaging/arch/   bin/ (launchers)
+  asteroid/site/         logo, palette, terminal colours
 proofs/                                      the Lean developments
-  main/         today lean/
-  w951/         today one-not/lean (minus AsteroidLang)
-research/                                    one-not (non-Lean parts), notes/, philosophy/, worlds/, cpu/, data/, tools/
-  LITERATURE.md  SYNTHESIS.md  NAMES.md (generated)  MST.json (generated)
-work/                                        boards: BOARD.md, boards/, boards.py, ath_prompts/, ath_prompt_method.md
+  main/         today proofs/main/
+  w951/         today proofs/w951 (minus AsteroidLang)
+research/                                    one-not (non-Lean parts), research/notes/, research/philosophy/, research/worlds/, research/cpu/, research/data/, research/tools/
+  research/LITERATURE.md  research/SYNTHESIS.md  research/NAMES.md (generated)  research/MST.json (generated)
+work/                                        boards: BOARD.md, boards/, boards.py, research/ath_prompts/, research/ath_prompt_method.md
 ```
 
 Root goes from ~30 entries to 11.
 
 ## Biggest single win if only one move is made
 
-`one-not/lean/PEqualNP/AsteroidLang` → `asteroid/native/` as its own Lake package with no Mathlib requirement. The native binary then builds in seconds on a clean clone with no Mathlib clone at all (today `lake build asteroid` still clones Mathlib to resolve the project, which is most of the Windows CI time). `CoreEq.lean` and `Semantics.lean` (the proofs that tie it to the project's definitions) stay in the W951 project and import the new package.
+`proofs/w951/PEqualNP/AsteroidLang` → `asteroid/native/` as its own Lake package with no Mathlib requirement. The native binary then builds in seconds on a clean clone with no Mathlib clone at all (today `lake build asteroid` still clones Mathlib to resolve the project, which is most of the Windows CI time). `CoreEq.lean` and `Semantics.lean` (the proofs that tie it to the project's definitions) stay in the W951 project and import the new package.
 
 ## How, when approved
 

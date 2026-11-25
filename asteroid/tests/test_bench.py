@@ -36,7 +36,7 @@ def python_line(path):
 
 
 def main():
-    files = [os.path.join(ROOT, "hello.bench")] + sorted(glob.glob(os.path.join(ROOT, "one-not/data/witnesses/**/*.bench"), recursive=True)) + sorted(glob.glob(os.path.join(ROOT, "one-not/data/beyond_one_not/*.bench")))
+    files = [os.path.join(ROOT, "hello.bench")] + sorted(glob.glob(os.path.join(ROOT, "research/one-not/data/witnesses/**/*.bench"), recursive=True)) + sorted(glob.glob(os.path.join(ROOT, "research/one-not/data/beyond_one_not/*.bench")))
     with tempfile.TemporaryDirectory() as d:
         bad = []
         for i, s in enumerate(MALFORMED):
@@ -44,7 +44,7 @@ def main():
         local = "/home/user/pequalnp-proofs/tools/bin"
         env = dict(os.environ, PATH=(local + ":" if os.path.isdir(local) else "") + os.environ["PATH"])
         r = subprocess.run(["lake", "env", "lean", "--run", os.path.join(ROOT, "asteroid/tests/bench_dump.lean")] + files + bad,
-                           cwd=os.path.join(ROOT, "one-not/lean"), env=env, capture_output=True, text=True)
+                           cwd=os.path.join(ROOT, "proofs/w951"), env=env, capture_output=True, text=True)
         lean = dict(l.split("\t", 1) for l in r.stdout.splitlines() if "\t" in l)
         if r.returncode != 0 or len(lean) != len(files) + len(bad): print(r.stdout[-800:], r.stderr[-800:]); return 1
         differ = with_json = errors = 0

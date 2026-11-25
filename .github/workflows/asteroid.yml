@@ -7,7 +7,7 @@ name: asteroid
 on:
   push:
     branches: [main]
-    paths: ['asteroid/**', '**.ath', 'hello.bench', 'bin/**', '.github/workflows/asteroid.yml', 'one-not/tools/search/**', 'one-not/lean/PEqualNP/W951/Asteroid.lean', 'one-not/lean/PEqualNP/W951/SearchCheck.lean']
+    paths: ['asteroid/**', '**.ath', 'hello.bench', 'bin/**', '.github/workflows/asteroid.yml', 'asteroid/native/**', 'research/one-not/tools/search/**', 'proofs/w951/PEqualNP/W951/Asteroid.lean', 'proofs/w951/PEqualNP/W951/SearchCheck.lean']
   workflow_dispatch:
 
 permissions:
@@ -109,6 +109,6 @@ jobs:
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Mathlib cache
-        working-directory: one-not/lean
+        working-directory: proofs/w951
         run: lake exe cache get
       - run: bin/asteroid test

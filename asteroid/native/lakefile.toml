@@ -1,0 +1,12 @@
+# asteroid, native: the evaluator as one executable written in Lean (asteroid/NATIVE.md).
+# No Mathlib, no dependencies: `lake build` here needs only the Lean toolchain, and takes seconds.
+# The proofs that tie it to the project's definitions (CoreEq, Semantics) live in proofs/w951, which requires this package.
+name = "asteroid_native"
+defaultTargets = ["asteroid"]
+
+[[lean_lib]]
+name = "AsteroidLang"
+
+[[lean_exe]]
+name = "asteroid"
+root = "AsteroidLang.Main"

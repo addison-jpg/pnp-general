@@ -1,6 +1,6 @@
-"""asteroid run-cpu: the state loop of cpu/cpu.bench (a 4-bit accumulator machine in AND, OR, NOT).
+"""asteroid run-cpu: the state loop of research/cpu/cpu.bench (a 4-bit accumulator machine in AND, OR, NOT).
 
-  asteroid run-cpu cpu/cpu.bench [--prog FILE.asm] [--init a,b,..] --steps N
+  asteroid run-cpu research/cpu/cpu.bench [--prog FILE.asm] [--init a,b,..] --steps N
 
 The circuit is combinational: inputs pc0..pc3, acc0..acc3 and the 16 ROM words r<w>_<b>, outputs npc0..3, nacc0..3.
 This module feeds the outputs back as the inputs N times and prints PC and ACC at each step. Python only.
@@ -113,7 +113,7 @@ def main(argv, root):
     init = []
     if "--init" in a: i = a.index("--init"); init = [int(x, 0) for x in a[i + 1].split(",")]; del a[i:i + 2]
     if "--prog" in a: i = a.index("--prog"); prog = a[i + 1]; del a[i:i + 2]
-    if len(a) != 1: print("usage: asteroid run-cpu cpu/cpu.bench [--prog FILE.asm] [--init a,b,..] --steps N"); return 2
+    if len(a) != 1: print("usage: asteroid run-cpu research/cpu/cpu.bench [--prog FILE.asm] [--init a,b,..] --steps N"); return 2
     bench = a[0]; prog = prog or os.path.splitext(bench)[0] + ".asm"
     for f in (bench, prog):
         if not os.path.isfile(f): print(f"run-cpu: no file {f}"); return 1

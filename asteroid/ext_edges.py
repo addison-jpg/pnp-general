@@ -6,8 +6,8 @@
   claim EXPR1 and EXPR2                          conjunction of claim expressions
   claim theorem(NAME) [by lean]                  if hyps and correct then gates >= base; Lean: hypsB, correctB and the gate count
 A user `conjecture theorem:` shadows the builtin theorem(c).
-Python definitions: flip and flipclasses are one-not/tools/search/conjectures.py (`_flip_gates`, `count_flip_classes`);
-hyps mirrors `hypsB` of one-not/lean/PEqualNP/W951/AsteroidCheap.lean line by line."""
+Python definitions: flip and flipclasses are research/one-not/tools/search/conjectures.py (`_flip_gates`, `count_flip_classes`);
+hyps mirrors `hypsB` of proofs/w951/PEqualNP/W951/AsteroidCheap.lean line by line."""
 import re
 import asteroid.asteroid as A
 from conjectures import _flip_gates

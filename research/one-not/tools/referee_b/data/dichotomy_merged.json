@@ -1,0 +1,27 @@
+{
+ "circuits": 44707,
+ "globally_consistent": 44701,
+ "no_typeA_set": 4,
+ "not_globally_consistent": 2,
+ "examples_fail": [],
+ "examples_not_gc": [
+  [
+   9,
+   29,
+   "./research/tools/w951/tests/instances/front-match__fc__cxT2.json#0",
+   [
+    2
+   ]
+  ],
+  [
+   9,
+   29,
+   "./front/work/notes951/w9/fc/cxT2.json#0",
+   [
+    2
+   ]
+  ]
+ ],
+ "examples_ac_wipeout": [],
+ "examples_no_sdr": []
+}

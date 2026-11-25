@@ -1,6 +1,6 @@
 # The open items as conjectures: claimed over a small corpus, then hunted. Hunting finds nothing here (that proves nothing).
 # README items: C1, C2, C4 and "the sorry" (no_minCE). A counterexample would be a news item, not a bug.
-corpus W = one-not/data/witnesses/*.json where n <= 7
+corpus W = research/one-not/data/witnesses/*.json where n <= 7
 
 # The count behind the Theorem (D5, D8, L5, L7): |witness(empty cube)| >= base for ONE NOT gate.
 # A counterexample circuit (one NOT gate) would not refute the Theorem, but it would close the route through the count

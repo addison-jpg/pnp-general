@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dir: [lean, one-not/lean]
+        dir: [proofs/main, proofs/w951]
     defaults:
       run:
         working-directory: ${{ matrix.dir }}

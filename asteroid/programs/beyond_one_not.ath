@@ -1,4 +1,4 @@
-# Beyond one NOT gate (task beyond-one-not; README items C4, T6). The plan and its five statements: notes/beyond-one-not.md.
+# Beyond one NOT gate (task beyond-one-not; README items C4, T6). The plan and its five statements: research/notes/beyond-one-not.md.
 # Rung 1 is the Theorem (at most one NOT gate, gates >= base, one open step). Here: the next rungs as conjectures,
 # claimed on what exists and hunted with 2 and 3 NOT gates. A hunt that finds nothing proves nothing.
 # Nothing here says anything about circuits of unbounded size or about P versus NP.
@@ -12,7 +12,7 @@ conjecture fc: margin["C4 count (flip classes)"](c) >= 0
 conjecture c4w: witness(c) >= base(c)
 
 # The smallest system where a NOT gate could matter, as an OR tree: sets {0,1,2}, {0,3,4}, base 4.
-# Exhaustive (one-not/tools/beyond_one_not/enum_small.c): no correct circuit with <= 3 gates, any number of NOT gates.
+# Exhaustive (research/one-not/tools/beyond_one_not/enum_small.c): no correct circuit with <= 3 gates, any number of NOT gates.
 circuit twotri 5
   a = or 0 1
   b = or a 2
@@ -54,7 +54,7 @@ claim witness(dm3) >= base(dm3) by lean
 # WISH: claim faces(dm3) = 0                          (no assignment of constants to the NOT gates leaves a correct circuit)
 
 # Two NOT gates, no constant face correct, no repeated function (hunted, not minimal): 11 gates against base 5.
-let e2 = load one-not/data/beyond_one_not/essential_t2_seed1.json
+let e2 = load research/one-not/data/beyond_one_not/essential_t2_seed1.json
 claim correct(e2) by lean
 claim nots(e2) = 2
 claim c4g(e2)
@@ -62,9 +62,9 @@ claim fc(e2)
 claim c4w(e2)
 
 # The corpus by rung: at most 2, at most 3, any number of NOT gates (n <= 8).
-corpus R2 = one-not/data/witnesses/*.json where n <= 8 where nots <= 2
-corpus R3 = one-not/data/beyond_one_not/essential_t*.json where nots <= 3
-corpus N = one-not/data/witnesses/nonlocal/general_count_below_base_*.json
+corpus R2 = research/one-not/data/witnesses/*.json where n <= 8 where nots <= 2
+corpus R3 = research/one-not/data/beyond_one_not/essential_t*.json where nots <= 3
+corpus N = research/one-not/data/witnesses/nonlocal/general_count_below_base_*.json
 claim forall c in R2: c4g(c)
 claim forall c in R2: fc(c)
 claim forall c in R3: c4g(c)
@@ -80,7 +80,7 @@ count c in R2: gates(c) = base(c)
 # WISH: claim hyps(c) by lean                (hypsB with the NOT limit as a parameter t: today hypsB fixes "at most one NOT gate")
 # WISH: a Lean form for c4g and for fc       (gates >= base and the flip-classes count have no kernel statement)
 # WISH: claim forall sets forall zeros localflip(c) >= 0     (S3a, the per-set lemma: flip classes at one zero point of one set >= |S| - 1;
-#                                                              a theorem for every t, proof in notes/beyond-one-not.md; tested in experiments.py local)
+#                                                              a theorem for every t, proof in research/notes/beyond-one-not.md; tested in experiments.py local)
 # WISH: worlds(c), live(c), forall worlds mslack(c, world)   (S5: the 2^t faces of a circuit with t NOT gates and the mixed slack of each face on its region)
 # WISH: design(q) as a built-in system (projective plane of order q, n = q^2 + q + 1, base = n q) and hunt on it above n = 8   (S4)
 

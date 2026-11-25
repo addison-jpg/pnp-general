@@ -14,22 +14,22 @@ jobs:
     steps:
       - run: git config --global core.longpaths true
       - uses: actions/checkout@v4
-      - name: Install elan (Lean's installer; the toolchain comes from one-not/lean/lean-toolchain)
+      - name: Install elan (Lean's installer; the toolchain comes from asteroid/native/lean-toolchain)
         shell: pwsh
         run: |
           curl.exe -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.ps1 -o elan-init.ps1
           .\elan-init.ps1 -NoPrompt 1 -DefaultToolchain none
           Add-Content $env:GITHUB_PATH "$env:USERPROFILE\.elan\bin"
-      - name: Build the native asteroid (no Mathlib is compiled; lake only clones it to resolve the project)
+      - name: Build the native asteroid (asteroid/native: no Mathlib, no dependencies)
         shell: pwsh
-        working-directory: one-not/lean
+        working-directory: asteroid/native
         run: lake build asteroid
       - name: Icon and version info
         shell: pwsh
         run: |
           pip install pillow
-          python -c "from PIL import Image; Image.open('editors/vscode/images/icon.png').save('icon.ico', sizes=[(16,16),(32,32),(48,48),(256,256)])"
-          Copy-Item one-not/lean/.lake/build/bin/asteroid.exe asteroid.exe
+          python -c "from PIL import Image; Image.open('asteroid/editors/vscode/images/icon.png').save('icon.ico', sizes=[(16,16),(32,32),(48,48),(256,256)])"
+          Copy-Item asteroid/native/.lake/build/bin/asteroid.exe asteroid.exe
           npm install --no-save rcedit@4.0.1
           node -e "require('rcedit')('asteroid.exe', { icon: 'icon.ico', 'version-string': { CompanyName: 'addison-jpg', ProductName: 'asteroid', FileDescription: 'asteroid (native evaluator)', LegalCopyright: 'MIT' }, 'file-version': '0.4.0', 'product-version': '0.4.0' }).then(() => console.log('rcedit ok'), e => { console.error(e); process.exit(1) })"
       - name: Smoke test (the build fails if the exe is broken)

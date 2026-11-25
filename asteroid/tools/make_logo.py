@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Regenerate the asteroid logo SVGs.
 
-The letters are drawn as outlines from the fan-made fonts credited in site/LOGO.md, so no font has to be
+The letters are drawn as outlines from the fan-made fonts credited in asteroid/site/LOGO.md, so no font has to be
 installed to see the logo and no font file is shipped in this repository. Colours come from the `logo`
-role (the Terezi half, \"4ST\") and the `logo_alt` role (the Vriska half, \"eroid\") in site/palette.json.
+role (the Terezi half, \"4ST\") and the `logo_alt` role (the Vriska half, \"eroid\") in asteroid/site/palette.json.
 
 Usage: python3 asteroid/tools/make_logo.py --terezi PATH.ttf --vriska PATH.otf   (needs: pip install fonttools)
 """
@@ -17,7 +17,7 @@ from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-SITE = ROOT / "site"
+SITE = ROOT / "asteroid" / "site"
 HEIGHT = 48  # rendered height in px of the cap height, plus padding
 
 

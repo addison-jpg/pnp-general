@@ -1,6 +1,6 @@
 """asteroid extension: the continuous form. Φ(p) = E[slack(Q)] when each point is in the cube Q with probability p.
 Φ(0) = slack at the empty cube, Φ(1) = 0, and the remaining `sorry` is `0 ≤ Φ(0)` for a minimal counterexample
-(one-not/lean/PEqualNP/W951/ContinuousAttach.lean).
+(proofs/w951/PEqualNP/W951/ContinuousAttach.lean).
 
   phi(NAME, P)                         a term in a claim: P is a decimal or a fraction a/b in [0, 1]
   claim forall p phi(NAME) >= 0 [by lean]   Φ ≥ 0 on [0,1]. Python: slack ≥ 0 at every cube (which implies it) and the
