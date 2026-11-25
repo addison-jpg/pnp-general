@@ -1,0 +1,66 @@
+{
+ "carriers": {
+  "link": "closed curves in space that do not touch",
+  "closed surface": "a surface with no edge, such as a sphere or a torus",
+  "surface with edge": "a surface with a boundary, such as a disc or a tube",
+  "3-manifold": "a space that looks like ordinary space near every point",
+  "cell complex": "points, edges, faces and higher cells glued along their boundaries",
+  "planar tiling": "a division of a surface into polygons",
+  "graph": "points joined by undirected edges",
+  "directed graph": "points joined by arrows",
+  "rooted binary tree": "a tree that splits in two at every branch point",
+  "cyclic word": "a ring of letters, counted up to rotation",
+  "tangent field": "an arrow at every point of a surface",
+  "line field": "a direction without an arrowhead at every point of a surface",
+  "random field": "a function on a space, chosen at random",
+  "orbit": "the path of a body under gravity",
+  "differential equation": "a rule for how a quantity changes",
+  "rational number": "a ratio of whole numbers",
+  "finite state set": "a finite set of configurations",
+  "record store": "a set of records with fields"
+ },
+ "invariants": {
+  "linking number": "how many times one closed curve winds through another",
+  "Milnor number": "detects three or more curves that hold together with no two linked",
+  "Euler characteristic": "points minus edges plus faces, and so on with alternating signs",
+  "Betti numbers": "the number of pieces, loops and enclosed holes",
+  "index sum": "the total strength of the points where a field stops or is undefined",
+  "genus": "the number of handles of a surface",
+  "count": "how many structures of each size there are (an integer sequence)",
+  "distribution on shapes": "the probability of each shape under a growth rule",
+  "critical elements": "the parts whose removal makes the whole come apart",
+  "entropy bound": "the largest possible number of configurations",
+  "energy sign": "whether a body is bound or escapes"
+ },
+ "moves": {
+  "crossing change": "one strand passes through another",
+  "Reidemeister move": "one of three local changes of a link diagram that do not change the link",
+  "edge flip": "replace the shared edge of two triangles by the other diagonal",
+  "vertex split": "replace one triangle by three, or the reverse",
+  "cell division": "one polygon becomes two",
+  "tip growth": "a new branch forms at a tip",
+  "segment growth": "a new branch forms anywhere along the tree",
+  "merger": "two pieces become one",
+  "suspension": "pinch both ends of a tube to points",
+  "contraction": "shrink a part to a point",
+  "dual": "exchange points and faces",
+  "scaling": "multiply every length by the same factor"
+ },
+ "infinity_handled_by": {
+  "formula": "a closed formula or recurrence valid for every n, confirmed by a finite independent count",
+  "moves": "finitely many kinds of local move reach every case, and the claim survives each move",
+  "limit": "a limit object or a compactness theorem",
+  "edge": "a physical cutoff: the family does not continue past it",
+  "open": "not handled",
+  "impossible": "provably cannot be reduced to a finite check"
+ },
+ "arrow_kinds": {
+  "part_of": "things at this level are parts of things at the target level",
+  "coarse_grains_to": "the target forgets detail: many of these become one of those",
+  "limit_of": "the target is what this becomes as n goes to infinity",
+  "dual_of": "the same structure with points and faces exchanged",
+  "same_invariant": "both levels compute the same invariant on the same kind of object",
+  "same_move": "both levels change by the same local move",
+  "same_carrier": "both levels study the same kind of object"
+ }
+}

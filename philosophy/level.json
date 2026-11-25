@@ -1,0 +1,43 @@
+{
+ "id": "philosophy",
+ "ladder": "philosophy",
+ "name": "Lacan's knot and the rhizome",
+ "scale_m": null,
+ "carriers": [
+  "link",
+  "graph"
+ ],
+ "invariants": [
+  "linking number",
+  "Milnor number",
+  "critical elements",
+  "count"
+ ],
+ "moves": [
+  "crossing change"
+ ],
+ "infinity": [
+  {
+   "family": "connected graphs on n vertices, every n",
+   "handled_by": "open",
+   "reduction": "tree iff every edge is critical is checked up to 6 vertices; the proof for all n is not written here",
+   "word": "open"
+  }
+ ],
+ "checks": [
+  {
+   "id": "borromean",
+   "statement": "Borromean rings: every linking number 0, Milnor triple number -1, by two methods",
+   "word": "checked-finite",
+   "runner": "python3 -I philosophy/milnor.py"
+  },
+  {
+   "id": "tree-rhizome",
+   "statement": "a connected graph is a tree exactly when every edge is critical, up to 6 vertices",
+   "word": "checked-finite",
+   "runner": "python3 -I philosophy/rhizome.py"
+  }
+ ],
+ "arrows": [],
+ "new_terms": {}
+}

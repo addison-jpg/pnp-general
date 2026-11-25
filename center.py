@@ -125,7 +125,20 @@ def matches(recs):
                     if k: out.append({"a": a["text"], "b": b["text"], "form_a": na, "form_b": nb, "terms": k, "status": "proposed"})
     return out
 
-KINDS = {"finding": read_findings, "cell": read_cells, "fingerprint": read_fingerprints}   # 3. a new dimension is one more entry here
+def read_levels():
+    """One record per level.json: an ontology level (a parallel on the lantern) with its infinite families."""
+    out = []
+    for f in sorted(glob.glob("**/level.json", recursive=True)):
+        if "/.lake/" in f or f.startswith("center/"): continue
+        e = json.load(open(f, encoding="utf-8"))
+        still_open = any(x.get("handled_by") in ("open", "impossible") for x in e.get("infinity", []))
+        rec = {"kind": "level", "id": hashlib.sha256(f.encode()).hexdigest()[:8],
+               "program": program(f) if program(f) != "other" else e.get("ladder", "other"),
+               "word": "open" if still_open else "tested", "text": e.get("name", f), "who": None, "by": [], "retests": []}
+        rec["radius"] = radius(rec); rec["schema"] = SCHEMA; out.append(rec)
+    return out
+
+KINDS = {"finding": read_findings, "cell": read_cells, "fingerprint": read_fingerprints, "level": read_levels}   # 3. a new dimension is one more entry here
 
 def build():
     recs = [r for reader in KINDS.values() for r in reader()]
