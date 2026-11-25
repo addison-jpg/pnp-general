@@ -405,6 +405,8 @@ def main(argv):
         except Exception: pass
     os.makedirs(os.path.join(ROOT, "asteroid", "out"), exist_ok=True)
     if "--doctor" in argv or argv[:1] == ["doctor"]: return doctor()
+    if argv[:1] == ["run-cpu"]:                         # the 4-bit CPU of cpu/: Python only, no Lean
+        from asteroid import cpu; os.chdir(CALLER_DIR); return cpu.main(argv[1:], ROOT)
     NO_LEAN = any(a in argv for a in ("--no-lean", "--no-proof")); SHOW_LEAN = "--show-lean" in argv   # --no-proof: the same flag, quiet alias
     from asteroid import ui; ui.setup(no_color="--no-color" in argv)
     argv = [a for a in argv if a not in ("--no-lean", "--no-proof", "--show-lean", "--no-color")]
