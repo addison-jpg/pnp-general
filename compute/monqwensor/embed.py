@@ -10,12 +10,20 @@ after a check.
 Run (offline, CPU): VENV/bin/python compute/monqwensor/embed.py [--model Qwen/Qwen2.5-1.5B-Instruct] [--top 25]
 Writes compute/monqwensor/proposals.json and prints the top cross-program pairs and where the known join ranks.
 """
-import argparse, glob, json, os, time
+import argparse, glob, json, os, re, time
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 import torch
 from transformers import AutoModel, AutoTokenizer
 
 KNOWN = ("segmental-growth histories", "rooted binary phylogenetic trees")   # the join already checked exactly
+
+BOILER = re.compile(r"`[^`]*`|\S+\.(lean|py|md|json|jsonl|ath|bench)\S*|\([^)]*(provenance|Fable|Opus|Sonnet|main|seat)[^)]*\)|"
+                    r"\b(checked|checked-finite|tested|refuted|open|paper|premise|standard axioms|propext|Classical\.choice|Quot\.sound|"
+                    r"Lean|lean|builds?|sorry|axioms?|findings?|supersedes|seat|confirmed|TAKEN|DECIDED|OPEN)\b|[0-9a-f]{8}", re.I)
+
+def clean(t):
+    """Keep the mathematical statement: drop code spans, file paths, provenance, labels and ids."""
+    return re.sub(r"\s+", " ", BOILER.sub(" ", t)).strip(" .,:;-")
 
 def records():
     out = []
@@ -23,7 +31,9 @@ def records():
         for line in open(f, encoding="utf-8"):
             r = json.loads(line)
             t = (r.get("text") or "").strip()
-            if len(t) >= 20: out.append({"id": r["id"], "kind": r["kind"], "program": r.get("program", "other"), "text": t[:600]})
+            if "MONQWENSOR" in t or ("growth" in t and "phylogenetic" in t): continue   # records that state the answer: excluded from the test
+            c = clean(t)
+            if len(c) >= 20: out.append({"id": r["id"], "kind": r["kind"], "program": r.get("program", "other"), "text": t[:600], "clean": c[:600]})
     return out
 
 def main():
@@ -33,7 +43,7 @@ def main():
     recs = records(); vecs = []
     with torch.no_grad():
         for i in range(0, len(recs), 8):
-            b = tok([r["text"] for r in recs[i:i + 8]], return_tensors="pt", padding=True, truncation=True, max_length=192)
+            b = tok([r["clean"] for r in recs[i:i + 8]], return_tensors="pt", padding=True, truncation=True, max_length=192)
             h = model(**b).last_hidden_state; m = b["attention_mask"].unsqueeze(-1).float()
             vecs.append(torch.nn.functional.normalize((h * m).sum(1) / m.sum(1), dim=-1))
     V = torch.cat(vecs); S = V @ V.T
