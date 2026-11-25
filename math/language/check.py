@@ -206,7 +206,7 @@ for n in range(0, 7):
     toks = ["x"] + ["+", "x"] * n
     same = same and sorted(map(repr, (shape(t) for t in trees(0, len(toks) - 1, toks)))) == sorted(map(repr, ordered[n + 1]))
 want("parse trees of x+x+...+x with n+1 leaves, operators erased, are exactly the ordered binary arbor shapes with n+1 tips (biology/brain/neuron), n=0..6", same)
-brain = json.load(open(os.path.join(ROOT, "brain", "neuron", "fingerprints.json"), encoding="utf-8"))
+brain = json.load(open(os.path.join(ROOT, "biology", "brain", "neuron", "fingerprints.json"), encoding="utf-8"))
 bcat = next(e["seq"] for e in brain if "Catalan" in e["name"])
 parses_by_leaves = [catalan(n) for n in range(NOPS + 1)]
 want("parse-tree counts by leaves equal biology/brain/neuron's Catalan fingerprint on the common prefix", parses_by_leaves[:len(bcat)] == bcat[:len(parses_by_leaves)])
@@ -218,7 +218,7 @@ fp = [
     {"name": "distinct languages up to length 8 of DFAs with <= k states over {a,b}, k=1..3", "seq": [langs_upto[k] for k in (1, 2, 3)], "runner": RUN},
     {"name": "largest first disagreement with a^n b^n over k-state DFAs, k=1..3", "seq": [maxfirst[k] for k in (1, 2, 3)], "runner": RUN},
 ]
-with open(os.path.join(ROOT, "language", "fingerprints.json"), "w", encoding="utf-8") as f:
+with open(os.path.join(ROOT, "math", "language", "fingerprints.json"), "w", encoding="utf-8") as f:
     f.write("[\n" + ",\n".join(" " + json.dumps(e) for e in fp) + "\n]\n")
 print("PASS" if ok else "FAIL")
 sys.exit(0 if ok else 1)

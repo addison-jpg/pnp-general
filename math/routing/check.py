@@ -205,7 +205,7 @@ def main():
     fp = [{"name": "routing: max over connected n-stop graphs of hitting time / hop distance, n=2..%d" % MAXN, "seq": hit, "runner": "python3 -I math/routing/check.py"},
           {"name": "routing: max shortcuts of contraction in order 0..n-1, weights 1..3, n=2..%d" % MAXN, "seq": sc, "runner": "python3 -I math/routing/check.py"}]
     if not fails:
-        with open(os.path.join(ROOT, "routing", "fingerprints.json"), "w", encoding="utf-8") as f:
+        with open(os.path.join(ROOT, "math", "routing", "fingerprints.json"), "w", encoding="utf-8") as f:
             f.write("[\n" + ",\n".join(" " + json.dumps(x) for x in fp) + "\n]\n")
     # (ii) centre join
     progs, adj, dist, ecc, nrec = centre()
