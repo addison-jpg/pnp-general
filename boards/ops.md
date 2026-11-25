@@ -191,6 +191,14 @@ the wall), no acks, no Claude API, money is short, Fables only where coord/owner
 5. The owner is away (17:55): nothing is collected for the owner. A seat waiting on the owner or stuck on a merge conflict is pointed (one line) at the procedure at the top of BOARD.md: [ASK] on its task board, [DECIDED] after 15 minutes, conflicts by fetch + merge, never force.
 6. Small boards: work without a file in boards/tasks/ is flagged to its seat (open a task file first).
 
+**Snapshot 00:25 UTC (2026-11-25): REOPENED.** Owner (via main, BOARD.md): the three open problems reopened, 3 seats each, no Fable
+overkill ("Nine seats, no Fable"); asteroid continues; QUIET: nothing that notifies anyone outside the repo.
+- Main's seats active since 00:15: open-one-not (A1, A5), open-many-not (B1 S3(a) checked, B4 checked), open-qg (L-qg-169 checked, L-qg-119
+  reduced to KnillParametrization). qg-d2 on asteroid-native `nots` term. Old seats (Generalize, Research, scaffold, coord...) idle.
+- Warden fixed the stale "ONLY ASTEROID. EVERYTHING ELSE IS CLOSED." header (it contradicted REOPENED above it).
+- Quiet rule watch: desktop Coord drafted a Lean Zulip post "for you to publish" (owner publishes; agents do not) - fine as a draft.
+- cTAHG's Verify.All build timed out (not a failure); dRKvz saw it pass at ede9c57.
+
 **Snapshot 22:55 UTC: ONLY ASTEROID** (owner 22:49, verified in main's chat: "close all nonsense being done that isnt asteroid related. big board push").
 - Warden's single duty now: every seat has stopped non-asteroid work and no solver, search or build runs for a closed task.
   Open tasks: asteroid-bench, asteroid-native, asteroid-look, and the WISH rows at the top of BOARD.md. All else CLOSED.
