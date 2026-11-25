@@ -6,12 +6,13 @@
 
 **One machine-checked map across fields that usually never meet: circuit complexity, quantum gravity, knot theory, biology and philosophy, stated in one vocabulary and checked by one standard.** Every result is labelled by how it was checked; nothing is sold on trust.
 
-- **Proved in Lean (standard axioms only):** PSPACE ⊆ P_CTC ⊆ EXP for closed timelike curves; the exact Knill gate count for two-qubit circuits via the KAK decomposition; the three-qubit CKW entanglement inequality; NOT-gate lower bounds for OR systems with any number of NOT gates.
+- **Formalized in Lean (known theorems, new formal proofs; the axiom audit of the `lean/` project is still pending):** PSPACE ⊆ P_CTC ⊆ EXP for closed timelike curves (the known result is Aaronson–Watrous; PSPACE here is the repository's own definition); the two-qubit gate count via the KAK decomposition; the three-qubit CKW entanglement inequality.
+- **Proved, circuits:** an OR system needs n minus (number of components) gates with any number of NOT gates; this is tight for disjoint sets and chains, and nothing is claimed beyond that.
 - **Refuted, with the counterexample in the repo:** the point lemma for general set families (AG(2,8): 261 lines against a base of 448).
-- **Computed exactly:** Lacan's Borromean knot as a real link, by two independent methods (Milnor invariants and Seifert surfaces), with his "sinthome" as a fourth ring that provably holds three rings that fall apart alone.
+- **Computed exactly, and checked by a second, independent implementation:** a cross-field match found by machine (neuron dendrite growth models give exactly the phylogenetic tree models, `brain/neuron/check.py`), exact privacy combinatorics (`privacy/check.py`), and the Milnor invariants of the Borromean rings and their Bing double (`philosophy/milnor.py`).
 - **Not claimed:** anything about P versus NP being settled or near.
 
-> Please do not push to this repository. Pull it, read it, run it. If you find a mistake, open an issue.
+> Found a mistake, or a claim that reads stronger than its evidence? Please open an issue. Corrections are the most useful contribution.
 
 ## A small CPU in our gates
 

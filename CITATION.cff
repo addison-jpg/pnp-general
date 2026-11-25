@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "pnp-general: machine-checked mathematics across fields"
+authors:
+  - name: "Addison"
+repository-code: "https://github.com/addison-jpg/pnp-general"
+license: MIT
+type: software
+abstract: >-
+  A public repository of results on Boolean circuit size with limited NOT
+  gates, stated and checked in Lean 4. It includes NOT-gate lower bounds for
+  OR systems (tight for disjoint sets and chains), Lean formalizations of
+  known results from quantum computing and quantum gravity (the Knill gate
+  count for two-qubit circuits via the KAK decomposition, the three-qubit
+  CKW inequality, and PSPACE contained in P_CTC contained in EXP), and a
+  computed counterexample (AG(2,8)) to the point lemma for general set
+  families. Each result is labelled by how it was checked. The Lean project
+  under lean/ has not yet had a full axiom audit. The repository also ships
+  the asteroid (.ath) claim language and its checker. It does not claim any
+  result on P versus NP.
+keywords:
+  - lean4
+  - circuit-complexity
+  - formal-verification
