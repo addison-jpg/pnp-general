@@ -2,17 +2,26 @@
 
 [![asteroid language](https://img.shields.io/badge/language-asteroid%20.ath-19B3B3)](asteroid/SPEC.md) [![VS Code](https://img.shields.io/visual-studio-marketplace/v/asteroid.asteroid?label=VS%20Code&color=3D9BD6)](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid) [![Windows](https://img.shields.io/badge/Windows-asteroid.exe%204.2%20MB-19B3B3)](https://github.com/addison-jpg/pnp-general/raw/main/asteroid.exe) [![Linux](https://img.shields.io/badge/Linux%20%2F%20Arch-4.4%20MB-3D9BD6)](dist/linux/README.md) [![proofs](https://img.shields.io/badge/proofs-Lean%204-555)](one-not/lean)
 
-# pnp-general (by addison-jpg)
+# asteroid: one language, one standard of proof, every field
 
-**One machine-checked map across fields that usually never meet: circuit complexity, quantum gravity, knot theory, biology and philosophy, stated in one vocabulary and checked by one standard.** Every result is labelled by how it was checked; nothing is sold on trust.
+**asteroid is a programming language and a machine-checked map of mathematics, built by Addison.** Circuit complexity, quantum gravity, cosmology, knot theory, neuroscience, biology, privacy, transit networks, modal metaphysics and philosophy are all written as `.ath` programs that run and check themselves, in one vocabulary, held to one standard.
 
-- **Formalized in Lean (known theorems, new formal proofs; the axiom audit of the `lean/` project is still pending):** PSPACE ⊆ P_CTC ⊆ EXP for closed timelike curves (the known result is Aaronson–Watrous; PSPACE here is the repository's own definition); the two-qubit gate count via the KAK decomposition; the three-qubit CKW entanglement inequality.
-- **Proved, circuits:** an OR system needs n minus (number of components) gates with any number of NOT gates; this is tight for disjoint sets and chains, and nothing is claimed beyond that.
-- **Refuted, with the counterexample in the repo:** the point lemma for general set families (AG(2,8): 261 lines against a base of 448).
-- **Computed exactly, and checked by a second, independent implementation:** a cross-field match found by machine (neuron dendrite growth models give exactly the phylogenetic tree models, `brain/neuron/check.py`), exact privacy combinatorics (`privacy/check.py`), and the Milnor invariants of the Borromean rings and their Bing double (`philosophy/milnor.py`).
-- **Not claimed:** anything about P versus NP being settled or near.
+**127 verified results** (91 Lean proofs, 18 exact exhaustive checks, 12 numerical tests, 6 refutations with counterexamples), each one rerunnable with a single command: [`RESULTS.md`](RESULTS.md).
 
-Every verified result, with its label, evidence and the command that rechecks it: [`RESULTS.md`](RESULTS.md) (generated from the centre store).
+### What it has done
+
+- **It found a cross-field connection by itself.** The centre's sequence matcher noticed that neuron dendrite growth and evolutionary trees produce the same counts, (2n − 3)!!. The check then proved the models agree exactly: terminal growth is the Yule model and segmental growth the uniform model, for every tree shape up to 9 tips. `python3 -I brain/neuron/check.py`
+- **It formalizes physics in Lean:** PSPACE ⊆ P_CTC ⊆ EXP for computers with closed timelike curves, the three-qubit CKW entanglement inequality, and the two-qubit gate count via the KAK decomposition (known theorems, new formal proofs).
+- **It checks the universe exactly:** Friedmann solutions for matter, radiation and a cosmological constant; the age of the universe, 13.796 Gyr from Planck 2018; and the multiverse measure problem shown exactly, where the same universes in two orders give probabilities 1/2 and 1/3. `bin/asteroid --no-lean cosmos.ath`
+- **It builds the brain from the bottom up:** seven levels from DNA linking numbers through protein complexes, membranes, tissue, single neurons and networks to the cortex, each independently checked. `brain/`
+- **It refutes:** the point lemma for general set families fails on AG(2,8), 261 lines against a base of 448, with the counterexample in the repo.
+- **It turns ideas into checks.** Every idea enters as a `frame`: where it came from, how it was read, the exact claim, and a label no stronger than its check. Lacan's knot became exact Milnor invariants; Deleuze's rhizome became a theorem about bridges checked on all 33,867 small graphs; Granovetter's weak ties became an exact crossing time, k(k − 1) + 1.
+
+### The language
+
+asteroid states circuits, integer sequences, exact formulas, finite probability, modal logic (Kripke frames) and frames in one syntax, and every claim prints TRUE or FALSE. Its checks always halt, the mirror image of Homestuck's ~ATH, whose loops end only when something dies. Spec: [`asteroid/SPEC.md`](asteroid/SPEC.md). Editor support: VS Code Marketplace.
+
+**Honest limits, stated once:** the Lean results formalize known theorems, and the axiom audit of the `lean/` project is still pending; readings of philosophy and fiction are labelled readings, never results; nothing here claims progress on P versus NP.
 
 > **About the language bar:** GitHub counts asteroid (`.ath`) files as *Ruby*, because GitHub only lists a language once it is in wide use, and asteroid is new. The Ruby share in the bar is asteroid code.
 
