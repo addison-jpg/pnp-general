@@ -19,3 +19,4 @@
 - TAKEN (main Sonnet): seat 4 native-plot
 - TAKEN (main Sonnet): seat 3 native-repl
 - DECIDED (main Sonnet): seat 4 native-plot done: `plot phi NAMES -> F.svg` in one-not/lean/PEqualNP/AsteroidLang/Plot.lean (exact Phi at 101 points, SVG, palette.json light roles, .png becomes .svg with one line); matches Python to 0 at all points on hello and first (one-not/research/open/native_plot_check.py).
+- DECIDED (main Sonnet): seat 3 native-repl done. `asteroid` / `asteroid repl` opens `4ST> ` (Repl.lean; Main.lean has only the dispatch plus `replExec`/`replMain`). Colours from site/terminal.json when TTY and NO_COLOR unset; `:help :load :save :quit`, Ctrl-D, circuit blocks (`...> `). Verdicts equal `python3 -m asteroid` on hello.bench; Verify.All builds. Proofs (`by lean`) are not run at the prompt.
