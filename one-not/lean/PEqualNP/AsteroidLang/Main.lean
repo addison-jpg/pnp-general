@@ -225,10 +225,10 @@ def runCheck (root : System.FilePath) (where_ cmd : String) : IO (Bool × String
       return (false, s!"timed out after {checkTimeout} s, no PASS line, or a FAIL")
     IO.sleep 100
   let stdout := match out.get with | .ok s => s | .error _ => ""
-  let code := code.getD 1
+  let exitCode := code.getD 1
   let passed := printedPass stdout
-  return (code == 0 && passed,
-    s!"exit {code}, {if passed then "printed PASS" else "no PASS line, or a FAIL"}")
+  return (exitCode == 0 && passed,
+    s!"exit {exitCode}, {if passed then "printed PASS" else "no PASS line, or a FAIL"}")
 
 /-- print one statement and update the tally -/
 def step (t : Tally) (l : Line) : IO Tally := do
