@@ -55,6 +55,11 @@ A proof of 951 must use inputs of weight ≥ 2.
 | Kochergin and Mikhailovich (2019, 2024, 2025) | exact complexity counting negations only (monotone gates free): not 951's measure | ABS | `research-crawl` |
 | Korshunov, Russian Math. Surveys 58:5 (2003) | survey; possible place for a Russian one-negation result | NOT read | `research-crawl` |
 | Kyoto RIMS repository | source for Japanese negation-limited work; DSpace API recipe | — | `research-lit` |
+| LIT1 audit (2026-11-25): Jukna errata page (web.vu.lt/mif/s.jukna/Knizka/index.html) | lists Problems 7.4, 7.7 of Jukna-Sergeev as solved (2017); statements not shown, so whether the negation question is among them is unchecked | ABS | `LIT1_negation_limited` |
+| Blum 2024 TR24-179 abstract (ECCC, fetched LIT1) | abstract does not mention (1,1)-disjoint sums with negations; the "open target" claim in the row above is unverified | ABS | `LIT1_negation_limited` |
+| Amano, Maruoka, Tarui, DAM 126 (2003) 3-8 | merging with r NOTs: size Θ(n log n / 2^r); NOTs save a factor, not on Boolean sums | ABS (search snippet) | `LIT1_negation_limited` |
+| Guo, Malkin, Oliveira, Rosen (negation-limited complexity and pseudorandomness) | not about Boolean sums | NOT read | `LIT1_negation_limited` |
+| Tardos 1988 (Combinatorica); Cavalar-Goos-Sofronova-Sokolov arXiv 2507.16105 | exponential monotone/general gap (many NOTs, not sums) | ABS | `LIT1_negation_limited` |
 
 ## D. Monotone circuits for partial functions, games
 
@@ -477,7 +482,7 @@ Added 2026-11-25. Note: `worlds/FRAMING.md`. Only arXiv resolved among author pa
 
 ## J. Searched and not found (so nobody searches again)
 
-- A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`).
+- A one-NOT or few-NOT lower bound for Boolean sums: none in 255 citing works (`research-crawl`); LIT1 web search 2026-11-25 also none (`LIT1_negation_limited`: verdict OPEN).
 - A fractional Hall / transportation lemma with unit gate capacity in gate elimination or monotone
   lower bounds: two searches, no hit (`research-hall-charging-lit`).
 - A Nechiporuk / Mehlhorn-type bound for Boolean sums with don't-care sets (`research-partial`).

@@ -22,3 +22,4 @@
 ## Lines (TAKEN / DECIDED only)
 - TAKEN LIT1 (Sonnet): literature check on negation-limited Boolean sums (known / open / false).
 - TAKEN REF1 (Sonnet): refute PHC (Lemma D inequality) on BottomPay DD states, random one-NOT circuits on linear set systems, and two-set point programs, via git-compute. -> one-not/research/open/REF1_phc.py, REF1_phc.md
+- DECIDED LIT1 (Sonnet) (was TAKEN): verdict OPEN. No source proves any k-NOT gate bound on (1,1)-disjoint Boolean sums, none contradicts it (Tardos/Razborov/merging savings need many NOTs and non-sum functions); k = 0 is Wegener/Mehlhorn/Pippenger; Jukna-Sergeev §7 asks it. Unchecked: Jukna errata 7.4/7.7 statements, Mehlhorn full text; Blum TR24-179 "open" claim unverified (abstract silent). Novelty not asserted. -> `one-not/research/open/LIT1_negation_limited.md`
