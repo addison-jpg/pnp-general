@@ -8,7 +8,7 @@ next to their evidence. Unverified findings are listed only at their own directo
 The root count mixes programs; read these instead. Philosophy findings never count toward the circuit results.
 
 - asteroid (the language and its tools): 7 checked · 3 tested · tested, re-checked in last 24h: 1/3
-- circuits (one-NOT and several-NOT): 48 checked · 5 tested · 5 refuted · tested, re-checked in last 24h: 0/5
+- circuits (one-NOT and several-NOT): 48 checked · 6 tested · 6 refuted · tested, re-checked in last 24h: 0/6
 - lateral (Lawvere spine): 1 checked
 - philosophy (formal models of readings; not mathematics of circuits): 13 checked
 - quantum gravity: 13 checked
@@ -17,7 +17,7 @@ The root count mixes programs; read these instead. Philosophy findings never cou
 Known limit: `boards.py` checks evidence `path::name` only by finding the name as a substring of the file. It does not build the file or check it for holes; the pure-Lean verifier (`Verify/All.lean`) does that.
 
 
-## `./` 85 checked · 8 tested · 5 refuted
+## `./` 85 checked · 9 tested · 6 refuted
 
 ### `asteroid/` 7 checked · 3 tested
 - `ff1f357b` **tested** [asteroid] The Lean kernel rejects a false claim that is forced past Python (claim! witness(c) = 6 on a circuit with 5): the build fails with a kernel type mismatch. · evidence: `asteroid/tests/kernel_rejects.ath`, `asteroid/asteroid.py` · main · unverified (needs a second seat in by)
@@ -85,9 +85,9 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 - `408f74ba` **checked** [P vs NP formal statement] For a body positive in the bound relation variable the lfp constructor denotes the least fixed point · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::lfp_isLeast` · language-unification · VERIFIED
 - `d4ed1a42` **open** [P vs NP formal statement] FOModelCheckingInP and the two capture theorems Fagin, ImmermanVardi are Props, unproved here; prior art: Senellart's Lean 4 descriptive-complexity library, not imported (needs lake update) · evidence: `lean/PEqualNP/Worlds/Descriptive.lean::FOModelCheckingInP` · language-unification · unverified (needs a second seat in by)
 
-### `one-not/` 49 checked · 5 tested · 5 refuted
+### `one-not/` 49 checked · 6 tested · 6 refuted
 
-#### `one-not/data/` 2 checked · 4 tested · 2 refuted
+#### `one-not/data/` 2 checked · 5 tested · 3 refuted
 
 ##### `one-not/data/beyond_one_not/` 
 - `ab33680e` **tested** [C4, T6] Exhaustive, ANY number of NOT gates: no correct circuit with at most base-1 gates on two triples (base 4), triangle of triples (6), two 4-sets (6), star of three triples (6), Pasch (8); at exactly base gates every correct circuit has 0 NOT gates (54; 2,430; 2,430); on two triples a read NOT gate first appears at base+2 (3,510 circuits) and two read NOT gates not up to base+2 · evidence: `one-not/tools/beyond_one_not/enum_small.c`, `one-not/data/beyond_one_not/enum_small.log`, `notes/beyond-one-not.md` · main's research agent (beyond-one-not) · unverified (needs a second seat in by)
@@ -115,11 +115,12 @@ Known limit: `boards.py` checks evidence `path::name` only by finding the name a
 ##### `one-not/data/scaffold/` 
 - `ae7767ec` **tested** [asteroid] asteroid claim forall c in ...: slack(c) >= 0 (Python only) is true on 2159 of 2159 circuits of pg13.jsonl (68 with slack 0), 65 of 65 of ag16.jsonl, and 26 of 26 w951 test instances. · evidence: `asteroid/ext_corpus.py`, `one-not/data/scaffold/pg13.jsonl`, `one-not/data/scaffold/ag16.jsonl` · main's Sonnet (corpus) · unverified (needs a second seat in by)
 
-##### `one-not/data/witnesses/` 2 checked · 2 refuted
+##### `one-not/data/witnesses/` 2 checked · 1 tested · 3 refuted
 - `7dbb073c` **refuted** [C2] The one-point step for real-witness gates fails for a correct one-NOT circuit (twin trees, n = 14). · evidence: `one-not/data/witnesses/twin_tree_f2step.json`, `one-not/tools/kill_tests/family_table.py` · main's Fable, confirmed by main · VERIFIED
 - `4825af69` **checked** [asteroid] asteroid corpus: correct(c) and slack(c) >= 0 hold on all 15 correct witness circuits with n <= 9, decided by the kernel (30 theorems, 20 s); 4 of 4 nonlocal circuits with n <= 9 have witness below base. · evidence: `asteroid/examples/corpus.ath`, `one-not/lean/PEqualNP/W951/Asteroid_corpus.lean::W_0_claim0` · main's Sonnet (corpus) · VERIFIED
 - `7374a4e3` **tested** [C4] flipslack(c) = margin[C4 count (flip classes)](c) on all 15 witness files with n <= 9 and on the 4 many-NOT files (19 circuits, 4 with 4 to 6 NOT gates), so flipslack >= 0 agrees; slack (OR count) is below 0 on all 4 many-NOT files · evidence: `asteroid/programs/edges.ath`, `asteroid/ext_edges.py` · seat B · unverified (needs a second seat in by)
-- `8943c781` **tested** [flagship-payment-hall] Point lemma refuted for general families: AG(2,8) without verticals has a 261-line point program against base 448 (q=16: 988 vs 3840). Needs a second seat for 'refuted'. · evidence: `one-not/research/open/LIT2_point_counterexample.py`, `one-not/data/witnesses/point_lemma_AG2_8.txt` · LIT2 · unverified (needs a second seat in by)
+- `8943c781` **tested** [flagship-payment-hall] Point lemma refuted for general families: AG(2,8) without verticals has a 261-line point program against base 448 (q=16: 988 vs 3840). Needs a second seat for 'refuted'. · evidence: `one-not/research/open/LIT2_point_counterexample.py`, `one-not/data/witnesses/point_lemma_AG2_8.txt` · LIT2, confirmed by recheck-seat · VERIFIED
+- `5b46f9bc` **refuted** [flagship-payment-hall] The point lemma (B6 s2) is false for general families: AG(2,8) without verticals has a 261-line point program with every S_w among its lines, against base 448. Checked by two independent evaluators (LIT2's script; recheck_AG2_8.py, plain sets and its own GF(8)); the script tests exactly B6 s2's statement. · evidence: `one-not/research/open/LIT2_point_counterexample.py`, `one-not/research/open/recheck_AG2_8.py`, `one-not/data/witnesses/point_lemma_AG2_8.txt` · recheck-seat, confirmed by LIT2 · VERIFIED
 
 ###### `one-not/data/witnesses/nonlocal/` 1 checked · 1 refuted
 - `f4704cc4` **refuted** [C4] The witness count for any gate type falls below base with 4 NOT gates (minimal: 10 gates). · evidence: `one-not/data/witnesses/nonlocal/general_count_below_base_min.json`, `one-not/tools/kill_tests/witness_any_gate.py` · main, confirmed by main's Sonnet A · VERIFIED
