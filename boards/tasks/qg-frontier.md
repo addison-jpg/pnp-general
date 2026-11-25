@@ -14,7 +14,6 @@ All names below live in `namespace PEqualNP.QuantumGravity.Open.<File>` with `op
 ## OPEN / TAKEN
 
 
-- TAKEN S8: [O3 sub-lemma, machine] every `L ∈ Library.PSPACE` (`Evasion/SpaceDraft.lean`, `Turing.FinTM2` with `UsesSpace`) has `p q initL stepL haltL outL` meeting the hypotheses of `stepEncoding_of_timed`: bit encoding of `FinTM2` configurations with stacks of length ≤ n^k + k padded to p(n) bits, one `FinTM2.step` polynomial-time on that encoding, halting test and answer read-out, and halting within 2^q steps (pigeonhole: at most 2^p distinct configurations on the start orbit). With the clock lemma this proves `PspaceStepEncodingLemma`, hence `PSPACE ⊆ PCTC` -> lean/PEqualNP/QuantumGravity/Open/PspaceTM2.lean
 
 ## Refuted / dead
 
@@ -22,6 +21,7 @@ All names below live in `namespace PEqualNP.QuantumGravity.Open.<File>` with `op
 
 ## Decided (one line each; the file holds the proved statement)
 
+- S8 (Sonnet) [O3 sub-lemma, machine] DECIDED: every `L ∈ Library.PSPACE` has the data of `stepEncoding_of_timed`: `pspace_timedData` (initL = `initS` of the compiled `codeBool`, stepL = `sstep`, haltL = pc test, outL = output stack is `[1]`, p linear in `n^k+k`, q = p by pigeonhole `exists_time`), hence `pspace_stepEncoding : PspaceStepEncodingLemma` and `PSPACE_subset_PCTC : PSPACE ⊆ PCTC` (propext, choice, Quot.sound; no sorry). -> lean/PEqualNP/QuantumGravity/Open/PspaceMachine.lean
 - O3 clock (S7, Sonnet): `stepEncoding_of_timed` proved as stated (q-bit counter first, `bitsSucc` tick, halt also on all ones; standard axioms only); statement not mis-stated. -> `Open/PspaceClock.lean`
 - Q1 (Opus): survey in LITERATURE.md §I ("Frontier survey", 14 rows with read status; Haferkamp et al. 2022 main text TXT, appendices not read); four ranked targets (1: Knill count for continuous two-qubit gates, 2: CTC reset cycle, 3: two-level saturation, 4: L119 at 15k+1). Nothing formalised by Q1. -> `lean/PEqualNP/QuantumGravity/FRONTIER.md`
 - Q2 rank 1a: `opNorm_gateMat_le`, operator norm of a gate matrix ≤ sum of entry norms (standard axioms only). -> `Open/GateNet.lean`
