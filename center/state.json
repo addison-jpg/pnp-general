@@ -137,6 +137,11 @@
   "findings": {},
   "mean_radius_findings": null
  },
+ "time": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "worlds": {
   "cells": {
    "DECIDED": 2,

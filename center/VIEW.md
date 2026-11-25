@@ -102,6 +102,10 @@ cells: none
 findings (verified): none · mean radius None
 cells: none
 
+## time
+findings (verified): none · mean radius None
+cells: none
+
 ## worlds
 findings (verified): 9 checked · mean radius 0.0
 cells: 2 DECIDED, 3 OPEN, 1 STOPPED, 2 TAKEN

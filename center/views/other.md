@@ -8,6 +8,11 @@
 - [checked-finite, r=0.667] gravity.ath: every escape route in essays/knowing.md (heaven, leaving town, the party, the mirror) computes OR(people, ground) on all 4 inputs. The argument's shape, not the essay's truth.
 - [checked-finite, r=1.0] Modal correspondence checked exactly on all 512 relations on 3 worlds and all 65536 on 4: T, 4, B, 5 are valid exactly on the reflexive, transitive, symmetric, euclidean frames; T and 5 together exact
 - [checked-finite, r=1.0] Toy 7-world branching history (reflexive, transitive): []c holds exactly on the alpha branch {1,4}, ~<>[]c exactly on the doomed branches {2,3,5,6}, and the branch point is the only world where <>[]c 
+- [checked-finite, r=1.0] frames_time.ath: on all S4 frames on 1..3 worlds T, 4, []<>T and ~(p&~p) are valid, B, 5 and .2 are not; all seven are valid on S5 frames on 1..3 worlds.
+- [checked-finite, r=1.0] frames_routing.ath: routing/check.py passes. On all 106932 connected graphs on 2..5 vertices with edge weights in {1,2,3}, Dijkstra, A* (halved exact distance; one-landmark ALT) and contraction hierar
+- [checked-finite, r=1.0] frames_time.ath: adding only passing checks never unsettles a record, all toy stores of <= 4 records and all orders of <= 4 steps (6558 cases); a failing re-check does. No poset on 1..4 worlds with an
+- [checked-finite, r=1.0] frames_time.ath: preorders on 1..4 elements number 1, 4, 29, 355; with a least element 1, 3, 16, 145 (also sum_k C(n,k) preorders(n-k)); least elements are unique up to isomorphism. The level preorder
+- [checked-finite, r=1.0] frames_time.ath: time/check.py passes. git history at HEAD: one root 16a0185, acyclic, every commit reaches the root, DAG with merges; a longest root-to-HEAD path computed and confirmed by edge relaxa
 
 ## Cells
 - [DECIDED, r=0.0] O2 (Opus): three-qubit CKW checked in full: C(ρ_AB)² + C(ρ_AC)² + 4|Det ψ| = 4 det ρ_A for every pure ψ (Wootters concurrence from the eigenvalues of ρρ̃), so τ_AB + τ_AC ≤ τ_{A|BC}, equality iff Det 
@@ -35,17 +40,26 @@
 
 ## Frames
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, Twin Fantasy 2011 and 2018 (carseat/BASE.md); the re-recording link is analogy (reading), not checked: Kripke fact only: two points of one directed history (0 -> 1, reflexi
+- [checked-finite, r=0.0] Addison: Lyotard's incredulity toward metanarratives as S5 (cosmos/BASE.md section 7); the link is analogy (reading), not checked: S5 has no privileged world: every world sees every other in its class
 - [checked-finite, r=0.0] Addison: postmodern history as a DAG, Lyotard 1979 (cosmos/BASE.md section 7; DAG.lean); the Lyotard link is analogy (reading), not checked: Kripke fact only: every rooted poset on 1..4 worlds is a p-
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, heaven full of people (essays/knowing.md; carseat/BASE.md): every escape route computes OR(people, ground)
 - [checked-finite, r=0.0] Beauvoir, my freedom requires the other's, Pour une morale de l'ambiguite 1947 (not re-read); the link is analogy (reading), not checked: Kripke fact only: []<>T is valid iff every reached world reach
+- [checked-finite, r=0.0] Addison: the alpha line as Homestuck's alpha timeline, commits off it as doomed branches (homestuck/BASE.md section 1); the link is analogy (reading), not checked: the longest root-to-HEAD path is exa
+- [checked-finite, r=0.0] Beauvoir, freedom exercised forward from a situation, Pour une morale de l'ambiguite 1947 (not re-read; Beauvoir.lean); the link is analogy (reading), not checked: Kripke fact only: on reflexive-trans
+- [checked-finite, r=0.0] Addison: multiverse-level postmodernism (cosmos/BASE.md section 7; cosmos/invariant.py): Kripke fact only: postmodern-safe = valid on every frame of the stated class; T, 4, []<>T valid on all S4 frame
 - [checked-finite, r=0.0] gravity as inevitability (essays/knowing.md): every escape route computes OR(people, ground)
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, How to Leave Town (essays/knowing.md); the leaving link is analogy (reading), not checked: Kepler fact only: for h != 0, an orbit is bound iff E < 0, exact on the cosmos gr
+- [checked-finite, r=0.0] Addison: the centre as a road network (routing/BASE.md): programs linked by shared evidence files: 14 components among 17 programs; most programs are unreachable from the rest
+- [checked-finite, r=0.0] Addison: which results cross to the multiverse (time/BASE.md section 5): .2 fails on some branching history and holds with no privileged world
 - [checked-finite, r=0.0] Homestuck alchemy (homestuck/BASE.md): alchemy at b = 3 is an OR circuit that shares gates
 - [checked-finite, r=0.0] Addison: Car Seat Headrest, I Want You to Know That I'm Awake / I Hope That You're Asleep (essays/knowing.md); the link is analogy (reading), not checked: Kripke fact only: p and ~p never hold at one 
 - [checked-finite, r=0.0] Addison: sync Homestuck with Car Seat Headrest (carseat/, homestuck/level.json); the timeline and retcon link is analogy (reading), not checked: Kripke fact only: Twin Fantasy 2011 and 2018 as a 2-wor
 - [checked-finite, r=0.0] Addison: postmodern history of the universe along time, Lyotard 1979 (cosmos/BASE.md section 7): a claim crosses to every branch only if it holds in every ordering: for n <= 7, a frequency is ordering
 - [checked-finite, r=0.0] Beauvoir, reciprocity, Pour une morale de l'ambiguite 1947 and Le Deuxieme Sexe 1949 (not re-read; Beauvoir.lean); the reciprocity link is analogy (reading), not checked: Kripke fact only: B (p -> []<
 - [checked-finite, r=0.0] Addison: Car Seat Headrest as a level, dated records (carseat/BASE.md): 1 2010, 2 2010, Twin Fantasy 2011, Face to Face 2018 form a time-ordered list; the two versions are 7 years apart
+- [tested, r=0.5] Addison: settled stays settled on the real history (git log of */findings.jsonl): measured on the history: 42 versions of the findings.jsonl files, 0 records removed, 0 downgraded (confirmation lines 
+- [open, r=1.0] Addison: the Google Maps algorithm (routing/BASE.md): the method Google Maps uses in production
 - [open, r=1.0] Addison: Car Seat Headrest, High to Death and Kid War (carseat/BASE.md): no formal structure yet; no check decides what a song means
 - [open, r=1.0] Homestuck, the meteor (homestuck/BASE.md section 5): the meteor as a transport map between two sessions that keeps the rules
+- [open, r=1.0] Addison: planned routes against haphazard buses (transit/BASE.md; routing/BASE.md): max hitting time / hop distance over connected n-stop graphs is n^2-3n+3 for n=2..5, the clique with one pendant sto
 - [open, r=1.0] Addison: Car Seat Headrest, lineage of 1, 2, Disjecta Membra, Please Pass the Milk Please (carseat/BASE.md): lineage as a DAG of re-recordings; needs dated edges, which are not on record
