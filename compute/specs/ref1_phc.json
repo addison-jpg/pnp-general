@@ -1,0 +1,8 @@
+{
+  "name": "ref1_phc",
+  "entry": "one-not/research/open/REF1_phc.py",
+  "args": ["--scale", "6", "--cap", "3000", "--nsamp", "400", "--budget", "1500"],
+  "shards": 20,
+  "output": "ref1_phc.jsonl",
+  "requirements": ["numpy>=2.0", "python-sat"]
+}
