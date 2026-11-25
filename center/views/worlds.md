@@ -23,3 +23,6 @@
 - [TAKEN, r=1.0] W3
 - [OPEN, r=1.0] (Sonnet; Fable only if a Lean statement is worth writing) W3: reduction routes, meaning theorems that carry a result on one axis to the P vs NP cut. Label: "map, not progress on P vs NP". For each rou
 - [STOPPED, r=1.0] (usage; reopen later; nothing pushed) Fable: the layer and its checked maps. -> lean/PEqualNP/Worlds/Hypercomplex.lean, worlds/HYPERCOMPLEX.md
+
+## Frames
+- [checked-finite, r=0.0] Lewis, On the Plurality of Worlds (1986), indexical actuality (metaphysics/BASE.md): no privileged world: an S5 frame, every world sees every world; axiom 5 valid on all S5 frames

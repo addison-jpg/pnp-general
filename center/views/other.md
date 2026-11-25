@@ -32,6 +32,17 @@
 - [OPEN, r=1.0] (Fable): compute `trunc 1 f` on LIT2's AG(2,8) program (261 lines; needs submodular minimisation, not 2^E) and report the largest one-gate jump: how many sets one line serves. -> worlds/unify_rank.py
 
 ## Frames
+- [checked-finite, r=0.0] Addison: Car Seat Headrest, heaven full of people (essays/knowing.md; carseat/BASE.md): every escape route computes OR(people, ground)
 - [checked-finite, r=0.0] gravity as inevitability (essays/knowing.md): every escape route computes OR(people, ground)
 - [checked-finite, r=0.0] Homestuck alchemy (homestuck/BASE.md): alchemy at b = 3 is an OR circuit that shares gates
+- [checked-finite, r=0.0] Addison: postmodern history of the universe along time, Lyotard 1979 (cosmos/BASE.md section 7): a claim crosses to every branch only if it holds in every ordering: for n <= 7, a frequency is ordering
+- [checked-finite, r=0.0] Addison: Car Seat Headrest as a level, dated records (carseat/BASE.md): 1 2010, 2 2010, Twin Fantasy 2011, Face to Face 2018 form a time-ordered list; the two versions are 7 years apart
+- [open, r=1.0] Addison: Car Seat Headrest, I Want You to Know That I'm Awake / I Hope That You're Asleep (essays/knowing.md): two opposite maps held at once: to be known and not seen
+- [open, r=1.0] Addison: sync Homestuck with Car Seat Headrest (carseat/, homestuck/level.json): Twin Fantasy 2011 and 2018 as two points of one directed history, like a timeline and its retcon
+- [open, r=1.0] Addison: the measure problem (cosmos/BASE.md; metaphysics/BASE.md): no privileged world to anchor probability over worlds; the cosmos toy shows the ordering decides it
+- [open, r=1.0] Addison: Car Seat Headrest, How to Leave Town (essays/knowing.md; carseat/BASE.md): leaving town as escape velocity: bound iff E < 0 (cosmos bound-orbit); analogy
 - [open, r=1.0] Homestuck, the meteor (homestuck/BASE.md section 5): the meteor as a transport map between two sessions that keeps the rules
+- [open, r=1.0] Addison: Car Seat Headrest, High to Death and Kid War (carseat/BASE.md): no formal structure yet
+- [open, r=1.0] Addison: Car Seat Headrest, Twin Fantasy Mirror to Mirror vs Face to Face (carseat/BASE.md): a self-map against a map to another; re-recording as a map between two versions of one work
+- [open, r=1.0] Addison: Car Seat Headrest, lineage of 1, 2, Disjecta Membra, Please Pass the Milk Please (carseat/BASE.md): lineage as a tree; re-recordings rejoin versions, so a DAG (DAG.lean)
+- [open, r=1.0] Addison: postmodern history, the cosmological history as a metanarrative (cosmos/BASE.md section 7): history as a DAG with rejoining branches rather than one line; reading, not proved

@@ -37,3 +37,6 @@
 - [OPEN, r=1.0] no seat has written a TAKEN line yet; `asteroid/logo_art.py` does not exist. Seat: coord's Sonnet seat (see Seats above).
 - [OPEN, r=1.0] seat 5, `corpus`, `hunt`/`search`, `mixed`, the rest of the term language (NATIVE.md "What remains" 1-3).
 - [OPEN, r=1.0] (Addison): Open VSX is not published (needs Addison's token).
+
+## Frames
+- [checked-finite, r=0.0] Addison: upgrade asteroid for metaphysics (ontology/SOURCES.md): T, 4, B, 5 hold on exactly the reflexive, transitive, symmetric, euclidean relations on 3 and 4 worlds; S5 frames are the equivalences

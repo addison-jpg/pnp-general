@@ -18,6 +18,11 @@
   },
   "mean_radius_findings": 0.0
  },
+ "carseat": {
+  "cells": {},
+  "findings": {},
+  "mean_radius_findings": null
+ },
  "circuits": {
   "cells": {
    "DECIDED": 9,

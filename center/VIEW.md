@@ -14,6 +14,10 @@ cells: 6 DECIDED, 4 OPEN, 6 TAKEN
 findings (verified): 9 checked-finite · mean radius 0.0
 cells: none
 
+## carseat
+findings (verified): none · mean radius None
+cells: none
+
 ## circuits
 findings (verified): 48 checked, 6 refuted, 6 tested · mean radius 0.033
 cells: 9 DECIDED, 15 OPEN, 8 STOPPED, 2 TAKEN
