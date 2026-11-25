@@ -60,7 +60,9 @@ def run(cmd, tag, i):
 claim_line = re.compile(r"^(\d+: claim |claims: )")
 def claims(out): return [l for l in out.splitlines() if claim_line.match(l)]
 
-git = lambda: subprocess.run(["git", "status", "--porcelain", "--ignored"], cwd=ROOT, capture_output=True, text=True).stdout
+# the files a run may write (other seats may commit elsewhere in the tree while this test runs)
+WATCH = ["asteroid/out", "frames.jsonl", "one-not/lean/PEqualNP/W951", ":(glob)**/findings.jsonl", "boards"]
+git = lambda: subprocess.run(["git", "status", "--porcelain", "--ignored", "--"] + WATCH, cwd=ROOT, capture_output=True, text=True).stdout
 before = git(); bad = []
 print(f"binary: {BIN} ({os.path.getsize(BIN) / 2**20:.1f} MiB)")
 print(f"{'program':<40} {'python':>6} {'binary':>6} {'claims':>6} {'same claims':>11} {'same stdout':>11} {'py s':>6} {'bin s':>6}")
@@ -70,7 +72,7 @@ for i, (name, pcmd, bcmd) in enumerate(cases):
     same = claims(po) == claims(bo); ok = pc == bc and same
     if name == "missing program": ok = ok and pc == 2
     if name.startswith("propose"): ok = ok and "model unavailable" in po and "model unavailable" in bo
-    if name.startswith("ask"): ok = ok and po == bo and "(a question, not a claim)" in bo
+    if name.startswith("ask line"): ok = ok and po == bo and "(a question, not a claim)" in bo
     if name.endswith("version"): ok = ok and po == bo and pc == 0
     if name.startswith("ask.py"): ok = ok and po == bo and pc == 3 and "the model is not available" in bo
     print(f"{name:<40} {pc:>6} {bc:>6} {len(claims(po)):>6} {('yes' if same else 'NO'):>11} {('yes' if po == bo else 'no'):>11} {pt:>6.1f} {bt:>6.1f}  {'ok' if ok else 'FAIL'}")
@@ -78,7 +80,7 @@ for i, (name, pcmd, bcmd) in enumerate(cases):
         bad.append(name)
         for l in (pe.strip().splitlines()[-3:] + be.strip().splitlines()[-3:]): print("      " + l)
 shutil.rmtree(TMP, ignore_errors=True)
-if git() != before: print("FAIL: the repository changed during the test"); bad.append("repository unchanged")
+if git() != before: print("FAIL: a file a run may write changed in the repository"); bad.append("repository unchanged")
 print(f"{len(cases) - len([b for b in bad if b != 'repository unchanged'])} of {len(cases)} cases agree")
 if bad: print("FAIL: " + ", ".join(bad)); sys.exit(1)
 print("PASS")

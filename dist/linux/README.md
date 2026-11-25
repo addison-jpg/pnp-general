@@ -29,7 +29,7 @@ Rebuild: `cd one-not/lean && lake build asteroid && strip -o ../../dist/linux/as
 
 The code is inside the binary. The data (`.bench` files, findings, `frames.jsonl`, `one-not/lean`) is the repository's: it is searched upwards from the program's folder, the current folder and the binary's folder. Found: the run reads and writes there, as `python3 -m asteroid` does, and `by lean` claims are proved when `lake` is found. Not found: the run evaluates only and says so in one line; `frames.jsonl` then goes to a temporary folder unless `ASTEROID_FRAMES` names a file.
 
-Evidence: `python3 asteroid/tests/test_universal_exe.py` runs the root programs, `asteroid/tests/notgate.ath`, five examples, an `ask` line, a `propose` line, `version` and a missing program through both `python3 -m asteroid --no-lean` and this binary, and checks that the exit codes and the claim lines are identical. Proving with Lean through this binary was not tested (no Lean where it was built).
+Evidence: `python3 asteroid/tests/test_universal_exe.py` runs the root programs, `asteroid/tests/notgate.ath`, five examples, an `ask` line, a `propose` line, `version`, a missing program and `core/ontology/ask.py --model` through both `python3 -m asteroid --no-lean` and this binary, and checks that the exit codes and the claim lines are identical. Proving with Lean through this binary was not tested (no Lean where it was built).
 
 Rebuild, from the repository root, in a fresh virtual environment outside the repository:
 
