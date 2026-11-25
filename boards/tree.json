@@ -1,7 +1,7 @@
 {
  ".": {
   "counts": {
-   "checked": 71,
+   "checked": 73,
    "tested": 8,
    "refuted": 5
   },
@@ -87,6 +87,8 @@
    "02f7d0db",
    "9c7d09e2",
    "2ee8c618",
+   "8008158e",
+   "2e78144d",
    "aff6e6b7",
    "2e8126de",
    "957df3fd"
@@ -176,7 +178,7 @@
  },
  "lean": {
   "counts": {
-   "checked": 11
+   "checked": 13
   },
   "verified": [
    "57b5bd42",
@@ -187,6 +189,8 @@
    "02f7d0db",
    "9c7d09e2",
    "2ee8c618",
+   "8008158e",
+   "2e78144d",
    "aff6e6b7",
    "2e8126de",
    "957df3fd"
@@ -195,7 +199,7 @@
  },
  "lean/PEqualNP": {
   "counts": {
-   "checked": 11
+   "checked": 13
   },
   "verified": [
    "57b5bd42",
@@ -206,6 +210,8 @@
    "02f7d0db",
    "9c7d09e2",
    "2ee8c618",
+   "8008158e",
+   "2e78144d",
    "aff6e6b7",
    "2e8126de",
    "957df3fd"
@@ -245,7 +251,7 @@
  },
  "lean/PEqualNP/QuantumGravity": {
   "counts": {
-   "checked": 8
+   "checked": 10
   },
   "verified": [
    "57b5bd42",
@@ -255,7 +261,9 @@
    "769c3ae0",
    "02f7d0db",
    "9c7d09e2",
-   "2ee8c618"
+   "2ee8c618",
+   "8008158e",
+   "2e78144d"
   ],
   "unverified_here": [
    {
@@ -268,7 +276,7 @@
  },
  "lean/PEqualNP/QuantumGravity/Open": {
   "counts": {
-   "checked": 6
+   "checked": 8
   },
   "verified": [
    "182f7509",
@@ -276,7 +284,9 @@
    "769c3ae0",
    "02f7d0db",
    "9c7d09e2",
-   "2ee8c618"
+   "2ee8c618",
+   "8008158e",
+   "2e78144d"
   ],
   "unverified_here": [
    {
@@ -934,6 +944,18 @@
    },
    {
     "id": "32b2d9b4",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "one-not/tools/tensor": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "b9ae400b",
     "why": [
      "needs a second seat in by"
     ]
