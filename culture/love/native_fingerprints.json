@@ -1,0 +1,10 @@
+[
+ {"name": "native: stable polytope k=1, n=3, all profiles: profiles, vertices summed", "seq": [46656, 60324], "runner": "python3 -I culture/love/native_diff.py --new"},
+ {"name": "native: stable polytope k=1, n=3, profiles with 1, 2, 3 vertices", "seq": [34080, 11484, 1092], "runner": "python3 -I culture/love/native_diff.py --new"},
+ {"name": "native: profile orbits under relabelling A and B, n=1..4", "seq": [1, 5, 1300, 191108196], "runner": "python3 -I culture/love/native_diff.py --new"},
+ {"name": "native: orbit weights summed, equal to (n!)^(2n), n=1..4", "seq": [1, 16, 46656, 110075314176], "runner": "python3 -I culture/love/native_diff.py --new"},
+ {"name": "native: profiles with a unique stable matching k=1, n=1..4", "seq": [1, 14, 34080, 65867261184], "runner": "python3 -I culture/love/native_diff.py --new"},
+ {"name": "native: most stable matchings on one profile k=1, n=1..4", "seq": [1, 2, 3, 10], "runner": "python3 -I culture/love/native_diff.py --new"},
+ {"name": "native: stable matchings summed over profiles k=1, n=1..4", "seq": [1, 18, 60324, 163661617152], "runner": "python3 -I culture/love/native_diff.py --new"},
+ {"name": "native: n=4 k=1 profiles by number of stable matchings, 1..max", "seq": [65867261184, 35927285472, 7303612896, 861578352, 111479616, 3478608, 581472, 36432, 0, 144], "runner": "python3 -I culture/love/native_diff.py --new"}
+]

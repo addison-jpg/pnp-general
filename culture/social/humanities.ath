@@ -1,0 +1,14 @@
+# Humanities cell: social choice, sociology, deontic logic, ecology, folktale. See culture/social/README.md.
+check "python3 -I culture/social/condorcet.py"
+check "python3 -I culture/social/weakties.py"
+check "python3 -I core/ontology/beauvoir.py"
+check "python3 -I culture/social/ecology.py"
+check "python3 -I culture/social/propp.py"
+frame "Condorcet 1785 paradox; the 1/18 chance of a cycle for 3 voters and 3 options (cited from memory)" reading "12 of the 216 profiles cycle, derived by two independent computations; 4 options is counted, not remembered" -> 2 label checked-finite reach 3 cost 40
+frame "Granovetter 1973; Easley and Kleinberg 2010: under strong triadic closure a local bridge is weak (cited from memory)" reading "reproduced on every labelled graph on up to 5 vertices and every labelling, but only with their hypothesis that an endpoint has two strong edges; the bare form fails at one edge" -> 3 label checked-finite reach 3 cost 40
+frame "Addison: sociology can become foundational for the project's philosophy; Granovetter first, since weak ties are the bridges of philosophy/rhizome.py" reading "a tie between clusters carries what no strong tie can; the same shape as a rhizome bridge. This is a reading, not checked" -> 3 label analogy reach 3 cost 40
+frame "Existing research check: which published claims were reproduced exactly" reading "reproduced: Condorcet 1/18 (3 voters, 3 options) and Granovetter/Easley-Kleinberg weak-bridge claim with its stated hypothesis. Not reproduced as stated: the bare weak-bridge form. Sources cited from memory, not read" -> 3 label checked-finite reach 3 cost 40
+frame "Ought implies can (Kant; cited from memory) is the deontic axiom D, O p -> P p" reading "D holds on a frame exactly when it is serial, checked on all relations up to 3 worlds in beauvoir.py; that morality is this logic is a reading" -> 4 label checked-finite reach 3 cost 40
+frame "Bronfenbrenner, ecological systems (micro, meso, exo, macro, chrono; cited from memory)" reading "nested systems read as a chain: a checked chain is a non-symmetric preorder mapping onto the 2-chain; that the five systems are such a chain is analogy" -> 5 label analogy reach 2 cost 40
+frame "Propp, Morphology of the Folktale 1928 (cited from memory)" reading "ordered functions as subsets: 2^m tales, 3^(m/2) with my pairing rule; that tales really obey it is analogy" -> 6 label analogy reach 2 cost 40
+record culture/social social checked-finite "culture/social/humanities.ath: 3 voters on 3 options, 12 of 216 profiles cycle (1/18); every labelled graph on up to 5 vertices and every labelling: strong triadic closure makes a local bridge weak when an endpoint has two strong edges (the bare form fails at one edge); ought-implies-can as axiom D is serial (beauvoir.py); chains map onto the 2-chain; paired Propp tales counted. Readings are analogy."
