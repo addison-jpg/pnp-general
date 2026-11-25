@@ -17,3 +17,5 @@
 
 - A2 DONE: Open/MixedSlack.lean defines mslack and MixedStepNeg (Prop) and proves MixedStepNeg -> no_minCE; the arrow itself is unproved.
 - 2026-11-25 A1 (Opus) DECIDED: mixed step at negative states = the count at every mixed state (checked, Open/MixedStepNegIff.lean); fails at t=4 only at negative states; obstacle = F2-transfer (minimality gives gates' >= base', step needs |F2'| >= base'). Note: one-not/research/open/A1_mixed_step.md
+- 2026-11-25 A4 (Opus) TAKEN: F2-transfer under one NOT gate (where the NOT gate enters under restriction; attack on stored instances first). Note will be one-not/research/open/A4_f2_transfer.md
+- 2026-11-25 A5 (Sonnet) TAKEN: test F2-transfer at t = 1 on every stored one-NOT instance and random irreducible one-NOT circuits; record NOT alive/killed vs gates' - |F2'|. Files: one-not/research/open/A5_transfer_t1.py, A5_transfer_t1.md
