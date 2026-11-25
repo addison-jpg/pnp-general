@@ -502,6 +502,30 @@
    }
   ]
  },
+ "culture/queer": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "7c1930ce",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
+ "culture/race": {
+  "counts": {},
+  "verified": [],
+  "unverified_here": [
+   {
+    "id": "31e67e2d",
+    "why": [
+     "needs a second seat in by"
+    ]
+   }
+  ]
+ },
  "culture/social": {
   "counts": {},
   "verified": [],

@@ -1,0 +1,6 @@
+# Join cosmos + time: history-independent = postmodern-safe on the S5 cluster. Shared fact computed in core/ontology/joins/postmodern.py.
+check "python3 -I physics/cosmos/invariant.py"
+check "python3 -I physics/time/check.py"
+check "python3 -I core/ontology/joins/postmodern.py"
+frame "Join: history-independent claims of physics/cosmos/invariant.py and the S5 frames of physics/time (no privileged world)" reading "for every n <= 6 and every property P of n universes: P has the same frequency at every cutoff in every ordering exactly when p -> []p holds at every world of the S5 cluster on those worlds, exactly when P is constant" -> 4 label checked-finite reach 3 cost 40
+record physics/time join-cosmos checked-finite "core/ontology/joins/cosmos_time.ath: for every n <= 6 and every property P of n universes, P is history-independent in the sense of physics/cosmos/invariant.py (same frequency at every cutoff in every ordering) exactly when p -> []p holds at every world of the S5 cluster on those worlds (physics/time, no privileged world), exactly when P is constant. Both checks pass in the same run."

@@ -1,0 +1,7 @@
+# Join time + poetry: S5 frames are equivalence relations, counted by the rhyme schemes. Shared fact computed in core/ontology/joins/s5.py.
+check "python3 -I physics/time/check.py"
+check "python3 -I core/ontology/joins/s5.py"
+seq rhyme = from culture/poetry/fingerprints.json "rhyme schemes"
+claim rhyme = [1, 2, 5, 15]
+frame "Join: S5 frames of physics/time (no privileged world) and rhyme schemes of culture/poetry" reading "an S5 frame on n worlds is an equivalence relation, so S5 frames on 1..4 worlds number 1, 2, 5, 15, the rhyme schemes of 1..4 lines; 1 + 2 + 5 = 8 is the S5 count physics/time/check.py uses, and S4 frames (preorders) number 1, 4, 29, 355, sum 34 on 1..3 worlds" -> 3 label checked-finite reach 3 cost 40
+record physics/time join-poetry checked-finite "core/ontology/joins/time_poetry.ath: by brute force over every relation on 1..4 worlds, S5 frames (reflexive, transitive, symmetric) number 1, 2, 5, 15 and S4 frames 1, 4, 29, 355; the S5 counts equal the rhyme schemes of culture/poetry/fingerprints.json, and 1 + 2 + 5 = 8 and 1 + 4 + 29 = 34 are the frame counts physics/time/check.py uses; that check passes."
