@@ -103,6 +103,21 @@ All in `notes/general/research-lit-unrestricted.md`.
   (hardness magnification and the locality barrier).
 - Hirahara FOCS 2018; Liu and Pass FOCS 2020 (meta-complexity).
 
+Added by seat W3 (worlds-map, 2026-11-25), routes in `worlds/routes.md`; read statuses are a tool-fetched abstract page or a search result, never a full read:
+
+| Source | What it gives | Status | Note |
+|---|---|---|---|
+| Oliveira and Santhanam, "Hardness Magnification for Natural Problems", FOCS 2018, ECCC TR18-139 | MCSP[2^√n] without linear-size formulas on average gives NP not in poly-size formulas; MKtP needing N^{1+δ} circuits gives EXP not in SIZE(poly) | ABS (fetched) | `worlds/routes.md` |
+| Chen, Jin, Williams, "Hardness Magnification for all Sparse NP Languages", FOCS 2019, ECCC TR19-118 | a 2^{n^{o(1)}}-sparse NP language outside Circuit[n^{1+ε}] gives NP not in Circuit[n^k] for every k; analogues for formulas, branching programs, AC0[6], TC0; search-MCSP formula size n^{3+ε} gives Parity-P not in NC1 | ABS (fetched) | `worlds/routes.md` |
+| Chen, Hirahara, Oliveira, Pich, Rajgopal, Santhanam, "Beyond Natural Proofs: Hardness Magnification and Locality", ITCS 2020, JACM 2022, ECCC TR19-168, arXiv 1911.08297 | the locality barrier: magnification problems have circuits with small fan-in oracle gates, and weak-model techniques extend to such oracles | ABS (fetched) | `worlds/routes.md` |
+| Oliveira, Pich, Santhanam, "Hardness magnification near state-of-the-art lower bounds", Theory of Computing 2021 | thresholds near known bounds in several models | TLDR (search result) | `worlds/routes.md` |
+| Murray and Williams, "Circuit lower bounds for nondeterministic quasi-polytime: an easy witness lemma for NP and NQP", STOC 2018, ECCC TR17-188 | NQP not in ACC∘THR circuits of size n^{log^k n}, via SAT algorithms and an easy witness lemma | ABS (fetched) | `worlds/routes.md` |
+| Williams, "Non-uniform ACC circuit lower bounds", CCC 2011, JACM 2014 | NEXP not in ACC0, via a faster ACC0 circuit-SAT algorithm | MEM | `worlds/routes.md` |
+| McKay, Murray, Williams, STOC 2019 | weak compression lower bounds imply NP / EXP separations | CITED (statement from memory) | `worlds/routes.md` |
+| Liu and Pass, "On one-way functions and Kolmogorov complexity", FOCS 2020 | one-way functions iff K^t mildly hard on average | TLDR (search result) | `worlds/routes.md` |
+| Hirahara, FOCS 2018; FOCS 2022 | one-way functions and NP-hardness of approximating distributional Kolmogorov complexity; NP-hardness of partial-function MCSP (randomized reductions) | TLDR (search result) | `worlds/routes.md` |
+| Ilango, "Constant depth formula and partial function versions of MCSP are hard", FOCS 2020 | hardness of partial-truth-table MCSP and constant-depth-formula MCSP | TLDR (search result) | `worlds/routes.md` |
+
 ## H. The problem statement and the barriers
 
 | Source | What it gives | Status | Note |
@@ -414,6 +429,8 @@ Added by seat W1, 2026-11-25. A map, not progress on P vs NP. Entries in `worlds
 - Mapping the continuous form to the discrete corner (task continuous-mapping): no source found that proves an inequality for a DIFFERENCE of two decreasing set functions from a continuous extension; no source linking M-natural / L-natural convexity to the multilinear extension (only to the Lovász extension); Laplante-Lee-Szegedy (adversary / formula size) was not searched; Wikipedia and the Hart homepage are blocked in this session (search result only).
 - Unreachable full texts: Springer, SIAM, ScienceDirect (Amano-Maruoka(-Tarui), Pippenger TCS 1980
   from the publisher), Hiltgen-Paterson, Korshunov, Kannan 1982.
+
+- Routes (worlds-map seat W3): no full text opened for any magnification, meta-complexity or algorithms-to-lower-bounds paper; no source found that applies a linear bound on a function in P to any magnification threshold (none expected: the thresholds are N^{1+ε} on MCSP-type or sparse NP problems). Williams 2011 and Karp-Lipton were not re-fetched (MEM).
 
 ## Where the notes are
 

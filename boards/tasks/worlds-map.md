@@ -33,3 +33,4 @@
 - TAKEN W1
 - DECIDED W1 (Sonnet): map note written, every entry carries status and read status; most entries MEM or search result because en.wikipedia.org did not resolve; L6 depth/size rows not found, two other L6 items cited. -> worlds/README.md, LITERATURE.md section N
 - TAKEN W3
+- DECIDED W3 (Sonnet): routes written for magnification, locality, algorithms-to-lower-bounds, Karp-Lipton, meta-complexity; nearest route is magnification, gap = polynomial factor N^eps plus wrong problem and model; no route applies; LITERATURE.md section G rows and a section J line added. -> worlds/routes.md
