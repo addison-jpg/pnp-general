@@ -1,6 +1,6 @@
 # Board: P versus NP through general circuits
 
-- **TOP NOW (Addison, 2026-11-25): asteroid.exe becomes a real terminal (mintty, like Git Bash) on a native backend, less Python, no matplotlib, minimal Lean.** Five seats in order, one Sonnet each. [`asteroid-term`](boards/tasks/asteroid-term.md)
+- **TOP NOW (Addison, 2026-11-25): asteroid on plain Linux (Arch, most basic) with the native backend: less Python, no matplotlib, minimal Lean. mintty dropped.** Windows: Arch on WSL. Seats in order, one Sonnet each. [`asteroid-term`](boards/tasks/asteroid-term.md)
 
 - **FILES FOR ADDISON (Addison, 2026-11-25): give a direct link, not only a file card.** When handing Addison a file (a .vsix, a logo, a PNG), commit it and give the raw GitHub link, `https://github.com/addison-jpg/pnp-general/raw/main/<path>`, which downloads in one click. File-card widgets in the chat are hard to download from.
 

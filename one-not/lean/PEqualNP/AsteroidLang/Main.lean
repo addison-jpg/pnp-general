@@ -1,4 +1,4 @@
-import Lean.Data.Json
+import PEqualNP.AsteroidLang.Json
 import PEqualNP.AsteroidLang.Emit
 import PEqualNP.AsteroidLang.Bench
 /-!
@@ -29,16 +29,16 @@ def usage : String :=
 
 /-- a circuit from the JSON form `{\"n\", \"sets\", \"gates\", \"outs\"}` -/
 def circOfJson (src : String) : Except String Circ := do
-  let j ← Lean.Json.parse src
-  let n ← j.getObjValAs? Nat "n"
-  let sets ← j.getObjValAs? (List (List Nat)) "sets"
-  let outs ← j.getObjValAs? (List Nat) "outs"
-  let gates ← (← j.getObjValAs? (List Lean.Json) "gates").mapM fun g => do
-    let op ← (← g.getArrVal? 0).getStr?
-    let a ← (← g.getArrVal? 1).getNat?
+  let j ← Json.parse src
+  let n ← (← j.field "n").nat
+  let sets ← (← (← j.field "sets").list).mapM Json.Val.nats
+  let outs ← (← j.field "outs").nats
+  let gates ← (← (← j.field "gates").list).mapM fun g => do
+    let op ← (← g.at 0).str?
+    let a ← (← g.at 1).nat
     match op with
-    | "and" => pure (⟨0, a, ← (← g.getArrVal? 2).getNat?⟩ : Gate)
-    | "or" => pure ⟨1, a, ← (← g.getArrVal? 2).getNat?⟩
+    | "and" => pure (⟨0, a, ← (← g.at 2).nat⟩ : Gate)
+    | "or" => pure ⟨1, a, ← (← g.at 2).nat⟩
     | "not" => pure ⟨2, a, a⟩
     | _ => throw s!"unknown gate type {op}"
   pure ⟨n, sets, outs, gates⟩
@@ -198,9 +198,6 @@ def step (t : Tally) (l : Line) : IO Tally := do
     IO.println s!"{l.num}: {verb}: not in the Lean version yet"
     return { t with skipped := t.skipped + 1 }
 
-/-- a circuit of the `.bench` reader as the circuit of the executable -/
-def ofBenchCirc (C : SearchCheck.Circ) : Circ :=
-  ⟨C.n, C.sets, C.outs, C.gates.map fun g => ⟨g.op, g.a, g.b⟩⟩
 
 /-- read the files a program loads; the result is the program as `run` takes it. `dir` is the
 folder of the program file: a relative path is read from there (never from the current folder),
@@ -233,8 +230,8 @@ def resolve (script : String) (dir root : System.FilePath) (lines : List Line) :
       else if path.endsWith ".bench" then
         match Bench.read text with
         | .ok C =>
-          items := items.push (.circuit name (ofBenchCirc C))
-          loads := loads.push (ofBenchCirc C)
+          items := items.push (.circuit name C)
+          loads := loads.push C
           out := out.push l
         | .error e => throw <| IO.userError s!"{path}: {e}"
       else

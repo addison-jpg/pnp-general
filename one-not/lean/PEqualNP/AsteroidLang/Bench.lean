@@ -1,5 +1,5 @@
 import Std.Data.HashMap
-import PEqualNP.W951.SearchCheck
+import PEqualNP.AsteroidLang.Core
 /-!
 # The `.bench` netlist format: reader and writer
 
@@ -29,16 +29,16 @@ c = OR(x2, x3)
 * `parse : String → Except String Netlist`: the reader. Purely syntactic: any operator name is
   read.
 * `print : Netlist → String`: the writer, in one canonical layout.
-* `toCirc : Netlist → Except String SearchCheck.Circ`: the meaning of a file. Inputs are numbered in
+* `toCirc : Netlist → Except String Core.Circ`: the meaning of a file. Inputs are numbered in
   order of appearance, gates are put in topological order, only `AND`, `OR`, `NOT` (and `BUFF`,
   which
   is an alias and costs no gate) are accepted.
-* `ofCirc : SearchCheck.Circ → Netlist`: the file for a circuit (inputs `x0, x1, …`, gates `g0,
+* `ofCirc : Core.Circ → Netlist`: the file for a circuit (inputs `x0, x1, …`, gates `g0,
   g1, …`).
-* `read : String → Except String SearchCheck.Circ`: `parse` then `toCirc`, with line numbers in
+* `read : String → Except String Core.Circ`: `parse` then `toCirc`, with line numbers in
   errors.
 
-* `toAag : SearchCheck.Circ → String`: export to ASCII AIGER (`notes/aiger.md`); the function is
+* `toAag : Core.Circ → String`: export to ASCII AIGER (`notes/aiger.md`); the function is
   kept, the gate count and the NOT count are not.
 
 The reader uses only the public standard library: `String.splitOn`, `String.trimAscii`,
@@ -49,7 +49,7 @@ in this file; `BenchTest.lean` holds the tests.
 
 namespace AsteroidLang.Bench
 
-open SearchCheck (Gate Circ)
+open AsteroidLang.Core (Gate Circ)
 
 /-- A `.bench` file as written. `gates` holds one entry per assignment line, in file order:
 signal name, operator (upper case), operand names. `ors` holds the `#@ or` directives, in file

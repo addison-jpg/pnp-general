@@ -83,19 +83,20 @@ conversion, and building the 122 MiB binary with the Windows toolchain.
 | run, evaluate only | 0.1 to 0.6 s | about 0.9 s (`lake exe` start included) |
 | run with proofs, hello / first / notgate | 16.8 / 8.8 / 9.4 s | 12.7 / 7.7 / 9.8 s |
 | build | none | 23 s for the executable with Mathlib unpacked by `lake exe cache get`; 1 s when nothing changed |
-| binary | | 122 MiB (`.lake/build/bin/asteroid`, static) |
+| binary | | 6.3 MB (`.lake/build/bin/asteroid`); 4.3 MB stripped (`dist/linux/asteroid`). Was 122 MiB until 2026-11-25 |
 
 Differences in the text: the Python line reads `claim …: python TRUE (…)`, the Lean line `claim …: TRUE
 (…)`; a claim without a Lean form says `evaluated only` in Lean and `Python only` in Python.
 
-## Mathlib
+## Mathlib and size
 
-`Program`, `Core`, `Eval`, `Emit`, `Main` import only `Std` and `Lean`. `Core.lean` holds the
+`Program`, `Core`, `Eval`, `Emit`, `Bench`, `Json`, `Main` import only `Init` and `Std.Data.HashMap`. `Core.lean` holds the
 checkers a second time as functions of plain data (`Nat`, `List`), so the evaluator has no Mathlib.
 `CoreEq.lean` and `Semantics.lean` import the project and Mathlib but are not imported by `Main`: they
-are proofs only. One import does reach Mathlib: the `.bench` reader (`Bench.lean`) imports
-`SearchCheck`, which imports `Mathlib.Tactic.Basic`, and that is linked into the executable (the
-cause of the 122 MiB). Removing it means giving the reader its own `Gate` and `Circ`.
+are proofs only. The `.bench` reader uses `Core`'s `Gate` and `Circ` (it used `SearchCheck`'s, which
+imports Mathlib), and `.json` circuits are read by `Json.lean`, a small reader that imports nothing.
+The 122 MiB binary of before came from `import Lean.Data.Json`, which links the whole Lean compiler
+(Meta, Elab); without it the binary is 6.3 MB (4.3 MB stripped).
 
 ## What remains to drop Python, largest first
 
@@ -103,7 +104,7 @@ cause of the 122 MiB). Removing it means giving the reader its own `Gate` and `C
 2. `plot` and every picture.
 3. The rest of the term language: `flip`, `flipclasses`, quantifiers over points, arithmetic in terms.
 4. The test runner `python3 -m asteroid test` (programs and `--no-lean`) in Lean.
-5. The Mathlib import of the `.bench` reader (binary size).
+5. Done 2026-11-25: binary size (no Mathlib, no `Lean.Data.Json`; 6.3 MB).
 
 ## What is proved about asteroid
 

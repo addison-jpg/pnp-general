@@ -1,4 +1,5 @@
 import PEqualNP.AsteroidLang.Bench
+import PEqualNP.W951.SearchCheck
 /-!
 # Tests of the `.bench` reader and writer
 
@@ -17,7 +18,11 @@ theorem.
 
 namespace AsteroidLang.Bench.Test
 
-open SearchCheck (Gate Circ)
+open AsteroidLang.Core (Gate Circ)
+
+/-- `SearchCheck.t4` (73 gates, 4 NOT gates) as a circuit of the reader. -/
+def t4 : Circ := ⟨SearchCheck.t4.n, SearchCheck.t4.sets, SearchCheck.t4.outs,
+  SearchCheck.t4.gates.map fun g => ⟨g.op, g.a, g.b⟩⟩
 
 deriving instance DecidableEq for Gate
 deriving instance DecidableEq for Circ
@@ -82,7 +87,7 @@ def failsWith {α : Type} (r : Except String α) (frag : String) : Bool :=
 #guard print ((parse helloSrc).toOption.getD {}) == helloSrc
 #guard parse mixedSrc == .ok mixedNet
 #guard parse (print mixedNet) == .ok mixedNet
-#guard parse (print (ofCirc SearchCheck.t4 "t4")) == .ok (ofCirc SearchCheck.t4 "t4")
+#guard parse (print (ofCirc t4 "t4")) == .ok (ofCirc t4 "t4")
 #guard parse (print (ofCirc helloCirc)) == .ok (ofCirc helloCirc)
 #guard parse "" == .ok {}
 
@@ -93,8 +98,8 @@ def failsWith {α : Type} (r : Except String α) (frag : String) : Bool :=
 /-! ### 3. Round trip `toCirc ∘ ofCirc` -/
 
 #guard toCirc (ofCirc helloCirc) == .ok helloCirc
-#guard toCirc (ofCirc SearchCheck.t4) == .ok SearchCheck.t4
-#guard read (print (ofCirc SearchCheck.t4 "t4")) == .ok SearchCheck.t4
+#guard toCirc (ofCirc t4) == .ok t4
+#guard read (print (ofCirc t4 "t4")) == .ok t4
 
 /-! ### 4. Sorting and `BUFF` -/
 
