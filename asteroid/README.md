@@ -57,7 +57,7 @@ bin/setup                # once, optional: numpy and matplotlib, for plots and t
 - **To type `asteroid` in place of `bin/asteroid`,** put `bin` on your PATH. Git Bash, bash or zsh, from the repository folder: `echo "export PATH=\"$PWD/bin:\$PATH\"" >> ~/.bashrc` (zsh: `~/.zshrc`). Windows cmd: add the full path of the `bin` folder under Settings, "Edit environment variables for your account", Path.
 - **Lean** is found on PATH, or in elan's standard folder (`~/.elan/bin`, on Windows `%USERPROFILE%\.elan\bin`). Without it asteroid says so and only evaluates.
 - **Paths in a program.** `load FILE` looks beside the program first, then in the repository. A path may contain spaces, and may be in quotes. A program outside the repository writes its plots beside itself.
-- **Tested on:** Linux here, and Linux, macOS and Windows (Git Bash, cmd, PowerShell) by GitHub Actions on every push: see `.github/workflows/asteroid.yml`. No one has yet run the `.cmd` and `.ps1` launchers by hand on a Windows desktop.
+- **Tested on:** Linux by hand, and Linux, macOS and Windows (Git Bash, cmd, PowerShell) by GitHub Actions on every push, first with a plain Python and then after `bin/setup`: see `.github/workflows/asteroid.yml`. The Windows launchers have run only on GitHub's Windows machines, not yet by hand on a Windows desktop, and not with Lean on Windows or macOS.
 
 The exact grammar is in [`SPEC.md`](SPEC.md). On every push that touches the language or a program, GitHub Actions runs `bin/asteroid test --no-lean` on Linux, macOS and Windows (workflow `.github/workflows/asteroid.yml`); the Lean kernel job is started by hand.
 
