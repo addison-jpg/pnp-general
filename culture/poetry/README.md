@@ -13,7 +13,7 @@ Files:
 - `tags.json`: the tags, each with its label. Every tag is agent-made, so marked proposed.
 - `../../poetry.ath`: runs the check and makes 12 numeric claims. `bin/asteroid --no-lean poetry.ath`.
 - `findings.jsonl`: two board records written by `poetry.ath`. They wait for a second seat.
-- `test_poetry.py`: tests for the repairs below. `python3 -I -m unittest culture/poetry/test_poetry.py`.
+- `test_poetry.py`: tests for the repairs below. `python3 -I -m unittest discover -s culture/poetry -p test_poetry.py`.
 
 Commit history, stated plainly. Commit cace727 holds only this README and `tags.json`. The files `check.py`, `fingerprints.json`, `findings.jsonl`, `../../poetry.ath` and the board records first came in f5cd385. That commit is credited to Haiku and also holds the other track's `core/ontology/ask.py`. An earlier builder report said cace727 held them all. That was wrong.
 

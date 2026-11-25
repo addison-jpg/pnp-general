@@ -1,4 +1,4 @@
-"""Tests for the poetry track's repairs. Run: python3 -I -m unittest culture/poetry/test_poetry.py (about 6 s)."""
+"""Tests for the poetry track's repairs. Run: python3 -I -m unittest discover -s culture/poetry -p test_poetry.py (under 1 s)."""
 import importlib.util, itertools, json, math, os, re, subprocess, unittest
 from collections import Counter
 
@@ -7,7 +7,9 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 spec = importlib.util.spec_from_file_location("poetry_check", os.path.join(HERE, "check.py"))
 check = importlib.util.module_from_spec(spec); spec.loader.exec_module(check)
 
-def text(name): return open(os.path.join(HERE, name), encoding="utf-8").read()
+def read(path):
+    with open(path, encoding="utf-8") as fh: return fh.read()
+def text(name): return read(os.path.join(HERE, name))
 def tags(): return {t["tag"]: t for t in json.loads(text("tags.json"))["tags"]}
 
 class Provenance(unittest.TestCase):
@@ -30,7 +32,7 @@ class Sources(unittest.TestCase):
         for f in ("README.md", "tags.json", "check.py"):
             t = text(f).lower()
             self.assertNotIn("governance", t, f); self.assertNotIn("scratchpad", t, f)
-        self.assertNotIn("governance", open(os.path.join(ROOT, "poetry.ath")).read().lower())
+        self.assertNotIn("governance", read(os.path.join(ROOT, "poetry.ath")).lower())
 
     def test_anchor_is_our_own_definition(self):
         r = text("README.md")
@@ -70,7 +72,7 @@ class Capiton(unittest.TestCase):
         self.assertIn("unbounded", r)
         self.assertNotIn("a chain can be read only from its end", r)
         self.assertIn("unbounded", tags()["point-de-capiton"]["means"])
-        self.assertIn("length known", open(os.path.join(ROOT, "poetry.ath")).read())
+        self.assertIn("length known", read(os.path.join(ROOT, "poetry.ath")))
 
 class Queneau(unittest.TestCase):
     def test_book_rhyme_claim_not_checked_finite(self):
@@ -79,7 +81,7 @@ class Queneau(unittest.TestCase):
         self.assertEqual(t["combinatorial-poem-rhyme"]["label"], "open")
 
     def test_toy_is_not_a_tautology(self):
-        src = open(os.path.join(HERE, "check.py")).read()
+        src = text("check.py")
         self.assertIn("some poem leaves the scheme", src)
         check.queneau()                                     # asserts both directions
 
@@ -92,7 +94,7 @@ class Petrarch(unittest.TestCase):
                 self.assertEqual(len(parts), check.profile_formula(n, prof), (n, prof))
 
     def test_petrarch_label_matches_evidence(self):
-        src = open(os.path.join(HERE, "check.py")).read()
+        src = text("check.py")
         self.assertIn("by_profile(14, (4, 4, 2, 2, 2))", src)
         self.assertEqual(tags()["sonnet-petrarchan"]["label"], "checked-finite")
         self.assertIn("enumerated at n = 14", tags()["sonnet-petrarchan"]["means"])
@@ -100,7 +102,7 @@ class Petrarch(unittest.TestCase):
 
 class Records(unittest.TestCase):
     def test_findings_match_poetry_ath_records(self):
-        ath = open(os.path.join(ROOT, "poetry.ath")).read()
+        ath = read(os.path.join(ROOT, "poetry.ath"))
         stmts = re.findall(r'^record \S+ \S+ \S+ "(.*)"$', ath, re.M)
         rows = [json.loads(l) for l in text("findings.jsonl").splitlines() if l.strip()]
         self.assertEqual(sorted(r["statement"] for r in rows), sorted(stmts))
