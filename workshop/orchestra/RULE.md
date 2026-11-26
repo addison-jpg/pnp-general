@@ -22,3 +22,12 @@ Status: a working rule, written down. Checked in `rule.ath` only where a count i
 ## Not claimed
 - That four is optimal. It is a default, chosen for cost and coverage.
 - That the rule speeds up every round. A round with one small fact needs no helper.
+
+## When a helper's result counts
+A helper's result counts only when both hold:
+1. The result is written as an `.ath` file.
+2. `bin/asteroid --no-lean` passes on that file.
+
+A helper's own report does not count, even when it says the check passed. The lead runs `bin/asteroid --no-lean` on the file itself and reads its output.
+
+Worked example: a helper writes `workshop/cluster/hairyball/euler_tetra.ath`, which holds the tetrahedron check (V=4, E=6, F=4, so chi = 4 - 6 + 4 = 2). The lead runs `bin/asteroid --no-lean workshop/cluster/hairyball/euler_tetra.ath`. The output is `claims: 1 true, 0 false` with exit 0, so the result counts. If the check does not pass, the result does not count, and per rule 5 the lead reports it as false.
