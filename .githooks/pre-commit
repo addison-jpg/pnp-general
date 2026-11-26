@@ -1,0 +1,4 @@
+#!/bin/sh
+# The citation gate (tools/cite/gate.py): refuses a commit that adds a claim citing nothing, or a dead citation.
+# Turn it on once per clone:   git config core.hooksPath .githooks
+exec python3 -I "$(git rev-parse --show-toplevel)/tools/cite/gate.py" --staged

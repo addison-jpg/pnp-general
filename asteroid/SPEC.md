@@ -4,7 +4,7 @@ A program is a text file `NAME.ath`. Lines are read top to bottom. `#` starts a 
 
 ```
 program   := line*
-line      := circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check | frame | dist | kripke | propose
+line      := cite | circuit | let | save | show | claim | plot | corpus | forall | count | conjecture | hunt | prove | verify | theorem | levelmeans | record | seq | check | frame | dist | kripke | propose
 circuit   := "circuit" NAME N NEWLINE (gate | out)* "end"
 gate      := NAME "=" ("or" | "and") WIRE WIRE  |  NAME "=" "not" WIRE
 out       := "set" POINT+ "->" WIRE
@@ -48,6 +48,8 @@ CLAIMREF  := LINE | PATH | "none"          (LINE: an earlier claim or check of t
 kripke    := "kripke" NAME "=" ("worlds" N "rel" PAIRS ["val" (ATOM SET)+] | "all" N PROP("+"PROP)*)   (asteroid/ext_modal.py)
 claim     := "claim" ("valid" | "invalid") NAME STRING | "claim defines" NAME STRING PROPS | "claim worlds" NAME STRING "=" SET   (ext_modal)
 propose   := "propose" NAME STRING ["model" ("0.5B" | "1.5B")] ["n" K]                (asteroid/ext_qwen.py; K = 1..8, default 3)
+cite      := "cite" KEY+                                                                (asteroid/ext_cite.py; KEY and the gate: asteroid/CITE.md)
+KEY       := ("lit" | "doi" | "arxiv" | "lean" | "file" | "commit" | "ath") ":" VALUE  |  "original"
 LIST      := "[" INTEGER ("," INTEGER)* "]"
 EXPR      := integers, n, + - * // ** ( ), postfix ! and !!, "C(" EXPR "," EXPR ")", "sum(" VAR "," EXPR "," EXPR "," EXPR ")"
 WIRE      := POINT | NAME            (a point 0 .. N-1, or an earlier gate name)

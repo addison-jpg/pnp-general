@@ -1,0 +1,31 @@
+# The citation gate on every push to main: every claim ADDED by the pushed commits must cite a source that is alive.
+# Grammar and limits: asteroid/CITE.md. To make it blocking, add the check "cite" as a required status check on main.
+name: cite
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  cite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Gate the pushed range
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            RANGE="${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+          else
+            RANGE="${{ github.event.before }}..${{ github.sha }}"
+          fi
+          python3 -I tools/cite/gate.py --range "$RANGE"
