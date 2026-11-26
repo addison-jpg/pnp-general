@@ -4,7 +4,20 @@
 
 it will all be ok :)
 # asteroid: one language, one standard of proof, every field
+Hi everyone: 
 
+## How to cite
+
+If u use this work, please cite it:
+
+```bibtex
+@software{Addison_pnp-general_machine-checked_mathematics,
+  author = {{Addison}},
+  license = {MIT},
+  title = {{pnp-general: machine-checked mathematics across fields}},
+  url = {https://github.com/addison-jpg/pnp-general}
+}
+```
 **asteroid is a programming language and a machine-checked map of mathematics, built by Addison.** Circuit complexity, quantum gravity, cosmology, knot theory, neuroscience, biology, privacy, transit networks, modal metaphysics and philosophy are all written as `.ath` programs that run and check themselves, in one vocabulary, held to one standard.
 
 **127 verified results** (91 Lean proofs, 18 exact exhaustive checks, 12 numerical tests, 6 refutations with counterexamples), each one rerunnable with a single command: [`RESULTS.md`](RESULTS.md).
