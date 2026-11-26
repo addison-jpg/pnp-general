@@ -1,0 +1,3 @@
+# Member: icosahedron, V=12, E=30, F=20. V-E+F must be 2.
+seq chi = [2]
+claim formula chi = "12 - 30 + 20" from 1

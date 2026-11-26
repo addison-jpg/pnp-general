@@ -1,0 +1,3 @@
+# Member: tetrahedron as a triangulated sphere, V=4, E=6, F=4. Euler characteristic V-E+F must be 2.
+seq chi = [2]
+claim formula chi = "4 - 6 + 4" from 1

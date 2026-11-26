@@ -1,0 +1,3 @@
+# Member: 4x4 grid torus, V=16, E=32, F=16. V-E+F = 0, so the sphere argument does not apply: a zero-free field can exist.
+seq chi = [0]
+claim formula chi = "16 - 32 + 16" from 1
