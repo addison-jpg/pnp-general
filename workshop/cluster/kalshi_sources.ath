@@ -1,0 +1,9 @@
+# Member: source counts in the Kalshi review. Counts are typed from the review files; each count's source is the file named.
+# A.md: 6 academic sources listed.
+claim 6 = 6
+# B.md: 5 polls listed.
+claim 5 = 5
+# C.md: 5 industry and trade-group sources listed.
+claim 5 = 5
+# Totals: the three counts above, summed by hand (asteroid cannot parse sums in a claim yet).
+claim 16 = 16
