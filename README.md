@@ -2,13 +2,6 @@
 
 [![asteroid language](https://img.shields.io/badge/language-asteroid%20.ath-19B3B3)](asteroid/SPEC.md) [![VS Code](https://img.shields.io/visual-studio-marketplace/v/asteroid.asteroid?label=VS%20Code&color=3D9BD6)](https://marketplace.visualstudio.com/items?itemName=asteroid.asteroid) [![Windows](https://img.shields.io/badge/Windows-asteroid.exe%204.2%20MB-19B3B3)](https://github.com/addison-jpg/pnp-general/raw/main/asteroid.exe) [![Linux](https://img.shields.io/badge/Linux%20%2F%20Arch-4.4%20MB-3D9BD6)](dist/linux/README.md) [![proofs](https://img.shields.io/badge/proofs-Lean%204-555)](one-not/lean)
 
-
-#RIGHT THE FUCK HERE IS WHERE TO PUT THE PACKAGED (.exe baby-ast.ath grown-ast.ath structure)
-
-thank you. just a link works
-
-everthing below this line in the readme is now trivial, reformulate entire readme. 
-
 it will all be ok :)
 # asteroid: one language, one standard of proof, every field
 
