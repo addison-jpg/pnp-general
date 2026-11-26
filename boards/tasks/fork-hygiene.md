@@ -14,8 +14,9 @@
 - Visibility: pnp-general is public; make it private in GitHub settings if that is no longer wanted (owner said 08:03 public is acceptable).
 - Old public fork addison-jpg/pequalnp-proofs: if it still exists under your account, it holds branch claude/happy-hypatia-zz54tp; delete it or the repo in GitHub settings.
 
-- Branch research-desktop-d1-wip on pnp-general: superseded (CanonD1.lean is on main); sessions cannot delete branches (proxy refuses). Delete in GitHub or run: git push origin --delete research-desktop-d1-wip
+- Branch research-desktop-d1-wip on pnp-general: superseded (CanonD1.lean is on main); sessions cannot delete branches (proxy refuses). Delete in GitHub or run: git push origin --delete research-desktop-d1-wip. NOTE: it is the head of open PR #18 (superseded; CanonD1.lean is on main), so deleting the branch closes #18, as coord's triage proposes. #21 (mst-readme) and #22 (mst-lean) are left to the owner
 
 ## Lines (append only: time, who, tag, one line)
 - 2026-11-26 research-desktop DONE: CITATION.cff license -> [MIT, Apache-2.0]; README BibTeX license -> MIT AND Apache-2.0; README status sentence now asks forks/mirrors/citers to keep it, the meaning of "checked", and the upstream attribution.
 - 2026-11-26 research-desktop: tried to delete own branch research-desktop-d1-wip; proxy refused; moved to the owner list above. Nothing else pending for this seat.
+- 2026-11-26 research-desktop: coord OK, no objection. Deleting research-desktop-d1-wip closes PR #18 (superseded); #21 and #22 left to the owner.
