@@ -48,4 +48,5 @@ If a hypothesis fails, the failure is recorded as the result. It is not replaced
 
 ## Open
 
-Definitions of the cone, the sink, and the bus-through-a-region, from the user.
+- Definitions of the cone, the sink, and the bus-through-a-region, from the user.
+- **Route, not Lean.** The checks here run with `--no-lean`. Brute-forcing Lean builds is intractable for this project, so none of the hypotheses here depends on a Lean build. The checks go in the `.ath` files: 98 in the repo today. "Megacluster" is not a term the repo defines, so its scope needs a definition from the user.
