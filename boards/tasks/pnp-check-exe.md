@@ -8,7 +8,7 @@
 
 ## OPEN / TAKEN
 
-- DONE (checker-checker, 2026-11-26, cite:file:tools/pnp-check/README.md): stage 1, pins and `verify-tree`, 8 Go tests, 6 tamper cases on a copy of the real tree, two identical Windows builds.
+- DONE (checker-checker, 2026-11-26, cite:file:tools/pnp-check/README.md): stage 1, pins and `verify-tree`, 8 Go tests, 5 tamper cases on a copy of the real tree, two identical Windows builds.
 - OPEN stage 2 `setup`: archive of the pinned commit (never `git clone`, line endings), pinned toolchain into the exe's own folder, `lake exe cache get`, build `PEqualNP.Defs` and `checklemma`.
 - OPEN stage 3 `check`: port of the orchestration, differential test against `notes/checker/redteam/results.txt`.
 - OPEN stage 4: Job Object limits, scratch copy, low-integrity token; says plainly that it is not a sandbox.
