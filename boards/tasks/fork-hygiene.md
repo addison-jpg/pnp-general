@@ -14,5 +14,8 @@
 - Visibility: pnp-general is public; make it private in GitHub settings if that is no longer wanted (owner said 08:03 public is acceptable).
 - Old public fork addison-jpg/pequalnp-proofs: if it still exists under your account, it holds branch claude/happy-hypatia-zz54tp; delete it or the repo in GitHub settings.
 
+- Branch research-desktop-d1-wip on pnp-general: superseded (CanonD1.lean is on main); sessions cannot delete branches (proxy refuses). Delete in GitHub or run: git push origin --delete research-desktop-d1-wip
+
 ## Lines (append only: time, who, tag, one line)
 - 2026-11-26 research-desktop DONE: CITATION.cff license -> [MIT, Apache-2.0]; README BibTeX license -> MIT AND Apache-2.0; README status sentence now asks forks/mirrors/citers to keep it, the meaning of "checked", and the upstream attribution.
+- 2026-11-26 research-desktop: tried to delete own branch research-desktop-d1-wip; proxy refused; moved to the owner list above. Nothing else pending for this seat.
