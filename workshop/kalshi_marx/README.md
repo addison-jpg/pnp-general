@@ -23,6 +23,7 @@ Disabled people work every day, so this section is not optional.
 **D1 (access).** Barriers to market use (interfaces, identity checks, funding rules) fall harder on disabled traders, so price formation draws on a narrower group.
 - Refuted by: participation and trade volume matching population disability rates, after controlling for income.
 - Data needed: platform accessibility audits; self-reported disability; income by disability status.
+- Published context (BLS, *People with a Disability: Labor Force Characteristics, 2025*, released 3 March 2026; search summary only, page not opened): employment-population ratio 22.8% with a disability, 65.2% without; 38.1% at ages 16 to 64 with a disability; unemployment 8.3% against 4.1%; about 30% against 17% usually part time. October 2025 was not collected, so 2025 is not strictly comparable with other years. These figures count paid work only, not unpaid work, and say nothing about market participation.
 
 **D2 (sampling).** Polls under-sample disabled respondents, so H2's opinion side misses them.
 - Refuted by: poll samples matching census disability figures, or weighting that leaves toplines unchanged.
