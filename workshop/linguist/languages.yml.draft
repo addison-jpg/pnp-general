@@ -1,0 +1,14 @@
+# Draft entry for github-linguist/linguist lib/linguist/languages.yml. NOT submitted.
+# Keys follow the existing file's format. Fields marked TBD are set by Linguist's maintainers.
+asteroid:
+  type: programming
+  aliases:
+    - ath
+  extensions:
+    - ".ath"
+  tm_scope: source.asteroid
+  ace_mode: text
+  codemirror_mode: null
+  codemirror_mime_type: null
+  language_id: TBD            # assigned by Linguist from its ID registry
+  color: "#TBD"               # must be unique in languages.yml; chosen at submission
