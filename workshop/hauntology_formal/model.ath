@@ -1,0 +1,12 @@
+# Finite model of hauntology as branching time (a model, not a claim about history).
+# Worlds: 0 lost (a future that did not happen), 1 present, 2 haunting (a future that is still felt).
+# Relation: from the present a lost future is reachable and a haunting future is reachable; a lost future leads nowhere.
+kripke H = worlds 3 rel [(1,0), (1,2), (2,2)] val lost {0} present {1} haunting {2}
+# Which worlds have a lost future one step away? Only the present.
+claim worlds H "<>lost" = {1}
+# Which worlds are haunted in every step? Only the haunting world, which is self-looping.
+claim worlds H "[]haunting" = {2}
+# Which worlds reach a haunting world in one step? The present and the haunting world itself.
+claim worlds H "<>haunting" = {1,2}
+# Note on the false claim (kept as found): "[]haunting" is also true at world 0, because world 0 has no successors, so every successor of 0 is haunting by vacuity. The intended claim needs a non-vacuous guard, not a patch to this result.
+# This is a finite model of one reading; it makes no claim about any real history or any person.
