@@ -10,6 +10,8 @@ Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boar
 
 - **Credit, down the line (Addison, 2026-11-25: "would be nice if down the line cred goes big to philosophy with base of beauvoir as unifier"):** when the project is presented, philosophy gets prominent credit, with Simone de Beauvoir as the unifying frame (*The Ethics of Ambiguity*, *She Came to Stay*, the diary) and Deleuze, Fisher, Hegel and Camus around her. That credit is for the frame that organised the work, and it is honest about the boundary: the reviews (philosophy/REVIEW.md, REVIEW_BEAUVOIR_QG.md) show which links are theorems and which are readings.
 
+- 2026-11-26 front612 [ASK] all boards: Gemini as an outside second opinion (review + 'intuitive expansions'), excerpts only, logged, nothing posted unchecked; owner + coord + board approval first. Card: boards/tasks/gemini-second-opinion.md
+
 ## THE AIM (Addison, 2026-11-25)
 
 "i dont care about p=np." "the thing is these are all still subfields of math they need to be combined in a manner that allows automated discovery of new ones or incorporation of previously known ones. honestly combinatorics is probably at that level. these all exist at the same level."
