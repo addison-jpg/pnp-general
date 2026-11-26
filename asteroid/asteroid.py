@@ -5,7 +5,7 @@
   matplotlib  pictures                                       (asteroid/out/*.png)
 A script is a list of lines; `#` starts a comment. The verbs:
 
-  let NAME = load FILE.bench                 a circuit in the ISCAS .bench format (asteroid/BENCH.md); also FILE.json
+  let NAME = load FILE.ath                   a circuit file: one `circuit NAME N ... end` block; also FILE.bench (asteroid/BENCH.md), FILE.json
   save NAME -> FILE.bench                    write a circuit as a .bench file
   circuit NAME N                             a circuit written in the script, N inputs named 0 .. N-1, until `end`:
     W = or X Y | W = and X Y | W = not X       a gate; X, Y are inputs or earlier gate names
@@ -289,6 +289,26 @@ def say(text=""):
     except ImportError: pass
     print(text)
 
+def circ_of_ath(text, where):
+    """An .ath circuit file: exactly one `circuit NAME N ... end` block, same lines as inside a program."""
+    found, blk = [], None
+    for k, raw in enumerate(text.splitlines(), 1):
+        line = raw.split("#", 1)[0].strip()
+        if not line: continue
+        if blk is None:
+            m = re.fullmatch(r"circuit (\w+) (\d+)", line)
+            if not m: raise SystemExit(f"{where}:{k}: an .ath circuit file holds only one circuit block, found: {line}")
+            blk = (int(m.group(2)), {}, [], [], []); continue
+        n, wires, gates, sets, outs = blk
+        W = lambda x: int(x) if x.isdigit() else wires[x]
+        if line == "end": found.append({"n": n, "sets": sets, "gates": gates, "outs": outs}); blk = None
+        elif m := re.fullmatch(r"(\w+) = (or|and) (\w+) (\w+)", line): gates.append([m.group(2), W(m.group(3)), W(m.group(4))]); wires[m.group(1)] = n + len(gates) - 1
+        elif m := re.fullmatch(r"(\w+) = not (\w+)", line): gates.append(["not", W(m.group(2))]); wires[m.group(1)] = n + len(gates) - 1
+        elif m := re.fullmatch(r"set ([\d ]+) -> (\w+)", line): sets.append([int(x) for x in m.group(1).split()]); outs.append(W(m.group(2)))
+        else: raise SystemExit(f"{where}:{k}: cannot parse inside circuit: {line}")
+    if blk is not None or len(found) != 1: raise SystemExit(f"{where}: an .ath circuit file holds exactly one circuit block")
+    return found[0]
+
 def exec_line(st, raw, ln, script):
     """Run ONE line against the persistent environment. `run` calls this for each line of a file; the prompt for each line typed."""
     line = raw.split("#", 1)[0].strip()
@@ -307,6 +327,10 @@ def exec_line(st, raw, ln, script):
             else: raise SystemExit(f"{script}:{ln}: cannot parse inside circuit: {line}")
             return
         if m := re.fullmatch(r"circuit (\w+) (\d+)", line): check_name(m.group(1), f"{script}:{ln}"); st.block = (m.group(1), int(m.group(2)), {}, [], [], []); return
+        if m := re.fullmatch(r"let (\w+) = load (.+\.ath[\"']?)", line):
+            check_name(m.group(1), f"{script}:{ln}")
+            f = in_path(m.group(2)); env[m.group(1)] = circ_of_ath(open(f, encoding="utf-8").read(), f); src[m.group(1)] = f
+            say(f"{ln}: {m.group(1)} loaded ({env[m.group(1)]['n']} inputs, {len(env[m.group(1)]['gates'])} gates)"); return
         if m := re.fullmatch(r"let (\w+) = load (.+\.json[\"']?)", line):
             check_name(m.group(1), f"{script}:{ln}")
             f = in_path(m.group(2)); d = json.load(open(f, encoding="utf-8")); env[m.group(1)] = {k: d[k] for k in ("n", "sets", "gates", "outs")}; src[m.group(1)] = f

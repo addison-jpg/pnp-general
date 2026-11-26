@@ -1,0 +1,11 @@
+# gravity.bench: converted by asteroid/to_ath.py; inputs 0..1, gate k = g<k> = wire 2 + k
+circuit c_gravity 2
+g0 = or 0 1
+g1 = or g0 0
+g2 = or g1 1
+g3 = or g2 g0
+set 0 1 -> g0
+set 0 1 -> g1
+set 0 1 -> g2
+set 0 1 -> g3
+end

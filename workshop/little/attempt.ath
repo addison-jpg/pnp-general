@@ -3,7 +3,7 @@
 # Only claims that print TRUE are kept. Claims that printed FALSE are listed in the note at the end.
 
 # --- from little.ath ---
-let hello = load ../../hello.bench
+let hello = load ../../hello.circ.ath
 show hello
 claim correct(hello) by lean                  # it computes both ORs on all 16 inputs
 claim gates(hello) = base(hello)              # 3 gates, and 3 is the least possible without a NOT gate

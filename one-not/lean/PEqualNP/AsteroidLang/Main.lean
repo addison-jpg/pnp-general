@@ -313,8 +313,19 @@ def resolve (script : String) (dir root : System.FilePath) (lines : List Line) :
           loads := loads.push C
           out := out.push l
         | .error e => throw <| IO.userError s!"{path}: {e}"
+      else if path.endsWith ".ath" then
+        -- an .ath circuit file: exactly one `circuit NAME N ... end` block, read by the program parser
+        match parse path text with
+        | .ok ls =>
+          match ls.filterMap (fun x => match x.stmt with | .circuit _ C => some C | _ => none) with
+          | [C] =>
+            items := items.push (.circuit name C)
+            loads := loads.push C
+            out := out.push l
+          | _ => throw <| IO.userError s!"{script}:{l.num}: cannot load {path}: an .ath circuit file holds exactly one circuit block"
+        | .error e => throw <| IO.userError s!"{script}:{l.num}: cannot load {path}: {e}"
       else
-        throw <| IO.userError s!"{script}:{l.num}: cannot load {path}: not a .bench or .json file"
+        throw <| IO.userError s!"{script}:{l.num}: cannot load {path}: not a .ath, .bench or .json file"
     | _ => out := out.push l
   return (out.toList, items.toList, loads.toList)
 

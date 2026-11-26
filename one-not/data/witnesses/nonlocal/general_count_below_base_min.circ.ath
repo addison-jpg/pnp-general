@@ -1,0 +1,15 @@
+# general_count_below_base_min.json: converted by asteroid/to_ath.py; inputs 0..6, gate k = g<k> = wire 7 + k
+circuit c_general_count_below_base_min 7
+g0 = not 0
+g1 = or 0 1
+g2 = or g1 2
+g3 = or g2 3
+g4 = or 4 5
+g5 = not g4
+g6 = not 6
+g7 = and g6 g0
+g8 = and g5 g7
+g9 = not g8
+set 0 1 2 3 -> g3
+set 0 4 5 6 -> g9
+end

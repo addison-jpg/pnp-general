@@ -1,6 +1,6 @@
 # Gravity, from culture/essays/knowing.md. Heaven full of people is earth: every way out falls back to others.
 # Each escape route is computed from the one before it, and each must equal OR(people, ground).
-let gravity = load gravity.bench
+let gravity = load gravity.circ.ath
 show gravity
 claim correct(gravity)            # every escape route is bound: it returns to people or ground, on all 4 inputs
 claim nots(gravity) = 0           # no negation anywhere: every route is built from OR alone (it can only add, never cancel)

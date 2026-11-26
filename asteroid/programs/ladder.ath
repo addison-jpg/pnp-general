@@ -18,7 +18,7 @@ claim forall c in N: margin["C4 count (flip classes)"](c) >= 0     # the repaire
 claim forall c in N: margin["Theorem: gates >= base"](c) >= 0
 
 # The smallest one, in the kernel: 4 NOT gates, witness count 5 < base 6, and still 10 >= 6 gates.
-let x = load one-not/data/witnesses/nonlocal/general_count_below_base_min.json
+let x = load one-not/data/witnesses/nonlocal/general_count_below_base_min.circ.ath
 claim correct(x) by lean
 claim witness(x) < base(x) by lean
 claim gates(x) >= base(x)

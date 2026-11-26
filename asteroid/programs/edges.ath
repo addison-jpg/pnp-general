@@ -71,6 +71,6 @@ claim forall c in W: theorem(c)
 claim forall c in N: theorem(c)                         # vacuous where nots >= 2
 claim theorem(ok) by lean
 claim theorem(twonot)                                   # hypotheses fail: vacuous, Python only
-let x = load one-not/data/witnesses/ess_rand_clean_744.json
+let x = load one-not/data/witnesses/ess_rand_clean_744.circ.ath
 claim theorem(x) by lean
 claim hyps(x) and correct(x) and gates(x) >= base(x) by lean

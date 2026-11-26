@@ -1,7 +1,7 @@
 # Conjectures are written once and used three ways: as a claim, over a corpus, and as a target for search.
 corpus W = one-not/data/witnesses/*.json where n <= 7
-let fano = load one-not/data/witnesses/fano_formula.json
-let e = load one-not/data/witnesses/ess_rand_clean_744.json
+let fano = load one-not/data/witnesses/fano_formula.circ.ath
+let e = load one-not/data/witnesses/ess_rand_clean_744.circ.ath
 
 conjecture count: slack(c) >= 0                       # the count behind the Theorem (OR witnesses, one NOT gate)
 conjecture anycount: witness(c) >= base(c)            # the same for gates of any type: false from 4 NOT gates
@@ -16,7 +16,7 @@ hunt count 8 1 1                                      # one NOT gate: nothing fo
 hunt anycount 12 5 22                                 # up to five NOT gates: may or may not find one in 12 s
 
 # the counterexample to `anycount` found by a longer hunt earlier, re-checked here
-let x = load one-not/data/witnesses/nonlocal/general_count_below_base_min.json
+let x = load one-not/data/witnesses/nonlocal/general_count_below_base_min.circ.ath
 claim correct(x) by lean
 claim witness(x) < base(x) by lean
 count c in W: anycount(c)

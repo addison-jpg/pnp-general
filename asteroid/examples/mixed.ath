@@ -1,6 +1,6 @@
 # Mixed slack: points fixed to 1 (Q) and to 0 (R). A circuit with ONE NOT gate that is read, in two ways.
 # 1. loaded: n = 5, 9 gates, sets {0,3} {1,2,4} {2,3} {1,3}; the NOT gate (on input 2) feeds an AND.
-let e = load one-not/data/witnesses/ess_rand_clean_744.json
+let e = load one-not/data/witnesses/ess_rand_clean_744.circ.ath
 show e
 claim correct(e) by lean
 claim nots(e) = 1

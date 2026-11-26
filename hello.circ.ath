@@ -1,0 +1,8 @@
+# hello.bench: converted by asteroid/to_ath.py; inputs 0..3, gate k = g<k> = wire 4 + k
+circuit c_hello 4
+g0 = or 0 1
+g1 = or g0 2
+g2 = or 2 3
+set 0 1 2 -> g1
+set 2 3 -> g2
+end

@@ -1,7 +1,7 @@
 # hello.ath: a first asteroid program.   Run it:   asteroid hello.ath
 # The circuit is the file hello.bench: 4 inputs x0 x1 x2 x3, and two outputs that must compute
 # the OR of {x0, x1, x2} and the OR of {x2, x3}. The format is described in asteroid/BENCH.md.
-let hello = load hello.bench
+let hello = load hello.circ.ath
 show hello
 claim correct(hello) by lean                  # it computes both ORs on all 16 inputs
 claim gates(hello) = base(hello)              # 3 gates, and 3 is the least possible without a NOT gate

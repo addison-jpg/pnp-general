@@ -1,8 +1,8 @@
 # Pictures of the refuted counterexamples: expected slack Phi(p) and the level means (README items D8, L5, C2, C4).
-let twin = load one-not/data/witnesses/twin_tree_f2step.json
-let match = load one-not/data/witnesses/nonlocal/match_c_k7.json
-let pappus = load one-not/data/witnesses/pappus_junk_gain.json
-let fano = load one-not/data/witnesses/fano_formula.json
+let twin = load one-not/data/witnesses/twin_tree_f2step.circ.ath
+let match = load one-not/data/witnesses/nonlocal/match_c_k7.circ.ath
+let pappus = load one-not/data/witnesses/pappus_junk_gain.circ.ath
+let fano = load one-not/data/witnesses/fano_formula.circ.ath
 claim slack(twin) >= 0
 plot phi twin -> asteroid/out/phi_twin.png
 plot phi match -> asteroid/out/phi_match.png

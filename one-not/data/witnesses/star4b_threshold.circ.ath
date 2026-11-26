@@ -1,0 +1,20 @@
+# star4b_threshold.json: converted by asteroid/to_ath.py; inputs 0..3, gate k = g<k> = wire 4 + k
+circuit c_star4b_threshold 4
+g0 = or 1 2
+g1 = and 1 2
+g2 = and g0 3
+g3 = or g1 g2
+g4 = not g3
+g5 = or g0 3
+g6 = and g4 g5
+g7 = and g1 3
+g8 = or g6 g7
+g9 = or g8 0
+g10 = or g3 0
+g11 = or 0 1
+g12 = or 0 2
+g13 = or 0 3
+set 0 1 -> g11
+set 0 2 -> g12
+set 0 3 -> g13
+end

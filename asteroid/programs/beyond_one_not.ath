@@ -54,7 +54,7 @@ claim witness(dm3) >= base(dm3) by lean
 # WISH: claim faces(dm3) = 0                          (no assignment of constants to the NOT gates leaves a correct circuit)
 
 # Two NOT gates, no constant face correct, no repeated function (hunted, not minimal): 11 gates against base 5.
-let e2 = load one-not/data/beyond_one_not/essential_t2_seed1.json
+let e2 = load one-not/data/beyond_one_not/essential_t2_seed1.circ.ath
 claim correct(e2) by lean
 claim nots(e2) = 2
 claim c4g(e2)

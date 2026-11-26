@@ -29,7 +29,7 @@ claim theorem(w)
 claim gates(w) >= base(w)
 claim forall cubes slack(w) >= 0 by lean           # D8: the count at every cube; with L5/L7 this is the whole Theorem for w
 # the Fano formula: tight, 7 inputs
-let fano = load one-not/data/witnesses/fano_formula.json
+let fano = load one-not/data/witnesses/fano_formula.circ.ath
 claim gates(fano) >= base(fano)
 claim forall cubes slack(fano) >= 0 by lean
 # WISH: claim forall c in W: nots(c) <= 1 -> gates(c) >= base(c)   (an implication, so the hypothesis of the Theorem is part of the claim)

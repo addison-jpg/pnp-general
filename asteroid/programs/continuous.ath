@@ -1,9 +1,9 @@
 # The continuous form, in asteroid. Phi(p) = expected slack when each point is set to 1 with probability p.
 # The remaining sorry is exactly: 0 <= Phi(0) for a minimal counterexample (ContinuousAttach.lean).
-let fano = load one-not/data/witnesses/fano_formula.json
-let e = load one-not/data/witnesses/ess_rand_clean_744.json
-let twin = load one-not/data/witnesses/twin_tree_f2step.json
-let x = load one-not/data/witnesses/nonlocal/general_count_below_base_min.json
+let fano = load one-not/data/witnesses/fano_formula.circ.ath
+let e = load one-not/data/witnesses/ess_rand_clean_744.circ.ath
+let twin = load one-not/data/witnesses/twin_tree_f2step.circ.ath
+let x = load one-not/data/witnesses/nonlocal/general_count_below_base_min.circ.ath
 
 # 1. The attachment: Phi(0) is the slack of the empty cube, Phi(1) is 0.
 claim phi(e, 0) = 1

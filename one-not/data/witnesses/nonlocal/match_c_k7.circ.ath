@@ -1,0 +1,69 @@
+# match_c_k7.json: converted by asteroid/to_ath.py; inputs 0..15, gate k = g<k> = wire 16 + k
+circuit c_match_c_k7 16
+g0 = and 7 8
+g1 = or 0 g0
+g2 = and 7 9
+g3 = or 1 g2
+g4 = and 7 10
+g5 = or 2 g4
+g6 = and 7 11
+g7 = or 3 g6
+g8 = and 7 12
+g9 = or 4 g8
+g10 = and 7 13
+g11 = or 5 g10
+g12 = and 7 14
+g13 = or 6 g12
+g14 = or g1 g3
+g15 = or g5 g7
+g16 = or g9 g11
+g17 = or g14 g15
+g18 = or g16 g13
+g19 = or g17 g18
+g20 = and 15 0
+g21 = or 8 g20
+g22 = and 15 1
+g23 = or 9 g22
+g24 = and 15 2
+g25 = or 10 g24
+g26 = and 15 3
+g27 = or 11 g26
+g28 = and 15 4
+g29 = or 12 g28
+g30 = and 15 5
+g31 = or 13 g30
+g32 = and 15 6
+g33 = or 14 g32
+g34 = or g21 g23
+g35 = or g25 g27
+g36 = or g29 g31
+g37 = or g34 g35
+g38 = or g36 g33
+g39 = or g37 g38
+g40 = or g19 g39
+g41 = not g40
+g42 = or 7 8
+g43 = or 15 0
+g44 = and g42 g41
+g45 = or g44 g19
+g46 = and g43 g41
+g47 = or g46 g39
+g48 = or g1 g21
+g49 = or g3 g23
+g50 = or g5 g25
+g51 = or g7 g27
+g52 = or g9 g29
+g53 = or g11 g31
+g54 = or g13 g33
+set 0 1 2 3 4 5 6 7 -> g45
+set 8 9 10 11 12 13 14 15 -> g47
+set 0 8 -> g48
+set 1 9 -> g49
+set 2 10 -> g50
+set 3 11 -> g51
+set 4 12 -> g52
+set 5 13 -> g53
+set 6 14 -> g54
+set 7 8 -> g42
+set 15 0 -> g43
+end

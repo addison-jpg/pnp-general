@@ -1,0 +1,41 @@
+# cxMU_dd.json: converted by asteroid/to_ath.py; inputs 0..6, gate k = g<k> = wire 7 + k
+circuit c_cxMU_dd 7
+g0 = or 0 3
+g1 = or 1 2
+g2 = or 0 6
+g3 = or 4 5
+g4 = or 1 4
+g5 = not g4
+g6 = and 0 2
+g7 = and g6 5
+g8 = and 0 3
+g9 = and g8 6
+g10 = or 1 g7
+g11 = and g5 g10
+g12 = or 4 g9
+g13 = and g5 g12
+g14 = and 2 4
+g15 = or g11 g14
+g16 = and 5 1
+g17 = or g13 g16
+g18 = or g15 g17
+g19 = or 0 g18
+g20 = and g19 2
+g21 = or 0 4
+g22 = or g5 g21
+g23 = and g0 g22
+g24 = or g23 g20
+g25 = or 2 4
+g26 = and g5 g25
+g27 = or g24 g26
+g28 = or g27 g1
+g29 = and 1 g2
+g30 = or g5 g29
+g31 = and g2 g30
+g32 = or 5 1
+g33 = and g5 g32
+g34 = or g31 g33
+g35 = or g34 g3
+set 0 1 2 3 -> g28
+set 0 4 5 6 -> g35
+end

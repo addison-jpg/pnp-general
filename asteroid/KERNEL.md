@@ -23,3 +23,19 @@ from a 1.3 MB export (0.2 MB gz) in 14 s; a tampered export is rejected. Script:
 
 **Not in this lane (needs the asteroid.py owner + owner go in that seat):** emitting light claims and `_project` claims into
 separate files; `ast prove` / `ast check` commands.
+
+## .ath only: the 14 loaded circuit files (second lane; branch ath-small-deps)
+
+- **Loaders (additive):** `let NAME = load FILE.ath` reads an .ath circuit file holding exactly one `circuit NAME N ... end`
+  block (the same block syntax programs already use). Python: `circ_of_ath` in `asteroid/asteroid.py`. Native:
+  `AsteroidLang/Main.lean resolve`, via the existing program parser. `.bench` and `.json` loads still work.
+- **Converted (13 files; the 14th load target is hello.bench by another path):** each `X.json` / `X.bench` → `X.circ.ath`
+  next to it (`asteroid/to_ath.py`; `.circ.ath` so it never collides with a program `X.ath`). Wire numbering is kept
+  exactly (inputs by number, gate k = `g<k>`). Round trip, all 13: old loader's circuit == `circ_of_ath(new file)`, exactly.
+  The old files are KEPT until the owner says delete.
+- **Programs:** all 36 load lines in 19 `.ath` programs now load `.circ.ath`; none loads `.json` / `.bench` any more.
+- **Same results (`--no-lean`):** Python, 19 programs: 15 byte-identical (after path/timing normalization); 3 differ only in
+  randomized `hunt` move counts and timestamped log names; `workshop/little/attempt.ath` was FAILING before
+  (`load: no file hello`) and now loads. Native (`lean --run` of AsteroidLang/Main, Lean core only): hello, first, mixed,
+  refuted give identical claim lines with the old and new loader.
+- **Not done:** corpora read by `corpus W = GLOB` (*.json / *.jsonl) are data, not loaded files; out of scope.
