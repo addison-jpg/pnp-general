@@ -1,0 +1,9 @@
+# Reading, not a claim: the song title "to love me is to suffer me" as a finite test of one relation.
+# Worlds: 0 a, 1 b, 2 c. Care runs both ways between a and b, and a cares for c. Harm runs from b to c.
+kripke Care = worlds 3 rel [(0,1), (1,0), (0,2)] val a {0} b {1} c {2}
+kripke Harm = worlds 3 rel [(1,2)] val a {0} b {1} c {2}
+# Reading to test: every care edge carries harm. Expected FALSE: the edge a to c carries no harm.
+claim same Care Harm
+# Expected TRUE: harm is a subset of care only if its edges are also care edges (here (1,2) is not a care edge).
+claim same Harm Harm
+# Note: the second claim is trivially true (a relation equals itself) and tests nothing; it is kept only as a check of the claim command. The first claim is the reading, and it is FALSE here: the reading does not hold in this model. The model says nothing about any real relationship or person.
