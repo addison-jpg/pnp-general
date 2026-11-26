@@ -4,7 +4,9 @@ title: "pnp-general: machine-checked mathematics across fields"
 authors:
   - name: "Addison"
 repository-code: "https://github.com/addison-jpg/pnp-general"
-license: MIT
+license:
+  - MIT
+  - Apache-2.0
 type: software
 abstract: >-
   A public repository of results on Boolean circuit size with limited NOT

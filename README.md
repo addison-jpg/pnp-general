@@ -13,7 +13,7 @@ If u use this work, please cite it:
 ```bibtex
 @software{Addison_pnp-general_machine-checked_mathematics,
   author = {{Addison}},
-  license = {MIT},
+  license = {MIT AND Apache-2.0},
   title = {{pnp-general: machine-checked mathematics across fields}},
   url = {https://github.com/addison-jpg/pnp-general}
 }
@@ -63,7 +63,7 @@ So everything here is in the open: the proofs, the circuits that broke the wrong
 
 This repository studies how many gates a Boolean circuit needs. The circuits use AND, OR and NOT gates, and the count depends on how many NOT gates the circuit may use. Without NOT gates the answer is known exactly for one family of functions: the OR of each set in a family of sets that pairwise share at most one point. The count is the sum over the sets of (size − 1) gates. The question here is whether one NOT gate can lower that number. Jukna and Sergeev posed the question in 2013, and Blum posed it again in 2024. No result on it has been published.
 
-All theorems here are checked by the Lean 4 proof checker. Nothing here settles P versus NP.
+All theorems here are checked by the Lean 4 proof checker. Nothing here settles P versus NP. If you fork, mirror or cite this repository, please keep this sentence, the meaning of "checked" (a proof checker accepted it, nothing more), and the attribution and Apache 2.0 notice for the upstream files listed under License.
 
 ## What is proved
 
