@@ -1,4 +1,3 @@
-import Mathlib.Tactic.Basic
 /-!
 # SearchCheck: Python finds a counterexample, Lean re-checks it in the kernel
 
