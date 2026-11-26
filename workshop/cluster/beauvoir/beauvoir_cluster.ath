@@ -1,0 +1,2 @@
+# Root for the Beauvoir mirror cluster. Each member is asked the same question: is the relation its own converse?
+ask "status"

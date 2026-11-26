@@ -1,0 +1,4 @@
+# Beauvoir mirror, member 1: a reciprocal pair is its own converse (the mirror condition holds).
+kripke R = worlds 2 rel [(0,1), (1,0)] val p {0} q {1}
+kripke Rc = converse R
+claim same R Rc

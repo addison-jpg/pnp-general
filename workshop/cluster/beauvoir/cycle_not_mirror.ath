@@ -1,0 +1,4 @@
+# Member 3: a three-step cycle is serial but not reciprocal, so it is not its own converse. Expected FALSE: the mirror condition fails.
+kripke C = worlds 3 rel [(0,1), (1,2), (2,0)] val p {0} q {1}
+kripke Cc = converse C
+claim same C Cc

@@ -1,0 +1,4 @@
+# Member 4: a single self-loop is its own converse (mirror holds).
+kripke S = worlds 1 rel [(0,0)] val p {0}
+kripke Sc = converse S
+claim same S Sc

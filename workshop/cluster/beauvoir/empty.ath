@@ -1,0 +1,4 @@
+# Member 2: the empty relation is its own converse (trivially mirror).
+kripke E = worlds 2 rel [] val p {0} q {1}
+kripke Ec = converse E
+claim same E Ec
