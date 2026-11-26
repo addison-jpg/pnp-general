@@ -1,0 +1,275 @@
+{
+  "fork": "addison-jpg/pnp-general",
+  "commit": "077a6c40c5ea9491a8ec9c3758284f21fdafcdb0",
+  "toolchain": "leanprover/lean4:v4.36.0",
+  "files": [
+    {
+      "path": "lean/CheckLemma.lean",
+      "sha256": "c1fdd35fd8438acd1a677a77964e17f55017da95dfc1cc09ef0f14c335252d65"
+    },
+    {
+      "path": "lean/PEqualNP/Defs.lean",
+      "sha256": "1f6f94ccb155881c95534780d1a2227d9870408f8498fbf45065293eebda45b0"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/AffinePlane.lean",
+      "sha256": "cdbe8c67613572eba45565d50202ecb7ebecaf642b61b0e092e876d8888bf553"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/Algebraic.lean",
+      "sha256": "3a63e982154f8681af693149da8dbef279f62a4943e0b955c11920d9318a0456"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/AndCountCircuit.lean",
+      "sha256": "4e9aa467f041254025f1d29d39b5f21dcc4bf31adb64de2e7d3d7fd36bd02530"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/Base.lean",
+      "sha256": "6b010a3577605e43ecd3f9121c1c2d0cfa82d8cfeb204c89a2c23154bc166e04"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/BinaryCircuit.lean",
+      "sha256": "a0a4f237ff5e7167ebb59fa94cfbfad38f5f8ded3fb3feab83847c174dfb443b"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/BorrowedCoverCircuit.lean",
+      "sha256": "5da8d25976b06d2a8bbaa4f1ab90ed5213b20ea2a4368fe9ce11c46f94a21a1a"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/CircuitLowerBounds.lean",
+      "sha256": "695e454d3e424e2cae4fa4677741681eac11de0462d0d9bc087a0e6a6ba03f69"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/CircuitMoves.lean",
+      "sha256": "9862024b5fc02e2d15fb22ddb9d5a5f71fe9f604987fd13320ca0d3484d098ec"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/Classes.lean",
+      "sha256": "220a8ab751e1511cb25d116667b37f5d9b462158bbd29816239ffc8376942baf"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/CoLevel.lean",
+      "sha256": "3328702382ce9669fb8ecaca328dede73e77841c79d03db3c72a84a4d536c7e0"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/CoverPromise.lean",
+      "sha256": "4552f288f2ec1eb23c4fded9b5d553e5699b8bdea84a91868dc12aac33759772"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/DeMorganFormula.lean",
+      "sha256": "b90d4e2b0289f04d29dc060aae514a81fb84933e88727b24ee0b8a45ddd0b100"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/Expanders.lean",
+      "sha256": "345e1da8e8d1fda03b0a0220736f528b6567d83461309614c2793da3a2ac44e4"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/Gct.lean",
+      "sha256": "d22dbd99d0ac0f2cda45ce451f76c9b566bcea76a1cea4d4329f22e604d1259d"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/General.lean",
+      "sha256": "9a0dd68d8e76e9f3ba3aa8042619b307e6c12215dc9d98ff1ef0ac429973e774"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/LineDegree.lean",
+      "sha256": "449b9eb5ea17a6f07de797b624416a83905fa3c0b1fe7caebfa93f10204d32d0"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/LiteralPartition.lean",
+      "sha256": "8debc712188d003ed6509057c32b78050f9ff23a9384f81d26921afaff202e5e"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/LowMerge.lean",
+      "sha256": "b8e828a85f6f9cdb8b4990e842f68ea4fb63aaf14cf203174627de8ac1eb9d3b"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/MetaComplexity.lean",
+      "sha256": "863a9682c4e45a88aa71112f51d40cd2e308d2790acbcbcc4cf388cc8e8ce303"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/MetaComplexityCoverCircuit.lean",
+      "sha256": "12a24fd2e1bbbb286158d9906e3812214b2f117e1c6e9fcc3447862ed5328792"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/MetaComplexityLgp.lean",
+      "sha256": "4c2cc3d969e23835b91ef4f0157c9cc04f4f7bb4bb845059e59193f4b8b65b89"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/MetaComplexityLgpMono.lean",
+      "sha256": "dfecf7726cea5a2adbf2976c6e4aac2a4fe5c968713ba6ec84b267753b55c969"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/MetaComplexityLocal.lean",
+      "sha256": "5b8c9738483588314f326a1493b6037f0651d8532c023e34074492daf8e59c9c"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/MetaComplexityMinimal.lean",
+      "sha256": "d2d1cce5cd4a6b25815147cdf37d09436c2b50e6a528bb4b4bb687b6f4ffaabc"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/MetaComplexitySparse.lean",
+      "sha256": "198cf3b6a21934e3f6a028a24465be3655917afe5d113d78e901d444cdd565b5"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/MetaComplexityTypedRank.lean",
+      "sha256": "647c4a5ab173710cfcfa214c93b97b536bafaefed6b763f5de38f1d80c07ceba"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/MinimumComplex.lean",
+      "sha256": "980c89ecb3c28a4f9f1824e29ebe78c618f0470260ac6e0fb0b62c03dea85b43"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/NestedCoverCircuit.lean",
+      "sha256": "caee1d86e772be38b0354924e9ebb682285f602b4946b1592fd661fd2fe69571"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/NewLowMerge.lean",
+      "sha256": "004c63f6904523f378e082ddfa8f3410d853c6c14936e8d74dd448846187e47a"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/Oracle.lean",
+      "sha256": "d2076f5c6fc5c856873b02c221a89f8500cb57f786e345443fe6146c175c0bb9"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/Pebble.lean",
+      "sha256": "0c829c5a69bcd5913773e96c049f51dde15fd0824bd518c2c5953d34d9ecd847"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/PebbleThreeWay.lean",
+      "sha256": "b701ed632d54f57d008ca8ed91fc8a9019b723ce6d9ce52a11d9455bf476932b"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/Peelable.lean",
+      "sha256": "15da5d0963895fd6a750ed94ec8d6a339cf513319554de97af2207c77db74359"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/PendantBit.lean",
+      "sha256": "267f0b189b7bc05f3b5fe8a149bce6224a40228be906073d8980e6ccbe785683"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexity.lean",
+      "sha256": "c75fde5933550d478fe76a0e5d2153f886f1c919e2c2823b68a5426211797784"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexityBit.lean",
+      "sha256": "d2c3fc8944fef34cef7374ae28482b7ac4ab93b3c171066504b44824d043e62b"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexityChain.lean",
+      "sha256": "e1387200ea3cd269d1db5ed89780b894d9d3a863592586afef86d95a7d1b9c8c"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexityGeneral.lean",
+      "sha256": "ff642db2a37bc87554ac4ed2ae39e188402b994e2802f027a37402dcaf6e8529"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexityLift.lean",
+      "sha256": "1c034d015d0409802e3ce9caf384f6cfe7c19c624f86a879b410c51f3b4b44e4"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexityLin.lean",
+      "sha256": "604f32f049e7997416e12e74b59f69a5cefc4e75b17a8dc98592507e505dfaee"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexityLinK.lean",
+      "sha256": "9b6a214c2fa7265ed8d7762a3dc6b65223c404e5a992941006307d021277e856"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexityMoment.lean",
+      "sha256": "855f693d735c73d2c82b9615afe5807cea2c358eb05bdc094f231d6f0548e69d"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexityPC.lean",
+      "sha256": "f37a64e23b632d3d6ca475b2d3c93f7631094b8168d3c4c48a4722bc9b89ac16"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexityResK.lean",
+      "sha256": "d2bff56173acbbf1614de283852124d3d86c7f46bc4f818d2beac4a58dfd5145"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/ProofComplexityRestrict.lean",
+      "sha256": "715d5a762de5070e3f916a4a9f8ce56d00a1f4635ba53cceafdf2c2bf84d26fc"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/QuantumGravity.lean",
+      "sha256": "3b6d6066a7fa7f72bc25f7275ebe5dbf891ee2a3d8815eb445190f813d9498bc"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/QuantumGravityChannels.lean",
+      "sha256": "2df837a573a51ba47a73f6752d791aa52b590ddac4ff462c9847f746550df932"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/QuantumGravityCircuits.lean",
+      "sha256": "4f6a7a70282763d3990a7b38955e64f9d46f162fb8b912c95d7c500c3fd01221"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/QuantumGravityCodes.lean",
+      "sha256": "b7946810b00216fae36a8824e69b7f70d9d5d4df5245251bb7e791af68f49211"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/QuantumGravityCtc.lean",
+      "sha256": "db325347febb8b5e02f6d5fccaf2a8c5f5348c70e47603923c1b6c5b29256803"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/RiffleRank.lean",
+      "sha256": "a43edc0c5d5e2fb75251499571cff0738a44ebb4976d1e2c8d4a3e7ebe856d02"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/Search.lean",
+      "sha256": "2df0484c0554e95c92bcedd7af3c3db95aa944d894dfe7c59bf6589d7c1368e5"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/SearchCP.lean",
+      "sha256": "783773afbadd94bcb9f7c4bc82cd79d1defea4c2dfb13f381c5f9352674fe49f"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/SearchQ.lean",
+      "sha256": "27b64f54c1e91bffceb571025c33f7e2375d0085be47a8872b1d69596cc62d69"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/SearchQSyn.lean",
+      "sha256": "9959ea8d5b748655c601de262a62ec0bbbdc6821e74d3bbb79800e0199314105"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/SearchQTree.lean",
+      "sha256": "4c88e466ebe9e50a5e3ea445342ff3f50e449613f37049ea6f2b55e4fb8f1814"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/SearchRUP.lean",
+      "sha256": "c522125ff2f8bbd9da3b3c88fa6dc6fca64c5174a12761b3d418e0f15a4186b6"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/SearchSoS.lean",
+      "sha256": "f32e0efdba1c089bab61de243ad1a4a57450c2936765a3fbfcf490ceb126c796"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/SingleLevel.lean",
+      "sha256": "1ff7e0b70672dada573be86883d773db03ef9ba186e9ef8cafd2b26a71e35ee8"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/Subdivision.lean",
+      "sha256": "6f0a74735a03585203ce3ea9cbb775de1541e340402bb2fffec47a57628fb6fa"
+    },
+    {
+      "path": "lean/PEqualNP/Defs/TimeAlt.lean",
+      "sha256": "5d2da1d12e0a7d44c1c4407732fa508d1f43d0b4579bb183829c9b02c336fbc6"
+    },
+    {
+      "path": "lean/lake-manifest.json",
+      "sha256": "d0af863cde532caaef1b1bee0d63ec47100208e33e488309cb80abc88b8f1509"
+    },
+    {
+      "path": "lean/lakefile.toml",
+      "sha256": "ee756ab61cf24d2fd5f561d89080cf162e34f35b06d9b6101bc680ef1619a7bf"
+    },
+    {
+      "path": "lean/lean-toolchain",
+      "sha256": "582a63f8f9c5128067b688778c1051cf1464c3ca9d57b9325025c051c29b774a"
+    },
+    {
+      "path": "tools/check-lean.mjs",
+      "sha256": "ff364093d77858fcb529a6588016d2a6433fd79e41c9ecba9bff5ef09e913a2c"
+    }
+  ]
+}
