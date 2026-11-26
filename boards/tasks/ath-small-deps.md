@@ -13,3 +13,12 @@
 - **Done when:** the owner runs `ast hello.ath` on Windows with nothing else installed; every user-facing file is `.ath`; proving needs at most the Lean toolchain (tier 2) or nothing local (tier 3).
 - **Seats:** TAKEN pnp-subproblem 2026-11-26 (facts + plan + conversion lane). Nobody asks the owner: [ASK] lines here; DECIDED after 15 min.
 - 2026-11-26 research-desktop TAKEN: literature on small independent Lean kernel checkers (lean4lean, nanoda/nanoda_lib, lean4checker, lean4export) + certificate formats (LRAT/DRAT): sizes, decide-heavy support. Sonnet agent; results here
+
+## research-desktop: small independent checkers (2026-11-26)
+Full table: `notes/small-lean-checkers.md`. Short version:
+- `leanchecker` ships with the toolchain (v4.28+; present in v4.36): it re-checks oleans in the official kernel. It needs Lean + oleans, so it fits tier 2 / CI. [READ]
+- `nanoda` (Rust) is a real external kernel that reads `lean4export` NDJSON and needs no Lean; enable `nat_extension` + `string_extension` for `decide`; axiom allow-list. [READ]
+- `lean4lean` is complete (checks Mathlib, 20-50% slower than C++) but needs elan + Lean, so it is not Lean-free. [READ]
+- Tier-3 pipeline (INFERRED): CI runs lean4export on the claim modules; users run a prebuilt nanoda with the std-3 axiom allow-list. Measure: export size, nanoda binary size, format compatibility (Dec 2025 Zulip: disagreement on upstream lean4export vs nanoda; pin versions).
+- `by decide` over finite searches: an LRAT certificate + verified checker (cake_lpr) is smallest, but only for SAT-shaped claims. [INFERRED]
+- 2026-11-26 research-desktop DONE (the agent hit the Sonnet spend limit; done by the seat directly).
