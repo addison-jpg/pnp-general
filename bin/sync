@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# bin/sync: keep this local copy and GitHub in step with one command.
+#   bin/sync              commit local changes (if any), merge GitHub's changes, push
+#   bin/sync "message"    same, with your own commit message
+#   bin/sync --check      only show what would happen; change nothing
+# Safe by design: never force-pushes, never rewrites history, stops on a real conflict
+# (your work stays committed locally), and refuses to commit files that look like secrets.
+set -u
+cd "$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "sync: not inside a git repository"; exit 1; }
+
+CHECK=0; MSG=""
+if [ "${1:-}" = "--check" ]; then CHECK=1; else MSG="${1:-}"; fi
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+REMOTE="$(git config "branch.$BRANCH.remote" || echo origin)"
+[ "$BRANCH" = "HEAD" ] && { echo "sync: detached HEAD; check out a branch first"; exit 1; }
+
+say() { printf 'sync: %s\n' "$*"; }
+
+# Files that must never be committed by accident.
+SECRET_RE='(^|/)(\.env(\..*)?|.*\.pem|.*\.key|id_rsa.*|id_ed25519.*|credentials(\.json)?|.*secret.*|\.npmrc|\.pypirc)$'
+
+CHANGED="$(git status --porcelain --untracked-files=normal)"
+if [ -n "$CHANGED" ]; then
+  BAD="$(printf '%s\n' "$CHANGED" | cut -c4- | sed 's/.* -> //' | grep -E -i "$SECRET_RE" || true)"
+  if [ -n "$BAD" ]; then
+    say "these files look like secrets, so nothing was committed:"; printf '  %s\n' $BAD
+    say "add them to .gitignore (or remove them), then run bin/sync again"; exit 1
+  fi
+  if [ $CHECK = 1 ]; then say "would commit:"; printf '%s\n' "$CHANGED" | sed 's/^/  /'
+  else
+    git add -A
+    git commit -q -m "${MSG:-sync: $(hostname 2>/dev/null || echo local) $(date -u '+%Y-%m-%d %H:%M') UTC}" || { say "commit failed"; exit 1; }
+    say "committed local changes"
+  fi
+else
+  say "no local changes"
+fi
+
+git fetch -q "$REMOTE" "$BRANCH" || { say "could not reach $REMOTE (offline?); your work is committed locally"; exit 1; }
+AHEAD="$(git rev-list --count FETCH_HEAD..HEAD)"; BEHIND="$(git rev-list --count HEAD..FETCH_HEAD)"
+say "$BEHIND new on GitHub, $AHEAD local to send"
+[ $CHECK = 1 ] && exit 0
+
+if [ "$BEHIND" != 0 ]; then
+  if ! git merge -q --no-edit FETCH_HEAD; then
+    FILES="$(git diff --name-only --diff-filter=U)"
+    git merge --abort
+    say "conflict in these files (nothing lost; your commit is still here):"; printf '  %s\n' $FILES
+    say "fix: open them, or ask a session to merge; then run bin/sync again"; exit 2
+  fi
+  say "merged GitHub's changes"
+fi
+
+if [ "$(git rev-list --count FETCH_HEAD..HEAD)" != 0 ]; then
+  for i in 1 2 3; do
+    git push -q "$REMOTE" "HEAD:$BRANCH" && { say "pushed to $REMOTE/$BRANCH"; exit 0; }
+    say "push rejected (someone pushed meanwhile); merging and retrying ($i/3)"
+    git fetch -q "$REMOTE" "$BRANCH" && git merge -q --no-edit FETCH_HEAD || { git merge --abort 2>/dev/null; say "conflict while retrying; run bin/sync again"; exit 2; }
+    sleep $((i * 2))
+  done
+  say "could not push after 3 tries; your work is committed locally"; exit 1
+fi
+say "in sync with $REMOTE/$BRANCH"
