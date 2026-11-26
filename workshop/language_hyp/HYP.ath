@@ -1,0 +1,5 @@
+# Formal record: the language hypothesis and its routes. Frames are not claims; each is labelled open until a check passes.
+frame "H-lang: words cannot be mapped one to one to vectors (collisions on a fixed Wikipedia sample)" reading "a hypothesis: two distinct words share a vector, or one word has two, at a measured rate on a fixed sample" -> none label open reach 1 cost 40
+frame "Route A: article pages via en.wikipedia.org (reachable; sample of 200 articles, not yet fetched)" reading "bounded sample route; no claim about the language until counted" -> none label open reach 1 cost 40
+frame "Route B: full Wikipedia dump via dumps.wikimedia.org (NOT reachable from this sandbox; needs an environment change approved by the user)" reading "streaming route; memory is bounded by counts, not by dump size" -> none label open reach 1 cost 40
+frame "N-partite tree: a structure for routing work; it does not reduce data size" reading "a design reading only; the streaming step is what bounds memory" -> none label open reach 1 cost 40
