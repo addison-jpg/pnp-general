@@ -4,6 +4,8 @@
 $ErrorActionPreference = 'Continue'
 $here = Split-Path -Parent $PSScriptRoot
 $venv = Join-Path $here '.venv'
+# The citation gate (asteroid\CITE.md): every commit from this clone runs .githooks\pre-commit.
+if ((Test-Path (Join-Path $here '.git')) -and (Get-Command git -ErrorAction SilentlyContinue)) { git -C $here config core.hooksPath .githooks; Write-Output 'setup: citation gate on (git hooks in .githooks)' }
 function Test-Python([string[]]$Cmd) {
     $exe = $Cmd[0]; $rest = @(); if ($Cmd.Length -gt 1) { $rest = $Cmd[1..($Cmd.Length - 1)] }
     try {

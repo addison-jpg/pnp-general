@@ -1,4 +1,12 @@
 #!/bin/sh
-# The citation gate (tools/cite/gate.py): refuses a commit that adds a claim citing nothing, or a dead citation.
-# Turn it on once per clone:   git config core.hooksPath .githooks
-exec python3 -I "$(git rev-parse --show-toplevel)/tools/cite/gate.py" --staged
+# The citation gate (tools/cite/gate.py, asteroid/CITE.md): refuses a commit that adds a claim citing nothing,
+# or a citation that is dead. bin/setup turns it on; by hand: git config core.hooksPath .githooks
+TOP="$(git rev-parse --show-toplevel)"
+for PY in "$TOP/.venv/bin/python" "$TOP/.venv/Scripts/python.exe" python3 python; do
+  if command -v "$PY" >/dev/null 2>&1 && "$PY" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 8) else 1)' >/dev/null 2>&1; then
+    exec "$PY" -I "$TOP/tools/cite/gate.py" --staged
+  fi
+done
+if command -v py >/dev/null 2>&1; then exec py -3 -I "$TOP/tools/cite/gate.py" --staged; fi
+echo "citation gate: no Python found, so the gate could not run; commit refused (install Python, or run bin/setup)" >&2
+exit 1

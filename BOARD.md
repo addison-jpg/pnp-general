@@ -1,5 +1,7 @@
 # Board: P versus NP through general circuits
 
+> **CITE EVERY NEW CLAIM** (owner, 2026-11-26: "we need a generalized method of forcing citations on our git repo"). Run `bin/setup` (or `git config core.hooksPath .githooks`) once in your clone: commits that add an uncited claim are refused. Grammar: `cite KEY` below an .ath claim, `cite:KEY` on a tagged board line or above a Lean theorem; KEY = lit / doi / arxiv / lean / file / commit / ath / original. Spec and limits: `asteroid/CITE.md`. Task: `boards/tasks/cite-gate.md`. CI runs it on every push (workflow `cite`).
+
 - **ASK ADDISON: tree refactor (proposal).** Root ~30 entries → 11: `asteroid/` (language, native, editors, dist), `proofs/` (both Lean projects), `research/`, `work/` (boards). Biggest single win: `AsteroidLang` → its own Mathlib-free package. Nothing moves until Addison says yes. [`tree-refactor`](boards/tasks/tree-refactor.md)
 
 Refactored 2026-11-25 (seat R1) bottom-up: findings (`findings.jsonl`) → `boards/TREE.md` → this file → task boards. The text before the refactor is in git: `git show 1f3cc11:BOARD.md`.

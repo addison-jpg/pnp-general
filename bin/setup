@@ -3,6 +3,8 @@
 # Nothing goes to your user or system Python. Delete the .venv folder to undo it. Safe to run again.
 # Works in sh, bash, zsh and Git Bash on Windows.
 HERE="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)" || { echo "setup: cannot find my own folder" >&2; exit 1; }
+# The citation gate (asteroid/CITE.md): every commit from this clone runs .githooks/pre-commit.
+if [ -d "$HERE/.git" ] && command -v git >/dev/null 2>&1; then git -C "$HERE" config core.hooksPath .githooks && echo "setup: citation gate on (git hooks in .githooks)"; fi
 works() { "$@" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 9) else 1)' >/dev/null 2>&1; }
 venv_python() {
   if   [ -f "$HERE/.venv/bin/python" ];         then VPY="$HERE/.venv/bin/python"

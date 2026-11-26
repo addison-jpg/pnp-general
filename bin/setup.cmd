@@ -3,6 +3,8 @@ rem Once: make a private Python environment INSIDE this folder (.venv) with nump
 rem Nothing goes to your user Python or AppData. Delete the .venv folder to undo it. Safe to run again.
 setlocal
 for %%I in ("%~dp0..") do set "HERE=%%~fI"
+rem The citation gate (asteroid\CITE.md): every commit from this clone runs .githooks\pre-commit.
+if exist "%HERE%\.git" where git >nul 2>&1 && git -C "%HERE%" config core.hooksPath .githooks && echo setup: citation gate on (git hooks in .githooks)
 set "VPY=%HERE%\.venv\Scripts\python.exe"
 if not exist "%VPY%" goto make
 "%VPY%" -m pip --version >nul 2>&1
