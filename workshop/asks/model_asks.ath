@@ -1,0 +1,5 @@
+# Asks to asteroid about open models for the repo. Questions, not claims.
+ask "explain deepseek"
+ask "what is open about deepseek"
+ask "explain qwen"
+ask "list tags"
