@@ -2,6 +2,7 @@
 interactions endpoint. Standard library plus pynacl (only for /interactions). Writes nothing to the repository.
 
   GET  /health               {"ok": true}
+  GET  /capabilities         what this software can and cannot do
   GET  /status               verified count and counts by label (from the centre shards)
   GET  /results?program=P    verified findings (id, program, word, text, runner), optional program filter
   GET  /frames?status=OPEN   frames from frames.jsonl, highest score first
@@ -19,6 +20,16 @@ from urllib.parse import parse_qs, urlparse
 LOCK = threading.Lock()
 
 def repo(env=os.environ): return env.get("REPO_DIR", os.getcwd())
+
+def capabilities():
+    return {
+        "kind": "software",
+        "name": "asteroid",
+        "purpose": "evaluate and report machine-checkable claims in this repository",
+        "has_preferences": False,
+        "can": ["read verified repository state", "run an allowlisted .ath program locally"],
+        "cannot": ["access a brain or satellite", "control external systems", "make physical guarantees"],
+    }
 
 def _commits(r, f):
     """True if the program has a commit statement: /check must never make asteroid commit."""
@@ -70,6 +81,7 @@ def route(method, path, query, body, headers, env=os.environ):
     r = repo(env)
     if method == "GET":
         if path == "/health": return 200, {"ok": True}
+        if path == "/capabilities": return 200, capabilities()
         if path == "/status": return 200, status(r)
         if path == "/results": return 200, results(r, (query.get("program") or [None])[0])
         if path == "/frames": return 200, frames(r, (query.get("status") or [None])[0])
