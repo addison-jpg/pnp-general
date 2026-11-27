@@ -34,8 +34,15 @@ frame "Addison: Car Seat Headrest, heaven full of people (essays/knowing.md; car
 # The open Car Seat readings and the postmodern-history DAG frame moved to frames_sync.ath with their checks.
 
 # Proposal only: no collaboration, network capability, or scientific breakthrough has been verified.
-frame "Addison McCarl: BaileyDataNet, proposed collaboration with Jensen Huang" reading "Explore a compact NVIDIA proposal for a global network using Google Gemini, volunteer-operated home servers, and potential xAI satellite integration; participation requires authorization" -> none label open
+frame "Addison McCarl: BaileyDataNet, proposed outreach to NVIDIA" reading "Explore a compact NVIDIA proposal for a global network using Google Gemini, volunteer-operated home servers, and potential xAI satellite integration; no collaboration or endorsement is asserted, and participation requires authorization" -> none label open
 # Lillehei and coauthors: https://meetings-archive.aps.org/smt/2026/mar-h00-01/34/
 # Way's research description: https://www.linkedin.com/in/waypaul
 # Proposed integration, not an assertion of participation, endorsement, or a verified result.
 frame "BaileyDataNet: credit Grant Lillehei and Paul Way for their respective work" reading "Explore authorized distributed workflows for Lillehei and coauthors' machine-learning-assisted polar-metal screening and Way's magnetospheric field and Alfven-wave research: acquire permitted data, run field-specific analyses, and report reproducible results with source attribution" -> none label open
+
+# BaileyDataNet outreach framework. Relationships, private material, and endorsement are never inferred.
+frame "BaileyDataNet: consent-first credit" reading "Publish a person's name or contribution only from their explicit approval; never infer familial, romantic, friendship, institutional, or endorsement relationships; each credit records scope and can be revoked" -> none label open
+frame "BaileyDataNet: public-data boundary" reading "Automation may process only public or explicitly provided project material; diaries, private notes, messages, contact lists, location data, and social-network graphs are excluded unless the affected person provides the material and authorizes its exact use" -> none label open
+frame "BaileyDataNet: reviewed outreach" reading "Prioritize confirmed opt-in contacts, generate one compact draft for an authorized channel, require human review and recipient consent, and prohibit automatic bulk messaging, forwarding, follow-ups, or cross-model propagation" -> none label open
+frame "BaileyDataNet: evidence gate" reading "Treat AGI, collaboration, endorsement, scientific novelty, and network capability as unverified claims until independently stated definitions, evidence, and review are recorded; attribution must distinguish the proposer, contributors, and claimants" -> none label open
+frame "BaileyDataNet: Gemini-first interoperability inquiry" reading "Draft a compact, non-coercive technical request for authorized representatives at Google, Meta, and Anthropic: define interfaces, compute and privacy limits, evaluation criteria, ownership, and opt-in rules before any coordination is represented as agreement" -> none label open
