@@ -14,7 +14,15 @@ from nacl.exceptions import BadSignatureError
 ALLOWED = set()          # filled from the repo's top-level .ath files, minus hello.ath (needs Lean)
 
 def _programs(repo):
-    return {f for f in os.listdir(repo) if f.endswith(".ath") and f != "hello.ath"}
+    out = set()
+    for f in os.listdir(repo):
+        if not f.endswith(".ath") or f == "hello.ath": continue
+        try:
+            if any(l.strip().startswith("commit") for l in open(os.path.join(repo, f), encoding="utf-8")): continue
+        except OSError:
+            continue
+        out.add(f)
+    return out
 
 def verify(public_key_hex, signature_hex, timestamp, body: bytes) -> bool:
     try:

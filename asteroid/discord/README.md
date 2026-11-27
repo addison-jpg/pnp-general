@@ -4,11 +4,11 @@ One function, `app.handle(body, headers)`, that answers Discord's signed slash-c
 
 ## Commands
 - `/status`: the verified-findings count from `RESULTS.md`.
-- `/check PROGRAM`: runs one top-level `.ath` program with `--no-lean` and replies with its summary line. Only top-level `.ath` files are accepted (not `hello.ath`, which needs Lean). Nothing else runs.
+- `/check PROGRAM`: runs one allowlisted top-level `.ath` program with `--no-lean` and replies with its summary line. `hello.ath` and programs containing a `commit` statement are refused. Nothing else runs.
 
 ## Safety
 - Every request's Ed25519 signature is checked against the application's public key; anything else gets 401.
-- It writes nothing to the repository.
+- It writes nothing to the repository, and refuses programs that could explicitly commit from `/check`.
 - The bot token is never needed here; the endpoint only needs the **public** key.
 
 ## Run it

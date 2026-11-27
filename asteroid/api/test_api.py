@@ -17,6 +17,11 @@ open(os.path.join(r, "first_light.ath"), "w").write('check "x"\ncommit "m" push\
 env = {"REPO_DIR": r}
 rt = lambda m, p, q=None, b=b"", h=None, e=env: api.route(m, p, q or {}, b, h or {}, e)
 check("health", rt("GET", "/health") == (200, {"ok": True}))
+code, caps = rt("GET", "/capabilities")
+check("capabilities state the software's limits", code == 200 and caps["has_preferences"] is False and
+      "control external systems" in caps["cannot"])
+c, _ = rt("POST", "/capabilities")
+check("capabilities are read-only", c == 404)
 c, s = rt("GET", "/status"); check("status counts only verified findings", c == 200 and s["verified"] == 1 and s["by_label"] == {"checked-finite": 1})
 check("results filter by program", rt("GET", "/results", {"program": ["brain"]})[1][0]["id"] == "a1" and rt("GET", "/results", {"program": ["cosmos"]})[1] == [])
 check("frames sorted by score, status filter", [x["claim"] for x in rt("GET", "/frames", {"status": ["open"]})[1]] == ["b", "a"])
