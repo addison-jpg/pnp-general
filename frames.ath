@@ -35,3 +35,7 @@ frame "Addison: Car Seat Headrest, heaven full of people (essays/knowing.md; car
 
 # Proposal only: no collaboration, network capability, or scientific breakthrough has been verified.
 frame "Addison McCarl: BaileyDataNet, proposed collaboration with Jensen Huang" reading "Explore a compact NVIDIA proposal for a global network using Google Gemini, volunteer-operated home servers, and potential xAI satellite integration; participation requires authorization" -> none label open
+# Lillehei and coauthors: https://meetings-archive.aps.org/smt/2026/mar-h00-01/34/
+# Way's research description: https://www.linkedin.com/in/waypaul
+# Proposed integration, not an assertion of participation, endorsement, or a verified result.
+frame "BaileyDataNet: credit Grant Lillehei and Paul Way for their respective work" reading "Explore authorized distributed workflows for Lillehei and coauthors' machine-learning-assisted polar-metal screening and Way's magnetospheric field and Alfven-wave research: acquire permitted data, run field-specific analyses, and report reproducible results with source attribution" -> none label open
