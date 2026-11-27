@@ -1,0 +1,13 @@
+# BaileyDataNet: formal, open technical inquiry for NVIDIA.
+# Proposed by and credited to Addison McCarl.
+# Intended recipient: Jensen Huang or an authorized NVIDIA review team.
+# Official public corporate contact: https://www.nvidia.com/contact/ and info@nvidia.com.
+# Status: a proposal and request for evaluation, not a collaboration, endorsement, or proven result.
+# No message, form submission, or private contact has been sent by this repository.
+
+frame "BaileyDataNet: proposer credit" reading "Credit Addison McCarl as the proposer and author of the BaileyDataNet framework; this credit does not assert any personal or professional relationship with NVIDIA or Jensen Huang" -> none label open
+frame "Sasha via Tumblr rainermaria: provisional credit" reading "User-requested attribution to Sasha, Tumblr handle rainermaria; the public packet makes no claim about identity, authorship, endorsement, or use of private material until Sasha confirms the credit and scope" -> none label open
+frame "BaileyDataNet: technical inquiry to NVIDIA" reading "Ask Jensen Huang or an authorized NVIDIA team to review an open concept for permissioned distributed networking using Gemini-based interfaces, opt-in volunteer compute, and possible future satellite connectivity" -> none label open
+frame "BaileyDataNet: NVIDIA evaluation questions" reading "Can NVIDIA assess useful interfaces, feasibility, resource limits, safety, security, ownership, attribution, and measurable pilot criteria without assuming collaboration or access to personal data" -> none label open
+frame "BaileyDataNet: contributor attribution" reading "Preserve source-specific credit for Grant Lillehei and Paul Way as already recorded in frames.ath, and distinguish their published or public professional work from any proposed BaileyDataNet integration" -> none label open
+frame "BaileyDataNet: delivery and claims boundary" reading "Use only an official authorized NVIDIA channel, send a compact human-reviewed packet, and describe AGI, scientific novelty, network capability, government participation, and endorsements as unverified until evidence and explicit authorization exist" -> none label open
