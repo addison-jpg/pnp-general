@@ -32,3 +32,6 @@ frame "Addison: postmodern history of the universe along time, Lyotard 1979 (cos
 frame "Addison: Car Seat Headrest as a level, dated records (carseat/BASE.md)" reading "1 2010, 2 2010, Twin Fantasy 2011, Face to Face 2018 form a time-ordered list; the two versions are 7 years apart" -> 27 label checked-finite reach 1 cost 40
 frame "Addison: Car Seat Headrest, heaven full of people (essays/knowing.md; carseat/BASE.md)" reading "every escape route computes OR(people, ground)" -> gravity.ath label checked-finite reach 1 cost 40
 # The open Car Seat readings and the postmodern-history DAG frame moved to frames_sync.ath with their checks.
+
+# Proposal only: no collaboration, network capability, or scientific breakthrough has been verified.
+frame "Addison McCarl: BaileyDataNet, proposed collaboration with Jensen Huang" reading "Explore a compact NVIDIA proposal for a global network using Google Gemini, volunteer-operated home servers, and potential xAI satellite integration; participation requires authorization" -> none label open
