@@ -8,7 +8,7 @@ One function, `app.handle(body, headers)`, that answers Discord's signed slash-c
 
 ## Safety
 - Every request's Ed25519 signature is checked against the application's public key; anything else gets 401.
-- It writes nothing to the repository, and refuses programs that could explicitly commit from `/check`.
+- It refuses programs that could explicitly commit from `/check`; an allowed program may still record findings the way it normally does when run.
 - The bot token is never needed here; the endpoint only needs the **public** key.
 
 ## Run it

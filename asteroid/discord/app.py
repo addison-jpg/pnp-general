@@ -4,14 +4,12 @@ Discord POSTs signed requests here. We verify the Ed25519 signature with the app
 PING, and handle two slash commands:
   /status           the verified count from RESULTS.md and the latest commit line (read-only)
   /check PROGRAM    run one allowlisted top-level .ath program with --no-lean and reply TRUE/FALSE
-Nothing else runs. Writes nothing to the repository.
+Nothing else runs. It never commits to the repository, though an allowed program may record its normal findings.
 Env: DISCORD_PUBLIC_KEY (hex), REPO_DIR (path to a checkout).
 """
 import json, os, re, subprocess
 from nacl.signing import VerifyKey
 from nacl.exceptions import BadSignatureError
-
-ALLOWED = set()          # filled from the repo's top-level .ath files, minus hello.ath (needs Lean)
 
 def _programs(repo):
     out = set()
